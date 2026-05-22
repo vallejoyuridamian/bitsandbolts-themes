@@ -28,6 +28,10 @@
     "inverseOnSurface":     { "$value": "#F1F5F9", "$type": "color" },
     "inversePrimary":       { "$value": "#A5B4FC", "$type": "color" },
     "surfaceTint":          { "$value": "#4F46E5", "$type": "color" },
-    "scrim":                { "$value": "#000000", "$type": "color" }
+    "scrim":                { "$value": "#000000", "$type": "color" },
+    "warning":              { "$value": "#B45309", "$type": "color" },
+    "onWarning":            { "$value": "#FFFFFF", "$type": "color" },
+    "warningContainer":     { "$value": "#FEF3C7", "$type": "color" },
+    "onWarningContainer":   { "$value": "#78350F", "$type": "color" }
   }
 }

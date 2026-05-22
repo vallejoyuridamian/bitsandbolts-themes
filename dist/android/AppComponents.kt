@@ -15,17 +15,23 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -119,7 +125,7 @@ fun BbSegmentedControl(
     Surface(
         color = MaterialTheme.colorScheme.surfaceVariant,
         shape = RoundedCornerShape(8.dp),
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier,
     ) {
         Row(
             modifier = Modifier.padding(2.dp),
@@ -132,7 +138,7 @@ fun BbSegmentedControl(
                     shape = RoundedCornerShape(6.dp),
                     shadowElevation = if (isSelected) 1.dp else 0.dp,
                     onClick = { onSelect(index) },
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier.heightIn(max = 28.dp),
                 ) {
                     Text(
                         text = label,
@@ -141,10 +147,64 @@ fun BbSegmentedControl(
                         color = if (isSelected) MaterialTheme.colorScheme.onSurface
                                 else MaterialTheme.colorScheme.onSurfaceVariant,
                         textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 2.dp),
                     )
                 }
             }
+        }
+    }
+}
+
+// ─── Bb Buttons ───────────────────────────────────────────────────────────────
+
+/**
+ * Rectangular filled button matching desktop btn-action / btn-save style.
+ * Uses extraSmall shape (4dp corners) so buttons look sharp, not pill-shaped.
+ */
+@Composable
+fun BbButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    colors: ButtonColors = ButtonDefaults.buttonColors(),
+    content: @Composable RowScope.() -> Unit,
+) {
+    Button(
+        onClick = onClick,
+        modifier = modifier.heightIn(max = 32.dp),
+        enabled = enabled,
+        shape = MaterialTheme.shapes.extraSmall,
+        colors = colors,
+        contentPadding = PaddingValues(horizontal = 10.dp, vertical = 4.dp),
+    ) {
+        CompositionLocalProvider(LocalTextStyle provides MaterialTheme.typography.bodySmall) {
+            content()
+        }
+    }
+}
+
+/**
+ * Rectangular outlined button matching desktop btn-edit / btn-signout style.
+ * Uses extraSmall shape (4dp corners) so buttons look sharp, not pill-shaped.
+ */
+@Composable
+fun BbOutlinedButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    colors: ButtonColors = ButtonDefaults.outlinedButtonColors(),
+    content: @Composable RowScope.() -> Unit,
+) {
+    OutlinedButton(
+        onClick = onClick,
+        modifier = modifier.heightIn(max = 32.dp),
+        enabled = enabled,
+        shape = MaterialTheme.shapes.extraSmall,
+        colors = colors,
+        contentPadding = PaddingValues(horizontal = 10.dp, vertical = 4.dp),
+    ) {
+        CompositionLocalProvider(LocalTextStyle provides MaterialTheme.typography.bodySmall) {
+            content()
         }
     }
 }

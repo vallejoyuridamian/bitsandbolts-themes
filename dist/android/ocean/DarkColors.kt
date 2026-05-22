@@ -38,6 +38,10 @@ private val _inverseOnSurface = Color(0xFF2E3135)
 private val _inversePrimary = Color(0xFF0061A3)
 private val _surfaceTint = Color(0xFF9DCAFF)
 private val _scrim = Color(0xFF000000)
+private val _warning = Color(0xFFFCD34D)
+private val _onWarning = Color(0xFF78350F)
+private val _warningContainer = Color(0xFF92400E)
+private val _onWarningContainer = Color(0xFFFEF3C7)
 
 val OceanDarkColorScheme = darkColorScheme(
     primary = _primary,
@@ -70,3 +74,8 @@ val OceanDarkColorScheme = darkColorScheme(
     surfaceTint = _surfaceTint,
     scrim = _scrim
 )
+
+val OceanDarkWarning = _warning
+val OceanDarkOnWarning = _onWarning
+val OceanDarkWarningContainer = _warningContainer
+val OceanDarkOnWarningContainer = _onWarningContainer

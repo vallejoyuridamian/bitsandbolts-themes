@@ -15,4 +15,6 @@ object SlateIcons {
     val Person:        ImageVector = Icons.Filled.Person
     val Logout:        ImageVector = Icons.Filled.ExitToApp
     val Devices:       ImageVector = Icons.Filled.Devices
+    val Smartphone:    ImageVector = Icons.Filled.Smartphone
+    val Computer:      ImageVector = Icons.Filled.Computer
 }

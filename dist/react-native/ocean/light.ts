@@ -31,7 +31,11 @@ export const colors = {
   inverseOnSurface: '#eff1f6',
   inversePrimary: '#9dcaff',
   surfaceTint: '#0061a3',
-  scrim: '#000000'
+  scrim: '#000000',
+  warning: '#b45309',
+  onWarning: '#ffffff',
+  warningContainer: '#fef3c7',
+  onWarningContainer: '#78350f'
 } as const;
 
 export const spacing = {

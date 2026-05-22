@@ -77,4 +77,8 @@
   --bb-color-inverse-primary: #9dcaff;
   --bb-color-surface-tint: #0061a3;
   --bb-color-scrim: #000000;
+  --bb-color-warning: #b45309;
+  --bb-color-on-warning: #ffffff;
+  --bb-color-warning-container: #fef3c7;
+  --bb-color-on-warning-container: #78350f;
 }

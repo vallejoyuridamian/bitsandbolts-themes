@@ -38,6 +38,10 @@ private val _inverseOnSurface = Color(0xFFEFF1F6)
 private val _inversePrimary = Color(0xFF9DCAFF)
 private val _surfaceTint = Color(0xFF0061A3)
 private val _scrim = Color(0xFF000000)
+private val _warning = Color(0xFFB45309)
+private val _onWarning = Color(0xFFFFFFFF)
+private val _warningContainer = Color(0xFFFEF3C7)
+private val _onWarningContainer = Color(0xFF78350F)
 
 val OceanLightColorScheme = lightColorScheme(
     primary = _primary,
@@ -70,3 +74,8 @@ val OceanLightColorScheme = lightColorScheme(
     surfaceTint = _surfaceTint,
     scrim = _scrim
 )
+
+val OceanLightWarning = _warning
+val OceanLightOnWarning = _onWarning
+val OceanLightWarningContainer = _warningContainer
+val OceanLightOnWarningContainer = _onWarningContainer

@@ -38,6 +38,10 @@ private val _inverseOnSurface = Color(0xFF1E293B)
 private val _inversePrimary = Color(0xFF4F46E5)
 private val _surfaceTint = Color(0xFFA5B4FC)
 private val _scrim = Color(0xFF000000)
+private val _warning = Color(0xFFFCD34D)
+private val _onWarning = Color(0xFF78350F)
+private val _warningContainer = Color(0xFF92400E)
+private val _onWarningContainer = Color(0xFFFEF3C7)
 
 val SlateDarkColorScheme = darkColorScheme(
     primary = _primary,
@@ -70,3 +74,8 @@ val SlateDarkColorScheme = darkColorScheme(
     surfaceTint = _surfaceTint,
     scrim = _scrim
 )
+
+val SlateDarkWarning = _warning
+val SlateDarkOnWarning = _onWarning
+val SlateDarkWarningContainer = _warningContainer
+val SlateDarkOnWarningContainer = _onWarningContainer
