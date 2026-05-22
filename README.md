@@ -2,6 +2,8 @@
 
 Cross-platform design token system for Bits and Bolts apps. One source of truth → CSS custom properties, Kotlin Compose color schemes, and React Native/Expo constants.
 
+**[Live preview →](https://vallejoyuridamian.github.io/bitsandbolts-themes/)**
+
 ## Themes
 
 | Theme | Primary | Secondary | Personality |
