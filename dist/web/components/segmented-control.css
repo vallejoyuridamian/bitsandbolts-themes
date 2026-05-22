@@ -1,0 +1,44 @@
+/**
+ * Segmented Control — theme-dependent.
+ * Matches BbSegmentedControl in bitsandbolts-themes/android/AppComponents.kt.
+ *
+ * Usage:
+ *   <div class="bb-segmented-control">
+ *     <button class="bb-segmented-control__item active">System</button>
+ *     <button class="bb-segmented-control__item">Light</button>
+ *     <button class="bb-segmented-control__item">Dark</button>
+ *   </div>
+ *
+ * Add the `active` class to the currently selected item.
+ */
+
+.bb-segmented-control {
+  display: flex;
+  background: var(--bb-color-surface-variant);
+  border-radius: 8px;
+  padding: 2px;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.bb-segmented-control__item {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-family: var(--bb-font-family-body);
+  color: var(--bb-color-on-surface-variant);
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.bb-segmented-control__item.active {
+  background: var(--bb-color-surface);
+  color: var(--bb-color-on-surface);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}

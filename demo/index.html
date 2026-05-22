@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bitsandbolts-themes — Preview</title>
+
+  <!-- Active theme CSS — swapped by JS -->
+  <link id="theme-css" rel="stylesheet" href="../dist/web/slate/dark.css" />
+  <!-- Component CSS — brand-fixed, not theme-dependent -->
+  <link rel="stylesheet" href="../dist/web/components/auth-card.css" />
+  <link rel="stylesheet" href="../dist/web/components/google-signin.css" />
+  <link rel="stylesheet" href="../dist/web/components/material-symbols.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── Demo chrome ─────────────────────────────────────────────────────
+       The chrome uses hardcoded neutrals — only preview areas use --bb-* vars.
+    ──────────────────────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --c-bg:      #0c0c0e;
+      --c-surface: #16161a;
+      --c-border:  #27272b;
+      --c-text:    #e4e4e7;
+      --c-muted:   #71717a;
+      --c-mono:    'JetBrains Mono', monospace;
+    }
+
+    body {
+      background: var(--c-bg);
+      color: var(--c-text);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    /* ─── Header ──────────────────────────────────────────────────────────── */
+    .demo-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      height: 52px;
+      border-bottom: 1px solid var(--c-border);
+      background: var(--c-surface);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      gap: 16px;
+    }
+
+    .demo-header__brand {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--c-text);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .demo-header__brand em { color: var(--c-muted); font-style: normal; font-weight: 400; }
+
+    .demo-controls { display: flex; gap: 8px; align-items: center; }
+
+    .ctrl-group {
+      display: flex;
+      background: var(--c-bg);
+      border: 1px solid var(--c-border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .ctrl-btn {
+      padding: 5px 14px;
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      border: none;
+      background: transparent;
+      color: var(--c-muted);
+      cursor: pointer;
+      transition: color 0.12s, background 0.12s;
+      white-space: nowrap;
+    }
+    .ctrl-btn:hover { color: var(--c-text); background: #ffffff08; }
+    .ctrl-btn.active { background: var(--c-surface); color: var(--c-text); }
+    .ctrl-btn + .ctrl-btn { border-left: 1px solid var(--c-border); }
+
+    /* ─── Layout ──────────────────────────────────────────────────────────── */
+    .demo-main {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 36px 24px 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 44px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+      margin-bottom: 14px;
+    }
+
+    hr.sep { border: none; border-top: 1px solid var(--c-border); }
+
+    /* ─── Themes-at-a-glance grid ─────────────────────────────────────────── */
+    .glance-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+    }
+
+    .glance-card {
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: transform 0.12s, border-color 0.12s;
+    }
+    .glance-card:hover { transform: translateY(-3px); }
+    .glance-card.active { border-color: rgba(255,255,255,0.3); }
+
+    .glance-card__inner { padding: 14px 14px 12px; }
+
+    .glance-dots { display: flex; gap: 5px; margin-bottom: 10px; }
+    .glance-dot { width: 13px; height: 13px; border-radius: 50%; }
+
+    .glance-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .glance-mode { font-size: 10px; opacity: 0.55; margin-top: 1px; }
+
+    /* ─── Main preview area ───────────────────────────────────────────────── */
+    .preview-columns {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* ─── Color palette ───────────────────────────────────────────────────── */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 6px;
+    }
+
+    .swatch { border-radius: 8px; overflow: hidden; }
+    .swatch__color { height: 44px; }
+    .swatch__name {
+      padding: 4px 6px 5px;
+      background: var(--c-surface);
+      font-family: var(--c-mono);
+      font-size: 9px;
+      color: var(--c-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ─── Components column ───────────────────────────────────────────────── */
+    .components-col { display: flex; flex-direction: column; gap: 16px; }
+
+    /* Auth card preview — override min-height & padding from component CSS */
+    .auth-preview {
+      background: var(--bb-color-background);
+      border: 1px solid rgba(128,128,128,0.12);
+      border-radius: 16px;
+      padding: 24px 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .auth-preview .bb-auth-page { min-height: unset; background: transparent; padding: 0; }
+    .auth-preview .bb-auth-card { width: 100%; max-width: 280px; }
+
+    /* Buttons preview */
+    .preview-box {
+      background: var(--bb-color-surface);
+      border: 1px solid var(--bb-color-outline-variant);
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+
+    .btns-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+    .bb-btn {
+      padding: 8px 18px;
+      font-size: 13px;
+      font-family: var(--bb-font-family-body);
+      font-weight: 500;
+      border: none;
+      border-radius: var(--bb-radius-md, 8px);
+      cursor: pointer;
+    }
+    .bb-btn-filled  { background: var(--bb-color-primary); color: var(--bb-color-on-primary); }
+    .bb-btn-tonal   { background: var(--bb-color-secondary-container); color: var(--bb-color-on-secondary-container); }
+    .bb-btn-outline { background: transparent; color: var(--bb-color-primary); border: 1px solid var(--bb-color-outline); }
+
+    /* Card preview */
+    .bb-card {
+      background: var(--bb-color-surface);
+      border: 1px solid var(--bb-color-outline-variant);
+      border-radius: var(--bb-radius-lg, 12px);
+      padding: 16px 20px;
+    }
+    .bb-card__title {
+      font-family: var(--bb-font-family-display);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--bb-color-on-surface);
+      margin-bottom: 5px;
+    }
+    .bb-card__body {
+      font-family: var(--bb-font-family-body);
+      font-size: 13px;
+      color: var(--bb-color-on-surface-variant);
+      line-height: 1.55;
+    }
+    .bb-card__tag {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-family: var(--bb-font-family-mono);
+      background: var(--bb-color-primary-container);
+      color: var(--bb-color-on-primary-container);
+      border-radius: var(--bb-radius-sm, 4px);
+    }
+
+    /* ─── Typography ──────────────────────────────────────────────────────── */
+    .type-box {
+      background: var(--bb-color-surface);
+      border: 1px solid var(--bb-color-outline-variant);
+      border-radius: 12px;
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .type-row { display: flex; align-items: baseline; gap: 20px; }
+    .type-tag {
+      font-family: var(--c-mono);
+      font-size: 10px;
+      color: var(--c-muted);
+      width: 56px;
+      flex-shrink: 0;
+    }
+    .type-display {
+      font-family: var(--bb-font-family-display);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--bb-color-on-surface);
+    }
+    .type-body {
+      font-family: var(--bb-font-family-body);
+      font-size: 15px;
+      color: var(--bb-color-on-surface);
+    }
+    .type-mono {
+      font-family: var(--bb-font-family-mono);
+      font-size: 13px;
+      color: var(--bb-color-on-surface);
+    }
+
+    /* ─── Input ───── */
+    .bb-field { display: flex; flex-direction: column; gap: 5px; }
+    .bb-field label {
+      font-family: var(--bb-font-family-body);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--bb-color-primary);
+    }
+    .bb-field input, .bb-field textarea {
+      font-family: var(--bb-font-family-body);
+      font-size: 14px;
+      color: var(--bb-color-on-surface);
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid var(--bb-color-primary);
+      padding: 6px 2px;
+      outline: none;
+      width: 100%;
+      caret-color: var(--bb-color-primary);
+    }
+    .bb-field input::placeholder { color: var(--bb-color-on-surface-variant); opacity: 0.6; }
+    .bb-field__helper {
+      font-size: 11px;
+      color: var(--bb-color-on-surface-variant);
+      font-family: var(--bb-font-family-body);
+    }
+
+    .bb-field-outlined input {
+      border: 1.5px solid var(--bb-color-outline);
+      border-radius: var(--bb-radius-sm, 4px);
+      padding: 8px 12px;
+      background: var(--bb-color-surface);
+    }
+    .bb-field-outlined label { margin-bottom: 2px; }
+    .bb-fields-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* ─── Chips ───── */
+    .chips-row { display: flex; gap: 6px; flex-wrap: wrap; }
+    .bb-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 12px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 500;
+      font-family: var(--bb-font-family-body);
+      border: 1px solid transparent;
+    }
+    .bb-chip-primary   { background: var(--bb-color-primary-container);   color: var(--bb-color-on-primary-container); }
+    .bb-chip-secondary { background: var(--bb-color-secondary-container); color: var(--bb-color-on-secondary-container); }
+    .bb-chip-tertiary  { background: var(--bb-color-tertiary-container);  color: var(--bb-color-on-tertiary-container); }
+    .bb-chip-error     { background: var(--bb-color-error-container);     color: var(--bb-color-on-error-container); }
+    .bb-chip-outline   { border-color: var(--bb-color-outline); color: var(--bb-color-on-surface-variant); }
+    .bb-chip__dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+    /* ─── List ───── */
+    .bb-list { display: flex; flex-direction: column; }
+    .bb-list-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--bb-color-outline-variant);
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+    .bb-list-item:last-child { border-bottom: none; }
+    .bb-list-item:hover { background: var(--bb-color-surface-variant); }
+    .bb-list-item__icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--bb-radius-md, 8px);
+      background: var(--bb-color-primary-container);
+      color: var(--bb-color-on-primary-container);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .bb-list-item__text { flex: 1; min-width: 0; }
+    .bb-list-item__title {
+      font-family: var(--bb-font-family-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--bb-color-on-surface);
+    }
+    .bb-list-item__sub {
+      font-family: var(--bb-font-family-body);
+      font-size: 12px;
+      color: var(--bb-color-on-surface-variant);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .bb-list-item__trail {
+      font-family: var(--bb-font-family-mono);
+      font-size: 11px;
+      color: var(--bb-color-on-surface-variant);
+    }
+
+    /* ─── Badge ───── */
+    .bb-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      border-radius: 99px;
+      font-size: 10px;
+      font-weight: 700;
+      background: var(--bb-color-error);
+      color: var(--bb-color-on-error);
+    }
+
+    /* ─── Snackbar ───── */
+    .bb-snackbar {
+      background: var(--bb-color-inverse-surface);
+      color: var(--bb-color-inverse-on-surface);
+      border-radius: var(--bb-radius-md, 8px);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-family: var(--bb-font-family-body);
+      font-size: 13px;
+    }
+    .bb-snackbar__action {
+      color: var(--bb-color-inverse-primary);
+      font-weight: 600;
+      font-size: 13px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--bb-font-family-body);
+      white-space: nowrap;
+    }
+
+    /* ─── Progress ───── */
+    .bb-progress {
+      height: 4px;
+      border-radius: 99px;
+      background: var(--bb-color-surface-variant);
+      overflow: hidden;
+    }
+    .bb-progress__bar {
+      height: 100%;
+      border-radius: 99px;
+      background: var(--bb-color-primary);
+      transition: width 0.3s;
+    }
+    .bb-progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      font-family: var(--bb-font-family-body);
+      color: var(--bb-color-on-surface-variant);
+      margin-bottom: 6px;
+    }
+
+    /* Error & surface variant strips */
+    .strip-row { display: flex; gap: 8px; }
+    .strip {
+      flex: 1;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      font-family: var(--bb-font-family-body);
+    }
+    .strip-error    { background: var(--bb-color-error-container); color: var(--bb-color-on-error-container); }
+    .strip-primary  { background: var(--bb-color-primary-container); color: var(--bb-color-on-primary-container); }
+    .strip-secondary{ background: var(--bb-color-secondary-container); color: var(--bb-color-on-secondary-container); }
+    .strip-tertiary { background: var(--bb-color-tertiary-container); color: var(--bb-color-on-tertiary-container); }
+
+    @media (max-width: 900px) {
+      .glance-grid { grid-template-columns: repeat(3, 1fr); }
+      .preview-columns { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .glance-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ─── Icon catalog ────────────────────────────────────────────────────── */
+    .icon-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 12px 8px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--bb-color-outline-variant, #27272b);
+      background: var(--bb-color-surface, #16161a);
+      cursor: default;
+      transition: background .15s;
+    }
+    .icon-card:hover { background: var(--bb-color-surface-variant, #222226); }
+    .icon-card .ms { color: var(--bb-color-on-surface, #e4e4e7); }
+    .icon-card__name {
+      font-size: 10px;
+      color: var(--c-muted);
+      font-family: var(--c-mono);
+      text-align: center;
+      word-break: break-word;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ──────────────────────────────────────────────────────────── -->
+<header class="demo-header">
+  <div class="demo-header__brand">
+    ⬡ bitsandbolts-themes <em>/ design tokens</em>
+  </div>
+  <div class="demo-controls">
+    <div class="ctrl-group" id="theme-switcher">
+      <button class="ctrl-btn"        data-theme="ocean">🌊 Ocean</button>
+      <button class="ctrl-btn active" data-theme="slate">🪨 Slate</button>
+    </div>
+    <div class="ctrl-group" id="mode-switcher">
+      <button class="ctrl-btn"        data-mode="light">☀ Light</button>
+      <button class="ctrl-btn active" data-mode="dark">🌙 Dark</button>
+    </div>
+  </div>
+</header>
+
+<!-- ── MAIN ─────────────────────────────────────────────────────────────── -->
+<main class="demo-main">
+
+  <!-- ── ALL THEMES AT A GLANCE ─────────────────────────────────────────── -->
+  <section>
+    <p class="section-label">All themes at a glance — click to switch</p>
+    <div class="glance-grid" id="glance-grid"><!-- filled by JS --></div>
+  </section>
+
+  <hr class="sep" />
+
+  <!-- ── PALETTE + COMPONENTS ───────────────────────────────────────────── -->
+  <div class="preview-columns">
+
+    <!-- Color palette -->
+    <section>
+      <p class="section-label">Color palette</p>
+      <div class="palette-grid" id="palette-grid"><!-- filled by JS --></div>
+
+      <p class="section-label" style="margin-top:24px;">Container tones</p>
+      <div class="strip-row">
+        <div class="strip strip-primary">Primary container</div>
+        <div class="strip strip-secondary">Secondary container</div>
+        <div class="strip strip-tertiary">Tertiary container</div>
+        <div class="strip strip-error">Error container</div>
+      </div>
+    </section>
+
+    <!-- Components -->
+    <section>
+      <p class="section-label">Components</p>
+      <div class="components-col">
+
+        <!-- Auth card -->
+        <div class="auth-preview">
+          <div class="bb-auth-page">
+            <div class="bb-auth-card">
+              <div class="bb-auth-logo">
+                <!-- placeholder cloud icon using currentColor -->
+                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="56" height="56" style="color:var(--bb-color-primary)">
+                  <path d="M52 38a10 10 0 0 0-5.3-17.8A16 16 0 0 0 16 28a10 10 0 1 0 0 20h34a8 8 0 0 0 2-14z" fill="currentColor" opacity="0.9"/>
+                </svg>
+              </div>
+              <h1 class="bb-auth-title">Cloud Clipboard</h1>
+              <p class="bb-auth-subtitle">Copy from anywhere. Paste everywhere.</p>
+              <button class="bb-google-btn">
+                <svg class="bb-google-btn__icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
+                  <path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/>
+                  <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0124 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/>
+                  <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 01-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/>
+                </svg>
+                <span class="bb-google-btn__label">Sign in with Google</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="preview-box">
+          <p class="section-label" style="margin-bottom:10px;">Buttons</p>
+          <div class="btns-row">
+            <button class="bb-btn bb-btn-filled">Filled</button>
+            <button class="bb-btn bb-btn-tonal">Tonal</button>
+            <button class="bb-btn bb-btn-outline">Outlined</button>
+          </div>
+        </div>
+
+        <!-- Chips -->
+        <div class="preview-box">
+          <p class="section-label" style="margin-bottom:10px;">Chips &amp; badges</p>
+          <div class="chips-row">
+            <span class="bb-chip bb-chip-primary"><span class="bb-chip__dot"></span>Primary</span>
+            <span class="bb-chip bb-chip-secondary"><span class="bb-chip__dot"></span>Secondary</span>
+            <span class="bb-chip bb-chip-tertiary"><span class="bb-chip__dot"></span>Tertiary</span>
+            <span class="bb-chip bb-chip-error"><span class="bb-chip__dot"></span>Error</span>
+            <span class="bb-chip bb-chip-outline">Neutral</span>
+          </div>
+        </div>
+
+        <!-- Form inputs -->
+        <div class="preview-box">
+          <p class="section-label" style="margin-bottom:12px;">Form inputs</p>
+          <div class="bb-fields-row">
+            <div class="bb-field">
+              <label>Display name</label>
+              <input type="text" placeholder="Enter name…" value="Damian" />
+              <span class="bb-field__helper">Shown publicly</span>
+            </div>
+            <div class="bb-field bb-field-outlined">
+              <label>Email</label>
+              <input type="email" placeholder="you@example.com" />
+            </div>
+          </div>
+        </div>
+
+        <!-- List -->
+        <div class="bb-card" style="padding:0;overflow:hidden;">
+          <div class="bb-list">
+            <div class="bb-list-item">
+              <div class="bb-list-item__icon">📋</div>
+              <div class="bb-list-item__text">
+                <div class="bb-list-item__title">Cloud Clipboard</div>
+                <div class="bb-list-item__sub">3 devices synced · 2 min ago</div>
+              </div>
+              <span class="bb-badge">4</span>
+            </div>
+            <div class="bb-list-item">
+              <div class="bb-list-item__icon" style="background:var(--bb-color-secondary-container);color:var(--bb-color-on-secondary-container)">🔗</div>
+              <div class="bb-list-item__text">
+                <div class="bb-list-item__title">Pairing code</div>
+                <div class="bb-list-item__sub">Link a new device</div>
+              </div>
+              <span class="bb-list-item__trail">›</span>
+            </div>
+            <div class="bb-list-item">
+              <div class="bb-list-item__icon" style="background:var(--bb-color-tertiary-container);color:var(--bb-color-on-tertiary-container)">⚙️</div>
+              <div class="bb-list-item__text">
+                <div class="bb-list-item__title">Settings</div>
+                <div class="bb-list-item__sub">Theme, encryption, sync</div>
+              </div>
+              <span class="bb-list-item__trail">›</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Progress bars -->
+        <div class="preview-box">
+          <p class="section-label" style="margin-bottom:12px;">Progress</p>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div>
+              <div class="bb-progress-label"><span>Storage</span><span>68%</span></div>
+              <div class="bb-progress"><div class="bb-progress__bar" style="width:68%"></div></div>
+            </div>
+            <div>
+              <div class="bb-progress-label"><span>Sync</span><span>100%</span></div>
+              <div class="bb-progress"><div class="bb-progress__bar" style="width:100%;background:var(--bb-color-secondary)"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Snackbar -->
+        <div class="bb-snackbar">
+          <span>Clipboard item copied to all devices</span>
+          <button class="bb-snackbar__action">Undo</button>
+        </div>
+
+        <!-- Card -->
+        <div class="bb-card">
+          <div class="bb-card__title">Surface card</div>
+          <div class="bb-card__body">Uses <code style="font-family:var(--bb-font-family-mono);font-size:11px;background:var(--bb-color-surface-variant);padding:1px 5px;border-radius:3px;">--bb-color-surface</code> with outline-variant border and display-font heading. All colors adapt when you switch themes.</div>
+          <span class="bb-card__tag">--bb-color-primary-container</span>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <hr class="sep" />
+
+  <!-- ── TYPOGRAPHY ──────────────────────────────────────────────────────── -->
+  <section>
+    <p class="section-label">Typography</p>
+    <div class="type-box">
+      <div class="type-row">
+        <span class="type-tag">display</span>
+        <span class="type-display">Plus Jakarta Sans — The quick brown fox</span>
+      </div>
+      <div class="type-row">
+        <span class="type-tag">body</span>
+        <span class="type-body">Inter — The quick brown fox jumps over the lazy dog.</span>
+      </div>
+      <div class="type-row">
+        <span class="type-tag">mono</span>
+        <span class="type-mono">JetBrains Mono — const theme = 'slate'</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="sep" />
+
+  <!-- ── ICONS ─────────────────────────────────────────────────────────── -->
+  <section>
+    <p class="section-label">Icons — Material Symbols Outlined</p>
+    <p style="color:var(--c-muted);font-size:12px;margin-bottom:16px;">
+      Same icon set on Android (<code style="font-size:11px">Icons.Outlined.*</code>) and Web/Desktop (<code style="font-size:11px">&lt;span class="ms"&gt;settings&lt;/span&gt;</code>).
+    </p>
+
+    <!-- Size + fill demo -->
+    <div class="preview-box" style="margin-bottom:16px;">
+      <p class="section-label" style="margin-bottom:12px;">Size &amp; fill variants</p>
+      <div style="display:flex;gap:24px;align-items:flex-end;flex-wrap:wrap;">
+        <div style="text-align:center;color:var(--bb-color-primary)">
+          <span class="ms ms-16">settings</span>
+          <div style="font-size:10px;color:var(--c-muted);margin-top:4px">.ms-16</div>
+        </div>
+        <div style="text-align:center;color:var(--bb-color-primary)">
+          <span class="ms ms-20">settings</span>
+          <div style="font-size:10px;color:var(--c-muted);margin-top:4px">.ms-20</div>
+        </div>
+        <div style="text-align:center;color:var(--bb-color-primary)">
+          <span class="ms ms-24">settings</span>
+          <div style="font-size:10px;color:var(--c-muted);margin-top:4px">.ms-24</div>
+        </div>
+        <div style="text-align:center;color:var(--bb-color-primary)">
+          <span class="ms ms-32">settings</span>
+          <div style="font-size:10px;color:var(--c-muted);margin-top:4px">.ms-32</div>
+        </div>
+        <div style="text-align:center;color:var(--bb-color-primary)">
+          <span class="ms ms-48">settings</span>
+          <div style="font-size:10px;color:var(--c-muted);margin-top:4px">.ms-48</div>
+        </div>
+        <div style="width:1px;background:var(--c-border);height:40px;align-self:center;"></div>
+        <div style="text-align:center;color:var(--bb-color-secondary)">
+          <span class="ms ms-32">settings</span>
+          <div style="font-size:10px;color:var(--c-muted);margin-top:4px">outlined</div>
+        </div>
+        <div style="text-align:center;color:var(--bb-color-secondary)">
+          <span class="ms ms-32 ms-filled">settings</span>
+          <div style="font-size:10px;color:var(--c-muted);margin-top:4px">.ms-filled</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Icon catalog -->
+    <div id="icon-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:12px;"><!-- filled by JS --></div>
+
+  </section>
+
+</main>
+
+<script>
+  'use strict';
+
+  let activeTheme = 'slate';
+  let activeMode  = 'dark';
+
+  // Hardcoded from dist files (used for the at-a-glance grid which shows
+  // multiple themes simultaneously — CSS vars can't be scoped per-element)
+  const GLANCE_DATA = [
+    { theme:'ocean', mode:'light', label:'Ocean',  modeName:'Light', bg:'#f8fafe', p:'#0061a3', s:'#00696b', t:'#191c20' },
+    { theme:'ocean', mode:'dark',  label:'Ocean',  modeName:'Dark',  bg:'#191c20', p:'#9dcaff', s:'#80d5d7', t:'#e2e2e6' },
+    { theme:'slate', mode:'light', label:'Slate',  modeName:'Light', bg:'#f8fafc', p:'#4f46e5', s:'#7c3aed', t:'#0f172a' },
+    { theme:'slate', mode:'dark',  label:'Slate',  modeName:'Dark',  bg:'#0f172a', p:'#a5b4fc', s:'#c4b5fd', t:'#e2e8f0' },
+  ];
+
+  const COLOR_ROLES = [
+    'primary','on-primary',
+    'secondary','on-secondary',
+    'tertiary','on-tertiary',
+    'error','on-error',
+    'background','on-background',
+    'surface','on-surface',
+    'surface-variant','on-surface-variant',
+    'outline','outline-variant',
+    'inverse-surface','inverse-on-surface',
+    'shadow','scrim',
+  ];
+
+  function renderGlanceGrid() {
+    document.getElementById('glance-grid').innerHTML = GLANCE_DATA.map(d => {
+      const isActive = d.theme === activeTheme && d.mode === activeMode;
+      return `
+        <div class="glance-card${isActive ? ' active' : ''}"
+             style="background:${d.bg}"
+             onclick="applyTheme('${d.theme}','${d.mode}')">
+          <div class="glance-card__inner">
+            <div class="glance-dots">
+              <div class="glance-dot" style="background:${d.p}"></div>
+              <div class="glance-dot" style="background:${d.s}"></div>
+              <div class="glance-dot" style="background:${d.t};opacity:.4"></div>
+            </div>
+            <div class="glance-name" style="color:${d.t}">${d.label}</div>
+            <div class="glance-mode" style="color:${d.t}">${d.modeName}</div>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  function renderPalette() {
+    document.getElementById('palette-grid').innerHTML = COLOR_ROLES.map(role => `
+      <div class="swatch">
+        <div class="swatch__color" style="background:var(--bb-color-${role})"></div>
+        <div class="swatch__name">--bb-color-${role}</div>
+      </div>`).join('');
+  }
+
+  function applyTheme(theme, mode) {
+    activeTheme = theme;
+    activeMode  = mode;
+
+    // Swap the theme stylesheet
+    document.getElementById('theme-css').href = `../dist/web/${theme}/${mode}.css`;
+
+    // Apply data-theme attribute so [data-theme="dark"] selectors fire
+    document.documentElement.setAttribute('data-theme', mode === 'dark' ? 'dark' : '');
+
+    // Update toolbar buttons
+    document.querySelectorAll('#theme-switcher .ctrl-btn').forEach(b =>
+      b.classList.toggle('active', b.dataset.theme === theme));
+    document.querySelectorAll('#mode-switcher .ctrl-btn').forEach(b =>
+      b.classList.toggle('active', b.dataset.mode === mode));
+
+    // Re-render grid to update active highlight
+    renderGlanceGrid();
+  }
+
+  // Toolbar button listeners
+  document.querySelectorAll('#theme-switcher .ctrl-btn').forEach(b =>
+    b.addEventListener('click', () => applyTheme(b.dataset.theme, activeMode)));
+  document.querySelectorAll('#mode-switcher .ctrl-btn').forEach(b =>
+    b.addEventListener('click', () => applyTheme(activeTheme, b.dataset.mode)));
+
+  // Icon catalog data (names used across web and Android)
+  const ICON_NAMES = [
+    'settings', 'cloud_upload', 'cloud_download',
+    'arrow_back', 'devices', 'content_copy',
+    'link', 'logout', 'qr_code_2',
+    'check_circle', 'error', 'warning',
+    'info', 'close', 'add',
+    'delete', 'edit', 'search',
+    'sync', 'notifications', 'share',
+    'lock', 'key', 'visibility',
+    'person', 'group', 'wifi',
+    'star', 'bookmark', 'history',
+  ];
+
+  function renderIcons() {
+    document.getElementById('icon-grid').innerHTML = ICON_NAMES.map(name => `
+      <div class="icon-card" title="${name}">
+        <span class="ms ms-24">${name}</span>
+        <span class="icon-card__name">${name}</span>
+      </div>`).join('');
+  }
+
+  // Initial render
+  applyTheme('slate', 'dark');
+  renderPalette();
+  renderIcons();
+</script>
+</body>
+</html>

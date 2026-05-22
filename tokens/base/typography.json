@@ -1,0 +1,31 @@
+{
+  "font": {
+    "family": {
+      "display": { "$value": "Plus Jakarta Sans, sans-serif" },
+      "body":    { "$value": "Inter, sans-serif" },
+      "mono":    { "$value": "JetBrains Mono, monospace" }
+    },
+    "size": {
+      "xs":  { "$value": "12px", "$type": "dimension" },
+      "sm":  { "$value": "14px", "$type": "dimension" },
+      "md":  { "$value": "16px", "$type": "dimension" },
+      "lg":  { "$value": "18px", "$type": "dimension" },
+      "xl":  { "$value": "20px", "$type": "dimension" },
+      "2xl": { "$value": "24px", "$type": "dimension" },
+      "3xl": { "$value": "30px", "$type": "dimension" },
+      "4xl": { "$value": "36px", "$type": "dimension" },
+      "5xl": { "$value": "48px", "$type": "dimension" }
+    },
+    "weight": {
+      "regular":  { "$value": "400" },
+      "medium":   { "$value": "500" },
+      "semibold": { "$value": "600" },
+      "bold":     { "$value": "700" }
+    },
+    "lineHeight": {
+      "tight":   { "$value": "1.25" },
+      "normal":  { "$value": "1.5" },
+      "relaxed": { "$value": "1.75" }
+    }
+  }
+}

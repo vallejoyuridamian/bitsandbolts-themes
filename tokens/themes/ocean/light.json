@@ -1,0 +1,33 @@
+{
+  "color": {
+    "primary":              { "$value": "#0061A3", "$type": "color" },
+    "onPrimary":            { "$value": "#FFFFFF", "$type": "color" },
+    "primaryContainer":     { "$value": "#D0E4FF", "$type": "color" },
+    "onPrimaryContainer":   { "$value": "#001D36", "$type": "color" },
+    "secondary":            { "$value": "#00696B", "$type": "color" },
+    "onSecondary":          { "$value": "#FFFFFF", "$type": "color" },
+    "secondaryContainer":   { "$value": "#9CF0F2", "$type": "color" },
+    "onSecondaryContainer": { "$value": "#002021", "$type": "color" },
+    "tertiary":             { "$value": "#5A5D8E", "$type": "color" },
+    "onTertiary":           { "$value": "#FFFFFF", "$type": "color" },
+    "tertiaryContainer":    { "$value": "#E1E0FF", "$type": "color" },
+    "onTertiaryContainer":  { "$value": "#171745", "$type": "color" },
+    "error":                { "$value": "#B3261E", "$type": "color" },
+    "onError":              { "$value": "#FFFFFF", "$type": "color" },
+    "errorContainer":       { "$value": "#F9DEDC", "$type": "color" },
+    "onErrorContainer":     { "$value": "#410E0B", "$type": "color" },
+    "background":           { "$value": "#F8FAFE", "$type": "color" },
+    "onBackground":         { "$value": "#191C20", "$type": "color" },
+    "surface":              { "$value": "#F8FAFE", "$type": "color" },
+    "onSurface":            { "$value": "#191C20", "$type": "color" },
+    "surfaceVariant":       { "$value": "#DEE3EB", "$type": "color" },
+    "onSurfaceVariant":     { "$value": "#42474E", "$type": "color" },
+    "outline":              { "$value": "#72787F", "$type": "color" },
+    "outlineVariant":       { "$value": "#C2C7CE", "$type": "color" },
+    "inverseSurface":       { "$value": "#2E3135", "$type": "color" },
+    "inverseOnSurface":     { "$value": "#EFF1F6", "$type": "color" },
+    "inversePrimary":       { "$value": "#9DCAFF", "$type": "color" },
+    "surfaceTint":          { "$value": "#0061A3", "$type": "color" },
+    "scrim":                { "$value": "#000000", "$type": "color" }
+  }
+}

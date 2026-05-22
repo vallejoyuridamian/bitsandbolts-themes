@@ -1,0 +1,94 @@
+/**
+ * bitsandbolts-themes — icons.css
+ *
+ * Standardized icon font for all Bits and Bolts web/desktop apps.
+ * Uses Material Symbols Outlined (variable font) from Google Fonts.
+ *
+ * WHY MATERIAL SYMBOLS:
+ *   - Android (Jetpack Compose) ships Icons.Filled/Outlined natively — same set.
+ *   - Icon names are identical across platforms: "settings", "cloud_upload", etc.
+ *   - Variable font axes let us adjust weight, fill, grade, and optical size via CSS.
+ *
+ * USAGE (HTML / Vue):
+ *   <span class="ms">settings</span>
+ *   <span class="ms ms-filled">cloud_upload</span>
+ *   <span class="ms" style="--ms-size:20px">arrow_back</span>
+ *
+ * ANDROID EQUIVALENT (Jetpack Compose):
+ *   Icon(Icons.Outlined.Settings, contentDescription = "Settings")
+ *   Icon(Icons.Filled.CloudUpload, contentDescription = "Upload")
+ *
+ * STANDARD ICON NAMES (use these names on all platforms):
+ *   settings          · cloud_upload       · cloud_download
+ *   arrow_back        · devices            · content_copy
+ *   link              · logout             · qr_code
+ *   check             · error              · warning
+ *   info              · close              · add
+ *   delete            · edit               · search
+ */
+
+/* ─── Font — local, no network requests ─────────────────────────────────── */
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  font-weight: 100 700;
+  font-display: block;
+  src: url('../fonts/MaterialSymbolsOutlined.woff2') format('woff2');
+}
+
+/* ─── Base class ────────────────────────────────────────────────────────── */
+.ms {
+  /* Variable font axes — override with --ms-fill, --ms-weight, etc. */
+  --ms-fill:   0;
+  --ms-weight: 300;
+  --ms-grad:   0;
+  --ms-size:   1.25em;
+
+  font-family: 'Material Symbols Outlined', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: var(--ms-size);
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'liga';
+  font-variation-settings:
+    'FILL' var(--ms-fill),
+    'wght' var(--ms-weight),
+    'GRAD' var(--ms-grad),
+    'opsz' 24;
+
+  /* Inherit color from parent so it works with themed text */
+  color: inherit;
+
+  /* Prevent icon text from being selectable */
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ─── Variants ──────────────────────────────────────────────────────────── */
+
+/* Filled variant — matches Android Icons.Filled.* */
+.ms.ms-filled { --ms-fill: 1; --ms-weight: 400; }
+
+/* Size helpers */
+.ms-16 { --ms-size: 16px; }
+.ms-18 { --ms-size: 18px; }
+.ms-20 { --ms-size: 20px; }
+.ms-24 { --ms-size: 24px; }  /* default Material size */
+.ms-28 { --ms-size: 28px; }
+.ms-32 { --ms-size: 32px; }
+.ms-48 { --ms-size: 48px; }
+
+/* Weight helpers (lighter looks better at small sizes) */
+.ms-thin   { --ms-weight: 100; }
+.ms-light  { --ms-weight: 200; }
+.ms-normal { --ms-weight: 400; }
+.ms-bold   { --ms-weight: 600; }
