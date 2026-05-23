@@ -1,0 +1,65 @@
+/**
+ * Button — theme-aware button variants.
+ * Uses --bb-* tokens so it automatically reflects the active theme.
+ *
+ * Usage:
+ *   <button class="bb-btn bb-btn-filled">Save</button>
+ *   <button class="bb-btn bb-btn-tonal">Secondary</button>
+ *   <button class="bb-btn bb-btn-outline">Cancel</button>
+ *   <button class="bb-btn bb-btn-text">Forgot password?</button>
+ */
+
+.bb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--bb-spacing-2);
+  width: 100%;
+  padding: 10px var(--bb-spacing-4);
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-sm);
+  font-weight: var(--bb-font-weight-medium);
+  border: none;
+  border-radius: var(--bb-radius-md);
+  cursor: pointer;
+  transition: opacity 0.15s, filter 0.15s;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.bb-btn:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.bb-btn:active:not(:disabled) {
+  filter: brightness(0.94);
+}
+
+.bb-btn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.bb-btn-filled {
+  background: var(--bb-color-primary);
+  color: var(--bb-color-on-primary);
+}
+
+.bb-btn-tonal {
+  background: var(--bb-color-secondary-container);
+  color: var(--bb-color-on-secondary-container);
+}
+
+.bb-btn-outline {
+  background: transparent;
+  color: var(--bb-color-primary);
+  border: 1px solid var(--bb-color-outline);
+}
+
+.bb-btn-text {
+  background: transparent;
+  color: var(--bb-color-primary);
+  width: auto;
+  padding-left: var(--bb-spacing-1);
+  padding-right: var(--bb-spacing-1);
+}
