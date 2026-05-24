@@ -283,17 +283,22 @@ for (const theme of THEMES) {
     `import androidx.compose.material.icons.Icons\n` +
     `import androidx.compose.material.icons.filled.*\n` +
     `import androidx.compose.material.icons.outlined.*\n` +
+    `import androidx.compose.material.icons.automirrored.filled.*\n` +
+    `import androidx.compose.material.icons.automirrored.outlined.*\n` +
     `import androidx.compose.ui.graphics.vector.ImageVector\n\n` +
     `object ${ThemeName}Icons {\n` +
     `    val Settings:      ImageVector = Icons.${composeStyle}.Settings\n` +
     `    val CloudUpload:   ImageVector = Icons.${composeStyle}.CloudUpload\n` +
     `    val CloudDownload: ImageVector = Icons.${composeStyle}.CloudDownload\n` +
-    `    val ArrowBack:     ImageVector = Icons.${composeStyle}.ArrowBack\n` +
+    `    val ArrowBack:     ImageVector = Icons.AutoMirrored.${composeStyle}.ArrowBack\n` +
     `    val Person:        ImageVector = Icons.${composeStyle}.Person\n` +
-    `    val Logout:        ImageVector = Icons.${composeStyle}.ExitToApp\n` +
+    `    val Logout:        ImageVector = Icons.AutoMirrored.${composeStyle}.ExitToApp\n` +
     `    val Devices:       ImageVector = Icons.${composeStyle}.Devices\n` +
     `    val Smartphone:    ImageVector = Icons.${composeStyle}.Smartphone\n` +
     `    val Computer:      ImageVector = Icons.${composeStyle}.Computer\n` +
+    `    val Visibility:    ImageVector = Icons.${composeStyle}.Visibility\n` +
+    `    val VisibilityOff: ImageVector = Icons.${composeStyle}.VisibilityOff\n` +
+    `    val MarkEmailRead: ImageVector = Icons.${composeStyle}.MarkEmailRead\n` +
     `}\n`);
   process.stdout.write(`  [${theme}/IconStyle.kt] done\n`);
 }

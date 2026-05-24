@@ -5,16 +5,21 @@ package REPLACE_ME.ui.theme.generated
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.automirrored.filled.*
+import androidx.compose.material.icons.automirrored.outlined.*
 import androidx.compose.ui.graphics.vector.ImageVector
 
 object SlateIcons {
     val Settings:      ImageVector = Icons.Filled.Settings
     val CloudUpload:   ImageVector = Icons.Filled.CloudUpload
     val CloudDownload: ImageVector = Icons.Filled.CloudDownload
-    val ArrowBack:     ImageVector = Icons.Filled.ArrowBack
+    val ArrowBack:     ImageVector = Icons.AutoMirrored.Filled.ArrowBack
     val Person:        ImageVector = Icons.Filled.Person
-    val Logout:        ImageVector = Icons.Filled.ExitToApp
+    val Logout:        ImageVector = Icons.AutoMirrored.Filled.ExitToApp
     val Devices:       ImageVector = Icons.Filled.Devices
     val Smartphone:    ImageVector = Icons.Filled.Smartphone
     val Computer:      ImageVector = Icons.Filled.Computer
+    val Visibility:    ImageVector = Icons.Filled.Visibility
+    val VisibilityOff: ImageVector = Icons.Filled.VisibilityOff
+    val MarkEmailRead: ImageVector = Icons.Filled.MarkEmailRead
 }
