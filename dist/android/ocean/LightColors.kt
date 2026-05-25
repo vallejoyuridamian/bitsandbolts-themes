@@ -4,7 +4,7 @@
 // To set your package name, run:
 //   ANDROID_PACKAGE=com.yourapp pnpm build
 // or find-and-replace REPLACE_ME after copying.
-package REPLACE_ME.ui.theme.generated
+package com.universalclipboard.ui.theme.generated
 
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
@@ -42,6 +42,10 @@ private val _warning = Color(0xFFB45309)
 private val _onWarning = Color(0xFFFFFFFF)
 private val _warningContainer = Color(0xFFFEF3C7)
 private val _onWarningContainer = Color(0xFF78350F)
+private val _success = Color(0xFF16A34A)
+private val _onSuccess = Color(0xFFFFFFFF)
+private val _successContainer = Color(0xFFDCFCE7)
+private val _onSuccessContainer = Color(0xFF14532D)
 
 val OceanLightColorScheme = lightColorScheme(
     primary = _primary,
@@ -79,3 +83,7 @@ val OceanLightWarning = _warning
 val OceanLightOnWarning = _onWarning
 val OceanLightWarningContainer = _warningContainer
 val OceanLightOnWarningContainer = _onWarningContainer
+val OceanLightSuccess = _success
+val OceanLightOnSuccess = _onSuccess
+val OceanLightSuccessContainer = _successContainer
+val OceanLightOnSuccessContainer = _onSuccessContainer

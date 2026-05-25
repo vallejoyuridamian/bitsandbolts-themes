@@ -32,6 +32,10 @@
     "warning":              { "$value": "#B45309", "$type": "color" },
     "onWarning":            { "$value": "#FFFFFF", "$type": "color" },
     "warningContainer":     { "$value": "#FEF3C7", "$type": "color" },
-    "onWarningContainer":   { "$value": "#78350F", "$type": "color" }
+    "onWarningContainer":   { "$value": "#78350F", "$type": "color" },
+    "success":              { "$value": "#16A34A", "$type": "color" },
+    "onSuccess":            { "$value": "#FFFFFF", "$type": "color" },
+    "successContainer":     { "$value": "#DCFCE7", "$type": "color" },
+    "onSuccessContainer":   { "$value": "#14532D", "$type": "color" }
   }
 }

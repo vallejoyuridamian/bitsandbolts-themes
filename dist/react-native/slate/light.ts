@@ -35,7 +35,11 @@ export const colors = {
   warning: '#b45309',
   onWarning: '#ffffff',
   warningContainer: '#fef3c7',
-  onWarningContainer: '#78350f'
+  onWarningContainer: '#78350f',
+  success: '#16a34a',
+  onSuccess: '#ffffff',
+  successContainer: '#dcfce7',
+  onSuccessContainer: '#14532d'
 } as const;
 
 export const spacing = {

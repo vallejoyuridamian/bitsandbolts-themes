@@ -81,4 +81,8 @@
   --bb-color-on-warning: #ffffff;
   --bb-color-warning-container: #fef3c7;
   --bb-color-on-warning-container: #78350f;
+  --bb-color-success: #16a34a;
+  --bb-color-on-success: #ffffff;
+  --bb-color-success-container: #dcfce7;
+  --bb-color-on-success-container: #14532d;
 }

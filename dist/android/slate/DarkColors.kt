@@ -4,7 +4,7 @@
 // To set your package name, run:
 //   ANDROID_PACKAGE=com.yourapp pnpm build
 // or find-and-replace REPLACE_ME after copying.
-package REPLACE_ME.ui.theme.generated
+package com.universalclipboard.ui.theme.generated
 
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.ui.graphics.Color
@@ -42,6 +42,10 @@ private val _warning = Color(0xFFFCD34D)
 private val _onWarning = Color(0xFF78350F)
 private val _warningContainer = Color(0xFF92400E)
 private val _onWarningContainer = Color(0xFFFEF3C7)
+private val _success = Color(0xFF4ADE80)
+private val _onSuccess = Color(0xFF052E16)
+private val _successContainer = Color(0xFF166534)
+private val _onSuccessContainer = Color(0xFFDCFCE7)
 
 val SlateDarkColorScheme = darkColorScheme(
     primary = _primary,
@@ -79,3 +83,7 @@ val SlateDarkWarning = _warning
 val SlateDarkOnWarning = _onWarning
 val SlateDarkWarningContainer = _warningContainer
 val SlateDarkOnWarningContainer = _onWarningContainer
+val SlateDarkSuccess = _success
+val SlateDarkOnSuccess = _onSuccess
+val SlateDarkSuccessContainer = _successContainer
+val SlateDarkOnSuccessContainer = _onSuccessContainer
