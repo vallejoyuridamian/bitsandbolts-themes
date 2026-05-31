@@ -7,6 +7,7 @@
 //   BbSegmentedControl   — Tab-style selector (matches segmented-control.css)
 package REPLACE_ME.ui.theme.generated
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -35,6 +36,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -188,8 +190,7 @@ fun BbButton(
  * Uses extraSmall shape (4dp corners) so buttons look sharp, not pill-shaped.
  */
 @Composable
-fun BbOutlinedButton(
-    onClick: () -> Unit,
+fun BbOutlinedButton(    onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     colors: ButtonColors = ButtonDefaults.outlinedButtonColors(),
@@ -206,5 +207,49 @@ fun BbOutlinedButton(
         CompositionLocalProvider(LocalTextStyle provides MaterialTheme.typography.bodySmall) {
             content()
         }
+    }
+}
+
+// ─── Content Card ─────────────────────────────────────────────────────────────
+
+/**
+ * Standard bordered card used throughout the app for content sections.
+ *
+ * Visual contract (matches app-wide card style):
+ *   - Surface color: colorScheme.surface
+ *   - Border: 1dp outlineVariant
+ *   - Elevation: 1dp tonal
+ *   - Default shape: MaterialTheme.shapes.medium (8dp per BbShapes)
+ *
+ * Pass [shape] to override — e.g. MaterialTheme.shapes.large (10dp) for list rows.
+ * Pass [onClick] to make the card clickable (adds ripple).
+ */
+@Composable
+fun BbContentCard(
+    modifier: Modifier = Modifier,
+    shape: Shape? = null,
+    onClick: (() -> Unit)? = null,
+    content: @Composable () -> Unit,
+) {
+    val resolvedShape = shape ?: MaterialTheme.shapes.medium
+    if (onClick != null) {
+        Surface(
+            onClick = onClick,
+            modifier = modifier,
+            shape = resolvedShape,
+            color = MaterialTheme.colorScheme.surface,
+            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
+            tonalElevation = 1.dp,
+            content = content,
+        )
+    } else {
+        Surface(
+            modifier = modifier,
+            shape = resolvedShape,
+            color = MaterialTheme.colorScheme.surface,
+            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
+            tonalElevation = 1.dp,
+            content = content,
+        )
     }
 }

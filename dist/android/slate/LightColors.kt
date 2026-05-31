@@ -4,7 +4,7 @@
 // To set your package name, run:
 //   ANDROID_PACKAGE=com.yourapp pnpm build
 // or find-and-replace REPLACE_ME after copying.
-package com.universalclipboard.ui.theme.generated
+package REPLACE_ME.ui.theme.generated
 
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
