@@ -87,3 +87,4 @@ val OceanLightSuccess = _success
 val OceanLightOnSuccess = _onSuccess
 val OceanLightSuccessContainer = _successContainer
 val OceanLightOnSuccessContainer = _onSuccessContainer
+val OceanLightActionIconInactive = 0.40f

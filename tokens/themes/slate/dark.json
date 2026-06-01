@@ -37,5 +37,8 @@
     "onSuccess":            { "$value": "#052E16", "$type": "color" },
     "successContainer":     { "$value": "#166534", "$type": "color" },
     "onSuccessContainer":   { "$value": "#DCFCE7", "$type": "color" }
+  },
+  "opacity": {
+    "actionIconInactive": { "$value": "0.40", "$type": "number" }
   }
 }

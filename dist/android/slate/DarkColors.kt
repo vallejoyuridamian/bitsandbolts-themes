@@ -87,3 +87,4 @@ val SlateDarkSuccess = _success
 val SlateDarkOnSuccess = _onSuccess
 val SlateDarkSuccessContainer = _successContainer
 val SlateDarkOnSuccessContainer = _onSuccessContainer
+val SlateDarkActionIconInactive = 0.40f

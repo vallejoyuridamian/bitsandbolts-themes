@@ -87,3 +87,4 @@ val OceanDarkSuccess = _success
 val OceanDarkOnSuccess = _onSuccess
 val OceanDarkSuccessContainer = _successContainer
 val OceanDarkOnSuccessContainer = _onSuccessContainer
+val OceanDarkActionIconInactive = 0.40f

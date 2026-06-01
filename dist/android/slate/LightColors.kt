@@ -87,3 +87,4 @@ val SlateLightSuccess = _success
 val SlateLightOnSuccess = _onSuccess
 val SlateLightSuccessContainer = _successContainer
 val SlateLightOnSuccessContainer = _onSuccessContainer
+val SlateLightActionIconInactive = 0.40f

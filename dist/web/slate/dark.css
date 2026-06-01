@@ -85,4 +85,5 @@
   --bb-color-on-success: #052e16;
   --bb-color-success-container: #166534;
   --bb-color-on-success-container: #dcfce7;
+  --bb-opacity-action-icon-inactive: 0.40;
 }
