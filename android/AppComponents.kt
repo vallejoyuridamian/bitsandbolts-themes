@@ -31,6 +31,7 @@ import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
@@ -207,6 +208,31 @@ fun BbOutlinedButton(    onClick: () -> Unit,
         CompositionLocalProvider(LocalTextStyle provides MaterialTheme.typography.bodySmall) {
             content()
         }
+    }
+}
+
+/**
+ * Dialog action button matching desktop dialog.css.
+ * Text-only, primary-colored, bold, and slightly larger than standard small button text.
+ */
+@Composable
+fun BbDialogTextButton(
+    label: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+) {
+    TextButton(
+        onClick = onClick,
+        modifier = modifier,
+        enabled = enabled,
+    ) {
+        Text(
+            text = label,
+            style = MaterialTheme.typography.bodyLarge,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.primary,
+        )
     }
 }
 
