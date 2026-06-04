@@ -304,6 +304,7 @@ for (const theme of THEMES) {
     `    val Computer:      ImageVector = Icons.${composeStyle}.Computer\n` +
     `    val Visibility:    ImageVector = Icons.${composeStyle}.Visibility\n` +
     `    val VisibilityOff: ImageVector = Icons.${composeStyle}.VisibilityOff\n` +
+    `    val Lock:          ImageVector = Icons.${composeStyle}.Lock\n` +
     `    val MarkEmailRead: ImageVector = Icons.${composeStyle}.MarkEmailRead\n` +
     `}\n`);
   process.stdout.write(`  [${theme}/IconStyle.kt] done\n`);

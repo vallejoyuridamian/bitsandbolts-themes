@@ -21,5 +21,6 @@ object OceanIcons {
     val Computer:      ImageVector = Icons.Filled.Computer
     val Visibility:    ImageVector = Icons.Filled.Visibility
     val VisibilityOff: ImageVector = Icons.Filled.VisibilityOff
+    val Lock:          ImageVector = Icons.Filled.Lock
     val MarkEmailRead: ImageVector = Icons.Filled.MarkEmailRead
 }
