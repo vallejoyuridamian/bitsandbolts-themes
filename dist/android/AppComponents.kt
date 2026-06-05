@@ -32,10 +32,20 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
@@ -278,4 +288,35 @@ fun BbContentCard(
             content = content,
         )
     }
+}
+
+@Composable
+fun BbSkeletonBlock(
+    modifier: Modifier = Modifier,
+    shape: Shape = MaterialTheme.shapes.small,
+) {
+    val transition = rememberInfiniteTransition(label = "bb-skeleton")
+    val shift by transition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 1350, easing = LinearEasing),
+            repeatMode = RepeatMode.Restart,
+        ),
+        label = "bb-skeleton-shift",
+    )
+
+    val base = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.82f)
+    val shimmer = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.10f)
+    val brush = Brush.linearGradient(
+        colors = listOf(base, shimmer, base),
+        start = Offset(x = (shift - 1f) * 600f, y = 0f),
+        end = Offset(x = shift * 600f, y = 0f),
+    )
+
+    Box(
+        modifier = modifier
+            .clip(shape)
+            .background(brush),
+    )
 }
