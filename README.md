@@ -11,6 +11,7 @@ Cross-platform design token system for Bits and Bolts apps. One source of truth 
 | **cloud** | `#E8521A` warm orange | `#2B7A2E` forest green | Energetic, friendly (Universal Clipboard) |
 | **ocean** | `#0061A3` deep blue | `#00696B` teal | Professional, calm |
 | **slate** | `#4F46E5` indigo | `#7C3AED` violet | Bold, modern |
+| **robot** | `#3FB950` terminal green | `#58A6FF` telemetry blue | Industrial, diagnostic, systems-focused |
 
 Each theme has light + dark variants. All tokens follow the Material 3 color system.
 

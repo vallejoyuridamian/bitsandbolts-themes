@@ -1,2 +1,4 @@
 node_modules/
+.env
+.env.*
 # dist/ is intentionally committed — submodule consumers use it directly

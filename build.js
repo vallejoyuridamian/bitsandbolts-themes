@@ -17,7 +17,7 @@
 
 import StyleDictionary from 'style-dictionary';
 
-const THEMES = ['ocean', 'slate'];
+const THEMES = ['ocean', 'slate', 'robot'];
 const MODES  = ['light', 'dark'];
 const ANDROID_PACKAGE = process.env.ANDROID_PACKAGE || 'REPLACE_ME';
 

@@ -290,6 +290,15 @@ fun BbContentCard(
     }
 }
 
+// ─── Skeletons ───────────────────────────────────────────────────────────────
+
+/**
+ * Shared shimmer skeleton block for temporary loading placeholders.
+ *
+ * This is intentionally low-level so app screens can compose list rows,
+ * thumbnails, and preview areas without inventing per-screen loading visuals.
+ * It adds no minimum display time; visibility is fully controlled by caller state.
+ */
 @Composable
 fun BbSkeletonBlock(
     modifier: Modifier = Modifier,
