@@ -11,9 +11,12 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
@@ -21,7 +24,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
@@ -51,7 +53,9 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import REPLACE_ME.R
 
 // ─── Google Sign-In Button ────────────────────────────────────────────────────
@@ -243,6 +247,167 @@ fun BbDialogTextButton(
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.primary,
         )
+    }
+}
+
+enum class BbPlanCardTone {
+    Gold,
+    Coal,
+}
+
+private data class BbPlanCardPalette(
+    val accent: Color,
+    val container: Color,
+    val content: Color,
+    val border: Color,
+)
+
+@Composable
+private fun bbPlanCardPalette(
+    tone: BbPlanCardTone,
+): BbPlanCardPalette = when (tone) {
+    BbPlanCardTone.Gold -> BbPlanCardPalette(
+        accent = Color(0xFFD8A81F),
+        container = Color(0xFF3A2D11),
+        content = Color(0xFFFFF4CF),
+        border = Color(0xFFF0C453),
+    )
+    BbPlanCardTone.Coal -> BbPlanCardPalette(
+        accent = Color(0xFF8D98A5),
+        container = Color(0xFF23272F),
+        content = Color(0xFFF5F7FA),
+        border = Color(0xFF3C434E),
+    )
+}
+
+@Composable
+fun BbPlanButtonColors(
+    tone: BbPlanCardTone,
+    contentAlpha: Float = 1f,
+): ButtonColors {
+    val palette = bbPlanCardPalette(tone)
+    return ButtonDefaults.buttonColors(
+        containerColor = if (tone == BbPlanCardTone.Coal) {
+            palette.content.copy(alpha = 0.16f)
+        } else {
+            palette.accent
+        },
+        contentColor = if (tone == BbPlanCardTone.Coal) {
+            palette.content.copy(alpha = contentAlpha)
+        } else {
+            Color(0xFF231800).copy(alpha = contentAlpha)
+        },
+    )
+}
+
+/**
+ * Shared onboarding/paywall plan card.
+ *
+ * Uses app-wide typography and button patterns from the theme system, while
+ * exposing only a small accent surface variation: [BbPlanCardTone.Gold] and
+ * [BbPlanCardTone.Coal].
+ */
+@Composable
+fun BbPlanOptionCard(
+    title: String,
+    eyebrow: String,
+    price: String,
+    period: String,
+    buttonLabel: String,
+    selected: Boolean,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    tone: BbPlanCardTone = BbPlanCardTone.Gold,
+    supportingText: String = "",
+    annualPrice: String? = null,
+    annualLabel: String? = null,
+) {
+    val palette = bbPlanCardPalette(tone)
+
+    Surface(
+        onClick = onClick,
+        modifier = modifier,
+        shape = MaterialTheme.shapes.medium,
+        color = palette.container,
+        border = BorderStroke(
+            width = if (selected) 2.dp else 1.dp,
+            color = if (selected) palette.accent else palette.border,
+        ),
+        tonalElevation = if (selected) 3.dp else 1.dp,
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxHeight()
+                .padding(horizontal = 16.dp, vertical = 14.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            Column {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold,
+                    color = palette.content,
+                )
+                Text(
+                    text = eyebrow,
+                    style = MaterialTheme.typography.labelLarge,
+                    color = palette.accent,
+                )
+            }
+            Text(
+                text = androidx.compose.ui.text.buildAnnotatedString {
+                    withStyle(
+                        style = androidx.compose.ui.text.SpanStyle(
+                            fontSize = 30.sp,
+                            fontWeight = FontWeight.ExtraBold,
+                            color = palette.content,
+                        ),
+                    ) {
+                        append("\$$price")
+                    }
+                    withStyle(
+                        style = androidx.compose.ui.text.SpanStyle(
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = palette.content.copy(alpha = 0.88f),
+                        ),
+                    ) {
+                        append(period)
+                    }
+                },
+                lineHeight = 32.sp,
+            )
+            if (annualPrice != null && annualLabel != null) {
+                Text(
+                    text = "\$$annualPrice $annualLabel",
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Medium,
+                    color = palette.content.copy(alpha = 0.82f),
+                )
+            }
+            if (supportingText.isNotEmpty()) {
+                Text(
+                    text = supportingText,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = palette.content.copy(alpha = 0.88f),
+                )
+            }
+            Spacer(Modifier.weight(1f))
+            Button(
+                onClick = onClick,
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(999.dp),
+                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 10.dp),
+                colors = BbPlanButtonColors(tone = tone),
+            ) {
+                Text(
+                    text = buttonLabel,
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
+        }
     }
 }
 
