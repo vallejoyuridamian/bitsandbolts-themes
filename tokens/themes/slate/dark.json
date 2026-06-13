@@ -36,7 +36,12 @@
     "success":              { "$value": "#4ADE80", "$type": "color" },
     "onSuccess":            { "$value": "#052E16", "$type": "color" },
     "successContainer":     { "$value": "#166534", "$type": "color" },
-    "onSuccessContainer":   { "$value": "#DCFCE7", "$type": "color" }
+    "onSuccessContainer":   { "$value": "#DCFCE7", "$type": "color" },
+    "terminalBackground":   { "$value": "#0A0F1B", "$type": "color" },
+    "terminalForeground":   { "$value": "#DDD6FE", "$type": "color" },
+    "terminalMuted":        { "$value": "#A78BFA", "$type": "color" },
+    "terminalAccent":       { "$value": "#7DD3FC", "$type": "color" },
+    "terminalBorder":       { "$value": "#334155", "$type": "color" }
   },
   "opacity": {
     "actionIconInactive": { "$value": "0.40", "$type": "number" }

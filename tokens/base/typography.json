@@ -3,7 +3,8 @@
     "family": {
       "display": { "$value": "Plus Jakarta Sans, sans-serif" },
       "body":    { "$value": "Inter, sans-serif" },
-      "mono":    { "$value": "JetBrains Mono, monospace" }
+      "mono":    { "$value": "JetBrains Mono, monospace" },
+      "terminal": { "$value": "JetBrains Mono, monospace" }
     },
     "size": {
       "xs":  { "$value": "12px", "$type": "dimension" },
