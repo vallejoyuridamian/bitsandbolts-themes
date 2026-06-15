@@ -17,7 +17,7 @@
 
 import StyleDictionary from 'style-dictionary';
 
-const THEMES = ['ocean', 'slate', 'robot'];
+const THEMES = ['cloud', 'ocean', 'slate', 'robot'];
 const MODES  = ['light', 'dark'];
 const ANDROID_PACKAGE = process.env.ANDROID_PACKAGE || 'REPLACE_ME';
 
@@ -192,8 +192,31 @@ for (const theme of THEMES) {
 }
 
 // ─── Copy static components to dist ─────────────────────────────────────────
-import { readdirSync, copyFileSync, mkdirSync, existsSync, readFileSync, writeFileSync } from 'fs';
+import {
+  readdirSync,
+  copyFileSync,
+  mkdirSync,
+  existsSync,
+  readFileSync,
+  writeFileSync,
+  statSync,
+} from 'fs';
 import { join } from 'path';
+
+function copyDirRecursive(srcDir, destDir, pathLabel) {
+  if (!existsSync(srcDir)) return;
+  mkdirSync(destDir, { recursive: true });
+  for (const entry of readdirSync(srcDir)) {
+    const srcPath = join(srcDir, entry);
+    const destPath = join(destDir, entry);
+    if (statSync(srcPath).isDirectory()) {
+      copyDirRecursive(srcPath, destPath, pathLabel ? `${pathLabel}/${entry}` : entry);
+      continue;
+    }
+    copyFileSync(srcPath, destPath);
+    process.stdout.write(`  [${pathLabel ? `${pathLabel}/` : ''}${entry}] done\n`);
+  }
+}
 
 const COMPONENTS_SRC  = 'components';
 const COMPONENTS_DIST = 'dist/web/components';
@@ -215,6 +238,8 @@ for (const file of readdirSync(ICONS_SRC)) {
     process.stdout.write(`  [icons/${file}] done\n`);
   }
 }
+
+copyDirRecursive('assets/brand', 'dist/web/brand', 'brand');
 
 // Copy static Android Kotlin sources to dist/android/
 // These use REPLACE_ME as a package placeholder; dev.sh substitutes the real package.
