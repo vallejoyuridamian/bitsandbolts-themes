@@ -183,18 +183,23 @@ fun BbButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    colors: ButtonColors = ButtonDefaults.buttonColors(),
+    colors: ButtonColors = ButtonDefaults.buttonColors(
+        containerColor = MaterialTheme.colorScheme.primary,
+        contentColor = MaterialTheme.colorScheme.onPrimary,
+        disabledContainerColor = MaterialTheme.colorScheme.outlineVariant,
+        disabledContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+    ),
     content: @Composable RowScope.() -> Unit,
 ) {
     Button(
         onClick = onClick,
-        modifier = modifier.heightIn(max = 32.dp),
+        modifier = modifier.heightIn(min = 40.dp),
         enabled = enabled,
         shape = MaterialTheme.shapes.extraSmall,
         colors = colors,
-        contentPadding = PaddingValues(horizontal = 10.dp, vertical = 4.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 10.dp),
     ) {
-        CompositionLocalProvider(LocalTextStyle provides MaterialTheme.typography.bodySmall) {
+        CompositionLocalProvider(LocalTextStyle provides MaterialTheme.typography.labelLarge) {
             content()
         }
     }
@@ -208,18 +213,21 @@ fun BbButton(
 fun BbOutlinedButton(    onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    colors: ButtonColors = ButtonDefaults.outlinedButtonColors(),
+    colors: ButtonColors = ButtonDefaults.outlinedButtonColors(
+        contentColor = MaterialTheme.colorScheme.primary,
+        disabledContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+    ),
     content: @Composable RowScope.() -> Unit,
 ) {
     OutlinedButton(
         onClick = onClick,
-        modifier = modifier.heightIn(max = 32.dp),
+        modifier = modifier.heightIn(min = 40.dp),
         enabled = enabled,
         shape = MaterialTheme.shapes.extraSmall,
         colors = colors,
-        contentPadding = PaddingValues(horizontal = 10.dp, vertical = 4.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 10.dp),
     ) {
-        CompositionLocalProvider(LocalTextStyle provides MaterialTheme.typography.bodySmall) {
+        CompositionLocalProvider(LocalTextStyle provides MaterialTheme.typography.labelLarge) {
             content()
         }
     }

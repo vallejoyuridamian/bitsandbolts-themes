@@ -36,8 +36,26 @@
 }
 
 .bb-btn:disabled {
-  opacity: 0.38;
   cursor: not-allowed;
+  opacity: 1;
+  font-family: var(--bb-font-family-body);
+  font-weight: var(--bb-font-weight-medium);
+}
+
+.bb-btn-filled:disabled {
+  background: var(--bb-color-outline-variant);
+  color: var(--bb-color-on-surface-variant);
+}
+
+.bb-btn-tonal:disabled {
+  background: var(--bb-color-outline-variant);
+  color: var(--bb-color-on-surface-variant);
+}
+
+.bb-btn-outline:disabled {
+  background: transparent;
+  color: var(--bb-color-on-surface-variant);
+  border-color: var(--bb-color-outline-variant);
 }
 
 .bb-btn-filled {
