@@ -17,7 +17,7 @@
 
 import StyleDictionary from 'style-dictionary';
 
-const THEMES = ['cloud', 'ocean', 'slate', 'robot'];
+const THEMES = ['cloud', 'ocean', 'slate', 'robot', 'bitsandbolts'];
 const MODES  = ['light', 'dark'];
 const ANDROID_PACKAGE = process.env.ANDROID_PACKAGE || 'REPLACE_ME';
 
@@ -281,6 +281,14 @@ mkdirSync(FONTS_DIST, { recursive: true });
 for (const file of readdirSync(FONTS_SRC)) {
   copyFileSync(join(FONTS_SRC, file), join(FONTS_DIST, file));
   process.stdout.write(`  [fonts/${file}] done\n`);
+}
+
+const WEB_FONTS_SRC = 'assets/web-fonts';
+if (existsSync(WEB_FONTS_SRC)) {
+  for (const file of readdirSync(WEB_FONTS_SRC)) {
+    copyFileSync(join(WEB_FONTS_SRC, file), join(FONTS_DIST, file));
+    process.stdout.write(`  [web-fonts/${file}] done\n`);
+  }
 }
 
 console.log('\n✓ All themes built successfully.');
