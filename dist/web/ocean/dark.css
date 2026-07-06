@@ -32,6 +32,7 @@
   --bb-font-family-display: Plus Jakarta Sans, sans-serif;
   --bb-font-family-body: Inter, sans-serif;
   --bb-font-family-mono: JetBrains Mono, monospace;
+  --bb-font-family-terminal: JetBrains Mono, monospace;
   --bb-font-size-xs: 12px;
   --bb-font-size-sm: 14px;
   --bb-font-size-md: 16px;
@@ -85,5 +86,10 @@
   --bb-color-on-success: #052e16;
   --bb-color-success-container: #166534;
   --bb-color-on-success-container: #dcfce7;
+  --bb-color-terminal-background: #081015;
+  --bb-color-terminal-foreground: #9cf0f2;
+  --bb-color-terminal-muted: #6fb8bb;
+  --bb-color-terminal-accent: #80d5d7;
+  --bb-color-terminal-border: #1d4f52;
   --bb-opacity-action-icon-inactive: 0.40;
 }

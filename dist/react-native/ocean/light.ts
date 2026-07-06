@@ -39,7 +39,12 @@ export const colors = {
   success: '#16a34a',
   onSuccess: '#ffffff',
   successContainer: '#dcfce7',
-  onSuccessContainer: '#14532d'
+  onSuccessContainer: '#14532d',
+  terminalBackground: '#eef9fa',
+  terminalForeground: '#00565a',
+  terminalMuted: '#4b7d80',
+  terminalAccent: '#007d82',
+  terminalBorder: '#b4dadd'
 } as const;
 
 export const spacing = {
@@ -91,5 +96,6 @@ export const fontWeight = {
 export const fontFamily = {
   display: 'Plus Jakarta Sans, sans-serif',
   body: 'Inter, sans-serif',
-  mono: 'JetBrains Mono, monospace'
+  mono: 'JetBrains Mono, monospace',
+  terminal: 'JetBrains Mono, monospace'
 } as const;
