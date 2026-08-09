@@ -1,0 +1,109 @@
+{
+  "contractVersion": "2.0.0",
+  "familyId": "bitsandbolts",
+  "displayName": "Bits & Bolts",
+  "themeVersion": "2.0.0",
+  "allowedResolutions": [
+    { "mode": "light", "density": "standard" },
+    { "mode": "dark", "density": "standard" }
+  ],
+  "identity": [
+    { "id": "primary", "label": "Primary", "token": "palette.identityPrimary" },
+    { "id": "secondary", "label": "Secondary", "token": "palette.identitySecondary" },
+    { "id": "accent", "label": "Accent", "token": "palette.identityAccent" },
+    { "id": "neutral", "label": "Neutral", "token": "palette.identityNeutral" }
+  ],
+  "artDirection": {
+    "label": "Technical industrial",
+    "summary": "Precision geometry, luminous signals, machined surfaces, and immediate mechanical feedback.",
+    "traits": {
+      "geometry": "rectilinear-cut",
+      "material": "machined-polymer",
+      "ornament": "technical-grid",
+      "contrast": "stark-signal",
+      "typography": "engineered-geometric",
+      "iconography": "outlined-variable",
+      "illustration": "diagrammatic",
+      "depth": "border-led",
+      "texture": "subtle-grid",
+      "motion": "mechanical-snappy"
+    }
+  },
+  "typography": {
+    "families": {
+      "primary": "Montserrat",
+      "mono": "JetBrains Mono",
+      "accent": "Orbitron"
+    },
+    "styles": {
+      "display": { "familyRole": "accent", "fontSize": "32px", "fontWeight": "700", "lineHeight": "1.08", "letterSpacing": "0.025em" },
+      "headline": { "familyRole": "primary", "fontSize": "28px", "fontWeight": "700", "lineHeight": "1.15", "letterSpacing": "-0.015em" },
+      "title": { "familyRole": "primary", "fontSize": "20px", "fontWeight": "600", "lineHeight": "1.25", "letterSpacing": "-0.01em" },
+      "body": { "familyRole": "primary", "fontSize": "16px", "fontWeight": "500", "lineHeight": "1.5", "letterSpacing": "0em" },
+      "bodyCompact": { "familyRole": "primary", "fontSize": "14px", "fontWeight": "500", "lineHeight": "1.4", "letterSpacing": "0em" },
+      "label": { "familyRole": "primary", "fontSize": "13px", "fontWeight": "600", "lineHeight": "1.25", "letterSpacing": "0.035em" },
+      "caption": { "familyRole": "primary", "fontSize": "12px", "fontWeight": "500", "lineHeight": "1.35", "letterSpacing": "0.02em" },
+      "codeInline": { "familyRole": "mono", "fontSize": "14px", "fontWeight": "500", "lineHeight": "1.4", "letterSpacing": "0em" },
+      "codeBlock": { "familyRole": "mono", "fontSize": "14px", "fontWeight": "500", "lineHeight": "1.55", "letterSpacing": "0em" },
+      "terminal": { "familyRole": "mono", "fontSize": "14px", "fontWeight": "500", "lineHeight": "1.45", "letterSpacing": "0.02em" },
+      "metric": { "familyRole": "mono", "fontSize": "24px", "fontWeight": "700", "lineHeight": "1.1", "letterSpacing": "-0.02em" },
+      "editorialBody": { "familyRole": "primary", "fontSize": "18px", "fontWeight": "500", "lineHeight": "1.65", "letterSpacing": "0em" },
+      "editorialHeading": { "familyRole": "accent", "fontSize": "24px", "fontWeight": "600", "lineHeight": "1.2", "letterSpacing": "0.015em" },
+      "marketingHero": { "familyRole": "accent", "fontSize": "44px", "fontWeight": "700", "lineHeight": "1.02", "letterSpacing": "0.025em" }
+    },
+    "specimens": [
+      {
+        "id": "marketingHero",
+        "label": "Signature",
+        "familyRole": "accent",
+        "sample": "SYSTEMS, BUILT TO SHIP.",
+        "fontSize": "32px",
+        "fontWeight": "700",
+        "lineHeight": "1.08",
+        "letterSpacing": "0.025em"
+      },
+      {
+        "id": "body",
+        "label": "Interface",
+        "familyRole": "primary",
+        "sample": "Clear controls. Precise feedback. No visual drift.",
+        "fontSize": "16px",
+        "fontWeight": "500",
+        "lineHeight": "1.5",
+        "letterSpacing": "0em"
+      },
+      {
+        "id": "terminal",
+        "label": "Technical",
+        "familyRole": "mono",
+        "sample": "BUILD 02 / CONTRACT VALID / 0123",
+        "fontSize": "14px",
+        "fontWeight": "500",
+        "lineHeight": "1.45",
+        "letterSpacing": "0.02em"
+      }
+    ]
+  },
+  "shapeSpecimens": [
+    { "id": "control", "label": "Control", "kind": "cut", "radius": "2px", "cut": "7px" },
+    { "id": "container", "label": "Panel", "kind": "rounded", "radius": "6px", "cut": "0px" },
+    { "id": "overlay", "label": "Overlay", "kind": "cut", "radius": "2px", "cut": "12px" }
+  ],
+  "materialSpecimens": [
+    { "id": "control", "label": "Machined", "depth": "flat", "borderWidth": "1px" },
+    { "id": "panel", "label": "Border-led", "depth": "medium", "borderWidth": "1px" },
+    { "id": "signal", "label": "Luminous", "depth": "high", "borderWidth": "1px" }
+  ],
+  "depth": {
+    "flat": "none",
+    "low": "0 2px 0 color-mix(in srgb, var(--bb-v2-color-border-default) 45%, transparent)",
+    "medium": "6px 6px 0 color-mix(in srgb, var(--bb-v2-color-border-strong) 38%, transparent)",
+    "high": "8px 8px 0 color-mix(in srgb, var(--bb-v2-color-content-brand) 24%, transparent)",
+    "overlay": "0 18px 48px color-mix(in srgb, var(--bb-v2-color-surface-scrim) 62%, transparent)"
+  },
+  "motion": {
+    "quick": { "duration": "90ms", "easing": "cubic-bezier(0.2, 0, 0, 1)" },
+    "standard": { "duration": "180ms", "easing": "cubic-bezier(0.2, 0, 0, 1)" },
+    "reduced": { "duration": "0ms", "easing": "linear" }
+  }
+}

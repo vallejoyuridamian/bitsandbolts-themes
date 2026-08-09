@@ -29,10 +29,10 @@
   --bb-spacing-16: 64px;
   --bb-spacing-20: 80px;
   --bb-spacing-24: 96px;
-  --bb-font-family-display: Plus Jakarta Sans, sans-serif;
-  --bb-font-family-body: Inter, sans-serif;
-  --bb-font-family-mono: JetBrains Mono, monospace;
-  --bb-font-family-terminal: JetBrains Mono, monospace;
+  --bb-font-family-display: Plus Jakarta Sans;
+  --bb-font-family-body: Inter;
+  --bb-font-family-mono: JetBrains Mono;
+  --bb-font-family-terminal: JetBrains Mono;
   --bb-font-size-xs: 12px;
   --bb-font-size-sm: 14px;
   --bb-font-size-md: 16px;

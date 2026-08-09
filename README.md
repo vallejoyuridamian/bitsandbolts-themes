@@ -176,6 +176,10 @@ Alternatively, just copy the theme JSON and change what you need — it's just J
 
 All CSS variables are prefixed `--bb-`. Full list after running `pnpm build`:
 
+Font-family roles contain exactly one primary family name. Fallback stacks and
+generic family names are invalid, and every declared family must have a bundled
+font face in the generated web distribution.
+
 ```
 --bb-color-primary
 --bb-color-on-primary
@@ -183,7 +187,7 @@ All CSS variables are prefixed `--bb-`. Full list after running `pnpm build`:
 ...
 --bb-spacing-1 through --bb-spacing-24
 --bb-radius-none through --bb-radius-full
---bb-font-family-display / body / mono
+--bb-font-family-display / body / mono / terminal
 --bb-font-size-xs through --bb-font-size-5xl
 --bb-font-weight-regular / medium / semibold / bold
 --bb-shadow-none through --bb-shadow-xl

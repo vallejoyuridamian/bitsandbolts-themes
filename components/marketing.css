@@ -101,14 +101,14 @@ body.bb-marketing-page {
 }
 
 .bb-brand--bnb .bb-brand__copy {
-  font-family: "Orbitron", sans-serif;
+  font-family: "Orbitron";
   color: #00fff7;
 }
 
 .bb-brand--bnb .bb-brand__eyebrow,
 .bb-brand--bnb .bb-brand__name {
   color: #00fff7;
-  font-family: "Orbitron", sans-serif;
+  font-family: "Orbitron";
   text-shadow: 0 0 10px rgba(0, 255, 247, 0.35);
 }
 
@@ -149,7 +149,7 @@ body.bb-marketing-page {
 
 .bb-topbar--bnb .bb-nav a {
   color: rgba(255, 255, 255, 0.6);
-  font-family: "Orbitron", sans-serif;
+  font-family: "Orbitron";
   font-weight: 600;
 }
 
@@ -979,13 +979,13 @@ body.bb-marketing-page {
 
 .bb-footer--bnb .bb-brand__copy {
   color: #000000;
-  font-family: "Orbitron", sans-serif;
+  font-family: "Orbitron";
 }
 
 .bb-footer--bnb .bb-brand__eyebrow,
 .bb-footer--bnb .bb-brand__name {
   color: #000000;
-  font-family: "Orbitron", sans-serif;
+  font-family: "Orbitron";
   text-shadow: none;
 }
 

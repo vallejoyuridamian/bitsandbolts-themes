@@ -1,0 +1,61 @@
+/* Shared selector composition for comparable Studio inspection surfaces. */
+
+.bb-selection-controls {
+  display: flex;
+  align-items: end;
+  gap: var(--bb-spacing-3);
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto var(--bb-spacing-4);
+}
+
+.bb-selection-control {
+  display: grid;
+  flex: 1 1 240px;
+  gap: var(--bb-spacing-2);
+  max-width: 360px;
+  color: var(--bb-color-on-surface-variant);
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-xs);
+  font-weight: var(--bb-font-weight-semibold);
+  letter-spacing: 0.08em;
+  line-height: var(--bb-font-line-height-normal);
+  text-transform: uppercase;
+}
+
+.bb-selection-controls .bb-selection-control select {
+  width: 100%;
+  min-height: 42px;
+  padding: var(--bb-spacing-2) var(--bb-spacing-3);
+  border: 1px solid var(--bb-color-outline);
+  border-radius: var(--bb-radius-md);
+  color: var(--bb-color-on-surface);
+  background: var(--bb-color-surface-variant);
+  font: inherit;
+  font-size: var(--bb-font-size-sm);
+  font-weight: var(--bb-font-weight-semibold);
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.bb-selection-controls .bb-selection-control select:hover {
+  border-color: var(--bb-color-primary);
+}
+
+.bb-selection-controls .bb-selection-control select:focus-visible {
+  border-color: var(--bb-color-primary);
+  outline: 2px solid var(--bb-color-primary);
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .bb-selection-controls {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .bb-selection-control {
+    width: 100%;
+    max-width: none;
+  }
+}

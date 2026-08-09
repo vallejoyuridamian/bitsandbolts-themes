@@ -44,7 +44,7 @@
   --ms-grad:   0;
   --ms-size:   1.25em;
 
-  font-family: 'Material Symbols Outlined', sans-serif;
+  font-family: 'Material Symbols Outlined';
   font-weight: normal;
   font-style: normal;
   font-size: var(--ms-size);

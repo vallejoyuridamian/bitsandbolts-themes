@@ -16,10 +16,96 @@
  */
 
 import StyleDictionary from 'style-dictionary';
+import {
+  readdirSync,
+  copyFileSync,
+  mkdirSync,
+  existsSync,
+  readFileSync,
+  writeFileSync,
+  statSync,
+} from 'fs';
+import { join } from 'path';
 
 const THEMES = ['cloud', 'ocean', 'slate', 'robot', 'bitsandbolts'];
 const MODES  = ['light', 'dark'];
 const ANDROID_PACKAGE = process.env.ANDROID_PACKAGE || 'REPLACE_ME';
+const THEME_LABELS = Object.freeze({
+  bitsandbolts: 'Bits & Bolts',
+  cloud: 'Cloud',
+  ocean: 'Ocean',
+  robot: 'Robot',
+  slate: 'Slate',
+});
+const ICON_PREVIEW_NAMES = Object.freeze([
+  'settings',
+  'arrow_back',
+  'share',
+  'logout',
+  'home',
+  'search',
+  'notifications',
+  'close',
+  'add',
+  'check',
+  'person',
+  'star',
+  'favorite',
+  'delete',
+  'edit',
+  'content_copy',
+  'cloud_upload',
+  'cloud_download',
+  'menu',
+  'more_vert',
+  'info',
+  'warning',
+  'lock',
+  'visibility',
+  'download',
+]);
+const GENERIC_FONT_FAMILIES = new Set([
+  'cursive',
+  'fantasy',
+  'monospace',
+  'sans-serif',
+  'serif',
+  'system-ui',
+]);
+const V2_CONTRACT_FILE = 'theme-contract/v2/contract.bb.json';
+const BITSANDBOLTS_V2_ROOT = 'families/bitsandbolts/v2';
+
+function assertSingleFontFamilyTokens() {
+  const files = [
+    'tokens/base/typography.json',
+    ...THEMES.flatMap((theme) => MODES.map((mode) => `tokens/themes/${theme}/${mode}.json`)),
+  ];
+  for (const file of files) {
+    if (!existsSync(file)) continue;
+    const families = JSON.parse(readFileSync(file, 'utf8'))?.font?.family ?? {};
+    for (const [role, token] of Object.entries(families)) {
+      const value = String(token?.$value ?? '').trim();
+      if (!value || value.includes(',') || GENERIC_FONT_FAMILIES.has(value.toLowerCase())) {
+        throw new Error(`[font-contract] ${file} font.family.${role} must name exactly one primary font family.`);
+      }
+    }
+  }
+}
+
+assertSingleFontFamilyTokens();
+
+function assertNoComponentFontFallbacks() {
+  for (const file of readdirSync('components').filter((name) => name.endsWith('.css'))) {
+    const css = readFileSync(join('components', file), 'utf8');
+    for (const match of css.matchAll(/font-family\s*:\s*([^;]+);/gi)) {
+      if (match[1].includes(',')) {
+        throw new Error(`[font-contract] components/${file} must name exactly one primary font family.`);
+      }
+    }
+  }
+}
+
+assertNoComponentFontFallbacks();
 
 // ─── Custom Format: Kotlin Color Scheme ──────────────────────────────────────
 
@@ -144,8 +230,10 @@ for (const theme of THEMES) {
     const selector = mode === 'light' ? ':root' : '[data-theme="dark"]';
 
     const sd = new StyleDictionary({
-      source: [
+      include: [
         'tokens/base/**/*.json',
+      ],
+      source: [
         `tokens/themes/${theme}/${mode}.json`,
       ],
       platforms: {
@@ -192,16 +280,6 @@ for (const theme of THEMES) {
 }
 
 // ─── Copy static components to dist ─────────────────────────────────────────
-import {
-  readdirSync,
-  copyFileSync,
-  mkdirSync,
-  existsSync,
-  readFileSync,
-  writeFileSync,
-  statSync,
-} from 'fs';
-import { join } from 'path';
 
 function copyDirRecursive(srcDir, destDir, pathLabel) {
   if (!existsSync(srcDir)) return;
@@ -255,6 +333,7 @@ for (const file of readdirSync(ANDROID_STATIC_SRC)) {
 
 // Copy bundled Android TTF fonts to dist/android/fonts/
 const ANDROID_FONTS_SRC  = 'assets/android-fonts';
+const SHARED_FONTS_SRC = 'assets/shared-fonts';
 const ANDROID_FONTS_DIST = 'dist/android/fonts';
 mkdirSync(ANDROID_FONTS_DIST, { recursive: true });
 for (const file of readdirSync(ANDROID_FONTS_SRC)) {
@@ -263,6 +342,7 @@ for (const file of readdirSync(ANDROID_FONTS_SRC)) {
     process.stdout.write(`  [android/fonts/${file}] done\n`);
   }
 }
+copyDirRecursive(SHARED_FONTS_SRC, ANDROID_FONTS_DIST, 'android/fonts');
 
 // Copy Android vector drawables to dist/android/drawables/
 const ANDROID_DRAWABLES_DIST = 'dist/android/drawables';
@@ -284,12 +364,42 @@ for (const file of readdirSync(FONTS_SRC)) {
 }
 
 const WEB_FONTS_SRC = 'assets/web-fonts';
-if (existsSync(WEB_FONTS_SRC)) {
-  for (const file of readdirSync(WEB_FONTS_SRC)) {
-    copyFileSync(join(WEB_FONTS_SRC, file), join(FONTS_DIST, file));
-    process.stdout.write(`  [web-fonts/${file}] done\n`);
+for (const source of [ANDROID_FONTS_SRC, WEB_FONTS_SRC, SHARED_FONTS_SRC]) {
+  copyDirRecursive(source, FONTS_DIST, 'web-fonts');
+}
+
+function assertBundledPrimaryFonts() {
+  const declaredFamilies = new Set();
+  for (const file of readdirSync(COMPONENTS_DIST).filter((name) => name.endsWith('.css'))) {
+    const css = readFileSync(join(COMPONENTS_DIST, file), 'utf8');
+    for (const match of css.matchAll(/@font-face\s*\{([\s\S]*?)\}/gi)) {
+      const family = match[1].match(/font-family\s*:\s*['"]?([^;'"\n]+)['"]?\s*;/i)?.[1]?.trim();
+      const relativeUrl = match[1].match(/url\(['"]?([^)'"\n]+)['"]?\)/i)?.[1];
+      if (family) declaredFamilies.add(family);
+      if (relativeUrl && !existsSync(join(COMPONENTS_DIST, relativeUrl))) {
+        throw new Error(`[font-contract] components/${file} references missing bundled font ${relativeUrl}.`);
+      }
+    }
+  }
+
+  const tokenFamilies = new Set();
+  const files = [
+    'tokens/base/typography.json',
+    ...THEMES.flatMap((theme) => MODES.map((mode) => `tokens/themes/${theme}/${mode}.json`)),
+  ];
+  for (const file of files) {
+    if (!existsSync(file)) continue;
+    const families = JSON.parse(readFileSync(file, 'utf8'))?.font?.family ?? {};
+    Object.values(families).forEach((token) => tokenFamilies.add(String(token?.$value ?? '').trim()));
+  }
+  for (const family of tokenFamilies) {
+    if (!declaredFamilies.has(family)) {
+      throw new Error(`[font-contract] ${family} is declared by a theme token but has no bundled @font-face.`);
+    }
   }
 }
+
+assertBundledPrimaryFonts();
 
 console.log('\n✓ All themes built successfully.');
 console.log(`  dist/web/           CSS custom properties + components + icons`);
@@ -342,3 +452,233 @@ for (const theme of THEMES) {
     `}\n`);
   process.stdout.write(`  [${theme}/IconStyle.kt] done\n`);
 }
+
+// ─── First-party web catalog ────────────────────────────────────────────────
+
+function cssVariablesFromGeneratedFile(file) {
+  const css = readFileSync(file, 'utf8');
+  return Object.fromEntries([...css.matchAll(/(--bb-[a-z0-9-]+):\s*([^;]+);/gi)]
+    .map((match) => [match[1], match[2].trim()]));
+}
+
+function iconConfigForTheme(theme) {
+  const file = `tokens/themes/${theme}/icons.json`;
+  return existsSync(file)
+    ? JSON.parse(readFileSync(file, 'utf8'))
+    : { family: 'material-symbols', style: 'filled' };
+}
+
+function readJsonFile(file) {
+  return JSON.parse(readFileSync(file, 'utf8'));
+}
+
+function flattenDtcgTokens(value, prefix = [], tokens = new Map()) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return tokens;
+  if (Object.hasOwn(value, '$value')) {
+    tokens.set(prefix.join('.'), value.$value);
+    return tokens;
+  }
+  for (const [key, child] of Object.entries(value)) {
+    if (!key.startsWith('$')) flattenDtcgTokens(child, [...prefix, key], tokens);
+  }
+  return tokens;
+}
+
+function resolveDtcgToken(tokens, path, resolving = new Set()) {
+  if (!tokens.has(path)) throw new Error(`[v2-contract] Missing token reference: ${path}`);
+  if (resolving.has(path)) throw new Error(`[v2-contract] Circular token reference: ${path}`);
+  const rawValue = tokens.get(path);
+  const reference = typeof rawValue === 'string' ? rawValue.match(/^\{([^}]+)\}$/)?.[1] : '';
+  if (!reference) return rawValue;
+  resolving.add(path);
+  const resolved = resolveDtcgToken(tokens, reference, resolving);
+  resolving.delete(path);
+  return resolved;
+}
+
+function colorValueToCss(value, path) {
+  if (!value || value.colorSpace !== 'srgb' || !Array.isArray(value.components) || value.components.length !== 3) {
+    throw new Error(`[v2-contract] ${path} must resolve to a DTCG sRGB color.`);
+  }
+  if (!value.components.every((component) => Number.isFinite(component) && component >= 0 && component <= 1)) {
+    throw new Error(`[v2-contract] ${path} contains an invalid sRGB component.`);
+  }
+  const alpha = value.alpha ?? 1;
+  if (!Number.isFinite(alpha) || alpha < 0 || alpha > 1 || !/^#[0-9A-F]{6}$/i.test(value.hex || '')) {
+    throw new Error(`[v2-contract] ${path} contains invalid color metadata.`);
+  }
+  if (alpha === 1) return value.hex.toUpperCase();
+  const channels = value.components.map((component) => Math.round(component * 255));
+  return `rgb(${channels.join(' ')} / ${alpha})`;
+}
+
+function kebabCase(value) {
+  return String(value)
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .replaceAll('.', '-')
+    .toLowerCase();
+}
+
+function assertExactMembers(actual, expected, label) {
+  const actualSet = new Set(actual);
+  const expectedSet = new Set(expected);
+  const missing = expected.filter((member) => !actualSet.has(member));
+  const unexpected = actual.filter((member) => !expectedSet.has(member));
+  if (missing.length || unexpected.length) {
+    throw new Error(`[v2-contract] ${label} mismatch. Missing: ${missing.join(', ') || 'none'}. Unexpected: ${unexpected.join(', ') || 'none'}.`);
+  }
+}
+
+function assertSingleV2FontFamily(family, role) {
+  const normalized = String(family || '').trim();
+  if (!normalized || normalized.includes(',') || GENERIC_FONT_FAMILIES.has(normalized.toLowerCase())) {
+    throw new Error(`[v2-contract] typography.families.${role} must name exactly one bundled font family.`);
+  }
+}
+
+function buildBitsAndBoltsV2CatalogPayload() {
+  const contract = readJsonFile(V2_CONTRACT_FILE);
+  const family = readJsonFile(`${BITSANDBOLTS_V2_ROOT}/family.bb.json`);
+  const button = readJsonFile(`${BITSANDBOLTS_V2_ROOT}/recipes/button.recipe.json`);
+  if (contract.contractVersion !== '2.0.0' || family.contractVersion !== contract.contractVersion || button.contractVersion !== contract.contractVersion) {
+    throw new Error('[v2-contract] Contract, family, and Button recipe versions must match 2.0.0.');
+  }
+
+  assertExactMembers(
+    family.allowedResolutions.map(({ mode, density }) => `${mode}/${density}`),
+    MODES.map((mode) => `${mode}/standard`),
+    'Bits & Bolts runtime resolutions'
+  );
+  assertExactMembers(
+    family.identity.map(({ id }) => id),
+    contract.color.creatorIdentityRoles,
+    'creator identity roles'
+  );
+
+  for (const role of contract.typography.mandatoryFamilyRoles) {
+    assertSingleV2FontFamily(family.typography.families?.[role], role);
+  }
+  for (const role of contract.typography.optionalFamilyRoles) {
+    if (family.typography.families?.[role]) assertSingleV2FontFamily(family.typography.families[role], role);
+  }
+  assertExactMembers(
+    Object.keys(family.typography.styles || {}),
+    contract.typography.mandatoryStyles,
+    'semantic typography styles'
+  );
+  for (const [styleId, style] of Object.entries(family.typography.styles)) {
+    if (!family.typography.families[style.familyRole]) {
+      throw new Error(`[v2-contract] typography.styles.${styleId} references unknown family role ${style.familyRole}.`);
+    }
+  }
+
+  for (const field of contract.componentRecipes.requiredFields) {
+    if (!Object.hasOwn(button, field)) throw new Error(`[v2-contract] Button recipe is missing ${field}.`);
+  }
+  assertExactMembers(button.stateMatrix, ['rest', 'hover', 'focusVisible', 'pressed', 'loading', 'disabled'], 'Button states');
+  if (button.id !== contract.componentRecipes.mandatoryFirstSlice[0]) {
+    throw new Error('[v2-contract] The mandatory first component recipe must be Button.');
+  }
+
+  const modes = Object.fromEntries(MODES.map((mode) => {
+    const tokens = flattenDtcgTokens(readJsonFile(`${BITSANDBOLTS_V2_ROOT}/modes/${mode}.tokens.json`));
+    const semanticPaths = [...tokens.keys()].filter((path) => path.startsWith('color.'));
+    assertExactMembers(semanticPaths, contract.color.mandatoryRoles, `${mode} semantic color roles`);
+
+    const resolvedColors = Object.fromEntries(contract.color.mandatoryRoles.map((path) => [
+      path,
+      colorValueToCss(resolveDtcgToken(tokens, path), path),
+    ]));
+    const identity = family.identity.map((entry) => ({
+      ...entry,
+      value: colorValueToCss(resolveDtcgToken(tokens, entry.token), entry.token),
+    }));
+    const variables = Object.fromEntries(Object.entries(resolvedColors).map(([path, value]) => [
+      `--bb-v2-${kebabCase(path)}`,
+      value,
+    ]));
+
+    for (const [role, familyName] of Object.entries(family.typography.families)) {
+      variables[`--bb-v2-font-family-${kebabCase(role)}`] = familyName;
+    }
+    for (const [styleId, style] of Object.entries(family.typography.styles)) {
+      for (const [property, value] of Object.entries(style)) {
+        if (property !== 'familyRole') variables[`--bb-v2-type-${kebabCase(styleId)}-${kebabCase(property)}`] = value;
+      }
+      variables[`--bb-v2-type-${kebabCase(styleId)}-family`] = family.typography.families[style.familyRole];
+    }
+    for (const shape of family.shapeSpecimens) {
+      variables[`--bb-v2-shape-${shape.id}-radius`] = shape.radius;
+      variables[`--bb-v2-shape-${shape.id}-cut`] = shape.cut;
+    }
+    for (const material of family.materialSpecimens) {
+      variables[`--bb-v2-material-${material.id}-border-width`] = material.borderWidth;
+    }
+    for (const [depth, value] of Object.entries(family.depth)) variables[`--bb-v2-depth-${depth}`] = value;
+    for (const [motion, values] of Object.entries(family.motion)) {
+      variables[`--bb-v2-motion-${motion}-duration`] = values.duration;
+      variables[`--bb-v2-motion-${motion}-easing`] = values.easing;
+    }
+    for (const [size, values] of Object.entries(button.sizes)) {
+      for (const [property, value] of Object.entries(values)) {
+        variables[`--bb-v2-button-${size}-${kebabCase(property)}`] = value;
+      }
+    }
+    variables['--bb-v2-button-shape-radius'] = family.shapeSpecimens.find(({ id }) => id === 'control').radius;
+    variables['--bb-v2-button-shape-cut'] = family.shapeSpecimens.find(({ id }) => id === 'control').cut;
+    variables['--bb-v2-button-depth'] = family.depth.low;
+
+    return [mode, {
+      identity,
+      semanticColors: contract.color.mandatoryRoles.map((role) => ({ role, value: resolvedColors[role] })),
+      variables,
+    }];
+  }));
+
+  return {
+    contractVersion: contract.contractVersion,
+    themeVersion: family.themeVersion,
+    artDirection: family.artDirection,
+    typography: family.typography,
+    shapes: family.shapeSpecimens,
+    materials: family.materialSpecimens,
+    depth: family.depth,
+    motion: family.motion,
+    button,
+    modes,
+  };
+}
+
+const packageManifest = JSON.parse(readFileSync('package.json', 'utf8'));
+const bitsAndBoltsV2 = buildBitsAndBoltsV2CatalogPayload();
+const catalog = {
+  schemaVersion: 1,
+  packageVersion: packageManifest.version,
+  themes: THEMES.map((theme) => {
+    const configuredIcons = iconConfigForTheme(theme);
+    const entry = {
+      id: theme,
+      label: THEME_LABELS[theme] ?? theme,
+      source: 'first-party',
+      modes: Object.fromEntries(MODES.map((mode) => [
+        mode,
+        {
+          cssPath: `${theme}/${mode}.css`,
+          variables: cssVariablesFromGeneratedFile(`dist/web/${theme}/${mode}.css`),
+        },
+      ])),
+      icons: {
+        family: configuredIcons.family,
+        style: configuredIcons.style,
+        previewFamily: 'material-symbols',
+        exactPreview: configuredIcons.family === 'material-symbols',
+        previewNames: ICON_PREVIEW_NAMES,
+      },
+    };
+    if (theme === 'bitsandbolts') entry.v2 = bitsAndBoltsV2;
+    return entry;
+  }),
+};
+
+writeFileSync('dist/web/catalog.json', `${JSON.stringify(catalog, null, 2)}\n`);
+process.stdout.write('  [web/catalog.json] done\n');

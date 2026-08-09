@@ -100,8 +100,8 @@ export const fontWeight = {
 } as const;
 
 export const fontFamily = {
-  display: 'Orbitron, Plus Jakarta Sans, sans-serif',
-  body: 'Montserrat, Inter, sans-serif',
-  mono: 'JetBrains Mono, monospace',
-  terminal: 'JetBrains Mono, monospace'
+  display: 'Orbitron',
+  body: 'Montserrat',
+  mono: 'JetBrains Mono',
+  terminal: 'JetBrains Mono'
 } as const;

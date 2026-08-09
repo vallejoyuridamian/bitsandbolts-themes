@@ -1,10 +1,10 @@
 {
   "font": {
     "family": {
-      "display": { "$value": "Orbitron, Plus Jakarta Sans, sans-serif" },
-      "body":    { "$value": "Montserrat, Inter, sans-serif" },
-      "mono":    { "$value": "JetBrains Mono, monospace" },
-      "terminal": { "$value": "JetBrains Mono, monospace" }
+      "display": { "$value": "Orbitron" },
+      "body":    { "$value": "Montserrat" },
+      "mono":    { "$value": "JetBrains Mono" },
+      "terminal": { "$value": "JetBrains Mono" }
     }
   },
   "color": {

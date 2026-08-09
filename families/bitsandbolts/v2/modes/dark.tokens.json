@@ -1,0 +1,75 @@
+{
+  "palette": {
+    "$type": "color",
+    "identityPrimary": { "$value": { "colorSpace": "srgb", "components": [0.070588, 0.901961, 0.835294], "alpha": 1, "hex": "#12E6D5" } },
+    "identitySecondary": { "$value": { "colorSpace": "srgb", "components": [0.396078, 1, 0.74902], "alpha": 1, "hex": "#65FFBF" } },
+    "identityAccent": { "$value": { "colorSpace": "srgb", "components": [0.607843, 0.482353, 1], "alpha": 1, "hex": "#9B7BFF" } },
+    "identityNeutral": { "$value": { "colorSpace": "srgb", "components": [0.062745, 0.094118, 0.14902], "alpha": 1, "hex": "#101826" } },
+    "white": { "$value": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 1, "hex": "#FFFFFF" } },
+    "black": { "$value": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 1, "hex": "#000000" } },
+    "canvas": { "$value": { "colorSpace": "srgb", "components": [0.043137, 0.058824, 0.078431], "alpha": 1, "hex": "#0B0F14" } },
+    "surface": { "$value": { "colorSpace": "srgb", "components": [0.058824, 0.082353, 0.12549], "alpha": 1, "hex": "#0F1520" } },
+    "surfaceSubtle": { "$value": { "colorSpace": "srgb", "components": [0.062745, 0.094118, 0.14902], "alpha": 1, "hex": "#101826" } },
+    "surfaceRaised": { "$value": { "colorSpace": "srgb", "components": [0.082353, 0.12549, 0.192157], "alpha": 1, "hex": "#152031" } },
+    "surfaceSunken": { "$value": { "colorSpace": "srgb", "components": [0.027451, 0.039216, 0.058824], "alpha": 1, "hex": "#070A0F" } },
+    "surfaceOverlay": { "$value": { "colorSpace": "srgb", "components": [0.094118, 0.145098, 0.211765], "alpha": 1, "hex": "#182536" } },
+    "surfaceDisabled": { "$value": { "colorSpace": "srgb", "components": [0.094118, 0.133333, 0.180392], "alpha": 1, "hex": "#18222E" } },
+    "contentPrimary": { "$value": { "colorSpace": "srgb", "components": [0.917647, 0.937255, 0.988235], "alpha": 1, "hex": "#EAEFFC" } },
+    "contentSecondary": { "$value": { "colorSpace": "srgb", "components": [0.717647, 0.772549, 0.831373], "alpha": 1, "hex": "#B7C5D4" } },
+    "contentTertiary": { "$value": { "colorSpace": "srgb", "components": [0.607843, 0.690196, 0.776471], "alpha": 1, "hex": "#9BB0C6" } },
+    "contentPlaceholder": { "$value": { "colorSpace": "srgb", "components": [0.560784, 0.635294, 0.709804], "alpha": 1, "hex": "#8FA2B5" } },
+    "contentDisabled": { "$value": { "colorSpace": "srgb", "components": [0.443137, 0.52549, 0.611765], "alpha": 1, "hex": "#71869C" } },
+    "brand": { "$value": { "colorSpace": "srgb", "components": [0.070588, 0.901961, 0.835294], "alpha": 1, "hex": "#12E6D5" } },
+    "brandHover": { "$value": { "colorSpace": "srgb", "components": [0.243137, 0.952941, 1], "alpha": 1, "hex": "#3EF3FF" } },
+    "brandPressed": { "$value": { "colorSpace": "srgb", "components": [0, 0.788235, 0.733333], "alpha": 1, "hex": "#00C9BB" } },
+    "selected": { "$value": { "colorSpace": "srgb", "components": [0, 0.235294, 0.223529], "alpha": 1, "hex": "#003C39" } },
+    "onSelected": { "$value": { "colorSpace": "srgb", "components": [0.721569, 1, 0.968627], "alpha": 1, "hex": "#B8FFF7" } },
+    "selection": { "$value": { "colorSpace": "srgb", "components": [0.043137, 0.290196, 0.196078], "alpha": 1, "hex": "#0B4A32" } },
+    "onSelection": { "$value": { "colorSpace": "srgb", "components": [0.788235, 1, 0.905882], "alpha": 1, "hex": "#C9FFE7" } },
+    "accent": { "$value": { "colorSpace": "srgb", "components": [0.607843, 0.482353, 1], "alpha": 1, "hex": "#9B7BFF" } },
+    "accentSurface": { "$value": { "colorSpace": "srgb", "components": [0.227451, 0.141176, 0.470588], "alpha": 1, "hex": "#3A2478" } },
+    "borderSubtle": { "$value": { "colorSpace": "srgb", "components": [0.141176, 0.203922, 0.278431], "alpha": 1, "hex": "#243447" } },
+    "borderDefault": { "$value": { "colorSpace": "srgb", "components": [0.254902, 0.337255, 0.427451], "alpha": 1, "hex": "#41566D" } },
+    "infoSurface": { "$value": { "colorSpace": "srgb", "components": [0.062745, 0.176471, 0.301961], "alpha": 1, "hex": "#102D4D" } },
+    "infoContent": { "$value": { "colorSpace": "srgb", "components": [0.611765, 0.796078, 1], "alpha": 1, "hex": "#9CCBFF" } },
+    "infoBorder": { "$value": { "colorSpace": "srgb", "components": [0.290196, 0.580392, 0.839216], "alpha": 1, "hex": "#4A94D6" } },
+    "successSurface": { "$value": "{palette.selection}" },
+    "successContent": { "$value": "{palette.onSelection}" },
+    "successBorder": { "$value": { "colorSpace": "srgb", "components": [0.396078, 1, 0.74902], "alpha": 1, "hex": "#65FFBF" } },
+    "warningSurface": { "$value": { "colorSpace": "srgb", "components": [0.396078, 0.258824, 0], "alpha": 1, "hex": "#654200" } },
+    "warningContent": { "$value": { "colorSpace": "srgb", "components": [1, 0.905882, 0.760784], "alpha": 1, "hex": "#FFE7C2" } },
+    "warningBorder": { "$value": { "colorSpace": "srgb", "components": [0.956863, 0.764706, 0.396078], "alpha": 1, "hex": "#F4C365" } },
+    "dangerSurface": { "$value": { "colorSpace": "srgb", "components": [0.352941, 0.066667, 0.090196], "alpha": 1, "hex": "#5A1117" } },
+    "dangerContent": { "$value": { "colorSpace": "srgb", "components": [1, 0.854902, 0.839216], "alpha": 1, "hex": "#FFDAD6" } },
+    "dangerBorder": { "$value": { "colorSpace": "srgb", "components": [1, 0.541176, 0.501961], "alpha": 1, "hex": "#FF8A80" } },
+    "scrim": { "$value": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.72, "hex": "#000000" } }
+  },
+  "color": {
+    "$type": "color",
+    "surface": {
+      "canvas": { "$value": "{palette.canvas}" }, "surface": { "$value": "{palette.surface}" }, "subtle": { "$value": "{palette.surfaceSubtle}" },
+      "raised": { "$value": "{palette.surfaceRaised}" }, "sunken": { "$value": "{palette.surfaceSunken}" }, "overlay": { "$value": "{palette.surfaceOverlay}" },
+      "inverse": { "$value": "{palette.contentPrimary}" }, "disabled": { "$value": "{palette.surfaceDisabled}" }, "scrim": { "$value": "{palette.scrim}" }
+    },
+    "content": {
+      "primary": { "$value": "{palette.contentPrimary}" }, "secondary": { "$value": "{palette.contentSecondary}" }, "tertiary": { "$value": "{palette.contentTertiary}" },
+      "placeholder": { "$value": "{palette.contentPlaceholder}" }, "disabled": { "$value": "{palette.contentDisabled}" }, "inverse": { "$value": "{palette.identityNeutral}" },
+      "brand": { "$value": "{palette.brand}" }, "link": { "$value": "{palette.brandHover}" }, "linkVisited": { "$value": "{palette.accent}" }
+    },
+    "border": {
+      "subtle": { "$value": "{palette.borderSubtle}" }, "default": { "$value": "{palette.borderDefault}" }, "strong": { "$value": "{palette.contentDisabled}" },
+      "disabled": { "$value": "{palette.borderSubtle}" }, "divider": { "$value": "{palette.borderSubtle}" }, "focusRing": { "$value": "{palette.brand}" }, "focusRingOffset": { "$value": "{palette.canvas}" }
+    },
+    "interaction": {
+      "action": { "$value": "{palette.brand}" }, "onAction": { "$value": "{palette.identityNeutral}" }, "actionHover": { "$value": "{palette.brandHover}" }, "actionPressed": { "$value": "{palette.brandPressed}" },
+      "selected": { "$value": "{palette.selected}" }, "onSelected": { "$value": "{palette.onSelected}" }, "selection": { "$value": "{palette.selection}" }, "onSelection": { "$value": "{palette.onSelection}" },
+      "caret": { "$value": "{palette.brand}" }, "dropTarget": { "$value": "{palette.accent}" }, "dragPreview": { "$value": "{palette.accentSurface}" }
+    },
+    "status": {
+      "infoSurface": { "$value": "{palette.infoSurface}" }, "infoContent": { "$value": "{palette.infoContent}" }, "infoBorder": { "$value": "{palette.infoBorder}" },
+      "successSurface": { "$value": "{palette.successSurface}" }, "successContent": { "$value": "{palette.successContent}" }, "successBorder": { "$value": "{palette.successBorder}" },
+      "warningSurface": { "$value": "{palette.warningSurface}" }, "warningContent": { "$value": "{palette.warningContent}" }, "warningBorder": { "$value": "{palette.warningBorder}" },
+      "dangerSurface": { "$value": "{palette.dangerSurface}" }, "dangerContent": { "$value": "{palette.dangerContent}" }, "dangerBorder": { "$value": "{palette.dangerBorder}" }
+    }
+  }
+}
