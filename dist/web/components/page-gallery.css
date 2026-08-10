@@ -44,6 +44,7 @@
 }
 
 .bb-page-gallery__publish .bb-v2-button {
+  --bb-v2-button-foreground: var(--bb-v2-color-content-primary);
   width: 100%;
 }
 

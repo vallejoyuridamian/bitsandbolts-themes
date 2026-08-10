@@ -4,6 +4,35 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-10) - First app-owned site publication accepted
+
+### What changed
+- Finalized the accepted theme-owned `Publish online` control and preserved one
+  presentation for local and hosted AppScreen.
+- Kept route mutation in AppScreen/Sites while managed Cloud Clipboard delivery
+  consumes the canonical generated Slate Dark and Bits & Bolts Dark assets.
+
+### Verification
+- The owner completed the first app-driven publication without manual cutover.
+- Canonical route readback reports public delivery enabled, and the managed HTML
+  plus stylesheet both return 200 with accepted styling.
+- No package publish or push occurred.
+
+## Session wrap-up (2026-08-10) - Pages publication control acceptance
+
+### What changed
+- Kept the managed-draft publication action below the shared selectors with the
+  original dark subtle-gradient toolbar treatment.
+- Removed the idle description, changed the label to `Publish online`, and used
+  the canonical light foreground token instead of cyan text.
+- Preserved the same theme-owned presentation for local and hosted AppScreen;
+  route activation remains an AppScreen/Sites behavior concern.
+
+### Verification
+- The owner accepted the control in local and hosted Pages.
+- The focused AppScreen Pages checks passed 5/5 and the Themes build passed.
+- No package publish, commit, push, or public route mutation is implied.
+
 ## Session wrap-up (2026-08-08) - Theme contract v2 web reference
 
 ### What changed

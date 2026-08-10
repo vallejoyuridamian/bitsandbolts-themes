@@ -1,6 +1,6 @@
 # Bits and Bolts Themes — Status
 
-Last verified: 2026-08-09
+Last verified: 2026-08-10
 
 ## Current Truth
 
@@ -39,6 +39,13 @@ Last verified: 2026-08-09
   recipe supports Studio's canonical vertical left-sidebar arrangement without
   introducing a second toolbar component. Themes owns its preview scrolling;
   Pages has no metadata title bar or outer scroll owner.
+- The owner accepted the managed-draft publication control below the selectors:
+  `Publish online`, no idle description, the original dark subtle-gradient
+  toolbar treatment, and a light foreground token. Local and hosted use the same
+  theme-owned presentation.
+- The owner used that control for the first fully app-owned Cloud Clipboard
+  publication. Managed HTML and the canonical generated stylesheet both return
+  200 with the accepted Slate Dark body/Bits & Bolts Dark chrome composition.
 - `pnpm build` is clean. Declaring base tokens as defaults and family tokens as
   authoritative overrides removed collision warnings without changing any of
   the 94 generated artifact hashes.
@@ -54,9 +61,10 @@ Last verified: 2026-08-09
 - `mywebsite/public/theme/` is such a copy today; its button and marketing
   components differ from the current canonical files. The managed Cloud
   Clipboard draft now consumes canonical generated artifacts instead.
-- The published Cloud Clipboard still loads its copied legacy asset bundle, the main
-  React website remains app-local, and AppScreen's legacy Studio stylesheet
-  still contains visual debt.
+- The managed Cloud Clipboard route now serves canonical generated assets. Its
+  preserved Pages rollback source and `mywebsite/public/theme/` mirror remain
+  migration debt; the main React website and AppScreen's legacy Studio
+  stylesheet also remain app-local visual debt.
 - Cloud, Ocean, Slate, and Robot remain v1 until migrated one family at a time.
 
 ## Next Boundary
@@ -65,6 +73,7 @@ Last verified: 2026-08-09
   deterministic generation/provenance, capabilities, fallbacks, and overrides.
 - Then complete Button vertically across static/web, React/AppScreen, Compose,
   and React Native before broad component or consumer restyling.
-- Browser-accept the new Cloud Clipboard secondary-page/auth-state recipes and
-  the AppScreen Studio Product Entry candidate, then use Pages for the My
-  Website inventory after ownership is named.
+- Cloud Clipboard page/auth-state and publication-control visuals are accepted.
+  Public route lifecycle remains AppScreen/Sites behavior, not a Themes concern;
+  next edit and browser-accept the AppScreen Product Entry landing locally, then
+  publish it from AppScreen Pages after its hostname/Access boundary is frozen.

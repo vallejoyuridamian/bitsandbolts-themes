@@ -16,6 +16,9 @@
   scopes and shared marketing/Button/information/plan roles for every v1 family.
 - [x] Formalize Product Entry semantic icon roles and prove the complete recipe
   through the declarative AppScreen Studio managed landing.
+- [x] Owner-accept the Pages selector/publish treatment: `Publish online` sits
+  below the selectors, has no idle description, retains the original dark
+  subtle-gradient toolbar treatment, and uses light text.
 
 ## Next Steps
 
@@ -25,9 +28,14 @@
    Compose, and React Native from the same normalized recipe.
 3. Define and implement versioned npm/Maven/static distribution with zero manual
    consumer mirrors.
-4. Use the three AppScreen landing previews to inventory repeated elements and
+4. Keep public-route mechanics in AppScreen/Sites; the first app-owned Cloud
+   Clipboard publication proved the accepted Pages control needs no local/hosted
+   visual branch.
+5. Edit and browser-accept the AppScreen Product Entry landing locally, then
+   publish it from AppScreen Pages without creating an in-app content editor.
+6. Use the three AppScreen landing previews to inventory repeated elements and
    choose the smallest next recipe batch without a broad restyle.
-5. Migrate first-party families and enable safe declarative user themes only in
+7. Migrate first-party families and enable safe declarative user themes only in
    the later plan slices with their objective gates intact.
 
 ## Guardrails
