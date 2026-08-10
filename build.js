@@ -72,6 +72,54 @@ const GENERIC_FONT_FAMILIES = new Set([
   'serif',
   'system-ui',
 ]);
+const REQUIRED_MARKETING_VARIABLES = Object.freeze([
+  '--bb-marketing-page-canvas',
+  '--bb-marketing-chrome-background',
+  '--bb-marketing-chrome-accent',
+  '--bb-marketing-chrome-on-accent',
+  '--bb-marketing-chrome-navigation',
+  '--bb-marketing-chrome-meta-font',
+  '--bb-marketing-hero-icon-glow',
+  '--bb-marketing-highlight',
+  '--bb-marketing-store-badge-surface',
+  '--bb-marketing-store-badge-content',
+  '--bb-marketing-terminal-blend',
+  '--bb-marketing-plan-content',
+  '--bb-marketing-plan-free-surface',
+  '--bb-marketing-plan-free-border',
+  '--bb-marketing-plan-free-label',
+  '--bb-marketing-plan-monthly-surface-start',
+  '--bb-marketing-plan-monthly-surface-end',
+  '--bb-marketing-plan-monthly-border',
+  '--bb-marketing-plan-monthly-label',
+  '--bb-marketing-plan-yearly-surface',
+  '--bb-marketing-plan-yearly-border',
+  '--bb-marketing-plan-yearly-label',
+  '--bb-marketing-plan-positive',
+  '--bb-marketing-plan-negative',
+]);
+const UNIVERSAL_PLAN_VARIABLES = Object.freeze([
+  '--bb-marketing-plan-content',
+  '--bb-marketing-plan-free-surface',
+  '--bb-marketing-plan-free-border',
+  '--bb-marketing-plan-free-label',
+  '--bb-marketing-plan-monthly-surface-start',
+  '--bb-marketing-plan-monthly-surface-end',
+  '--bb-marketing-plan-monthly-border',
+  '--bb-marketing-plan-monthly-label',
+  '--bb-marketing-plan-yearly-surface',
+  '--bb-marketing-plan-yearly-border',
+  '--bb-marketing-plan-yearly-label',
+  '--bb-marketing-plan-positive',
+  '--bb-marketing-plan-negative',
+]);
+const SHARED_WEB_ASSETS = Object.freeze([
+  Object.freeze({ id: 'platform-android', mediaType: 'image/svg+xml', path: 'icons/android.svg', sourcePath: 'assets/icons/android.svg' }),
+  Object.freeze({ id: 'platform-windows', mediaType: 'image/svg+xml', path: 'icons/windows.svg', sourcePath: 'assets/icons/windows.svg' }),
+  Object.freeze({ id: 'platform-linux', mediaType: 'image/svg+xml', path: 'icons/linux.svg', sourcePath: 'assets/icons/linux.svg' }),
+  Object.freeze({ id: 'store-google-play', mediaType: 'image/png', path: 'brand/store/google-play-badge.png', sourcePath: 'assets/brand/store/google-play-badge.png' }),
+  Object.freeze({ id: 'store-app-store', mediaType: 'image/svg+xml', path: 'brand/store/app-store-badge.svg', sourcePath: 'assets/brand/store/app-store-badge.svg' }),
+]);
 const V2_CONTRACT_FILE = 'theme-contract/v2/contract.bb.json';
 const BITSANDBOLTS_V2_ROOT = 'families/bitsandbolts/v2';
 
@@ -277,7 +325,64 @@ for (const theme of THEMES) {
     await sd.buildAllPlatforms();
     process.stdout.write(`  [${theme}/${mode}] done\n`);
   }
+
+  const scopedCss = MODES.map((mode) => {
+    const source = readFileSync(`dist/web/${theme}/${mode}.css`, 'utf8');
+    const globalSelector = mode === 'light' ? ':root' : '[data-theme="dark"]';
+    const scopedSelector = `[data-bb-theme-family="${theme}"][data-bb-theme-mode="${mode}"]`;
+    if (!source.includes(`${globalSelector} {`)) {
+      throw new Error(`[scoped-theme] ${theme}/${mode} is missing its expected selector.`);
+    }
+    return source.replace(`${globalSelector} {`, `${scopedSelector} {`);
+  }).join('\n');
+  writeFileSync(`dist/web/${theme}/scoped.css`, scopedCss);
+  process.stdout.write(`  [${theme}/scoped] done\n`);
 }
+
+function assertMarketingRecipeContract() {
+  const recipe = readFileSync('components/marketing.css', 'utf8');
+  if (/#[0-9a-f]{3,8}\b|rgba?\s*\(/i.test(recipe)) {
+    throw new Error('[marketing-contract] components/marketing.css contains an unowned literal color.');
+  }
+  let universalPlan = null;
+  for (const theme of THEMES) {
+    for (const mode of MODES) {
+      const generatedPath = `dist/web/${theme}/${mode}.css`;
+      const generated = readFileSync(generatedPath, 'utf8');
+      const variables = cssVariablesFromGeneratedFile(generatedPath);
+      for (const variable of REQUIRED_MARKETING_VARIABLES) {
+        if (!generated.includes(`${variable}:`)) {
+          throw new Error(`[marketing-contract] ${theme}/${mode} is missing ${variable}.`);
+        }
+      }
+      const resolvedPlan = Object.fromEntries(UNIVERSAL_PLAN_VARIABLES.map((variable) => [variable, variables[variable]]));
+      if (universalPlan === null) universalPlan = resolvedPlan;
+      else if (JSON.stringify(resolvedPlan) !== JSON.stringify(universalPlan)) {
+        throw new Error(`[marketing-contract] ${theme}/${mode} overrides universal coal/silver/gold colors.`);
+      }
+    }
+    const scoped = readFileSync(`dist/web/${theme}/scoped.css`, 'utf8');
+    for (const mode of MODES) {
+      const selector = `[data-bb-theme-family="${theme}"][data-bb-theme-mode="${mode}"]`;
+      if (!scoped.includes(selector)) throw new Error(`[scoped-theme] ${theme} is missing ${mode}.`);
+    }
+  }
+}
+
+assertMarketingRecipeContract();
+
+function assertSharedWebAssets() {
+  const ids = new Set();
+  const destinations = new Set();
+  for (const asset of SHARED_WEB_ASSETS) {
+    if (ids.has(asset.id) || destinations.has(asset.path)) throw new Error('[shared-assets] IDs and output paths must be unique.');
+    if (!existsSync(asset.sourcePath)) throw new Error(`[shared-assets] Missing ${asset.sourcePath}.`);
+    ids.add(asset.id);
+    destinations.add(asset.path);
+  }
+}
+
+assertSharedWebAssets();
 
 // ─── Copy static components to dist ─────────────────────────────────────────
 
@@ -654,6 +759,7 @@ const bitsAndBoltsV2 = buildBitsAndBoltsV2CatalogPayload();
 const catalog = {
   schemaVersion: 1,
   packageVersion: packageManifest.version,
+  sharedAssets: SHARED_WEB_ASSETS.map(({ sourcePath: _sourcePath, ...asset }) => asset),
   themes: THEMES.map((theme) => {
     const configuredIcons = iconConfigForTheme(theme);
     const entry = {

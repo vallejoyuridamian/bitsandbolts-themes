@@ -12,6 +12,10 @@
 - [x] Ratify the DTCG 2025.10 + B&B contract architecture from deep research.
 - [x] Implement the B&B light/dark v2 web reference, catalog, Button specimen,
   and standardized Themes/Pages selector and preview recipes.
+- [x] Make the first landing batch theme-complete: generated nested-family
+  scopes and shared marketing/Button/information/plan roles for every v1 family.
+- [x] Formalize Product Entry semantic icon roles and prove the complete recipe
+  through the declarative AppScreen Studio managed landing.
 
 ## Next Steps
 

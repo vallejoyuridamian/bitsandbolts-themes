@@ -3,6 +3,30 @@
  */
 
 :root {
+  --bb-marketing-page-canvas: #f3f6f8;
+  --bb-marketing-chrome-background: #000000;
+  --bb-marketing-chrome-accent: #107c41;
+  --bb-marketing-chrome-on-accent: #ffffff;
+  --bb-marketing-chrome-navigation: #11161d;
+  --bb-marketing-chrome-meta-font: Inter;
+  --bb-marketing-hero-icon-glow: #00fff7;
+  --bb-marketing-highlight: #ffffff;
+  --bb-marketing-store-badge-surface: #ffffff;
+  --bb-marketing-store-badge-content: #0b1120;
+  --bb-marketing-terminal-blend: #10172b;
+  --bb-marketing-plan-content: #f5f7fa;
+  --bb-marketing-plan-free-surface: #23272f;
+  --bb-marketing-plan-free-border: #3c434e;
+  --bb-marketing-plan-free-label: #c9d2dc;
+  --bb-marketing-plan-monthly-surface-start: #3b414a;
+  --bb-marketing-plan-monthly-surface-end: #2d333c;
+  --bb-marketing-plan-monthly-border: #8d98a5;
+  --bb-marketing-plan-monthly-label: #dbe3eb;
+  --bb-marketing-plan-yearly-surface: #3a2d11;
+  --bb-marketing-plan-yearly-border: #f0c453;
+  --bb-marketing-plan-yearly-label: #f0c453;
+  --bb-marketing-plan-positive: #2ecc71;
+  --bb-marketing-plan-negative: #e53935;
   --bb-radius-none: 0px;
   --bb-radius-xs: 2px;
   --bb-radius-sm: 4px;

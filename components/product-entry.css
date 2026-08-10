@@ -29,6 +29,22 @@ body.bb-product-entry {
   line-height: var(--bb-font-line-height-normal);
 }
 
+/* Product documents name intent; this theme recipe owns the concrete glyphs. */
+.bb-product-icon::before {
+  content: "";
+}
+
+.bb-product-icon[data-bb-icon-role="verified-user"]::before { content: "verified_user"; }
+.bb-product-icon[data-bb-icon-role="screens"]::before { content: "dashboard"; }
+.bb-product-icon[data-bb-icon-role="text"]::before { content: "text_fields"; }
+.bb-product-icon[data-bb-icon-role="layout"]::before { content: "crop_free"; }
+.bb-product-icon[data-bb-icon-role="theme"]::before { content: "palette"; }
+.bb-product-icon[data-bb-icon-role="format"]::before { content: "aspect_ratio"; }
+.bb-product-icon[data-bb-icon-role="edit"]::before { content: "edit_note"; }
+.bb-product-icon[data-bb-icon-role="save"]::before { content: "save"; }
+.bb-product-icon[data-bb-icon-role="lock"]::before { content: "lock"; }
+.bb-product-icon[data-bb-icon-role="check"]::before { content: "check"; }
+
 .bb-product-entry a {
   color: inherit;
 }
@@ -327,13 +343,22 @@ body.bb-product-entry {
   border-top: 1px solid var(--bb-color-outline-variant);
 }
 
-.bb-product-feature-list li,
-.bb-product-policy-list li {
+.bb-product-feature-list li {
   display: grid;
   grid-template-columns: 34px minmax(0, 1fr);
   gap: var(--bb-spacing-3);
   padding-block: var(--bb-spacing-4);
   border-bottom: 1px solid var(--bb-color-outline-variant);
+}
+
+.bb-product-policy-list li {
+  display: grid;
+  padding-block: var(--bb-spacing-4);
+  border-bottom: 1px solid var(--bb-color-outline-variant);
+}
+
+.bb-product-policy-list li > span:empty {
+  display: none;
 }
 
 .bb-product-feature-list .ms {

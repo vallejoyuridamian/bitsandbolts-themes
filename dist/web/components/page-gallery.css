@@ -6,7 +6,7 @@
 .bb-page-gallery {
   box-sizing: border-box;
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
   height: 100%;
   min-height: 100%;
   padding: var(--bb-spacing-6);
@@ -25,6 +25,26 @@
   min-width: 0;
   min-height: 0;
   overflow: hidden;
+}
+
+.bb-page-gallery__management {
+  width: 100%;
+}
+
+.bb-page-gallery__publish {
+  display: grid;
+  gap: var(--bb-spacing-3);
+}
+
+.bb-page-gallery__publish p {
+  margin: 0;
+  color: var(--bb-color-on-surface-variant);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.bb-page-gallery__publish .bb-v2-button {
+  width: 100%;
 }
 
 .bb-page-preview {
@@ -61,4 +81,5 @@
   .bb-page-gallery {
     padding: var(--bb-spacing-4);
   }
+
 }

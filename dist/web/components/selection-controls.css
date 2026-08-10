@@ -48,6 +48,29 @@
   outline-offset: 2px;
 }
 
+/* The same selector owner adapts to Studio's canonical resizable side toolbar. */
+.bb-inspection-toolbar {
+  box-sizing: border-box;
+  display: grid;
+  gap: var(--bb-spacing-4);
+  width: 100%;
+  min-width: 0;
+  padding: var(--bb-spacing-4);
+}
+
+.bb-inspection-toolbar .bb-selection-controls {
+  align-items: stretch;
+  flex-direction: column;
+  gap: var(--bb-spacing-3);
+  margin: 0;
+}
+
+.bb-inspection-toolbar .bb-selection-control {
+  flex: none;
+  width: 100%;
+  max-width: none;
+}
+
 @media (max-width: 640px) {
   .bb-selection-controls {
     align-items: stretch;

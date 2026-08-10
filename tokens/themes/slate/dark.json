@@ -1,4 +1,9 @@
 {
+  "marketing": {
+    "page": {
+      "canvas": { "$value": "#0B1120", "$type": "color" }
+    }
+  },
   "color": {
     "primary":              { "$value": "#A5B4FC", "$type": "color" },
     "onPrimary":            { "$value": "#1E1B4B", "$type": "color" },

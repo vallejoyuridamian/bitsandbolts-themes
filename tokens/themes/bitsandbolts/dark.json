@@ -1,4 +1,13 @@
 {
+  "marketing": {
+    "chrome": {
+      "background": { "$value": "#000000", "$type": "color" },
+      "accent": { "$value": "#00FFF7", "$type": "color" },
+      "onAccent": { "$value": "#000000", "$type": "color" },
+      "navigation": { "$value": "#FFFFFF", "$type": "color" },
+      "metaFont": { "$value": "Inter" }
+    }
+  },
   "font": {
     "family": {
       "display": { "$value": "Orbitron" },

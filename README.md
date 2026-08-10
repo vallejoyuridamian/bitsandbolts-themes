@@ -38,6 +38,7 @@ After `pnpm build` (or on first clone — dist is pre-built):
 dist/
   web/{theme}/light.css        CSS custom properties, selector :root
   web/{theme}/dark.css         CSS custom properties, selector [data-theme="dark"]
+  web/{theme}/scoped.css       Light/dark variables for nested family regions
   android/{theme}/LightColors.kt   Compose lightColorScheme(...)
   android/{theme}/DarkColors.kt    Compose darkColorScheme(...)
   react-native/{theme}/light.ts    typed color/spacing/radii constants
@@ -191,7 +192,17 @@ font face in the generated web distribution.
 --bb-font-size-xs through --bb-font-size-5xl
 --bb-font-weight-regular / medium / semibold / bold
 --bb-shadow-none through --bb-shadow-xl
+--bb-marketing-* shared marketing shell, chrome, information, plan, and status roles
 ```
+
+Every family/mode must resolve the complete marketing-role set. The generated
+`scoped.css` artifact allows a semantic region such as a product header or
+footer to use another family without replacing the page's root family.
+
+Coal, silver, and gold plan colors are universal shared-recipe inputs. The build
+rejects family/mode overrides of those colors; typography, shapes, spacing, and
+depth still resolve from the active family. `catalog.json.sharedAssets` records
+the single global platform-icon and official store-badge asset set.
 
 ---
 

@@ -34,16 +34,8 @@
 
 @font-face {
   font-family: "Inter";
-  src: url("../fonts/inter_400.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("../fonts/inter_500.ttf") format("truetype");
-  font-weight: 500;
+  src: url("../fonts/inter_variable.ttf") format("truetype");
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }

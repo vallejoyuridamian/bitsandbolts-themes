@@ -75,6 +75,7 @@
   background: var(--bb-v2-color-surface-disabled);
   box-shadow: var(--bb-v2-depth-flat);
   cursor: not-allowed;
+  opacity: 1;
   transform: none;
 }
 

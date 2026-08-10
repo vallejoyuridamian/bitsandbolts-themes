@@ -4,8 +4,11 @@
  */
 
 .bb-theme-gallery {
-  min-height: 100%;
+  box-sizing: border-box;
+  height: 100%;
+  min-height: 0;
   padding: var(--bb-spacing-6);
+  overflow: auto;
   color: var(--bb-color-on-background);
   background: var(--bb-color-background);
   font-family: var(--bb-font-family-body);
@@ -74,6 +77,27 @@
   display: grid;
   gap: var(--bb-spacing-5);
   padding: var(--bb-spacing-4);
+}
+
+.bb-theme-recipe-battery {
+  display: grid;
+  gap: var(--bb-spacing-5);
+}
+
+.bb-theme-recipe-battery > div {
+  display: grid;
+  gap: var(--bb-spacing-3);
+}
+
+.bb-theme-recipe-battery h4 {
+  margin: 0;
+  color: var(--bb-color-on-surface);
+  font-family: var(--bb-font-family-display);
+  font-size: var(--bb-font-size-sm);
+}
+
+.bb-theme-recipe-battery .bb-banner {
+  margin-bottom: 0;
 }
 
 .bb-theme-scene {
