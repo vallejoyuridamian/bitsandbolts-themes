@@ -1,3 +1,5 @@
+@import url("./navbar.css");
+
 /*
  * First-party theme catalog and inspection recipe.
  * Product repositories own the surrounding workspace structure only.
@@ -98,6 +100,19 @@
 
 .bb-theme-recipe-battery .bb-banner {
   margin-bottom: 0;
+}
+
+.bb-navbar-specimen__surface {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--bb-color-outline-variant);
+  border-radius: var(--bb-radius-lg);
+  isolation: isolate;
+}
+
+.bb-navbar-specimen > small {
+  color: var(--bb-color-on-surface-variant);
+  font-size: var(--bb-font-size-xs);
 }
 
 .bb-interface-specimen__canvas {

@@ -1,4 +1,25 @@
+import { navbarMarkup } from './navbar.js';
+
 const DATA_ATTRIBUTE_PATTERN = /^data-[a-z0-9-]+$/;
+
+const NAVBAR_SPECIMEN = Object.freeze({
+  label: 'Primary navigation',
+  brand: Object.freeze({
+    href: '/',
+    ariaLabel: 'Bits & Bolts home',
+    name: 'BITS & BOLTS',
+    tagline: 'FROM IDEA TO LAUNCH'
+  }),
+  links: Object.freeze([
+    Object.freeze({ label: 'Home', href: '/' }),
+    Object.freeze({ label: 'Portfolio', href: '/portfolio' }),
+    Object.freeze({ label: 'About', href: '/about' }),
+    Object.freeze({ label: 'Roadmap', href: '/roadmap' }),
+    Object.freeze({ label: 'Services', href: '/services' }),
+    Object.freeze({ label: 'FAQs', href: '/faqs' })
+  ]),
+  action: Object.freeze({ label: 'CONTACT ME', href: '/quote' })
+});
 
 function selectionControlsMarkup({ ariaLabel = '', controls = [] } = {}) {
   const controlMarkup = controls.map((control) => {
@@ -454,6 +475,13 @@ function sharedWebRecipeMarkup() {
     <section class="bb-theme-inspection" aria-label="Current shared web recipe specimens">
       <p class="bb-theme-inspection__label">Current shared web recipes</p>
       <div class="bb-theme-recipe-battery">
+        <div class="bb-navbar-specimen">
+          <h4>Navbar</h4>
+          <div class="bb-navbar-specimen__surface">
+            ${navbarMarkup(NAVBAR_SPECIMEN, { placement: 'static', specimen: true })}
+          </div>
+          <small>Static specimen. The same recipe supports sticky and hide-on-scroll placement.</small>
+        </div>
         <div>
           <h4>Button variants</h4>
           <div class="bb-actions">

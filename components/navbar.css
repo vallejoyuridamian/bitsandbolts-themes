@@ -1,0 +1,274 @@
+/**
+ * Canonical cross-site Navbar recipe.
+ *
+ * My Website is the accepted Bits & Bolts visual reference. Consumers retain
+ * their routes and product behavior while this recipe owns navbar presentation,
+ * responsive navigation, and placement behavior.
+ */
+
+@font-face {
+  font-family: "BB Navbar Orbitron";
+  src: url("../fonts/orbitron_500.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+.bb-navbar,
+.bb-navbar *,
+.bb-navbar *::before,
+.bb-navbar *::after {
+  box-sizing: border-box;
+}
+
+.bb-navbar {
+  position: relative;
+  z-index: 999;
+  display: flex;
+  width: 100%;
+  height: 4rem;
+  align-items: center;
+  background: color-mix(in srgb, var(--bb-marketing-chrome-background) 50%, transparent);
+}
+
+.bb-navbar[data-placement="sticky"] {
+  position: sticky;
+  top: 0;
+}
+
+.bb-navbar[data-placement="hide-on-scroll"] {
+  position: fixed;
+  inset: 0 0 auto;
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+.bb-navbar[data-placement="hide-on-scroll"][data-hidden="true"] {
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.bb-navbar__inner {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2vw;
+}
+
+.bb-navbar__brand {
+  display: flex;
+  align-items: center;
+  color: var(--bb-color-primary);
+  text-decoration: none;
+}
+
+.bb-navbar__brand img,
+.bb-navbar__brand-mark {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: none;
+  object-fit: contain;
+}
+
+.bb-navbar__brand-mark {
+  background: url("../brand/bitsandbolts/logo-cyan.webp") center / contain no-repeat;
+}
+
+.bb-navbar__brand > span:last-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--bb-color-primary);
+  font-family: "BB Navbar Orbitron";
+  font-weight: var(--bb-font-weight-semibold);
+  line-height: 1.1;
+}
+
+.bb-navbar__brand strong {
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  font-weight: var(--bb-font-weight-semibold);
+  letter-spacing: 0;
+}
+
+.bb-navbar__brand small {
+  font-size: 0.7rem;
+  font-weight: var(--bb-font-weight-regular);
+  letter-spacing: 0;
+}
+
+.bb-navbar__links {
+  display: flex;
+  height: 100%;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.bb-navbar__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  border-radius: 6px;
+  color: color-mix(in srgb, var(--bb-marketing-chrome-navigation) 60%, transparent);
+  font-family: "BB Navbar Orbitron";
+  font-weight: var(--bb-font-weight-semibold);
+  text-align: center;
+  text-decoration: none;
+  transition: background 200ms ease;
+}
+
+.bb-navbar__link:hover,
+.bb-navbar__link:focus-visible {
+  color: var(--bb-marketing-chrome-navigation);
+  background: color-mix(in srgb, var(--bb-marketing-chrome-navigation) 10%, transparent);
+  text-shadow: 0 0 5px var(--bb-color-primary), 0 0 10px var(--bb-color-primary),
+    0 0 20px var(--bb-color-primary), 0 0 40px var(--bb-color-primary),
+    0 0 60px var(--bb-marketing-portfolio-glow-far), 0 0 80px var(--bb-marketing-portfolio-glow-far);
+}
+
+.bb-navbar__action-wrapper {
+  display: flex;
+  height: 75%;
+  transform: scale(0.8);
+}
+
+.bb-navbar__action {
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+  border-radius: 6px;
+  color: var(--bb-marketing-chrome-on-accent);
+  background: var(--bb-color-primary);
+  font-family: "BB Navbar Orbitron";
+  font-size: 1rem;
+  font-weight: var(--bb-font-weight-semibold);
+  text-align: center;
+  text-decoration: none;
+  transition: transform 200ms ease;
+}
+
+.bb-navbar__action:hover,
+.bb-navbar__action:focus-visible {
+  color: var(--bb-marketing-chrome-on-accent);
+  transform: scale(1.2);
+}
+
+.bb-navbar__toggle,
+.bb-navbar__close {
+  padding: 0;
+  border: 0;
+  color: var(--bb-color-primary);
+  background: transparent;
+  cursor: pointer;
+}
+
+.bb-navbar__toggle {
+  display: none;
+  font-size: 1.5rem;
+}
+
+.bb-navbar__close {
+  display: none;
+}
+
+.bb-navbar__icon {
+  display: inline-block;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+
+.bb-navbar__toggle .bb-navbar__icon {
+  width: 0.875em;
+}
+
+@media (max-width: 1025px) {
+  .bb-navbar__links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    display: none;
+    width: auto;
+    height: 100vh;
+    flex: none;
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding: 0.4rem 1rem 0;
+    background: var(--bb-marketing-portfolio-panel);
+    opacity: 0.95;
+  }
+
+  .bb-navbar[data-open="true"] .bb-navbar__links {
+    display: flex;
+  }
+
+  .bb-navbar__link {
+    justify-content: flex-start;
+    padding: 0.5rem 1rem;
+  }
+
+  .bb-navbar__close {
+    display: flex;
+    width: 1.8rem;
+    height: 1.8rem;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+    border-radius: var(--bb-radius-full);
+    background: color-mix(in srgb, var(--bb-color-scrim) 50%, transparent);
+    font-size: 1.3rem;
+    transition: background 200ms ease, transform 200ms ease;
+  }
+
+  .bb-navbar__close:hover,
+  .bb-navbar__close:focus-visible {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  .bb-navbar__toggle {
+    display: block;
+  }
+
+  .bb-navbar__brand {
+    justify-content: center;
+  }
+
+  .bb-navbar__brand img,
+  .bb-navbar__brand-mark {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .bb-navbar__brand strong {
+    font-size: clamp(1rem, 2.4vw, 1.2rem);
+  }
+
+  .bb-navbar__brand small {
+    font-size: clamp(0.6rem, 1.8vw, 0.9rem);
+  }
+}
+
+@media (max-width: 560px) {
+  .bb-navbar__inner {
+    padding: 0 2vw;
+  }
+
+  .bb-navbar__action {
+    font-size: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bb-navbar,
+  .bb-navbar * {
+    transition-duration: 0.01ms !important;
+  }
+}

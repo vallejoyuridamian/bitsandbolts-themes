@@ -31,18 +31,18 @@
   favicon; keep the accepted lightweight review flags explicit as transition debt.
 - [x] Lock the post-recovery visual checkpoint with the alternating roadmap and
   testimonial/NeuroSharp image fades restored and owner-accepted.
+- [x] Owner-accept one generated Navbar owner and managed My Website first.
 
 ## Next Steps
 
 1. Start every future slice from the committed accepted checkpoint; change one
    canonical visual owner, build it, obtain browser acceptance, and commit it
    before beginning another slice.
-2. Extract only the accepted portfolio navbar visual identity first. Show it in
-   Themes and support only proven static/sticky/hide-on-scroll placement variants;
-   preserve each consumer's structure, routes, and behavior.
-3. After navbar acceptance and its own commit, treat footer, standalone neon CTA,
-   carousel/cards, glow/circle effects, icon import, flags, cyan convergence, and
-   renderer cleanup as separate opt-in slices, never one combined refactor.
+2. Preserve the accepted Navbar checkpoint. Await explicit direction before
+   either making its placement/assets fully JSON-declarative or migrating one
+   additional consumer with its structure, routes, and behavior intact.
+3. Treat footer, CTA, carousel/cards, effects, icons, flags, cyan, and renderer
+   cleanup as separate opt-in slices, never one combined refactor.
 4. Resume and browser-accept the AppScreen Product Entry landing only when the
    owner explicitly returns to that work.
 5. Complete the executable DTCG/B&B validator and Button adapters without a

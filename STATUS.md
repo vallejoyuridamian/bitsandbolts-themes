@@ -1,6 +1,6 @@
 # Bits and Bolts Themes — Status
 
-Last verified: 2026-08-10
+Last verified: 2026-08-11
 
 ## Current Truth
 
@@ -54,12 +54,16 @@ Last verified: 2026-08-10
   locked good-enough, not pixel-perfect, clone; the React reference is unchanged.
   The final accepted checkpoint includes the repaired alternating roadmap and
   the shared edge-fade mask on the testimonial and NeuroSharp background art.
+- Themes owns the reusable Navbar markup, CSS, controller, placements, and
+  responsive side panel. Managed My Website JSON is its first accepted consumer.
+- One renderer supplies its local, GitHub Pages, and AppScreen specimens;
+  generated source, `dist/web`, and `docs` artifacts are byte-identical.
 - UI icons are inline SVG vectors or original assets. Emoji and Unicode text
   glyphs are forbidden as UI icon substitutes; stars and carousel controls use
   vectors. Review flags currently use lightweight 64x48 FlagCDN images and are
   accepted transition debt, not the future canonical theme icon contract.
-- Themes generation, Sites' accepted portfolio asset check/build, AppScreen's
-  focused Pages check, and AppScreen's production web build pass.
+- Themes generation, Sites' 30/30 checks and build, and AppScreen's focused
+  9/9 theme-gallery contract pass.
 
 ## Open Gates
 
@@ -77,18 +81,15 @@ Last verified: 2026-08-10
   migration debt; the main React website and AppScreen's legacy Studio
   stylesheet also remain app-local visual debt.
 - Cloud, Ocean, Slate, and Robot remain v1 until migrated one family at a time.
-- Cross-site navigation is not homogenized yet. Any shared navigation work must
-  preserve each site's structure/behavior boundary while moving reusable visual
-  language into Themes.
+- Studio and Cloud retain their navigation. Sites still wires Navbar placement
+  and CSS/JS assets; fully declarative JSON dispatch is separately gated.
 
 ## Next Boundary
 
-- The accepted portfolio is now the committed recovery baseline. Future theme
-  extraction must begin from it and proceed one independently revertible visual
-  element at a time, with owner browser acceptance before the next element.
-- Navbar is first. Establish its visual recipe and only the minimal placement/
-  scroll variants needed by Web, Studio, and Cloud Clipboard; do not bundle the
-  footer, CTA, carousel, icon system, flags, cyan unification, or renderer cleanup.
+- The Navbar slice and first consumer are accepted. Await an explicit fresh
+  instruction before another consumer or component.
+- Possible next work is declarative JSON wiring or one consumer migration. Keep
+  footer, CTA, cards, icons, flags, cyan, and renderer cleanup separately gated.
 - The current B&B v2 specimens are not the visual reference for this work. The
   owner rejected that family except for the cut-out button shape; use the
   accepted managed homepage as the primary B&B identity reference.

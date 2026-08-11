@@ -4,6 +4,23 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-11) - Canonical Navbar accepted
+
+### What changed
+- Added the Themes-owned reusable Navbar markup, CSS, and controller with static,
+  sticky, hide-on-scroll, and responsive internal-side-panel behavior.
+- The gallery uses that same renderer across local development, generated GitHub
+  Pages, and AppScreen; managed My Website JSON is the first accepted consumer.
+- Sites no longer hand-builds the managed homepage navbar or owns its behavior.
+
+### Acceptance and boundary
+- The owner accepted the managed homepage and gallery. Themes generation, Sites'
+  30/30 checks plus build, and AppScreen's 9/9 gallery contract pass; generated
+  source, `dist/web`, and `docs` Navbar/gallery artifacts match.
+- Studio and Cloud Clipboard navigation are unchanged. Placement and asset
+  wiring remain explicit in Sites, so full JSON dispatch is a separate slice.
+- No deployment, publication, version change, route mutation, or push ran.
+
 ## Session wrap-up (2026-08-10) - Portfolio recovery baseline committed
 
 ### What changed
