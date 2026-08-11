@@ -491,6 +491,39 @@ function sharedWebRecipeMarkup() {
     <section class="bb-theme-inspection" aria-label="Current shared web recipe specimens">
       <p class="bb-theme-inspection__label">Current shared web recipes</p>
       <div class="bb-theme-recipe-battery">
+        <div>
+          <h4>Hero variants</h4>
+          <div class="bb-hero-specimen__stack">
+            <section class="bb-hero bb-hero--split bb-hero-specimen__viewport" aria-label="Split Hero specimen">
+              <div class="bb-hero__copy">
+                <span class="bb-hero__eyebrow">Optional eyebrow</span>
+                <h3 class="bb-hero__heading">Primary headline</h3>
+                <p class="bb-hero__support">Supporting copy clarifies the promise, audience, and immediate outcome.</p>
+                <div class="bb-hero__actions">
+                  <button class="bb-btn bb-btn-neon" type="button" tabindex="-1">Primary CTA</button>
+                  <button class="bb-btn bb-btn-text" type="button" tabindex="-1">Secondary CTA</button>
+                </div>
+              </div>
+              <div class="bb-hero__visual bb-hero-specimen__visual">
+                <small>Product proof rail</small>
+                <strong>Product visual or output</strong>
+                <span>Product evidence occupies the second rail.</span>
+              </div>
+            </section>
+            <section class="bb-hero bb-hero--focal-center bb-hero-specimen__viewport" aria-label="Focal-center Hero specimen">
+              <div class="bb-hero__copy">
+                <span class="bb-hero__eyebrow">Optional eyebrow</span>
+                <h3 class="bb-hero__heading">Primary headline</h3>
+                <p class="bb-hero__support">Supporting copy occupies the left content rail.</p>
+              </div>
+              <div class="bb-hero-specimen__corridor"><small>Protected center corridor</small></div>
+              <div class="bb-hero__visual bb-hero-specimen__visual">
+                <small>Visual rail</small>
+                <strong>Supporting visual</strong>
+              </div>
+            </section>
+          </div>
+        </div>
         <div class="bb-navbar-specimen">
           <h4>Navbar</h4>
           <div class="bb-navbar-specimen__surface bb-scrollbar">
@@ -528,6 +561,7 @@ function sharedWebRecipeMarkup() {
             <button class="bb-btn bb-btn-tonal" type="button" tabindex="-1">Tonal</button>
             <button class="bb-btn bb-btn-outline" type="button" tabindex="-1">Outline</button>
             <button class="bb-btn bb-btn-text" type="button" tabindex="-1">Text</button>
+            <button class="bb-btn bb-btn-neon" type="button" tabindex="-1">Neon</button>
           </div>
         </div>
         <div>

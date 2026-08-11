@@ -1,0 +1,154 @@
+/**
+ * Hero foundation — shared semantic composition for theme-owned page recipes.
+ *
+ * A Hero is the opening content section. "Above the fold" remains a viewport
+ * acceptance result and is intentionally not represented by a component class.
+ */
+
+.bb-hero {
+  --bb-hero-copy-gap: clamp(1rem, 6.5vw, 1.5rem);
+  --bb-hero-copy-measure: 36rem;
+  --bb-hero-heading-measure: 17ch;
+  --bb-hero-heading-size: clamp(1.5rem, 7.2vw, 2.5rem);
+  --bb-hero-heading-line-height: normal;
+  --bb-hero-support-measure: 56ch;
+  --bb-hero-support-size: clamp(0.8rem, 3vw, 1.1rem);
+
+  display: grid;
+  align-items: center;
+}
+
+.bb-hero--split {
+  grid-template-columns: minmax(0, 1fr) minmax(24rem, 1fr);
+  gap: clamp(2rem, 4vw, 4rem);
+}
+
+.bb-hero--focal-center {
+  --bb-hero-copy-measure: none;
+  --bb-hero-heading-measure: none;
+
+  grid-template-columns: minmax(0, 38fr) minmax(0, 24fr) minmax(0, 38fr);
+}
+
+.bb-hero--focal-center > .bb-hero__copy {
+  grid-column: 1;
+}
+
+.bb-hero--focal-center > .bb-hero__visual {
+  grid-column: 3;
+}
+
+.bb-hero--focal-center .bb-hero__actions {
+  padding-block: 0.6rem;
+}
+
+.bb-hero__copy {
+  display: grid;
+  min-width: 0;
+  max-inline-size: var(--bb-hero-copy-measure);
+  align-content: center;
+  gap: var(--bb-hero-copy-gap);
+}
+
+.bb-hero__heading {
+  max-inline-size: var(--bb-hero-heading-measure);
+  margin: 0;
+  font-family: "Orbitron";
+  font-size: var(--bb-hero-heading-size);
+  font-weight: var(--bb-font-weight-semibold);
+  line-height: var(--bb-hero-heading-line-height);
+  letter-spacing: 0.1rem;
+  text-wrap: balance;
+}
+
+.bb-hero__eyebrow {
+  color: var(--bb-color-primary);
+  font-family: "Orbitron";
+  font-size: var(--bb-font-size-xs);
+  font-weight: var(--bb-font-weight-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.bb-hero__support {
+  max-inline-size: var(--bb-hero-support-measure);
+  margin: 0;
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-hero-support-size);
+  font-weight: var(--bb-font-weight-bold);
+  line-height: normal;
+  text-wrap: pretty;
+}
+
+.bb-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  gap: var(--bb-spacing-3);
+}
+
+.bb-hero__visual {
+  min-width: 0;
+}
+
+.bb-hero__proof-pill {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 2rem;
+  align-items: center;
+  gap: var(--bb-spacing-2);
+  padding: var(--bb-spacing-1) var(--bb-spacing-3);
+  border: 1px solid var(--bb-color-outline-variant);
+  border-radius: var(--bb-radius-full);
+  color: var(--bb-color-on-surface-variant);
+  background: var(--bb-color-surface);
+  font-size: var(--bb-font-size-xs);
+  font-weight: var(--bb-font-weight-medium);
+}
+
+.bb-hero__proof-pill img {
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+  border-radius: var(--bb-radius-full);
+  object-fit: cover;
+}
+
+.bb-hero__assurances {
+  display: grid;
+  gap: var(--bb-spacing-2);
+  margin: 0;
+  padding: 0;
+  color: var(--bb-color-on-surface-variant);
+  font-size: var(--bb-font-size-sm);
+  list-style: none;
+}
+
+.bb-hero__assurances li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--bb-spacing-2);
+}
+
+.bb-text-effect--neon-glow {
+  text-shadow: 0 0 5px var(--bb-color-primary),
+    0 0 10px var(--bb-color-primary),
+    0 0 20px var(--bb-color-primary),
+    0 0 40px var(--bb-color-primary),
+    0 0 60px var(--bb-marketing-portfolio-glow-far, var(--bb-color-primary)),
+    0 0 80px var(--bb-marketing-portfolio-glow-far, var(--bb-color-primary));
+}
+
+@media (max-width: 940px) {
+  .bb-hero--split,
+  .bb-hero--focal-center {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .bb-hero--focal-center > .bb-hero__copy,
+  .bb-hero--focal-center > .bb-hero__visual {
+    grid-column: 1;
+  }
+}

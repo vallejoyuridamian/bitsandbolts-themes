@@ -40,9 +40,9 @@
    build it, obtain browser acceptance, and commit before the next slice.
 2. Preserve the owner-accepted Studio auto-hide and balanced narrow linked-Footer
    grid, including unchanged wide and no-link behavior.
-3. Use the bounded Slice 13 Product Entry Hero plan to audit
-   shared Hero semantics and extract only proven reusable presentation; keep
-   CTA, carousel/cards, effects, icons, flags, and cyan separately gated.
+3. Preserve the accepted Hero grammar, AppScreen geometry, shared portfolio-derived
+   typography/CTA, and role-only viewer specimens; keep the measured marquee,
+   carousel/cards, flags, and cyan separately gated.
 4. Preserve the generic managed dispatcher and keep content/routes site-owned.
 5. Complete the executable DTCG/B&B validator and Button adapters without a
    premature theme-version bump during the current transition.

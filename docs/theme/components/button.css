@@ -7,6 +7,7 @@
  *   <button class="bb-btn bb-btn-tonal">Secondary</button>
  *   <button class="bb-btn bb-btn-outline">Cancel</button>
  *   <button class="bb-btn bb-btn-text">Forgot password?</button>
+ *   <a class="bb-btn bb-btn-neon" href="/try">Try it</a>
  */
 
 .bb-btn {
@@ -22,6 +23,7 @@
   border: none;
   border-radius: var(--bb-radius-md);
   cursor: pointer;
+  text-align: center;
   transition: opacity 0.15s, filter 0.15s;
   text-decoration: none;
   line-height: 1;
@@ -80,4 +82,62 @@
   width: auto;
   padding-left: var(--bb-spacing-1);
   padding-right: var(--bb-spacing-1);
+}
+
+.bb-btn-neon {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  width: auto;
+  min-height: 0;
+  padding: 0.6rem 0.8rem;
+  border: 0;
+  border-radius: 30px;
+  color: var(--bb-marketing-highlight, var(--bb-color-on-background));
+  background: transparent;
+  font-family: "Orbitron";
+  font-size: clamp(1.3rem, 1.8vw, 2rem);
+  font-weight: var(--bb-font-weight-semibold);
+  letter-spacing: 1px;
+  text-shadow: 0 0 5px var(--bb-color-primary),
+    0 0 10px var(--bb-color-primary),
+    0 0 20px var(--bb-color-primary),
+    0 0 40px var(--bb-color-primary),
+    0 0 60px var(--bb-marketing-portfolio-glow-far, var(--bb-color-primary)),
+    0 0 80px var(--bb-marketing-portfolio-glow-far, var(--bb-color-primary));
+  transition: box-shadow 300ms ease, filter 150ms, transform 300ms ease;
+}
+
+.bb-btn.bb-btn-neon,
+.bb-btn.bb-btn-neon::before {
+  box-sizing: content-box;
+}
+
+.bb-btn-neon::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  padding: 2px;
+  border-radius: 30px;
+  background: linear-gradient(
+    to bottom,
+    var(--bb-color-accent-glow, var(--bb-color-primary)),
+    var(--bb-marketing-highlight, var(--bb-color-on-background))
+  );
+  content: "";
+  pointer-events: none;
+  mask: linear-gradient(var(--bb-color-on-background) 0 0) content-box,
+    linear-gradient(var(--bb-color-on-background) 0 0);
+  mask-composite: exclude;
+}
+
+.bb-btn-neon:hover:not(:disabled),
+.bb-btn-neon:focus-visible {
+  box-shadow: 0 0 14px color-mix(in srgb, var(--bb-color-accent-glow, var(--bb-color-primary)) 50%, transparent);
+  transform: scale(1.2);
+}
+
+.bb-btn-neon:focus-visible {
+  outline: 2px solid var(--bb-color-secondary);
+  outline-offset: 3px;
 }

@@ -1,4 +1,5 @@
 @import url("./footer.css");
+@import url("./hero.css");
 @import url("./navbar.css");
 @import url("./scrollbar.css");
 
@@ -155,6 +156,60 @@
   border: 1px solid var(--bb-color-outline-variant);
   border-radius: var(--bb-radius-md);
   isolation: isolate;
+}
+
+.bb-hero-specimen__stack {
+  display: grid;
+  gap: var(--bb-spacing-3);
+}
+
+.bb-hero-specimen__viewport {
+  min-height: 26rem;
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+  overflow: hidden;
+  border: 1px solid var(--bb-color-outline-variant);
+  border-radius: var(--bb-radius-lg);
+  background: var(--bb-color-background);
+  isolation: isolate;
+}
+
+.bb-hero-specimen__visual {
+  display: grid;
+  min-height: 16rem;
+  align-content: center;
+  justify-items: start;
+  gap: var(--bb-spacing-2);
+  padding: var(--bb-spacing-5);
+  border: 1px solid var(--bb-color-outline);
+  border-radius: var(--bb-radius-xl);
+  color: var(--bb-color-on-surface-variant);
+  background: var(--bb-color-surface);
+  box-shadow: var(--bb-shadow-lg);
+}
+
+.bb-hero-specimen__visual small,
+.bb-hero-specimen__corridor small {
+  font-size: var(--bb-font-size-xs);
+  font-weight: var(--bb-font-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.bb-hero-specimen__visual strong {
+  color: var(--bb-color-on-surface);
+  font-family: "Orbitron";
+  font-size: var(--bb-font-size-lg);
+}
+
+.bb-hero-specimen__corridor {
+  display: grid;
+  min-height: 16rem;
+  grid-column: 2;
+  align-items: center;
+  justify-items: center;
+  border-inline: 1px dashed var(--bb-color-outline);
+  color: var(--bb-color-on-surface-variant);
+  text-align: center;
 }
 
 .bb-interface-specimen__canvas {
@@ -437,6 +492,10 @@
   .bb-interface-menu-specimen {
     max-width: none;
     justify-self: stretch;
+  }
+
+  .bb-hero-specimen__corridor {
+    display: none;
   }
 }
 

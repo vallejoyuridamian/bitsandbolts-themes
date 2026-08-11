@@ -41,6 +41,10 @@ components, and generators for supported platforms.
 - A shared-gallery visual correction belongs in Themes first. Regenerate its
   existing outputs from the same source; do not create product-local styling or
   turn a two-property correction into a broader refactor.
+- Theme showcase and gallery specimens must use semantic role labels such as
+  `Primary headline`, `Supporting copy`, and `Primary CTA`. Never paste live
+  product or site marketing copy into a theme specimen; real copy stays in the
+  owning Sites document.
 - The long-term delivery mechanism must prevent copied consumer assets from
   becoming a second source of truth; that mechanism is not yet ratified.
 - A theme must eventually be switchable as a complete visual system, not only a

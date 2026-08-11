@@ -79,21 +79,12 @@ body.bb-portfolio-home {
 .bb-portfolio-hero__layout {
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   margin: 1rem;
 }
 
-.bb-portfolio-hero__copy,
 .bb-portfolio-hero__visual {
   display: flex;
-  width: 38%;
   flex-direction: column;
-}
-
-.bb-portfolio-hero__copy {
-  gap: clamp(1rem, 6.5vw, 1.5rem);
 }
 
 .bb-portfolio-proof-pill {
@@ -103,6 +94,7 @@ body.bb-portfolio-home {
   align-self: flex-start;
   gap: 0.5rem;
   padding: 0.2rem 0.45rem;
+  border: 0;
   border-radius: var(--bb-radius-full);
   color: var(--bb-color-primary);
   background: color-mix(in srgb, var(--bb-color-scrim) 70%, transparent);
@@ -126,14 +118,7 @@ body.bb-portfolio-home {
 }
 
 .bb-portfolio-hero h1 {
-  display: block;
-  margin: 0;
   color: var(--bb-marketing-highlight);
-  font-family: "BB Portfolio Orbitron";
-  font-size: clamp(1.5rem, 7.2vw, 2.5rem);
-  font-weight: var(--bb-font-weight-semibold);
-  line-height: normal;
-  letter-spacing: 0.1rem;
 }
 
 .bb-portfolio-hero h1 strong {
@@ -146,7 +131,6 @@ body.bb-portfolio-home {
   font-weight: var(--bb-font-weight-semibold);
 }
 
-.bb-portfolio-hero h1,
 .bb-portfolio-neon {
   text-shadow: 0 0 5px var(--bb-color-primary), 0 0 10px var(--bb-color-primary),
     0 0 20px var(--bb-color-primary), 0 0 40px var(--bb-color-primary),
@@ -154,12 +138,7 @@ body.bb-portfolio-home {
 }
 
 .bb-portfolio-hero__lead {
-  margin: 0;
   color: var(--bb-marketing-highlight);
-  font-family: var(--bb-font-family-body);
-  font-size: clamp(0.8rem, 3vw, 1.1rem);
-  font-weight: var(--bb-font-weight-bold);
-  line-height: normal;
   white-space: pre-line;
 }
 
@@ -207,17 +186,6 @@ body.bb-portfolio-home {
 .bb-portfolio-cta:focus-visible {
   box-shadow: 0 0 14px color-mix(in srgb, var(--bb-color-accent-glow) 50%, transparent);
   transform: scale(1.2);
-}
-
-.bb-portfolio-cta-container {
-  display: inline-block;
-  padding: 0.6rem 0;
-}
-
-.bb-portfolio-cta-container--hero {
-  position: relative;
-  right: 0.4vw;
-  align-self: center;
 }
 
 .bb-portfolio-cta--secondary {
@@ -912,6 +880,7 @@ body.bb-portfolio-home {
 
   .bb-portfolio-hero__layout {
     align-items: center;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .bb-portfolio-hero__copy {
@@ -921,10 +890,6 @@ body.bb-portfolio-home {
 
   .bb-portfolio-hero__lead {
     padding-right: 1rem;
-  }
-
-  .bb-portfolio-cta-container--hero {
-    right: 0;
   }
 
   .bb-portfolio-hero__visual {
