@@ -64,7 +64,8 @@ Last verified: 2026-08-11
   flags remain accepted lightweight transition debt, not the future icon contract.
 - Managed documents declare component models and content; Sites consumes their
   theme metadata through generic dispatch without adapters or owned asset paths.
-  Navbar, Footer, and the Studio chrome migration are owner-accepted.
+  Navbar and Footer are owner-accepted; hide-on-scroll is now the Navbar default,
+  and the owner accepted Studio auto-hide plus linked-Footer narrow alignment.
 
 ## Open Gates
 
@@ -87,13 +88,13 @@ Last verified: 2026-08-11
 
 ## Next Boundary
 
-- The declarative Navbar is accepted; compact-rule deduplication remains optional.
-- Footer and Studio integration are accepted across all four local surfaces;
-  generation and managed-site contracts pass, and the checkpoint stays unpushed.
+- The declarative Navbar, Studio auto-hide, and balanced narrow linked-Footer
+  grid are accepted; compact-rule deduplication remains optional.
 - The current B&B v2 specimens are not the visual reference for this work. The
   owner rejected that family except for the cut-out button shape; use the
   accepted managed homepage as the primary B&B identity reference.
-- Keep further Product Entry restyling gated; preserve `/ → /try → /app` continuity.
+- Execute only the bounded Product Entry Hero header/layout batch with its
+  explicit temporary proof slot; preserve `/ → /try → /app` continuity.
 - Keep this as a transition patch to the current contract where compatible; do
   not start a new theme version merely to checkpoint exploratory convergence.
 - Preserve the accepted Cloud Clipboard publication and every route boundary.

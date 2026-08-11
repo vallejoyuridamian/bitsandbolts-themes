@@ -52,7 +52,7 @@ function brandMarkMarkup(brand = {}) {
 
 export function navbarMarkup(model = {}, options = {}) {
   const {
-    placement = model.placement ?? 'static',
+    placement = model.placement ?? 'hide-on-scroll',
     layout = 'auto',
     theme,
     overlayContent = model.overlayContent ?? false,
