@@ -93,11 +93,13 @@ Last verified: 2026-08-11
 - The current B&B v2 specimens are not the visual reference for this work. The
   owner rejected that family except for the cut-out button shape; use the
   accepted managed homepage as the primary B&B identity reference.
-- The owner accepted the implemented shared Hero foundation: split/focal-center
-  compositions, accepted Orbitron hierarchy, content-height equal-rail Product
-  Entry layout, centered/wrapping neon Button, role-only viewer specimens, and
-  explicit AppScreen proof slot. My Website and AppScreen now consume the same
-  Hero typography/action owners; the build passes and continuity is preserved.
+- The shared Hero foundation implements split/focal-center compositions,
+  portfolio-derived Orbitron hierarchy, content-height equal-rail Product Entry
+  layout, centered/wrapping neon Button, role-only viewer specimens, and the
+  explicit AppScreen proof slot. My Website and AppScreen consume the same Hero
+  typography/action owners. The build and focused page checks pass 6/6; the
+  owner accepted the corrected portfolio font face and neon Button behavior at
+  full and half widths.
 - Keep this as a transition patch to the current contract where compatible; do
   not start a new theme version merely to checkpoint exploratory convergence.
 - Preserve the accepted Cloud Clipboard publication and every route boundary.

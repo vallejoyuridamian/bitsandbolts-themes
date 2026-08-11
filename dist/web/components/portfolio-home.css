@@ -8,14 +8,6 @@
  * values and responsive behavior.
  */
 
-@font-face {
-  font-family: "BB Portfolio Orbitron";
-  src: url("../fonts/orbitron_500.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
 .bb-portfolio-home,
 .bb-portfolio-home *,
 .bb-portfolio-home *::before,

@@ -40,8 +40,8 @@
    build it, obtain browser acceptance, and commit before the next slice.
 2. Preserve the owner-accepted Studio auto-hide and balanced narrow linked-Footer
    grid, including unchanged wide and no-link behavior.
-3. Preserve the accepted Hero grammar, AppScreen geometry, shared portfolio-derived
-   typography/CTA, and role-only viewer specimens; keep the measured marquee,
+3. Preserve the accepted Hero grammar, AppScreen geometry, shared portfolio-
+   derived typography/CTA, and role-only viewer specimens; keep marquee,
    carousel/cards, flags, and cyan separately gated.
 4. Preserve the generic managed dispatcher and keep content/routes site-owned.
 5. Complete the executable DTCG/B&B validator and Button adapters without a

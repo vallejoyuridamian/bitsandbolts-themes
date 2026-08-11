@@ -95,9 +95,10 @@
   border-radius: 30px;
   color: var(--bb-marketing-highlight, var(--bb-color-on-background));
   background: transparent;
-  font-family: "Orbitron";
-  font-size: clamp(1.3rem, 1.8vw, 2rem);
+  font-family: "BB Portfolio Orbitron";
+  font-size: clamp(1.5rem, 1.8vw, 2rem);
   font-weight: var(--bb-font-weight-semibold);
+  line-height: normal;
   letter-spacing: 1px;
   text-shadow: 0 0 5px var(--bb-color-primary),
     0 0 10px var(--bb-color-primary),

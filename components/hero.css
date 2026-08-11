@@ -53,7 +53,7 @@
 .bb-hero__heading {
   max-inline-size: var(--bb-hero-heading-measure);
   margin: 0;
-  font-family: "Orbitron";
+  font-family: "BB Portfolio Orbitron";
   font-size: var(--bb-hero-heading-size);
   font-weight: var(--bb-font-weight-semibold);
   line-height: var(--bb-hero-heading-line-height);
@@ -63,7 +63,7 @@
 
 .bb-hero__eyebrow {
   color: var(--bb-color-primary);
-  font-family: "Orbitron";
+  font-family: "BB Portfolio Orbitron";
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-bold);
   letter-spacing: 0.12em;

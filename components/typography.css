@@ -64,6 +64,19 @@
   font-display: swap;
 }
 
+/*
+ * Accepted B&B marketing display face. This intentionally exposes only the
+ * original 500 file so semibold/bold text preserves the portfolio reference's
+ * browser-synthesized weight, glyph width, and glow silhouette.
+ */
+@font-face {
+  font-family: "BB Portfolio Orbitron";
+  src: url("../fonts/orbitron_500.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 @font-face {
   font-family: "Montserrat";
   src: url("../fonts/montserrat_400.ttf") format("truetype");
