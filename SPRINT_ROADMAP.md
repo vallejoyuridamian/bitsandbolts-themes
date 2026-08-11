@@ -31,16 +31,16 @@
   favicon; keep the accepted lightweight review flags explicit as transition debt.
 - [x] Lock the post-recovery visual checkpoint with the alternating roadmap and
   testimonial/NeuroSharp image fades restored and owner-accepted.
-- [x] Owner-accept one generated Navbar owner and managed My Website first.
+- [x] Owner-accept the polished Navbar, themed scrollbars, generic dual-layout fixture, and managed My Website first consumer.
 
 ## Next Steps
 
 1. Start every future slice from the committed accepted checkpoint; change one
    canonical visual owner, build it, obtain browser acceptance, and commit it
    before beginning another slice.
-2. Preserve the accepted Navbar checkpoint. Await explicit direction before
-   either making its placement/assets fully JSON-declarative or migrating one
-   additional consumer with its structure, routes, and behavior intact.
+2. Preserve the accepted polished Navbar checkpoint. Await explicit direction
+   before making placement/assets fully JSON-declarative or migrating one
+   additional consumer. Treat compact-rule deduplication as optional cleanup.
 3. Treat footer, CTA, carousel/cards, effects, icons, flags, cyan, and renderer
    cleanup as separate opt-in slices, never one combined refactor.
 4. Resume and browser-accept the AppScreen Product Entry landing only when the

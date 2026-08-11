@@ -1,4 +1,5 @@
 @import url("./navbar.css");
+@import url("./scrollbar.css");
 
 /*
  * First-party theme catalog and inspection recipe.
@@ -104,15 +105,48 @@
 
 .bb-navbar-specimen__surface {
   min-width: 0;
-  overflow: hidden;
+  padding: var(--bb-spacing-3);
+  overflow-x: auto;
+  overflow-y: hidden;
   border: 1px solid var(--bb-color-outline-variant);
   border-radius: var(--bb-radius-lg);
   isolation: isolate;
+  overscroll-behavior-inline: contain;
 }
 
-.bb-navbar-specimen > small {
+.bb-navbar-specimen__rail {
+  display: grid;
+  grid-template-columns: minmax(52rem, 1fr) 24rem;
+  gap: var(--bb-spacing-3);
+  min-width: 77rem;
+  align-items: start;
+}
+
+.bb-navbar-specimen__state {
+  display: grid;
+  min-width: 0;
+  gap: var(--bb-spacing-2);
+}
+
+.bb-navbar-specimen__state > small {
   color: var(--bb-color-on-surface-variant);
   font-size: var(--bb-font-size-xs);
+  font-weight: var(--bb-font-weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.bb-navbar-specimen__viewport {
+  position: relative;
+  height: 4rem;
+  overflow: hidden;
+  border: 1px solid var(--bb-color-outline-variant);
+  border-radius: var(--bb-radius-md);
+  isolation: isolate;
+}
+
+.bb-navbar-specimen__state--compact .bb-navbar-specimen__viewport {
+  height: 13.5rem;
 }
 
 .bb-interface-specimen__canvas {

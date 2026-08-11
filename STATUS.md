@@ -17,7 +17,7 @@ Last verified: 2026-08-11
 - Themes now owns the gallery renderer itself. One source generates the local
   `pnpm dev` showcase, the self-contained `docs/` GitHub Pages bundle, and the
   AppScreen Themes workspace through a one-line product adapter.
-- Themes now also owns canonical workspace-background, Select, shared
+- Themes now also owns canonical workspace-background, Scrollbar, Select, shared
   interaction-state, and Menu roles/recipes. AppScreen consumes their classes
   while retaining selection, commands, keyboard behavior, invocation, and
   positioning. Cloud, Ocean, Robot, and Slate declare explicit v1 fallbacks;
@@ -54,16 +54,17 @@ Last verified: 2026-08-11
   locked good-enough, not pixel-perfect, clone; the React reference is unchanged.
   The final accepted checkpoint includes the repaired alternating roadmap and
   the shared edge-fade mask on the testimonial and NeuroSharp background art.
-- Themes owns the reusable Navbar markup, CSS, controller, placements, and
-  responsive side panel. Managed My Website JSON is its first accepted consumer.
+- Themes owns Navbar markup, CSS, controller, placements, responsive side panel,
+  and whole-brand glow. Managed My Website is first and uses its scrollbar.
+- Its gallery fixture is generic and non-routing with pinned desktop and permanently open contained compact views.
 - One renderer supplies its local, GitHub Pages, and AppScreen specimens;
   generated source, `dist/web`, and `docs` artifacts are byte-identical.
 - UI icons are inline SVG vectors or original assets. Emoji and Unicode text
   glyphs are forbidden as UI icon substitutes; stars and carousel controls use
   vectors. Review flags currently use lightweight 64x48 FlagCDN images and are
   accepted transition debt, not the future canonical theme icon contract.
-- Themes generation, Sites' 30/30 checks and build, and AppScreen's focused
-  9/9 theme-gallery contract pass.
+- Themes generation and AppScreen's focused 10/10 gallery contract pass. Sites'
+  29 unaffected tests, corrected My Website 2/2, and 3-site build pass.
 
 ## Open Gates
 
@@ -86,10 +87,9 @@ Last verified: 2026-08-11
 
 ## Next Boundary
 
-- The Navbar slice and first consumer are accepted. Await an explicit fresh
-  instruction before another consumer or component.
-- Possible next work is declarative JSON wiring or one consumer migration. Keep
-  footer, CTA, cards, icons, flags, cyan, and renderer cleanup separately gated.
+- The polished Navbar and first consumer are accepted; await fresh instruction.
+- Possible next work is declarative JSON wiring or one consumer migration.
+  Compact-rule deduplication is optional; keep every other component separate.
 - The current B&B v2 specimens are not the visual reference for this work. The
   owner rejected that family except for the cut-out button shape; use the
   accepted managed homepage as the primary B&B identity reference.

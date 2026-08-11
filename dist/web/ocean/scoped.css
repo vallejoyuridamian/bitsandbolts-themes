@@ -131,6 +131,10 @@
   --bb-interface-interaction-pressed-background: radial-gradient(ellipse at center, color-mix(in srgb, #0061a3 2%, transparent) 0%, color-mix(in srgb, #0061a3 2%, transparent) 56%, color-mix(in srgb, #0061a3 8%, transparent) 70%, color-mix(in srgb, #0061a3 20%, transparent) 88%, color-mix(in srgb, #0061a3 28%, transparent) 97%, color-mix(in srgb, #0061a3 14%, transparent) 100%);
   --bb-interface-interaction-pressed-shadow: inset 0 0 14px color-mix(in srgb, #0061a3 18%, transparent), 0 0 14px color-mix(in srgb, #0061a3 15%, transparent);
   --bb-interface-interaction-pressed-text-shadow: 0 0 10px color-mix(in srgb, #0061a3 32%, transparent);
+  --bb-interface-scrollbar-thumb: color-mix(in srgb, #0061a3 82%, transparent);
+  --bb-interface-scrollbar-track: color-mix(in srgb, #f8fafe 64%, transparent);
+  --bb-interface-scrollbar-border: color-mix(in srgb, #f8fafe 78%, transparent);
+  --bb-interface-scrollbar-highlight: color-mix(in srgb, #191c20 22%, transparent);
   --bb-interface-menu-background: color-mix(in srgb, #f8fafe 98%, transparent);
   --bb-interface-menu-border: color-mix(in srgb, #0061a3 28%, transparent);
   --bb-interface-menu-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
@@ -277,6 +281,10 @@
   --bb-interface-interaction-pressed-background: radial-gradient(ellipse at center, color-mix(in srgb, #9dcaff 2%, transparent) 0%, color-mix(in srgb, #9dcaff 2%, transparent) 56%, color-mix(in srgb, #9dcaff 8%, transparent) 70%, color-mix(in srgb, #9dcaff 20%, transparent) 88%, color-mix(in srgb, #9dcaff 28%, transparent) 97%, color-mix(in srgb, #9dcaff 14%, transparent) 100%);
   --bb-interface-interaction-pressed-shadow: inset 0 0 14px color-mix(in srgb, #9dcaff 18%, transparent), 0 0 14px color-mix(in srgb, #9dcaff 15%, transparent);
   --bb-interface-interaction-pressed-text-shadow: 0 0 10px color-mix(in srgb, #9dcaff 32%, transparent);
+  --bb-interface-scrollbar-thumb: color-mix(in srgb, #9dcaff 82%, transparent);
+  --bb-interface-scrollbar-track: color-mix(in srgb, #191c20 64%, transparent);
+  --bb-interface-scrollbar-border: color-mix(in srgb, #191c20 78%, transparent);
+  --bb-interface-scrollbar-highlight: color-mix(in srgb, #e2e2e6 22%, transparent);
   --bb-interface-menu-background: color-mix(in srgb, #191c20 98%, transparent);
   --bb-interface-menu-border: color-mix(in srgb, #9dcaff 28%, transparent);
   --bb-interface-menu-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);

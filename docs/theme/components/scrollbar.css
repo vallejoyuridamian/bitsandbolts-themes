@@ -1,0 +1,73 @@
+/**
+ * Canonical native scrollbar recipe.
+ *
+ * The geometry and depth follow AppScreen Studio's accepted scrollbar while
+ * every color resolves from the active theme's interface roles.
+ */
+
+:where(.bb-scrollbar, .bb-theme-gallery) {
+  scrollbar-color: var(--bb-interface-scrollbar-thumb) var(--bb-interface-scrollbar-track);
+  scrollbar-width: thin;
+}
+
+:where(.bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+:where(.bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar-track {
+  border-radius: var(--bb-radius-full);
+  background: var(--bb-interface-scrollbar-track);
+}
+
+:where(.bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar-thumb {
+  border: 2px solid var(--bb-interface-scrollbar-border);
+  border-radius: var(--bb-radius-full);
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 5%, transparent),
+    color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 37%, transparent),
+    color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 5%, transparent)
+  );
+  background-clip: padding-box;
+  box-shadow:
+    inset 0 0 4px color-mix(in srgb, var(--bb-interface-scrollbar-highlight) 23%, transparent),
+    0 0 6px color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 9%, transparent);
+}
+
+:where(.bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar-thumb:horizontal {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 5%, transparent),
+    color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 37%, transparent),
+    color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 5%, transparent)
+  );
+  background-clip: padding-box;
+}
+
+:where(.bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 34%, transparent),
+    var(--bb-interface-scrollbar-thumb),
+    color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 34%, transparent)
+  );
+  background-clip: padding-box;
+  box-shadow:
+    inset 0 0 6px var(--bb-interface-scrollbar-highlight),
+    0 0 10px color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 39%, transparent);
+}
+
+:where(.bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar-thumb:horizontal:hover {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 34%, transparent),
+    var(--bb-interface-scrollbar-thumb),
+    color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 34%, transparent)
+  );
+  background-clip: padding-box;
+}
+
+:where(.bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar-corner {
+  background: transparent;
+}

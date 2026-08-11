@@ -1,4 +1,5 @@
 const NAVBAR_PLACEMENTS = new Set(['static', 'sticky', 'hide-on-scroll']);
+const NAVBAR_LAYOUTS = new Set(['auto', 'desktop', 'compact']);
 const installedDocuments = new WeakSet();
 
 function escapeHtml(value) {
@@ -24,19 +25,49 @@ function controlIcon(role) {
 }
 
 function navbarLink(model, className, { specimen = false } = {}) {
-  const specimenAttributes = specimen ? ' tabindex="-1" aria-disabled="true"' : '';
-  return `<a class="${className}" href="${escapeHtml(model.href)}"${externalAttributes(model)}${specimenAttributes}>${escapeHtml(model.label)}</a>`;
+  if (specimen) {
+    return `<span class="${className}">${escapeHtml(model.label)}</span>`;
+  }
+  return `<a class="${className}" href="${escapeHtml(model.href)}" data-bb-navbar-link${externalAttributes(model)}>${escapeHtml(model.label)}</a>`;
 }
 
-export function navbarMarkup(model = {}, { placement = 'static', specimen = false } = {}) {
+function brandMarkMarkup(brand = {}) {
+  if (brand.logo) {
+    return `<img src="${escapeHtml(brand.logo)}" alt="" />`;
+  }
+  return `<svg class="bb-navbar__brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M16 2 30 16 16 30 2 16 16 2Zm0 6.2L8.2 16l7.8 7.8 7.8-7.8L16 8.2Z" />
+          </svg>`;
+}
+
+export function navbarMarkup(model = {}, {
+  placement = 'static',
+  layout = 'auto',
+  specimen = false,
+  specimenMenuVisible = false
+} = {}) {
   if (!NAVBAR_PLACEMENTS.has(placement)) {
     throw new TypeError(`Unsupported navbar placement: ${placement}`);
   }
+  if (!NAVBAR_LAYOUTS.has(layout)) {
+    throw new TypeError(`Unsupported navbar layout: ${layout}`);
+  }
+  if (specimenMenuVisible && (!specimen || layout !== 'compact')) {
+    throw new TypeError('A visible specimen menu requires the compact specimen layout.');
+  }
   const brand = model.brand || {};
   const links = Array.isArray(model.links) ? model.links : [];
-  const brandMark = brand.logo
-    ? `<img src="${escapeHtml(brand.logo)}" alt="" />`
-    : '<span class="bb-navbar__brand-mark" aria-hidden="true"></span>';
+  const brandMark = brandMarkMarkup(brand);
+  const brandStart = specimen
+    ? '<span class="bb-navbar__brand">'
+    : `<a class="bb-navbar__brand" href="${escapeHtml(brand.href)}" aria-label="${escapeHtml(brand.ariaLabel)}">`;
+  const brandEnd = specimen ? '</span>' : '</a>';
+  const toggleMarkup = specimen
+    ? `<span class="bb-navbar__toggle" aria-hidden="true">${controlIcon('menu')}</span>`
+    : `<button class="bb-navbar__toggle" type="button" aria-label="Open navigation" aria-expanded="false" data-bb-navbar-toggle>${controlIcon('menu')}</button>`;
+  const closeMarkup = specimen
+    ? `<span class="bb-navbar__close" aria-hidden="true">${controlIcon('close')}</span>`
+    : `<button class="bb-navbar__close" type="button" aria-label="Close navigation" data-bb-navbar-close>${controlIcon('close')}</button>`;
   const linkMarkup = links
     .map((link) => navbarLink(link, 'bb-navbar__link', { specimen }))
     .join('\n          ');
@@ -46,19 +77,15 @@ export function navbarMarkup(model = {}, { placement = 'static', specimen = fals
         </div>`
     : '';
 
-  return `<header class="bb-navbar" data-bb-navbar data-placement="${placement}"${specimen ? ' data-bb-navbar-specimen' : ''}>
+  return `<header class="bb-navbar" data-bb-navbar data-placement="${placement}" data-layout="${layout}"${specimen ? ' data-bb-navbar-specimen' : ''}${specimenMenuVisible ? ' data-open="true" data-specimen-menu="visible"' : ''}>
       <div class="bb-navbar__inner">
-        <button class="bb-navbar__toggle" type="button" aria-label="Open navigation" aria-expanded="false" data-bb-navbar-toggle>
-          ${controlIcon('menu')}
-        </button>
-        <a class="bb-navbar__brand" href="${escapeHtml(brand.href)}" aria-label="${escapeHtml(brand.ariaLabel)}"${specimen ? ' tabindex="-1" aria-disabled="true"' : ''}>
+        ${toggleMarkup}
+        ${brandStart}
           ${brandMark}
           <span><strong>${escapeHtml(brand.name)}</strong><small>${escapeHtml(brand.tagline)}</small></span>
-        </a>
-        <nav class="bb-navbar__links" aria-label="${escapeHtml(model.label)}" data-bb-navbar-menu>
-          <button class="bb-navbar__close" type="button" aria-label="Close navigation" data-bb-navbar-close>
-            ${controlIcon('close')}
-          </button>
+        ${brandEnd}
+        <nav class="bb-navbar__links bb-scrollbar" aria-label="${escapeHtml(model.label)}" data-bb-navbar-menu>
+          ${closeMarkup}
           ${linkMarkup}
         </nav>
         ${actionMarkup}
@@ -84,10 +111,8 @@ export function installNavbarController({ document: documentRef, window: windowR
     const target = event.target;
     const toggle = target?.closest?.('[data-bb-navbar-toggle]');
     const close = target?.closest?.('[data-bb-navbar-close]');
-    const menuLink = target?.closest?.('[data-bb-navbar-menu] a');
-    const specimenLink = target?.closest?.('[data-bb-navbar-specimen] a');
+    const menuLink = target?.closest?.('[data-bb-navbar-menu] [data-bb-navbar-link]');
 
-    if (specimenLink) event.preventDefault();
     if (toggle) {
       const navbar = toggle.closest('[data-bb-navbar]');
       setMenuOpen(navbar, navbar?.dataset.open !== 'true');
@@ -95,14 +120,14 @@ export function installNavbarController({ document: documentRef, window: windowR
       setMenuOpen((close || menuLink).closest('[data-bb-navbar]'), false);
     }
 
-    doc.querySelectorAll('[data-bb-navbar][data-open="true"]').forEach((navbar) => {
+    doc.querySelectorAll('[data-bb-navbar][data-open="true"]:not([data-specimen-menu="visible"])').forEach((navbar) => {
       if (!navbar.contains(target)) setMenuOpen(navbar, false);
     });
   });
 
   doc.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape') return;
-    doc.querySelectorAll('[data-bb-navbar][data-open="true"]').forEach((navbar) => setMenuOpen(navbar, false));
+    doc.querySelectorAll('[data-bb-navbar][data-open="true"]:not([data-specimen-menu="visible"])').forEach((navbar) => setMenuOpen(navbar, false));
   });
 
   let lastScrollY = win.scrollY;

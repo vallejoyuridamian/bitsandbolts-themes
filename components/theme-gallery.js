@@ -1,24 +1,27 @@
 import { navbarMarkup } from './navbar.js';
 
 const DATA_ATTRIBUTE_PATTERN = /^data-[a-z0-9-]+$/;
+const THEME_GALLERY_SCROLLBAR_VARIABLES = Object.freeze([
+  '--bb-interface-scrollbar-thumb',
+  '--bb-interface-scrollbar-track',
+  '--bb-interface-scrollbar-border',
+  '--bb-interface-scrollbar-highlight'
+]);
 
 const NAVBAR_SPECIMEN = Object.freeze({
-  label: 'Primary navigation',
+  label: 'Example navigation',
   brand: Object.freeze({
     href: '/',
-    ariaLabel: 'Bits & Bolts home',
-    name: 'BITS & BOLTS',
-    tagline: 'FROM IDEA TO LAUNCH'
+    ariaLabel: 'Product home',
+    name: 'PRODUCT',
+    tagline: 'SHORT TAGLINE'
   }),
   links: Object.freeze([
-    Object.freeze({ label: 'Home', href: '/' }),
-    Object.freeze({ label: 'Portfolio', href: '/portfolio' }),
-    Object.freeze({ label: 'About', href: '/about' }),
-    Object.freeze({ label: 'Roadmap', href: '/roadmap' }),
-    Object.freeze({ label: 'Services', href: '/services' }),
-    Object.freeze({ label: 'FAQs', href: '/faqs' })
+    Object.freeze({ label: 'Overview', href: '/overview' }),
+    Object.freeze({ label: 'Features', href: '/features' }),
+    Object.freeze({ label: 'Support', href: '/support' })
   ]),
-  action: Object.freeze({ label: 'CONTACT ME', href: '/quote' })
+  action: Object.freeze({ label: 'START', href: '/start' })
 });
 
 function selectionControlsMarkup({ ariaLabel = '', controls = [] } = {}) {
@@ -477,10 +480,27 @@ function sharedWebRecipeMarkup() {
       <div class="bb-theme-recipe-battery">
         <div class="bb-navbar-specimen">
           <h4>Navbar</h4>
-          <div class="bb-navbar-specimen__surface">
-            ${navbarMarkup(NAVBAR_SPECIMEN, { placement: 'static', specimen: true })}
+          <div class="bb-navbar-specimen__surface bb-scrollbar">
+            <div class="bb-navbar-specimen__rail">
+              <div class="bb-navbar-specimen__state">
+                <small>Desktop</small>
+                <div class="bb-navbar-specimen__viewport">
+                  ${navbarMarkup(NAVBAR_SPECIMEN, { placement: 'static', layout: 'desktop', specimen: true })}
+                </div>
+              </div>
+              <div class="bb-navbar-specimen__state bb-navbar-specimen__state--compact">
+                <small>Compact menu</small>
+                <div class="bb-navbar-specimen__viewport">
+                  ${navbarMarkup(NAVBAR_SPECIMEN, {
+                    placement: 'static',
+                    layout: 'compact',
+                    specimen: true,
+                    specimenMenuVisible: true
+                  })}
+                </div>
+              </div>
+            </div>
           </div>
-          <small>Static specimen. The same recipe supports sticky and hide-on-scroll placement.</small>
         </div>
         <div>
           <h4>Button variants</h4>
@@ -661,7 +681,13 @@ export function themeGalleryMarkup(catalog, selection = {}) {
   `;
 }
 
-export function applyThemeGalleryVariables(host, catalog) {
+export function applyThemeGalleryVariables(host, catalog, selection = {}) {
+  const selected = selectedTheme(catalog, selection.themeId);
+  const selectedVariables = selected.modes[selectedMode(selection.mode)].variables;
+  for (const name of THEME_GALLERY_SCROLLBAR_VARIABLES) {
+    const value = selectedVariables[name];
+    if (value) host?.style?.setProperty?.(name, value);
+  }
   host?.querySelectorAll?.('[data-theme-preview-id][data-theme-preview-mode]').forEach((preview) => {
     const theme = catalog.themes.find((candidate) => candidate.id === preview.dataset.themePreviewId);
     const mode = theme?.modes?.[preview.dataset.themePreviewMode];
@@ -846,7 +872,7 @@ export function createThemeGalleryController({
     selection = Object.freeze({ mode: selectedMode(selection.mode), themeId: theme.id });
     controlsHost.innerHTML = themeGalleryControlsMarkup(catalog, selection);
     host.innerHTML = themeGalleryMarkup(catalog, selection);
-    applyThemeGalleryVariables(host, catalog);
+    applyThemeGalleryVariables(host, catalog, selection);
   }
 
   function installSelectionListener() {
