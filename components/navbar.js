@@ -50,14 +50,15 @@ function brandMarkMarkup(brand = {}) {
           </svg>`;
 }
 
-export function navbarMarkup(model = {}, {
-  placement = 'static',
-  layout = 'auto',
-  theme,
-  overlayContent = false,
-  specimen = false,
-  specimenMenuVisible = false
-} = {}) {
+export function navbarMarkup(model = {}, options = {}) {
+  const {
+    placement = model.placement ?? 'static',
+    layout = 'auto',
+    theme,
+    overlayContent = model.overlayContent ?? false,
+    specimen = false,
+    specimenMenuVisible = false
+  } = options;
   if (!NAVBAR_PLACEMENTS.has(placement)) {
     throw new TypeError(`Unsupported navbar placement: ${placement}`);
   }

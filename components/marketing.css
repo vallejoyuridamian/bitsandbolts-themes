@@ -398,7 +398,6 @@ body.bb-marketing-page {
 
 .bb-section {
   padding: var(--bb-spacing-10) 0;
-  scroll-margin-top: 96px;
 }
 
 .bb-section__head {
@@ -871,6 +870,9 @@ body.bb-marketing-page {
 
 .bb-cta-band {
   padding: var(--bb-spacing-10) 0 var(--bb-spacing-16);
+}
+
+body:has(> .bb-navbar[data-placement="sticky"]) :is(.bb-section, .bb-cta-band) {
   scroll-margin-top: 96px;
 }
 

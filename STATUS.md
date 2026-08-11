@@ -54,17 +54,18 @@ Last verified: 2026-08-11
   locked good-enough, not pixel-perfect, clone; the React reference is unchanged.
   The final accepted checkpoint includes the repaired alternating roadmap and
   the shared edge-fade mask on the testimonial and NeuroSharp background art.
-- Themes owns Navbar markup, CSS, controller, placements, responsive panel,
-  theme scope, actionless alignment, brand behavior, and scrollbar; hide-on-scroll
-  reserves height by default while accepted My Website explicitly overlays.
-- Its gallery fixture is generic and non-routing with pinned desktop and permanently open contained compact views.
+- Themes owns Navbar markup, CSS, controller, placement behavior, responsive
+  panel, theme scope, brand/actionless alignment, scrollbar, and dependency metadata.
 - One renderer supplies its local, GitHub Pages, and AppScreen specimens;
   generated source, `dist/web`, and `docs` artifacts are byte-identical.
 - UI icons are inline SVG vectors or original assets. Emoji and Unicode text
   glyphs are forbidden as UI icon substitutes; stars and carousel controls use
   vectors. The showcase uses My Website's exact black-background favicon; review
   flags remain accepted lightweight transition debt, not the future icon contract.
-- Themes generation and combined managed-consumer Navbar contracts pass.
+- Managed documents declare Navbar component, placement, and overlay policy;
+  Sites consumes the canonical model and theme metadata without an adapter or
+  owned asset paths. The owner accepted both consumers and placement-aware
+  anchor clearance; generation and combined contracts pass.
 
 ## Open Gates
 
@@ -82,14 +83,13 @@ Last verified: 2026-08-11
   migration debt; the main React website and AppScreen's legacy Studio
   stylesheet also remain app-local visual debt.
 - Cloud, Ocean, Slate, and Robot remain v1 until migrated one family at a time.
-- Studio retains its navigation. Sites still adapts the standard header model and
-  wires Navbar placement/assets; declarative JSON dispatch is separately gated.
+- Studio retains its navigation; Footer ownership remains separately gated.
 
 ## Next Boundary
 
-- The polished Navbar and two consumers are accepted; await fresh instruction.
-- Possible next work is declarative Navbar wiring, then the separately gated
-  Footer migration. Compact-rule deduplication remains optional.
+- The declarative Navbar is accepted; compact-rule deduplication remains optional.
+- Next prove a standalone Themes Footer in managed My Website and the viewer;
+  await owner acceptance before changing Cloud Clipboard.
 - The current B&B v2 specimens are not the visual reference for this work. The
   owner rejected that family except for the cut-out button shape; use the
   accepted managed homepage as the primary B&B identity reference.

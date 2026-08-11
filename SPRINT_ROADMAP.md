@@ -31,18 +31,17 @@
   favicon; keep the accepted lightweight review flags explicit as transition debt.
 - [x] Lock the post-recovery visual checkpoint with the alternating roadmap and
   testimonial/NeuroSharp image fades restored and owner-accepted.
-- [x] Owner-accept the polished Navbar, themed scrollbars, My Website and Cloud Clipboard consumers, canonical spacing variants, and Themes favicon.
+- [x] Owner-accept the polished declarative Navbar, themed dependencies, both
+  managed consumers, placement-aware anchor clearance, spacing variants, and favicon.
 
 ## Next Steps
 
-1. Start every future slice from the committed accepted checkpoint; change one
-   canonical visual owner, build it, obtain browser acceptance, and commit it
-   before beginning another slice.
-2. Preserve the accepted two-consumer Navbar checkpoint. Await explicit direction
-   before making placement/assets fully JSON-declarative. Treat compact-rule
-   deduplication as optional cleanup.
-3. Treat footer, CTA, carousel/cards, effects, icons, flags, cyan, and renderer
-   cleanup as separate opt-in slices, never one combined refactor.
+1. Start each slice from an accepted commit; change one canonical visual owner,
+   build it, obtain browser acceptance, and commit before the next slice.
+2. Prove the standalone Footer in managed My Website and the Themes viewer,
+   then await owner acceptance before Cloud Clipboard.
+3. Keep CTA, carousel/cards, effects, icons, flags, cyan, renderer cleanup, and
+   optional Navbar compact-rule deduplication separately gated.
 4. Resume and browser-accept the AppScreen Product Entry landing only when the
    owner explicitly returns to that work.
 5. Complete the executable DTCG/B&B validator and Button adapters without a
