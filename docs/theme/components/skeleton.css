@@ -1,0 +1,93 @@
+.bb-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: color-mix(
+    in srgb,
+    var(--bb-color-surface-variant) 82%,
+    var(--bb-color-surface) 18%
+  );
+}
+
+.bb-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--bb-color-on-surface) 10%, transparent) 50%,
+    transparent 100%
+  );
+  animation: bb-skeleton-shimmer 1.35s ease-in-out infinite;
+}
+
+@keyframes bb-skeleton-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.bb-skeleton-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bb-skeleton-card {
+  border-radius: 12px;
+}
+
+.bb-skeleton-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bb-skeleton-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.bb-skeleton-stack-grow {
+  flex: 1;
+}
+
+.bb-skeleton-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.bb-skeleton-line {
+  height: 11px;
+  border-radius: 999px;
+}
+
+.bb-skeleton-line-lg {
+  width: min(260px, 72%);
+}
+
+.bb-skeleton-line-md {
+  width: min(190px, 54%);
+}
+
+.bb-skeleton-line-sm {
+  width: min(120px, 36%);
+}
+
+.bb-skeleton-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.bb-skeleton-action {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+}

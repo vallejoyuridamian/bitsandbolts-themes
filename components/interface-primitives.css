@@ -1,0 +1,264 @@
+/*
+ * Canonical application-surface, Select, Menu, and shared control interaction recipes.
+ * Products retain behavior, state, positioning, invocation, and product semantics.
+ */
+
+.bb-workspace-surface {
+  color: var(--bb-interface-control-foreground);
+  background: var(--bb-interface-workspace-background);
+}
+
+.bb-interface-action,
+.bb-interface-controls button:not(.theme-swatch),
+.bb-interface-controls .bb-select__trigger {
+  transition:
+    border-color var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing),
+    box-shadow var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing),
+    color var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing),
+    text-shadow var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing);
+}
+
+.bb-interface-controls button:not(.theme-swatch),
+.bb-interface-controls .bb-select__trigger {
+  border-color: transparent;
+  color: var(--bb-interface-control-foreground);
+  background-color: transparent;
+  box-shadow: none;
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-xs);
+  font-weight: var(--bb-font-weight-bold);
+  line-height: 1.2;
+}
+
+.bb-interface-action:is(:hover, :focus-visible):not(:disabled),
+.bb-interface-action:is([data-specimen-state="hover"], [data-specimen-state="focusVisible"]):not(:disabled),
+.bb-interface-controls button:not(.theme-swatch):is(:hover, :focus-visible):not(:disabled),
+.bb-interface-controls .bb-select__trigger:is(:hover, :focus-visible):not(:disabled) {
+  outline: none;
+  border-color: transparent;
+  color: var(--bb-interface-control-hover-foreground);
+  background-color: transparent;
+  background-image: var(--bb-interface-interaction-hover-background);
+  box-shadow: var(--bb-interface-interaction-hover-shadow);
+  text-shadow: var(--bb-interface-interaction-hover-text-shadow);
+}
+
+.bb-interface-action:is(:active, [aria-pressed="true"], [data-specimen-state="pressed"]):not(:disabled),
+.bb-interface-controls button:not(.theme-swatch):is(:active, .active, [aria-pressed="true"]):not(:disabled),
+.bb-select:is(.is-open, [data-specimen-state="open"]) .bb-select__trigger:not(:disabled) {
+  border-color: transparent;
+  color: var(--bb-interface-control-hover-foreground);
+  background: var(--bb-interface-interaction-pressed-background);
+  box-shadow: var(--bb-interface-interaction-pressed-shadow);
+  text-shadow: var(--bb-interface-interaction-pressed-text-shadow);
+}
+
+.bb-interface-action:disabled,
+.bb-interface-controls button:not(.theme-swatch):disabled {
+  color: var(--bb-interface-control-disabled-foreground);
+  cursor: default;
+  opacity: 0.42;
+}
+
+.bb-select {
+  position: relative;
+  display: inline-grid;
+  align-items: stretch;
+  min-width: 0;
+  vertical-align: middle;
+}
+
+.bb-select__native {
+  position: absolute !important;
+  width: 1px !important;
+  min-width: 1px !important;
+  height: 1px !important;
+  min-height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  border: 0 !important;
+  opacity: 0 !important;
+  white-space: nowrap !important;
+  pointer-events: none !important;
+}
+
+.bb-select__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--bb-spacing-3);
+  width: 100%;
+  min-width: 0;
+  min-height: 38px;
+  padding: 0 14px 0 10px;
+  border: 1px solid transparent;
+  border-radius: var(--bb-radius-md);
+  color: var(--bb-interface-control-foreground);
+  background: transparent;
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-xs);
+  font-weight: var(--bb-font-weight-bold);
+  line-height: 1.2;
+  text-align: left;
+}
+
+.bb-select__trigger:focus-visible,
+.bb-select[data-specimen-state="focusVisible"] .bb-select__trigger {
+  border-color: var(--bb-interface-control-focus-ring);
+  outline: none;
+}
+
+.bb-interface-controls .bb-select__trigger:focus-visible {
+  border-color: transparent;
+}
+
+.bb-select__value {
+  min-width: 0;
+  overflow: hidden;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bb-select__caret {
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  margin: 0 2px 3px 0;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  opacity: 0.82;
+  transform: rotate(45deg);
+  transition:
+    margin var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing),
+    transform var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing);
+}
+
+.bb-select:is(.is-open, [data-specimen-state="open"]) .bb-select__caret {
+  margin-top: 4px;
+  margin-bottom: 0;
+  transform: rotate(225deg);
+}
+
+.bb-menu {
+  display: grid;
+  gap: 1px;
+  padding: 5px;
+  border: 1px solid var(--bb-interface-menu-border);
+  border-radius: var(--bb-radius-md);
+  color: var(--bb-interface-control-foreground);
+  background: var(--bb-interface-menu-background);
+  box-shadow: var(--bb-interface-menu-shadow);
+  font-family: var(--bb-font-family-body);
+  scrollbar-color: var(--bb-interface-menu-scrollbar-thumb) var(--bb-interface-menu-scrollbar-track);
+  scrollbar-width: thin;
+}
+
+.bb-menu__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--bb-spacing-3);
+  width: 100%;
+  min-height: 30px;
+  padding: 6px 9px;
+  border: 0;
+  border-radius: 5px;
+  color: var(--bb-interface-control-foreground);
+  background: transparent;
+  box-shadow: none;
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-xs);
+  font-weight: var(--bb-font-weight-bold);
+  line-height: 1.2;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.bb-menu__item:is([aria-selected="true"], [data-specimen-state="selected"]):not(:disabled) {
+  color: var(--bb-interface-control-hover-foreground);
+  background: var(--bb-interface-interaction-pressed-background);
+  box-shadow: var(--bb-interface-interaction-pressed-shadow);
+  text-shadow: var(--bb-interface-interaction-pressed-text-shadow);
+}
+
+.bb-menu__item:disabled {
+  color: var(--bb-interface-menu-disabled-foreground);
+}
+
+.bb-menu__label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bb-menu__meta {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.bb-menu__shortcut {
+  min-width: 12px;
+  color: var(--bb-interface-menu-meta-foreground);
+  font-size: 11px;
+  font-weight: var(--bb-font-weight-bold);
+  line-height: 1;
+  text-align: center;
+}
+
+.bb-menu__arrow {
+  flex: 0 0 auto;
+  font-size: 18px;
+  font-weight: var(--bb-font-weight-medium);
+  line-height: 1;
+}
+
+.bb-menu__separator {
+  height: 1px;
+  margin: 5px 4px;
+  background: var(--bb-interface-menu-divider);
+}
+
+.bb-menu__info {
+  padding: 7px 9px 3px;
+  color: var(--bb-interface-menu-muted-foreground);
+  font-size: 10px;
+  font-weight: var(--bb-font-weight-bold);
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bb-interface-action,
+  .bb-interface-controls button:not(.theme-swatch),
+  .bb-interface-controls .bb-select__trigger,
+  .bb-select__caret {
+    transition-duration: 0ms;
+  }
+}
+
+@media (forced-colors: active) {
+  .bb-select__trigger,
+  .bb-menu,
+  .bb-menu__item {
+    border-color: ButtonText;
+    color: ButtonText;
+    background: ButtonFace;
+    box-shadow: none;
+    forced-color-adjust: auto;
+  }
+
+  .bb-select__trigger:focus-visible,
+  .bb-menu__item:focus-visible {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+}

@@ -28,6 +28,19 @@ components, and generators for supported platforms.
 ## Working Boundary
 
 - `pnpm build` is the focused generation check.
+- For a focused owner correction to an existing Themes specimen, go directly to
+  the named canonical component and token source after the required bounded
+  context load. Do not inventory repositories, reread already-loaded context,
+  open cold plans/history, or expand into consumers without a concrete failing
+  dependency.
+- Keep correction validation proportional: run the Themes build once and, only
+  when a consumer contract changed, its smallest named focused check once. Then
+  stop for owner-run browser acceptance; do not add duplicate validation phases.
+- Keep shell search patterns literal; never place backticks or command
+  substitutions in an interpolated command string used only for verification.
+- A shared-gallery visual correction belongs in Themes first. Regenerate its
+  existing outputs from the same source; do not create product-local styling or
+  turn a two-property correction into a broader refactor.
 - The long-term delivery mechanism must prevent copied consumer assets from
   becoming a second source of truth; that mechanism is not yet ratified.
 - A theme must eventually be switchable as a complete visual system, not only a

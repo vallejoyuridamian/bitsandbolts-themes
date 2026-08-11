@@ -1,0 +1,35 @@
+{
+  "$extensions": { "com.bitsandbolts.interface": { "resolution": "v1-fallback" } },
+  "interface": {
+    "workspace": { "background": { "$value": "{color.background}" } },
+    "control": {
+      "foreground": { "$value": "{color.onBackground}" },
+      "hoverForeground": { "$value": "{color.onBackground}" },
+      "disabledForeground": { "$value": "{color.onSurfaceVariant}" },
+      "focusRing": { "$value": "{color.primary}" }
+    },
+    "interaction": {
+      "hoverBackground": { "$value": "radial-gradient(ellipse at center, color-mix(in srgb, {color.primary} 1%, transparent) 0%, color-mix(in srgb, {color.primary} 1%, transparent) 72%, color-mix(in srgb, {color.primary} 4%, transparent) 84%, color-mix(in srgb, {color.primary} 14%, transparent) 96%, color-mix(in srgb, {color.primary} 7%, transparent) 100%)" },
+      "hoverShadow": { "$value": "inset 0 0 11px color-mix(in srgb, {color.primary} 8%, transparent), 0 0 12px color-mix(in srgb, {color.primary} 10%, transparent)" },
+      "hoverTextShadow": { "$value": "0 0 8px color-mix(in srgb, {color.primary} 20%, transparent)" },
+      "pressedBackground": { "$value": "radial-gradient(ellipse at center, color-mix(in srgb, {color.primary} 2%, transparent) 0%, color-mix(in srgb, {color.primary} 2%, transparent) 56%, color-mix(in srgb, {color.primary} 8%, transparent) 70%, color-mix(in srgb, {color.primary} 20%, transparent) 88%, color-mix(in srgb, {color.primary} 28%, transparent) 97%, color-mix(in srgb, {color.primary} 14%, transparent) 100%)" },
+      "pressedShadow": { "$value": "inset 0 0 14px color-mix(in srgb, {color.primary} 18%, transparent), 0 0 14px color-mix(in srgb, {color.primary} 15%, transparent)" },
+      "pressedTextShadow": { "$value": "0 0 10px color-mix(in srgb, {color.primary} 32%, transparent)" }
+    },
+    "menu": {
+      "background": { "$value": "color-mix(in srgb, {color.surface} 98%, transparent)" },
+      "border": { "$value": "color-mix(in srgb, {color.primary} 28%, transparent)" },
+      "shadow": { "$value": "{shadow.xl}" },
+      "mutedForeground": { "$value": "{color.onSurfaceVariant}" },
+      "metaForeground": { "$value": "{color.onSurfaceVariant}" },
+      "disabledForeground": { "$value": "color-mix(in srgb, {color.onSurfaceVariant} 42%, transparent)" },
+      "divider": { "$value": "color-mix(in srgb, {color.primary} 18%, transparent)" },
+      "scrollbarThumb": { "$value": "color-mix(in srgb, {color.primary} 82%, transparent)" },
+      "scrollbarTrack": { "$value": "color-mix(in srgb, {color.background} 64%, transparent)" }
+    },
+    "motion": {
+      "quickDuration": { "$value": "140ms" },
+      "quickEasing": { "$value": "ease" }
+    }
+  }
+}

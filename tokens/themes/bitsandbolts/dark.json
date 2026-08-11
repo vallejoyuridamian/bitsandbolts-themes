@@ -63,6 +63,11 @@
     "neon2":                { "$value": "#3EF3FF", "$type": "color" },
     "cyan":                 { "$value": "#12E6D5", "$type": "color" },
     "accentGlow":           { "$value": "#00FFF7", "$type": "color" },
+    "workspaceBackground":  { "$value": "#0F1415", "$type": "color" },
+    "interfaceSignal":      { "$value": "#71D2D7", "$type": "color" },
+    "interfaceHoverForeground": { "$value": "#E8FEFF", "$type": "color" },
+    "interfaceDisabledForeground": { "$value": "#E2FCFF", "$type": "color" },
+    "interfaceMetaForeground": { "$value": "#8F999F", "$type": "color" },
     "panel":                { "$value": "#0F1520", "$type": "color" },
     "panel2":               { "$value": "#101826", "$type": "color" }
   },

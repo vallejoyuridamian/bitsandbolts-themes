@@ -14,6 +14,14 @@ Last verified: 2026-08-10
   shape/material/depth/motion specimens, and a declarative Button recipe.
 - Generated web catalog data drives AppScreen's Themes tab one family/mode at a
   time. AppScreen's Pages tab previews one managed site/page/source at a time.
+- Themes now owns the gallery renderer itself. One source generates the local
+  `pnpm dev` showcase, the self-contained `docs/` GitHub Pages bundle, and the
+  AppScreen Themes workspace through a one-line product adapter.
+- Themes now also owns canonical workspace-background, Select, shared
+  interaction-state, and Menu roles/recipes. AppScreen consumes their classes
+  while retaining selection, commands, keyboard behavior, invocation, and
+  positioning. Cloud, Ocean, Robot, and Slate declare explicit v1 fallbacks;
+  generation rejects any family without the complete interface role set.
 - Product Entry, Theme Gallery, Page Gallery, Button v2, typography, and the
   shared Selection Controls recipe are canonical theme-owned web components.
 - Product Entry now supports declarative managed landing documents through
@@ -26,15 +34,6 @@ Last verified: 2026-08-10
 - The marketing contract also owns secondary content cards, managed forms,
   deletion status, and hosted auth-action layouts/states used by every Cloud
   Clipboard secondary page; the private site repository contributes no CSS.
-- Coal/silver/gold color roles are universal and build-enforced across every
-  family/mode; their fonts and card shapes still inherit the selected family.
-- Android/Windows/Linux marks and official store badges are one cataloged global
-  asset set. The Cloud Clipboard icon has left the public theme distribution and
-  is now a private managed `site-upload` asset.
-- Every family emits a generated `scoped.css`, allowing named nested regions to
-  inherit another family without duplicating tokens or selectors.
-- AppScreen's Themes tab now renders the real shared web Button variants,
-  information cards, status surface, and plan tones for every selected family.
 - Themes and Pages share one selector recipe and one product markup owner. The
   recipe supports Studio's canonical vertical left-sidebar arrangement without
   introducing a second toolbar component. Themes owns its preview scrolling;
@@ -43,12 +42,24 @@ Last verified: 2026-08-10
   `Publish online`, no idle description, the original dark subtle-gradient
   toolbar treatment, and a light foreground token. Local and hosted use the same
   theme-owned presentation.
-- The owner used that control for the first fully app-owned Cloud Clipboard
-  publication. Managed HTML and the canonical generated stylesheet both return
-  200 with the accepted Slate Dark body/Bits & Bolts Dark chrome composition.
-- `pnpm build` is clean. Declaring base tokens as defaults and family tokens as
-  authoritative overrides removed collision warnings without changing any of
-  the 94 generated artifact hashes.
+- The showcase shell explicitly uses Bits & Bolts Dark. Its own top bar now
+  renders the canonical Select trigger/Menu, not a visible native select; its
+  workspace resolves to AppScreen's exact dark `#0f1415`, while header/control
+  chrome uses the canonical app background role. Internal Art direction notes
+  are not rendered.
+- Themes owns the managed My Website homepage's canonical `portfolio-home`
+  recipe: its original font boundaries, responsive composition, components,
+  and vector icon treatment without React or product-local CSS.
+- The owner accepted the managed portfolio homepage on desktop and narrow as a
+  locked good-enough, not pixel-perfect, clone; the React reference is unchanged.
+  The final accepted checkpoint includes the repaired alternating roadmap and
+  the shared edge-fade mask on the testimonial and NeuroSharp background art.
+- UI icons are inline SVG vectors or original assets. Emoji and Unicode text
+  glyphs are forbidden as UI icon substitutes; stars and carousel controls use
+  vectors. Review flags currently use lightweight 64x48 FlagCDN images and are
+  accepted transition debt, not the future canonical theme icon contract.
+- Themes generation, Sites' accepted portfolio asset check/build, AppScreen's
+  focused Pages check, and AppScreen's production web build pass.
 
 ## Open Gates
 
@@ -66,14 +77,23 @@ Last verified: 2026-08-10
   migration debt; the main React website and AppScreen's legacy Studio
   stylesheet also remain app-local visual debt.
 - Cloud, Ocean, Slate, and Robot remain v1 until migrated one family at a time.
+- Cross-site navigation is not homogenized yet. Any shared navigation work must
+  preserve each site's structure/behavior boundary while moving reusable visual
+  language into Themes.
 
 ## Next Boundary
 
-- Continue plan Slice 2: executable DTCG/B&B validation, allowed resolver tuples,
-  deterministic generation/provenance, capabilities, fallbacks, and overrides.
-- Then complete Button vertically across static/web, React/AppScreen, Compose,
-  and React Native before broad component or consumer restyling.
-- Cloud Clipboard page/auth-state and publication-control visuals are accepted.
-  Public route lifecycle remains AppScreen/Sites behavior, not a Themes concern;
-  next edit and browser-accept the AppScreen Product Entry landing locally, then
-  publish it from AppScreen Pages after its hostname/Access boundary is frozen.
+- The accepted portfolio is now the committed recovery baseline. Future theme
+  extraction must begin from it and proceed one independently revertible visual
+  element at a time, with owner browser acceptance before the next element.
+- Navbar is first. Establish its visual recipe and only the minimal placement/
+  scroll variants needed by Web, Studio, and Cloud Clipboard; do not bundle the
+  footer, CTA, carousel, icon system, flags, cyan unification, or renderer cleanup.
+- The current B&B v2 specimens are not the visual reference for this work. The
+  owner rejected that family except for the cut-out button shape; use the
+  accepted managed homepage as the primary B&B identity reference.
+- Resume the AppScreen Product Entry landing only when the owner explicitly
+  returns to it; preserve `/ → /try → /app` continuity.
+- Keep this as a transition patch to the current contract where compatible; do
+  not start a new theme version merely to checkpoint exploratory convergence.
+- Preserve the accepted Cloud Clipboard publication and every route boundary.

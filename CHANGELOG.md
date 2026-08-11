@@ -4,6 +4,78 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-10) - Portfolio recovery baseline committed
+
+### What changed
+- Locked the owner-accepted managed homepage after restoring the alternating
+  roadmap layout and the shared testimonial/NeuroSharp image fade.
+- Removed failed-refactor navbar, signature-icon, carousel, and local-flag
+  artifacts instead of preserving dead generated output or dependencies.
+- Kept the accepted inline vector UI icons and lightweight 64x48 review flags;
+  no emoji or Unicode text glyph was introduced as a UI icon.
+
+### Verification and next boundary
+- Themes generation, the accepted Sites asset/build gate, the focused AppScreen
+  Pages gate, and AppScreen's production build pass.
+- Future canonicalization starts from this commit and moves one visual element at
+  a time: navbar first, owner acceptance, then its own commit. The rejected B&B
+  v2 specimen family is not the visual reference except for the cut-out button.
+- No deployment, publication, route mutation, package publication, or push ran.
+
+## Session wrap-up (2026-08-10) - Managed portfolio homepage accepted
+
+### What changed
+- Added the canonical `portfolio-home` recipe and generated assets used by the
+  managed My Website homepage, preserving the original responsive composition,
+  typography boundaries, mobile drawer, carousels, roadmap, CTAs, and footer.
+- Added the minimal portfolio semantic color roles required by the source
+  composition and kept reusable visual ownership in Themes.
+- Replaced every UI-icon substitute with proper vectors or original assets.
+  Carousel controls use vector outlines derived from the original bold system
+  glyph geometry; stars are SVG artwork, never emoji UI icons.
+
+### Acceptance and boundary
+- The owner accepted the desktop and narrow managed homepage as good enough and
+  locked this checkpoint without claiming pixel-perfect parity.
+- Themes and Sites builds pass. The original React homepage remains untouched as
+  the visual reference.
+- No version, package publication, deployment, route mutation, commit, or push
+  occurred. Cross-site navbar homogenization awaits a fresh owner instruction.
+
+## Session wrap-up (2026-08-10) - Canonical gallery correction
+
+### What changed
+- Made the shared gallery top bar itself render the canonical Select trigger and
+  Menu recipe instead of leaving native selects as the visible controls.
+- Applied the canonical workspace role to the gallery/showcase surface; Bits &
+  Bolts Dark resolves it to AppScreen's exact `#0f1415`. Header/control chrome
+  continues to use the canonical app background role.
+
+### Verification and boundary
+- Themes generation, AppScreen's 16 focused Themes/Pages contracts, AppScreen's
+  production build, and both repository diff checks pass.
+- Browser acceptance remains owner-owned. No deploy, publish, route, Access,
+  version, Cloud Clipboard, commit, or push operation occurred.
+
+## Session wrap-up (2026-08-10) - One shared theme showcase owner
+
+### What changed
+- Moved the complete gallery renderer from AppScreen into Themes and reduced the
+  product to a one-line adapter to that canonical owner.
+- Replaced the independent legacy GitHub preview with a generated `docs/` bundle
+  using the same catalog, renderer, CSS, fonts, icons, and brand assets.
+- Added `pnpm dev` for the local showcase, fixed selector overflow, compacted the
+  Bits & Bolts-themed shell, and removed the internal Art direction section.
+
+### Verification and next boundary
+- Themes build and local asset delivery pass; AppScreen's focused gallery checks
+  pass 15/15 and its production web build resolves the shared renderer.
+- Next, extract AppScreen's accepted workspace background, dropdown/select, shared
+  hover-state, and context-menu visuals into canonical theme recipes. Keep this a
+  transition patch where possible; no theme-version bump is approved yet.
+- No GitHub Pages publication, commit, push, route, Access, or Cloud Clipboard
+  mutation occurred.
+
 ## Session wrap-up (2026-08-10) - First app-owned site publication accepted
 
 ### What changed

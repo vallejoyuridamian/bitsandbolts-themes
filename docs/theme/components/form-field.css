@@ -1,0 +1,151 @@
+/**
+ * Form field — labeled text input with error/hint text.
+ * Also includes divider and text link helpers.
+ * Uses --bb-* tokens so it automatically reflects the active theme.
+ *
+ * Usage:
+ *   <div class="bb-field">
+ *     <label class="bb-field__label" for="email">Email</label>
+ *     <input class="bb-field__input" id="email" type="email" />
+ *     <p class="bb-field__error">Invalid email.</p>
+ *   </div>
+ *
+ *   Add class "bb-field--error" to .bb-field to highlight the input border.
+ *
+ *   <div class="bb-divider"><span>or</span></div>
+ *
+ *   <button class="bb-link">Forgot password?</button>
+ */
+
+.bb-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bb-spacing-1);
+  text-align: left;
+  margin-bottom: var(--bb-spacing-3);
+}
+
+.bb-field__label {
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-xs);
+  font-weight: var(--bb-font-weight-medium);
+  color: var(--bb-color-on-surface-variant);
+  letter-spacing: 0.02em;
+}
+
+.bb-field__input {
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-sm);
+  color: var(--bb-color-on-surface);
+  background: var(--bb-color-surface-variant);
+  border: 1px solid var(--bb-color-outline-variant);
+  border-radius: var(--bb-radius-md);
+  padding: 10px var(--bb-spacing-3);
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.bb-field__input::placeholder {
+  color: var(--bb-color-outline);
+}
+
+.bb-field__input:focus {
+  border-color: var(--bb-color-primary);
+}
+
+.bb-field--error .bb-field__input {
+  border-color: var(--bb-color-error);
+}
+
+/* ─── Password visibility toggle ─────────────────────────────────────────── */
+.bb-field__input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.bb-field__input-wrap .bb-field__input {
+  padding-right: 40px;
+}
+/* Suppress native WebView2/Edge password reveal button so our custom one is the only one */
+.bb-field__input-wrap input[type="password"]::-ms-reveal,
+.bb-field__input-wrap input[type="password"]::-ms-clear {
+  display: none;
+}
+.bb-field__eye {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--bb-color-on-surface-variant);
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.bb-field__eye:hover {
+  color: var(--bb-color-on-surface);
+}
+
+.bb-field__eye .material-icons {
+  font-size: 18px;
+}
+
+.bb-field__error {
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-xs);
+  color: var(--bb-color-error);
+  margin: 0;
+}
+
+.bb-field__hint {
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-xs);
+  color: var(--bb-color-on-surface-variant);
+  margin: 0;
+}
+
+/* ─── Divider ────────────────────────────────────────────────────────────────── */
+
+.bb-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--bb-spacing-3);
+  margin: var(--bb-spacing-4) 0;
+  color: var(--bb-color-on-surface-variant);
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-xs);
+}
+
+.bb-divider::before,
+.bb-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--bb-color-outline-variant);
+}
+
+/* ─── Inline link / text button ─────────────────────────────────────────────── */
+
+.bb-link {
+  color: var(--bb-color-primary);
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-xs);
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  display: inline;
+}
+
+.bb-link:hover {
+  text-decoration: underline;
+}

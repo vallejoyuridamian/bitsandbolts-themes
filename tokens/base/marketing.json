@@ -11,6 +11,12 @@
       "metaFont": { "$value": "{font.family.body}" }
     },
     "heroIconGlow": { "$value": "#00FFF7", "$type": "color" },
+    "portfolio": {
+      "glowFar": { "$value": "#00FFFF", "$type": "color" },
+      "panel": { "$value": "#111111", "$type": "color" },
+      "bodyText": { "$value": "#CCCCCC", "$type": "color" },
+      "clientText": { "$value": "#AAAAAA", "$type": "color" }
+    },
     "highlight": { "$value": "#FFFFFF", "$type": "color" },
     "storeBadge": {
       "surface": { "$value": "#FFFFFF", "$type": "color" },

@@ -1,0 +1,41 @@
+{
+  "$extensions": {
+    "com.bitsandbolts.interface": {
+      "resolution": "canonical"
+    }
+  },
+  "interface": {
+    "workspace": {
+      "background": { "$value": "{color.workspaceBackground}" }
+    },
+    "control": {
+      "foreground": { "$value": "{color.onBackground}" },
+      "hoverForeground": { "$value": "{color.interfaceHoverForeground}" },
+      "disabledForeground": { "$value": "{color.interfaceDisabledForeground}" },
+      "focusRing": { "$value": "{color.primary}" }
+    },
+    "interaction": {
+      "hoverBackground": { "$value": "radial-gradient(ellipse at center, color-mix(in srgb, {color.interfaceSignal} 1%, transparent) 0%, color-mix(in srgb, {color.interfaceSignal} 1%, transparent) 72%, color-mix(in srgb, {color.interfaceSignal} 4%, transparent) 84%, color-mix(in srgb, {color.interfaceSignal} 14%, transparent) 96%, color-mix(in srgb, {color.interfaceSignal} 7%, transparent) 100%)" },
+      "hoverShadow": { "$value": "inset 0 0 11px color-mix(in srgb, {color.interfaceSignal} 8%, transparent), 0 0 12px color-mix(in srgb, {color.interfaceSignal} 10%, transparent)" },
+      "hoverTextShadow": { "$value": "0 0 8px color-mix(in srgb, {color.interfaceSignal} 20%, transparent)" },
+      "pressedBackground": { "$value": "radial-gradient(ellipse at center, color-mix(in srgb, {color.interfaceSignal} 2%, transparent) 0%, color-mix(in srgb, {color.interfaceSignal} 2%, transparent) 56%, color-mix(in srgb, {color.interfaceSignal} 8%, transparent) 70%, color-mix(in srgb, {color.interfaceSignal} 20%, transparent) 88%, color-mix(in srgb, {color.interfaceSignal} 28%, transparent) 97%, color-mix(in srgb, {color.interfaceSignal} 14%, transparent) 100%)" },
+      "pressedShadow": { "$value": "inset 0 0 14px color-mix(in srgb, {color.interfaceSignal} 18%, transparent), 0 0 14px color-mix(in srgb, {color.interfaceSignal} 15%, transparent)" },
+      "pressedTextShadow": { "$value": "0 0 10px color-mix(in srgb, {color.interfaceSignal} 32%, transparent)" }
+    },
+    "menu": {
+      "background": { "$value": "color-mix(in srgb, {color.surface} 98%, transparent)" },
+      "border": { "$value": "color-mix(in srgb, {color.primary} 28%, transparent)" },
+      "shadow": { "$value": "{shadow.xl}" },
+      "mutedForeground": { "$value": "{color.onSurfaceVariant}" },
+      "metaForeground": { "$value": "{color.interfaceMetaForeground}" },
+      "disabledForeground": { "$value": "color-mix(in srgb, {color.interfaceDisabledForeground} 42%, transparent)" },
+      "divider": { "$value": "color-mix(in srgb, {color.interfaceSignal} 18%, transparent)" },
+      "scrollbarThumb": { "$value": "color-mix(in srgb, {color.interfaceSignal} 82%, transparent)" },
+      "scrollbarTrack": { "$value": "color-mix(in srgb, {color.background} 64%, transparent)" }
+    },
+    "motion": {
+      "quickDuration": { "$value": "140ms" },
+      "quickEasing": { "$value": "ease" }
+    }
+  }
+}

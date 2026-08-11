@@ -19,22 +19,35 @@
 - [x] Owner-accept the Pages selector/publish treatment: `Publish online` sits
   below the selectors, has no idle description, retains the original dark
   subtle-gradient toolbar treatment, and uses light text.
+- [x] Move the gallery renderer into Themes and generate one local, GitHub Pages,
+  and AppScreen showcase from the same catalog, renderer, and component assets.
+- [x] Extract canonical workspace, Select, interaction-state, and Menu recipes;
+  enforce explicit v1 family fallbacks and migrate AppScreen visual consumption.
+- [x] Port the original React homepage's visual surface into the canonical
+  `portfolio-home` recipe and reach owner acceptance of the managed HTML/CSS/JS
+  rendition as a locked good-enough checkpoint.
+- [x] Preserve proper vector UI icons throughout the portfolio recipe, including
+  stars, carousel guillemets, menu controls, roadmap milestones, and the original
+  favicon; keep the accepted lightweight review flags explicit as transition debt.
+- [x] Lock the post-recovery visual checkpoint with the alternating roadmap and
+  testimonial/NeuroSharp image fades restored and owner-accepted.
 
 ## Next Steps
 
-1. Complete the executable DTCG/B&B validator, allowed resolution tuples,
-   provenance, deterministic-output, capability, fallback, and override records.
-2. Complete Button adapters and acceptance across static/web, React/AppScreen,
-   Compose, and React Native from the same normalized recipe.
-3. Define and implement versioned npm/Maven/static distribution with zero manual
-   consumer mirrors.
-4. Keep public-route mechanics in AppScreen/Sites; the first app-owned Cloud
-   Clipboard publication proved the accepted Pages control needs no local/hosted
-   visual branch.
-5. Edit and browser-accept the AppScreen Product Entry landing locally, then
-   publish it from AppScreen Pages without creating an in-app content editor.
-6. Use the three AppScreen landing previews to inventory repeated elements and
-   choose the smallest next recipe batch without a broad restyle.
+1. Start every future slice from the committed accepted checkpoint; change one
+   canonical visual owner, build it, obtain browser acceptance, and commit it
+   before beginning another slice.
+2. Extract only the accepted portfolio navbar visual identity first. Show it in
+   Themes and support only proven static/sticky/hide-on-scroll placement variants;
+   preserve each consumer's structure, routes, and behavior.
+3. After navbar acceptance and its own commit, treat footer, standalone neon CTA,
+   carousel/cards, glow/circle effects, icon import, flags, cyan convergence, and
+   renderer cleanup as separate opt-in slices, never one combined refactor.
+4. Resume and browser-accept the AppScreen Product Entry landing only when the
+   owner explicitly returns to that work.
+5. Complete the executable DTCG/B&B validator and Button adapters without a
+   premature theme-version bump during the current transition.
+6. Define versioned npm/Maven/static distribution with zero manual mirrors.
 7. Migrate first-party families and enable safe declarative user themes only in
    the later plan slices with their objective gates intact.
 
@@ -44,3 +57,4 @@
 - No hand-editing generated `dist/` artifacts or accepting stale copies as owners.
 - No large restyle; every batch needs a named shared owner and objective gate.
 - Keep observability and product behavior separate from visual ownership.
+- Keep transition changes compatible; version only a settled consumed contract.

@@ -49,6 +49,11 @@ export const colors = {
   neon2: '#008a94',
   cyan: '#007d75',
   accentGlow: '#00bfb6',
+  workspaceBackground: '#f4fbff',
+  interfaceSignal: '#007d75',
+  interfaceHoverForeground: '#0b0f14',
+  interfaceDisabledForeground: '#40546a',
+  interfaceMetaForeground: '#40546a',
   panel: '#ffffff',
   panel2: '#eaf3f8'
 } as const;

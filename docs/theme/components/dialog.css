@@ -1,0 +1,23 @@
+.bb-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.bb-dialog-action {
+  background: transparent;
+  border: none;
+  color: var(--bb-color-primary);
+  cursor: pointer;
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-md);
+  font-weight: var(--bb-font-weight-bold);
+  line-height: 1;
+  padding: 8px 10px;
+}
+
+.bb-dialog-action:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}

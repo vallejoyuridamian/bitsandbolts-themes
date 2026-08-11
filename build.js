@@ -22,6 +22,7 @@ import {
   mkdirSync,
   existsSync,
   readFileSync,
+  rmSync,
   writeFileSync,
   statSync,
 } from 'fs';
@@ -122,6 +123,55 @@ const SHARED_WEB_ASSETS = Object.freeze([
 ]);
 const V2_CONTRACT_FILE = 'theme-contract/v2/contract.bb.json';
 const BITSANDBOLTS_V2_ROOT = 'families/bitsandbolts/v2';
+const V1_INTERFACE_FALLBACK_THEMES = new Set(['cloud', 'ocean', 'robot', 'slate']);
+const REQUIRED_INTERFACE_TOKEN_PATHS = Object.freeze([
+  'interface.workspace.background',
+  'interface.control.foreground',
+  'interface.control.hoverForeground',
+  'interface.control.disabledForeground',
+  'interface.control.focusRing',
+  'interface.interaction.hoverBackground',
+  'interface.interaction.hoverShadow',
+  'interface.interaction.hoverTextShadow',
+  'interface.interaction.pressedBackground',
+  'interface.interaction.pressedShadow',
+  'interface.interaction.pressedTextShadow',
+  'interface.menu.background',
+  'interface.menu.border',
+  'interface.menu.shadow',
+  'interface.menu.mutedForeground',
+  'interface.menu.metaForeground',
+  'interface.menu.disabledForeground',
+  'interface.menu.divider',
+  'interface.menu.scrollbarThumb',
+  'interface.menu.scrollbarTrack',
+  'interface.motion.quickDuration',
+  'interface.motion.quickEasing',
+]);
+const REQUIRED_INTERFACE_VARIABLES = Object.freeze(REQUIRED_INTERFACE_TOKEN_PATHS.map((path) => (
+  `--bb-${path.replace(/([a-z0-9])([A-Z])/g, '$1-$2').replaceAll('.', '-').toLowerCase()}`
+)));
+
+function assertInterfacePrimitiveSources() {
+  for (const theme of THEMES) {
+    const sourcePath = `tokens/themes/${theme}/interface.json`;
+    if (!existsSync(sourcePath)) {
+      throw new Error(`[interface-contract] ${theme} must explicitly resolve the canonical interface roles.`);
+    }
+    const source = readJsonFile(sourcePath);
+    const resolution = source?.$extensions?.['com.bitsandbolts.interface']?.resolution;
+    const expectedResolution = V1_INTERFACE_FALLBACK_THEMES.has(theme) ? 'v1-fallback' : 'canonical';
+    if (resolution !== expectedResolution) {
+      throw new Error(`[interface-contract] ${theme} must declare ${expectedResolution} resolution.`);
+    }
+    const actualPaths = [...flattenDtcgTokens(source).keys()].filter((path) => path.startsWith('interface.'));
+    const missing = REQUIRED_INTERFACE_TOKEN_PATHS.filter((path) => !actualPaths.includes(path));
+    const unexpected = actualPaths.filter((path) => !REQUIRED_INTERFACE_TOKEN_PATHS.includes(path));
+    if (missing.length || unexpected.length) {
+      throw new Error(`[interface-contract] ${theme} role mismatch. Missing: ${missing.join(', ') || 'none'}. Unexpected: ${unexpected.join(', ') || 'none'}.`);
+    }
+  }
+}
 
 function assertSingleFontFamilyTokens() {
   const files = [
@@ -154,6 +204,7 @@ function assertNoComponentFontFallbacks() {
 }
 
 assertNoComponentFontFallbacks();
+assertInterfacePrimitiveSources();
 
 // ─── Custom Format: Kotlin Color Scheme ──────────────────────────────────────
 
@@ -283,6 +334,7 @@ for (const theme of THEMES) {
       ],
       source: [
         `tokens/themes/${theme}/${mode}.json`,
+        `tokens/themes/${theme}/interface.json`,
       ],
       platforms: {
         // CSS custom properties — import in Tauri/Vue or any web project
@@ -323,6 +375,12 @@ for (const theme of THEMES) {
     });
 
     await sd.buildAllPlatforms();
+    const generatedInterfaceCss = readFileSync(`dist/web/${theme}/${mode}.css`, 'utf8');
+    for (const variable of REQUIRED_INTERFACE_VARIABLES) {
+      if (!generatedInterfaceCss.includes(`${variable}:`)) {
+        throw new Error(`[interface-contract] ${theme}/${mode} is missing ${variable}.`);
+      }
+    }
     process.stdout.write(`  [${theme}/${mode}] done\n`);
   }
 
@@ -405,7 +463,7 @@ const COMPONENTS_SRC  = 'components';
 const COMPONENTS_DIST = 'dist/web/components';
 mkdirSync(COMPONENTS_DIST, { recursive: true });
 for (const file of readdirSync(COMPONENTS_SRC)) {
-  if (file.endsWith('.css')) {
+  if (file.endsWith('.css') || file.endsWith('.js')) {
     copyFileSync(join(COMPONENTS_SRC, file), join(COMPONENTS_DIST, file));
     process.stdout.write(`  [components/${file}] done\n`);
   }
@@ -788,3 +846,10 @@ const catalog = {
 
 writeFileSync('dist/web/catalog.json', `${JSON.stringify(catalog, null, 2)}\n`);
 process.stdout.write('  [web/catalog.json] done\n');
+
+const DOCS_THEME_ROOT = 'docs/theme';
+rmSync(DOCS_THEME_ROOT, { force: true, recursive: true });
+copyDirRecursive('dist/web', DOCS_THEME_ROOT, 'docs/theme');
+copyFileSync('showcase/index.html', 'docs/index.html');
+writeFileSync('docs/.nojekyll', '');
+process.stdout.write('  [docs/index.html] done\n');

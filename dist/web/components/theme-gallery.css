@@ -10,7 +10,7 @@
   padding: var(--bb-spacing-6);
   overflow: auto;
   color: var(--bb-color-on-background);
-  background: var(--bb-color-background);
+  background: var(--bb-interface-workspace-background);
   font-family: var(--bb-font-family-body);
   -webkit-user-select: none;
   user-select: none;
@@ -61,7 +61,7 @@
   border: 1px solid var(--bb-color-outline-variant);
   border-radius: var(--bb-radius-lg);
   color: var(--bb-color-on-background);
-  background: var(--bb-color-background);
+  background: var(--bb-interface-workspace-background);
   box-shadow: var(--bb-shadow-md);
 }
 
@@ -98,6 +98,47 @@
 
 .bb-theme-recipe-battery .bb-banner {
   margin-bottom: 0;
+}
+
+.bb-interface-specimen__canvas {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.72fr);
+  gap: var(--bb-spacing-5);
+  align-items: start;
+  padding: var(--bb-spacing-5);
+  border: 1px solid var(--bb-color-outline-variant);
+  border-radius: var(--bb-radius-lg);
+}
+
+.bb-interface-select-states {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--bb-spacing-3);
+}
+
+.bb-interface-select-state {
+  display: grid;
+  gap: var(--bb-spacing-1);
+  min-width: 0;
+}
+
+.bb-interface-select-state > small {
+  color: var(--bb-interface-menu-muted-foreground);
+  font-size: 10px;
+  font-weight: var(--bb-font-weight-bold);
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.bb-interface-select-state .bb-select {
+  width: 100%;
+}
+
+.bb-interface-menu-specimen {
+  width: 100%;
+  max-width: 280px;
+  justify-self: end;
 }
 
 .bb-theme-scene {
@@ -330,6 +371,16 @@
   .bb-theme-icon-config__warning {
     text-align: left;
   }
+
+  .bb-interface-specimen__canvas,
+  .bb-interface-select-states {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .bb-interface-menu-specimen {
+    max-width: none;
+    justify-self: stretch;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -347,7 +398,7 @@
   border: 0;
   border-radius: 0;
   color: var(--bb-v2-color-content-primary);
-  background: var(--bb-v2-color-surface-canvas);
+  background: var(--bb-interface-workspace-background);
   box-shadow: none;
   font-family: var(--bb-v2-font-family-primary);
 }

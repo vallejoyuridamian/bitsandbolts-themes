@@ -83,80 +83,14 @@ body.bb-marketing-page {
 .bb-eyebrow {
   color: var(--bb-color-primary);
   font-size: var(--bb-font-size-xs);
+  font-weight: var(--bb-font-weight-bold);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  font-weight: var(--bb-font-weight-bold);
 }
 
 .bb-section__head .bb-eyebrow {
   font-size: clamp(1.05rem, 1.7vw, 1.22rem);
   letter-spacing: 0.1em;
-}
-
-.bb-brand__name {
-  font-family: var(--bb-font-family-display);
-  font-size: var(--bb-font-size-sm);
-  font-weight: var(--bb-font-weight-bold);
-  letter-spacing: 0.06em;
-}
-
-.bb-brand--bnb .bb-brand__copy {
-  font-family: var(--bb-font-family-display);
-  color: var(--bb-marketing-chrome-accent);
-}
-
-.bb-brand--bnb .bb-brand__eyebrow,
-.bb-brand--bnb .bb-brand__name {
-  color: var(--bb-marketing-chrome-accent);
-  font-family: var(--bb-font-family-display);
-  text-shadow: 0 0 10px color-mix(in srgb, var(--bb-marketing-chrome-accent) 35%, transparent);
-}
-
-.bb-brand--bnb .bb-brand__eyebrow {
-  letter-spacing: 0.08em;
-  text-transform: none;
-  font-size: clamp(0.8rem, 1.2vw, 1rem);
-}
-
-.bb-brand--bnb .bb-brand__name {
-  letter-spacing: 0.08em;
-  font-size: clamp(0.4rem, 0.6vw, 0.6rem);
-  font-weight: 500;
-}
-
-.bb-nav {
-  display: flex;
-  align-items: center;
-  gap: var(--bb-spacing-2);
-  flex-wrap: nowrap;
-  justify-content: flex-end;
-}
-
-.bb-nav a {
-  text-decoration: none;
-  color: var(--bb-color-on-surface-variant);
-  font-size: 13px;
-  font-weight: var(--bb-font-weight-medium);
-  padding: 8px 10px;
-  border-radius: var(--bb-radius-full);
-  white-space: nowrap;
-}
-
-.bb-nav a:hover {
-  background: color-mix(in srgb, var(--bb-color-primary-container) 55%, transparent);
-  color: var(--bb-color-on-surface);
-}
-
-.bb-topbar--bnb .bb-nav a {
-  color: color-mix(in srgb, var(--bb-marketing-chrome-navigation) 60%, transparent);
-  font-family: var(--bb-font-family-display);
-  font-weight: 600;
-}
-
-.bb-topbar--bnb .bb-nav a:hover {
-  background: color-mix(in srgb, var(--bb-marketing-chrome-navigation) 10%, transparent);
-  color: var(--bb-marketing-chrome-navigation);
-  text-shadow: 0 0 10px color-mix(in srgb, var(--bb-marketing-chrome-accent) 40%, transparent);
 }
 
 .bb-hero {
@@ -1387,7 +1321,7 @@ body.bb-marketing-page {
 }
 
 @media (max-width: 520px) {
-  .bb-topbar__inner,
+.bb-topbar__inner,
   .bb-footer__inner {
     min-height: unset;
     padding: 10px 0;

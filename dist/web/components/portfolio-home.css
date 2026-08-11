@@ -1,0 +1,1251 @@
+/**
+ * Canonical Bits & Bolts portfolio-home recipe.
+ *
+ * This is a literal theme-contract port of the accepted React homepage. The
+ * managed document supplies only content and assets; this file owns its visual
+ * values and responsive behavior.
+ */
+
+@font-face {
+  font-family: "BB Portfolio Orbitron";
+  src: url("../fonts/orbitron_500.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+.bb-portfolio-home,
+.bb-portfolio-home *,
+.bb-portfolio-home *::before,
+.bb-portfolio-home *::after {
+  box-sizing: border-box;
+}
+
+html:has(.bb-portfolio-home),
+body.bb-portfolio-home {
+  min-height: 100%;
+  margin: 0;
+  background: var(--bb-color-background);
+}
+
+html:has(.bb-portfolio-home) {
+  scroll-behavior: smooth;
+}
+
+body.bb-portfolio-home {
+  min-width: 320px;
+  color: var(--bb-color-on-background);
+  font-family: system-ui;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bb-portfolio-shell {
+  width: 100%;
+  margin: 0;
+}
+
+.bb-portfolio-icon {
+  display: inline-block;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+
+/* Navigation */
+
+.bb-portfolio-nav {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 999;
+  display: flex;
+  width: 100%;
+  height: 4rem;
+  align-items: center;
+  background: color-mix(in srgb, var(--bb-marketing-chrome-background) 50%, transparent);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+.bb-portfolio-nav[data-hidden="true"] {
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.bb-portfolio-nav__inner {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2vw;
+}
+
+.bb-portfolio-brand {
+  display: flex;
+  align-items: center;
+  color: var(--bb-color-primary);
+  text-decoration: none;
+}
+
+.bb-portfolio-brand img {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: contain;
+}
+
+.bb-portfolio-brand > span {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--bb-color-primary);
+  font-family: "BB Portfolio Orbitron";
+  font-weight: var(--bb-font-weight-semibold);
+  line-height: 1.1;
+}
+
+.bb-portfolio-brand strong {
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  font-weight: var(--bb-font-weight-semibold);
+  letter-spacing: 0;
+}
+
+.bb-portfolio-brand small {
+  font-size: 0.7rem;
+  font-weight: var(--bb-font-weight-regular);
+  letter-spacing: 0;
+}
+
+.bb-portfolio-nav__links {
+  display: flex;
+  height: 100%;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.bb-portfolio-nav__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  border-radius: 6px;
+  color: color-mix(in srgb, var(--bb-marketing-chrome-navigation) 60%, transparent);
+  font-family: "BB Portfolio Orbitron";
+  font-weight: var(--bb-font-weight-semibold);
+  text-align: center;
+  text-decoration: none;
+  transition: background 200ms ease;
+}
+
+.bb-portfolio-nav__link:hover,
+.bb-portfolio-nav__link:focus-visible {
+  color: var(--bb-marketing-chrome-navigation);
+  background: color-mix(in srgb, var(--bb-marketing-chrome-navigation) 10%, transparent);
+  text-shadow: 0 0 5px var(--bb-color-primary), 0 0 10px var(--bb-color-primary),
+    0 0 20px var(--bb-color-primary), 0 0 40px var(--bb-color-primary),
+    0 0 60px var(--bb-marketing-portfolio-glow-far), 0 0 80px var(--bb-marketing-portfolio-glow-far);
+}
+
+.bb-portfolio-nav__action-wrapper {
+  display: flex;
+  height: 75%;
+  transform: scale(0.8);
+}
+
+.bb-portfolio-nav__action {
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+  border-radius: 6px;
+  color: var(--bb-marketing-chrome-on-accent);
+  background: var(--bb-color-primary);
+  font-family: "BB Portfolio Orbitron";
+  font-size: 1rem;
+  font-weight: var(--bb-font-weight-semibold);
+  text-align: center;
+  text-decoration: none;
+  transition: transform 200ms ease;
+}
+
+.bb-portfolio-nav__action:hover,
+.bb-portfolio-nav__action:focus-visible {
+  color: var(--bb-marketing-chrome-on-accent);
+  transform: scale(1.2);
+}
+
+.bb-portfolio-nav__toggle {
+  display: none;
+  padding: 0;
+  border: 0;
+  color: var(--bb-color-primary);
+  background: transparent;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.bb-portfolio-nav__toggle .bb-portfolio-icon {
+  width: 0.875em;
+}
+
+.bb-portfolio-nav__close {
+  display: none;
+}
+
+/* Above the fold */
+
+.bb-portfolio-hero {
+  position: relative;
+  overflow: hidden;
+  padding-top: 4rem;
+}
+
+.bb-portfolio-hero__background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.bb-portfolio-hero__background--mobile {
+  display: none;
+}
+
+.bb-portfolio-hero__layout {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 1rem;
+}
+
+.bb-portfolio-hero__copy,
+.bb-portfolio-hero__visual {
+  display: flex;
+  width: 38%;
+  flex-direction: column;
+}
+
+.bb-portfolio-hero__copy {
+  gap: clamp(1rem, 6.5vw, 1.5rem);
+}
+
+.bb-portfolio-proof-pill {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  align-self: flex-start;
+  gap: 0.5rem;
+  padding: 0.2rem 0.45rem;
+  border-radius: var(--bb-radius-full);
+  color: var(--bb-color-primary);
+  background: color-mix(in srgb, var(--bb-color-scrim) 70%, transparent);
+  font-family: var(--bb-font-family-body);
+  font-size: 0.7rem;
+  font-weight: var(--bb-font-weight-regular);
+  line-height: normal;
+  text-align: center;
+  white-space: pre-line;
+}
+
+.bb-portfolio-proof-pill img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--bb-radius-full);
+  object-fit: cover;
+}
+
+.bb-portfolio-proof-pill .bb-portfolio-proof-pill__star {
+  width: 1em;
+}
+
+.bb-portfolio-hero h1 {
+  display: block;
+  margin: 0;
+  color: var(--bb-marketing-highlight);
+  font-family: "BB Portfolio Orbitron";
+  font-size: clamp(1.5rem, 7.2vw, 2.5rem);
+  font-weight: var(--bb-font-weight-semibold);
+  line-height: normal;
+  letter-spacing: 0.1rem;
+}
+
+.bb-portfolio-hero h1 strong {
+  display: block;
+  font-weight: var(--bb-font-weight-bold);
+}
+
+.bb-portfolio-hero h1 span {
+  display: block;
+  font-weight: var(--bb-font-weight-semibold);
+}
+
+.bb-portfolio-hero h1,
+.bb-portfolio-neon {
+  text-shadow: 0 0 5px var(--bb-color-primary), 0 0 10px var(--bb-color-primary),
+    0 0 20px var(--bb-color-primary), 0 0 40px var(--bb-color-primary),
+    0 0 60px var(--bb-marketing-portfolio-glow-far), 0 0 80px var(--bb-marketing-portfolio-glow-far);
+}
+
+.bb-portfolio-hero__lead {
+  margin: 0;
+  color: var(--bb-marketing-highlight);
+  font-family: var(--bb-font-family-body);
+  font-size: clamp(0.8rem, 3vw, 1.1rem);
+  font-weight: var(--bb-font-weight-bold);
+  line-height: normal;
+  white-space: pre-line;
+}
+
+.bb-portfolio-cta {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  padding: 0.6rem 0.8rem;
+  border: 0;
+  border-radius: 30px;
+  color: var(--bb-marketing-highlight);
+  background: transparent;
+  font-family: "BB Portfolio Orbitron";
+  font-size: clamp(1.3rem, 1.8vw, 2rem);
+  font-weight: var(--bb-font-weight-semibold);
+  letter-spacing: 1px;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 0 5px var(--bb-color-primary), 0 0 10px var(--bb-color-primary),
+    0 0 20px var(--bb-color-primary), 0 0 40px var(--bb-color-primary),
+    0 0 60px var(--bb-marketing-portfolio-glow-far), 0 0 80px var(--bb-marketing-portfolio-glow-far);
+  transition: box-shadow 300ms ease, transform 300ms ease;
+}
+
+.bb-portfolio-cta,
+.bb-portfolio-cta::before {
+  box-sizing: content-box;
+}
+
+.bb-portfolio-cta::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  padding: 2px;
+  border-radius: 30px;
+  background: linear-gradient(to bottom, var(--bb-color-accent-glow), var(--bb-marketing-highlight));
+  content: "";
+  pointer-events: none;
+  mask: linear-gradient(var(--bb-marketing-highlight) 0 0) content-box,
+    linear-gradient(var(--bb-marketing-highlight) 0 0);
+  mask-composite: exclude;
+}
+
+.bb-portfolio-cta:hover,
+.bb-portfolio-cta:focus-visible {
+  box-shadow: 0 0 14px color-mix(in srgb, var(--bb-color-accent-glow) 50%, transparent);
+  transform: scale(1.2);
+}
+
+.bb-portfolio-cta-container {
+  display: inline-block;
+  padding: 0.6rem 0;
+}
+
+.bb-portfolio-cta-container--hero {
+  position: relative;
+  right: 0.4vw;
+  align-self: center;
+}
+
+.bb-portfolio-cta--secondary {
+  margin-top: 0.5rem;
+  font-size: 1.6rem;
+}
+
+.bb-portfolio-assurances {
+  display: block;
+  margin: 0;
+  padding: 0;
+  color: var(--bb-marketing-highlight);
+  font-family: var(--bb-font-family-body);
+  font-size: clamp(0.8rem, 3vw, 1.1rem);
+  font-weight: var(--bb-font-weight-bold);
+  line-height: clamp(1rem, 7vw, 2rem);
+  list-style: none;
+}
+
+.bb-portfolio-assurances li {
+  display: block;
+}
+
+.bb-portfolio-assurances__icon {
+  width: 0.875em;
+  margin-right: 0.4em;
+  color: var(--bb-color-primary);
+  font-size: 1.2em;
+}
+
+.bb-portfolio-hero__visual {
+  position: relative;
+}
+
+.bb-portfolio-hero__visual-wrapper {
+  position: relative;
+  right: 2vw;
+  width: 97%;
+  height: 100%;
+  margin-inline: auto;
+}
+
+.bb-portfolio-hero__visual-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.bb-portfolio-logo-strip {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  margin-top: 2.5rem;
+  filter: brightness(80%);
+}
+
+.bb-portfolio-logo-strip > div {
+  display: flex;
+  width: fit-content;
+  animation: bb-portfolio-scroll-logos 60s linear infinite;
+}
+
+.bb-portfolio-logo-strip img {
+  height: 100px;
+  flex-shrink: 0;
+  user-select: none;
+  pointer-events: none;
+}
+
+@keyframes bb-portfolio-scroll-logos {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Shared section language */
+
+.bb-portfolio-section-title,
+.bb-portfolio-intro h2,
+.bb-portfolio-case-study__intro h2,
+.bb-portfolio-service h3,
+.bb-portfolio-roadmap h3,
+.bb-portfolio-card h3 {
+  color: var(--bb-marketing-highlight);
+  font-family: "BB Portfolio Orbitron";
+  font-weight: var(--bb-font-weight-semibold);
+}
+
+.bb-portfolio-section-title {
+  margin: 2vw 0 1vw;
+  padding: inherit;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: var(--bb-font-weight-bold);
+  letter-spacing: 0.2vw;
+  text-align: center;
+}
+
+.bb-portfolio-intro p,
+.bb-portfolio-case-study__intro p,
+.bb-portfolio-service p,
+.bb-portfolio-roadmap p,
+.bb-portfolio-collaborations__heading p {
+  color: var(--bb-marketing-portfolio-body-text);
+  font-family: var(--bb-font-family-body);
+  font-weight: var(--bb-font-weight-bold);
+}
+
+.bb-portfolio-inline-link {
+  display: inline-flex;
+  align-items: center;
+  border-bottom: 1px dotted var(--bb-marketing-highlight);
+  color: var(--bb-marketing-portfolio-body-text);
+  font-family: var(--bb-font-family-body);
+  font-weight: var(--bb-font-weight-bold);
+  text-decoration: none;
+}
+
+.bb-portfolio-inline-link .bb-portfolio-icon {
+  width: 0.75em;
+  margin-left: 0.3em;
+}
+
+.bb-portfolio-inline-link:hover,
+.bb-portfolio-inline-link:focus-visible {
+  color: var(--bb-marketing-highlight);
+}
+
+/* Testimonials */
+
+.bb-portfolio-testimonials {
+  padding: 0 0 40px;
+  text-align: center;
+}
+
+.bb-portfolio-intro,
+.bb-portfolio-case-study__intro {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  padding: 15px 10px 20px;
+  text-align: left;
+}
+
+.bb-portfolio-intro__image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.bb-portfolio-intro__image img {
+  max-width: none;
+  max-height: 100%;
+  overflow: hidden;
+  filter: brightness(2);
+  transform: translateX(20vw);
+  mask-image: linear-gradient(to top, transparent 0%, var(--bb-marketing-highlight) 10%, var(--bb-marketing-highlight) 90%, transparent 100%),
+    linear-gradient(to left, transparent 0%, var(--bb-marketing-highlight) 10%, var(--bb-marketing-highlight) 90%, transparent 100%);
+  mask-composite: intersect;
+}
+
+.bb-portfolio-intro__copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  max-width: clamp(10rem, 80vw, 40rem);
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: auto;
+}
+
+.bb-portfolio-intro__copy p {
+  white-space: pre-line;
+}
+
+.bb-portfolio-intro h2,
+.bb-portfolio-case-study__intro h2,
+.bb-portfolio-service h3 {
+  margin-top: 0.83em;
+  margin-bottom: 15px;
+  font-size: clamp(0.8rem, 5vw, 2rem);
+  letter-spacing: 0.2vw;
+  text-align: center;
+}
+
+.bb-portfolio-roadmap h3 {
+  margin: 0 0 15px;
+  font-size: clamp(0.8rem, 5vw, 2rem);
+  letter-spacing: 0.2vw;
+  text-align: center;
+}
+
+.bb-portfolio-intro p,
+.bb-portfolio-case-study__intro p,
+.bb-portfolio-service p,
+.bb-portfolio-roadmap p,
+.bb-portfolio-collaborations__heading p {
+  margin: 0;
+  font-size: clamp(0.8rem, 1.3vw, 1.5rem);
+  line-height: 1.3;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+.bb-portfolio-testimonials__heading {
+  margin-bottom: 15px;
+  color: var(--bb-marketing-highlight);
+  font-family: "BB Portfolio Orbitron";
+  font-size: clamp(0.8rem, 5vw, 2rem);
+  font-weight: var(--bb-font-weight-semibold);
+  letter-spacing: 0.2vw;
+  text-align: center;
+}
+
+/* Horizontal cards */
+
+.bb-portfolio-carousel {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0 0 10px;
+}
+
+.bb-portfolio-carousel__track {
+  display: flex;
+  gap: 1.5rem;
+  align-items: stretch;
+  overflow-x: auto;
+  padding: 5px clamp(1rem, 6vw, 60px) 20px 20px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.bb-portfolio-carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+.bb-portfolio-card {
+  box-sizing: content-box;
+  width: 180px;
+  height: 340px;
+  flex: 0 0 auto;
+  padding: 20px;
+  border: 0;
+  border-radius: var(--bb-radius-xl);
+  color: inherit;
+  background: var(--bb-marketing-portfolio-panel);
+  box-shadow: 0 0 5px color-mix(in srgb, var(--bb-color-secondary) 35%, transparent);
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow 300ms ease, transform 300ms ease;
+}
+
+.bb-portfolio-card:hover,
+.bb-portfolio-card:focus-visible {
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--bb-color-scrim) 40%, transparent);
+  transform: translateY(-6px);
+}
+
+.bb-portfolio-card h3 {
+  margin-bottom: 0.2rem;
+  font-size: 1rem;
+  font-weight: var(--bb-font-weight-bold);
+}
+
+.bb-portfolio-review h3 {
+  margin-top: 0;
+  margin-bottom: 4px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: var(--bb-font-weight-semibold);
+}
+
+.bb-portfolio-review p {
+  margin-top: 0;
+  color: var(--bb-marketing-portfolio-body-text);
+  font-size: 0.75rem;
+  font-style: italic;
+  font-weight: var(--bb-font-weight-regular);
+  line-height: normal;
+}
+
+.bb-portfolio-review footer {
+  margin: 1em 0;
+  color: var(--bb-marketing-portfolio-client-text);
+  font-size: 0.8rem;
+}
+
+.bb-portfolio-review__flag {
+  width: 16px;
+  height: auto;
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-left: 6px;
+}
+
+.bb-portfolio-review__stars {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--bb-color-warning);
+  font-size: 1.2rem;
+}
+
+.bb-portfolio-review__stars .bb-portfolio-icon {
+  width: 1em;
+}
+
+.bb-portfolio-carousel__arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 10px 6px 6px;
+  border: 0;
+  border-radius: var(--bb-radius-full);
+  color: var(--bb-marketing-highlight);
+  background: color-mix(in srgb, var(--bb-color-scrim) 40%, transparent);
+  font-size: 32px;
+  font-weight: var(--bb-font-weight-bold);
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.bb-portfolio-carousel__guillemet {
+  width: 0.412109375em;
+  height: 0.5859375em;
+  vertical-align: 0;
+}
+
+.bb-portfolio-carousel__arrow:hover,
+.bb-portfolio-carousel__arrow:focus-visible {
+  background: color-mix(in srgb, var(--bb-marketing-highlight) 30%, transparent);
+}
+
+.bb-portfolio-carousel__arrow--left { left: 5px; }
+.bb-portfolio-carousel__arrow--right { right: 5px; }
+
+.bb-portfolio-centered-action {
+  display: flex;
+  justify-content: center;
+}
+
+/* Services */
+
+.bb-portfolio-services {
+  width: 100%;
+  text-align: center;
+}
+
+.bb-portfolio-services__primary {
+  margin-bottom: 40px;
+}
+
+.bb-portfolio-service {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 15px 10px 20px;
+}
+
+.bb-portfolio-service__row {
+  display: flex;
+  width: 100%;
+}
+
+.bb-portfolio-service--reverse .bb-portfolio-service__visual { order: 2; }
+.bb-portfolio-service--reverse .bb-portfolio-service__copy { order: 1; }
+
+.bb-portfolio-service__visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bb-portfolio-service__visual img {
+  max-width: 85%;
+  max-height: 85%;
+  border-radius: 20px;
+  box-shadow: 0 0 10px color-mix(in srgb, var(--bb-color-secondary) 60%, transparent);
+  transition: box-shadow 200ms ease, transform 200ms ease;
+}
+
+.bb-portfolio-service__visual img:hover {
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--bb-color-scrim) 40%, transparent);
+  transform: translateY(-6px);
+}
+
+.bb-portfolio-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: var(--bb-radius-xl);
+  background: var(--bb-marketing-portfolio-panel);
+  box-shadow: 0 0 5px color-mix(in srgb, var(--bb-color-secondary) 35%, transparent);
+  transition: box-shadow 200ms ease, transform 200ms ease;
+}
+
+.bb-portfolio-panel:hover {
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--bb-color-scrim) 40%, transparent);
+  transform: translateY(-6px);
+}
+
+.bb-portfolio-service__copy {
+  max-width: 50%;
+}
+
+/* NeuroSharp case study */
+
+.bb-portfolio-case-study {
+  padding-bottom: 0;
+}
+
+.bb-portfolio-case-study__logo img {
+  opacity: 0.3;
+  filter: none;
+}
+
+.bb-portfolio-case-study__details {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.bb-portfolio-case-study__details > h2 {
+  margin-bottom: 15px;
+  color: var(--bb-marketing-highlight);
+  font-family: "BB Portfolio Orbitron";
+  font-size: clamp(0.8rem, 5vw, 2rem);
+  font-weight: var(--bb-font-weight-semibold);
+  letter-spacing: 0.2vw;
+  text-align: center;
+}
+
+.bb-portfolio-case-study__video-container {
+  margin-bottom: 20px;
+  padding: 0 1rem;
+}
+
+.bb-portfolio-case-study__media {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: var(--bb-radius-xl);
+  background: var(--bb-color-scrim);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--bb-color-secondary) 10%, transparent);
+}
+
+.bb-portfolio-case-study__media img {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: auto;
+  border: 0;
+  transform: translateY(-50%);
+}
+
+.bb-portfolio-case-study__media > .bb-portfolio-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  width: 0.75em;
+  color: var(--bb-marketing-highlight);
+  filter: drop-shadow(0 0 10px var(--bb-color-primary));
+  font-size: 3rem;
+  text-shadow: 0 0 10px var(--bb-color-primary);
+  transform: translate(-50%, -50%);
+}
+
+.bb-portfolio-case-study__availability {
+  margin: 0;
+  color: var(--bb-marketing-portfolio-body-text);
+  font-family: var(--bb-font-family-body);
+  font-size: clamp(0.8rem, 1.3vw, 1.5rem);
+  font-weight: var(--bb-font-weight-bold);
+  line-height: 1.3;
+  letter-spacing: 0.5px;
+  white-space: pre-line;
+}
+
+.bb-portfolio-project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-bottom: 1px dotted var(--bb-marketing-highlight);
+  color: var(--bb-marketing-portfolio-body-text);
+  font-weight: var(--bb-font-weight-bold);
+  text-decoration: none;
+}
+
+.bb-portfolio-project-link .bb-portfolio-icon {
+  width: 0.75em;
+}
+
+.bb-portfolio-stores {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.bb-portfolio-store img {
+  display: block;
+  height: 50px;
+  transition: transform 200ms ease;
+}
+
+.bb-portfolio-store:hover img,
+.bb-portfolio-store:focus-visible img {
+  transform: scale(1.05);
+}
+
+/* Roadmap */
+
+.bb-portfolio-roadmap {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 15px 10px 20px;
+}
+
+.bb-portfolio-roadmap > header {
+  padding: 0 6vw;
+  text-align: center;
+}
+
+.bb-portfolio-roadmap > header .bb-portfolio-section-title {
+  margin-bottom: 0;
+}
+
+.bb-portfolio-roadmap__subtitle {
+  margin: 0 0 3vw !important;
+  color: var(--bb-color-primary) !important;
+  font-family: "BB Portfolio Orbitron" !important;
+  font-size: clamp(1.1rem, 2.5vw, 3rem) !important;
+  font-weight: var(--bb-font-weight-bold) !important;
+  text-align: center !important;
+}
+
+.bb-portfolio-roadmap__track {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.bb-portfolio-roadmap__empty {
+  width: 100%;
+}
+
+.bb-portfolio-roadmap__bottom {
+  margin-bottom: 1rem;
+}
+
+.bb-portfolio-roadmap__dots {
+  position: absolute;
+  inset: 0 auto 0 50%;
+  z-index: 0;
+  display: flex;
+  width: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3rem 0;
+  transform: translateX(-50%);
+}
+
+.bb-portfolio-roadmap__dot {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.bb-portfolio-roadmap__dot > span:not(.bb-portfolio-milestone__icon) {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--bb-radius-full);
+  background: var(--bb-color-primary);
+  transition: box-shadow 200ms ease, transform 200ms ease;
+}
+
+.bb-portfolio-roadmap__dot > span:not(.bb-portfolio-milestone__icon):hover {
+  box-shadow: 0 0 14px color-mix(in srgb, var(--bb-color-primary) 50%, transparent);
+  transform: scale(1.3);
+}
+
+.bb-portfolio-roadmap__item {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 45%;
+  height: 330px;
+  align-self: flex-start;
+}
+
+.bb-portfolio-roadmap__item--right {
+  align-self: flex-end;
+}
+
+.bb-portfolio-roadmap__item .bb-portfolio-panel {
+  width: 100%;
+}
+
+.bb-portfolio-milestone {
+  box-sizing: content-box;
+  z-index: 1;
+  display: flex;
+  width: 50px;
+  height: 50px;
+  flex-basis: 50px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--bb-color-primary);
+  border-radius: var(--bb-radius-full);
+  color: var(--bb-color-primary);
+  background: var(--bb-color-background);
+  font-size: 30px;
+  transition: box-shadow 200ms ease, transform 200ms ease;
+}
+
+.bb-portfolio-milestone:hover {
+  box-shadow: 0 0 14px color-mix(in srgb, var(--bb-color-primary) 50%, transparent);
+  transform: scale(1.2);
+}
+
+.bb-portfolio-milestone__icon {
+  max-width: 1.25em;
+}
+
+/* Collaborations */
+
+.bb-portfolio-collaborations__heading {
+  margin: 40px 0 20px;
+  padding: 0 10px 20px;
+  text-align: center;
+}
+
+.bb-portfolio-card-link {
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
+}
+
+.bb-portfolio-project img {
+  width: 80px;
+  height: 80px;
+  margin-inline: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--bb-color-secondary) 35%, transparent);
+  object-fit: fill;
+}
+
+.bb-portfolio-project p {
+  margin: 1em 0;
+  color: var(--bb-marketing-portfolio-body-text);
+  font-size: 0.8rem;
+  font-weight: var(--bb-font-weight-regular);
+  line-height: 1.4;
+}
+
+.bb-portfolio-project__star {
+  width: 1em;
+}
+
+/* Footer */
+
+.bb-portfolio-footer {
+  margin: 0;
+  padding: 1vw 0;
+  color: var(--bb-marketing-chrome-on-accent);
+  background: var(--bb-color-primary);
+  font-size: 0.9rem;
+}
+
+.bb-portfolio-footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.bb-portfolio-brand--footer {
+  margin-left: 1rem;
+  color: var(--bb-marketing-chrome-on-accent);
+}
+
+.bb-portfolio-brand--footer img {
+  width: 40px;
+  height: auto;
+  padding: 0.5rem 0;
+}
+
+.bb-portfolio-brand--footer > span {
+  color: var(--bb-marketing-chrome-on-accent);
+}
+
+.bb-portfolio-brand--footer strong { font-size: 1rem; }
+.bb-portfolio-brand--footer small { font-size: 0.7rem; font-weight: var(--bb-font-weight-regular); }
+
+.bb-portfolio-footer__inner > div {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+  color: var(--bb-marketing-chrome-on-accent);
+  font-size: 0.85rem;
+  text-align: right;
+}
+
+@media (max-width: 1025px) {
+  .bb-portfolio-nav__links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    display: none;
+    width: auto;
+    height: 100vh;
+    flex: none;
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding: 0.4rem 1rem 0;
+    background: var(--bb-marketing-portfolio-panel);
+    opacity: 0.95;
+  }
+
+  .bb-portfolio-nav[data-open="true"] .bb-portfolio-nav__links {
+    display: flex;
+  }
+
+  .bb-portfolio-nav__link {
+    justify-content: flex-start;
+    padding: 0.5rem 1rem;
+  }
+
+  .bb-portfolio-nav__close {
+    display: flex;
+    width: 1.8rem;
+    height: 1.8rem;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+    padding: 0;
+    border: 0;
+    border-radius: var(--bb-radius-full);
+    color: var(--bb-color-primary);
+    background: color-mix(in srgb, var(--bb-color-scrim) 50%, transparent);
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: background 200ms ease, transform 200ms ease;
+  }
+
+  .bb-portfolio-nav__close:hover,
+  .bb-portfolio-nav__close:focus-visible {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  .bb-portfolio-nav__toggle {
+    display: block;
+  }
+
+  .bb-portfolio-brand {
+    justify-content: center;
+  }
+
+  .bb-portfolio-brand img {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .bb-portfolio-brand strong {
+    font-size: clamp(1rem, 2.4vw, 1.2rem);
+  }
+
+  .bb-portfolio-brand small {
+    font-size: clamp(0.6rem, 1.8vw, 0.9rem);
+  }
+
+  .bb-portfolio-hero__background--desktop {
+    display: none;
+  }
+
+  .bb-portfolio-hero__background--mobile {
+    display: block;
+  }
+
+  .bb-portfolio-hero__layout {
+    align-items: center;
+  }
+
+  .bb-portfolio-hero__copy {
+    width: 100%;
+    height: 50%;
+  }
+
+  .bb-portfolio-hero__lead {
+    padding-right: 1rem;
+  }
+
+  .bb-portfolio-cta-container--hero {
+    right: 0;
+  }
+
+  .bb-portfolio-hero__visual {
+    display: none;
+  }
+
+  .bb-portfolio-logo-strip {
+    margin-top: 25vw;
+  }
+
+  .bb-portfolio-service__row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .bb-portfolio-service__copy {
+    max-width: 100%;
+    order: 1 !important;
+  }
+
+  .bb-portfolio-service__visual {
+    order: 2 !important;
+  }
+
+  .bb-portfolio-cta {
+    margin: 1rem 0;
+    padding: 0.6rem 1.4rem;
+    font-size: 1.4rem;
+  }
+
+  .bb-portfolio-roadmap__dots {
+    left: 90%;
+  }
+
+  .bb-portfolio-roadmap__item,
+  .bb-portfolio-roadmap__item--right {
+    width: 80%;
+    align-self: flex-start;
+  }
+
+}
+
+@media (max-width: 560px) {
+  .bb-portfolio-nav__inner {
+    padding: 0 2vw;
+  }
+
+  .bb-portfolio-nav__action {
+    font-size: 1rem;
+  }
+
+  .bb-portfolio-logo-strip img {
+    height: 100px;
+  }
+
+  .bb-portfolio-footer__inner {
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bb-portfolio-home *,
+  .bb-portfolio-home *::before,
+  .bb-portfolio-home *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

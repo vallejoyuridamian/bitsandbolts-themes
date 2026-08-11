@@ -29,22 +29,6 @@ body.bb-product-entry {
   line-height: var(--bb-font-line-height-normal);
 }
 
-/* Product documents name intent; this theme recipe owns the concrete glyphs. */
-.bb-product-icon::before {
-  content: "";
-}
-
-.bb-product-icon[data-bb-icon-role="verified-user"]::before { content: "verified_user"; }
-.bb-product-icon[data-bb-icon-role="screens"]::before { content: "dashboard"; }
-.bb-product-icon[data-bb-icon-role="text"]::before { content: "text_fields"; }
-.bb-product-icon[data-bb-icon-role="layout"]::before { content: "crop_free"; }
-.bb-product-icon[data-bb-icon-role="theme"]::before { content: "palette"; }
-.bb-product-icon[data-bb-icon-role="format"]::before { content: "aspect_ratio"; }
-.bb-product-icon[data-bb-icon-role="edit"]::before { content: "edit_note"; }
-.bb-product-icon[data-bb-icon-role="save"]::before { content: "save"; }
-.bb-product-icon[data-bb-icon-role="lock"]::before { content: "lock"; }
-.bb-product-icon[data-bb-icon-role="check"]::before { content: "check"; }
-
 .bb-product-entry a {
   color: inherit;
 }
@@ -111,17 +95,6 @@ body.bb-product-entry {
   display: flex;
   align-items: center;
   gap: var(--bb-spacing-3);
-}
-
-.bb-product-nav__links > a:not(.bb-btn) {
-  color: var(--bb-color-on-surface-variant);
-  font-size: var(--bb-font-size-sm);
-  font-weight: var(--bb-font-weight-semibold);
-  text-decoration: none;
-}
-
-.bb-product-nav__links > a:not(.bb-btn):hover {
-  color: var(--bb-color-on-background);
 }
 
 .bb-product-entry .bb-btn {
@@ -469,6 +442,12 @@ body.bb-product-entry {
   font-family: var(--bb-font-family-body);
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-semibold);
+  .bb-product-footer__inner {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: var(--bb-spacing-5);
+  }
 }
 
 .bb-guest-badge .ms {
@@ -545,10 +524,6 @@ body.bb-product-entry {
     width: min(100% - 24px, 1180px);
   }
 
-  .bb-product-nav__links > a:not(.bb-btn) {
-    display: none;
-  }
-
   .bb-product-workbench {
     grid-template-columns: 1fr;
     min-height: 0;
@@ -569,12 +544,6 @@ body.bb-product-entry {
     display: none;
   }
 
-  .bb-product-footer__inner {
-    align-items: flex-start;
-    flex-direction: column;
-    justify-content: center;
-    padding-block: var(--bb-spacing-5);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -582,3 +551,33 @@ body.bb-product-entry {
     scroll-behavior: auto;
   }
 }
+/* Product documents name intent; this theme recipe owns the concrete glyphs. */
+.bb-product-icon::before {
+  content: "";
+}
+
+.bb-product-icon[data-bb-icon-role="verified-user"]::before { content: "verified_user"; }
+.bb-product-icon[data-bb-icon-role="screens"]::before { content: "dashboard"; }
+.bb-product-icon[data-bb-icon-role="text"]::before { content: "text_fields"; }
+.bb-product-icon[data-bb-icon-role="layout"]::before { content: "crop_free"; }
+.bb-product-icon[data-bb-icon-role="theme"]::before { content: "palette"; }
+.bb-product-icon[data-bb-icon-role="format"]::before { content: "aspect_ratio"; }
+.bb-product-icon[data-bb-icon-role="edit"]::before { content: "edit_note"; }
+.bb-product-icon[data-bb-icon-role="save"]::before { content: "save"; }
+.bb-product-icon[data-bb-icon-role="lock"]::before { content: "lock"; }
+.bb-product-icon[data-bb-icon-role="check"]::before { content: "check"; }
+
+.bb-product-nav__links > a:not(.bb-btn) {
+  color: var(--bb-color-on-surface-variant);
+  font-size: var(--bb-font-size-sm);
+  font-weight: var(--bb-font-weight-semibold);
+  text-decoration: none;
+}
+
+.bb-product-nav__links > a:not(.bb-btn):hover {
+  color: var(--bb-color-on-background);
+}
+
+  .bb-product-nav__links > a:not(.bb-btn) {
+    display: none;
+  }

@@ -85,6 +85,44 @@ Gate:
 
 This checkpoint is not the complete cross-platform Button slice. It exists to make the vocabulary and art direction visible before adapters multiply it.
 
+### 1A. Canonical app-surface primitives — current transition
+
+Before resuming landing acceptance or advancing the broader contract, use the
+accepted AppScreen Studio interface as direct evidence for the next reusable web
+batch. Themes must own:
+
+- the workspace/canvas background role, including review of the current B&B
+  neutral value rather than preserving its name or value by inertia;
+- a Select/dropdown-trigger recipe covering color, border, type, caret, focus,
+  hover, pressed/open, disabled, and motion;
+- shared interaction-state roles that Select, Button, and Menu may consume where
+  their feedback is genuinely the same, without merging their distinct anatomy;
+- a Menu surface/item recipe shared by emergent and context menus, including
+  depth, outline, separators, ordinary items, disabled items, informational text,
+  hover/focus/pressed states, and safe motion; and
+- showcase specimens rendered by the same gallery owner used locally, on GitHub
+  Pages, and inside AppScreen.
+
+AppScreen retains menu invocation, keyboard routing, commands, selection, and
+domain behavior. Themes owns only reusable visual intent and state mapping. New
+families must satisfy the required recipe roles; existing v1 families receive an
+explicit compatible fallback or fail generation rather than silently drifting.
+
+Version posture: keep this convergence work on the current in-progress contract
+without a new major/minor theme version while the recipe is being accepted. Use
+a patch only if an already-consumed contract must change; freeze the final version
+decision after browser acceptance of the complete batch.
+
+Gate:
+
+- AppScreen and the shared showcase render the same Select/Menu/background
+  recipes without product-local visual values;
+- hover roles are shared only where direct comparison proves visual equivalence;
+- ordinary, hover, focus-visible, pressed/open, disabled, separator, and info
+  states are visible and keyboard/accessibility semantics remain product-owned;
+- every required family resolves or declares an explicit fallback; and
+- existing landing/publication behavior and Cloud Clipboard delivery are unchanged.
+
 ### 2. Complete the executable contract
 
 Expand the validator and normalized model to cover spacing, density, all fourteen text styles, shape topology, border, depth, material, icon/assets, full motion categories, interaction states, product-domain namespaces, platform capabilities, declared fallbacks, license/glyph manifests, and override records. Add pinned DTCG Resolver contexts and deterministic OKLCH-to-sRGB generation.

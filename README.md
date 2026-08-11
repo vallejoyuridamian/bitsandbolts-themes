@@ -4,6 +4,21 @@ Cross-platform design token system for Bits and Bolts apps. One source of truth 
 
 **[Live preview →](https://vallejoyuridamian.github.io/bitsandbolts-themes/)**
 
+## Showcase
+
+```bash
+pnpm dev
+```
+
+This rebuilds the canonical theme artifacts, serves the same showcase published
+through GitHub Pages at `http://127.0.0.1:4181/`, and opens it in the default
+browser. AppScreen Studio's Themes workspace consumes the same gallery renderer
+and generated catalog from this repository.
+
+The Bits & Bolts family implements the current v2 contract. Cloud, Ocean, Robot,
+and Slate remain legacy catalog families until they receive an explicit v2
+visual migration; the shared showcase represents that difference honestly.
+
 ## Themes
 
 | Theme | Primary | Secondary | Personality |
@@ -43,6 +58,9 @@ dist/
   android/{theme}/DarkColors.kt    Compose darkColorScheme(...)
   react-native/{theme}/light.ts    typed color/spacing/radii constants
   react-native/{theme}/dark.ts
+docs/
+  index.html                    GitHub Pages showcase shell
+  theme/                        generated web catalog and showcase artifacts
 ```
 
 ---

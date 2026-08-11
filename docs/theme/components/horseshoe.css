@@ -1,0 +1,64 @@
+/**
+ * Horseshoe gauge — theme-aware quota/pressure visualization.
+ *
+ * Expected markup:
+ *   <div class="bb-horseshoe" style="--bb-horseshoe-value: 42">
+ *     <svg viewBox="0 0 128 88" aria-hidden="true">
+ *       <path class="bb-horseshoe-track" pathLength="100" d="M20 72a44 44 0 0 1 88 0" />
+ *       <path class="bb-horseshoe-fill" pathLength="100" d="M20 72a44 44 0 0 1 88 0" />
+ *     </svg>
+ *     <span class="bb-horseshoe-label">42%</span>
+ *   </div>
+ */
+
+.bb-horseshoe {
+  --bb-horseshoe-value: 0;
+  --bb-horseshoe-color: var(--bb-color-primary);
+  --bb-horseshoe-track: var(--bb-color-outline-variant);
+  --bb-horseshoe-size: 132px;
+  position: relative;
+  display: grid;
+  place-items: end center;
+  width: min(100%, var(--bb-horseshoe-size));
+  min-height: 92px;
+}
+
+.bb-horseshoe svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.bb-horseshoe-track,
+.bb-horseshoe-fill {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 14;
+}
+
+.bb-horseshoe-track {
+  stroke: var(--bb-horseshoe-track);
+}
+
+.bb-horseshoe-fill {
+  stroke: var(--bb-horseshoe-color);
+  stroke-dasharray: var(--bb-horseshoe-value) 100;
+}
+
+.bb-horseshoe-label {
+  position: absolute;
+  bottom: 2px;
+  color: var(--bb-color-on-surface);
+  font-family: var(--bb-font-family-display);
+  font-size: var(--bb-font-size-xl);
+  font-weight: var(--bb-font-weight-bold);
+  line-height: 1;
+}
+
+.bb-horseshoe[data-pressure="warn"] {
+  --bb-horseshoe-color: var(--bb-color-warning);
+}
+
+.bb-horseshoe[data-pressure="critical"] {
+  --bb-horseshoe-color: var(--bb-color-error);
+}
