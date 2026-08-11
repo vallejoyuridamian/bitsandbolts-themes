@@ -54,41 +54,6 @@ body.bb-portfolio-home {
   vertical-align: -0.125em;
 }
 
-.bb-portfolio-brand {
-  display: flex;
-  align-items: center;
-  color: var(--bb-color-primary);
-  text-decoration: none;
-}
-
-.bb-portfolio-brand img {
-  width: 2.5rem;
-  height: 2.5rem;
-  object-fit: contain;
-}
-
-.bb-portfolio-brand > span {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: var(--bb-color-primary);
-  font-family: "BB Portfolio Orbitron";
-  font-weight: var(--bb-font-weight-semibold);
-  line-height: 1.1;
-}
-
-.bb-portfolio-brand strong {
-  font-size: clamp(0.8rem, 1.2vw, 1rem);
-  font-weight: var(--bb-font-weight-semibold);
-  letter-spacing: 0;
-}
-
-.bb-portfolio-brand small {
-  font-size: 0.7rem;
-  font-weight: var(--bb-font-weight-regular);
-  letter-spacing: 0;
-}
-
 /* Above the fold */
 
 .bb-portfolio-hero {
@@ -936,68 +901,7 @@ body.bb-portfolio-home {
   width: 1em;
 }
 
-/* Footer */
-
-.bb-portfolio-footer {
-  margin: 0;
-  padding: 1vw 0;
-  color: var(--bb-marketing-chrome-on-accent);
-  background: var(--bb-color-primary);
-  font-size: 0.9rem;
-}
-
-.bb-portfolio-footer__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.bb-portfolio-brand--footer {
-  margin-left: 1rem;
-  color: var(--bb-marketing-chrome-on-accent);
-}
-
-.bb-portfolio-brand--footer img {
-  width: 40px;
-  height: auto;
-  padding: 0.5rem 0;
-}
-
-.bb-portfolio-brand--footer > span {
-  color: var(--bb-marketing-chrome-on-accent);
-}
-
-.bb-portfolio-brand--footer strong { font-size: 1rem; }
-.bb-portfolio-brand--footer small { font-size: 0.7rem; font-weight: var(--bb-font-weight-regular); }
-
-.bb-portfolio-footer__inner > div {
-  display: flex;
-  flex-direction: column;
-  margin-right: 1rem;
-  color: var(--bb-marketing-chrome-on-accent);
-  font-size: 0.85rem;
-  text-align: right;
-}
-
 @media (max-width: 1025px) {
-  .bb-portfolio-brand {
-    justify-content: center;
-  }
-
-  .bb-portfolio-brand img {
-    width: 3.5rem;
-    height: 3.5rem;
-  }
-
-  .bb-portfolio-brand strong {
-    font-size: clamp(1rem, 2.4vw, 1.2rem);
-  }
-
-  .bb-portfolio-brand small {
-    font-size: clamp(0.6rem, 1.8vw, 0.9rem);
-  }
-
   .bb-portfolio-hero__background--desktop {
     display: none;
   }
@@ -1068,9 +972,6 @@ body.bb-portfolio-home {
     height: 100px;
   }
 
-  .bb-portfolio-footer__inner {
-    align-items: flex-start;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -7,7 +7,3 @@ document.querySelectorAll('[data-portfolio-carousel]').forEach((carousel) => {
     });
   });
 });
-
-document.querySelectorAll('[data-current-year]').forEach((node) => {
-  node.textContent = String(new Date().getFullYear());
-});

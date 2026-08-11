@@ -1,3 +1,4 @@
+@import url("./footer.css");
 @import url("./navbar.css");
 @import url("./scrollbar.css");
 
@@ -147,6 +148,13 @@
 
 .bb-navbar-specimen__state--compact .bb-navbar-specimen__viewport {
   height: 13.5rem;
+}
+
+.bb-footer-specimen__viewport {
+  overflow: hidden;
+  border: 1px solid var(--bb-color-outline-variant);
+  border-radius: var(--bb-radius-md);
+  isolation: isolate;
 }
 
 .bb-interface-specimen__canvas {

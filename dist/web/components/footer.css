@@ -1,0 +1,169 @@
+/**
+ * Canonical cross-site Footer recipe.
+ *
+ * My Website is the accepted Bits & Bolts visual reference. Consumers own
+ * footer content and routes; this recipe owns presentation and responsive layout.
+ */
+
+@font-face {
+  font-family: "BB Footer Orbitron";
+  src: url("../fonts/orbitron_500.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+.bb-footer,
+.bb-footer *,
+.bb-footer *::before,
+.bb-footer *::after {
+  box-sizing: border-box;
+}
+
+.bb-footer {
+  margin: 0;
+  padding: 0.25vw 0;
+  border: 0;
+  color: var(--bb-marketing-chrome-on-accent);
+  background: var(--bb-color-primary);
+  font-family: system-ui;
+  font-size: 0.9rem;
+  line-height: normal;
+}
+
+.bb-footer__inner {
+  display: flex;
+  width: 100%;
+  min-height: 0;
+  padding: 0;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.bb-footer__inner:has(> .bb-footer__links) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  column-gap: clamp(1rem, 3vw, 2.5rem);
+}
+
+.bb-footer__brand {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+  color: var(--bb-marketing-chrome-on-accent);
+  text-decoration: none;
+}
+
+.bb-footer__brand img,
+.bb-footer__brand-mark {
+  width: 40px;
+  height: auto;
+  padding: 0.5rem 0;
+}
+
+.bb-footer__brand img {
+  object-fit: contain;
+}
+
+.bb-footer__brand > span {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--bb-marketing-chrome-on-accent);
+  font-family: "BB Footer Orbitron";
+  font-weight: var(--bb-font-weight-semibold);
+  line-height: 1.1;
+}
+
+.bb-footer__brand strong {
+  font-size: 1rem;
+  font-weight: var(--bb-font-weight-semibold);
+  letter-spacing: 0;
+}
+
+.bb-footer__brand small {
+  font-size: 0.7rem;
+  font-weight: var(--bb-font-weight-regular);
+  letter-spacing: 0;
+}
+
+.bb-footer__links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  font-size: 0.85rem;
+}
+
+.bb-footer__link {
+  color: var(--bb-marketing-chrome-on-accent);
+  text-decoration: none;
+}
+
+.bb-footer__meta {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 0;
+  margin-right: 1rem;
+  color: var(--bb-marketing-chrome-on-accent);
+  font-size: 0.85rem;
+  line-height: normal;
+  text-align: right;
+}
+
+.bb-footer__inner:has(> .bb-footer__links) .bb-footer__brand {
+  justify-self: start;
+}
+
+.bb-footer__inner:has(> .bb-footer__links) .bb-footer__links {
+  justify-self: end;
+}
+
+.bb-footer__inner:has(> .bb-footer__links) .bb-footer__meta {
+  justify-self: end;
+}
+
+@media (max-width: 1025px) {
+  .bb-footer__brand {
+    justify-content: center;
+  }
+
+  .bb-footer__brand img,
+  .bb-footer__brand-mark {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .bb-footer__brand strong {
+    font-size: clamp(1rem, 2.4vw, 1.2rem);
+  }
+
+  .bb-footer__brand small {
+    font-size: clamp(0.6rem, 1.8vw, 0.9rem);
+  }
+}
+
+@media (max-width: 700px) {
+  .bb-footer__inner:has(> .bb-footer__links) {
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 0.5rem;
+  }
+
+  .bb-footer__inner:has(> .bb-footer__links) .bb-footer__links {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: flex-end;
+    margin-right: 1rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .bb-footer__inner {
+    align-items: flex-start;
+  }
+}

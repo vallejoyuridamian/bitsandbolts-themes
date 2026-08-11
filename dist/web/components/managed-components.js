@@ -1,3 +1,4 @@
+import { footerMarkup } from './footer.js';
 import { navbarMarkup } from './navbar.js';
 
 /**
@@ -8,6 +9,13 @@ import { navbarMarkup } from './navbar.js';
  * stay owned by the component implementation in this repository.
  */
 export const MANAGED_WEB_COMPONENTS = Object.freeze({
+  footer: Object.freeze({
+    dependencies: Object.freeze({
+      stylesheets: Object.freeze(['components/footer.css']),
+      modules: Object.freeze(['components/footer.js'])
+    }),
+    render: footerMarkup
+  }),
   navbar: Object.freeze({
     dependencies: Object.freeze({
       stylesheets: Object.freeze(['components/navbar.css']),

@@ -38,12 +38,11 @@
 
 1. Start each slice from an accepted commit; change one canonical visual owner,
    build it, obtain browser acceptance, and commit before the next slice.
-2. Prove the standalone Footer in managed My Website and the Themes viewer,
-   then await owner acceptance before Cloud Clipboard.
-3. Keep CTA, carousel/cards, effects, icons, flags, cyan, renderer cleanup, and
-   optional Navbar compact-rule deduplication separately gated.
-4. Resume and browser-accept the AppScreen Product Entry landing only when the
-   owner explicitly returns to that work.
+2. Preserve the owner-accepted canonical Navbar/Footer across the Themes viewer,
+   My Website, Cloud Clipboard, and Studio.
+3. Keep CTA, carousel/cards, effects, icons, flags, cyan, further Product Entry
+   restyling, and optional Navbar compact-rule deduplication separately gated.
+4. Preserve the generic managed dispatcher and keep content/routes site-owned.
 5. Complete the executable DTCG/B&B validator and Button adapters without a
    premature theme-version bump during the current transition.
 6. Define versioned npm/Maven/static distribution with zero manual mirrors.

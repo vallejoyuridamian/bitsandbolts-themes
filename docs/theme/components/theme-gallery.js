@@ -1,3 +1,4 @@
+import { footerMarkup, synchronizeFooterYear } from './footer.js';
 import { navbarMarkup } from './navbar.js';
 
 const DATA_ATTRIBUTE_PATTERN = /^data-[a-z0-9-]+$/;
@@ -22,6 +23,18 @@ const NAVBAR_SPECIMEN = Object.freeze({
     Object.freeze({ label: 'Support', href: '/support' })
   ]),
   action: Object.freeze({ label: 'START', href: '/start' })
+});
+
+const FOOTER_SPECIMEN = Object.freeze({
+  label: 'Footer navigation',
+  brand: NAVBAR_SPECIMEN.brand,
+  links: Object.freeze([
+    Object.freeze({ label: 'Privacy policy', href: '/privacy' }),
+    Object.freeze({ label: 'Terms', href: '/terms' }),
+    Object.freeze({ label: 'Delete account', href: '/delete-account' })
+  ]),
+  copyright: 'PRODUCT',
+  note: 'All rights reserved'
 });
 
 function selectionControlsMarkup({ ariaLabel = '', controls = [] } = {}) {
@@ -502,6 +515,12 @@ function sharedWebRecipeMarkup() {
             </div>
           </div>
         </div>
+        <div class="bb-footer-specimen">
+          <h4>Footer</h4>
+          <div class="bb-footer-specimen__viewport">
+            ${footerMarkup(FOOTER_SPECIMEN, { specimen: true })}
+          </div>
+        </div>
         <div>
           <h4>Button variants</h4>
           <div class="bb-actions">
@@ -873,6 +892,7 @@ export function createThemeGalleryController({
     controlsHost.innerHTML = themeGalleryControlsMarkup(catalog, selection);
     host.innerHTML = themeGalleryMarkup(catalog, selection);
     applyThemeGalleryVariables(host, catalog, selection);
+    synchronizeFooterYear(host);
   }
 
   function installSelectionListener() {

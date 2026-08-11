@@ -54,18 +54,17 @@ Last verified: 2026-08-11
   locked good-enough, not pixel-perfect, clone; the React reference is unchanged.
   The final accepted checkpoint includes the repaired alternating roadmap and
   the shared edge-fade mask on the testimonial and NeuroSharp background art.
-- Themes owns Navbar markup, CSS, controller, placement behavior, responsive
-  panel, theme scope, brand/actionless alignment, scrollbar, and dependency metadata.
-- One renderer supplies its local, GitHub Pages, and AppScreen specimens;
+- Themes owns canonical Navbar/Footer markup, CSS, controllers, placement,
+  responsive layout, theme scope, scrollbar, and dependency metadata.
+- One registry supplies local, GitHub Pages, and managed-site consumers;
   generated source, `dist/web`, and `docs` artifacts are byte-identical.
 - UI icons are inline SVG vectors or original assets. Emoji and Unicode text
   glyphs are forbidden as UI icon substitutes; stars and carousel controls use
   vectors. The showcase uses My Website's exact black-background favicon; review
   flags remain accepted lightweight transition debt, not the future icon contract.
-- Managed documents declare Navbar component, placement, and overlay policy;
-  Sites consumes the canonical model and theme metadata without an adapter or
-  owned asset paths. The owner accepted both consumers and placement-aware
-  anchor clearance; generation and combined contracts pass.
+- Managed documents declare component models and content; Sites consumes their
+  theme metadata through generic dispatch without adapters or owned asset paths.
+  Navbar, Footer, and the Studio chrome migration are owner-accepted.
 
 ## Open Gates
 
@@ -83,18 +82,18 @@ Last verified: 2026-08-11
   migration debt; the main React website and AppScreen's legacy Studio
   stylesheet also remain app-local visual debt.
 - Cloud, Ocean, Slate, and Robot remain v1 until migrated one family at a time.
-- Studio retains its navigation; Footer ownership remains separately gated.
+- Canonical Footer now serves My Website, Cloud Clipboard, Studio, and the generic
+  viewer; dormant marketing/product chrome selectors have been removed.
 
 ## Next Boundary
 
 - The declarative Navbar is accepted; compact-rule deduplication remains optional.
-- Next prove a standalone Themes Footer in managed My Website and the viewer;
-  await owner acceptance before changing Cloud Clipboard.
+- Footer and Studio integration are accepted across all four local surfaces;
+  generation and managed-site contracts pass, and the checkpoint stays unpushed.
 - The current B&B v2 specimens are not the visual reference for this work. The
   owner rejected that family except for the cut-out button shape; use the
   accepted managed homepage as the primary B&B identity reference.
-- Resume the AppScreen Product Entry landing only when the owner explicitly
-  returns to it; preserve `/ → /try → /app` continuity.
+- Keep further Product Entry restyling gated; preserve `/ → /try → /app` continuity.
 - Keep this as a transition patch to the current contract where compatible; do
   not start a new theme version merely to checkpoint exploratory convergence.
 - Preserve the accepted Cloud Clipboard publication and every route boundary.
