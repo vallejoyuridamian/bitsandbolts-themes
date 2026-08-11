@@ -15,6 +15,16 @@ function externalAttributes(model = {}) {
   return model.external ? ' target="_blank" rel="noopener noreferrer"' : '';
 }
 
+function themeAttributes(theme) {
+  if (theme === undefined) return '';
+  const familyId = String(theme?.familyId ?? '').trim();
+  const variant = String(theme?.variant ?? '').trim();
+  if (!familyId || !variant) {
+    throw new TypeError('A Navbar theme requires both familyId and variant.');
+  }
+  return ` data-bb-theme-family="${escapeHtml(familyId)}" data-bb-theme-mode="${escapeHtml(variant)}"`;
+}
+
 function controlIcon(role) {
   const icons = {
     menu: [448, 512, 'M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z'],
@@ -43,6 +53,8 @@ function brandMarkMarkup(brand = {}) {
 export function navbarMarkup(model = {}, {
   placement = 'static',
   layout = 'auto',
+  theme,
+  overlayContent = false,
   specimen = false,
   specimenMenuVisible = false
 } = {}) {
@@ -52,15 +64,24 @@ export function navbarMarkup(model = {}, {
   if (!NAVBAR_LAYOUTS.has(layout)) {
     throw new TypeError(`Unsupported navbar layout: ${layout}`);
   }
+  if (typeof overlayContent !== 'boolean') {
+    throw new TypeError('Navbar overlayContent must be a boolean.');
+  }
+  if (overlayContent && placement !== 'hide-on-scroll') {
+    throw new TypeError('Navbar overlayContent is only supported with hide-on-scroll placement.');
+  }
   if (specimenMenuVisible && (!specimen || layout !== 'compact')) {
     throw new TypeError('A visible specimen menu requires the compact specimen layout.');
   }
   const brand = model.brand || {};
   const links = Array.isArray(model.links) ? model.links : [];
   const brandMark = brandMarkMarkup(brand);
+  const brandLabel = brand.ariaLabel
+    ? ` aria-label="${escapeHtml(brand.ariaLabel)}"`
+    : '';
   const brandStart = specimen
     ? '<span class="bb-navbar__brand">'
-    : `<a class="bb-navbar__brand" href="${escapeHtml(brand.href)}" aria-label="${escapeHtml(brand.ariaLabel)}">`;
+    : `<a class="bb-navbar__brand" href="${escapeHtml(brand.href)}"${brandLabel}${externalAttributes(brand)}>`;
   const brandEnd = specimen ? '</span>' : '</a>';
   const toggleMarkup = specimen
     ? `<span class="bb-navbar__toggle" aria-hidden="true">${controlIcon('menu')}</span>`
@@ -77,7 +98,7 @@ export function navbarMarkup(model = {}, {
         </div>`
     : '';
 
-  return `<header class="bb-navbar" data-bb-navbar data-placement="${placement}" data-layout="${layout}"${specimen ? ' data-bb-navbar-specimen' : ''}${specimenMenuVisible ? ' data-open="true" data-specimen-menu="visible"' : ''}>
+  const navbar = `<header class="bb-navbar" data-bb-navbar data-placement="${placement}" data-layout="${layout}"${themeAttributes(theme)}${specimen ? ' data-bb-navbar-specimen' : ''}${specimenMenuVisible ? ' data-open="true" data-specimen-menu="visible"' : ''}>
       <div class="bb-navbar__inner">
         ${toggleMarkup}
         ${brandStart}
@@ -91,6 +112,10 @@ export function navbarMarkup(model = {}, {
         ${actionMarkup}
       </div>
     </header>`;
+  const reserveSpace = placement === 'hide-on-scroll' && !overlayContent;
+  return reserveSpace
+    ? `${navbar}\n    <div class="bb-navbar__spacer" aria-hidden="true"></div>`
+    : navbar;
 }
 
 function setMenuOpen(navbar, open) {

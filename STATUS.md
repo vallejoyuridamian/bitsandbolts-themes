@@ -54,17 +54,17 @@ Last verified: 2026-08-11
   locked good-enough, not pixel-perfect, clone; the React reference is unchanged.
   The final accepted checkpoint includes the repaired alternating roadmap and
   the shared edge-fade mask on the testimonial and NeuroSharp background art.
-- Themes owns Navbar markup, CSS, controller, placements, responsive side panel,
-  and whole-brand glow. Managed My Website is first and uses its scrollbar.
+- Themes owns Navbar markup, CSS, controller, placements, responsive panel,
+  theme scope, actionless alignment, brand behavior, and scrollbar; hide-on-scroll
+  reserves height by default while accepted My Website explicitly overlays.
 - Its gallery fixture is generic and non-routing with pinned desktop and permanently open contained compact views.
 - One renderer supplies its local, GitHub Pages, and AppScreen specimens;
   generated source, `dist/web`, and `docs` artifacts are byte-identical.
 - UI icons are inline SVG vectors or original assets. Emoji and Unicode text
   glyphs are forbidden as UI icon substitutes; stars and carousel controls use
-  vectors. Review flags currently use lightweight 64x48 FlagCDN images and are
-  accepted transition debt, not the future canonical theme icon contract.
-- Themes generation and AppScreen's focused 10/10 gallery contract pass. Sites'
-  29 unaffected tests, corrected My Website 2/2, and 3-site build pass.
+  vectors. The showcase uses My Website's exact black-background favicon; review
+  flags remain accepted lightweight transition debt, not the future icon contract.
+- Themes generation and combined managed-consumer Navbar contracts pass.
 
 ## Open Gates
 
@@ -82,14 +82,14 @@ Last verified: 2026-08-11
   migration debt; the main React website and AppScreen's legacy Studio
   stylesheet also remain app-local visual debt.
 - Cloud, Ocean, Slate, and Robot remain v1 until migrated one family at a time.
-- Studio and Cloud retain their navigation. Sites still wires Navbar placement
-  and CSS/JS assets; fully declarative JSON dispatch is separately gated.
+- Studio retains its navigation. Sites still adapts the standard header model and
+  wires Navbar placement/assets; declarative JSON dispatch is separately gated.
 
 ## Next Boundary
 
-- The polished Navbar and first consumer are accepted; await fresh instruction.
-- Possible next work is declarative JSON wiring or one consumer migration.
-  Compact-rule deduplication is optional; keep every other component separate.
+- The polished Navbar and two consumers are accepted; await fresh instruction.
+- Possible next work is declarative Navbar wiring, then the separately gated
+  Footer migration. Compact-rule deduplication remains optional.
 - The current B&B v2 specimens are not the visual reference for this work. The
   owner rejected that family except for the cut-out button shape; use the
   accepted managed homepage as the primary B&B identity reference.

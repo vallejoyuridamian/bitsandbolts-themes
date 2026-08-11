@@ -4,6 +4,29 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-11) - Navbar second consumer accepted
+
+### What changed
+- Migrated managed Cloud Clipboard from Sites-owned topbar markup to the
+  canonical Themes Navbar without consumer CSS or changes to its routes/content.
+- Added nested theme scope, external-brand behavior, actionless desktop/compact
+  alignment, and a self-contained scrollbar dependency to the shared recipe.
+- Hide-on-scroll now reserves `--bb-navbar-height` by default; the accepted My
+  Website hero explicitly selects overlay while Cloud Clipboard uses the default.
+- The Themes showcase now uses an exact copy of My Website's accepted
+  black-background favicon.
+
+### Acceptance and boundary
+- The owner accepted Cloud Clipboard and revalidated My Website across desktop,
+  compact, hide-on-scroll, and content-spacing behavior.
+- Themes generation, the combined 7/7 Sites consumer contracts, generated
+  source/`dist/web`/`docs` equality, and repository diff checks pass.
+- Sites still owns a transitional header-model adapter plus explicit placement
+  and CSS/JavaScript includes. Declarative dispatch remains a separate next slice;
+  Footer migration and compact-rule deduplication remain separately gated.
+- No deployment, publication, route mutation, version change, push, or external
+  mutation ran.
+
 ## Session wrap-up (2026-08-11) - Canonical Navbar accepted
 
 ### What changed

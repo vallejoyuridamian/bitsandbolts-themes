@@ -6,6 +6,8 @@
  * responsive navigation, and placement behavior.
  */
 
+@import url("./scrollbar.css");
+
 @font-face {
   font-family: "BB Navbar Orbitron";
   src: url("../fonts/orbitron_500.ttf") format("truetype");
@@ -21,12 +23,16 @@
   box-sizing: border-box;
 }
 
+.bb-navbar,
+.bb-navbar__spacer {
+  height: var(--bb-navbar-height, 4rem);
+}
+
 .bb-navbar {
   position: relative;
   z-index: 999;
   display: flex;
   width: 100%;
-  height: 4rem;
   align-items: center;
   background: color-mix(in srgb, var(--bb-marketing-chrome-background) 50%, transparent);
 }
@@ -130,6 +136,12 @@
   flex: 1;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+
+.bb-navbar:not(:has(.bb-navbar__action-wrapper)) .bb-navbar__links {
+  flex: 0 1 auto;
+  justify-content: flex-end;
+  margin-left: auto;
 }
 
 .bb-navbar__link {
@@ -237,6 +249,7 @@
   flex-wrap: nowrap;
   justify-content: flex-start;
   gap: 1rem;
+  margin-left: 0;
   padding: 0.4rem 1rem 0;
   background: var(--bb-marketing-portfolio-panel);
   opacity: 0.95;
@@ -278,6 +291,16 @@
   justify-content: center;
 }
 
+.bb-navbar:not(:has(.bb-navbar__action-wrapper))[data-layout="compact"] .bb-navbar__inner {
+  position: relative;
+}
+
+.bb-navbar:not(:has(.bb-navbar__action-wrapper))[data-layout="compact"] .bb-navbar__brand {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .bb-navbar[data-layout="compact"] :is(.bb-navbar__brand img, .bb-navbar__brand-mark) {
   width: 3.5rem;
   height: 3.5rem;
@@ -315,6 +338,7 @@
     flex-wrap: nowrap;
     justify-content: flex-start;
     gap: 1rem;
+    margin-left: 0;
     padding: 0.4rem 1rem 0;
     background: var(--bb-marketing-portfolio-panel);
     opacity: 0.95;
@@ -354,6 +378,16 @@
 
   .bb-navbar[data-layout="auto"] .bb-navbar__brand {
     justify-content: center;
+  }
+
+  .bb-navbar:not(:has(.bb-navbar__action-wrapper))[data-layout="auto"] .bb-navbar__inner {
+    position: relative;
+  }
+
+  .bb-navbar:not(:has(.bb-navbar__action-wrapper))[data-layout="auto"] .bb-navbar__brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .bb-navbar[data-layout="auto"] .bb-navbar__brand img,
