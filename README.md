@@ -15,21 +15,27 @@ through GitHub Pages at `http://127.0.0.1:4181/`, and opens it in the default
 browser. AppScreen Studio's Themes workspace consumes the same gallery renderer
 and generated catalog from this repository.
 
-The Bits & Bolts family implements the current v2 contract. Cloud, Ocean, Robot,
-and Slate remain legacy catalog families until they receive an explicit v2
-visual migration; the shared showcase represents that difference honestly.
+Bits & Bolts, Cloud, Neo Brutalism, and Nature implement the current v2
+contract. Ocean and Robot remain legacy catalog families; the shared showcase
+represents that difference honestly.
 
 ## Themes
 
 | Theme | Primary | Secondary | Personality |
 |-------|---------|-----------|-------------|
-| **cloud** | `#E8521A` warm orange | `#2B7A2E` forest green | Energetic, friendly (Universal Clipboard) |
+| **cloud** | `#4F46E5` indigo | `#7C3AED` violet | Calm, clear utility |
 | **ocean** | `#0061A3` deep blue | `#00696B` teal | Professional, calm |
-| **slate** | `#4F46E5` indigo | `#7C3AED` violet | Bold, modern |
 | **robot** | `#3FB950` terminal green | `#58A6FF` telemetry blue | Industrial, diagnostic, systems-focused |
 | **bitsandbolts** | `#12E6D5` neon cyan | `#65FFBF` neon green | Portfolio brand, launch energy |
+| **neobrutalism** | `#FF3333` signal red | `#FFFF00` signal yellow | Square, graphic, hard-shadow utility |
+| **nature** | `#2E7D32` forest green | `#E8F5E9` pale green | Warm, organic, editorial utility |
 
 Each theme has light + dark variants. All tokens follow the Material 3 color system.
+
+Friendly migration note for Universal Clipboard: the retired `slate` family is
+now Cloud. The released app is intentionally untouched. Before its next theme
+sync, change the configured theme ID from `slate` to `cloud`; the generated
+visual values are already equivalent. No alias exists.
 
 ---
 
@@ -218,9 +224,10 @@ Every family/mode must resolve the complete marketing-role set. The generated
 footer to use another family without replacing the page's root family.
 
 Coal, silver, and gold plan colors are universal shared-recipe inputs. The build
-rejects family/mode overrides of those colors; typography, shapes, spacing, and
-depth still resolve from the active family. `catalog.json.sharedAssets` records
-the single global platform-icon and official store-badge asset set.
+rejects family/mode overrides of those colors. Typography and spacing resolve
+from the active family; component geometry and depth live in the consuming
+recipe. `catalog.json.sharedAssets` records the single global platform-icon and
+official store-badge asset set.
 
 ---
 

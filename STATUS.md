@@ -1,17 +1,32 @@
 # Bits and Bolts Themes — Status
 
-Last verified: 2026-08-11
+Last verified: 2026-08-12
 
 ## Current Truth
 
-- Five themes are generated: `cloud`, `ocean`, `slate`, `robot`, and
-  `bitsandbolts`, each with light and dark variants.
+- Six themes are generated: `cloud`, `ocean`, `robot`, `bitsandbolts`,
+  `neobrutalism`, and `nature`, each with light and dark variants.
+- Cloud now implements the v2 family contract from the released Android visual
+  truth: indigo/violet/sky semantic colors, Plus Jakarta Sans display, Inter
+  body/UI, Material Filled icons, and a complete gallery face matching the Bits
+  & Bolts contract coverage. Owner visual acceptance is pending.
+- Neo Brutalism and Nature implement the v2 family contract from browser-delivered
+  public preset data. Their source colors, light/dark modes, radius, and declared
+  font families are retained; additional B&B semantic roles and component
+  interactions are explicitly independent Themes-owned mappings.
+- DM Sans, Space Mono, Merriweather, and Source Code Pro are locally bundled
+  from their official OFL sources. The generated web, Android, React Native,
+  catalog, and showcase outputs include both new families, and `pnpm build`
+  passes.
 - The deep-research architecture is ratified: pinned DTCG 2025.10 values and
   resolution plus a separately versioned B&B contract for recipes, art
   direction, assets, fallbacks, validation, provenance, and overrides.
 - The first B&B v2 web reference now includes light/dark standard-density family
-  data, four identity colors, 48 semantic color roles, fourteen text styles,
-  shape/material/depth/motion specimens, and a declarative Button recipe.
+  data, four identity colors, 48 semantic color roles, fourteen text styles, and
+  a declarative Button recipe.
+- Generic shape, material, depth, and motion specimens are not part of the v2
+  family structure. Concrete visual values live in the reusable component recipe
+  that consumes them.
 - Generated web catalog data drives AppScreen's Themes tab one family/mode at a
   time. AppScreen's Pages tab previews one managed site/page/source at a time.
 - Themes now owns the gallery renderer itself. One source generates the local
@@ -20,7 +35,7 @@ Last verified: 2026-08-11
 - Themes now also owns canonical workspace-background, Scrollbar, Select, shared
   interaction-state, and Menu roles/recipes. AppScreen consumes their classes
   while retaining selection, commands, keyboard behavior, invocation, and
-  positioning. Cloud, Ocean, Robot, and Slate declare explicit v1 fallbacks;
+  positioning. Ocean and Robot declare explicit v1 fallbacks;
   generation rejects any family without the complete interface role set.
 - Product Entry, Theme Gallery, Page Gallery, Button v2, typography, and the
   shared Selection Controls recipe are canonical theme-owned web components.
@@ -66,6 +81,11 @@ Last verified: 2026-08-11
   theme metadata through generic dispatch without adapters or owned asset paths.
   Navbar and Footer are owner-accepted; hide-on-scroll is now the Navbar default,
   and the owner accepted Studio auto-hide plus linked-Footer narrow alignment.
+- Themes owns the canonical Cloud Clipboard product icon used by the managed
+  site. Its teal and checklist green remain brand-art colors; Cloud's only
+  semantic green is the Android-derived success status role.
+- Tier ticks and crosses retain the shared marketing-plan green and red. They
+  are global plan presentation and do not resolve from a family's status roles.
 
 ## Open Gates
 
@@ -82,11 +102,18 @@ Last verified: 2026-08-11
   preserved Pages rollback source and `mywebsite/public/theme/` mirror remain
   migration debt; the main React website and AppScreen's legacy Studio
   stylesheet also remain app-local visual debt.
-- Cloud, Ocean, Slate, and Robot remain v1 until migrated one family at a time.
+- Ocean and Robot remain v1 until migrated one family at a time.
+- The former Slate family, catalog entry, and generated outputs are removed with
+  no alias. Universal Clipboard remains untouched; README.md carries the friendly
+  note for its later one-ID change from `slate` to `cloud`.
 - Canonical Footer now serves My Website, Cloud Clipboard, Studio, and the generic
   viewer; dormant marketing/product chrome selectors have been removed.
 
 ## Next Boundary
+
+- Neo Brutalism and Nature are accepted as useful initial family checkpoints.
+  Resume with owner visual review and bounded token or component corrections
+  before importing another family.
 
 - The declarative Navbar, Studio auto-hide, and balanced narrow linked-Footer
   grid are accepted; compact-rule deduplication remains optional.

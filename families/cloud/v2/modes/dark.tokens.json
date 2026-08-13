@@ -1,0 +1,69 @@
+{
+  "palette": {
+    "$type": "color",
+    "primary": { "$value": { "colorSpace": "srgb", "components": [0.647059, 0.705882, 0.988235], "alpha": 1, "hex": "#A5B4FC" } },
+    "onPrimary": { "$value": { "colorSpace": "srgb", "components": [0.117647, 0.105882, 0.294118], "alpha": 1, "hex": "#1E1B4B" } },
+    "primaryContainer": { "$value": { "colorSpace": "srgb", "components": [0.192157, 0.180392, 0.505882], "alpha": 1, "hex": "#312E81" } },
+    "onPrimaryContainer": { "$value": { "colorSpace": "srgb", "components": [0.878431, 0.905882, 1], "alpha": 1, "hex": "#E0E7FF" } },
+    "secondary": { "$value": { "colorSpace": "srgb", "components": [0.768627, 0.709804, 0.992157], "alpha": 1, "hex": "#C4B5FD" } },
+    "onSecondary": { "$value": { "colorSpace": "srgb", "components": [0.180392, 0.062745, 0.396078], "alpha": 1, "hex": "#2E1065" } },
+    "secondaryContainer": { "$value": { "colorSpace": "srgb", "components": [0.298039, 0.113725, 0.584314], "alpha": 1, "hex": "#4C1D95" } },
+    "onSecondaryContainer": { "$value": { "colorSpace": "srgb", "components": [0.929412, 0.913725, 0.996078], "alpha": 1, "hex": "#EDE9FE" } },
+    "tertiary": { "$value": { "colorSpace": "srgb", "components": [0.490196, 0.827451, 0.988235], "alpha": 1, "hex": "#7DD3FC" } },
+    "onTertiary": { "$value": { "colorSpace": "srgb", "components": [0.047059, 0.290196, 0.431373], "alpha": 1, "hex": "#0C4A6E" } },
+    "tertiaryContainer": { "$value": { "colorSpace": "srgb", "components": [0.027451, 0.34902, 0.521569], "alpha": 1, "hex": "#075985" } },
+    "onTertiaryContainer": { "$value": { "colorSpace": "srgb", "components": [0.878431, 0.94902, 0.996078], "alpha": 1, "hex": "#E0F2FE" } },
+    "error": { "$value": { "colorSpace": "srgb", "components": [0.94902, 0.721569, 0.709804], "alpha": 1, "hex": "#F2B8B5" } },
+    "onError": { "$value": { "colorSpace": "srgb", "components": [0.376471, 0.078431, 0.062745], "alpha": 1, "hex": "#601410" } },
+    "errorContainer": { "$value": { "colorSpace": "srgb", "components": [0.54902, 0.113725, 0.094118], "alpha": 1, "hex": "#8C1D18" } },
+    "onErrorContainer": { "$value": { "colorSpace": "srgb", "components": [0.976471, 0.870588, 0.862745], "alpha": 1, "hex": "#F9DEDC" } },
+    "background": { "$value": { "colorSpace": "srgb", "components": [0.058824, 0.090196, 0.164706], "alpha": 1, "hex": "#0F172A" } },
+    "onBackground": { "$value": { "colorSpace": "srgb", "components": [0.886275, 0.909804, 0.941176], "alpha": 1, "hex": "#E2E8F0" } },
+    "surface": { "$value": "{palette.background}" },
+    "onSurface": { "$value": "{palette.onBackground}" },
+    "surfaceVariant": { "$value": { "colorSpace": "srgb", "components": [0.117647, 0.160784, 0.231373], "alpha": 1, "hex": "#1E293B" } },
+    "onSurfaceVariant": { "$value": { "colorSpace": "srgb", "components": [0.580392, 0.639216, 0.721569], "alpha": 1, "hex": "#94A3B8" } },
+    "outline": { "$value": { "colorSpace": "srgb", "components": [0.278431, 0.333333, 0.411765], "alpha": 1, "hex": "#475569" } },
+    "outlineVariant": { "$value": "{palette.surfaceVariant}" },
+    "inverseSurface": { "$value": "{palette.onBackground}" },
+    "inverseOnSurface": { "$value": "{palette.surfaceVariant}" },
+    "inversePrimary": { "$value": { "colorSpace": "srgb", "components": [0.309804, 0.27451, 0.898039], "alpha": 1, "hex": "#4F46E5" } },
+    "scrim": { "$value": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 1, "hex": "#000000" } },
+    "warning": { "$value": { "colorSpace": "srgb", "components": [0.988235, 0.827451, 0.301961], "alpha": 1, "hex": "#FCD34D" } },
+    "onWarning": { "$value": { "colorSpace": "srgb", "components": [0.470588, 0.207843, 0.058824], "alpha": 1, "hex": "#78350F" } },
+    "warningContainer": { "$value": { "colorSpace": "srgb", "components": [0.572549, 0.25098, 0.054902], "alpha": 1, "hex": "#92400E" } },
+    "onWarningContainer": { "$value": { "colorSpace": "srgb", "components": [0.996078, 0.952941, 0.780392], "alpha": 1, "hex": "#FEF3C7" } },
+    "success": { "$value": { "colorSpace": "srgb", "components": [0.290196, 0.870588, 0.501961], "alpha": 1, "hex": "#4ADE80" } },
+    "onSuccess": { "$value": { "colorSpace": "srgb", "components": [0.019608, 0.180392, 0.086275], "alpha": 1, "hex": "#052E16" } },
+    "successContainer": { "$value": { "colorSpace": "srgb", "components": [0.086275, 0.396078, 0.203922], "alpha": 1, "hex": "#166534" } },
+    "onSuccessContainer": { "$value": { "colorSpace": "srgb", "components": [0.862745, 0.988235, 0.905882], "alpha": 1, "hex": "#DCFCE7" } }
+  },
+  "color": {
+    "$type": "color",
+    "surface": {
+      "canvas": { "$value": "{palette.background}" }, "surface": { "$value": "{palette.surface}" }, "subtle": { "$value": "{palette.surfaceVariant}" },
+      "raised": { "$value": "{palette.surfaceVariant}" }, "sunken": { "$value": "{palette.background}" }, "overlay": { "$value": "{palette.surfaceVariant}" },
+      "inverse": { "$value": "{palette.inverseSurface}" }, "disabled": { "$value": "{palette.outlineVariant}" }, "scrim": { "$value": "{palette.scrim}" }
+    },
+    "content": {
+      "primary": { "$value": "{palette.onSurface}" }, "secondary": { "$value": "{palette.onSurfaceVariant}" }, "tertiary": { "$value": "{palette.onSurfaceVariant}" },
+      "placeholder": { "$value": "{palette.outline}" }, "disabled": { "$value": "{palette.outline}" }, "inverse": { "$value": "{palette.inverseOnSurface}" },
+      "brand": { "$value": "{palette.primary}" }, "link": { "$value": "{palette.tertiary}" }, "linkVisited": { "$value": "{palette.secondary}" }
+    },
+    "border": {
+      "subtle": { "$value": "{palette.outlineVariant}" }, "default": { "$value": "{palette.outline}" }, "strong": { "$value": "{palette.onSurfaceVariant}" },
+      "disabled": { "$value": "{palette.outlineVariant}" }, "divider": { "$value": "{palette.outlineVariant}" }, "focusRing": { "$value": "{palette.primary}" }, "focusRingOffset": { "$value": "{palette.background}" }
+    },
+    "interaction": {
+      "action": { "$value": "{palette.primary}" }, "onAction": { "$value": "{palette.onPrimary}" }, "actionHover": { "$value": "{palette.primary}" }, "actionPressed": { "$value": "{palette.primary}" },
+      "selected": { "$value": "{palette.primaryContainer}" }, "onSelected": { "$value": "{palette.onPrimaryContainer}" }, "selection": { "$value": "{palette.secondaryContainer}" }, "onSelection": { "$value": "{palette.onSecondaryContainer}" },
+      "caret": { "$value": "{palette.primary}" }, "dropTarget": { "$value": "{palette.tertiary}" }, "dragPreview": { "$value": "{palette.tertiaryContainer}" }
+    },
+    "status": {
+      "infoSurface": { "$value": "{palette.tertiaryContainer}" }, "infoContent": { "$value": "{palette.onTertiaryContainer}" }, "infoBorder": { "$value": "{palette.tertiary}" },
+      "successSurface": { "$value": "{palette.successContainer}" }, "successContent": { "$value": "{palette.onSuccessContainer}" }, "successBorder": { "$value": "{palette.success}" },
+      "warningSurface": { "$value": "{palette.warningContainer}" }, "warningContent": { "$value": "{palette.onWarningContainer}" }, "warningBorder": { "$value": "{palette.warning}" },
+      "dangerSurface": { "$value": "{palette.errorContainer}" }, "dangerContent": { "$value": "{palette.onErrorContainer}" }, "dangerBorder": { "$value": "{palette.error}" }
+    }
+  }
+}

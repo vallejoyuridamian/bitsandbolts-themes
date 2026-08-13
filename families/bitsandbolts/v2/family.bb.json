@@ -83,27 +83,5 @@
         "letterSpacing": "0.02em"
       }
     ]
-  },
-  "shapeSpecimens": [
-    { "id": "control", "label": "Control", "kind": "cut", "radius": "2px", "cut": "7px" },
-    { "id": "container", "label": "Panel", "kind": "rounded", "radius": "6px", "cut": "0px" },
-    { "id": "overlay", "label": "Overlay", "kind": "cut", "radius": "2px", "cut": "12px" }
-  ],
-  "materialSpecimens": [
-    { "id": "control", "label": "Machined", "depth": "flat", "borderWidth": "1px" },
-    { "id": "panel", "label": "Border-led", "depth": "medium", "borderWidth": "1px" },
-    { "id": "signal", "label": "Luminous", "depth": "high", "borderWidth": "1px" }
-  ],
-  "depth": {
-    "flat": "none",
-    "low": "0 2px 0 color-mix(in srgb, var(--bb-v2-color-border-default) 45%, transparent)",
-    "medium": "6px 6px 0 color-mix(in srgb, var(--bb-v2-color-border-strong) 38%, transparent)",
-    "high": "8px 8px 0 color-mix(in srgb, var(--bb-v2-color-content-brand) 24%, transparent)",
-    "overlay": "0 18px 48px color-mix(in srgb, var(--bb-v2-color-surface-scrim) 62%, transparent)"
-  },
-  "motion": {
-    "quick": { "duration": "90ms", "easing": "cubic-bezier(0.2, 0, 0, 1)" },
-    "standard": { "duration": "180ms", "easing": "cubic-bezier(0.2, 0, 0, 1)" },
-    "reduced": { "duration": "0ms", "easing": "linear" }
   }
 }

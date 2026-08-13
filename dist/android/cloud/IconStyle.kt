@@ -14,6 +14,9 @@ object CloudIcons {
     val CloudUpload:   ImageVector = Icons.Filled.CloudUpload
     val CloudDownload: ImageVector = Icons.Filled.CloudDownload
     val ArrowBack:     ImageVector = Icons.AutoMirrored.Filled.ArrowBack
+    val Check:         ImageVector = Icons.Filled.Check
+    val Close:         ImageVector = Icons.Filled.Close
+    val ContentCopy:   ImageVector = Icons.Filled.ContentCopy
     val Person:        ImageVector = Icons.Filled.Person
     val Logout:        ImageVector = Icons.AutoMirrored.Filled.ExitToApp
     val Devices:       ImageVector = Icons.Filled.Devices

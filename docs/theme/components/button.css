@@ -1,5 +1,5 @@
 /**
- * Button — theme-aware button variants.
+ * Button: theme-aware button variants.
  * Uses --bb-* tokens so it automatically reflects the active theme.
  *
  * Usage:
@@ -95,7 +95,7 @@
   border-radius: 30px;
   color: var(--bb-marketing-highlight, var(--bb-color-on-background));
   background: transparent;
-  font-family: "BB Portfolio Orbitron";
+  font-family: var(--bb-font-family-display);
   font-size: clamp(1.5rem, 1.8vw, 2rem);
   font-weight: var(--bb-font-weight-semibold);
   line-height: normal;

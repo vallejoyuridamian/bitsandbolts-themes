@@ -1,7 +1,7 @@
 import { footerMarkup, synchronizeFooterYear } from './footer.js';
 import { navbarMarkup } from './navbar.js';
+import { installSelectController, selectionControlsMarkup } from './select.js';
 
-const DATA_ATTRIBUTE_PATTERN = /^data-[a-z0-9-]+$/;
 const THEME_GALLERY_SCROLLBAR_VARIABLES = Object.freeze([
   '--bb-interface-scrollbar-thumb',
   '--bb-interface-scrollbar-track',
@@ -36,54 +36,6 @@ const FOOTER_SPECIMEN = Object.freeze({
   copyright: 'PRODUCT',
   note: 'All rights reserved'
 });
-
-function selectionControlsMarkup({ ariaLabel = '', controls = [] } = {}) {
-  const controlMarkup = controls.map((control) => {
-    const dataAttribute = String(control?.dataAttribute || '');
-    if (!DATA_ATTRIBUTE_PATTERN.test(dataAttribute)) {
-      throw new TypeError(`Selection control data attribute is invalid: ${dataAttribute}`);
-    }
-    const selectedValue = String(control?.value ?? '');
-    const selectedOption = (control?.options || []).find((option) => String(option?.value ?? '') === selectedValue)
-      ?? control?.options?.[0]
-      ?? { label: 'Select', value: '' };
-    const controlId = String(control?.id || '');
-    const labelId = `${controlId}Label`;
-    return `
-      <div class="bb-selection-control">
-        <span id="${escapeHtml(labelId)}">${escapeHtml(control?.label)}</span>
-        <div class="bb-select bb-theme-gallery-select" data-theme-gallery-select>
-          <select
-            id="${escapeHtml(controlId)}"
-            class="bb-select__native"
-            name="${escapeHtml(control?.name)}"
-            aria-labelledby="${escapeHtml(labelId)}"
-            data-native-select="true"
-            ${dataAttribute}
-          >
-          ${(control?.options || []).map((option) => {
-            const value = String(option?.value ?? '');
-            return `<option value="${escapeHtml(value)}"${value === selectedValue ? ' selected' : ''}>${escapeHtml(option?.label)}</option>`;
-          }).join('')}
-          </select>
-          <button
-            class="bb-select__trigger bb-interface-action"
-            type="button"
-            aria-expanded="false"
-            aria-haspopup="listbox"
-            aria-labelledby="${escapeHtml(labelId)} ${escapeHtml(controlId)}Value"
-            data-theme-gallery-select-trigger="${escapeHtml(controlId)}"
-          >
-            <span id="${escapeHtml(controlId)}Value" class="bb-select__value">${escapeHtml(selectedOption?.label)}</span>
-            <span class="bb-select__caret" aria-hidden="true"></span>
-          </button>
-        </div>
-      </div>
-    `;
-  }).join('');
-
-  return `<div class="bb-selection-controls" aria-label="${escapeHtml(ariaLabel)}">${controlMarkup}</div>`;
-}
 
 const CATALOG_SCHEMA_VERSION = 1;
 const REQUIRED_MODES = Object.freeze(['light', 'dark']);
@@ -248,14 +200,6 @@ function normalizeV2(value) {
       sample: String(specimen.sample || '')
     });
   }) : [];
-  const normalizeSpecimens = (entries, type) => Object.freeze((Array.isArray(entries) ? entries : []).map((entry) => {
-    const id = String(entry?.id || '').trim();
-    if (!THEME_ID_PATTERN.test(id)) throw new TypeError(`Theme catalog v2 ${type} specimen is invalid.`);
-    return Object.freeze(Object.fromEntries(Object.entries(entry).map(([key, raw]) => [
-      key,
-      key === 'label' || key === 'kind' || key === 'depth' ? String(raw) : safeCssVariableValue(raw)
-    ])));
-  }));
   const buttonCases = Array.isArray(value.button?.specimenCases) ? value.button.specimenCases.map((entry) => {
     const variant = String(entry?.variant || '').trim();
     const state = String(entry?.state || '').trim();
@@ -263,10 +207,6 @@ function normalizeV2(value) {
     return Object.freeze({ label: String(entry.label || ''), state, variant });
   }) : [];
   if (!buttonCases.length) throw new TypeError('Theme catalog v2 Button recipe has no specimen cases.');
-  const motion = Object.freeze(Object.fromEntries(Object.entries(value.motion || {}).map(([id, entry]) => [id, Object.freeze({
-    duration: safeCssVariableValue(entry?.duration),
-    easing: safeCssVariableValue(entry?.easing)
-  })])));
   return Object.freeze({
     artDirection: Object.freeze({
       label: String(value.artDirection?.label || ''),
@@ -275,10 +215,7 @@ function normalizeV2(value) {
     }),
     button: Object.freeze({ specimenCases: Object.freeze(buttonCases) }),
     contractVersion: V2_CONTRACT_VERSION,
-    materials: normalizeSpecimens(value.materials, 'material'),
     modes: Object.freeze(Object.fromEntries(REQUIRED_MODES.map((mode) => [mode, normalizeV2Mode(value.modes?.[mode], mode)]))),
-    motion,
-    shapes: normalizeSpecimens(value.shapes, 'shape'),
     themeVersion: String(value.themeVersion || ''),
     typography: Object.freeze({ families: Object.freeze(families), specimens: Object.freeze(specimens) })
   });
@@ -402,22 +339,6 @@ function v2TypographyMarkup(v2) {
   `).join('');
 }
 
-function v2ShapeMarkup(v2) {
-  const shapes = v2.shapes.map((shape) => `
-    <div class="bb-theme-v2-shape bb-theme-v2-shape--${escapeHtml(shape.kind)}" data-theme-v2-shape="${escapeHtml(shape.id)}">
-      <span>${escapeHtml(shape.label)}</span>
-      <small>${escapeHtml(shape.kind)}</small>
-    </div>
-  `).join('');
-  const materials = v2.materials.map((material) => `
-    <div class="bb-theme-v2-material bb-theme-v2-material--${escapeHtml(material.depth)}">
-      <span>${escapeHtml(material.label)}</span>
-      <small>${escapeHtml(material.depth)}</small>
-    </div>
-  `).join('');
-  return `<div class="bb-theme-v2-grammar">${shapes}${materials}</div>`;
-}
-
 function v2ButtonMarkup(v2) {
   return v2.button.specimenCases.map((specimen) => {
     const variantClass = specimen.variant === 'primary' ? '' : ` bb-v2-button--${escapeHtml(specimen.variant)}`;
@@ -492,37 +413,23 @@ function sharedWebRecipeMarkup() {
       <p class="bb-theme-inspection__label">Current shared web recipes</p>
       <div class="bb-theme-recipe-battery">
         <div>
-          <h4>Hero variants</h4>
-          <div class="bb-hero-specimen__stack">
-            <section class="bb-hero bb-hero--split bb-hero-specimen__viewport" aria-label="Split Hero specimen">
-              <div class="bb-hero__copy">
-                <span class="bb-hero__eyebrow">Optional eyebrow</span>
-                <h3 class="bb-hero__heading">Primary headline</h3>
-                <p class="bb-hero__support">Supporting copy clarifies the promise, audience, and immediate outcome.</p>
-                <div class="bb-hero__actions">
-                  <button class="bb-btn bb-btn-neon" type="button" tabindex="-1">Primary CTA</button>
-                  <button class="bb-btn bb-btn-text" type="button" tabindex="-1">Secondary CTA</button>
-                </div>
+          <h4>Hero</h4>
+          <section class="bb-hero bb-hero--split bb-hero-specimen__viewport" aria-label="Hero specimen">
+            <div class="bb-hero__copy">
+              <span class="bb-hero__eyebrow">Eyebrow</span>
+              <h3 class="bb-hero__heading">Primary headline</h3>
+              <p class="bb-hero__support">Supporting copy clarifies the promise, audience, and immediate outcome.</p>
+              <div class="bb-hero__actions">
+                <button class="bb-btn bb-btn-neon" type="button" tabindex="-1">Primary CTA</button>
+                <button class="bb-btn bb-btn-text" type="button" tabindex="-1">Secondary CTA</button>
               </div>
-              <div class="bb-hero__visual bb-hero-specimen__visual">
-                <small>Product proof rail</small>
-                <strong>Product visual or output</strong>
-                <span>Product evidence occupies the second rail.</span>
-              </div>
-            </section>
-            <section class="bb-hero bb-hero--focal-center bb-hero-specimen__viewport" aria-label="Focal-center Hero specimen">
-              <div class="bb-hero__copy">
-                <span class="bb-hero__eyebrow">Optional eyebrow</span>
-                <h3 class="bb-hero__heading">Primary headline</h3>
-                <p class="bb-hero__support">Supporting copy occupies the left content rail.</p>
-              </div>
-              <div class="bb-hero-specimen__corridor"><small>Protected center corridor</small></div>
-              <div class="bb-hero__visual bb-hero-specimen__visual">
-                <small>Visual rail</small>
-                <strong>Supporting visual</strong>
-              </div>
-            </section>
-          </div>
+            </div>
+            <div class="bb-hero__visual bb-hero-specimen__visual">
+              <small>Product proof rail</small>
+              <strong>Product visual or output</strong>
+              <span>Product evidence occupies the second rail.</span>
+            </div>
+          </section>
         </div>
         <div class="bb-navbar-specimen">
           <h4>Navbar</h4>
@@ -625,15 +532,6 @@ function v2ModeMarkup(theme, mode) {
         <section class="bb-theme-v2-section">
           <h3>Typography</h3>
           <div class="bb-theme-v2-types">${v2TypographyMarkup(v2)}</div>
-        </section>
-        <section class="bb-theme-v2-section">
-          <h3>Shape, material &amp; depth</h3>
-          ${v2ShapeMarkup(v2)}
-          <div class="bb-theme-v2-motion">
-            ${Object.entries(v2.motion).filter(([id]) => id !== 'reduced').map(([id, motion]) => `
-              <span data-theme-v2-motion="${escapeHtml(id)}"><strong>${escapeHtml(id)}</strong><i aria-hidden="true"></i><small>${escapeHtml(motion.duration)}</small></span>
-            `).join('')}
-          </div>
         </section>
         <section class="bb-theme-v2-section">
           <h3>Button</h3>
@@ -788,7 +686,7 @@ export function createThemeGalleryController({
   let renderedCatalog = null;
   let selection = Object.freeze({ mode: 'dark', themeId: '' });
   let selectionListenerInstalled = false;
-  let activeGallerySelect = null;
+  let selectController = null;
 
   async function loadCatalog() {
     const response = await fetchImpl(catalogUrl, { credentials: 'same-origin' });
@@ -796,131 +694,8 @@ export function createThemeGalleryController({
     return normalizeThemeCatalog(await response.json());
   }
 
-  function closeGallerySelect({ restoreFocus = false } = {}) {
-    if (!activeGallerySelect) return;
-    const { document: rootDocument, menu, trigger, view, wrapper, handleOutside, handleViewport } = activeGallerySelect;
-    rootDocument?.removeEventListener?.('pointerdown', handleOutside, true);
-    rootDocument?.removeEventListener?.('scroll', handleViewport, true);
-    view?.removeEventListener?.('resize', handleViewport);
-    menu?.remove?.();
-    wrapper?.classList?.remove?.('is-open');
-    trigger?.setAttribute?.('aria-expanded', 'false');
-    trigger?.removeAttribute?.('aria-controls');
-    activeGallerySelect = null;
-    if (restoreFocus) trigger?.focus?.();
-  }
-
-  function enabledMenuItems(menu) {
-    return [...(menu?.querySelectorAll?.('[data-theme-gallery-select-option-index]:not(:disabled)') ?? [])];
-  }
-
-  function focusMenuItem(menu, current, offset) {
-    const items = enabledMenuItems(menu);
-    if (!items.length) return;
-    const currentIndex = Math.max(0, items.indexOf(current));
-    items[(currentIndex + offset + items.length) % items.length]?.focus?.();
-  }
-
-  function openGallerySelect(trigger, { focus = 'selected' } = {}) {
-    const wrapper = trigger?.closest?.('[data-theme-gallery-select]');
-    const select = wrapper?.querySelector?.('select');
-    const rootDocument = controlsHost?.ownerDocument ?? globalThis.document;
-    if (!wrapper || !select || !rootDocument?.body || select.disabled) return false;
-    if (activeGallerySelect?.trigger === trigger) return true;
-    closeGallerySelect();
-
-    const menu = rootDocument.createElement('div');
-    const menuId = `${select.id}Menu`;
-    menu.id = menuId;
-    menu.className = 'bb-menu bb-theme-gallery-select__menu';
-    menu.setAttribute('role', 'listbox');
-    menu.setAttribute('aria-labelledby', select.getAttribute('aria-labelledby') || '');
-    const items = Array.from(select.options).map((option, optionIndex) => {
-      const item = rootDocument.createElement('button');
-      const selected = optionIndex === select.selectedIndex;
-      item.type = 'button';
-      item.className = 'bb-menu__item bb-interface-action';
-      item.disabled = Boolean(option.disabled);
-      item.dataset.themeGallerySelectOptionIndex = String(optionIndex);
-      item.setAttribute('role', 'option');
-      item.setAttribute('aria-selected', String(selected));
-      item.tabIndex = selected ? 0 : -1;
-      const label = rootDocument.createElement('span');
-      label.className = 'bb-menu__label';
-      label.textContent = option.label || option.textContent || option.value;
-      item.appendChild(label);
-      return item;
-    });
-    menu.replaceChildren(...items);
-    menu.style.visibility = 'hidden';
-    rootDocument.body.appendChild(menu);
-
-    const triggerRect = trigger.getBoundingClientRect();
-    const view = rootDocument.defaultView ?? globalThis.window;
-    const viewportWidth = Number(view?.innerWidth) || rootDocument.documentElement?.clientWidth || 0;
-    const viewportHeight = Number(view?.innerHeight) || rootDocument.documentElement?.clientHeight || 0;
-    const menuWidth = Math.max(triggerRect.width, menu.offsetWidth, 180);
-    const menuHeight = menu.offsetHeight;
-    const left = Math.max(8, Math.min(triggerRect.left, Math.max(8, viewportWidth - menuWidth - 8)));
-    const below = triggerRect.bottom + 4;
-    const top = below + menuHeight <= viewportHeight - 8
-      ? below
-      : Math.max(8, triggerRect.top - menuHeight - 4);
-    menu.style.left = `${Math.round(left)}px`;
-    menu.style.top = `${Math.round(top)}px`;
-    menu.style.minWidth = `${Math.round(menuWidth)}px`;
-    menu.style.visibility = '';
-
-    const handleOutside = (event) => {
-      if (!menu.contains(event.target) && !trigger.contains(event.target)) closeGallerySelect();
-    };
-    const handleViewport = (event) => {
-      if (event?.type === 'scroll' && menu.contains(event.target)) return;
-      closeGallerySelect();
-    };
-    activeGallerySelect = { document: rootDocument, handleOutside, handleViewport, menu, select, trigger, view, wrapper };
-    wrapper.classList.add('is-open');
-    trigger.setAttribute('aria-expanded', 'true');
-    trigger.setAttribute('aria-controls', menuId);
-    rootDocument.addEventListener('pointerdown', handleOutside, true);
-    rootDocument.addEventListener('scroll', handleViewport, true);
-    view?.addEventListener?.('resize', handleViewport);
-
-    menu.addEventListener('click', (event) => {
-      const item = event.target?.closest?.('[data-theme-gallery-select-option-index]');
-      if (!item || item.disabled) return;
-      select.selectedIndex = Number(item.dataset.themeGallerySelectOptionIndex);
-      const EventConstructor = rootDocument.defaultView?.Event ?? globalThis.Event;
-      select.dispatchEvent(new EventConstructor('change', { bubbles: true }));
-    });
-    menu.addEventListener('keydown', (event) => {
-      const item = event.target?.closest?.('[data-theme-gallery-select-option-index]');
-      if (event.key === 'Escape') {
-        event.preventDefault();
-        closeGallerySelect({ restoreFocus: true });
-      } else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-        event.preventDefault();
-        focusMenuItem(menu, item, event.key === 'ArrowDown' ? 1 : -1);
-      } else if (event.key === 'Home' || event.key === 'End') {
-        event.preventDefault();
-        const enabled = enabledMenuItems(menu);
-        enabled[event.key === 'Home' ? 0 : enabled.length - 1]?.focus?.();
-      } else if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        item?.click?.();
-      } else if (event.key === 'Tab') {
-        closeGallerySelect();
-      }
-    });
-
-    const enabled = enabledMenuItems(menu);
-    const selectedItem = menu.querySelector('[aria-selected="true"]:not(:disabled)');
-    (focus === 'last' ? enabled.at(-1) : selectedItem ?? enabled[0])?.focus?.();
-    return true;
-  }
-
   function renderCatalog(catalog) {
-    closeGallerySelect();
+    selectController?.close();
     const theme = selectedTheme(catalog, selection.themeId);
     selection = Object.freeze({ mode: selectedMode(selection.mode), themeId: theme.id });
     controlsHost.innerHTML = themeGalleryControlsMarkup(catalog, selection);
@@ -931,33 +706,16 @@ export function createThemeGalleryController({
 
   function installSelectionListener() {
     if (selectionListenerInstalled || !controlsHost?.addEventListener) return;
-    controlsHost.addEventListener('click', (event) => {
-      const trigger = event.target?.closest?.('[data-theme-gallery-select-trigger]');
-      if (!trigger) return;
-      event.preventDefault?.();
-      if (activeGallerySelect?.trigger === trigger) closeGallerySelect({ restoreFocus: true });
-      else openGallerySelect(trigger);
-    });
-    controlsHost.addEventListener('keydown', (event) => {
-      const trigger = event.target?.closest?.('[data-theme-gallery-select-trigger]');
-      if (!trigger) return;
-      if (event.key === 'Enter' || event.key === ' ' || event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-        event.preventDefault?.();
-        openGallerySelect(trigger, { focus: event.key === 'ArrowUp' ? 'last' : 'selected' });
-      } else if (event.key === 'Escape' && activeGallerySelect?.trigger === trigger) {
-        event.preventDefault?.();
-        closeGallerySelect({ restoreFocus: true });
-      }
-    });
+    selectController = installSelectController(controlsHost);
     controlsHost.addEventListener('change', (event) => {
       const control = event.target;
       let focusSelector = '';
       if (control?.matches?.('[data-theme-gallery-theme]')) {
         selection = Object.freeze({ ...selection, themeId: String(control.value || '') });
-        focusSelector = '[data-theme-gallery-select-trigger="themeGalleryThemeSelector"]';
+        focusSelector = '[data-bb-select-trigger="themeGalleryThemeSelector"]';
       } else if (control?.matches?.('[data-theme-gallery-mode]')) {
         selection = Object.freeze({ ...selection, mode: String(control.value || '') });
-        focusSelector = '[data-theme-gallery-select-trigger="themeGalleryModeSelector"]';
+        focusSelector = '[data-bb-select-trigger="themeGalleryModeSelector"]';
       } else {
         return;
       }

@@ -21,7 +21,7 @@
   border-radius: var(--bb-v2-button-shape-radius);
   color: var(--bb-v2-button-foreground);
   background: var(--bb-v2-button-background);
-  box-shadow: var(--bb-v2-button-depth);
+  box-shadow: var(--bb-v2-button-depth-rest);
   clip-path: polygon(
     var(--bb-v2-button-shape-cut) 0,
     100% 0,
@@ -36,13 +36,13 @@
   font-weight: var(--bb-v2-type-label-font-weight);
   letter-spacing: var(--bb-v2-type-label-letter-spacing);
   line-height: var(--bb-v2-type-label-line-height);
-  text-transform: uppercase;
+  text-transform: var(--bb-v2-button-text-transform, uppercase);
   transition:
-    color var(--bb-v2-motion-quick-duration) var(--bb-v2-motion-quick-easing),
-    background-color var(--bb-v2-motion-quick-duration) var(--bb-v2-motion-quick-easing),
-    border-color var(--bb-v2-motion-quick-duration) var(--bb-v2-motion-quick-easing),
-    box-shadow var(--bb-v2-motion-quick-duration) var(--bb-v2-motion-quick-easing),
-    transform var(--bb-v2-motion-quick-duration) var(--bb-v2-motion-quick-easing);
+    color var(--bb-v2-button-transition-duration) var(--bb-v2-button-transition-easing),
+    background-color var(--bb-v2-button-transition-duration) var(--bb-v2-button-transition-easing),
+    border-color var(--bb-v2-button-transition-duration) var(--bb-v2-button-transition-easing),
+    box-shadow var(--bb-v2-button-transition-duration) var(--bb-v2-button-transition-easing),
+    transform var(--bb-v2-button-transition-duration) var(--bb-v2-button-transition-easing);
   -webkit-user-select: none;
   user-select: none;
 }
@@ -50,8 +50,8 @@
 .bb-v2-button:hover,
 .bb-v2-button[data-specimen-state="hover"] {
   background: var(--bb-v2-button-hover-background);
-  box-shadow: var(--bb-v2-depth-medium);
-  transform: translate(-1px, -1px);
+  box-shadow: var(--bb-v2-button-depth-hover);
+  transform: var(--bb-v2-button-hover-transform, translate(-1px, -1px));
 }
 
 .bb-v2-button:focus-visible,
@@ -64,8 +64,8 @@
 .bb-v2-button:active,
 .bb-v2-button[data-specimen-state="pressed"] {
   background: var(--bb-v2-button-pressed-background);
-  box-shadow: var(--bb-v2-depth-flat);
-  transform: translate(1px, 1px);
+  box-shadow: var(--bb-v2-button-depth-pressed);
+  transform: var(--bb-v2-button-pressed-transform, translate(1px, 1px));
 }
 
 .bb-v2-button:disabled,
@@ -73,7 +73,7 @@
   border-color: var(--bb-v2-color-border-disabled);
   color: var(--bb-v2-color-content-disabled);
   background: var(--bb-v2-color-surface-disabled);
-  box-shadow: var(--bb-v2-depth-flat);
+  box-shadow: var(--bb-v2-button-depth-pressed);
   cursor: not-allowed;
   opacity: 1;
   transform: none;
@@ -93,7 +93,7 @@
   --bb-v2-button-border: var(--bb-v2-color-border-subtle);
   --bb-v2-button-hover-background: var(--bb-v2-color-surface-subtle);
   --bb-v2-button-pressed-background: var(--bb-v2-color-surface-sunken);
-  box-shadow: var(--bb-v2-depth-flat);
+  box-shadow: var(--bb-v2-button-depth-pressed);
 }
 
 .bb-v2-button--destructive {
@@ -131,7 +131,7 @@
   border: 2px solid color-mix(in srgb, currentColor 28%, transparent);
   border-top-color: currentColor;
   border-radius: 50%;
-  animation: bb-v2-button-spin 700ms linear infinite;
+  animation: bb-v2-button-spin var(--bb-v2-button-loading-duration, 700ms) linear infinite;
 }
 
 .bb-v2-button[data-specimen-state="loading"] .bb-v2-button__progress,
@@ -145,7 +145,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .bb-v2-button {
-    transition-duration: var(--bb-v2-motion-reduced-duration);
+    transition-duration: var(--bb-v2-button-reduced-duration);
   }
 
   .bb-v2-button__progress {

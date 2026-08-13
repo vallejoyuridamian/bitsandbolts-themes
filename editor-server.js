@@ -155,7 +155,7 @@ async function handle(req, res) {
 
     try {
       mkdirSync(themeDir, { recursive: true });
-      const src = fromTheme || 'slate';
+      const src = fromTheme || 'cloud';
       if (lightTokens && darkTokens) {
         writeFileSync(join(themeDir, 'light.json'), JSON.stringify(lightTokens, null, 2));
         writeFileSync(join(themeDir, 'dark.json'),  JSON.stringify(darkTokens,  null, 2));

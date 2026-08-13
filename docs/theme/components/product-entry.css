@@ -266,9 +266,30 @@ body.bb-product-entry {
   letter-spacing: -0.035em;
 }
 
+.bb-product-section--identity h2 {
+  max-width: none;
+  font-family: var(--bb-font-family-display);
+  font-size: clamp(1.5rem, 3.2vw, 2rem);
+  line-height: normal;
+  letter-spacing: 0.1rem;
+}
+
+.bb-product-section--identity .bb-hero__heading-line {
+  white-space: nowrap;
+}
+
 .bb-product-section__copy {
   display: grid;
   gap: var(--bb-spacing-5);
+}
+
+.bb-product-identity-selector {
+  width: min(100%, 360px);
+  margin: var(--bb-spacing-3) 0 0;
+}
+
+.bb-product-identity-selector .bb-selection-controls {
+  margin: 0;
 }
 
 .bb-product-section__copy p,
@@ -482,6 +503,10 @@ body.bb-product-entry {
 
   .bb-product-tool:nth-child(n + 4) {
     display: none;
+  }
+
+  .bb-product-section--identity .bb-hero__heading-line {
+    white-space: normal;
   }
 
 }

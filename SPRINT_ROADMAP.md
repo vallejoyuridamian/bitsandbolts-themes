@@ -6,6 +6,8 @@
   Bits and Bolts product and supported technology stack.
 - Preserve the implemented B&B v2 web reference while completing the executable
   contract and first cross-platform vertical recipe.
+- Preserve the accepted Neo Brutalism and Nature checkpoints and refine them
+  only from focused owner visual feedback.
 
 ## Completed Checkpoint
 
@@ -33,8 +35,15 @@
   testimonial/NeuroSharp image fades restored and owner-accepted.
 - [x] Owner-accept the polished declarative Navbar, themed dependencies, both
   managed consumers, placement-aware anchor clearance, spacing variants, and favicon.
+- [x] Add Neo Brutalism and Nature as complete v2 light/dark families with
+  locally bundled fonts, semantic mappings, Button recipes, interface roles,
+  catalog entries, and generated cross-platform outputs.
 
 ## Next Steps
+
+Review Neo Brutalism and Nature in the owner-run showcase before adding another
+external reference family. Treat source presets as visual inputs, not component
+code, and keep all resulting mappings owned by Themes.
 
 1. Start each slice from an accepted commit; change one canonical visual owner,
    build it, obtain browser acceptance, and commit before the next slice.

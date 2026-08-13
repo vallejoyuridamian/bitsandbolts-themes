@@ -1,0 +1,60 @@
+{
+  "font": {
+    "family": {
+      "display": { "$value": "Merriweather" },
+      "body": { "$value": "Montserrat" },
+      "mono": { "$value": "Source Code Pro" },
+      "terminal": { "$value": "Source Code Pro" }
+    }
+  },
+  "marketing": {
+    "heroIconGlow": { "$value": "{color.primary}" },
+    "highlight": { "$value": "{color.tertiary}" },
+    "terminalBlend": { "$value": "{color.surfaceVariant}" }
+  },
+  "color": {
+    "primary": { "$value": "#4CAF50", "$type": "color" },
+    "onPrimary": { "$value": "#0A1F0C", "$type": "color" },
+    "primaryContainer": { "$value": "#388E3C", "$type": "color" },
+    "onPrimaryContainer": { "$value": "#F0EBE5", "$type": "color" },
+    "secondary": { "$value": "#3E4A3D", "$type": "color" },
+    "onSecondary": { "$value": "#D7E0D6", "$type": "color" },
+    "secondaryContainer": { "$value": "#252F26", "$type": "color" },
+    "onSecondaryContainer": { "$value": "#D7CFC4", "$type": "color" },
+    "tertiary": { "$value": "#388E3C", "$type": "color" },
+    "onTertiary": { "$value": "#F0EBE5", "$type": "color" },
+    "tertiaryContainer": { "$value": "#388E3C", "$type": "color" },
+    "onTertiaryContainer": { "$value": "#F0EBE5", "$type": "color" },
+    "error": { "$value": "#C62828", "$type": "color" },
+    "onError": { "$value": "#F0EBE5", "$type": "color" },
+    "errorContainer": { "$value": "#C62828", "$type": "color" },
+    "onErrorContainer": { "$value": "#F0EBE5", "$type": "color" },
+    "background": { "$value": "#1C2A1F", "$type": "color" },
+    "onBackground": { "$value": "#F0EBE5", "$type": "color" },
+    "surface": { "$value": "#2D3A2E", "$type": "color" },
+    "onSurface": { "$value": "#F0EBE5", "$type": "color" },
+    "surfaceVariant": { "$value": "#252F26", "$type": "color" },
+    "onSurfaceVariant": { "$value": "#D7CFC4", "$type": "color" },
+    "outline": { "$value": "#3E4A3D", "$type": "color" },
+    "outlineVariant": { "$value": "#3E4A3D", "$type": "color" },
+    "inverseSurface": { "$value": "#F0EBE5", "$type": "color" },
+    "inverseOnSurface": { "$value": "#1C2A1F", "$type": "color" },
+    "inversePrimary": { "$value": "#2E7D32", "$type": "color" },
+    "surfaceTint": { "$value": "#4CAF50", "$type": "color" },
+    "scrim": { "$value": "#000000", "$type": "color" },
+    "warning": { "$value": "#D7CFC4", "$type": "color" },
+    "onWarning": { "$value": "#1C2A1F", "$type": "color" },
+    "warningContainer": { "$value": "#3E4A3D", "$type": "color" },
+    "onWarningContainer": { "$value": "#F0EBE5", "$type": "color" },
+    "success": { "$value": "#4CAF50", "$type": "color" },
+    "onSuccess": { "$value": "#0A1F0C", "$type": "color" },
+    "successContainer": { "$value": "#388E3C", "$type": "color" },
+    "onSuccessContainer": { "$value": "#F0EBE5", "$type": "color" },
+    "terminalBackground": { "$value": "#1C2A1F", "$type": "color" },
+    "terminalForeground": { "$value": "#F0EBE5", "$type": "color" },
+    "terminalMuted": { "$value": "#D7CFC4", "$type": "color" },
+    "terminalAccent": { "$value": "#4CAF50", "$type": "color" },
+    "terminalBorder": { "$value": "#3E4A3D", "$type": "color" }
+  },
+  "opacity": { "actionIconInactive": { "$value": "0.42", "$type": "number" } }
+}

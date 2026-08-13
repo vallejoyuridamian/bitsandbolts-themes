@@ -5,14 +5,6 @@
  * footer content and routes; this recipe owns presentation and responsive layout.
  */
 
-@font-face {
-  font-family: "BB Footer Orbitron";
-  src: url("../fonts/orbitron_500.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
 .bb-footer,
 .bb-footer *,
 .bb-footer *::before,
@@ -26,7 +18,7 @@
   border: 0;
   color: var(--bb-marketing-chrome-on-accent);
   background: var(--bb-color-primary);
-  font-family: system-ui;
+  font-family: var(--bb-font-family-body);
   font-size: 0.9rem;
   line-height: normal;
 }
@@ -74,7 +66,7 @@
   flex-direction: column;
   justify-content: center;
   color: var(--bb-marketing-chrome-on-accent);
-  font-family: "BB Footer Orbitron";
+  font-family: var(--bb-font-family-display);
   font-weight: var(--bb-font-weight-semibold);
   line-height: 1.1;
 }

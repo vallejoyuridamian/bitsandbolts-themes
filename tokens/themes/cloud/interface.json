@@ -1,5 +1,5 @@
 {
-  "$extensions": { "com.bitsandbolts.interface": { "resolution": "v1-fallback" } },
+  "$extensions": { "com.bitsandbolts.interface": { "resolution": "canonical" } },
   "interface": {
     "workspace": { "background": { "$value": "{color.background}" } },
     "control": {

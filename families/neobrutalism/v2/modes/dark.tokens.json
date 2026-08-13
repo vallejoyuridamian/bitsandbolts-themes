@@ -1,0 +1,69 @@
+{
+  "palette": {
+    "$type": "color",
+    "primary": { "$value": { "colorSpace": "srgb", "components": [1, 0.4, 0.4], "alpha": 1, "hex": "#FF6666" } },
+    "onPrimary": { "$value": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 1, "hex": "#000000" } },
+    "primaryContainer": { "$value": { "colorSpace": "srgb", "components": [1, 1, 0.2], "alpha": 1, "hex": "#FFFF33" } },
+    "onPrimaryContainer": { "$value": "{palette.onPrimary}" },
+    "secondary": { "$value": "{palette.primaryContainer}" },
+    "onSecondary": { "$value": "{palette.onPrimary}" },
+    "secondaryContainer": { "$value": { "colorSpace": "srgb", "components": [0.101961, 0.101961, 0.101961], "alpha": 1, "hex": "#1A1A1A" } },
+    "onSecondaryContainer": { "$value": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 1, "hex": "#FFFFFF" } },
+    "tertiary": { "$value": { "colorSpace": "srgb", "components": [0.2, 0.6, 1], "alpha": 1, "hex": "#3399FF" } },
+    "onTertiary": { "$value": "{palette.onPrimary}" },
+    "tertiaryContainer": { "$value": "{palette.tertiary}" },
+    "onTertiaryContainer": { "$value": "{palette.onTertiary}" },
+    "error": { "$value": "{palette.onSecondaryContainer}" },
+    "onError": { "$value": "{palette.onPrimary}" },
+    "errorContainer": { "$value": "{palette.error}" },
+    "onErrorContainer": { "$value": "{palette.onError}" },
+    "background": { "$value": "{palette.onPrimary}" },
+    "onBackground": { "$value": "{palette.onSecondaryContainer}" },
+    "surface": { "$value": { "colorSpace": "srgb", "components": [0.2, 0.2, 0.2], "alpha": 1, "hex": "#333333" } },
+    "onSurface": { "$value": "{palette.onBackground}" },
+    "surfaceVariant": { "$value": "{palette.secondaryContainer}" },
+    "onSurfaceVariant": { "$value": { "colorSpace": "srgb", "components": [0.8, 0.8, 0.8], "alpha": 1, "hex": "#CCCCCC" } },
+    "outline": { "$value": "{palette.onBackground}" },
+    "outlineVariant": { "$value": "{palette.onBackground}" },
+    "inverseSurface": { "$value": "{palette.onBackground}" },
+    "inverseOnSurface": { "$value": "{palette.background}" },
+    "inversePrimary": { "$value": { "colorSpace": "srgb", "components": [1, 0.2, 0.2], "alpha": 1, "hex": "#FF3333" } },
+    "scrim": { "$value": "{palette.background}" },
+    "warning": { "$value": "{palette.secondary}" },
+    "onWarning": { "$value": "{palette.onSecondary}" },
+    "warningContainer": { "$value": "{palette.secondary}" },
+    "onWarningContainer": { "$value": "{palette.onSecondary}" },
+    "success": { "$value": { "colorSpace": "srgb", "components": [0.2, 0.8, 0.2], "alpha": 1, "hex": "#33CC33" } },
+    "onSuccess": { "$value": "{palette.onPrimary}" },
+    "successContainer": { "$value": "{palette.success}" },
+    "onSuccessContainer": { "$value": "{palette.onSuccess}" }
+  },
+  "color": {
+    "$type": "color",
+    "surface": {
+      "canvas": { "$value": "{palette.background}" }, "surface": { "$value": "{palette.surface}" }, "subtle": { "$value": "{palette.surfaceVariant}" },
+      "raised": { "$value": "{palette.surface}" }, "sunken": { "$value": "{palette.surfaceVariant}" }, "overlay": { "$value": "{palette.surface}" },
+      "inverse": { "$value": "{palette.inverseSurface}" }, "disabled": { "$value": "{palette.secondaryContainer}" }, "scrim": { "$value": "{palette.scrim}" }
+    },
+    "content": {
+      "primary": { "$value": "{palette.onSurface}" }, "secondary": { "$value": "{palette.onSurfaceVariant}" }, "tertiary": { "$value": "{palette.onSurfaceVariant}" },
+      "placeholder": { "$value": "{palette.onSurfaceVariant}" }, "disabled": { "$value": "{palette.onSurfaceVariant}" }, "inverse": { "$value": "{palette.inverseOnSurface}" },
+      "brand": { "$value": "{palette.primary}" }, "link": { "$value": "{palette.tertiary}" }, "linkVisited": { "$value": "{palette.primary}" }
+    },
+    "border": {
+      "subtle": { "$value": "{palette.outlineVariant}" }, "default": { "$value": "{palette.outline}" }, "strong": { "$value": "{palette.outline}" },
+      "disabled": { "$value": "{palette.outlineVariant}" }, "divider": { "$value": "{palette.outline}" }, "focusRing": { "$value": "{palette.primary}" }, "focusRingOffset": { "$value": "{palette.background}" }
+    },
+    "interaction": {
+      "action": { "$value": "{palette.primary}" }, "onAction": { "$value": "{palette.onPrimary}" }, "actionHover": { "$value": "{palette.primary}" }, "actionPressed": { "$value": "{palette.primary}" },
+      "selected": { "$value": "{palette.secondary}" }, "onSelected": { "$value": "{palette.onSecondary}" }, "selection": { "$value": "{palette.tertiary}" }, "onSelection": { "$value": "{palette.onTertiary}" },
+      "caret": { "$value": "{palette.primary}" }, "dropTarget": { "$value": "{palette.tertiary}" }, "dragPreview": { "$value": "{palette.secondary}" }
+    },
+    "status": {
+      "infoSurface": { "$value": "{palette.tertiary}" }, "infoContent": { "$value": "{palette.onTertiary}" }, "infoBorder": { "$value": "{palette.outline}" },
+      "successSurface": { "$value": "{palette.success}" }, "successContent": { "$value": "{palette.onSuccess}" }, "successBorder": { "$value": "{palette.outline}" },
+      "warningSurface": { "$value": "{palette.warning}" }, "warningContent": { "$value": "{palette.onWarning}" }, "warningBorder": { "$value": "{palette.outline}" },
+      "dangerSurface": { "$value": "{palette.error}" }, "dangerContent": { "$value": "{palette.onError}" }, "dangerBorder": { "$value": "{palette.outline}" }
+    }
+  }
+}

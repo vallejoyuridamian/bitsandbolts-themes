@@ -39,14 +39,19 @@
     "focusRing": "color.border.focusRing",
     "focusRingOffset": "color.border.focusRingOffset"
   },
-  "shapeMaterialBindings": {
-    "shape": "shape.control",
-    "material": "material.control",
-    "depth": "depth.low"
-  },
-  "motion": {
-    "feedback": "motion.quick",
-    "reduced": "motion.reduced"
+  "presentation": {
+    "shapeRadius": "2px",
+    "shapeCut": "7px",
+    "depthRest": "0 2px 0 color-mix(in srgb, var(--bb-v2-color-border-default) 45%, transparent)",
+    "depthHover": "6px 6px 0 color-mix(in srgb, var(--bb-v2-color-border-strong) 38%, transparent)",
+    "depthPressed": "none",
+    "transitionDuration": "90ms",
+    "transitionEasing": "cubic-bezier(0.2, 0, 0, 1)",
+    "reducedDuration": "0ms",
+    "textTransform": "uppercase",
+    "hoverTransform": "translate(-1px, -1px)",
+    "pressedTransform": "translate(1px, 1px)",
+    "loadingDuration": "700ms"
   },
   "accessibilityRequirements": {
     "minimumTouchTargetWeb": "44px",

@@ -76,6 +76,11 @@
       "editorialBody",
       "editorialHeading",
       "marketingHero"
+    ],
+    "referenceSpecimens": [
+      { "id": "marketingHero", "label": "Signature" },
+      { "id": "body", "label": "Interface" },
+      { "id": "terminal", "label": "Technical" }
     ]
   },
   "componentRecipes": {
@@ -87,12 +92,25 @@
       "sizes",
       "stateMatrix",
       "tokenBindings",
-      "shapeMaterialBindings",
-      "motion",
+      "presentation",
       "accessibilityRequirements",
       "platformAdapters",
       "fallbacks",
       "specimenCases"
+    ],
+    "presentationFields": [
+      "shapeRadius",
+      "shapeCut",
+      "depthRest",
+      "depthHover",
+      "depthPressed",
+      "transitionDuration",
+      "transitionEasing",
+      "reducedDuration",
+      "textTransform",
+      "hoverTransform",
+      "pressedTransform",
+      "loadingDuration"
     ],
     "mandatoryFirstSlice": ["Button"]
   }

@@ -1,0 +1,87 @@
+{
+  "contractVersion": "2.0.0",
+  "familyId": "cloud",
+  "displayName": "Cloud",
+  "themeVersion": "2.0.0",
+  "allowedResolutions": [
+    { "mode": "light", "density": "standard" },
+    { "mode": "dark", "density": "standard" }
+  ],
+  "identity": [
+    { "id": "primary", "label": "Primary", "token": "palette.primary" },
+    { "id": "secondary", "label": "Secondary", "token": "palette.secondary" },
+    { "id": "accent", "label": "Accent", "token": "palette.tertiary" },
+    { "id": "neutral", "label": "Neutral", "token": "palette.surfaceVariant" }
+  ],
+  "artDirection": {
+    "label": "Calm utility",
+    "summary": "Clear indigo signals, deep blue-gray surfaces, compact rounded geometry, and direct interface feedback.",
+    "traits": {
+      "geometry": "compact-rounded",
+      "material": "tonal-surface",
+      "ornament": "minimal",
+      "contrast": "calm-clear",
+      "typography": "friendly-geometric",
+      "iconography": "material-filled",
+      "illustration": "functional",
+      "depth": "soft-elevation",
+      "texture": "flat",
+      "motion": "direct-responsive"
+    }
+  },
+  "typography": {
+    "families": {
+      "primary": "Inter",
+      "mono": "JetBrains Mono",
+      "accent": "Plus Jakarta Sans"
+    },
+    "styles": {
+      "display": { "familyRole": "accent", "fontSize": "36px", "fontWeight": "700", "lineHeight": "1.22", "letterSpacing": "-0.007em" },
+      "headline": { "familyRole": "accent", "fontSize": "28px", "fontWeight": "600", "lineHeight": "1.29", "letterSpacing": "0em" },
+      "title": { "familyRole": "accent", "fontSize": "22px", "fontWeight": "500", "lineHeight": "1.27", "letterSpacing": "0em" },
+      "body": { "familyRole": "primary", "fontSize": "16px", "fontWeight": "400", "lineHeight": "1.5", "letterSpacing": "0.031em" },
+      "bodyCompact": { "familyRole": "primary", "fontSize": "14px", "fontWeight": "400", "lineHeight": "1.43", "letterSpacing": "0.018em" },
+      "label": { "familyRole": "primary", "fontSize": "14px", "fontWeight": "500", "lineHeight": "1.43", "letterSpacing": "0.007em" },
+      "caption": { "familyRole": "primary", "fontSize": "12px", "fontWeight": "400", "lineHeight": "1.33", "letterSpacing": "0.033em" },
+      "codeInline": { "familyRole": "mono", "fontSize": "14px", "fontWeight": "500", "lineHeight": "1.43", "letterSpacing": "0em" },
+      "codeBlock": { "familyRole": "mono", "fontSize": "14px", "fontWeight": "500", "lineHeight": "1.55", "letterSpacing": "0em" },
+      "terminal": { "familyRole": "mono", "fontSize": "14px", "fontWeight": "500", "lineHeight": "1.45", "letterSpacing": "0.01em" },
+      "metric": { "familyRole": "accent", "fontSize": "24px", "fontWeight": "700", "lineHeight": "1.17", "letterSpacing": "0em" },
+      "editorialBody": { "familyRole": "primary", "fontSize": "18px", "fontWeight": "400", "lineHeight": "1.56", "letterSpacing": "0em" },
+      "editorialHeading": { "familyRole": "accent", "fontSize": "24px", "fontWeight": "600", "lineHeight": "1.33", "letterSpacing": "0em" },
+      "marketingHero": { "familyRole": "accent", "fontSize": "44px", "fontWeight": "700", "lineHeight": "1.1", "letterSpacing": "-0.01em" }
+    },
+    "specimens": [
+      {
+        "id": "marketingHero",
+        "label": "Signature",
+        "familyRole": "accent",
+        "sample": "A clear place to begin",
+        "fontSize": "36px",
+        "fontWeight": "700",
+        "lineHeight": "1.22",
+        "letterSpacing": "-0.007em"
+      },
+      {
+        "id": "body",
+        "label": "Interface",
+        "familyRole": "primary",
+        "sample": "Focused information with a calm, readable hierarchy.",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "1.5",
+        "letterSpacing": "0.031em"
+      },
+      {
+        "id": "terminal",
+        "label": "Technical",
+        "familyRole": "mono",
+        "sample": "STATUS / READY / 0123",
+        "fontSize": "14px",
+        "fontWeight": "500",
+        "lineHeight": "1.45",
+        "letterSpacing": "0.01em"
+      }
+    ]
+  }
+}

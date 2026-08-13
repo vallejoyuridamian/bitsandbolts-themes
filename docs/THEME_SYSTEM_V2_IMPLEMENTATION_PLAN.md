@@ -7,7 +7,7 @@ Authoritative owner: `bitsandbolts-themes`
 ## Ratified direction
 
 - `bitsandbolts-themes` exclusively owns reusable visual UI intent across every product and platform.
-- DTCG 2025.10 Format and Resolver are the portable token foundation. The separately versioned Bits & Bolts contract owns recipes, shapes, materials, art direction, assets, validation, fallbacks, overrides, and release metadata.
+- DTCG 2025.10 Format and Resolver are the portable token foundation. The separately versioned Bits & Bolts contract owns recipes, art direction, assets, validation, fallbacks, overrides, and release metadata.
 - Runtime selection is `familyId + mode + declared density`. Art direction is authored into a family, not exposed as an independent switch.
 - Normal creators begin with four identity color decisions. Themes resolve those inputs into 48 required semantic color roles.
 - Typography requires one primary family and one mono family; accent is optional. Authored fallback stacks are forbidden. Usage is expressed through semantic text styles.
@@ -34,7 +34,7 @@ The source repository is authoritative. Generated files are release artifacts, n
 
 The research-backed architecture is ratified. DTCG 2025.10 remains the pinned
 portable value/resolution substrate; the B&B contract owns the visual semantics
-that DTCG does not: recipes, art direction, shapes, material/depth, assets,
+that DTCG does not: recipes, art direction, assets,
 fallbacks, validation, provenance, and overrides. The mandatory target remains
 four creator identity colors, 48 core semantic color roles, primary and mono
 families with optional accent, fourteen semantic text styles, explicitly
@@ -44,8 +44,7 @@ Implemented in the first visible web reference:
 
 - `contractVersion 2.0.0` source beside v1, B&B family metadata, light/dark
   standard-density modes, four identity colors, 48 semantic colors, fourteen
-  text styles, art-direction traits, shape/material/depth/motion specimens, and
-  the declarative Button recipe;
+  text styles, art-direction traits, and the declarative Button recipe;
 - one generated catalog consumed by AppScreen Studio, showing one selected
   family and one light/dark mode at a time with the Button state specimen;
 - theme-owned Product Entry, Theme Gallery, Page Gallery, Button v2, typography,
@@ -63,14 +62,14 @@ This does **not** complete the research's first vertical slice. Pinned DTCG
 Format/Resolver conformance, deterministic provenance, complete license/glyph
 manifests, React/Compose/React Native Button adapters, packaged no-mirror
 delivery, platform fallback fixtures, cross-platform accessibility gates, and
-human approval on every target remain open. Cloud, Ocean, Slate, and Robot are
-still v1 families.
+human approval on every target remain open. Cloud is now v2; Ocean and Robot
+remain v1 families.
 
 ## Incremental slices and acceptance gates
 
 ### 1. B&B visual reference — web checkpoint implemented
 
-Deliver the v2 contract beside v1, B&B light/dark source data, the four identity colors, 48 semantic colors, real primary/mono/accent families, structured art direction, shape/material/depth/motion specimens, and the first theme-owned Button web recipe. Show only one family and one mode at a time in AppScreen Studio.
+Deliver the v2 contract beside v1, B&B light/dark source data, the four identity colors, 48 semantic colors, real primary/mono/accent families, structured art direction, and the first theme-owned Button web recipe. Show only one family and one mode at a time in AppScreen Studio.
 
 Gate:
 
@@ -125,7 +124,7 @@ Gate:
 
 ### 2. Complete the executable contract
 
-Expand the validator and normalized model to cover spacing, density, all fourteen text styles, shape topology, border, depth, material, icon/assets, full motion categories, interaction states, product-domain namespaces, platform capabilities, declared fallbacks, license/glyph manifests, and override records. Add pinned DTCG Resolver contexts and deterministic OKLCH-to-sRGB generation.
+Expand the validator and normalized model to cover spacing, density, all fourteen text styles, concrete component presentation, icon/assets, interaction states, product-domain namespaces, platform capabilities, declared fallbacks, license/glyph manifests, and override records. Add pinned DTCG Resolver contexts and deterministic OKLCH-to-sRGB generation.
 
 Gate:
 
@@ -182,7 +181,7 @@ Gate for each batch:
 
 ### 7. Migrate first-party families
 
-Move Cloud, Ocean, Slate, and Robot to v2 one family and mode pair at a time, followed by any remaining B&B recipes.
+Move Ocean and Robot to v2 one family and mode pair at a time, followed by any remaining B&B recipes.
 
 Gate for each family:
 

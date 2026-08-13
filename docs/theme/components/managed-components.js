@@ -1,5 +1,6 @@
 import { footerMarkup } from './footer.js';
 import { navbarMarkup } from './navbar.js';
+import { selectionControlsMarkup } from './select.js';
 
 /**
  * Theme-owned managed web component registry.
@@ -22,5 +23,12 @@ export const MANAGED_WEB_COMPONENTS = Object.freeze({
       modules: Object.freeze(['components/navbar.js'])
     }),
     render: navbarMarkup
+  }),
+  'selection-controls': Object.freeze({
+    dependencies: Object.freeze({
+      stylesheets: Object.freeze(['components/interface-primitives.css', 'components/selection-controls.css']),
+      modules: Object.freeze(['components/select.js'])
+    }),
+    render: selectionControlsMarkup
   })
 });

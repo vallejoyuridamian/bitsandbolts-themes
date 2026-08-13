@@ -4,6 +4,26 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-12) - Neo Brutalism and Nature families
+
+### What changed
+- Added Neo Brutalism and Nature as complete v2 light/dark theme families using
+  public browser-delivered preset colors, radius, and declared typography as
+  visual inputs.
+- Added independent B&B semantic mappings, Button recipes, interface roles,
+  catalog entries, and generated web, Android, React Native, docs, and showcase
+  outputs for both families.
+- Bundled DM Sans, Space Mono, Merriweather, and Source Code Pro from official
+  OFL sources. Montserrat remains the Nature interface family.
+
+### Acceptance and boundary
+- The owner accepted both families as useful initial checkpoints. The focused
+  Themes build passes with all six families.
+- TweakCN component source was not copied. Roles absent from the public presets
+  and all component interactions are independent Themes-owned interpretations.
+- Detailed browser refinement remains owner-owned. No push, publication,
+  deployment, or consumer mutation ran.
+
 ## Session wrap-up (2026-08-11) - Navbar second consumer accepted
 
 ### What changed

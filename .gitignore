@@ -1,4 +1,5 @@
 node_modules/
+HANDOFF.md
 .env
 .env.*
 # dist/ is intentionally committed — submodule consumers use it directly
