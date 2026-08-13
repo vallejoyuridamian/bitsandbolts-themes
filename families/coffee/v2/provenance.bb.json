@@ -57,10 +57,16 @@
   },
   "substitutions": [
     {
+      "role": "primary",
+      "declared": "DM Sans",
+      "bundled": "Ubuntu",
+      "reason": "Owner-selected typography trial."
+    },
+    {
       "role": "accent",
       "declared": "Georgia",
-      "bundled": "Merriweather",
-      "reason": "Georgia is proprietary and is not redistributable in this repository."
+      "bundled": "Rokkitt",
+      "reason": "Georgia is proprietary and is not redistributable in this repository; the owner selected Rokkitt for this typography trial."
     },
     {
       "role": "mono",
@@ -334,9 +340,9 @@
     },
     "typographyStylesAndSpecimens": {
       "families": {
-        "primary": "DM Sans",
+        "primary": "Ubuntu",
         "mono": "Source Code Pro",
-        "accent": "Merriweather"
+        "accent": "Rokkitt"
       },
       "styles": {
         "display": {

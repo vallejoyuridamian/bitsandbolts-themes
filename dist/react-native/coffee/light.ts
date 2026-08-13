@@ -119,8 +119,8 @@ export const fontWeight = {
 } as const;
 
 export const fontFamily = {
-  display: 'Merriweather',
-  body: 'DM Sans',
+  display: 'Rokkitt',
+  body: 'Ubuntu',
   mono: 'Source Code Pro',
   terminal: 'Source Code Pro'
 } as const;

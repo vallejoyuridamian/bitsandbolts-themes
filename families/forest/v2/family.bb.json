@@ -31,9 +31,9 @@
   },
   "typography": {
     "families": {
-      "primary": "Montserrat",
+      "primary": "Mulish",
       "mono": "Source Code Pro",
-      "accent": "Merriweather"
+      "accent": "Arima"
     },
     "styles": {
       "display": { "familyRole": "accent", "fontSize": "42px", "fontWeight": "700", "lineHeight": "1.12", "letterSpacing": "-0.015em" },
@@ -59,7 +59,7 @@
         "sample": "A grounded place to begin",
         "fontSize": "38px",
         "fontWeight": "700",
-        "lineHeight": "1.15",
+        "lineHeight": "1.08",
         "letterSpacing": "-0.015em"
       },
       {

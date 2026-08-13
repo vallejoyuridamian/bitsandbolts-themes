@@ -8,7 +8,7 @@
   --bb-marketing-chrome-accent: oklch(0.7272 0.0539 52.3320);
   --bb-marketing-chrome-on-accent: oklch(0.2721 0.0141 48.1783);
   --bb-marketing-chrome-navigation: oklch(0.9529 0.0146 102.4597);
-  --bb-marketing-chrome-meta-font: DM Sans;
+  --bb-marketing-chrome-meta-font: Ubuntu;
   --bb-marketing-hero-icon-glow: oklch(0.7272 0.0539 52.3320);
   --bb-marketing-portfolio-glow-far: #00FFFF;
   --bb-marketing-portfolio-panel: #111111;
@@ -61,8 +61,8 @@
   --bb-spacing-16: 4rem;
   --bb-spacing-20: 5rem;
   --bb-spacing-24: 6rem;
-  --bb-font-family-display: Merriweather;
-  --bb-font-family-body: DM Sans;
+  --bb-font-family-display: Rokkitt;
+  --bb-font-family-body: Ubuntu;
   --bb-font-family-mono: Source Code Pro;
   --bb-font-family-terminal: Source Code Pro;
   --bb-font-size-xs: 12px;

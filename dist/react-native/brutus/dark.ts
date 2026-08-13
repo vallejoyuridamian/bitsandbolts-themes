@@ -87,15 +87,15 @@ export const fontSize = {
 } as const;
 
 export const fontWeight = {
-  'regular': '400',
-  'medium': '500',
-  'semibold': '600',
-  'bold': '700'
+  'regular': '100',
+  'medium': '200',
+  'semibold': '400',
+  'bold': '400'
 } as const;
 
 export const fontFamily = {
-  display: 'DM Sans',
-  body: 'DM Sans',
+  display: 'Ultra',
+  body: 'Roboto Slab',
   mono: 'Space Mono',
   terminal: 'Space Mono'
 } as const;

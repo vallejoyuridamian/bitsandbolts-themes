@@ -7,10 +7,10 @@
   "font": {
     "family": {
       "display": {
-        "$value": "Lora"
+        "$value": "Syne"
       },
       "body": {
-        "$value": "DM Sans"
+        "$value": "Inter"
       },
       "mono": {
         "$value": "IBM Plex Mono"

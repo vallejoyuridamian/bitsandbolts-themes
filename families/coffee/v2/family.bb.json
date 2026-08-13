@@ -53,9 +53,9 @@
   },
   "typography": {
     "families": {
-      "primary": "DM Sans",
+      "primary": "Ubuntu",
       "mono": "Source Code Pro",
-      "accent": "Merriweather"
+      "accent": "Rokkitt"
     },
     "styles": {
       "display": {

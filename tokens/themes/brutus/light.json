@@ -1,10 +1,16 @@
 {
   "font": {
     "family": {
-      "display": { "$value": "DM Sans" },
-      "body": { "$value": "DM Sans" },
+      "display": { "$value": "Ultra" },
+      "body": { "$value": "Roboto Slab" },
       "mono": { "$value": "Space Mono" },
       "terminal": { "$value": "Space Mono" }
+    },
+    "weight": {
+      "regular": { "$value": "100" },
+      "medium": { "$value": "200" },
+      "semibold": { "$value": "400" },
+      "bold": { "$value": "400" }
     }
   },
   "radius": {

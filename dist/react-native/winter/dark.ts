@@ -119,8 +119,8 @@ export const fontWeight = {
 } as const;
 
 export const fontFamily = {
-  display: 'Lora',
-  body: 'DM Sans',
+  display: 'Syne',
+  body: 'Inter',
   mono: 'IBM Plex Mono',
   terminal: 'IBM Plex Mono'
 } as const;

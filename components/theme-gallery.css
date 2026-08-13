@@ -145,8 +145,10 @@
 .bb-theme-summary-card__header small {
   overflow: hidden;
   color: var(--bb-v2-color-content-tertiary);
+  font-family: var(--bb-v2-type-caption-family);
   font-size: 9px;
-  font-weight: 700;
+  font-weight: var(--bb-v2-type-caption-font-weight);
+  line-height: var(--bb-v2-type-caption-line-height);
   letter-spacing: 0.08em;
   text-overflow: ellipsis;
   text-transform: uppercase;
@@ -156,8 +158,10 @@
 .bb-theme-summary-card__header strong {
   overflow: hidden;
   color: var(--bb-v2-color-content-primary);
-  font-family: var(--bb-v2-font-family-primary);
+  font-family: var(--bb-v2-type-title-family);
   font-size: var(--bb-v2-type-title-font-size);
+  font-weight: var(--bb-v2-type-title-font-weight);
+  line-height: var(--bb-v2-type-title-line-height);
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -178,15 +182,16 @@
 .bb-theme-summary-card__headline {
   color: var(--bb-v2-color-content-primary);
   font-family: var(--bb-v2-font-family-accent);
+  font-synthesis: style;
   font-size: clamp(28px, 3vw, 40px);
-  font-weight: 700;
+  font-weight: var(--bb-v2-type-marketing-hero-font-weight);
   letter-spacing: -0.02em;
-  line-height: 1.05;
+  line-height: var(--bb-v2-type-marketing-hero-line-height);
 }
 
 .bb-theme-summary-card__headline em {
   font-style: italic;
-  font-weight: 400;
+  font-weight: inherit;
 }
 
 .bb-theme-summary-card__headline > span {
@@ -195,7 +200,9 @@
 
 .bb-theme-summary-card__summary {
   color: var(--bb-v2-color-content-secondary);
+  font-family: var(--bb-v2-type-body-compact-family);
   font-size: var(--bb-v2-type-body-compact-font-size);
+  font-weight: var(--bb-v2-type-body-compact-font-weight);
   line-height: var(--bb-v2-type-body-compact-line-height);
 }
 

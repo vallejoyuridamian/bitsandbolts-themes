@@ -1,10 +1,13 @@
 {
   "font": {
     "family": {
-      "display": { "$value": "Merriweather" },
-      "body": { "$value": "Montserrat" },
+      "display": { "$value": "Arima" },
+      "body": { "$value": "Mulish" },
       "mono": { "$value": "Source Code Pro" },
       "terminal": { "$value": "Source Code Pro" }
+    },
+    "lineHeight": {
+      "hero": { "$value": "1.08" }
     }
   },
   "marketing": {

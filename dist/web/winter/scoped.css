@@ -8,7 +8,7 @@
   --bb-marketing-chrome-accent: oklch(0.7227 0.1920 149.5793);
   --bb-marketing-chrome-on-accent: oklch(1.0000 0 0);
   --bb-marketing-chrome-navigation: oklch(0.3729 0.0306 259.7328);
-  --bb-marketing-chrome-meta-font: DM Sans;
+  --bb-marketing-chrome-meta-font: Inter;
   --bb-marketing-hero-icon-glow: oklch(0.7227 0.1920 149.5793);
   --bb-marketing-portfolio-glow-far: #00FFFF;
   --bb-marketing-portfolio-panel: #111111;
@@ -61,8 +61,8 @@
   --bb-spacing-16: 4rem;
   --bb-spacing-20: 5rem;
   --bb-spacing-24: 6rem;
-  --bb-font-family-display: Lora;
-  --bb-font-family-body: DM Sans;
+  --bb-font-family-display: Syne;
+  --bb-font-family-body: Inter;
   --bb-font-family-mono: IBM Plex Mono;
   --bb-font-family-terminal: IBM Plex Mono;
   --bb-font-size-xs: 12px;
@@ -193,7 +193,7 @@
   --bb-marketing-chrome-accent: oklch(0.7729 0.1535 163.2231);
   --bb-marketing-chrome-on-accent: oklch(0.2077 0.0398 265.7549);
   --bb-marketing-chrome-navigation: oklch(0.8717 0.0093 258.3382);
-  --bb-marketing-chrome-meta-font: DM Sans;
+  --bb-marketing-chrome-meta-font: Inter;
   --bb-marketing-hero-icon-glow: oklch(0.7729 0.1535 163.2231);
   --bb-marketing-portfolio-glow-far: #00FFFF;
   --bb-marketing-portfolio-panel: #111111;
@@ -246,8 +246,8 @@
   --bb-spacing-16: 4rem;
   --bb-spacing-20: 5rem;
   --bb-spacing-24: 6rem;
-  --bb-font-family-display: Lora;
-  --bb-font-family-body: DM Sans;
+  --bb-font-family-display: Syne;
+  --bb-font-family-body: Inter;
   --bb-font-family-mono: IBM Plex Mono;
   --bb-font-family-terminal: IBM Plex Mono;
   --bb-font-size-xs: 12px;

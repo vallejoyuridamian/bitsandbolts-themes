@@ -8,7 +8,7 @@
   --bb-marketing-chrome-accent: #2E7D32;
   --bb-marketing-chrome-on-accent: #FFFFFF;
   --bb-marketing-chrome-navigation: #3E2723;
-  --bb-marketing-chrome-meta-font: Montserrat;
+  --bb-marketing-chrome-meta-font: Mulish;
   --bb-marketing-hero-icon-glow: #2E7D32;
   --bb-marketing-portfolio-glow-far: #00FFFF;
   --bb-marketing-portfolio-panel: #111111;
@@ -57,8 +57,8 @@
   --bb-spacing-16: 64px;
   --bb-spacing-20: 80px;
   --bb-spacing-24: 96px;
-  --bb-font-family-display: Merriweather;
-  --bb-font-family-body: Montserrat;
+  --bb-font-family-display: Arima;
+  --bb-font-family-body: Mulish;
   --bb-font-family-mono: Source Code Pro;
   --bb-font-family-terminal: Source Code Pro;
   --bb-font-size-xs: 12px;
@@ -77,6 +77,7 @@
   --bb-font-line-height-tight: 1.25;
   --bb-font-line-height-normal: 1.5;
   --bb-font-line-height-relaxed: 1.75;
+  --bb-font-line-height-hero: 1.08;
   --bb-color-primary: #2E7D32;
   --bb-color-on-primary: #FFFFFF;
   --bb-color-primary-container: #E8F5E9;

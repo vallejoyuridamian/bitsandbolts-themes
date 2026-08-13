@@ -55,7 +55,20 @@
       "widest": "calc(var(--tracking-normal) + 0.1em)"
     }
   },
-  "substitutions": [],
+  "substitutions": [
+    {
+      "role": "primary",
+      "declared": "DM Sans",
+      "bundled": "Inter",
+      "reason": "Owner-selected typography trial."
+    },
+    {
+      "role": "accent",
+      "declared": "Lora",
+      "bundled": "Syne",
+      "reason": "Owner-selected typography trial."
+    }
+  ],
   "derived": {
     "modeMappings": {
       "light": {
@@ -321,9 +334,9 @@
     },
     "typographyStylesAndSpecimens": {
       "families": {
-        "primary": "DM Sans",
+        "primary": "Inter",
         "mono": "IBM Plex Mono",
-        "accent": "Lora"
+        "accent": "Syne"
       },
       "styles": {
         "display": {

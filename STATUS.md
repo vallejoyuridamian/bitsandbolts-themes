@@ -19,7 +19,9 @@ Last verified: 2026-08-13
   OKLCH foundation tokens and exhaustive per-family derivation manifests.
 - DM Sans, Space Mono, Merriweather, Source Code Pro, Lora, IBM Plex Mono,
   Poppins, Roboto Mono, Source Serif 4, and Antic are locally bundled from
-  official OFL sources. The generated web, Android, React Native,
+  official OFL sources. Arima, Mulish, Rokkitt, and Syne are also bundled under
+  OFL; Roboto Slab and Ultra are bundled under Apache 2.0, and Ubuntu under the
+  Ubuntu Font Licence 1.0. The generated web, Android, React Native,
   catalog, and showcase outputs include all nine families, and `pnpm build`
   passes.
 - The deep-research architecture is ratified: pinned DTCG 2025.10 values and
@@ -92,6 +94,11 @@ Last verified: 2026-08-13
   are global plan presentation and do not resolve from a family's status roles.
 
 ## Open Gates
+
+- Future font-library candidates, pending source and redistribution-license
+  verification: BBBouquet Bold (hippie/1970s or disco), Regalia Free Regular
+  (rock and roll), Super Monday (hippie/1970s), Hansen (cowboy), and NCAA
+  Wisconsin Badger Bold (cowboy).
 
 - The v2 web reference is not the full research-mandated vertical Button slice.
   Pinned DTCG Resolver validation, provenance/reproducibility manifests,

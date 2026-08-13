@@ -94,8 +94,8 @@ export const fontWeight = {
 } as const;
 
 export const fontFamily = {
-  display: 'Merriweather',
-  body: 'Montserrat',
+  display: 'Arima',
+  body: 'Mulish',
   mono: 'Source Code Pro',
   terminal: 'Source Code Pro'
 } as const;

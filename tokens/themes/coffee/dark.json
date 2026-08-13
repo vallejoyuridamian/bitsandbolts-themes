@@ -7,10 +7,10 @@
   "font": {
     "family": {
       "display": {
-        "$value": "Merriweather"
+        "$value": "Rokkitt"
       },
       "body": {
-        "$value": "DM Sans"
+        "$value": "Ubuntu"
       },
       "mono": {
         "$value": "Source Code Pro"

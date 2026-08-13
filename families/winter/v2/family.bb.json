@@ -53,9 +53,9 @@
   },
   "typography": {
     "families": {
-      "primary": "DM Sans",
+      "primary": "Inter",
       "mono": "IBM Plex Mono",
-      "accent": "Lora"
+      "accent": "Syne"
     },
     "styles": {
       "display": {
