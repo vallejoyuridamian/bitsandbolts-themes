@@ -1,0 +1,147 @@
+{
+  "id": "Button",
+  "contractVersion": "2.0.0",
+  "anatomy": [
+    "container",
+    "leadingIcon",
+    "label",
+    "trailingIcon",
+    "progress"
+  ],
+  "variants": {
+    "primary": {
+      "background": "color.interaction.action",
+      "foreground": "color.interaction.onAction",
+      "border": "color.interaction.action"
+    },
+    "secondary": {
+      "background": "color.interaction.selected",
+      "foreground": "color.interaction.onSelected",
+      "border": "color.border.default"
+    },
+    "quiet": {
+      "background": "transparent",
+      "foreground": "color.content.brand",
+      "border": "color.border.subtle"
+    },
+    "destructive": {
+      "background": "color.status.dangerSurface",
+      "foreground": "color.status.dangerContent",
+      "border": "color.status.dangerBorder"
+    }
+  },
+  "sizes": {
+    "small": {
+      "minHeight": "40px",
+      "paddingInline": "12px",
+      "gap": "6px",
+      "iconSize": "16px"
+    },
+    "medium": {
+      "minHeight": "44px",
+      "paddingInline": "16px",
+      "gap": "8px",
+      "iconSize": "18px"
+    },
+    "large": {
+      "minHeight": "50px",
+      "paddingInline": "20px",
+      "gap": "10px",
+      "iconSize": "20px"
+    }
+  },
+  "stateMatrix": [
+    "rest",
+    "hover",
+    "focusVisible",
+    "pressed",
+    "loading",
+    "disabled"
+  ],
+  "tokenBindings": {
+    "hoverBackground": "color.interaction.actionHover",
+    "pressedBackground": "color.interaction.actionPressed",
+    "disabledBackground": "color.surface.disabled",
+    "disabledForeground": "color.content.disabled",
+    "disabledBorder": "color.border.disabled",
+    "focusRing": "color.border.focusRing",
+    "focusRingOffset": "color.border.focusRingOffset"
+  },
+  "presentation": {
+    "shapeRadius": "var(--bb-radius-md)",
+    "shapeCut": "0px",
+    "depthRest": "var(--bb-shadow-base)",
+    "depthHover": "var(--bb-shadow-lg)",
+    "depthPressed": "none",
+    "transitionDuration": "120ms",
+    "transitionEasing": "linear",
+    "reducedDuration": "0ms",
+    "textTransform": "none",
+    "hoverTransform": "translate(-1px, -1px)",
+    "pressedTransform": "translate(2px, 2px)",
+    "loadingDuration": "700ms"
+  },
+  "accessibilityRequirements": {
+    "minimumTouchTargetWeb": "44px",
+    "minimumTouchTargetAndroid": "48dp",
+    "focusIndicatorMinimum": "2px",
+    "forcedColors": "native-boundaries"
+  },
+  "platformAdapters": [
+    "web",
+    "react",
+    "compose",
+    "react-native"
+  ],
+  "fallbacks": {
+    "roundedShape": "0.5rem rounded rectangle",
+    "softDepth": "theme border"
+  },
+  "specimenCases": [
+    {
+      "variant": "primary",
+      "state": "rest",
+      "label": "Primary"
+    },
+    {
+      "variant": "primary",
+      "state": "hover",
+      "label": "Hover"
+    },
+    {
+      "variant": "primary",
+      "state": "focusVisible",
+      "label": "Focus"
+    },
+    {
+      "variant": "primary",
+      "state": "pressed",
+      "label": "Pressed"
+    },
+    {
+      "variant": "primary",
+      "state": "loading",
+      "label": "Working"
+    },
+    {
+      "variant": "primary",
+      "state": "disabled",
+      "label": "Disabled"
+    },
+    {
+      "variant": "secondary",
+      "state": "rest",
+      "label": "Secondary"
+    },
+    {
+      "variant": "quiet",
+      "state": "rest",
+      "label": "Quiet"
+    },
+    {
+      "variant": "destructive",
+      "state": "rest",
+      "label": "Destructive"
+    }
+  ]
+}

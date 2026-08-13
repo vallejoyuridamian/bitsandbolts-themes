@@ -1,22 +1,26 @@
-# Bits and Bolts Themes — Status
+# Bits and Bolts Themes: Status
 
-Last verified: 2026-08-12
+Last verified: 2026-08-13
 
 ## Current Truth
 
-- Six themes are generated: `cloud`, `ocean`, `robot`, `bitsandbolts`,
-  `neobrutalism`, and `nature`, each with light and dark variants.
+- Nine v2 themes are generated: `cloud`, `bitsandbolts`, `brutus`, `forest`,
+  `winter`, `coffee`, `bubblegum`, `inferno`, and `sober`, each with light and
+  dark variants.
 - Cloud now implements the v2 family contract from the released Android visual
   truth: indigo/violet/sky semantic colors, Plus Jakarta Sans display, Inter
   body/UI, Material Filled icons, and a complete gallery face matching the Bits
   & Bolts contract coverage. Owner visual acceptance is pending.
-- Neo Brutalism and Nature implement the v2 family contract from browser-delivered
-  public preset data. Their source colors, light/dark modes, radius, and declared
-  font families are retained; additional B&B semantic roles and component
-  interactions are explicitly independent Themes-owned mappings.
-- DM Sans, Space Mono, Merriweather, and Source Code Pro are locally bundled
-  from their official OFL sources. The generated web, Android, React Native,
-  catalog, and showcase outputs include both new families, and `pnpm build`
+- Brutus and Forest implement the v2 family contract from their authoritative
+  family foundations. Their colors, light/dark modes, radius, and declared font
+  families are retained; additional B&B semantic roles and component
+  interactions are explicitly independent Themes-owned mappings. Winter,
+  Coffee, Bubblegum, Inferno, and Sober follow the same boundary with exact
+  OKLCH foundation tokens and exhaustive per-family derivation manifests.
+- DM Sans, Space Mono, Merriweather, Source Code Pro, Lora, IBM Plex Mono,
+  Poppins, Roboto Mono, Source Serif 4, and Antic are locally bundled from
+  official OFL sources. The generated web, Android, React Native,
+  catalog, and showcase outputs include all nine families, and `pnpm build`
   passes.
 - The deep-research architecture is ratified: pinned DTCG 2025.10 values and
   resolution plus a separately versioned B&B contract for recipes, art
@@ -35,8 +39,8 @@ Last verified: 2026-08-12
 - Themes now also owns canonical workspace-background, Scrollbar, Select, shared
   interaction-state, and Menu roles/recipes. AppScreen consumes their classes
   while retaining selection, commands, keyboard behavior, invocation, and
-  positioning. Ocean and Robot declare explicit v1 fallbacks;
-  generation rejects any family without the complete interface role set.
+  positioning. Generation rejects any family without the complete interface
+  role set.
 - Product Entry, Theme Gallery, Page Gallery, Button v2, typography, and the
   shared Selection Controls recipe are canonical theme-owned web components.
 - Product Entry now supports declarative managed landing documents through
@@ -102,7 +106,6 @@ Last verified: 2026-08-12
   preserved Pages rollback source and `mywebsite/public/theme/` mirror remain
   migration debt; the main React website and AppScreen's legacy Studio
   stylesheet also remain app-local visual debt.
-- Ocean and Robot remain v1 until migrated one family at a time.
 - The former Slate family, catalog entry, and generated outputs are removed with
   no alias. Universal Clipboard remains untouched; README.md carries the friendly
   note for its later one-ID change from `slate` to `cloud`.
@@ -111,9 +114,8 @@ Last verified: 2026-08-12
 
 ## Next Boundary
 
-- Neo Brutalism and Nature are accepted as useful initial family checkpoints.
-  Resume with owner visual review and bounded token or component corrections
-  before importing another family.
+- All nine families and the compact gallery are ready for owner visual review.
+  Resume with bounded token or component corrections from that rendered state.
 
 - The declarative Navbar, Studio auto-hide, and balanced narrow linked-Footer
   grid are accepted; compact-rule deduplication remains optional.

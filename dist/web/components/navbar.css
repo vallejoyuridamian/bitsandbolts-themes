@@ -100,6 +100,18 @@
   color: var(--bb-color-primary);
 }
 
+.bb-navbar__brand-mark--monochrome {
+  background: currentColor;
+  -webkit-mask-image: var(--bb-navbar-brand-mark-image);
+  mask-image: var(--bb-navbar-brand-mark-image);
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
 .bb-navbar__brand > span:last-child {
   display: flex;
   flex-direction: column;

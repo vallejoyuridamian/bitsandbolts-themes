@@ -70,6 +70,10 @@ body.bb-product-entry {
   padding-block: clamp(1rem, 2.5vw, 2rem);
 }
 
+.bb-product-hero .bb-hero__heading-line:nth-child(3) {
+  color: var(--bb-color-primary);
+}
+
 .bb-product-section h2,
 .bb-product-plan h2,
 .bb-guest-gate h2 {
@@ -272,6 +276,10 @@ body.bb-product-entry {
   font-size: clamp(1.5rem, 3.2vw, 2rem);
   line-height: normal;
   letter-spacing: 0.1rem;
+}
+
+.bb-product-section--identity {
+  scroll-margin-top: 0;
 }
 
 .bb-product-section--identity .bb-hero__heading-line {

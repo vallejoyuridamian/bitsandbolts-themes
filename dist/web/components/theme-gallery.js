@@ -1,6 +1,5 @@
 import { footerMarkup, synchronizeFooterYear } from './footer.js';
 import { navbarMarkup } from './navbar.js';
-import { installSelectController, selectionControlsMarkup } from './select.js';
 
 const THEME_GALLERY_SCROLLBAR_VARIABLES = Object.freeze([
   '--bb-interface-scrollbar-thumb',
@@ -268,6 +267,70 @@ function selectedTheme(catalog, themeId = '') {
 
 function selectedMode(mode = '') {
   return REQUIRED_MODES.includes(mode) ? mode : 'dark';
+}
+
+function themeSummaryIdentityMarkup(mode) {
+  return mode.identity.map((entry) => `
+    <span class="bb-theme-summary-card__identity" data-theme-v2-identity="${escapeHtml(entry.id)}">
+      <span aria-hidden="true"></span>
+      <small>${escapeHtml(entry.label)}</small>
+    </span>
+  `).join('');
+}
+
+function themeSummaryActionsMarkup(theme) {
+  const primary = theme.id === 'bitsandbolts'
+    ? '<span class="bb-btn bb-btn-neon">Primary</span>'
+    : '<span class="bb-v2-button">Primary</span>';
+  return `
+    <span class="bb-theme-summary-card__actions" aria-hidden="true">
+      ${primary}
+      <span class="bb-v2-button bb-v2-button--secondary">Secondary</span>
+    </span>
+  `;
+}
+
+function themeSummaryCardMarkup(theme, mode) {
+  if (!theme.v2) return '';
+  return `
+    <button
+      class="bb-theme-summary-card"
+      type="button"
+      data-theme-gallery-open="${escapeHtml(theme.id)}"
+      data-theme-preview-id="${escapeHtml(theme.id)}"
+      data-theme-preview-mode="${escapeHtml(mode)}"
+      aria-label="Open ${escapeHtml(theme.label)} theme"
+    >
+      <span class="bb-theme-summary-card__header">
+        <span>
+          <small>${escapeHtml(theme.v2.artDirection.label)}</small>
+          <strong>${escapeHtml(theme.label)}</strong>
+        </span>
+        <span class="ms" aria-hidden="true">arrow_forward</span>
+      </span>
+      <span class="bb-theme-summary-card__hero">
+        <span class="bb-theme-summary-card__headline">
+          Place the <em>accent</em><br>
+          where it <span>matters.</span>
+        </span>
+        <span class="bb-theme-summary-card__summary">${escapeHtml(theme.v2.artDirection.summary)}</span>
+        ${themeSummaryActionsMarkup(theme)}
+      </span>
+      <span class="bb-theme-summary-card__identities" aria-hidden="true">
+        ${themeSummaryIdentityMarkup(theme.v2.modes[mode])}
+      </span>
+    </button>
+  `;
+}
+
+function themeSummaryGridMarkup(catalog, mode) {
+  return `
+    <section class="bb-theme-summary" aria-label="Theme families">
+      <div class="bb-theme-summary__grid">
+        ${catalog.themes.map((theme) => themeSummaryCardMarkup(theme, mode)).join('')}
+      </div>
+    </section>
+  `;
 }
 
 function colorMarkup(variables = {}) {
@@ -592,42 +655,25 @@ function modeMarkup(theme, mode) {
   `;
 }
 
-function themeSelectorMarkup(catalog, theme, mode) {
-  return selectionControlsMarkup({
-    ariaLabel: 'Theme preview selection',
-    controls: [{
-      dataAttribute: 'data-theme-gallery-theme',
-      id: 'themeGalleryThemeSelector',
-      label: 'Theme',
-      name: 'themeGalleryTheme',
-      options: catalog.themes.map((candidate) => ({ label: candidate.label, value: candidate.id })),
-      value: theme.id
-    }, {
-      dataAttribute: 'data-theme-gallery-mode',
-      id: 'themeGalleryModeSelector',
-      label: 'Variant',
-      name: 'themeGalleryMode',
-      options: REQUIRED_MODES.map((candidate) => ({
-        label: candidate[0].toUpperCase() + candidate.slice(1),
-        value: candidate
-      })),
-      value: mode
-    }]
-  });
-}
-
-export function themeGalleryControlsMarkup(catalog, selection = {}) {
-  const theme = selectedTheme(catalog, selection.themeId);
-  const mode = selectedMode(selection.mode);
-  return `<div class="bb-inspection-toolbar">${themeSelectorMarkup(catalog, theme, mode)}</div>`;
+export function themeGalleryControlsMarkup() {
+  return '';
 }
 
 export function themeGalleryMarkup(catalog, selection = {}) {
-  const theme = selectedTheme(catalog, selection.themeId);
   const mode = selectedMode(selection.mode);
+  const theme = catalog.themes.find((candidate) => candidate.id === selection.themeId);
+  if (!theme) return themeSummaryGridMarkup(catalog, mode);
   return `
-    <div class="bb-theme-gallery__catalog">
-      ${theme.v2 ? v2ModeMarkup(theme, mode) : modeMarkup(theme, mode)}
+    <div class="bb-theme-detail">
+      <header class="bb-theme-detail__navigation">
+        <button class="bb-btn bb-btn-text bb-theme-detail__back" type="button" data-theme-gallery-home>
+          <span class="ms" aria-hidden="true">arrow_back</span>
+          Back to themes
+        </button>
+      </header>
+      <div class="bb-theme-gallery__catalog">
+        ${theme.v2 ? v2ModeMarkup(theme, mode) : modeMarkup(theme, mode)}
+      </div>
     </div>
   `;
 }
@@ -680,13 +726,14 @@ export function createThemeGalleryController({
   catalogUrl = '/theme/catalog.json',
   controlsHost,
   fetchImpl = (...args) => globalThis.fetch(...args),
-  host
+  host,
+  modeToggle
 } = {}) {
   let catalogPromise = null;
   let renderedCatalog = null;
   let selection = Object.freeze({ mode: 'dark', themeId: '' });
-  let selectionListenerInstalled = false;
-  let selectController = null;
+  let navigationListenerInstalled = false;
+  let modeToggleListenerInstalled = false;
 
   async function loadCatalog() {
     const response = await fetchImpl(catalogUrl, { credentials: 'same-origin' });
@@ -695,55 +742,74 @@ export function createThemeGalleryController({
   }
 
   function renderCatalog(catalog) {
-    selectController?.close();
-    const theme = selectedTheme(catalog, selection.themeId);
-    selection = Object.freeze({ mode: selectedMode(selection.mode), themeId: theme.id });
-    controlsHost.innerHTML = themeGalleryControlsMarkup(catalog, selection);
+    const themeId = catalog.themes.some((theme) => theme.id === selection.themeId) ? selection.themeId : '';
+    selection = Object.freeze({ mode: selectedMode(selection.mode), themeId });
+    if (controlsHost) controlsHost.innerHTML = '';
     host.innerHTML = themeGalleryMarkup(catalog, selection);
     applyThemeGalleryVariables(host, catalog, selection);
+    if (modeToggle) {
+      const nextMode = selection.mode === 'dark' ? 'light' : 'dark';
+      const icon = modeToggle.querySelector?.('[data-theme-gallery-mode-icon]');
+      if (icon) icon.textContent = nextMode === 'light' ? 'light_mode' : 'dark_mode';
+      modeToggle.dataset.themeGalleryMode = selection.mode;
+      modeToggle.setAttribute('aria-label', `Switch to ${nextMode} theme previews`);
+      modeToggle.setAttribute('title', `Switch to ${nextMode} theme previews`);
+    }
     synchronizeFooterYear(host);
   }
 
-  function installSelectionListener() {
-    if (selectionListenerInstalled || !controlsHost?.addEventListener) return;
-    selectController = installSelectController(controlsHost);
-    controlsHost.addEventListener('change', (event) => {
-      const control = event.target;
-      let focusSelector = '';
-      if (control?.matches?.('[data-theme-gallery-theme]')) {
-        selection = Object.freeze({ ...selection, themeId: String(control.value || '') });
-        focusSelector = '[data-bb-select-trigger="themeGalleryThemeSelector"]';
-      } else if (control?.matches?.('[data-theme-gallery-mode]')) {
-        selection = Object.freeze({ ...selection, mode: String(control.value || '') });
-        focusSelector = '[data-bb-select-trigger="themeGalleryModeSelector"]';
-      } else {
-        return;
-      }
-      if (renderedCatalog) {
+  function installNavigationListener() {
+    if (navigationListenerInstalled || !host?.addEventListener) return;
+    host.addEventListener('click', (event) => {
+      const open = event.target?.closest?.('[data-theme-gallery-open]');
+      const home = event.target?.closest?.('[data-theme-gallery-home]');
+      if (!renderedCatalog || (!open && !home)) return;
+      event.preventDefault();
+      if (open) {
+        selection = Object.freeze({ ...selection, themeId: String(open.dataset.themeGalleryOpen || '') });
         renderCatalog(renderedCatalog);
-        controlsHost.querySelector?.(focusSelector)?.focus?.();
+        host.querySelector?.('[data-theme-gallery-home]')?.focus?.();
+      } else if (home) {
+        const previousThemeId = selection.themeId;
+        selection = Object.freeze({ ...selection, themeId: '' });
+        renderCatalog(renderedCatalog);
+        host.querySelector?.(`[data-theme-gallery-open="${previousThemeId}"]`)?.focus?.();
       }
     });
-    selectionListenerInstalled = true;
+    navigationListenerInstalled = true;
+  }
+
+  function installModeToggleListener() {
+    if (modeToggleListenerInstalled || !modeToggle?.addEventListener) return;
+    modeToggle.addEventListener('click', () => {
+      if (!renderedCatalog) return;
+      selection = Object.freeze({
+        ...selection,
+        mode: selection.mode === 'dark' ? 'light' : 'dark'
+      });
+      renderCatalog(renderedCatalog);
+    });
+    modeToggleListenerInstalled = true;
   }
 
   async function render() {
-    if (!host || !controlsHost) return null;
+    if (!host) return null;
     if (renderedCatalog) return renderedCatalog;
     if (!catalogPromise) catalogPromise = loadCatalog().catch((error) => {
       catalogPromise = null;
       throw error;
     });
     host.innerHTML = '<div class="bb-theme-gallery__loading" role="status">Loading first-party themes…</div>';
-    controlsHost.innerHTML = '';
+    if (controlsHost) controlsHost.innerHTML = '';
     try {
       const catalog = await catalogPromise;
       renderedCatalog = catalog;
-      installSelectionListener();
+      installNavigationListener();
+      installModeToggleListener();
       renderCatalog(catalog);
       return catalog;
     } catch (error) {
-      controlsHost.innerHTML = '';
+      if (controlsHost) controlsHost.innerHTML = '';
       host.innerHTML = `<div class="bb-theme-gallery__error" role="alert">${escapeHtml(error?.message || 'Theme catalog could not be loaded.')}</div>`;
       throw error;
     }

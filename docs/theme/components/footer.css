@@ -61,6 +61,19 @@
   object-fit: contain;
 }
 
+.bb-footer__brand-mark--monochrome {
+  height: 40px;
+  background: currentColor;
+  -webkit-mask-image: var(--bb-footer-brand-mark-image);
+  mask-image: var(--bb-footer-brand-mark-image);
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
 .bb-footer__brand > span {
   display: flex;
   flex-direction: column;

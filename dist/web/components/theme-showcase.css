@@ -13,7 +13,7 @@ body {
 
 body.bb-theme-showcase {
   display: grid;
-  grid-template-rows: auto auto minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
   overflow: hidden;
   color: var(--bb-color-on-background);
   background: var(--bb-interface-workspace-background);
@@ -52,53 +52,13 @@ body.bb-theme-showcase {
   font-size: var(--bb-font-size-sm);
 }
 
-.bb-theme-showcase__controls {
-  border-bottom: 1px solid var(--bb-color-outline-variant);
-  background: var(--bb-color-background);
-}
-
-.bb-theme-showcase__controls .bb-inspection-toolbar {
-  width: 100%;
-  padding: var(--bb-spacing-2) var(--bb-spacing-4);
-}
-
-.bb-theme-showcase__controls .bb-selection-controls {
-  width: 100%;
-  max-width: 720px;
-  flex-direction: row;
-  gap: var(--bb-spacing-2);
-}
-
-.bb-theme-showcase__controls .bb-selection-control {
-  width: auto;
-  min-width: 0;
-  max-width: none;
-  flex: 1 1 0;
-  gap: var(--bb-spacing-1);
-}
-
-.bb-theme-showcase__controls .bb-selection-control .bb-select__trigger {
-  min-width: 0;
-  min-height: 36px;
-}
-
 .bb-theme-showcase__gallery {
   min-height: 0;
 }
 
 @media (max-width: 640px) {
-  .bb-theme-showcase__header,
-  .bb-theme-showcase__controls .bb-inspection-toolbar {
+  .bb-theme-showcase__header {
     padding-right: var(--bb-spacing-4);
     padding-left: var(--bb-spacing-4);
-  }
-
-  .bb-theme-showcase__controls .bb-selection-controls {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .bb-theme-showcase__controls .bb-selection-control {
-    width: 100%;
   }
 }

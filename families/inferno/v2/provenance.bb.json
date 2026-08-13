@@ -1,0 +1,701 @@
+{
+  "schemaVersion": 1,
+  "preserved": {
+    "colors": "Every authoritative light and dark color is retained verbatim as OKLCH in the family token source. Foundation roles are also generated as cross-platform color extras.",
+    "fontDeclarations": {
+      "sans": "Inter, sans-serif",
+      "serif": "Source Serif 4, serif",
+      "mono": "JetBrains Mono, monospace"
+    },
+    "radius": "0.75rem",
+    "shadows": {
+      "shadow-2xs": {
+        "light": "0px 1px 3px 0px hsl(0 0% 0% / 0.05)",
+        "dark": "0px 1px 3px 0px hsl(0 0% 0% / 0.05)"
+      },
+      "shadow-xs": {
+        "light": "0px 1px 3px 0px hsl(0 0% 0% / 0.05)",
+        "dark": "0px 1px 3px 0px hsl(0 0% 0% / 0.05)"
+      },
+      "shadow-sm": {
+        "light": "0px 1px 3px 0px hsl(0 0% 0% / 0.10), 0px 1px 2px -1px hsl(0 0% 0% / 0.10)",
+        "dark": "0px 1px 3px 0px hsl(0 0% 0% / 0.10), 0px 1px 2px -1px hsl(0 0% 0% / 0.10)"
+      },
+      "shadow": {
+        "light": "0px 1px 3px 0px hsl(0 0% 0% / 0.10), 0px 1px 2px -1px hsl(0 0% 0% / 0.10)",
+        "dark": "0px 1px 3px 0px hsl(0 0% 0% / 0.10), 0px 1px 2px -1px hsl(0 0% 0% / 0.10)"
+      },
+      "shadow-md": {
+        "light": "0px 1px 3px 0px hsl(0 0% 0% / 0.10), 0px 2px 4px -1px hsl(0 0% 0% / 0.10)",
+        "dark": "0px 1px 3px 0px hsl(0 0% 0% / 0.10), 0px 2px 4px -1px hsl(0 0% 0% / 0.10)"
+      },
+      "shadow-lg": {
+        "light": "0px 1px 3px 0px hsl(0 0% 0% / 0.10), 0px 4px 6px -1px hsl(0 0% 0% / 0.10)",
+        "dark": "0px 1px 3px 0px hsl(0 0% 0% / 0.10), 0px 4px 6px -1px hsl(0 0% 0% / 0.10)"
+      },
+      "shadow-xl": {
+        "light": "0px 1px 3px 0px hsl(0 0% 0% / 0.10), 0px 8px 10px -1px hsl(0 0% 0% / 0.10)",
+        "dark": "0px 1px 3px 0px hsl(0 0% 0% / 0.10), 0px 8px 10px -1px hsl(0 0% 0% / 0.10)"
+      },
+      "shadow-2xl": {
+        "light": "0px 1px 3px 0px hsl(0 0% 0% / 0.25)",
+        "dark": "0px 1px 3px 0px hsl(0 0% 0% / 0.25)"
+      }
+    },
+    "spacing": {
+      "light": "0.25rem",
+      "dark": "0.25rem"
+    },
+    "tracking": {
+      "normal": "0em",
+      "tighter": "calc(var(--tracking-normal) - 0.05em)",
+      "tight": "calc(var(--tracking-normal) - 0.025em)",
+      "wide": "calc(var(--tracking-normal) + 0.025em)",
+      "wider": "calc(var(--tracking-normal) + 0.05em)",
+      "widest": "calc(var(--tracking-normal) + 0.1em)"
+    }
+  },
+  "substitutions": [],
+  "derived": {
+    "modeMappings": {
+      "light": {
+        "preservedFoundationColors": {
+          "foundation.light.background": "oklch(0.9383 0.0042 236.4993)",
+          "foundation.light.foreground": "oklch(0.3211 0 0)",
+          "foundation.light.card": "oklch(1.0000 0 0)",
+          "foundation.light.card-foreground": "oklch(0.3211 0 0)",
+          "foundation.light.popover": "oklch(1.0000 0 0)",
+          "foundation.light.popover-foreground": "oklch(0.3211 0 0)",
+          "foundation.light.primary": "oklch(0.6397 0.1720 36.4421)",
+          "foundation.light.primary-foreground": "oklch(1.0000 0 0)",
+          "foundation.light.secondary": "oklch(0.9670 0.0029 264.5419)",
+          "foundation.light.secondary-foreground": "oklch(0.4461 0.0263 256.8018)",
+          "foundation.light.muted": "oklch(0.9846 0.0017 247.8389)",
+          "foundation.light.muted-foreground": "oklch(0.5510 0.0234 264.3637)",
+          "foundation.light.accent": "oklch(0.9119 0.0222 243.8174)",
+          "foundation.light.accent-foreground": "oklch(0.3791 0.1378 265.5222)",
+          "foundation.light.destructive": "oklch(0.6368 0.2078 25.3313)",
+          "foundation.light.destructive-foreground": "oklch(1.0000 0 0)",
+          "foundation.light.border": "oklch(0.9022 0.0052 247.8822)",
+          "foundation.light.input": "oklch(0.9700 0.0029 264.5420)",
+          "foundation.light.ring": "oklch(0.6397 0.1720 36.4421)",
+          "foundation.light.chart-1": "oklch(0.7156 0.0605 248.6845)",
+          "foundation.light.chart-2": "oklch(0.7875 0.0917 35.9616)",
+          "foundation.light.chart-3": "oklch(0.5778 0.0759 254.1573)",
+          "foundation.light.chart-4": "oklch(0.5016 0.0849 259.4902)",
+          "foundation.light.chart-5": "oklch(0.4241 0.0952 264.0306)",
+          "foundation.light.sidebar": "oklch(0.9030 0.0046 258.3257)",
+          "foundation.light.sidebar-foreground": "oklch(0.3211 0 0)",
+          "foundation.light.sidebar-primary": "oklch(0.6397 0.1720 36.4421)",
+          "foundation.light.sidebar-primary-foreground": "oklch(1.0000 0 0)",
+          "foundation.light.sidebar-accent": "oklch(0.9119 0.0222 243.8174)",
+          "foundation.light.sidebar-accent-foreground": "oklch(0.3791 0.1378 265.5222)",
+          "foundation.light.sidebar-border": "oklch(0.9276 0.0058 264.5313)",
+          "foundation.light.sidebar-ring": "oklch(0.6397 0.1720 36.4421)"
+        },
+        "derivedSemanticMappings": {
+          "color.primary": "foundation.light.primary",
+          "color.onPrimary": "foundation.light.primary-foreground",
+          "color.primaryContainer": "foundation.light.accent",
+          "color.onPrimaryContainer": "foundation.light.accent-foreground",
+          "color.secondary": "foundation.light.secondary",
+          "color.onSecondary": "foundation.light.secondary-foreground",
+          "color.secondaryContainer": "foundation.light.muted",
+          "color.onSecondaryContainer": "foundation.light.muted-foreground",
+          "color.tertiary": "foundation.light.accent",
+          "color.onTertiary": "foundation.light.accent-foreground",
+          "color.tertiaryContainer": "foundation.light.muted",
+          "color.onTertiaryContainer": "foundation.light.muted-foreground",
+          "color.error": "foundation.light.destructive",
+          "color.onError": "foundation.light.destructive-foreground",
+          "color.errorContainer": "foundation.light.destructive",
+          "color.onErrorContainer": "foundation.light.destructive-foreground",
+          "color.background": "foundation.light.background",
+          "color.onBackground": "foundation.light.foreground",
+          "color.surface": "foundation.light.card",
+          "color.onSurface": "foundation.light.card-foreground",
+          "color.surfaceVariant": "foundation.light.muted",
+          "color.onSurfaceVariant": "foundation.light.muted-foreground",
+          "color.outline": "foundation.light.border",
+          "color.outlineVariant": "foundation.light.input",
+          "color.inverseSurface": "foundation.light.foreground",
+          "color.inverseOnSurface": "foundation.light.background",
+          "color.inversePrimary": "foundation.light.primary",
+          "color.surfaceTint": "foundation.light.primary",
+          "color.scrim": "#000000",
+          "color.warning": "foundation.light.chart-4",
+          "color.onWarning": "derived black or white from warning lightness",
+          "color.warningContainer": "foundation.light.muted",
+          "color.onWarningContainer": "foundation.light.muted-foreground",
+          "color.success": "foundation.light.chart-2",
+          "color.onSuccess": "derived black or white from success lightness",
+          "color.successContainer": "foundation.light.accent",
+          "color.onSuccessContainer": "foundation.light.accent-foreground",
+          "color.terminalBackground": "color.inverseSurface",
+          "color.terminalForeground": "color.inverseOnSurface",
+          "color.terminalMuted": "color.onSurfaceVariant",
+          "color.terminalAccent": "color.primary",
+          "color.terminalBorder": "color.outline"
+        }
+      },
+      "dark": {
+        "preservedFoundationColors": {
+          "foundation.dark.background": "oklch(0.2598 0.0306 262.6666)",
+          "foundation.dark.foreground": "oklch(0.9219 0 0)",
+          "foundation.dark.card": "oklch(0.3106 0.0301 268.6365)",
+          "foundation.dark.card-foreground": "oklch(0.9219 0 0)",
+          "foundation.dark.popover": "oklch(0.2900 0.0249 268.3986)",
+          "foundation.dark.popover-foreground": "oklch(0.9219 0 0)",
+          "foundation.dark.primary": "oklch(0.6397 0.1720 36.4421)",
+          "foundation.dark.primary-foreground": "oklch(1.0000 0 0)",
+          "foundation.dark.secondary": "oklch(0.3095 0.0266 266.7132)",
+          "foundation.dark.secondary-foreground": "oklch(0.9219 0 0)",
+          "foundation.dark.muted": "oklch(0.3095 0.0266 266.7132)",
+          "foundation.dark.muted-foreground": "oklch(0.7155 0 0)",
+          "foundation.dark.accent": "oklch(0.3380 0.0589 267.5867)",
+          "foundation.dark.accent-foreground": "oklch(0.8823 0.0571 254.1284)",
+          "foundation.dark.destructive": "oklch(0.6368 0.2078 25.3313)",
+          "foundation.dark.destructive-foreground": "oklch(1.0000 0 0)",
+          "foundation.dark.border": "oklch(0.3843 0.0301 269.7337)",
+          "foundation.dark.input": "oklch(0.3843 0.0301 269.7337)",
+          "foundation.dark.ring": "oklch(0.6397 0.1720 36.4421)",
+          "foundation.dark.chart-1": "oklch(0.7156 0.0605 248.6845)",
+          "foundation.dark.chart-2": "oklch(0.7693 0.0876 34.1875)",
+          "foundation.dark.chart-3": "oklch(0.5778 0.0759 254.1573)",
+          "foundation.dark.chart-4": "oklch(0.5016 0.0849 259.4902)",
+          "foundation.dark.chart-5": "oklch(0.4241 0.0952 264.0306)",
+          "foundation.dark.sidebar": "oklch(0.3100 0.0283 267.7408)",
+          "foundation.dark.sidebar-foreground": "oklch(0.9219 0 0)",
+          "foundation.dark.sidebar-primary": "oklch(0.6397 0.1720 36.4421)",
+          "foundation.dark.sidebar-primary-foreground": "oklch(1.0000 0 0)",
+          "foundation.dark.sidebar-accent": "oklch(0.3380 0.0589 267.5867)",
+          "foundation.dark.sidebar-accent-foreground": "oklch(0.8823 0.0571 254.1284)",
+          "foundation.dark.sidebar-border": "oklch(0.3843 0.0301 269.7337)",
+          "foundation.dark.sidebar-ring": "oklch(0.6397 0.1720 36.4421)"
+        },
+        "derivedSemanticMappings": {
+          "color.primary": "foundation.dark.primary",
+          "color.onPrimary": "foundation.dark.primary-foreground",
+          "color.primaryContainer": "foundation.dark.accent",
+          "color.onPrimaryContainer": "foundation.dark.accent-foreground",
+          "color.secondary": "foundation.dark.secondary",
+          "color.onSecondary": "foundation.dark.secondary-foreground",
+          "color.secondaryContainer": "foundation.dark.muted",
+          "color.onSecondaryContainer": "foundation.dark.muted-foreground",
+          "color.tertiary": "foundation.dark.accent",
+          "color.onTertiary": "foundation.dark.accent-foreground",
+          "color.tertiaryContainer": "foundation.dark.muted",
+          "color.onTertiaryContainer": "foundation.dark.muted-foreground",
+          "color.error": "foundation.dark.destructive",
+          "color.onError": "foundation.dark.destructive-foreground",
+          "color.errorContainer": "foundation.dark.destructive",
+          "color.onErrorContainer": "foundation.dark.destructive-foreground",
+          "color.background": "foundation.dark.background",
+          "color.onBackground": "foundation.dark.foreground",
+          "color.surface": "foundation.dark.card",
+          "color.onSurface": "foundation.dark.card-foreground",
+          "color.surfaceVariant": "foundation.dark.muted",
+          "color.onSurfaceVariant": "foundation.dark.muted-foreground",
+          "color.outline": "foundation.dark.border",
+          "color.outlineVariant": "foundation.dark.input",
+          "color.inverseSurface": "foundation.dark.foreground",
+          "color.inverseOnSurface": "foundation.dark.background",
+          "color.inversePrimary": "foundation.dark.primary",
+          "color.surfaceTint": "foundation.dark.primary",
+          "color.scrim": "#000000",
+          "color.warning": "foundation.dark.chart-4",
+          "color.onWarning": "derived black or white from warning lightness",
+          "color.warningContainer": "foundation.dark.muted",
+          "color.onWarningContainer": "foundation.dark.muted-foreground",
+          "color.success": "foundation.dark.chart-2",
+          "color.onSuccess": "derived black or white from success lightness",
+          "color.successContainer": "foundation.dark.accent",
+          "color.onSuccessContainer": "foundation.dark.accent-foreground",
+          "color.terminalBackground": "color.inverseSurface",
+          "color.terminalForeground": "color.inverseOnSurface",
+          "color.terminalMuted": "color.onSurfaceVariant",
+          "color.terminalAccent": "color.primary",
+          "color.terminalBorder": "color.outline"
+        }
+      }
+    },
+    "radiusScale": {
+      "none": "0px",
+      "xs": "source radius x 0.25",
+      "sm": "source radius x 0.5",
+      "md": "exact source radius",
+      "lg": "source radius x 1.5",
+      "xl": "source radius x 2",
+      "2xl": "source radius x 3",
+      "full": "9999px"
+    },
+    "spacingScale": "Each numbered B&B spacing role is the exact source spacing unit multiplied by the role number. Zero remains 0px.",
+    "v2SemanticBindings": {
+      "surface": {
+        "canvas": "palette.background",
+        "surface": "palette.surface",
+        "subtle": "palette.surfaceVariant",
+        "raised": "palette.surface",
+        "sunken": "palette.surfaceVariant",
+        "overlay": "palette.surface",
+        "inverse": "palette.inverseSurface",
+        "disabled": "palette.surfaceVariant",
+        "scrim": "palette.scrim"
+      },
+      "content": {
+        "primary": "palette.onSurface",
+        "secondary": "palette.onSurfaceVariant",
+        "tertiary": "palette.onSurfaceVariant",
+        "placeholder": "palette.onSurfaceVariant",
+        "disabled": "palette.onSurfaceVariant",
+        "inverse": "palette.inverseOnSurface",
+        "brand": "palette.primary",
+        "link": "palette.primary",
+        "linkVisited": "palette.onPrimaryContainer"
+      },
+      "border": {
+        "subtle": "palette.outlineVariant",
+        "default": "palette.outline",
+        "strong": "palette.onSurfaceVariant",
+        "disabled": "palette.outlineVariant",
+        "divider": "palette.outline",
+        "focusRing": "palette.primary",
+        "focusRingOffset": "palette.background"
+      },
+      "interaction": {
+        "action": "palette.primary",
+        "onAction": "palette.onPrimary",
+        "actionHover": "palette.primary",
+        "actionPressed": "palette.primary",
+        "selected": "palette.primaryContainer",
+        "onSelected": "palette.onPrimaryContainer",
+        "selection": "palette.secondaryContainer",
+        "onSelection": "palette.onSecondaryContainer",
+        "caret": "palette.primary",
+        "dropTarget": "palette.primary",
+        "dragPreview": "palette.secondaryContainer"
+      },
+      "status": {
+        "infoSurface": "palette.tertiaryContainer",
+        "infoContent": "palette.onTertiaryContainer",
+        "infoBorder": "palette.tertiary",
+        "successSurface": "palette.successContainer",
+        "successContent": "palette.onSuccessContainer",
+        "successBorder": "palette.success",
+        "warningSurface": "palette.warningContainer",
+        "warningContent": "palette.onWarningContainer",
+        "warningBorder": "palette.warning",
+        "dangerSurface": "palette.errorContainer",
+        "dangerContent": "palette.onErrorContainer",
+        "dangerBorder": "palette.error"
+      }
+    },
+    "marketing": {
+      "heroIconGlow": "color.primary",
+      "highlight": "color.accent",
+      "terminalBlend": "color.surfaceVariant"
+    },
+    "platformColorConversion": "Android and React Native receive clipped sRGB hex values derived from the preserved OKLCH values because their current adapters do not consume CSS OKLCH strings. Web and catalog retain OKLCH."
+  },
+  "invented": {
+    "iconRecipe": {
+      "family": "material-symbols",
+      "style": "outlined"
+    },
+    "actionIconInactiveOpacity": 0.42,
+    "artDirection": {
+      "label": "Hot signal utility",
+      "summary": "Hot orange action color over cool slate surfaces, generous rounding, restrained depth, and sharp technical clarity.",
+      "traits": {
+        "geometry": "rounded",
+        "material": "cool-slate",
+        "ornament": "minimal",
+        "contrast": "hot-clear",
+        "typography": "technical-editorial",
+        "iconography": "outlined",
+        "illustration": "signal",
+        "depth": "light-elevation",
+        "texture": "clean",
+        "motion": "quick-responsive"
+      }
+    },
+    "typographyStylesAndSpecimens": {
+      "families": {
+        "primary": "Inter",
+        "mono": "JetBrains Mono",
+        "accent": "Source Serif 4"
+      },
+      "styles": {
+        "display": {
+          "familyRole": "accent",
+          "fontSize": "42px",
+          "fontWeight": "700",
+          "lineHeight": "1.12",
+          "letterSpacing": "-0.015em"
+        },
+        "headline": {
+          "familyRole": "accent",
+          "fontSize": "30px",
+          "fontWeight": "700",
+          "lineHeight": "1.2",
+          "letterSpacing": "-0.01em"
+        },
+        "title": {
+          "familyRole": "accent",
+          "fontSize": "22px",
+          "fontWeight": "700",
+          "lineHeight": "1.28",
+          "letterSpacing": "0em"
+        },
+        "body": {
+          "familyRole": "primary",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "1.55",
+          "letterSpacing": "0em"
+        },
+        "bodyCompact": {
+          "familyRole": "primary",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "1.45",
+          "letterSpacing": "0em"
+        },
+        "label": {
+          "familyRole": "primary",
+          "fontSize": "14px",
+          "fontWeight": "600",
+          "lineHeight": "1.4",
+          "letterSpacing": "0em"
+        },
+        "caption": {
+          "familyRole": "primary",
+          "fontSize": "12px",
+          "fontWeight": "500",
+          "lineHeight": "1.4",
+          "letterSpacing": "0em"
+        },
+        "codeInline": {
+          "familyRole": "mono",
+          "fontSize": "14px",
+          "fontWeight": "500",
+          "lineHeight": "1.45",
+          "letterSpacing": "0em"
+        },
+        "codeBlock": {
+          "familyRole": "mono",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "1.55",
+          "letterSpacing": "0em"
+        },
+        "terminal": {
+          "familyRole": "mono",
+          "fontSize": "14px",
+          "fontWeight": "500",
+          "lineHeight": "1.5",
+          "letterSpacing": "0em"
+        },
+        "metric": {
+          "familyRole": "accent",
+          "fontSize": "26px",
+          "fontWeight": "700",
+          "lineHeight": "1.15",
+          "letterSpacing": "-0.01em"
+        },
+        "editorialBody": {
+          "familyRole": "accent",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "1.65",
+          "letterSpacing": "0em"
+        },
+        "editorialHeading": {
+          "familyRole": "accent",
+          "fontSize": "26px",
+          "fontWeight": "700",
+          "lineHeight": "1.28",
+          "letterSpacing": "-0.005em"
+        },
+        "marketingHero": {
+          "familyRole": "accent",
+          "fontSize": "48px",
+          "fontWeight": "700",
+          "lineHeight": "1.08",
+          "letterSpacing": "-0.02em"
+        }
+      },
+      "specimens": [
+        {
+          "id": "marketingHero",
+          "label": "Signature",
+          "familyRole": "accent",
+          "sample": "Turn up the signal",
+          "fontSize": "38px",
+          "fontWeight": "700",
+          "lineHeight": "1.15",
+          "letterSpacing": "-0.015em"
+        },
+        {
+          "id": "body",
+          "label": "Interface",
+          "familyRole": "primary",
+          "sample": "Cool structure with decisive orange emphasis.",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "1.55",
+          "letterSpacing": "0em"
+        },
+        {
+          "id": "terminal",
+          "label": "Technical",
+          "familyRole": "mono",
+          "sample": "STATUS / HOT / 0123",
+          "fontSize": "14px",
+          "fontWeight": "500",
+          "lineHeight": "1.5",
+          "letterSpacing": "0em"
+        }
+      ]
+    },
+    "interfaceRecipe": {
+      "workspace": {
+        "background": {
+          "$value": "{color.background}"
+        }
+      },
+      "control": {
+        "foreground": {
+          "$value": "{color.onBackground}"
+        },
+        "hoverForeground": {
+          "$value": "{color.onBackground}"
+        },
+        "disabledForeground": {
+          "$value": "{color.onSurfaceVariant}"
+        },
+        "focusRing": {
+          "$value": "{color.ring}"
+        }
+      },
+      "interaction": {
+        "hoverBackground": {
+          "$value": "color-mix(in srgb, {color.primary} 10%, transparent)"
+        },
+        "hoverShadow": {
+          "$value": "{shadow.sm}"
+        },
+        "hoverTextShadow": {
+          "$value": "none"
+        },
+        "pressedBackground": {
+          "$value": "color-mix(in srgb, {color.primary} 18%, transparent)"
+        },
+        "pressedShadow": {
+          "$value": "inset 0 1px 3px color-mix(in srgb, {color.scrim} 16%, transparent)"
+        },
+        "pressedTextShadow": {
+          "$value": "none"
+        }
+      },
+      "scrollbar": {
+        "thumb": {
+          "$value": "color-mix(in srgb, {color.primary} 72%, transparent)"
+        },
+        "track": {
+          "$value": "{color.surfaceVariant}"
+        },
+        "border": {
+          "$value": "{color.outline}"
+        },
+        "highlight": {
+          "$value": "color-mix(in srgb, {color.onBackground} 18%, transparent)"
+        }
+      },
+      "menu": {
+        "background": {
+          "$value": "{color.popover}"
+        },
+        "border": {
+          "$value": "{color.outline}"
+        },
+        "shadow": {
+          "$value": "{shadow.lg}"
+        },
+        "mutedForeground": {
+          "$value": "{color.onSurfaceVariant}"
+        },
+        "metaForeground": {
+          "$value": "{color.onSurfaceVariant}"
+        },
+        "disabledForeground": {
+          "$value": "color-mix(in srgb, {color.onSurfaceVariant} 44%, transparent)"
+        },
+        "divider": {
+          "$value": "{color.outlineVariant}"
+        },
+        "scrollbarThumb": {
+          "$value": "{interface.scrollbar.thumb}"
+        },
+        "scrollbarTrack": {
+          "$value": "{interface.scrollbar.track}"
+        }
+      },
+      "motion": {
+        "quickDuration": {
+          "$value": "140ms"
+        },
+        "quickEasing": {
+          "$value": "ease"
+        }
+      }
+    },
+    "buttonRecipe": {
+      "id": "Button",
+      "contractVersion": "2.0.0",
+      "anatomy": [
+        "container",
+        "leadingIcon",
+        "label",
+        "trailingIcon",
+        "progress"
+      ],
+      "variants": {
+        "primary": {
+          "background": "color.interaction.action",
+          "foreground": "color.interaction.onAction",
+          "border": "color.interaction.action"
+        },
+        "secondary": {
+          "background": "color.interaction.selected",
+          "foreground": "color.interaction.onSelected",
+          "border": "color.border.default"
+        },
+        "quiet": {
+          "background": "transparent",
+          "foreground": "color.content.brand",
+          "border": "color.border.subtle"
+        },
+        "destructive": {
+          "background": "color.status.dangerSurface",
+          "foreground": "color.status.dangerContent",
+          "border": "color.status.dangerBorder"
+        }
+      },
+      "sizes": {
+        "small": {
+          "minHeight": "40px",
+          "paddingInline": "12px",
+          "gap": "6px",
+          "iconSize": "16px"
+        },
+        "medium": {
+          "minHeight": "44px",
+          "paddingInline": "16px",
+          "gap": "8px",
+          "iconSize": "18px"
+        },
+        "large": {
+          "minHeight": "50px",
+          "paddingInline": "20px",
+          "gap": "10px",
+          "iconSize": "20px"
+        }
+      },
+      "stateMatrix": [
+        "rest",
+        "hover",
+        "focusVisible",
+        "pressed",
+        "loading",
+        "disabled"
+      ],
+      "tokenBindings": {
+        "hoverBackground": "color.interaction.actionHover",
+        "pressedBackground": "color.interaction.actionPressed",
+        "disabledBackground": "color.surface.disabled",
+        "disabledForeground": "color.content.disabled",
+        "disabledBorder": "color.border.disabled",
+        "focusRing": "color.border.focusRing",
+        "focusRingOffset": "color.border.focusRingOffset"
+      },
+      "presentation": {
+        "shapeRadius": "var(--bb-radius-md)",
+        "shapeCut": "0px",
+        "depthRest": "var(--bb-shadow-base)",
+        "depthHover": "var(--bb-shadow-lg)",
+        "depthPressed": "none",
+        "transitionDuration": "140ms",
+        "transitionEasing": "ease",
+        "reducedDuration": "0ms",
+        "textTransform": "none",
+        "hoverTransform": "translateY(-1px)",
+        "pressedTransform": "translateY(1px)",
+        "loadingDuration": "700ms"
+      },
+      "accessibilityRequirements": {
+        "minimumTouchTargetWeb": "44px",
+        "minimumTouchTargetAndroid": "48dp",
+        "focusIndicatorMinimum": "2px",
+        "forcedColors": "native-boundaries"
+      },
+      "platformAdapters": [
+        "web",
+        "react",
+        "compose",
+        "react-native"
+      ],
+      "fallbacks": {
+        "roundedShape": "0.75rem rounded rectangle",
+        "softDepth": "theme border"
+      },
+      "specimenCases": [
+        {
+          "variant": "primary",
+          "state": "rest",
+          "label": "Primary"
+        },
+        {
+          "variant": "primary",
+          "state": "hover",
+          "label": "Hover"
+        },
+        {
+          "variant": "primary",
+          "state": "focusVisible",
+          "label": "Focus"
+        },
+        {
+          "variant": "primary",
+          "state": "pressed",
+          "label": "Pressed"
+        },
+        {
+          "variant": "primary",
+          "state": "loading",
+          "label": "Working"
+        },
+        {
+          "variant": "primary",
+          "state": "disabled",
+          "label": "Disabled"
+        },
+        {
+          "variant": "secondary",
+          "state": "rest",
+          "label": "Secondary"
+        },
+        {
+          "variant": "quiet",
+          "state": "rest",
+          "label": "Quiet"
+        },
+        {
+          "variant": "destructive",
+          "state": "rest",
+          "label": "Destructive"
+        }
+      ]
+    }
+  }
+}

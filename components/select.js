@@ -137,14 +137,17 @@ export function installSelectController(root = globalThis.document) {
     const menuWidth = Math.max(triggerRect.width, menu.offsetWidth, 180);
     const menuHeight = menu.offsetHeight;
     const left = Math.max(8, Math.min(triggerRect.left, Math.max(8, viewportWidth - menuWidth - 8)));
-    const below = triggerRect.bottom + 4;
-    const top = below + menuHeight <= viewportHeight - 8
-      ? below
-      : Math.max(8, triggerRect.top - menuHeight - 4);
+    const belowTop = triggerRect.bottom + 4;
+    const availableBelow = Math.max(0, viewportHeight - belowTop - 8);
+    const availableAbove = Math.max(0, triggerRect.top - 12);
+    const opensBelow = menuHeight <= availableBelow
+      || (menuHeight > availableAbove && availableBelow >= availableAbove);
+    const top = opensBelow ? belowTop : triggerRect.top - menuHeight - 4;
     menu.style.left = `${Math.round(left)}px`;
     menu.style.top = `${Math.round(top)}px`;
     menu.style.minWidth = `${Math.round(menuWidth)}px`;
     menu.style.visibility = '';
+    menu.dataset.bbSelectPlacement = opensBelow ? 'below' : 'above';
 
     const handleOutside = (event) => {
       if (!menu.contains(event.target) && !trigger.contains(event.target)) close();

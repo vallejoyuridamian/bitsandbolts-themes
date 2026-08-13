@@ -62,8 +62,8 @@ This does **not** complete the research's first vertical slice. Pinned DTCG
 Format/Resolver conformance, deterministic provenance, complete license/glyph
 manifests, React/Compose/React Native Button adapters, packaged no-mirror
 delivery, platform fallback fixtures, cross-platform accessibility gates, and
-human approval on every target remain open. Cloud is now v2; Ocean and Robot
-remain v1 families.
+human approval on every target remain open. Cloud is now v2; the former Ocean
+and Robot v1 families have been removed.
 
 ## Incremental slices and acceptance gates
 
@@ -179,9 +179,10 @@ Gate for each batch:
 - A visual batch is accepted before the next batch begins.
 - No unrelated repository-wide restyle is included.
 
-### 7. Migrate first-party families
+### 7. Complete first-party families
 
-Move Ocean and Robot to v2 one family and mode pair at a time, followed by any remaining B&B recipes.
+Complete any remaining B&B recipes. A removed family must re-enter through a
+new approved source and complete v2 implementation.
 
 Gate for each family:
 

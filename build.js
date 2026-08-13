@@ -1,11 +1,11 @@
 /**
- * bitsandbolts-themes — build.js
+ * bitsandbolts-themes: build.js
  *
  * Reads design tokens from tokens/ and generates platform-specific outputs:
- *   dist/web/{theme}/light.css, dark.css       — CSS custom properties
- *   dist/android/{theme}/LightColors.kt        — Compose lightColorScheme
- *   dist/android/{theme}/DarkColors.kt         — Compose darkColorScheme
- *   dist/react-native/{theme}/light.ts         — typed constants
+ *   dist/web/{theme}/light.css, dark.css: CSS custom properties
+ *   dist/android/{theme}/LightColors.kt: Compose lightColorScheme
+ *   dist/android/{theme}/DarkColors.kt: Compose darkColorScheme
+ *   dist/react-native/{theme}/light.ts: typed constants
  *   dist/react-native/{theme}/dark.ts
  *
  * Usage:
@@ -28,16 +28,19 @@ import {
 } from 'fs';
 import { join } from 'path';
 
-const THEMES = ['cloud', 'ocean', 'robot', 'bitsandbolts', 'neobrutalism', 'nature'];
+const THEMES = ['cloud', 'bitsandbolts', 'brutus', 'forest', 'winter', 'coffee', 'bubblegum', 'inferno', 'sober'];
 const MODES  = ['light', 'dark'];
 const ANDROID_PACKAGE = process.env.ANDROID_PACKAGE || 'REPLACE_ME';
 const THEME_LABELS = Object.freeze({
   bitsandbolts: 'Bits & Bolts',
   cloud: 'Cloud',
-  ocean: 'Ocean',
-  robot: 'Robot',
-  neobrutalism: 'Neo Brutalism',
-  nature: 'Nature',
+  brutus: 'Brutus',
+  forest: 'Forest',
+  winter: 'Winter',
+  coffee: 'Coffee',
+  bubblegum: 'Bubblegum',
+  inferno: 'Inferno',
+  sober: 'Sober',
 });
 const ICON_PREVIEW_NAMES = Object.freeze([
   'settings',
@@ -127,10 +130,15 @@ const V2_CONTRACT_FILE = 'theme-contract/v2/contract.bb.json';
 const V2_FAMILY_ROOTS = Object.freeze({
   bitsandbolts: 'families/bitsandbolts/v2',
   cloud: 'families/cloud/v2',
-  neobrutalism: 'families/neobrutalism/v2',
-  nature: 'families/nature/v2',
+  brutus: 'families/brutus/v2',
+  forest: 'families/forest/v2',
+  winter: 'families/winter/v2',
+  coffee: 'families/coffee/v2',
+  bubblegum: 'families/bubblegum/v2',
+  inferno: 'families/inferno/v2',
+  sober: 'families/sober/v2',
 });
-const V1_INTERFACE_FALLBACK_THEMES = new Set(['ocean', 'robot']);
+const V1_INTERFACE_FALLBACK_THEMES = new Set();
 const REQUIRED_INTERFACE_TOKEN_PATHS = Object.freeze([
   'interface.workspace.background',
   'interface.control.foreground',
@@ -217,6 +225,44 @@ function assertNoComponentFontFallbacks() {
 assertNoComponentFontFallbacks();
 assertInterfacePrimitiveSources();
 
+function oklchToHex(value) {
+  const match = String(value).match(/^oklch\(\s*([\d.]+)\s+([\d.]+)\s+([\d.]+)(?:\s*\/\s*([\d.]+))?\s*\)$/i);
+  if (!match) return '';
+  const [, lightness, chroma, hue] = match.map(Number);
+  const radians = hue * Math.PI / 180;
+  const a = chroma * Math.cos(radians);
+  const b = chroma * Math.sin(radians);
+  const lPrime = lightness + 0.3963377774 * a + 0.2158037573 * b;
+  const mPrime = lightness - 0.1055613458 * a - 0.0638541728 * b;
+  const sPrime = lightness - 0.0894841775 * a - 1.291485548 * b;
+  const l = lPrime ** 3;
+  const m = mPrime ** 3;
+  const s = sPrime ** 3;
+  const linear = [
+    4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s,
+    -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s,
+    -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s,
+  ];
+  const gamma = (channel) => channel <= 0.0031308 ? 12.92 * channel : 1.055 * channel ** (1 / 2.4) - 0.055;
+  const hex = linear.map((channel) => Math.round(Math.min(1, Math.max(0, gamma(channel))) * 255)
+    .toString(16).padStart(2, '0')).join('');
+  return `#${hex.toUpperCase()}`;
+}
+
+function colorToPlatformHex(value) {
+  const normalized = String(value).trim();
+  if (/^#[0-9a-f]{6}$/i.test(normalized)) return normalized.toUpperCase();
+  const converted = oklchToHex(normalized);
+  if (converted) return converted;
+  throw new Error(`[platform-color] Unsupported color value: ${normalized}`);
+}
+
+function dimensionToPixels(value) {
+  const normalized = String(value).trim();
+  if (normalized.endsWith('rem')) return Number.parseFloat(normalized) * 16;
+  return Number.parseFloat(normalized);
+}
+
 // ─── Custom Format: Kotlin Color Scheme ──────────────────────────────────────
 
 StyleDictionary.registerFormat({
@@ -246,7 +292,7 @@ StyleDictionary.registerFormat({
     const val = t => t.value ?? t.$value;
     const toPascal = parts => parts.map(p => p.charAt(0).toUpperCase() + p.slice(1)).join('');
 
-    const toKotlin = hex => `Color(0xFF${hex.replace('#', '').toUpperCase()})`;
+    const toKotlin = color => `Color(0xFF${colorToPlatformHex(color).replace('#', '')})`;
     const consts   = colorTokens.map(t => `private val _${t.path[1]} = ${toKotlin(val(t))}`).join('\n');
     const entries  = m3Tokens.map(t => `    ${t.path[1]} = _${t.path[1]}`).join(',\n');
     const extraColorVals = extraTokens.map(t => `val ${ThemeName}${ModeName}${t.path[1].charAt(0).toUpperCase() + t.path[1].slice(1)} = _${t.path[1]}`);
@@ -257,7 +303,7 @@ StyleDictionary.registerFormat({
     const allExtras = [...extraColorVals, ...extraOpacityVals];
     const extras   = allExtras.length ? `\n${allExtras.join('\n')}` : '';
 
-    return `// Auto-generated by bitsandbolts-themes — do not edit
+    return `// Auto-generated by bitsandbolts-themes: do not edit
 // Theme: ${ThemeName} / Mode: ${ModeName}
 //
 // To set your package name, run:
@@ -293,17 +339,17 @@ StyleDictionary.registerFormat({
     const fontFamTokens  = dictionary.allTokens.filter(t => t.path[0] === 'font' && t.path[1] === 'family');
 
     const v     = t => t.value ?? t.$value;
-    const toNum = t => parseFloat(v(t));
-    const colFmt  = colorTokens.map(t => `  ${t.path[1]}: '${v(t)}'`).join(',\n');
+    const toNum = t => dimensionToPixels(v(t));
+    const colFmt  = colorTokens.map(t => `  ${t.path[1]}: '${colorToPlatformHex(v(t))}'`).join(',\n');
     const spFmt   = spacingTokens.map(t => `  '${t.path[1]}': ${toNum(t)}`).join(',\n');
     const radFmt  = radiusTokens.map(t => `  '${t.path[1]}': ${toNum(t)}`).join(',\n');
     const fsFmt   = fontSizeTokens.map(t => `  '${t.path[2]}': ${toNum(t)}`).join(',\n');
     const fwFmt   = fontWtTokens.map(t => `  '${t.path[2]}': '${v(t)}'`).join(',\n');
     const ffFmt   = fontFamTokens.map(t => `  ${t.path[2]}: '${v(t)}'`).join(',\n');
 
-    return `// Auto-generated by bitsandbolts-themes — do not edit
+    return `// Auto-generated by bitsandbolts-themes: do not edit
 // Theme: ${theme} / Mode: ${mode}
-// Note: font files must be bundled in your app — see README.
+// Note: font files must be bundled in your app. See README.
 
 export const colors = {
 ${colFmt}
@@ -348,9 +394,9 @@ for (const theme of THEMES) {
         `tokens/themes/${theme}/interface.json`,
       ],
       platforms: {
-        // CSS custom properties — import in Tauri/Vue or any web project
+        // CSS custom properties for Tauri, Vue, or any web project
         web: {
-          transformGroup: 'css',
+          transforms: ['attribute/cti', 'name/kebab', 'time/seconds', 'size/rem', 'fontFamily/css'],
           prefix: 'bb',
           buildPath: `dist/web/${theme}/`,
           files: [{
@@ -360,7 +406,7 @@ for (const theme of THEMES) {
           }],
         },
 
-        // Kotlin color scheme — copy to ui/theme/generated/ in Android project
+        // Kotlin color scheme for ui/theme/generated/ in Android projects
         android: {
           transforms: ['attribute/cti'],
           buildPath: `dist/android/${theme}/`,
@@ -372,7 +418,7 @@ for (const theme of THEMES) {
           }],
         },
 
-        // TypeScript constants — import in React Native or Expo project
+        // TypeScript constants for React Native or Expo projects
         reactNative: {
           transformGroup: 'js',
           buildPath: `dist/react-native/${theme}/`,
@@ -589,7 +635,7 @@ for (const theme of THEMES) {
 
   // Web: CSS custom properties consumed by BbIcon.vue
   writeFileSync(`dist/web/${theme}/icons.css`,
-    `/* Auto-generated by bitsandbolts-themes build.js — do not edit */\n` +
+    `/* Auto-generated by bitsandbolts-themes build.js: do not edit */\n` +
     `:root {\n` +
     `  --bb-icon-family: ${icons.family};\n` +
     `  --bb-icon-style: ${icons.style};\n` +
@@ -605,7 +651,7 @@ for (const theme of THEMES) {
       `    val ContentCopy:   ImageVector = Icons.${composeStyle}.ContentCopy\n`
     : '';
   writeFileSync(`dist/android/${theme}/IconStyle.kt`,
-    `// Auto-generated by bitsandbolts-themes — do not edit\n` +
+    `// Auto-generated by bitsandbolts-themes: do not edit\n` +
     `// Theme: ${ThemeName} / Icon style: ${icons.style}\n` +
     `package ${ANDROID_PACKAGE}.ui.theme.generated\n\n` +
     `import androidx.compose.material.icons.Icons\n` +
@@ -677,16 +723,24 @@ function resolveDtcgToken(tokens, path, resolving = new Set()) {
 }
 
 function colorValueToCss(value, path) {
-  if (!value || value.colorSpace !== 'srgb' || !Array.isArray(value.components) || value.components.length !== 3) {
-    throw new Error(`[v2-contract] ${path} must resolve to a DTCG sRGB color.`);
-  }
-  if (!value.components.every((component) => Number.isFinite(component) && component >= 0 && component <= 1)) {
-    throw new Error(`[v2-contract] ${path} contains an invalid sRGB component.`);
+  if (!value || !Array.isArray(value.components) || value.components.length !== 3) {
+    throw new Error(`[v2-contract] ${path} must resolve to a DTCG color.`);
   }
   const alpha = value.alpha ?? 1;
-  if (!Number.isFinite(alpha) || alpha < 0 || alpha > 1 || !/^#[0-9A-F]{6}$/i.test(value.hex || '')) {
+  if (!Number.isFinite(alpha) || alpha < 0 || alpha > 1) {
     throw new Error(`[v2-contract] ${path} contains invalid color metadata.`);
   }
+  if (value.colorSpace === 'oklch') {
+    const [lightness, chroma, hue] = value.components;
+    if (![lightness, chroma, hue].every(Number.isFinite) || lightness < 0 || lightness > 1 || chroma < 0) {
+      throw new Error(`[v2-contract] ${path} contains invalid OKLCH components.`);
+    }
+    return `oklch(${lightness} ${chroma} ${hue}${alpha === 1 ? '' : ` / ${alpha}`})`;
+  }
+  if (value.colorSpace !== 'srgb' || !value.components.every((component) => Number.isFinite(component) && component >= 0 && component <= 1)) {
+    throw new Error(`[v2-contract] ${path} contains invalid sRGB components.`);
+  }
+  if (!/^#[0-9A-F]{6}$/i.test(value.hex || '')) throw new Error(`[v2-contract] ${path} is missing sRGB hex metadata.`);
   if (alpha === 1) return value.hex.toUpperCase();
   const channels = value.components.map((component) => Math.round(component * 255));
   return `rgb(${channels.join(' ')} / ${alpha})`;

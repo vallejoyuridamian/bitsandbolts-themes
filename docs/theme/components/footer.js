@@ -1,3 +1,5 @@
+import { brandMarkMarkup } from './brand-mark.js';
+
 function escapeHtml(value) {
   return String(value ?? '')
     .replaceAll('&', '&amp;')
@@ -26,17 +28,13 @@ function footerLink(model, { specimen = false } = {}) {
   return `<a class="bb-footer__link" href="${escapeHtml(model.href)}"${externalAttributes(model)}>${escapeHtml(model.label)}</a>`;
 }
 
-function brandMarkMarkup(brand = {}) {
-  if (brand.logo) return `<img src="${escapeHtml(brand.logo)}" alt="" />`;
-  return `<svg class="bb-footer__brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-            <path fill="currentColor" d="M16 2 30 16 16 30 2 16 16 2Zm0 6.2L8.2 16l7.8 7.8 7.8-7.8L16 8.2Z" />
-          </svg>`;
-}
-
 export function footerMarkup(model = {}, { specimen = false, theme } = {}) {
   const brand = model.brand || {};
   const links = Array.isArray(model.links) ? model.links : [];
-  const brandMark = brandMarkMarkup(brand);
+  const brandMark = brandMarkMarkup(brand, {
+    className: 'bb-footer__brand-mark',
+    imageProperty: '--bb-footer-brand-mark-image'
+  });
   const brandLabel = brand.ariaLabel
     ? ` aria-label="${escapeHtml(brand.ariaLabel)}"`
     : '';

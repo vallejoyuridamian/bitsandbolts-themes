@@ -1,0 +1,440 @@
+{
+  "$extensions": {
+    "com.bitsandbolts.derivation": {
+      "manifest": "families/bubblegum/v2/provenance.bb.json"
+    }
+  },
+  "font": {
+    "family": {
+      "display": {
+        "$value": "Merriweather"
+      },
+      "body": {
+        "$value": "Poppins"
+      },
+      "mono": {
+        "$value": "Roboto Mono"
+      },
+      "terminal": {
+        "$value": "Roboto Mono"
+      }
+    },
+    "tracking": {
+      "normal": {},
+      "tighter": {
+        "$value": "calc(var(--tracking-normal) - 0.05em)"
+      },
+      "tight": {
+        "$value": "calc(var(--tracking-normal) - 0.025em)"
+      },
+      "wide": {
+        "$value": "calc(var(--tracking-normal) + 0.025em)"
+      },
+      "wider": {
+        "$value": "calc(var(--tracking-normal) + 0.05em)"
+      },
+      "widest": {
+        "$value": "calc(var(--tracking-normal) + 0.1em)"
+      }
+    }
+  },
+  "spacing": {
+    "0": {
+      "$value": "0px",
+      "$type": "dimension"
+    },
+    "1": {
+      "$value": "0.25rem",
+      "$type": "dimension"
+    },
+    "2": {
+      "$value": "0.5rem",
+      "$type": "dimension"
+    },
+    "3": {
+      "$value": "0.75rem",
+      "$type": "dimension"
+    },
+    "4": {
+      "$value": "1rem",
+      "$type": "dimension"
+    },
+    "5": {
+      "$value": "1.25rem",
+      "$type": "dimension"
+    },
+    "6": {
+      "$value": "1.5rem",
+      "$type": "dimension"
+    },
+    "8": {
+      "$value": "2rem",
+      "$type": "dimension"
+    },
+    "10": {
+      "$value": "2.5rem",
+      "$type": "dimension"
+    },
+    "12": {
+      "$value": "3rem",
+      "$type": "dimension"
+    },
+    "16": {
+      "$value": "4rem",
+      "$type": "dimension"
+    },
+    "20": {
+      "$value": "5rem",
+      "$type": "dimension"
+    },
+    "24": {
+      "$value": "6rem",
+      "$type": "dimension"
+    }
+  },
+  "radius": {
+    "none": {
+      "$value": "0px",
+      "$type": "dimension"
+    },
+    "xs": {
+      "$value": "0.125rem",
+      "$type": "dimension"
+    },
+    "sm": {
+      "$value": "0.25rem",
+      "$type": "dimension"
+    },
+    "md": {
+      "$value": "0.5rem",
+      "$type": "dimension"
+    },
+    "lg": {
+      "$value": "0.75rem",
+      "$type": "dimension"
+    },
+    "xl": {
+      "$value": "1rem",
+      "$type": "dimension"
+    },
+    "2xl": {
+      "$value": "1.5rem",
+      "$type": "dimension"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension"
+    }
+  },
+  "shadow": {
+    "none": {
+      "$value": "none"
+    },
+    "2xs": {
+      "$value": "0 1px 3px 0px hsl(0 0% 0% / 0.05)"
+    },
+    "xs": {
+      "$value": "0 1px 3px 0px hsl(0 0% 0% / 0.05)"
+    },
+    "sm": {
+      "$value": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)"
+    },
+    "base": {
+      "$value": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)"
+    },
+    "md": {
+      "$value": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10)"
+    },
+    "lg": {
+      "$value": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10)"
+    },
+    "xl": {
+      "$value": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10)"
+    },
+    "2xl": {
+      "$value": "0 1px 3px 0px hsl(0 0% 0% / 0.25)"
+    }
+  },
+  "marketing": {
+    "heroIconGlow": {
+      "$value": "{color.primary}"
+    },
+    "highlight": {
+      "$value": "{color.accent}"
+    },
+    "terminalBlend": {
+      "$value": "{color.surfaceVariant}"
+    }
+  },
+  "color": {
+    "primary": {
+      "$value": "oklch(0.8027 0.1355 349.2347)",
+      "$type": "color"
+    },
+    "onPrimary": {
+      "$value": "oklch(0 0 0)",
+      "$type": "color"
+    },
+    "primaryContainer": {
+      "$value": "oklch(0.8148 0.0819 225.7537)",
+      "$type": "color"
+    },
+    "onPrimaryContainer": {
+      "$value": "oklch(0 0 0)",
+      "$type": "color"
+    },
+    "secondary": {
+      "$value": "oklch(0.7395 0.2268 142.8504)",
+      "$type": "color"
+    },
+    "onSecondary": {
+      "$value": "oklch(0 0 0)",
+      "$type": "color"
+    },
+    "secondaryContainer": {
+      "$value": "oklch(0.3867 0 0)",
+      "$type": "color"
+    },
+    "onSecondaryContainer": {
+      "$value": "oklch(0.7155 0 0)",
+      "$type": "color"
+    },
+    "tertiary": {
+      "$value": "oklch(0.8148 0.0819 225.7537)",
+      "$type": "color"
+    },
+    "onTertiary": {
+      "$value": "oklch(0 0 0)",
+      "$type": "color"
+    },
+    "tertiaryContainer": {
+      "$value": "oklch(0.3867 0 0)",
+      "$type": "color"
+    },
+    "onTertiaryContainer": {
+      "$value": "oklch(0.7155 0 0)",
+      "$type": "color"
+    },
+    "error": {
+      "$value": "oklch(0.6368 0.2078 25.3313)",
+      "$type": "color"
+    },
+    "onError": {
+      "$value": "oklch(1.0000 0 0)",
+      "$type": "color"
+    },
+    "errorContainer": {
+      "$value": "oklch(0.6368 0.2078 25.3313)",
+      "$type": "color"
+    },
+    "onErrorContainer": {
+      "$value": "oklch(1.0000 0 0)",
+      "$type": "color"
+    },
+    "background": {
+      "$value": "oklch(0.2303 0.0125 264.2926)",
+      "$type": "color"
+    },
+    "onBackground": {
+      "$value": "oklch(0.9219 0 0)",
+      "$type": "color"
+    },
+    "surface": {
+      "$value": "oklch(0.3210 0.0078 223.6661)",
+      "$type": "color"
+    },
+    "onSurface": {
+      "$value": "oklch(0.9219 0 0)",
+      "$type": "color"
+    },
+    "surfaceVariant": {
+      "$value": "oklch(0.3867 0 0)",
+      "$type": "color"
+    },
+    "onSurfaceVariant": {
+      "$value": "oklch(0.7155 0 0)",
+      "$type": "color"
+    },
+    "outline": {
+      "$value": "oklch(0.3867 0 0)",
+      "$type": "color"
+    },
+    "outlineVariant": {
+      "$value": "oklch(0.3867 0 0)",
+      "$type": "color"
+    },
+    "inverseSurface": {
+      "$value": "oklch(0.9219 0 0)",
+      "$type": "color"
+    },
+    "inverseOnSurface": {
+      "$value": "oklch(0.2303 0.0125 264.2926)",
+      "$type": "color"
+    },
+    "inversePrimary": {
+      "$value": "oklch(0.8027 0.1355 349.2347)",
+      "$type": "color"
+    },
+    "surfaceTint": {
+      "$value": "oklch(0.8027 0.1355 349.2347)",
+      "$type": "color"
+    },
+    "scrim": {
+      "$value": "oklch(0 0 0)",
+      "$type": "color"
+    },
+    "card": {
+      "$value": "oklch(0.3210 0.0078 223.6661)",
+      "$type": "color"
+    },
+    "cardForeground": {
+      "$value": "oklch(0.9219 0 0)",
+      "$type": "color"
+    },
+    "popover": {
+      "$value": "oklch(0.3210 0.0078 223.6661)",
+      "$type": "color"
+    },
+    "popoverForeground": {
+      "$value": "oklch(0.9219 0 0)",
+      "$type": "color"
+    },
+    "muted": {
+      "$value": "oklch(0.3867 0 0)",
+      "$type": "color"
+    },
+    "mutedForeground": {
+      "$value": "oklch(0.7155 0 0)",
+      "$type": "color"
+    },
+    "accent": {
+      "$value": "oklch(0.8148 0.0819 225.7537)",
+      "$type": "color"
+    },
+    "accentForeground": {
+      "$value": "oklch(0 0 0)",
+      "$type": "color"
+    },
+    "destructive": {
+      "$value": "oklch(0.6368 0.2078 25.3313)",
+      "$type": "color"
+    },
+    "destructiveForeground": {
+      "$value": "oklch(1.0000 0 0)",
+      "$type": "color"
+    },
+    "input": {
+      "$value": "oklch(0.3867 0 0)",
+      "$type": "color"
+    },
+    "ring": {
+      "$value": "oklch(0.8027 0.1355 349.2347)",
+      "$type": "color"
+    },
+    "chart1": {
+      "$value": "oklch(0.8027 0.1355 349.2347)",
+      "$type": "color"
+    },
+    "chart2": {
+      "$value": "oklch(0.7395 0.2268 142.8504)",
+      "$type": "color"
+    },
+    "chart3": {
+      "$value": "oklch(0.8148 0.0819 225.7537)",
+      "$type": "color"
+    },
+    "chart4": {
+      "$value": "oklch(0.9680 0.2110 109.7692)",
+      "$type": "color"
+    },
+    "chart5": {
+      "$value": "oklch(0.8652 0.1768 90.3816)",
+      "$type": "color"
+    },
+    "sidebar": {
+      "$value": "oklch(0.2303 0.0125 264.2926)",
+      "$type": "color"
+    },
+    "sidebarForeground": {
+      "$value": "oklch(0.9219 0 0)",
+      "$type": "color"
+    },
+    "sidebarPrimary": {
+      "$value": "oklch(0.8027 0.1355 349.2347)",
+      "$type": "color"
+    },
+    "sidebarPrimaryForeground": {
+      "$value": "oklch(0 0 0)",
+      "$type": "color"
+    },
+    "sidebarAccent": {
+      "$value": "oklch(0.8148 0.0819 225.7537)",
+      "$type": "color"
+    },
+    "sidebarAccentForeground": {
+      "$value": "oklch(0 0 0)",
+      "$type": "color"
+    },
+    "sidebarBorder": {
+      "$value": "oklch(0.3867 0 0)",
+      "$type": "color"
+    },
+    "sidebarRing": {
+      "$value": "oklch(0.8027 0.1355 349.2347)",
+      "$type": "color"
+    },
+    "warning": {
+      "$value": "oklch(0.9680 0.2110 109.7692)",
+      "$type": "color"
+    },
+    "onWarning": {
+      "$value": "#000000",
+      "$type": "color"
+    },
+    "warningContainer": {
+      "$value": "oklch(0.3867 0 0)",
+      "$type": "color"
+    },
+    "onWarningContainer": {
+      "$value": "oklch(0.7155 0 0)",
+      "$type": "color"
+    },
+    "success": {
+      "$value": "oklch(0.7395 0.2268 142.8504)",
+      "$type": "color"
+    },
+    "onSuccess": {
+      "$value": "#000000",
+      "$type": "color"
+    },
+    "successContainer": {
+      "$value": "oklch(0.8148 0.0819 225.7537)",
+      "$type": "color"
+    },
+    "onSuccessContainer": {
+      "$value": "oklch(0 0 0)",
+      "$type": "color"
+    },
+    "terminalBackground": {
+      "$value": "{color.inverseSurface}"
+    },
+    "terminalForeground": {
+      "$value": "{color.inverseOnSurface}"
+    },
+    "terminalMuted": {
+      "$value": "{color.onSurfaceVariant}"
+    },
+    "terminalAccent": {
+      "$value": "{color.primary}"
+    },
+    "terminalBorder": {
+      "$value": "{color.outline}"
+    }
+  },
+  "opacity": {
+    "actionIconInactive": {
+      "$value": "0.42",
+      "$type": "number"
+    }
+  }
+}

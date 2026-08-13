@@ -1,0 +1,570 @@
+{
+  "palette": {
+    "primary": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.8027,
+          0.1355,
+          349.2347
+        ],
+        "alpha": 1
+      }
+    },
+    "onPrimary": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0,
+          0,
+          0
+        ],
+        "alpha": 1
+      }
+    },
+    "primaryContainer": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.8148,
+          0.0819,
+          225.7537
+        ],
+        "alpha": 1
+      }
+    },
+    "onPrimaryContainer": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0,
+          0,
+          0
+        ],
+        "alpha": 1
+      }
+    },
+    "secondary": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.7395,
+          0.2268,
+          142.8504
+        ],
+        "alpha": 1
+      }
+    },
+    "onSecondary": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0,
+          0,
+          0
+        ],
+        "alpha": 1
+      }
+    },
+    "secondaryContainer": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.3867,
+          0,
+          0
+        ],
+        "alpha": 1
+      }
+    },
+    "onSecondaryContainer": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.7155,
+          0,
+          0
+        ],
+        "alpha": 1
+      }
+    },
+    "tertiary": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.8148,
+          0.0819,
+          225.7537
+        ],
+        "alpha": 1
+      }
+    },
+    "onTertiary": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0,
+          0,
+          0
+        ],
+        "alpha": 1
+      }
+    },
+    "tertiaryContainer": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.3867,
+          0,
+          0
+        ],
+        "alpha": 1
+      }
+    },
+    "onTertiaryContainer": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.7155,
+          0,
+          0
+        ],
+        "alpha": 1
+      }
+    },
+    "error": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.6368,
+          0.2078,
+          25.3313
+        ],
+        "alpha": 1
+      }
+    },
+    "onError": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          1,
+          0,
+          0
+        ],
+        "alpha": 1
+      }
+    },
+    "errorContainer": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.6368,
+          0.2078,
+          25.3313
+        ],
+        "alpha": 1
+      }
+    },
+    "onErrorContainer": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          1,
+          0,
+          0
+        ],
+        "alpha": 1
+      }
+    },
+    "background": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.2303,
+          0.0125,
+          264.2926
+        ],
+        "alpha": 1
+      }
+    },
+    "onBackground": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.9219,
+          0,
+          0
+        ],
+        "alpha": 1
+      }
+    },
+    "surface": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.321,
+          0.0078,
+          223.6661
+        ],
+        "alpha": 1
+      }
+    },
+    "onSurface": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.9219,
+          0,
+          0
+        ],
+        "alpha": 1
+      }
+    },
+    "surfaceVariant": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.3867,
+          0,
+          0
+        ],
+        "alpha": 1
+      }
+    },
+    "onSurfaceVariant": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.7155,
+          0,
+          0
+        ],
+        "alpha": 1
+      }
+    },
+    "outline": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.3867,
+          0,
+          0
+        ],
+        "alpha": 1
+      }
+    },
+    "outlineVariant": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.3867,
+          0,
+          0
+        ],
+        "alpha": 1
+      }
+    },
+    "inverseSurface": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.9219,
+          0,
+          0
+        ],
+        "alpha": 1
+      }
+    },
+    "inverseOnSurface": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.2303,
+          0.0125,
+          264.2926
+        ],
+        "alpha": 1
+      }
+    },
+    "inversePrimary": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.8027,
+          0.1355,
+          349.2347
+        ],
+        "alpha": 1
+      }
+    },
+    "surfaceTint": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.8027,
+          0.1355,
+          349.2347
+        ],
+        "alpha": 1
+      }
+    },
+    "scrim": {
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0,
+          0,
+          0
+        ],
+        "alpha": 1,
+        "hex": "#000000"
+      }
+    },
+    "warning": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.968,
+          0.211,
+          109.7692
+        ],
+        "alpha": 1
+      }
+    },
+    "onWarning": {
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0,
+          0,
+          0
+        ],
+        "alpha": 1,
+        "hex": "#000000"
+      }
+    },
+    "warningContainer": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.3867,
+          0,
+          0
+        ],
+        "alpha": 1
+      }
+    },
+    "onWarningContainer": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.7155,
+          0,
+          0
+        ],
+        "alpha": 1
+      }
+    },
+    "success": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.7395,
+          0.2268,
+          142.8504
+        ],
+        "alpha": 1
+      }
+    },
+    "onSuccess": {
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0,
+          0,
+          0
+        ],
+        "alpha": 1,
+        "hex": "#000000"
+      }
+    },
+    "successContainer": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0.8148,
+          0.0819,
+          225.7537
+        ],
+        "alpha": 1
+      }
+    },
+    "onSuccessContainer": {
+      "$value": {
+        "colorSpace": "oklch",
+        "components": [
+          0,
+          0,
+          0
+        ],
+        "alpha": 1
+      }
+    }
+  },
+  "color": {
+    "surface": {
+      "canvas": {
+        "$value": "{palette.background}"
+      },
+      "surface": {
+        "$value": "{palette.surface}"
+      },
+      "subtle": {
+        "$value": "{palette.surfaceVariant}"
+      },
+      "raised": {
+        "$value": "{palette.surface}"
+      },
+      "sunken": {
+        "$value": "{palette.surfaceVariant}"
+      },
+      "overlay": {
+        "$value": "{palette.surface}"
+      },
+      "inverse": {
+        "$value": "{palette.inverseSurface}"
+      },
+      "disabled": {
+        "$value": "{palette.surfaceVariant}"
+      },
+      "scrim": {
+        "$value": "{palette.scrim}"
+      }
+    },
+    "content": {
+      "primary": {
+        "$value": "{palette.onSurface}"
+      },
+      "secondary": {
+        "$value": "{palette.onSurfaceVariant}"
+      },
+      "tertiary": {
+        "$value": "{palette.onSurfaceVariant}"
+      },
+      "placeholder": {
+        "$value": "{palette.onSurfaceVariant}"
+      },
+      "disabled": {
+        "$value": "{palette.onSurfaceVariant}"
+      },
+      "inverse": {
+        "$value": "{palette.inverseOnSurface}"
+      },
+      "brand": {
+        "$value": "{palette.primary}"
+      },
+      "link": {
+        "$value": "{palette.primary}"
+      },
+      "linkVisited": {
+        "$value": "{palette.onPrimaryContainer}"
+      }
+    },
+    "border": {
+      "subtle": {
+        "$value": "{palette.outlineVariant}"
+      },
+      "default": {
+        "$value": "{palette.outline}"
+      },
+      "strong": {
+        "$value": "{palette.onSurfaceVariant}"
+      },
+      "disabled": {
+        "$value": "{palette.outlineVariant}"
+      },
+      "divider": {
+        "$value": "{palette.outline}"
+      },
+      "focusRing": {
+        "$value": "{palette.primary}"
+      },
+      "focusRingOffset": {
+        "$value": "{palette.background}"
+      }
+    },
+    "interaction": {
+      "action": {
+        "$value": "{palette.primary}"
+      },
+      "onAction": {
+        "$value": "{palette.onPrimary}"
+      },
+      "actionHover": {
+        "$value": "{palette.primary}"
+      },
+      "actionPressed": {
+        "$value": "{palette.primary}"
+      },
+      "selected": {
+        "$value": "{palette.primaryContainer}"
+      },
+      "onSelected": {
+        "$value": "{palette.onPrimaryContainer}"
+      },
+      "selection": {
+        "$value": "{palette.secondaryContainer}"
+      },
+      "onSelection": {
+        "$value": "{palette.onSecondaryContainer}"
+      },
+      "caret": {
+        "$value": "{palette.primary}"
+      },
+      "dropTarget": {
+        "$value": "{palette.primary}"
+      },
+      "dragPreview": {
+        "$value": "{palette.secondaryContainer}"
+      }
+    },
+    "status": {
+      "infoSurface": {
+        "$value": "{palette.tertiaryContainer}"
+      },
+      "infoContent": {
+        "$value": "{palette.onTertiaryContainer}"
+      },
+      "infoBorder": {
+        "$value": "{palette.tertiary}"
+      },
+      "successSurface": {
+        "$value": "{palette.successContainer}"
+      },
+      "successContent": {
+        "$value": "{palette.onSuccessContainer}"
+      },
+      "successBorder": {
+        "$value": "{palette.success}"
+      },
+      "warningSurface": {
+        "$value": "{palette.warningContainer}"
+      },
+      "warningContent": {
+        "$value": "{palette.onWarningContainer}"
+      },
+      "warningBorder": {
+        "$value": "{palette.warning}"
+      },
+      "dangerSurface": {
+        "$value": "{palette.errorContainer}"
+      },
+      "dangerContent": {
+        "$value": "{palette.onErrorContainer}"
+      },
+      "dangerBorder": {
+        "$value": "{palette.error}"
+      }
+    }
+  }
+}

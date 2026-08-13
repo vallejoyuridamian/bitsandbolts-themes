@@ -1,0 +1,99 @@
+{
+  "$extensions": {
+    "com.bitsandbolts.interface": {
+      "resolution": "canonical"
+    }
+  },
+  "interface": {
+    "workspace": {
+      "background": {
+        "$value": "{color.background}"
+      }
+    },
+    "control": {
+      "foreground": {
+        "$value": "{color.onBackground}"
+      },
+      "hoverForeground": {
+        "$value": "{color.onBackground}"
+      },
+      "disabledForeground": {
+        "$value": "{color.onSurfaceVariant}"
+      },
+      "focusRing": {
+        "$value": "{color.ring}"
+      }
+    },
+    "interaction": {
+      "hoverBackground": {
+        "$value": "color-mix(in srgb, {color.primary} 10%, transparent)"
+      },
+      "hoverShadow": {
+        "$value": "{shadow.sm}"
+      },
+      "hoverTextShadow": {
+        "$value": "none"
+      },
+      "pressedBackground": {
+        "$value": "color-mix(in srgb, {color.primary} 18%, transparent)"
+      },
+      "pressedShadow": {
+        "$value": "inset 0 1px 3px color-mix(in srgb, {color.scrim} 16%, transparent)"
+      },
+      "pressedTextShadow": {
+        "$value": "none"
+      }
+    },
+    "scrollbar": {
+      "thumb": {
+        "$value": "color-mix(in srgb, {color.primary} 72%, transparent)"
+      },
+      "track": {
+        "$value": "{color.surfaceVariant}"
+      },
+      "border": {
+        "$value": "{color.outline}"
+      },
+      "highlight": {
+        "$value": "color-mix(in srgb, {color.onBackground} 18%, transparent)"
+      }
+    },
+    "menu": {
+      "background": {
+        "$value": "{color.popover}"
+      },
+      "border": {
+        "$value": "{color.outline}"
+      },
+      "shadow": {
+        "$value": "{shadow.lg}"
+      },
+      "mutedForeground": {
+        "$value": "{color.onSurfaceVariant}"
+      },
+      "metaForeground": {
+        "$value": "{color.onSurfaceVariant}"
+      },
+      "disabledForeground": {
+        "$value": "color-mix(in srgb, {color.onSurfaceVariant} 44%, transparent)"
+      },
+      "divider": {
+        "$value": "{color.outlineVariant}"
+      },
+      "scrollbarThumb": {
+        "$value": "{interface.scrollbar.thumb}"
+      },
+      "scrollbarTrack": {
+        "$value": "{interface.scrollbar.track}"
+      }
+    },
+    "motion": {
+      "quickDuration": {
+        "$value": "140ms"
+      },
+      "quickEasing": {
+        "$value": "ease"
+      }
+    }
+  }
+}

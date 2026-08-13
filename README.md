@@ -15,20 +15,21 @@ through GitHub Pages at `http://127.0.0.1:4181/`, and opens it in the default
 browser. AppScreen Studio's Themes workspace consumes the same gallery renderer
 and generated catalog from this repository.
 
-Bits & Bolts, Cloud, Neo Brutalism, and Nature implement the current v2
-contract. Ocean and Robot remain legacy catalog families; the shared showcase
-represents that difference honestly.
+All catalog families implement the current v2 contract.
 
 ## Themes
 
 | Theme | Primary | Secondary | Personality |
 |-------|---------|-----------|-------------|
 | **cloud** | `#4F46E5` indigo | `#7C3AED` violet | Calm, clear utility |
-| **ocean** | `#0061A3` deep blue | `#00696B` teal | Professional, calm |
-| **robot** | `#3FB950` terminal green | `#58A6FF` telemetry blue | Industrial, diagnostic, systems-focused |
 | **bitsandbolts** | `#12E6D5` neon cyan | `#65FFBF` neon green | Portfolio brand, launch energy |
-| **neobrutalism** | `#FF3333` signal red | `#FFFF00` signal yellow | Square, graphic, hard-shadow utility |
-| **nature** | `#2E7D32` forest green | `#E8F5E9` pale green | Warm, organic, editorial utility |
+| **brutus** | `#FF3333` signal red | `#FFFF00` signal yellow | Square, graphic, hard-shadow utility |
+| **forest** | `#2E7D32` forest green | `#E8F5E9` pale green | Warm, organic, editorial utility |
+| **winter** | `oklch(0.7227 0.1920 149.5793)` green | `oklch(0.9514 0.0250 236.8242)` mist | Crisp coastal utility |
+| **coffee** | `oklch(0.6083 0.0623 44.3588)` mocha | `oklch(0.7473 0.0387 80.5476)` cream | Warm cafe utility |
+| **bubblegum** | `oklch(0.8677 0.0735 7.0855)` pink | `oklch(0.8148 0.0819 225.7537)` blue | Playful candy utility |
+| **inferno** | `oklch(0.6397 0.1720 36.4421)` hot orange | `oklch(0.9670 0.0029 264.5419)` cool gray | Hot signal utility |
+| **sober** | `oklch(0.6333 0.0309 154.9039)` sage | `oklch(0.8596 0.0291 119.9919)` stone | Restrained garden utility |
 
 Each theme has light + dark variants. All tokens follow the Material 3 color system.
 
@@ -53,7 +54,7 @@ The `dist/` folder is committed to this repo, so you can use the generated files
 
 ## Generated outputs
 
-After `pnpm build` (or on first clone — dist is pre-built):
+After `pnpm build` (or on first clone, since dist is pre-built):
 
 ```
 dist/
@@ -117,7 +118,7 @@ cp themes-source/dist/android/cloud/DarkColors.kt \
 
    Or find-and-replace `REPLACE_ME` with your package name after copying.
 
-2. Write a thin `Theme.kt` in your app (not generated — you own this):
+2. Write a thin `Theme.kt` in your app (not generated, you own this):
 
 ```kotlin
 // ui/theme/Theme.kt
@@ -193,7 +194,7 @@ source: [
 ],
 ```
 
-Alternatively, just copy the theme JSON and change what you need — it's just JSON.
+Alternatively, just copy the theme JSON and change what you need. It is just JSON.
 
 ---
 

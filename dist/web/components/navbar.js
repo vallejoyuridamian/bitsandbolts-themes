@@ -1,3 +1,5 @@
+import { brandMarkMarkup } from './brand-mark.js';
+
 const NAVBAR_PLACEMENTS = new Set(['static', 'sticky', 'hide-on-scroll']);
 const NAVBAR_LAYOUTS = new Set(['auto', 'desktop', 'compact']);
 const installedDocuments = new WeakSet();
@@ -41,15 +43,6 @@ function navbarLink(model, className, { specimen = false } = {}) {
   return `<a class="${className}" href="${escapeHtml(model.href)}" data-bb-navbar-link${externalAttributes(model)}>${escapeHtml(model.label)}</a>`;
 }
 
-function brandMarkMarkup(brand = {}) {
-  if (brand.logo) {
-    return `<img src="${escapeHtml(brand.logo)}" alt="" />`;
-  }
-  return `<svg class="bb-navbar__brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-            <path fill="currentColor" d="M16 2 30 16 16 30 2 16 16 2Zm0 6.2L8.2 16l7.8 7.8 7.8-7.8L16 8.2Z" />
-          </svg>`;
-}
-
 export function navbarMarkup(model = {}, options = {}) {
   const {
     placement = model.placement ?? 'hide-on-scroll',
@@ -76,7 +69,10 @@ export function navbarMarkup(model = {}, options = {}) {
   }
   const brand = model.brand || {};
   const links = Array.isArray(model.links) ? model.links : [];
-  const brandMark = brandMarkMarkup(brand);
+  const brandMark = brandMarkMarkup(brand, {
+    className: 'bb-navbar__brand-mark',
+    imageProperty: '--bb-navbar-brand-mark-image'
+  });
   const brandLabel = brand.ariaLabel
     ? ` aria-label="${escapeHtml(brand.ariaLabel)}"`
     : '';

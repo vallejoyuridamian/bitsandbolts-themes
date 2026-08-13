@@ -4,23 +4,22 @@ Keep new changes easy to scan at the top.
 
 ---
 
-## Session wrap-up (2026-08-12) - Neo Brutalism and Nature families
+## Session wrap-up (2026-08-12) - Brutus and Forest families
 
 ### What changed
-- Added Neo Brutalism and Nature as complete v2 light/dark theme families using
-  public browser-delivered preset colors, radius, and declared typography as
-  visual inputs.
+- Added Brutus and Forest as complete v2 light/dark theme families with their
+  authoritative colors, radius, and declared typography.
 - Added independent B&B semantic mappings, Button recipes, interface roles,
   catalog entries, and generated web, Android, React Native, docs, and showcase
   outputs for both families.
 - Bundled DM Sans, Space Mono, Merriweather, and Source Code Pro from official
-  OFL sources. Montserrat remains the Nature interface family.
+  OFL sources. Montserrat remains the Forest interface family.
 
 ### Acceptance and boundary
 - The owner accepted both families as useful initial checkpoints. The focused
   Themes build passes with all six families.
-- TweakCN component source was not copied. Roles absent from the public presets
-  and all component interactions are independent Themes-owned interpretations.
+- Reusable component recipes are original Themes-owned implementations. Roles
+  absent from the family foundations are explicit Themes-owned derivations.
 - Detailed browser refinement remains owner-owned. No push, publication,
   deployment, or consumer mutation ran.
 

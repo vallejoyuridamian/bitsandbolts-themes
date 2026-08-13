@@ -65,6 +65,10 @@
   display: block;
 }
 
+.bb-hero__heading-line em {
+  font-style: italic;
+}
+
 .bb-hero__eyebrow {
   color: var(--bb-color-primary);
   font-family: var(--bb-font-family-display);
