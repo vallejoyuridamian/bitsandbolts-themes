@@ -39,6 +39,10 @@
   swap policy with blocking presentation, and rebuild generated outputs.
 - [x] Pass the build, readiness, guest, routed Select, and Sites checks; record
   five stale gallery assertions; commit the accepted checkpoint without push.
+- [x] Extract abstract editorial, form, card, timeline, detail-media, and store
+  badge recipes for managed content without adding product-local presentation.
+- [x] Owner-accept all 13 managed My Website pages, including the six live
+  portfolio details and source-matched detail-title typography.
 
 ## Next Task Menu
 

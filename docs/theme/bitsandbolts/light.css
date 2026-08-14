@@ -14,6 +14,15 @@
   --bb-marketing-portfolio-panel: #111111;
   --bb-marketing-portfolio-body-text: #CCCCCC;
   --bb-marketing-portfolio-client-text: #AAAAAA;
+  --bb-marketing-content-panel-surface: #FFFFFF;
+  --bb-marketing-content-body-text: #40546A;
+  --bb-marketing-form-field-surface: #E1EAF4;
+  --bb-marketing-form-field-content: #0B0F14;
+  --bb-marketing-form-field-border: #708499;
+  --bb-marketing-form-field-focus: #007D75;
+  --bb-marketing-form-field-error: #BA1A1A;
+  --bb-marketing-form-field-inset-glow: #007D75;
+  --bb-marketing-form-field-error-glow: #BA1A1A;
   --bb-marketing-highlight: #FFFFFF;
   --bb-marketing-store-badge-surface: #FFFFFF;
   --bb-marketing-store-badge-content: #0B1120;

@@ -1,0 +1,43 @@
+/**
+ * Small reusable SVG-mask icon set for exact vector assets that are not part of
+ * the Material Symbols font. Icon source and licensing stay in Themes.
+ */
+
+.bb-vector-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex: 0 0 auto;
+  background: currentColor;
+  mask: var(--bb-vector-icon-source) center / contain no-repeat;
+}
+
+.bb-vector-icon[data-bb-icon="microchip"] {
+  --bb-vector-icon-source: url("../icons/solid-microchip.svg");
+}
+
+.bb-vector-icon[data-bb-icon="check"] {
+  width: 0.875em;
+  --bb-vector-icon-source: url("../icons/solid-check.svg");
+}
+
+.bb-vector-icon[data-bb-icon="mobile-screen-button"] {
+  width: 0.75em;
+  --bb-vector-icon-source: url("../icons/solid-mobile-screen-button.svg");
+}
+
+.bb-vector-icon[data-bb-icon="server"] {
+  --bb-vector-icon-source: url("../icons/solid-server.svg");
+}
+
+.bb-vector-icon[data-bb-icon="star"] {
+  --bb-vector-icon-source: url("../icons/solid-star.svg");
+}
+
+.bb-vector-icon[data-bb-icon="earth-americas"] {
+  --bb-vector-icon-source: url("../icons/solid-earth-americas.svg");
+}
+
+.bb-vector-icon[data-bb-icon="external-link"] {
+  --bb-vector-icon-source: url("../icons/solid-arrow-up-right-from-square.svg");
+}

@@ -109,6 +109,15 @@
   transition: box-shadow 300ms ease, filter 150ms, transform 300ms ease;
 }
 
+.bb-btn-neon.bb-btn--compact {
+  font-size: clamp(1.3rem, 1.8vw, 2rem);
+}
+
+.bb-btn-neon.bb-btn--medium {
+  margin-top: 0.5rem;
+  font-size: 1.6rem;
+}
+
 .bb-btn.bb-btn-neon,
 .bb-btn.bb-btn-neon::before {
   box-sizing: content-box;

@@ -1,0 +1,335 @@
+/**
+ * Abstract editorial section recipes.
+ * Consumers own content and order. Themes owns all visual presentation.
+ */
+
+.bb-content-section__action {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.bb-content-section__inline-icon {
+  width: 0.875em;
+  height: 1em;
+  margin-inline: 0.08em;
+  color: var(--bb-color-warning);
+  vertical-align: -0.125em;
+}
+
+.bb-media-copy-list {
+  width: 100%;
+}
+
+.bb-media-copy-list--panel {
+  width: calc(100vw - 20px);
+  margin-inline: calc(50% - 50vw + 10px);
+}
+
+.bb-media-copy-list__group {
+  margin-bottom: 40px;
+}
+
+.bb-media-copy-list__group:last-child {
+  margin-bottom: 0;
+}
+
+.bb-media-copy {
+  position: relative;
+  width: 100%;
+}
+
+.bb-media-copy--panel {
+  padding: 15px 10px 20px;
+}
+
+.bb-media-copy__row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.bb-media-copy__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bb-media-copy--panel .bb-media-copy__media img {
+  max-width: 85%;
+  max-height: 85%;
+  border-radius: 20px;
+  box-shadow: 0 0 10px color-mix(in srgb, var(--bb-color-secondary) 60%, transparent);
+  transition: box-shadow 200ms ease, transform 200ms ease;
+}
+
+.bb-media-copy--panel .bb-media-copy__media img:hover {
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--bb-color-scrim) 40%, transparent);
+  transform: translateY(-6px);
+}
+
+.bb-media-copy--panel .bb-media-copy__copy {
+  max-width: 50%;
+}
+
+.bb-media-copy--media-end .bb-media-copy__media {
+  order: 2;
+}
+
+.bb-media-copy--media-end .bb-media-copy__copy {
+  order: 1;
+}
+
+.bb-media-copy--panel h3,
+.bb-milestone-timeline h3 {
+  margin: 0 0 15px;
+  color: var(--bb-marketing-highlight);
+  font-family: var(--bb-font-family-display);
+  font-size: clamp(0.8rem, 5vw, 2rem);
+  font-weight: var(--bb-font-weight-semibold);
+  letter-spacing: 0.2vw;
+  text-align: center;
+}
+
+.bb-media-copy--panel p,
+.bb-milestone-timeline p,
+.bb-question-list dd {
+  margin: 0;
+  color: var(--bb-marketing-content-body-text);
+  font-family: var(--bb-font-family-body);
+  font-size: clamp(0.8rem, 1.3vw, 1.5rem);
+  font-weight: var(--bb-font-weight-bold);
+  line-height: 1.3;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+.bb-media-copy--portrait {
+  margin-bottom: 20px;
+}
+
+.bb-media-copy--portrait .bb-media-copy__row {
+  justify-content: space-between;
+}
+
+.bb-media-copy--portrait .bb-media-copy__copy {
+  max-width: clamp(10rem, 50vw, 30rem);
+  color: var(--bb-marketing-content-body-text);
+  font-family: var(--bb-font-family-body);
+  font-size: clamp(0.5rem, 3.2vw, 1.2rem);
+  font-weight: var(--bb-font-weight-bold);
+}
+
+.bb-media-copy--portrait .bb-media-copy__copy p {
+  margin: 1em 0;
+}
+
+.bb-media-copy--portrait .bb-media-copy__media {
+  flex: 1;
+}
+
+.bb-media-copy--portrait .bb-media-copy__media img {
+  width: 100%;
+  max-width: 200px;
+  border-radius: var(--bb-radius-full);
+  box-shadow: 0 0 30px color-mix(in srgb, var(--bb-color-primary) 50%, transparent);
+}
+
+.bb-prose-block {
+  width: 100%;
+  color: var(--bb-marketing-content-body-text);
+  font-family: var(--bb-font-family-body);
+  font-size: clamp(0.5rem, 3.2vw, 1.2rem);
+  font-weight: var(--bb-font-weight-bold);
+  text-align: left;
+}
+
+.bb-prose-block p {
+  color: inherit;
+}
+
+.bb-prose-block--compact p {
+  margin: 0;
+}
+
+.bb-prose-block--compact p + p {
+  margin-top: 1em;
+}
+
+.bb-prose-block--detail {
+  font-size: clamp(0.8rem, 2.8vw, 1.5rem);
+  line-height: 1.3;
+}
+
+.bb-prose-block--detail p {
+  margin: 0 0 10px;
+}
+
+.bb-question-list {
+  width: 100%;
+  margin: 0;
+}
+
+.bb-question-list__item dt {
+  padding: 2rem 0 0.5rem;
+  color: var(--bb-marketing-highlight);
+  font-family: var(--bb-font-family-display);
+  font-size: clamp(0.8rem, 5vw, 2rem);
+  font-weight: var(--bb-font-weight-semibold);
+  letter-spacing: 0.2vw;
+  text-align: left;
+}
+
+.bb-question-list__item dd {
+  margin: 0;
+}
+
+.bb-question-list__steps {
+  margin-top: 5px;
+}
+
+.bb-question-list__step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 5px 0;
+  padding-left: 0.5rem;
+}
+
+.bb-question-list__step-icon {
+  width: 1em;
+  height: 1em;
+  flex: 0 0 auto;
+  color: var(--bb-color-primary);
+}
+
+.bb-milestone-timeline {
+  position: relative;
+  display: flex;
+  width: calc(100vw - 20px);
+  flex-direction: column;
+  gap: 4rem;
+  margin-inline: calc(50% - 50vw + 10px);
+}
+
+.bb-milestone-timeline__spacer {
+  width: 100%;
+}
+
+.bb-milestone-timeline__bottom {
+  margin-bottom: 1rem;
+}
+
+.bb-milestone-timeline__markers {
+  position: absolute;
+  inset: 0 auto 0 50%;
+  z-index: 0;
+  display: flex;
+  width: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3rem 0;
+  transform: translateX(-50%);
+}
+
+.bb-milestone-timeline__dot {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.bb-milestone-timeline__dot > span {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--bb-radius-full);
+  background: var(--bb-color-primary);
+  transition: box-shadow 200ms ease, transform 200ms ease;
+}
+
+.bb-milestone-timeline__dot > span:hover {
+  box-shadow: 0 0 14px color-mix(in srgb, var(--bb-color-primary) 50%, transparent);
+  transform: scale(1.3);
+}
+
+.bb-milestone-timeline__item {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 45%;
+  min-height: 330px;
+  align-self: flex-start;
+}
+
+.bb-milestone-timeline__item--end {
+  align-self: flex-end;
+}
+
+.bb-milestone-timeline__item .bb-information-panel {
+  width: 100%;
+}
+
+.bb-milestone-timeline__milestone {
+  box-sizing: content-box;
+  z-index: 1;
+  width: 50px;
+  height: 50px;
+  flex-basis: 50px;
+  border: 2px solid var(--bb-color-primary);
+  border-radius: var(--bb-radius-full);
+  color: var(--bb-color-primary);
+  background: var(--bb-color-background);
+  font-size: 30px;
+  transition: box-shadow 200ms ease, transform 200ms ease;
+}
+
+.bb-milestone-timeline__milestone:hover {
+  box-shadow: 0 0 14px color-mix(in srgb, var(--bb-color-primary) 50%, transparent);
+  transform: scale(1.2);
+}
+
+.bb-milestone-timeline__icon {
+  width: 1em;
+  height: 1em;
+}
+
+@media (max-width: 1025px) {
+  .bb-media-copy__row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .bb-media-copy--panel .bb-media-copy__copy {
+    max-width: 100%;
+    order: 1;
+  }
+
+  .bb-media-copy--panel .bb-media-copy__media {
+    order: 2;
+  }
+
+  .bb-media-copy--portrait .bb-media-copy__row {
+    flex-direction: row;
+    gap: 0;
+  }
+
+  .bb-milestone-timeline__markers {
+    left: 90%;
+  }
+
+  .bb-milestone-timeline__item,
+  .bb-milestone-timeline__item--end {
+    width: 80%;
+    align-self: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bb-media-copy-list *,
+  .bb-milestone-timeline * {
+    transition-duration: 0.01ms !important;
+  }
+}

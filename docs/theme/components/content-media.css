@@ -1,0 +1,61 @@
+/**
+ * Abstract spotlight-media and store-badge group recipes.
+ * Consumers provide assets and destinations. Themes owns presentation.
+ */
+
+.bb-spotlight-media {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem auto;
+}
+
+.bb-spotlight-media img {
+  display: block;
+  width: auto;
+  max-width: 200px;
+  height: auto;
+  max-height: 200px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--bb-color-secondary) 35%, transparent);
+}
+
+.bb-store-badge-list {
+  display: flex;
+  width: 100%;
+  flex-flow: row wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.bb-store-badge-list .bb-store-badge {
+  width: auto;
+  min-width: 0;
+  height: 50px;
+  min-height: 50px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+  transition: transform 200ms ease;
+}
+
+.bb-store-badge-list .bb-store-badge img {
+  width: auto;
+  height: 50px;
+}
+
+.bb-store-badge-list .bb-store-badge:hover,
+.bb-store-badge-list .bb-store-badge:focus-visible {
+  transform: scale(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bb-store-badge-list .bb-store-badge {
+    transition-duration: 0.01ms;
+  }
+}

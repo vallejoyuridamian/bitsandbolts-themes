@@ -1,0 +1,210 @@
+/**
+ * Abstract elevated information and horizontal card recipes.
+ * Consumers provide meaning and content. Themes owns all presentation.
+ */
+
+.bb-information-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: var(--bb-radius-xl);
+  background: var(--bb-marketing-content-panel-surface);
+  box-shadow: 0 0 5px color-mix(in srgb, var(--bb-color-secondary) 35%, transparent);
+  transition: box-shadow 200ms ease, transform 200ms ease;
+}
+
+.bb-information-panel:hover,
+.bb-information-panel:focus-within {
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--bb-color-scrim) 40%, transparent);
+  transform: translateY(-6px);
+}
+
+.bb-content-card-list {
+  width: 100%;
+}
+
+.bb-content-card-link {
+  display: block;
+  width: 100%;
+  margin: 24px 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.bb-content-card {
+  padding: 20px;
+  border: 0;
+  border-radius: var(--bb-radius-xl);
+  color: inherit;
+  background: var(--bb-marketing-content-panel-surface);
+  box-shadow: 0 0 5px color-mix(in srgb, var(--bb-color-secondary) 35%, transparent);
+  text-decoration: none;
+}
+
+.bb-content-card:hover,
+.bb-content-card:focus-within {
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--bb-color-scrim) 40%, transparent);
+  transform: translateY(-6px);
+}
+
+.bb-content-card--horizontal {
+  display: flex;
+  width: 100%;
+  min-height: 180px;
+  align-items: center;
+  gap: 24px;
+  box-sizing: border-box;
+  transition: transform 200ms ease;
+}
+
+.bb-content-card--horizontal:hover,
+.bb-content-card--horizontal:focus-within {
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--bb-color-scrim) 40%, transparent);
+  transform: translateY(-4px);
+}
+
+.bb-content-card--media-end {
+  flex-direction: row-reverse;
+}
+
+.bb-content-card.bb-content-card--vertical {
+  box-sizing: content-box;
+  width: var(--bb-card-rail-card-width, 180px);
+  flex: 0 0 auto;
+  text-align: center;
+  transition: box-shadow 300ms ease, transform 300ms ease;
+}
+
+.bb-content-card__media {
+  display: flex;
+  flex: 0 0 120px;
+  align-items: center;
+  justify-content: center;
+}
+
+.bb-content-card__media img {
+  width: 90px;
+  height: 90px;
+  margin: 0;
+  border-radius: 10px;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--bb-color-secondary) 35%, transparent);
+  object-fit: fill;
+}
+
+.bb-content-card__media--contained img {
+  width: 82px;
+  height: 82px;
+  padding: 8px;
+  background: color-mix(in srgb, var(--bb-marketing-highlight) 2%, transparent);
+  object-fit: contain;
+}
+
+.bb-content-card__copy {
+  flex: 1;
+  color: var(--bb-marketing-content-body-text);
+}
+
+.bb-content-card__copy h3 {
+  margin: 1em 0 6px;
+  color: var(--bb-marketing-highlight);
+  font-family: var(--bb-font-family-display);
+  font-size: 1.1rem;
+  font-weight: var(--bb-font-weight-bold);
+}
+
+.bb-content-card__copy p {
+  margin: 1em 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.bb-content-card__inline-icon {
+  width: 0.875em;
+  height: 1em;
+  margin-inline: 0.08em;
+  color: var(--bb-color-warning);
+  vertical-align: -0.125em;
+}
+
+.bb-card-rail {
+  --bb-card-rail-card-width: 180px;
+
+  position: relative;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0 0 10px;
+}
+
+.bb-card-rail__track {
+  display: flex;
+  gap: 1.5rem;
+  align-items: stretch;
+  overflow-x: auto;
+  padding: 5px clamp(1rem, 6vw, 60px) 20px 20px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.bb-card-rail__track::-webkit-scrollbar {
+  display: none;
+}
+
+.bb-card-rail__track > a {
+  display: flex;
+  width: auto;
+  align-self: stretch;
+  flex: 0 0 auto;
+}
+
+.bb-card-rail__track > a > .bb-content-card {
+  flex: 1;
+}
+
+.bb-card-rail__control {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: var(--bb-radius-full);
+  color: var(--bb-marketing-highlight);
+  background: color-mix(in srgb, var(--bb-color-scrim) 40%, transparent);
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.bb-card-rail__control:hover,
+.bb-card-rail__control:focus-visible {
+  background: color-mix(in srgb, var(--bb-marketing-highlight) 30%, transparent);
+}
+
+.bb-card-rail__control--previous {
+  left: 5px;
+}
+
+.bb-card-rail__control--next {
+  right: 5px;
+}
+
+.bb-card-rail__control .ms {
+  --ms-size: 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bb-information-panel,
+  .bb-content-card {
+    transition-duration: 0.01ms;
+  }
+
+  .bb-card-rail__track {
+    scroll-behavior: auto;
+  }
+}

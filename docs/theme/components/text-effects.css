@@ -1,0 +1,10 @@
+/** Abstract text effects shared by Theme-owned compositions. */
+
+.bb-text-effect--neon-glow {
+  text-shadow: 0 0 5px var(--bb-color-primary),
+    0 0 10px var(--bb-color-primary),
+    0 0 20px var(--bb-color-primary),
+    0 0 40px var(--bb-color-primary),
+    0 0 60px var(--bb-marketing-portfolio-glow-far, var(--bb-color-primary)),
+    0 0 80px var(--bb-marketing-portfolio-glow-far, var(--bb-color-primary));
+}

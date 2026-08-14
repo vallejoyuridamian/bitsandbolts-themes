@@ -25,6 +25,16 @@
   margin-bottom: var(--bb-spacing-3);
 }
 
+.bb-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bb-spacing-4);
+}
+
+.bb-form-fields--prominent {
+  gap: 20px;
+}
+
 .bb-field__label {
   font-family: var(--bb-font-family-body);
   font-size: var(--bb-font-size-xs);
@@ -110,6 +120,55 @@
   font-size: var(--bb-font-size-xs);
   color: var(--bb-color-on-surface-variant);
   margin: 0;
+}
+
+/* Prominent field recipe, based on the established Bits & Bolts web form. */
+
+.bb-field--prominent {
+  gap: 0;
+  margin: 0;
+}
+
+.bb-field--prominent .bb-field__label {
+  color: var(--bb-marketing-highlight);
+  font-family: var(--bb-font-family-body);
+  font-size: clamp(0.5rem, 3vw, 1rem);
+  font-weight: var(--bb-font-weight-bold);
+  letter-spacing: normal;
+}
+
+.bb-field--prominent .bb-field__input {
+  width: 100%;
+  margin-top: 6px;
+  padding: 12px;
+  border: 1px solid var(--bb-marketing-form-field-border);
+  border-radius: 8px;
+  color: var(--bb-marketing-form-field-content);
+  background: var(--bb-marketing-form-field-surface);
+  box-shadow: inset 0 0 4px color-mix(in srgb, var(--bb-marketing-form-field-inset-glow) 10%, transparent);
+  font-family: var(--bb-font-family-body);
+  font-size: clamp(0.7rem, 1.2vw, 2rem);
+  transition: border-color 300ms ease;
+}
+
+.bb-field--prominent .bb-field__input:focus,
+.bb-field--prominent[data-specimen-state="focus"] .bb-field__input {
+  border-color: var(--bb-marketing-form-field-focus);
+  outline: none;
+}
+
+.bb-field--prominent.bb-field--error .bb-field__input {
+  border-color: var(--bb-marketing-form-field-error);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--bb-marketing-form-field-error-glow) 50%, transparent);
+}
+
+.bb-field--prominent .bb-field__error {
+  width: 100%;
+  margin-top: 4px;
+  color: var(--bb-marketing-form-field-error);
+  font-size: 0.8rem;
+  font-weight: var(--bb-font-weight-medium);
+  text-align: left;
 }
 
 /* ─── Divider ────────────────────────────────────────────────────────────────── */

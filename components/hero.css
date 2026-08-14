@@ -135,21 +135,6 @@
   list-style: none;
 }
 
-.bb-hero__assurances li {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--bb-spacing-2);
-}
-
-.bb-text-effect--neon-glow {
-  text-shadow: 0 0 5px var(--bb-color-primary),
-    0 0 10px var(--bb-color-primary),
-    0 0 20px var(--bb-color-primary),
-    0 0 40px var(--bb-color-primary),
-    0 0 60px var(--bb-marketing-portfolio-glow-far, var(--bb-color-primary)),
-    0 0 80px var(--bb-marketing-portfolio-glow-far, var(--bb-color-primary));
-}
-
 @media (max-width: 940px) {
   .bb-hero--split,
   .bb-hero--focal-center {

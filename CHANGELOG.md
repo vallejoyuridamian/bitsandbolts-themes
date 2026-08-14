@@ -4,6 +4,27 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-14) - Managed My Website UI completed
+
+### What changed
+- Added abstract Themes-owned content layouts, cards, media/copy sections,
+  information panels, timelines, prose, question lists, form fields, spotlight
+  media, store badges, inline vector icons, and text effects.
+- Replaced My Website-specific service and roadmap presentation with those
+  reusable recipes and generated matching `dist` and documentation outputs.
+- Added the shared presentation required by the managed About, Portfolio,
+  Roadmap, Services, FAQs, Quote, and six live portfolio detail pages.
+- Matched the source detail-page image, copy, typography, spacing, external-link
+  icon, CTA, and NeuroSharp store-badge presentation. The detail title explicitly
+  uses normal letter spacing to match the live React source.
+
+### Acceptance and boundary
+- The owner accepted all 13 managed My Website pages at the final visual
+  checkpoint. Themes builds successfully; Sites passes 41/41 tests and build;
+  the focused portfolio-detail checks pass 3/3.
+- The original React site remains the unchanged visual and copy reference.
+- No deployment, publication, route mutation, package publication, or push ran.
+
 ## Session wrap-up (2026-08-12) - Brutus and Forest families
 
 ### What changed

@@ -1,0 +1,238 @@
+@import url("./scrollbar.css");
+
+/**
+ * Abstract content-layout recipes for immersive text and form compositions.
+ * Consumers own document meaning and order. Themes owns all presentation.
+ */
+
+.bb-immersive-page,
+.bb-immersive-page *,
+.bb-immersive-page *::before,
+.bb-immersive-page *::after {
+  box-sizing: border-box;
+}
+
+html:has(body.bb-immersive-page),
+body.bb-immersive-page {
+  min-height: 100%;
+  margin: 0;
+  color: var(--bb-color-on-background);
+  background: var(--bb-color-background);
+  font-family: var(--bb-font-family-body);
+}
+
+.bb-backdrop-layout {
+  position: relative;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.bb-backdrop-layout__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.bb-backdrop-layout__media--compact {
+  display: none;
+}
+
+.bb-backdrop-layout__scrim {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  background: color-mix(in srgb, var(--bb-color-scrim) 60%, transparent);
+}
+
+.bb-backdrop-layout__main {
+  min-height: calc(100vh - var(--bb-footer-min-height, 64px));
+}
+
+.bb-backdrop-layout > .bb-navbar[data-placement="hide-on-scroll"]
+  + .bb-backdrop-layout__scrim .bb-backdrop-layout__main {
+  padding-top: var(--bb-navbar-height, 4rem);
+}
+
+.bb-centered-heading {
+  padding: 5px;
+  text-align: center;
+}
+
+.bb-centered-heading__title {
+  margin: 2vw 0 1vw;
+  padding: inherit;
+  color: var(--bb-marketing-highlight);
+  font-family: var(--bb-font-family-display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: var(--bb-font-weight-bold);
+  letter-spacing: 0.2vw;
+}
+
+.bb-centered-heading__subtitle {
+  margin: 0 0 3vw;
+  padding: inherit;
+  color: var(--bb-color-primary);
+  font-family: var(--bb-font-family-display);
+  font-size: clamp(1.1rem, 2.5vw, 3rem);
+  font-weight: var(--bb-font-weight-bold);
+}
+
+.bb-centered-heading__lead {
+  width: min(90vw, 60rem);
+  margin: 0 auto;
+  color: var(--bb-marketing-content-body-text);
+  font-family: var(--bb-font-family-body);
+  font-size: clamp(0.8rem, 1.3vw, 1.5rem);
+  font-weight: var(--bb-font-weight-bold);
+  line-height: 1.3;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+.bb-centered-heading--detail {
+  padding: 10px 0 0;
+}
+
+.bb-centered-heading--detail .bb-centered-heading__title {
+  margin: 0;
+  padding: 0;
+  color: var(--bb-marketing-highlight);
+  font-size: 2rem;
+  font-weight: var(--bb-font-weight-semibold);
+  letter-spacing: normal;
+}
+
+.bb-text-form-layout {
+  position: relative;
+  z-index: 2;
+  max-width: clamp(30rem, 65vw, 90rem);
+  margin: 14px auto;
+  border-radius: 12px;
+}
+
+.bb-content-column {
+  display: flex;
+  width: min(90vw, 60rem);
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.bb-content-column--detail {
+  width: clamp(10rem, 80vw, 70rem);
+}
+
+.bb-content-column__lead {
+  width: 100%;
+  margin: 0;
+  color: var(--bb-marketing-content-body-text);
+  font-family: var(--bb-font-family-body);
+  font-size: clamp(0.5rem, 3.2vw, 1.2rem);
+  font-weight: var(--bb-font-weight-bold);
+  text-align: left;
+}
+
+.bb-content-column__action {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.bb-content-column__action--closing {
+  margin-bottom: 1rem;
+}
+
+.bb-content-column--detail > .bb-content-column__action--closing {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.bb-reading-copy {
+  align-self: flex-start;
+  padding: 0 0 0 2rem;
+  color: var(--bb-marketing-content-body-text);
+  font-family: var(--bb-font-family-body);
+  font-size: clamp(0.5rem, 3.2vw, 1.2rem);
+  font-weight: var(--bb-font-weight-bold);
+  text-align: left;
+}
+
+.bb-reading-copy > p {
+  color: inherit;
+}
+
+.bb-inline-text-link {
+  display: inline-flex;
+  align-items: center;
+  border-bottom: 1px dotted var(--bb-marketing-highlight);
+  color: var(--bb-marketing-content-body-text);
+  font-family: var(--bb-font-family-body);
+  font-weight: var(--bb-font-weight-bold);
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.bb-inline-text-link:hover,
+.bb-inline-text-link:focus-visible {
+  color: var(--bb-marketing-highlight);
+}
+
+.bb-inline-text-link__icon {
+  width: 0.75em;
+  height: 0.75em;
+  margin-left: 0.3em;
+  color: currentColor;
+}
+
+.bb-form-region {
+  z-index: 2;
+  align-self: flex-start;
+  padding: 0 1.5rem;
+}
+
+.bb-form-region .bb-form-fields {
+  margin-top: 1.5rem;
+}
+
+.bb-verification-region {
+  margin-top: 10px;
+  transform: scale(0.85);
+  transform-origin: 0 0;
+}
+
+.bb-centered-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  padding-bottom: 40px;
+}
+
+@media (max-width: 1025px) {
+  .bb-backdrop-layout__media--wide {
+    display: none;
+  }
+
+  .bb-backdrop-layout__media--compact {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .bb-verification-region {
+    transform: scale(0.75);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bb-backdrop-layout *,
+  .bb-backdrop-layout *::before,
+  .bb-backdrop-layout *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

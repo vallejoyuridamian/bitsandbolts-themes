@@ -41,10 +41,24 @@ components, and generators for supported platforms.
 - A shared-gallery visual correction belongs in Themes first. Regenerate its
   existing outputs from the same source; do not create product-local styling or
   turn a two-property correction into a broader refactor.
+- Exact-parity work must preserve every source typography property by element,
+  including family, weight, size, and letter spacing. Never normalize title and
+  content typography across a shared component unless the source matches.
+- CSS parity validation must verify the effective final cascade when a selector
+  or property appears more than once. A presence-only assertion is insufficient.
 - Theme showcase and gallery specimens must use semantic role labels such as
   `Primary headline`, `Supporting copy`, and `Primary CTA`. Never paste live
   product or site marketing copy into a theme specimen; real copy stays in the
   owning Sites document.
+- Themes components and recipes must remain product- and page-agnostic. A site
+  may compose abstract text layouts, fields, cards, carousels, and controls,
+  but Themes must never know about a contact page, portfolio route, landing
+  page, product workflow, or other consumer-specific composition.
+- Before adding a component or presentation recipe, search Themes and accepted
+  consumers for the same visual role. When that role exists only inside a
+  legacy page-specific recipe, extract one abstract Themes recipe and migrate
+  both callers in the same bounded change. Equivalent parallel UI recipes are
+  prohibited, including temporary copies.
 - The long-term delivery mechanism must prevent copied consumer assets from
   becoming a second source of truth; that mechanism is not yet ratified.
 - A theme must eventually be switchable as a complete visual system, not only a

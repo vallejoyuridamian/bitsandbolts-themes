@@ -1,4 +1,12 @@
+import { contentCardsMarkup } from './content-card.js';
+import {
+  mediaCopyListMarkup,
+  milestoneTimelineMarkup,
+  proseMarkup,
+  questionListMarkup
+} from './content-section.js';
 import { footerMarkup, synchronizeFooterYear } from './footer.js';
+import { formFieldsMarkup } from './form-field.js';
 import { navbarMarkup } from './navbar.js';
 
 const THEME_GALLERY_SCROLLBAR_VARIABLES = Object.freeze([
@@ -500,6 +508,141 @@ function interfacePrimitiveMarkup() {
   `;
 }
 
+function contentAndFieldRecipeMarkup() {
+  const fields = formFieldsMarkup({
+    fields: [
+      { id: 'specimen-field-rest', label: 'Short response', name: 'short-response', type: 'text' },
+      { id: 'specimen-field-focus', label: 'Focused response', name: 'focused-response', state: 'focus', type: 'text' },
+      { id: 'specimen-field-error', label: 'Long response', message: 'Explain what needs attention.', name: 'long-response', state: 'error', type: 'textarea' }
+    ],
+    appearance: 'prominent'
+  }, { specimen: true });
+  const railCards = contentCardsMarkup({
+    label: 'Card rail specimen',
+    layout: 'rail',
+    items: [
+      { title: 'Card title', body: ['Compact supporting content.'] },
+      { title: 'Second card', body: ['Repeated content keeps one shared recipe.'] },
+      { title: 'Third card', body: ['The rail remains horizontally reachable.'] }
+    ]
+  }, { specimen: true });
+  const alternatingCards = contentCardsMarkup({
+    layout: 'stack',
+    mediaFlow: 'alternate-end-first',
+    items: [
+      {
+        title: 'Horizontal card',
+        body: ['The shared surface accepts horizontal media and copy.'],
+        media: { src: '/theme/icons/android.svg', alt: 'Abstract media specimen' }
+      },
+      {
+        title: 'Alternating card',
+        body: ['A collection can alternate the same card without a new component.'],
+        media: { src: '/theme/icons/linux.svg', alt: 'Second abstract media specimen' }
+      }
+    ]
+  }, { specimen: true });
+  const mediaCopy = mediaCopyListMarkup({
+    appearance: 'panel',
+    label: 'Media and copy specimen',
+    mediaFlow: 'alternate-start-first',
+    groups: [{
+      items: [{
+        title: 'Media and copy',
+        body: ['A reusable row keeps illustration and supporting content in one responsive recipe.'],
+        media: { src: '/theme/icons/android.svg', alt: 'Abstract media specimen' }
+      }]
+    }]
+  });
+  const portraitCopy = mediaCopyListMarkup({
+    appearance: 'portrait',
+    label: 'Portrait and copy specimen',
+    mediaFlow: 'start',
+    groups: [{
+      items: [{
+        body: ['Portrait-led editorial content uses the same abstract media and copy owner.'],
+        media: { src: '/theme/icons/linux.svg', alt: 'Abstract portrait specimen' },
+        mediaPosition: 'end'
+      }]
+    }]
+  });
+  const prose = proseMarkup({
+    flow: 'compact',
+    paragraphs: [
+      ['Long-form content can include a ', { kind: 'link', text: 'text link', href: '#shared-web-recipes' }, '.'],
+      ['A second line preserves one typography and spacing recipe.']
+    ]
+  });
+  const questions = questionListMarkup({
+    label: 'Question and answer specimen',
+    items: [{
+      question: 'How does this reusable section work?',
+      answer: ['Each question and answer uses one semantic text stack.'],
+      steps: [
+        { icon: 'idea', content: ['First supporting step'] },
+        { icon: 'call', content: ['Second supporting step'] },
+        { icon: 'agreement', content: ['Third supporting step'] }
+      ]
+    }]
+  });
+  const timeline = milestoneTimelineMarkup({
+    label: 'Milestone timeline specimen',
+    items: [
+      { iconRoles: ['idea', 'call', 'agreement'], title: 'First milestone', body: ['Supporting milestone copy.'] },
+      { iconRoles: ['analysis', 'settings', 'design'], title: 'Second milestone', body: ['Alternating milestone copy.'] }
+    ]
+  });
+
+  return `
+    <div>
+      <h4>Text layout &amp; fields</h4>
+      <div class="bb-theme-text-form-specimen">
+        <header class="bb-centered-heading">
+          <h3 class="bb-centered-heading__title bb-text-effect--neon-glow">Primary headline</h3>
+          <p class="bb-centered-heading__subtitle">Supporting headline</p>
+        </header>
+        <div class="bb-text-form-layout">
+          <div class="bb-reading-copy">
+            <p>Long-form supporting copy uses the canonical reading width, rhythm, link, and emphasis roles.</p>
+            <p class="bb-icon-text"><span class="bb-vector-icon bb-icon-text__icon" data-bb-icon="microchip" aria-hidden="true"></span><span>Icon and text alignment stays reusable across content.</span></p>
+          </div>
+          <div class="bb-form-region">${fields}</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h4>Information panel &amp; card rail</h4>
+      <div class="bb-theme-content-surfaces-specimen">
+        <article class="bb-information-panel">
+          <h3>Information panel</h3>
+          <p>Grouped information uses the shared panel surface and type roles.</p>
+        </article>
+        <div class="bb-theme-card-rail">${railCards}</div>
+      </div>
+      <div class="bb-theme-alternating-cards">${alternatingCards}</div>
+    </div>
+    <div>
+      <h4>Vector accents</h4>
+      <div class="bb-theme-vector-accents" aria-label="Reusable vector accent specimens">
+        <span><span class="bb-vector-icon" data-bb-icon="check" aria-hidden="true"></span>Check</span>
+        <span><span class="bb-vector-icon" data-bb-icon="microchip" aria-hidden="true"></span>Compute</span>
+        <span><span class="bb-vector-icon" data-bb-icon="mobile-screen-button" aria-hidden="true"></span>Mobile</span>
+        <span><span class="bb-vector-icon" data-bb-icon="server" aria-hidden="true"></span>Server</span>
+        <span><span class="bb-vector-icon" data-bb-icon="star" aria-hidden="true"></span>Star</span>
+        <span><span class="bb-vector-icon" data-bb-icon="earth-americas" aria-hidden="true"></span>Global</span>
+        <span><span class="bb-vector-icon" data-bb-icon="external-link" aria-hidden="true"></span>External</span>
+      </div>
+    </div>
+    <div>
+      <h4>Editorial sections</h4>
+      <div class="bb-theme-editorial-specimen">
+        <div>${mediaCopy}${portraitCopy}${prose}</div>
+        <div>${questions}${timeline}</div>
+      </div>
+    </div>
+  `;
+}
+
 function sharedWebRecipeMarkup() {
   return `
     <section class="bb-theme-inspection" aria-label="Current shared web recipe specimens">
@@ -592,6 +735,7 @@ function sharedWebRecipeMarkup() {
             <article class="bb-price-card bb-price-card--gold"><span class="bb-price-card__eyebrow">Yearly</span><h3>Gold</h3></article>
           </div>
         </div>
+        ${contentAndFieldRecipeMarkup()}
         ${interfacePrimitiveMarkup()}
       </div>
     </section>

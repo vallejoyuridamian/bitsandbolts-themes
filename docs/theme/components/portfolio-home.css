@@ -197,17 +197,6 @@ body.bb-portfolio-home {
   list-style: none;
 }
 
-.bb-portfolio-assurances li {
-  display: block;
-}
-
-.bb-portfolio-assurances__icon {
-  width: 0.875em;
-  margin-right: 0.4em;
-  color: var(--bb-color-primary);
-  font-size: 1.2em;
-}
-
 .bb-portfolio-hero__visual {
   position: relative;
 }
@@ -256,10 +245,7 @@ body.bb-portfolio-home {
 
 .bb-portfolio-section-title,
 .bb-portfolio-intro h2,
-.bb-portfolio-case-study__intro h2,
-.bb-portfolio-service h3,
-.bb-portfolio-roadmap h3,
-.bb-portfolio-card h3 {
+.bb-portfolio-case-study__intro h2 {
   color: var(--bb-marketing-highlight);
   font-family: "BB Portfolio Orbitron";
   font-weight: var(--bb-font-weight-semibold);
@@ -276,8 +262,6 @@ body.bb-portfolio-home {
 
 .bb-portfolio-intro p,
 .bb-portfolio-case-study__intro p,
-.bb-portfolio-service p,
-.bb-portfolio-roadmap p,
 .bb-portfolio-collaborations__heading p {
   color: var(--bb-marketing-portfolio-body-text);
   font-family: var(--bb-font-family-body);
@@ -359,8 +343,7 @@ body.bb-portfolio-home {
 }
 
 .bb-portfolio-intro h2,
-.bb-portfolio-case-study__intro h2,
-.bb-portfolio-service h3 {
+.bb-portfolio-case-study__intro h2 {
   margin-top: 0.83em;
   margin-bottom: 15px;
   font-size: clamp(0.8rem, 5vw, 2rem);
@@ -368,17 +351,8 @@ body.bb-portfolio-home {
   text-align: center;
 }
 
-.bb-portfolio-roadmap h3 {
-  margin: 0 0 15px;
-  font-size: clamp(0.8rem, 5vw, 2rem);
-  letter-spacing: 0.2vw;
-  text-align: center;
-}
-
 .bb-portfolio-intro p,
 .bb-portfolio-case-study__intro p,
-.bb-portfolio-service p,
-.bb-portfolio-roadmap p,
 .bb-portfolio-collaborations__heading p {
   margin: 0;
   font-size: clamp(0.8rem, 1.3vw, 1.5rem);
@@ -399,59 +373,24 @@ body.bb-portfolio-home {
 
 /* Horizontal cards */
 
-.bb-portfolio-carousel {
-  position: relative;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 0 0 10px;
-}
-
-.bb-portfolio-carousel__track {
-  display: flex;
-  gap: 1.5rem;
-  align-items: stretch;
-  overflow-x: auto;
-  padding: 5px clamp(1rem, 6vw, 60px) 20px 20px;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-}
-
-.bb-portfolio-carousel__track::-webkit-scrollbar {
-  display: none;
-}
-
 .bb-portfolio-card {
-  box-sizing: content-box;
-  width: 180px;
-  height: 340px;
-  flex: 0 0 auto;
-  padding: 20px;
-  border: 0;
-  border-radius: var(--bb-radius-xl);
-  color: inherit;
-  background: var(--bb-marketing-portfolio-panel);
-  box-shadow: 0 0 5px color-mix(in srgb, var(--bb-color-secondary) 35%, transparent);
   text-align: center;
-  text-decoration: none;
-  transition: box-shadow 300ms ease, transform 300ms ease;
-}
-
-.bb-portfolio-card:hover,
-.bb-portfolio-card:focus-visible {
-  box-shadow: 0 6px 18px color-mix(in srgb, var(--bb-color-scrim) 40%, transparent);
-  transform: translateY(-6px);
 }
 
 .bb-portfolio-card h3 {
   margin-bottom: 0.2rem;
   font-size: 1rem;
   font-weight: var(--bb-font-weight-bold);
+  letter-spacing: normal;
+}
+
+.bb-portfolio-project h3 {
+  font-family: "BB Portfolio Orbitron";
 }
 
 .bb-portfolio-review h3 {
   margin-top: 0;
   margin-bottom: 4px;
-  font-family: inherit;
   font-size: 0.9rem;
   font-weight: var(--bb-font-weight-semibold);
 }
@@ -534,65 +473,6 @@ body.bb-portfolio-home {
 .bb-portfolio-services {
   width: 100%;
   text-align: center;
-}
-
-.bb-portfolio-services__primary {
-  margin-bottom: 40px;
-}
-
-.bb-portfolio-service {
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding: 15px 10px 20px;
-}
-
-.bb-portfolio-service__row {
-  display: flex;
-  width: 100%;
-}
-
-.bb-portfolio-service--reverse .bb-portfolio-service__visual { order: 2; }
-.bb-portfolio-service--reverse .bb-portfolio-service__copy { order: 1; }
-
-.bb-portfolio-service__visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.bb-portfolio-service__visual img {
-  max-width: 85%;
-  max-height: 85%;
-  border-radius: 20px;
-  box-shadow: 0 0 10px color-mix(in srgb, var(--bb-color-secondary) 60%, transparent);
-  transition: box-shadow 200ms ease, transform 200ms ease;
-}
-
-.bb-portfolio-service__visual img:hover {
-  box-shadow: 0 6px 18px color-mix(in srgb, var(--bb-color-scrim) 40%, transparent);
-  transform: translateY(-6px);
-}
-
-.bb-portfolio-panel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  border-radius: var(--bb-radius-xl);
-  background: var(--bb-marketing-portfolio-panel);
-  box-shadow: 0 0 5px color-mix(in srgb, var(--bb-color-secondary) 35%, transparent);
-  transition: box-shadow 200ms ease, transform 200ms ease;
-}
-
-.bb-portfolio-panel:hover {
-  box-shadow: 0 6px 18px color-mix(in srgb, var(--bb-color-scrim) 40%, transparent);
-  transform: translateY(-6px);
-}
-
-.bb-portfolio-service__copy {
-  max-width: 50%;
 }
 
 /* NeuroSharp case study */
@@ -732,99 +612,6 @@ body.bb-portfolio-home {
   text-align: center !important;
 }
 
-.bb-portfolio-roadmap__track {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
-}
-
-.bb-portfolio-roadmap__empty {
-  width: 100%;
-}
-
-.bb-portfolio-roadmap__bottom {
-  margin-bottom: 1rem;
-}
-
-.bb-portfolio-roadmap__dots {
-  position: absolute;
-  inset: 0 auto 0 50%;
-  z-index: 0;
-  display: flex;
-  width: 20px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 3rem 0;
-  transform: translateX(-50%);
-}
-
-.bb-portfolio-roadmap__dot {
-  display: flex;
-  width: 20px;
-  height: 20px;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-}
-
-.bb-portfolio-roadmap__dot > span:not(.bb-portfolio-milestone__icon) {
-  width: 8px;
-  height: 8px;
-  border-radius: var(--bb-radius-full);
-  background: var(--bb-color-primary);
-  transition: box-shadow 200ms ease, transform 200ms ease;
-}
-
-.bb-portfolio-roadmap__dot > span:not(.bb-portfolio-milestone__icon):hover {
-  box-shadow: 0 0 14px color-mix(in srgb, var(--bb-color-primary) 50%, transparent);
-  transform: scale(1.3);
-}
-
-.bb-portfolio-roadmap__item {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  width: 45%;
-  height: 330px;
-  align-self: flex-start;
-}
-
-.bb-portfolio-roadmap__item--right {
-  align-self: flex-end;
-}
-
-.bb-portfolio-roadmap__item .bb-portfolio-panel {
-  width: 100%;
-}
-
-.bb-portfolio-milestone {
-  box-sizing: content-box;
-  z-index: 1;
-  display: flex;
-  width: 50px;
-  height: 50px;
-  flex-basis: 50px;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid var(--bb-color-primary);
-  border-radius: var(--bb-radius-full);
-  color: var(--bb-color-primary);
-  background: var(--bb-color-background);
-  font-size: 30px;
-  transition: box-shadow 200ms ease, transform 200ms ease;
-}
-
-.bb-portfolio-milestone:hover {
-  box-shadow: 0 0 14px color-mix(in srgb, var(--bb-color-primary) 50%, transparent);
-  transform: scale(1.2);
-}
-
-.bb-portfolio-milestone__icon {
-  max-width: 1.25em;
-}
-
 /* Collaborations */
 
 .bb-portfolio-collaborations__heading {
@@ -892,34 +679,10 @@ body.bb-portfolio-home {
     margin-top: 25vw;
   }
 
-  .bb-portfolio-service__row {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .bb-portfolio-service__copy {
-    max-width: 100%;
-    order: 1 !important;
-  }
-
-  .bb-portfolio-service__visual {
-    order: 2 !important;
-  }
-
   .bb-portfolio-cta {
     margin: 1rem 0;
     padding: 0.6rem 1.4rem;
     font-size: 1.4rem;
-  }
-
-  .bb-portfolio-roadmap__dots {
-    left: 90%;
-  }
-
-  .bb-portfolio-roadmap__item,
-  .bb-portfolio-roadmap__item--right {
-    width: 80%;
-    align-self: flex-start;
   }
 
 }

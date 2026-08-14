@@ -6,6 +6,19 @@
       "onAccent": { "$value": "#000000", "$type": "color" },
       "navigation": { "$value": "#FFFFFF", "$type": "color" },
       "metaFont": { "$value": "Inter" }
+    },
+    "content": {
+      "panelSurface": { "$value": "#111111", "$type": "color" },
+      "bodyText": { "$value": "#CCCCCC", "$type": "color" }
+    },
+    "form": {
+      "fieldSurface": { "$value": "#111111", "$type": "color" },
+      "fieldContent": { "$value": "#FFFFFF", "$type": "color" },
+      "fieldBorder": { "$value": "#444444", "$type": "color" },
+      "fieldFocus": { "$value": "#57FFAE", "$type": "color" },
+      "fieldError": { "$value": "#FF4F4F", "$type": "color" },
+      "fieldInsetGlow": { "$value": "#00FF80", "$type": "color" },
+      "fieldErrorGlow": { "$value": "#FF6464", "$type": "color" }
     }
   },
   "font": {

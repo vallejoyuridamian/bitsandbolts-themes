@@ -17,6 +17,19 @@
       "bodyText": { "$value": "#CCCCCC", "$type": "color" },
       "clientText": { "$value": "#AAAAAA", "$type": "color" }
     },
+    "content": {
+      "panelSurface": { "$value": "{color.surface}", "$type": "color" },
+      "bodyText": { "$value": "{color.onSurfaceVariant}", "$type": "color" }
+    },
+    "form": {
+      "fieldSurface": { "$value": "{color.surfaceVariant}", "$type": "color" },
+      "fieldContent": { "$value": "{color.onSurface}", "$type": "color" },
+      "fieldBorder": { "$value": "{color.outline}", "$type": "color" },
+      "fieldFocus": { "$value": "{color.primary}", "$type": "color" },
+      "fieldError": { "$value": "{color.error}", "$type": "color" },
+      "fieldInsetGlow": { "$value": "{color.primary}", "$type": "color" },
+      "fieldErrorGlow": { "$value": "{color.error}", "$type": "color" }
+    },
     "highlight": { "$value": "#FFFFFF", "$type": "color" },
     "storeBadge": {
       "surface": { "$value": "#FFFFFF", "$type": "color" },

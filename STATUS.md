@@ -36,7 +36,8 @@ Last verified: 2026-08-14
   use Themes-owned vector masks that remain centered across browser zoom levels.
 - Themes owns the reusable Navbar, Footer, Hero, Button, Select, Menu,
   Selection Controls, Dialog, Product Entry, Theme Readiness, Theme Gallery,
-  Page Gallery, and shared interface recipes used by managed sites and Studio.
+  Page Gallery, editorial layouts, cards, forms, timelines, prose, question
+  lists, detail media, store badges, and shared interface recipes.
 - The AppScreen Studio managed landing and Studio theme selectors expose the
   current catalog families. Select owns its menu lifecycle and delegated event
   contract. Theme changes retain the previous presentation until target CSS and
@@ -47,11 +48,15 @@ Last verified: 2026-08-14
   canonical Dialog recipe owns the guest account-creation gate.
 - The managed AppScreen landing's navigation, headline copy, themed brand mark,
   and footer treatment are owner-accepted at the current checkpoint.
+- The 13-page managed My Website candidate is owner-accepted. Its homepage,
+  secondary pages, and six live portfolio details use only declarative Sites
+  content plus Themes-owned recipes, with source-exact copy and project images.
 - Public copy and tracked source contain no attribution to the visual-inspiration
   source used during theme exploration.
-- The build, readiness tests 2/2, Sites checks 35/35, AppScreen guest checks 9/9,
-  and routed Select contract pass. Five known stale gallery assertions remain.
-  The coordinated checkpoint is committed locally and unpushed.
+- The build, readiness tests 2/2, Sites checks 41/41, AppScreen guest checks 9/9,
+  routed Select contract, and portfolio detail checks 3/3 pass. Five known stale
+  gallery assertions remain. The coordinated checkpoint is locally committed
+  and unpushed.
 
 ## Parked Font Candidates
 
@@ -70,6 +75,8 @@ and redistribution licenses must be verified before use.
   current Theme Summary Card rendering, visible guest gates, Navbar restoration,
   and fallback-free font transitions. Navbar action wrapper height remains
   intrinsic to the canonical Navbar height.
+- The owner accepted the My Website managed editorial and portfolio-detail
+  recipes, including the source-matched detail-title letter spacing.
 - Any later UI, CSS, theme, or renderer change requires fresh owner visual
   acceptance before another visual checkpoint commit.
 - The v2 contract still needs pinned DTCG resolver validation, full provenance
