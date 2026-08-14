@@ -269,6 +269,16 @@ function selectedMode(mode = '') {
   return REQUIRED_MODES.includes(mode) ? mode : 'dark';
 }
 
+function selectedCardModes(catalog, value = {}) {
+  return Object.freeze(Object.fromEntries(catalog.themes
+    .filter((theme) => Object.hasOwn(value, theme.id))
+    .map((theme) => [theme.id, selectedMode(value[theme.id])])));
+}
+
+function nextThemeMode(mode = '') {
+  return selectedMode(mode) === 'dark' ? 'light' : 'dark';
+}
+
 function themeSummaryIdentityMarkup(mode) {
   return mode.identity.map((entry) => `
     <span class="bb-theme-summary-card__identity" data-theme-v2-identity="${escapeHtml(entry.id)}">
@@ -292,42 +302,62 @@ function themeSummaryActionsMarkup(theme) {
 
 function themeSummaryCardMarkup(theme, mode) {
   if (!theme.v2) return '';
+  const nextMode = nextThemeMode(mode);
   return `
-    <button
+    <article
       class="bb-theme-summary-card"
-      type="button"
-      data-theme-gallery-open="${escapeHtml(theme.id)}"
       data-theme-preview-id="${escapeHtml(theme.id)}"
       data-theme-preview-mode="${escapeHtml(mode)}"
-      aria-label="Open ${escapeHtml(theme.label)} theme"
     >
-      <span class="bb-theme-summary-card__header">
-        <span>
-          <small>${escapeHtml(theme.v2.artDirection.label)}</small>
-          <strong>${escapeHtml(theme.label)}</strong>
+      <button
+        class="bb-theme-summary-card__open"
+        type="button"
+        data-theme-gallery-open="${escapeHtml(theme.id)}"
+        aria-label="Open ${escapeHtml(theme.label)} theme"
+      >
+        <span class="bb-theme-summary-card__header">
+          <span>
+            <small>${escapeHtml(theme.v2.artDirection.label)}</small>
+            <strong>${escapeHtml(theme.label)}</strong>
+          </span>
         </span>
-        <span class="ms" aria-hidden="true">arrow_forward</span>
-      </span>
-      <span class="bb-theme-summary-card__hero">
-        <span class="bb-theme-summary-card__headline">
-          Place the <em>accent</em><br>
-          where it <span>matters.</span>
+        <span class="bb-theme-summary-card__hero">
+          <span class="bb-theme-summary-card__headline">
+            Place the <em>accent</em><br>
+            where it <span>matters.</span>
+          </span>
+          <span class="bb-theme-summary-card__summary">${escapeHtml(theme.v2.artDirection.summary)}</span>
+          ${themeSummaryActionsMarkup(theme)}
         </span>
-        <span class="bb-theme-summary-card__summary">${escapeHtml(theme.v2.artDirection.summary)}</span>
-        ${themeSummaryActionsMarkup(theme)}
-      </span>
-      <span class="bb-theme-summary-card__identities" aria-hidden="true">
-        ${themeSummaryIdentityMarkup(theme.v2.modes[mode])}
-      </span>
-    </button>
+        <span class="bb-theme-summary-card__identities" aria-hidden="true">
+          ${themeSummaryIdentityMarkup(theme.v2.modes[mode])}
+        </span>
+      </button>
+      <button
+        class="bb-theme-summary-card__mode-toggle"
+        type="button"
+        data-theme-gallery-card-mode="${escapeHtml(theme.id)}"
+        aria-label="Switch ${escapeHtml(theme.label)} card to ${escapeHtml(nextMode)} preview"
+        title="Switch to ${escapeHtml(nextMode)} preview"
+      >
+        <span
+          class="bb-theme-summary-card__mode-icon"
+          data-theme-mode-icon="${escapeHtml(nextMode)}"
+          aria-hidden="true"
+        ></span>
+      </button>
+    </article>
   `;
 }
 
-function themeSummaryGridMarkup(catalog, mode) {
+function themeSummaryGridMarkup(catalog, mode, cardModes = {}) {
   return `
     <section class="bb-theme-summary" aria-label="Theme families">
       <div class="bb-theme-summary__grid">
-        ${catalog.themes.map((theme) => themeSummaryCardMarkup(theme, mode)).join('')}
+        ${catalog.themes.map((theme) => themeSummaryCardMarkup(
+          theme,
+          selectedMode(cardModes[theme.id] ?? mode)
+        )).join('')}
       </div>
     </section>
   `;
@@ -660,9 +690,9 @@ export function themeGalleryControlsMarkup() {
 }
 
 export function themeGalleryMarkup(catalog, selection = {}) {
-  const mode = selectedMode(selection.mode);
   const theme = catalog.themes.find((candidate) => candidate.id === selection.themeId);
-  if (!theme) return themeSummaryGridMarkup(catalog, mode);
+  const mode = selectedMode(theme ? selection.cardModes?.[theme.id] ?? selection.mode : selection.mode);
+  if (!theme) return themeSummaryGridMarkup(catalog, mode, selection.cardModes);
   return `
     <div class="bb-theme-detail">
       <header class="bb-theme-detail__navigation">
@@ -680,7 +710,7 @@ export function themeGalleryMarkup(catalog, selection = {}) {
 
 export function applyThemeGalleryVariables(host, catalog, selection = {}) {
   const selected = selectedTheme(catalog, selection.themeId);
-  const selectedVariables = selected.modes[selectedMode(selection.mode)].variables;
+  const selectedVariables = selected.modes[selectedMode(selection.cardModes?.[selected.id] ?? selection.mode)].variables;
   for (const name of THEME_GALLERY_SCROLLBAR_VARIABLES) {
     const value = selectedVariables[name];
     if (value) host?.style?.setProperty?.(name, value);
@@ -693,6 +723,12 @@ export function applyThemeGalleryVariables(host, catalog, selection = {}) {
     const v2Mode = theme.v2?.modes?.[preview.dataset.themePreviewMode];
     if (v2Mode) {
       for (const [name, value] of Object.entries(v2Mode.variables)) preview.style.setProperty(name, value);
+      const identityAccent = v2Mode.identity.find((entry) => entry.id === 'accent');
+      if (identityAccent) {
+        preview.style.setProperty('--bb-theme-summary-card-accent', identityAccent.value);
+        const onAccent = mode.variables['--bb-color-on-tertiary'];
+        if (onAccent) preview.style.setProperty('--bb-theme-summary-card-on-accent', onAccent);
+      }
       preview.querySelectorAll('[data-theme-v2-identity]').forEach((swatch) => {
         const identity = v2Mode.identity.find((entry) => entry.id === swatch.dataset.themeV2Identity);
         if (identity) swatch.style.setProperty('--bb-theme-v2-swatch', identity.value);
@@ -726,14 +762,12 @@ export function createThemeGalleryController({
   catalogUrl = '/theme/catalog.json',
   controlsHost,
   fetchImpl = (...args) => globalThis.fetch(...args),
-  host,
-  modeToggle
+  host
 } = {}) {
   let catalogPromise = null;
   let renderedCatalog = null;
-  let selection = Object.freeze({ mode: 'dark', themeId: '' });
+  let selection = Object.freeze({ cardModes: Object.freeze({}), mode: 'dark', themeId: '' });
   let navigationListenerInstalled = false;
-  let modeToggleListenerInstalled = false;
 
   async function loadCatalog() {
     const response = await fetchImpl(catalogUrl, { credentials: 'same-origin' });
@@ -743,29 +777,36 @@ export function createThemeGalleryController({
 
   function renderCatalog(catalog) {
     const themeId = catalog.themes.some((theme) => theme.id === selection.themeId) ? selection.themeId : '';
-    selection = Object.freeze({ mode: selectedMode(selection.mode), themeId });
+    selection = Object.freeze({
+      cardModes: selectedCardModes(catalog, selection.cardModes),
+      mode: selectedMode(selection.mode),
+      themeId
+    });
     if (controlsHost) controlsHost.innerHTML = '';
     host.innerHTML = themeGalleryMarkup(catalog, selection);
     applyThemeGalleryVariables(host, catalog, selection);
-    if (modeToggle) {
-      const nextMode = selection.mode === 'dark' ? 'light' : 'dark';
-      const icon = modeToggle.querySelector?.('[data-theme-gallery-mode-icon]');
-      if (icon) icon.textContent = nextMode === 'light' ? 'light_mode' : 'dark_mode';
-      modeToggle.dataset.themeGalleryMode = selection.mode;
-      modeToggle.setAttribute('aria-label', `Switch to ${nextMode} theme previews`);
-      modeToggle.setAttribute('title', `Switch to ${nextMode} theme previews`);
-    }
     synchronizeFooterYear(host);
   }
 
   function installNavigationListener() {
     if (navigationListenerInstalled || !host?.addEventListener) return;
     host.addEventListener('click', (event) => {
+      const cardMode = event.target?.closest?.('[data-theme-gallery-card-mode]');
       const open = event.target?.closest?.('[data-theme-gallery-open]');
       const home = event.target?.closest?.('[data-theme-gallery-home]');
-      if (!renderedCatalog || (!open && !home)) return;
+      if (!renderedCatalog || (!cardMode && !open && !home)) return;
       event.preventDefault();
-      if (open) {
+      if (cardMode) {
+        const themeId = String(cardMode.dataset.themeGalleryCardMode || '');
+        if (!renderedCatalog.themes.some((theme) => theme.id === themeId)) return;
+        const nextMode = nextThemeMode(selection.cardModes[themeId] ?? selection.mode);
+        selection = Object.freeze({
+          ...selection,
+          cardModes: Object.freeze({ ...selection.cardModes, [themeId]: nextMode })
+        });
+        renderCatalog(renderedCatalog);
+        host.querySelector?.(`[data-theme-gallery-card-mode="${themeId}"]`)?.focus?.();
+      } else if (open) {
         selection = Object.freeze({ ...selection, themeId: String(open.dataset.themeGalleryOpen || '') });
         renderCatalog(renderedCatalog);
         host.querySelector?.('[data-theme-gallery-home]')?.focus?.();
@@ -777,19 +818,6 @@ export function createThemeGalleryController({
       }
     });
     navigationListenerInstalled = true;
-  }
-
-  function installModeToggleListener() {
-    if (modeToggleListenerInstalled || !modeToggle?.addEventListener) return;
-    modeToggle.addEventListener('click', () => {
-      if (!renderedCatalog) return;
-      selection = Object.freeze({
-        ...selection,
-        mode: selection.mode === 'dark' ? 'light' : 'dark'
-      });
-      renderCatalog(renderedCatalog);
-    });
-    modeToggleListenerInstalled = true;
   }
 
   async function render() {
@@ -805,7 +833,6 @@ export function createThemeGalleryController({
       const catalog = await catalogPromise;
       renderedCatalog = catalog;
       installNavigationListener();
-      installModeToggleListener();
       renderCatalog(catalog);
       return catalog;
     } catch (error) {

@@ -1,6 +1,6 @@
 # Bits and Bolts Themes: Status
 
-Last verified: 2026-08-13
+Last verified: 2026-08-14
 
 ## Current Truth
 
@@ -31,7 +31,9 @@ Last verified: 2026-08-13
   are bundled under Apache 2.0. Ubuntu is bundled under Ubuntu Font Licence 1.0.
   Licenses and official local font files are committed with generated copies.
 - The Themes gallery is compact and card-first. A card opens the existing full
-  theme view, and the showcase header uses an icon-only light/dark control.
+  theme view, and each summary card owns an Accent-colored light/dark control.
+  Summary headers and identity rails have exact shared heights, and mode icons
+  use Themes-owned vector masks that remain centered across browser zoom levels.
 - Themes owns the reusable Navbar, Footer, Hero, Button, Select, Menu,
   Selection Controls, Product Entry, Theme Gallery, Page Gallery, and shared
   interface recipes used by managed sites and AppScreen Studio.
@@ -43,7 +45,7 @@ Last verified: 2026-08-13
   and footer treatment are owner-accepted at the current checkpoint.
 - Public copy and tracked source contain no attribution to the visual-inspiration
   source used during theme exploration.
-- The latest implementation build passed before Themes commit `1659d66`.
+- The latest implementation build and focused AppScreen consumer contract pass.
 - Related clean checkpoints are Sites `de6b0c4`, AppScreen Studio `c71fc39`,
   and Web Observatory `cb2c058`. Nothing has been pushed by Codex.
 
@@ -60,8 +62,9 @@ and redistribution licenses must be verified before use.
 
 ## Open Gates
 
-- No implementation slice is active. The next theme or product task is
-  intentionally undecided.
+- The owner accepted the AppScreen guest-consumer correction and the exact
+  current Theme Summary Card rendering. Navbar action wrapper height remains
+  intrinsic to the canonical Navbar height so the action recipe is portable.
 - Any later UI, CSS, theme, or renderer change requires fresh owner visual
   acceptance before another visual checkpoint commit.
 - The v2 contract still needs pinned DTCG resolver validation, full provenance

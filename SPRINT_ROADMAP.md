@@ -2,7 +2,8 @@
 
 ## Current Focus
 
-- Hold the clean, owner-accepted theme checkpoint until a new task is chosen.
+- Preserve the accepted AppScreen guest-consumer correction and exact current
+  Theme Summary Card rendering.
 - Keep Themes as the enforceable visual owner across every Bits and Bolts
   product and supported platform.
 - Continue future theme inspiration as small, approval-gated family slices.

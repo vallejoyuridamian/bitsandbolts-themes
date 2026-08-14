@@ -8,6 +8,37 @@
   background: var(--bb-interface-workspace-background);
 }
 
+.bb-resizable-toolbar {
+  --bb-resizable-toolbar-brand-inline-start: 0px;
+  --bb-resizable-toolbar-handle-size: 0px;
+}
+
+.bb-resizable-toolbar__collapsed-brand {
+  position: absolute;
+  inset-block: 0 var(--bb-resizable-toolbar-handle-size);
+  inset-inline-start: var(--bb-resizable-toolbar-brand-inline-start);
+  display: none;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  color: var(--bb-interface-control-foreground);
+  font-family: var(--bb-font-family-display);
+  font-size: 13px;
+  font-weight: var(--bb-font-weight-semibold);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-shadow: none;
+  white-space: nowrap;
+}
+
+.bb-resizable-toolbar__collapsed-brand-mark {
+  display: block;
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--bb-color-primary) 45%, transparent));
+}
+
 .bb-interface-action,
 .bb-interface-controls button:not(.theme-swatch),
 .bb-interface-controls .bb-select__trigger {

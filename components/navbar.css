@@ -176,7 +176,7 @@
 
 .bb-navbar__action-wrapper {
   display: flex;
-  height: 75%;
+  height: calc(var(--bb-navbar-height, 4rem) * 0.75);
   transform: scale(0.8);
 }
 

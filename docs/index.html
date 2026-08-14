@@ -26,9 +26,6 @@
       <span class="bb-theme-showcase__identity">
         <strong>Bits &amp; Bolts Themes</strong>
       </span>
-      <button class="bb-theme-mode-toggle bb-interface-action" type="button" id="themeGalleryModeToggle" aria-label="Switch to light theme previews">
-        <span class="ms" data-theme-gallery-mode-icon aria-hidden="true">light_mode</span>
-      </button>
     </header>
     <main id="themeGallery" class="bb-theme-gallery bb-theme-showcase__gallery" aria-live="polite">
       <div class="bb-theme-gallery__loading" role="status">Loading first-party themes…</div>
@@ -38,8 +35,7 @@
 
       const controller = createThemeGalleryController({
         catalogUrl: './theme/catalog.json',
-        host: document.getElementById('themeGallery'),
-        modeToggle: document.getElementById('themeGalleryModeToggle')
+        host: document.getElementById('themeGallery')
       });
       controller.render();
     </script>
