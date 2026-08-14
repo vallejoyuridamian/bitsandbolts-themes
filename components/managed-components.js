@@ -13,14 +13,14 @@ export const MANAGED_WEB_COMPONENTS = Object.freeze({
   footer: Object.freeze({
     dependencies: Object.freeze({
       stylesheets: Object.freeze(['components/footer.css']),
-      modules: Object.freeze(['components/footer.js'])
+      modules: Object.freeze(['components/brand-mark.js', 'components/footer.js'])
     }),
     render: footerMarkup
   }),
   navbar: Object.freeze({
     dependencies: Object.freeze({
       stylesheets: Object.freeze(['components/navbar.css']),
-      modules: Object.freeze(['components/navbar.js'])
+      modules: Object.freeze(['components/brand-mark.js', 'components/navbar.js'])
     }),
     render: navbarMarkup
   }),

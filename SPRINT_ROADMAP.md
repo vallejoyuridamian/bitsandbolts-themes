@@ -2,8 +2,8 @@
 
 ## Current Focus
 
-- Preserve the accepted AppScreen guest-consumer correction and exact current
-  Theme Summary Card rendering.
+- Preserve the accepted AppScreen guest gates, shared controls, Theme Summary
+  Cards, Navbar behavior, and fallback-free atomic theme presentation.
 - Keep Themes as the enforceable visual owner across every Bits and Bolts
   product and supported platform.
 - Continue future theme inspiration as small, approval-gated family slices.
@@ -29,8 +29,16 @@
   Thin body typography.
 - [x] Make the summary card consume semantic typography families and weights.
 - [x] Record future font-library candidates without bundling unverified files.
-- [x] Pass `pnpm build`, remove abandoned font trials, commit generated outputs,
-  and leave Themes, Sites, AppScreen Studio, and Web Observatory clean.
+- [x] Move the guest account gate into the canonical Dialog recipe and expose
+  all guest workspace tabs without moving product authorization into Themes.
+- [x] Make Select the complete menu owner and route Studio control events
+  through one product-side adapter instead of a parallel local Select.
+- [x] Declare Navbar/Footer brand-mark dependencies and restore canonical
+  hide-on-scroll behavior after module loading.
+- [x] Add atomic first-paint and theme-change font readiness, replace webfont
+  swap policy with blocking presentation, and rebuild generated outputs.
+- [x] Pass the build, readiness, guest, routed Select, and Sites checks; record
+  five stale gallery assertions; commit the accepted checkpoint without push.
 
 ## Next Task Menu
 

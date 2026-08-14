@@ -5,7 +5,7 @@
   src: url("../fonts/plus_jakarta_sans_400.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -13,7 +13,7 @@
   src: url("../fonts/plus_jakarta_sans_500.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -21,7 +21,7 @@
   src: url("../fonts/plus_jakarta_sans_600.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -29,7 +29,7 @@
   src: url("../fonts/plus_jakarta_sans_700.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -37,7 +37,7 @@
   src: url("../fonts/inter_variable.ttf") format("truetype");
   font-weight: 100 900;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -45,7 +45,7 @@
   src: url("../fonts/dm_sans_variable.ttf") format("truetype");
   font-weight: 100 1000;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -53,7 +53,7 @@
   src: url("../fonts/space_mono_regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -61,7 +61,7 @@
   src: url("../fonts/merriweather_variable.ttf") format("truetype");
   font-weight: 300 900;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -69,7 +69,7 @@
   src: url("../fonts/source_code_pro_variable.ttf") format("truetype");
   font-weight: 200 900;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -77,7 +77,7 @@
   src: url("../fonts/space_mono_bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -85,7 +85,7 @@
   src: url("../fonts/orbitron_500.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -93,7 +93,7 @@
   src: url("../fonts/orbitron_600.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -101,7 +101,7 @@
   src: url("../fonts/orbitron_700.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 /*
@@ -114,7 +114,7 @@
   src: url("../fonts/orbitron_500.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -122,7 +122,7 @@
   src: url("../fonts/montserrat_400.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -130,7 +130,7 @@
   src: url("../fonts/montserrat_600.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -138,7 +138,7 @@
   src: url("../fonts/montserrat_700.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -146,7 +146,7 @@
   src: url("../fonts/jetbrains_mono_variable.ttf") format("truetype");
   font-weight: 100 800;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -155,7 +155,7 @@
   font-weight: 100 900;
   font-stretch: 75% 100%;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -163,7 +163,7 @@
   src: url("../fonts/lora_variable.ttf") format("truetype");
   font-weight: 400 700;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -171,7 +171,7 @@
   src: url("../fonts/ibm_plex_mono_regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -179,7 +179,7 @@
   src: url("../fonts/ibm_plex_mono_bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -187,7 +187,7 @@
   src: url("../fonts/poppins_regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -195,7 +195,7 @@
   src: url("../fonts/poppins_medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -203,7 +203,7 @@
   src: url("../fonts/poppins_semibold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -211,7 +211,7 @@
   src: url("../fonts/poppins_bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -219,7 +219,7 @@
   src: url("../fonts/roboto_mono_variable.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -227,7 +227,7 @@
   src: url("../fonts/source_serif_4_variable.ttf") format("truetype");
   font-weight: 200 900;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -235,7 +235,7 @@
   src: url("../fonts/antic_regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -243,7 +243,7 @@
   src: url("../fonts/arima_variable.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -251,7 +251,7 @@
   src: url("../fonts/mulish_variable.ttf") format("truetype");
   font-weight: 200 1000;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -259,7 +259,7 @@
   src: url("../fonts/ubuntu_regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -267,7 +267,7 @@
   src: url("../fonts/ubuntu_medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -275,7 +275,7 @@
   src: url("../fonts/ubuntu_bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -283,7 +283,7 @@
   src: url("../fonts/rokkitt_variable.ttf") format("truetype");
   font-weight: 100 900;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -291,7 +291,7 @@
   src: url("../fonts/syne_variable.ttf") format("truetype");
   font-weight: 400 800;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -299,7 +299,7 @@
   src: url("../fonts/roboto_slab_variable.ttf") format("truetype");
   font-weight: 100 900;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -307,5 +307,5 @@
   src: url("../fonts/ultra_regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }

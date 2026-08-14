@@ -1,0 +1,7 @@
+html[data-bb-theme-readiness="pending"] {
+  background: var(--bb-color-background);
+}
+
+html[data-bb-theme-readiness="pending"] body {
+  visibility: hidden;
+}

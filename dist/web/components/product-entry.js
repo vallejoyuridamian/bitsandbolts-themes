@@ -1,4 +1,5 @@
 import { installSelectController } from './select.js';
+import { themeLinkReady, waitForThemeFonts } from './theme-readiness.js';
 
 const installedDocuments = new WeakSet();
 const themeTransitionStates = new WeakMap();
@@ -13,28 +14,6 @@ function primeProductEntryThemeLinks(root, activeFamilyId) {
     if (active) link.removeAttribute?.('media');
     else link.media = 'not all';
     link.disabled = false;
-  });
-}
-
-function themeLinkReady(link) {
-  if (link?.sheet) return Promise.resolve(true);
-  if (!link?.addEventListener) return Promise.resolve(false);
-  return new Promise((resolve) => {
-    let settled = false;
-    const finish = (ready) => {
-      if (settled) return;
-      settled = true;
-      link.removeEventListener?.('load', handleLoad);
-      link.removeEventListener?.('error', handleError);
-      resolve(ready);
-    };
-    const handleLoad = () => finish(true);
-    const handleError = () => finish(false);
-    link.addEventListener('load', handleLoad, { once: true });
-    link.addEventListener('error', handleError, { once: true });
-    queueMicrotask(() => {
-      if (link.sheet) finish(true);
-    });
   });
 }
 
@@ -74,12 +53,21 @@ export function applyProductEntryTheme(familyId, root = globalThis.document) {
   themeTransitionStates.set(root, transitionState);
   const requestId = transitionState.requestId;
   const targetLinks = links.filter((link) => link.dataset.bbPageThemeFamily === normalizedFamilyId);
-  Promise.all(targetLinks.map(themeLinkReady)).then((results) => {
+  Promise.all(targetLinks.map(themeLinkReady)).then(async (results) => {
     if (themeTransitionStates.get(root)?.requestId !== requestId) return;
     if (!results.every(Boolean)) {
       synchronizeThemeSelectors(root, currentFamilyId);
       return;
     }
+    const targetMode = String(root.documentElement?.dataset?.theme || '');
+    const targetModeLinks = targetLinks.filter((link) => link.dataset.bbPageThemeMode === targetMode);
+    if (!(await waitForThemeFonts(targetModeLinks, root))) {
+      if (themeTransitionStates.get(root)?.requestId === requestId) {
+        synchronizeThemeSelectors(root, currentFamilyId);
+      }
+      return;
+    }
+    if (themeTransitionStates.get(root)?.requestId !== requestId) return;
     commitProductEntryTheme(root, links, normalizedFamilyId);
   });
   return true;

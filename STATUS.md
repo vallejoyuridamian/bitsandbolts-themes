@@ -35,19 +35,23 @@ Last verified: 2026-08-14
   Summary headers and identity rails have exact shared heights, and mode icons
   use Themes-owned vector masks that remain centered across browser zoom levels.
 - Themes owns the reusable Navbar, Footer, Hero, Button, Select, Menu,
-  Selection Controls, Product Entry, Theme Gallery, Page Gallery, and shared
-  interface recipes used by managed sites and AppScreen Studio.
+  Selection Controls, Dialog, Product Entry, Theme Readiness, Theme Gallery,
+  Page Gallery, and shared interface recipes used by managed sites and Studio.
 - The AppScreen Studio managed landing and Studio theme selectors expose the
-  current catalog families. Theme changes retain the previous presentation
-  until the next theme is ready, and menus reposition without overlapping their
-  trigger.
+  current catalog families. Select owns its menu lifecycle and delegated event
+  contract. Theme changes retain the previous presentation until target CSS and
+  fonts are ready, then commit atomically.
+- Webfonts use a blocking display policy. Sites keeps first paint hidden until
+  active fonts are ready, so fallback typography is never shown and replaced.
+- Navbar and Footer declare their shared brand-mark module dependency. The
+  canonical Dialog recipe owns the guest account-creation gate.
 - The managed AppScreen landing's navigation, headline copy, themed brand mark,
   and footer treatment are owner-accepted at the current checkpoint.
 - Public copy and tracked source contain no attribution to the visual-inspiration
   source used during theme exploration.
-- The latest implementation build and focused AppScreen consumer contract pass.
-- Related clean checkpoints are Sites `de6b0c4`, AppScreen Studio `c71fc39`,
-  and Web Observatory `cb2c058`. Nothing has been pushed by Codex.
+- The build, readiness tests 2/2, Sites checks 35/35, AppScreen guest checks 9/9,
+  and routed Select contract pass. Five known stale gallery assertions remain.
+  The coordinated checkpoint is committed locally and unpushed.
 
 ## Parked Font Candidates
 
@@ -63,8 +67,9 @@ and redistribution licenses must be verified before use.
 ## Open Gates
 
 - The owner accepted the AppScreen guest-consumer correction and the exact
-  current Theme Summary Card rendering. Navbar action wrapper height remains
-  intrinsic to the canonical Navbar height so the action recipe is portable.
+  current Theme Summary Card rendering, visible guest gates, Navbar restoration,
+  and fallback-free font transitions. Navbar action wrapper height remains
+  intrinsic to the canonical Navbar height.
 - Any later UI, CSS, theme, or renderer change requires fresh owner visual
   acceptance before another visual checkpoint commit.
 - The v2 contract still needs pinned DTCG resolver validation, full provenance

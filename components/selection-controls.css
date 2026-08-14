@@ -82,11 +82,12 @@
 }
 
 .bb-select__menu {
+  box-sizing: border-box;
   position: fixed;
   z-index: 1500;
   max-width: calc(100vw - 16px);
-  max-height: min(360px, 60vh);
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 @media (max-width: 640px) {
@@ -96,6 +97,7 @@
   }
 
   .bb-selection-control {
+    flex: none;
     width: 100%;
     max-width: none;
   }
