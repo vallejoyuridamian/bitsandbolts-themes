@@ -592,29 +592,6 @@
   object-fit: contain;
 }
 
-.bb-theme-vector-accents {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--bb-spacing-3);
-  padding: var(--bb-spacing-4);
-  border: 1px solid var(--bb-color-outline-variant);
-  border-radius: var(--bb-radius-lg);
-  background: var(--bb-color-background);
-}
-
-.bb-theme-vector-accents > span {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--bb-spacing-2);
-  color: var(--bb-marketing-content-body-text);
-  font-size: var(--bb-font-size-sm);
-}
-
-.bb-theme-vector-accents .bb-vector-icon {
-  color: var(--bb-color-primary);
-  font-size: var(--bb-font-size-xl);
-}
-
 .bb-theme-editorial-specimen {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -898,11 +875,20 @@
   text-align: center;
 }
 
+.bb-theme-icon .ms,
+.bb-theme-icon .bb-semantic-icon {
+  color: var(--bb-color-primary);
+}
+
 .bb-theme-icon .ms {
   --ms-fill: var(--bb-theme-icon-fill, 0);
   --ms-weight: var(--bb-theme-icon-weight, 300);
   --ms-size: 24px;
-  color: var(--bb-color-primary);
+}
+
+.bb-theme-icon .bb-semantic-icon {
+  width: 24px;
+  height: 24px;
 }
 
 .bb-theme-icon__name {
@@ -1204,16 +1190,23 @@
   gap: 10px;
 }
 
-.bb-theme-v2-icons .ms {
-  --ms-fill: var(--bb-theme-icon-fill, 0);
-  --ms-weight: var(--bb-theme-icon-weight, 300);
-  --ms-size: 22px;
+.bb-theme-v2-icon {
   display: grid;
   place-items: center;
   width: 42px;
   height: 42px;
-  border-bottom: 1px solid var(--bb-v2-color-border-default);
   color: var(--bb-v2-color-content-brand);
+}
+
+.bb-theme-v2-icon .bb-semantic-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.bb-theme-v2-icon .ms {
+  --ms-fill: var(--bb-theme-icon-fill, 0);
+  --ms-weight: var(--bb-theme-icon-weight, 300);
+  --ms-size: 22px;
 }
 
 .bb-theme-v2-semantics summary {

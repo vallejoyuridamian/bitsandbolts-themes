@@ -8,6 +8,15 @@ import {
 import { footerMarkup, synchronizeFooterYear } from './footer.js';
 import { formFieldsMarkup } from './form-field.js';
 import { navbarMarkup } from './navbar.js';
+import {
+  DEFAULT_SEMANTIC_ICON_FAMILY,
+  semanticIconMarkup
+} from './semantic-icons.js';
+
+const ICON_FAMILY_LABELS = Object.freeze({
+  'font-awesome-solid': 'Font Awesome Solid',
+  'material-symbols': 'Material Symbols'
+});
 
 const THEME_GALLERY_SCROLLBAR_VARIABLES = Object.freeze([
   '--bb-interface-scrollbar-thumb',
@@ -398,6 +407,17 @@ function typographyMarkup(variables = {}) {
   `).join('');
 }
 
+function iconPreviewGlyphMarkup(theme, name) {
+  if (theme.icons.previewFamily === DEFAULT_SEMANTIC_ICON_FAMILY) {
+    return semanticIconMarkup(name);
+  }
+  return `<span class="ms" aria-hidden="true">${escapeHtml(name)}</span>`;
+}
+
+function iconFamilyLabel(theme) {
+  return ICON_FAMILY_LABELS[theme.icons.family] ?? theme.icons.family;
+}
+
 function iconsMarkup(theme) {
   const fallback = theme.icons.exactPreview
     ? ''
@@ -410,7 +430,7 @@ function iconsMarkup(theme) {
     <div class="bb-theme-icons">
       ${theme.icons.previewNames.map((name) => `
         <div class="bb-theme-icon">
-          <span class="ms" aria-hidden="true">${escapeHtml(name)}</span>
+          ${iconPreviewGlyphMarkup(theme, name)}
           <span class="bb-theme-icon__name">${escapeHtml(name)}</span>
         </div>
       `).join('')}
@@ -604,7 +624,6 @@ function contentAndFieldRecipeMarkup() {
         <div class="bb-text-form-layout">
           <div class="bb-reading-copy">
             <p>Long-form supporting copy uses the canonical reading width, rhythm, link, and emphasis roles.</p>
-            <p class="bb-icon-text"><span class="bb-vector-icon bb-icon-text__icon" data-bb-icon="microchip" aria-hidden="true"></span><span>Icon and text alignment stays reusable across content.</span></p>
           </div>
           <div class="bb-form-region">${fields}</div>
         </div>
@@ -620,18 +639,6 @@ function contentAndFieldRecipeMarkup() {
         <div class="bb-theme-card-rail">${railCards}</div>
       </div>
       <div class="bb-theme-alternating-cards">${alternatingCards}</div>
-    </div>
-    <div>
-      <h4>Vector accents</h4>
-      <div class="bb-theme-vector-accents" aria-label="Reusable vector accent specimens">
-        <span><span class="bb-vector-icon" data-bb-icon="check" aria-hidden="true"></span>Check</span>
-        <span><span class="bb-vector-icon" data-bb-icon="microchip" aria-hidden="true"></span>Compute</span>
-        <span><span class="bb-vector-icon" data-bb-icon="mobile-screen-button" aria-hidden="true"></span>Mobile</span>
-        <span><span class="bb-vector-icon" data-bb-icon="server" aria-hidden="true"></span>Server</span>
-        <span><span class="bb-vector-icon" data-bb-icon="star" aria-hidden="true"></span>Star</span>
-        <span><span class="bb-vector-icon" data-bb-icon="earth-americas" aria-hidden="true"></span>Global</span>
-        <span><span class="bb-vector-icon" data-bb-icon="external-link" aria-hidden="true"></span>External</span>
-      </div>
     </div>
     <div>
       <h4>Editorial sections</h4>
@@ -777,8 +784,13 @@ function v2ModeMarkup(theme, mode) {
         ${sharedWebRecipeMarkup()}
         <section class="bb-theme-v2-section">
           <h3>Icons</h3>
-          <div class="bb-theme-v2-icons">
-            ${theme.icons.previewNames.map((name) => `<span class="ms" aria-label="${escapeHtml(name)}">${escapeHtml(name)}</span>`).join('')}
+          <p class="bb-theme-mode__meta">${escapeHtml(iconFamilyLabel(theme))}</p>
+          <div class="bb-theme-v2-icons" data-bb-icon-family="${escapeHtml(theme.icons.previewFamily)}">
+            ${theme.icons.previewNames.map((name) => `
+              <span class="bb-theme-v2-icon" role="img" aria-label="${escapeHtml(name)}">
+                ${iconPreviewGlyphMarkup(theme, name)}
+              </span>
+            `).join('')}
           </div>
         </section>
         <details class="bb-theme-v2-semantics">

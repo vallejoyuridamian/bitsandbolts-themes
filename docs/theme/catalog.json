@@ -1781,9 +1781,9 @@
         }
       },
       "icons": {
-        "family": "material-symbols",
-        "style": "outlined",
-        "previewFamily": "material-symbols",
+        "family": "font-awesome-solid",
+        "style": "solid",
+        "previewFamily": "font-awesome-solid",
         "exactPreview": true,
         "previewNames": [
           "settings",

@@ -1,0 +1,168 @@
+/*! Font Awesome Free 7.3.1 by @fontawesome. Icons: CC BY 4.0. https://fontawesome.com/license/free */
+.bb-semantic-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex: 0 0 auto;
+  background: currentColor;
+  -webkit-mask: var(--bb-semantic-icon-source) center / contain no-repeat;
+  mask: var(--bb-semantic-icon-source) center / contain no-repeat;
+  pointer-events: none;
+  user-select: none;
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="settings"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/gear.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="arrow_back"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/arrow-left.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="share"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/share-nodes.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="logout"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/right-from-bracket.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="home"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/house.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="search"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/magnifying-glass.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="notifications"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/bell.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="close"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/xmark.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="add"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/plus.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="check"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/check.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="person"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/user.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="star"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/star.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="favorite"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/heart.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="delete"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/trash-can.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="edit"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/pen.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="content_copy"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/copy.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="cloud_upload"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/cloud-arrow-up.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="cloud_download"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/cloud-arrow-down.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="menu"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/bars.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="more_vert"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/ellipsis-vertical.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="info"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/circle-info.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="warning"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/triangle-exclamation.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="lock"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/lock.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="visibility"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/eye.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="download"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/download.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="idea"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/lightbulb.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="call"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/phone.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="agreement"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/handshake.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="analysis"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/brain.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="design"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/wand-magic-sparkles.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="build"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/hammer.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="firmware"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/microchip.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="mobile"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/mobile-screen.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="launch"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/rocket.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="global"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/earth-americas.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="delivery"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/truck-fast.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="support"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/wrench.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="data"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/database.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="growth"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/chart-line.svg");
+}

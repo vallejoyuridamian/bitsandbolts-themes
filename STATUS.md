@@ -10,6 +10,9 @@ Last verified: 2026-08-14
 - Nine v2 families are generated in light and dark modes: `cloud`,
   `bitsandbolts`, `brutus`, `forest`, `winter`, `coffee`, `bubblegum`,
   `inferno`, and `sober`. Ocean and Robot are removed with no aliases.
+- Bits and Bolts web icons use packaged Font Awesome Free Solid 7.3.1 through
+  Themes-owned semantic roles. The other eight families retain Material
+  Symbols, and every showcase family renders the same 25 standard UI roles.
 - All nine families include semantic colors, typography, interface roles,
   Button recipes, catalog data, web CSS, Android outputs, React Native outputs,
   and GitHub Pages showcase artifacts.
@@ -77,6 +80,8 @@ and redistribution licenses must be verified before use.
   intrinsic to the canonical Navbar height.
 - The owner accepted the My Website managed editorial and portfolio-detail
   recipes, including the source-matched detail-title letter spacing.
+- The owner accepted the managed Roadmap timeline icon sizing, Font Awesome 7
+  artwork, per-theme showcase family split, and underline-free icon specimens.
 - Any later UI, CSS, theme, or renderer change requires fresh owner visual
   acceptance before another visual checkpoint commit.
 - The v2 contract still needs pinned DTCG resolver validation, full provenance

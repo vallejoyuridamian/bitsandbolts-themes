@@ -50,6 +50,9 @@ components, and generators for supported platforms.
   `Primary headline`, `Supporting copy`, and `Primary CTA`. Never paste live
   product or site marketing copy into a theme specimen; real copy stays in the
   owning Sites document.
+- Icon specimens must render each theme's configured icon family against the
+  same shared preview-role list. Never apply one theme's icon family globally
+  or substitute unrelated semantic roles in the showcase.
 - Themes components and recipes must remain product- and page-agnostic. A site
   may compose abstract text layouts, fields, cards, carousels, and controls,
   but Themes must never know about a contact page, portfolio route, landing

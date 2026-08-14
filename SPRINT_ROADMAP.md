@@ -6,7 +6,7 @@
   Cards, Navbar behavior, and fallback-free atomic theme presentation.
 - Keep Themes as the enforceable visual owner across every Bits and Bolts
   product and supported platform.
-- Continue future theme inspiration as small, approval-gated family slices.
+- Examine AppScreen Studio UI next and consolidate duplicated presentation at the canonical Themes owner through bounded, approval-gated slices.
 
 ## Completed Checkpoint
 
@@ -43,12 +43,13 @@
   badge recipes for managed content without adding product-local presentation.
 - [x] Owner-accept all 13 managed My Website pages, including the six live
   portfolio details and source-matched detail-title typography.
+- [x] Package Font Awesome Solid for Bits and Bolts web icons, preserve Material Symbols elsewhere, and align the timeline and showcase role mappings.
 
 ## Next Task Menu
 
 Choose one bounded slice in a future chat:
 
-1. Inspect and approve another public preset before implementing a new family.
+1. Examine AppScreen Studio UI and consolidate duplicated presentation with Themes.
 2. Review an existing family and apply one focused visual correction.
 3. Design the longer family detail page from the accepted summary card grammar.
 4. Begin the font-library contract and verify candidate redistribution licenses.

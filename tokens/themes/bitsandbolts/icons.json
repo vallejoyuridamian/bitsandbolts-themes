@@ -1,4 +1,10 @@
 {
-  "family": "material-symbols",
-  "style": "outlined"
+  "family": "font-awesome-solid",
+  "style": "solid",
+  "platforms": {
+    "android": {
+      "family": "material-symbols",
+      "style": "outlined"
+    }
+  }
 }

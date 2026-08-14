@@ -63,7 +63,7 @@ export const MANAGED_WEB_COMPONENTS = Object.freeze({
   }),
   'milestone-timeline': Object.freeze({
     dependencies: Object.freeze({
-      stylesheets: Object.freeze(['components/content-sections.css', 'components/content-surfaces.css']),
+      stylesheets: Object.freeze(['components/content-sections.css', 'components/content-surfaces.css', 'components/semantic-icons.css']),
       modules: Object.freeze([])
     }),
     render: milestoneTimelineMarkup
@@ -77,7 +77,7 @@ export const MANAGED_WEB_COMPONENTS = Object.freeze({
   }),
   'question-list': Object.freeze({
     dependencies: Object.freeze({
-      stylesheets: Object.freeze(['components/content-layout.css', 'components/content-sections.css', 'components/vector-icons.css']),
+      stylesheets: Object.freeze(['components/content-layout.css', 'components/content-sections.css', 'components/semantic-icons.css', 'components/vector-icons.css']),
       modules: Object.freeze([])
     }),
     render: questionListMarkup

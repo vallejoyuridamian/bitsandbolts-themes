@@ -242,7 +242,7 @@
   justify-content: center;
 }
 
-.bb-milestone-timeline__dot > span {
+.bb-milestone-timeline__point {
   width: 8px;
   height: 8px;
   border-radius: var(--bb-radius-full);
@@ -250,7 +250,7 @@
   transition: box-shadow 200ms ease, transform 200ms ease;
 }
 
-.bb-milestone-timeline__dot > span:hover {
+.bb-milestone-timeline__point:hover {
   box-shadow: 0 0 14px color-mix(in srgb, var(--bb-color-primary) 50%, transparent);
   transform: scale(1.3);
 }
