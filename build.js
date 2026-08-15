@@ -542,6 +542,7 @@ function copyDirRecursive(srcDir, destDir, pathLabel) {
 
 const COMPONENTS_SRC  = 'components';
 const COMPONENTS_DIST = 'dist/web/components';
+rmSync(COMPONENTS_DIST, { force: true, recursive: true });
 mkdirSync(COMPONENTS_DIST, { recursive: true });
 for (const file of readdirSync(COMPONENTS_SRC)) {
   if (file.endsWith('.css') || file.endsWith('.js')) {
@@ -553,6 +554,7 @@ for (const file of readdirSync(COMPONENTS_SRC)) {
 // Copy icon assets to dist for use in apps
 const ICONS_SRC  = 'assets/icons';
 const ICONS_DIST = 'dist/web/icons';
+rmSync(ICONS_DIST, { force: true, recursive: true });
 mkdirSync(ICONS_DIST, { recursive: true });
 for (const file of readdirSync(ICONS_SRC)) {
   if (file.endsWith('.svg')) {
@@ -564,6 +566,7 @@ for (const file of readdirSync(ICONS_SRC)) {
 // Generate dependency-free semantic icon assets from supported packages.
 const SEMANTIC_ICON_CSS = join(COMPONENTS_DIST, 'semantic-icons.css');
 const FONT_AWESOME_FAMILY = 'font-awesome-solid';
+const LOCAL_VECTOR_ICON_FAMILIES = new Set(['bitsandbolts-theme']);
 const FONT_AWESOME_DIST = join(ICONS_DIST, FONT_AWESOME_FAMILY);
 const FONT_AWESOME_PACKAGE = 'node_modules/@fortawesome/free-solid-svg-icons';
 const fontAwesomePackage = JSON.parse(readFileSync(join(FONT_AWESOME_PACKAGE, 'package.json'), 'utf8'));
@@ -586,8 +589,20 @@ const semanticIconCss = [
 rmSync(FONT_AWESOME_DIST, { recursive: true, force: true });
 mkdirSync(FONT_AWESOME_DIST, { recursive: true });
 for (const [family, roles] of Object.entries(SEMANTIC_ICON_FAMILIES)) {
-  if (family !== FONT_AWESOME_FAMILY) throw new Error(`[semantic-icons] Unsupported build family: ${family}`);
   for (const [role, exportName] of Object.entries(roles)) {
+    if (LOCAL_VECTOR_ICON_FAMILIES.has(family)) {
+      if (!/^[a-z0-9-]+\.svg$/.test(exportName) || !existsSync(join(ICONS_SRC, exportName))) {
+        throw new Error(`[semantic-icons] Missing Themes-owned vector ${exportName} for role ${role}.`);
+      }
+      semanticIconCss.push(
+        `.bb-semantic-icon[data-bb-icon-family="${family}"][data-bb-icon-role="${role}"] {`,
+        `  --bb-semantic-icon-source: url("../icons/${exportName}");`,
+        '}',
+        ''
+      );
+      continue;
+    }
+    if (family !== FONT_AWESOME_FAMILY) throw new Error(`[semantic-icons] Unsupported build family: ${family}`);
     const definition = fontAwesomeSolidIcons[exportName];
     if (!definition?.icon || definition.prefix !== 'fas') {
       throw new Error(`[semantic-icons] Missing Font Awesome Solid export ${exportName} for role ${role}.`);

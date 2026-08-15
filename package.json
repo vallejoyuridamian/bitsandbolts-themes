@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node build.js && node scripts/showcase-server.mjs",
-    "build": "node build.js",
-    "editor": "node editor-server.js"
+    "build": "node build.js"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^7.3.1",

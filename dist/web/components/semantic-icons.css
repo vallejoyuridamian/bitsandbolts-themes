@@ -55,8 +55,20 @@
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/xmark.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="expand_more"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/chevron-down.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="submenu"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/chevron-right.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="add"] {
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/plus.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="folder_open"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/folder-open.svg");
 }
 
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="check"] {
@@ -81,6 +93,10 @@
 
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="edit"] {
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/pen.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="save_as"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/file-pen.svg");
 }
 
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="content_copy"] {
@@ -121,6 +137,46 @@
 
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="download"] {
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/download.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="add_photo_alternate"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/image.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="arrow_selector_tool"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/arrow-pointer.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="content_cut"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/scissors.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="flag"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/flag.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="movie_edit"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/clapperboard.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="dark_mode"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/moon.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="light_mode"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/sun.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="pause"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/pause.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="play_arrow"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/play.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="stop"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/stop.svg");
 }
 
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="zoom_out"] {
@@ -189,4 +245,12 @@
 
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="growth"] {
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/chart-line.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="bitsandbolts-theme"][data-bb-icon-role="dark_mode"] {
+  --bb-semantic-icon-source: url("../icons/theme-dark.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="bitsandbolts-theme"][data-bb-icon-role="light_mode"] {
+  --bb-semantic-icon-source: url("../icons/theme-light.svg");
 }

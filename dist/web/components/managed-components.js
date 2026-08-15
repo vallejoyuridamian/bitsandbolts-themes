@@ -105,7 +105,11 @@ export const MANAGED_WEB_COMPONENTS = Object.freeze({
   }),
   'selection-controls': Object.freeze({
     dependencies: Object.freeze({
-      stylesheets: Object.freeze(['components/interface-primitives.css', 'components/selection-controls.css']),
+      stylesheets: Object.freeze([
+        'components/interface-primitives.css',
+        'components/selection-controls.css',
+        'components/semantic-icons.css'
+      ]),
       modules: Object.freeze(['components/select.js'])
     }),
     render: selectionControlsMarkup

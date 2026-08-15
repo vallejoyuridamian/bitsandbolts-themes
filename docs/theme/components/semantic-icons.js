@@ -17,13 +17,17 @@ export const SEMANTIC_ICON_FAMILIES = Object.freeze({
     search: 'faMagnifyingGlass',
     notifications: 'faBell',
     close: 'faXmark',
+    expand_more: 'faChevronDown',
+    submenu: 'faChevronRight',
     add: 'faPlus',
+    folder_open: 'faFolderOpen',
     check: 'faCheck',
     person: 'faUser',
     star: 'faStar',
     favorite: 'faHeart',
     delete: 'faTrashCan',
     edit: 'faPen',
+    save_as: 'faFilePen',
     content_copy: 'faCopy',
     cloud_upload: 'faCloudArrowUp',
     cloud_download: 'faCloudArrowDown',
@@ -34,6 +38,16 @@ export const SEMANTIC_ICON_FAMILIES = Object.freeze({
     lock: 'faLock',
     visibility: 'faEye',
     download: 'faDownload',
+    add_photo_alternate: 'faImage',
+    arrow_selector_tool: 'faArrowPointer',
+    content_cut: 'faScissors',
+    flag: 'faFlag',
+    movie_edit: 'faClapperboard',
+    dark_mode: 'faMoon',
+    light_mode: 'faSun',
+    pause: 'faPause',
+    play_arrow: 'faPlay',
+    stop: 'faStop',
     zoom_out: 'faMagnifyingGlassMinus',
     fit_screen: 'faExpand',
     zoom_in: 'faMagnifyingGlassPlus',
@@ -51,6 +65,10 @@ export const SEMANTIC_ICON_FAMILIES = Object.freeze({
     support: 'faWrench',
     data: 'faDatabase',
     growth: 'faChartLine'
+  }),
+  'bitsandbolts-theme': Object.freeze({
+    dark_mode: 'theme-dark.svg',
+    light_mode: 'theme-light.svg'
   })
 });
 

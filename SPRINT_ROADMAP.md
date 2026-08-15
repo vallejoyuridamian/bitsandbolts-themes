@@ -2,65 +2,59 @@
 
 ## Current Focus
 
-- Preserve the accepted AppScreen guest gates, shared controls, Theme Summary
-  Cards, Navbar behavior, and fallback-free atomic theme presentation.
-- Keep Themes as the enforceable visual owner across every Bits and Bolts
+- Preserve Themes as the enforceable visual owner across every Bits and Bolts
   product and supported platform.
-- Continue AppScreen UI consolidation beyond the accepted workspace chrome and stage through bounded, approval-gated slices.
+- Keep Theme project behavior and persistence in AppScreen Studio while sharing
+  the exact gallery/detail root and all presentation recipes.
+- Continue only through bounded, owner-directed, approval-gated slices.
 
-## Completed Checkpoint
+## Completed Foundation
 
 - [x] Ratify the DTCG 2025.10 plus Bits and Bolts contract architecture.
 - [x] Implement nine complete light/dark v2 families with semantic mappings,
-  Button recipes, interface roles, and generated platform outputs.
-- [x] Remove Ocean and Robot with no aliases.
-- [x] Rename the inspiration families to Brutus, Forest, Winter, Coffee,
-  Bubblegum, Inferno, and Sober.
+  interface recipes, licensed fonts, and generated platform outputs.
 - [x] Build the compact card-first Themes home and preserve full family pages.
-- [x] Move reusable Hero, Navbar, Footer, Select, Menu, workspace chrome/stage,
-  landing, gallery, and interface presentation into Themes-owned components.
-- [x] Align AppScreen Studio's managed landing and in-app selectors with the
-  canonical theme catalog.
-- [x] Fix theme switching continuity, viewport-aware menu placement, anchor
-  navigation, and theme-aware Navbar and Footer marks.
-- [x] Bundle and license the accepted Forest, Winter, Coffee, and Brutus fonts.
-- [x] Accept Forest with Arima and Mulish plus family-owned Hero leading.
-- [x] Accept Brutus with native Ultra 400, no synthetic bold, and Roboto Slab
-  Thin body typography.
-- [x] Make the summary card consume semantic typography families and weights.
-- [x] Record future font-library candidates without bundling unverified files.
-- [x] Move the guest account gate into the canonical Dialog recipe and expose
-  all guest workspace tabs without moving product authorization into Themes.
-- [x] Make Select the complete menu owner and route Studio control events
-  through one product-side adapter instead of a parallel local Select.
-- [x] Declare Navbar/Footer brand-mark dependencies and restore canonical
-  hide-on-scroll behavior after module loading.
-- [x] Add atomic first-paint and theme-change font readiness, replace webfont
-  swap policy with blocking presentation, and rebuild generated outputs.
-- [x] Pass the build, readiness, guest, routed Select, and Sites checks; record
-  five stale gallery assertions; commit the accepted checkpoint without push.
-- [x] Extract abstract editorial, form, card, timeline, detail-media, and store
-  badge recipes for managed content without adding product-local presentation.
-- [x] Owner-accept all 13 managed My Website pages, including the six live
-  portfolio details and source-matched detail-title typography.
-- [x] Package Font Awesome Solid for Bits and Bolts web icons, preserve Material Symbols elsewhere, and add accepted toolbar and showcase role mappings.
+- [x] Move reusable Hero, Navbar, Footer, Button, Select, Menu, workspace chrome,
+  Stage, Dialog, Product Entry, gallery, editorial, form, card, timeline,
+  detail-media, and store-badge presentation into Themes-owned components.
+- [x] Add fallback-free first paint and atomic theme-change font readiness.
+- [x] Align AppScreen Studio and Sites with the canonical theme catalog and
+  accepted managed product recipes.
 
-## Next Task Menu
+## Completed Theme Project Correction
 
-Choose one bounded slice in a future chat:
+- [x] Remove the standalone theme editor, local server, bespoke chrome, custom
+  variables, save implementation, and package entry point from this repository.
+- [x] Keep Theme project creation and persistence in AppScreen Studio.
+- [x] Share one Theme detail root between the read-only gallery and editable
+  AppScreen project view, with editing initially limited to colors and fonts.
+- [x] Place Back and light/dark mode in the shared control-bar architecture for
+  both read-only and editable Theme detail.
+- [x] Package Font Awesome Solid, map `folder_open` to `faFolderOpen`, and route
+  Open through the same semantic action-button recipe as adjacent actions.
+- [x] Remove the special icon-only Select renderer and CSS. Retain a hidden native
+  select only for project-choice behavior.
+- [x] Share the Theme card sun/moon semantic assets with the detail mode control.
+- [x] Move menu, toolbar, transport, and remaining icon-like affordances onto exact
+  semantic roles and provider mappings.
+- [x] Clean stale generated component and icon directories before every build.
+- [x] Pass both builds, the final focused 18/18 project-control and persistence
+  checks, the earlier 14/14 gallery file, route checks, and repository diff checks.
+- [x] Obtain owner acceptance for the corrected Open action's normal sizing,
+  centering, artwork, and shared behavior.
 
-1. Continue consolidating remaining AppScreen presentation with Themes.
-2. Review an existing family and apply one focused visual correction.
-3. Design the longer family detail page from the accepted summary card grammar.
+## Owner-Directed Next Work
+
+1. Browser-check the complete current Theme workflow when directed.
+2. Add Theme project fields beyond colors and fonts in owner-selected slices.
+3. Review one existing family or detail composition through a focused visual slice.
 4. Begin the font-library contract and verify candidate redistribution licenses.
 5. Advance DTCG validation or versioned package delivery.
 
 ## Guardrails
 
-- Verify every named repository is clean before editing.
-- Preserve exact public preset values where available. Identify every derived
-  or invented value explicitly.
+- Verify exact Themes ownership before any consumer UI is exposed or edited.
+- Create a missing semantic recipe here before continuing consumer work.
+- Preserve exact public preset values and identify derived values explicitly.
 - Use only official locally bundled fonts with compatible licenses.
-- Reuse Themes-owned components. Do not create product-local presentation.
-- For theme visual slices, run only `pnpm build`, then stop for owner review.
-- Do not use browser automation. Do not commit or push unless explicitly asked.
+- Do not use browser automation. Browser acceptance and push remain user-owned.

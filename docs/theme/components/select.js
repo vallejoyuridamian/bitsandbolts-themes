@@ -1,3 +1,8 @@
+import {
+  DEFAULT_SEMANTIC_ICON_FAMILY,
+  semanticIconMarkup
+} from './semantic-icons.js';
+
 const DATA_ATTRIBUTE_PATTERN = /^data-[a-z0-9-]+$/;
 const MAX_MENU_HEIGHT = 360;
 const MENU_GAP = 4;
@@ -128,7 +133,7 @@ export function selectionControlsMarkup({ ariaLabel = '', controls = [] } = {}) 
             data-bb-select-trigger="${escapeHtml(controlId)}"
           >
             <span id="${escapeHtml(controlId)}Value" class="bb-select__value">${escapeHtml(selectedOption?.label)}</span>
-            <span class="bb-select__caret" aria-hidden="true"></span>
+            ${semanticIconMarkup('expand_more', 'bb-select__caret')}
           </button>
         </div>
       </div>
@@ -548,7 +553,6 @@ export function installSelectController(root = globalThis.document, {
     const trigger = rootDocument.createElement('button');
     const valueNode = rootDocument.createElement('span');
     const caret = rootDocument.createElement('span');
-    const iconName = String(select.dataset.bbSelectIcon || '').trim();
     wrapper.className = 'bb-select';
     wrapper.dataset.bbSelect = '';
     wrapper.dataset.bbSelectGenerated = 'true';
@@ -558,18 +562,11 @@ export function installSelectController(root = globalThis.document, {
     trigger.setAttribute('aria-haspopup', 'listbox');
     trigger.setAttribute('aria-expanded', 'false');
     valueNode.className = 'bb-select__value';
-    caret.className = 'bb-select__caret';
+    caret.className = 'bb-select__caret bb-semantic-icon';
+    caret.dataset.bbIconFamily = DEFAULT_SEMANTIC_ICON_FAMILY;
+    caret.dataset.bbIconRole = 'expand_more';
     caret.setAttribute('aria-hidden', 'true');
-    if (iconName) {
-      const iconNode = rootDocument.createElement('span');
-      iconNode.className = 'bb-select__icon ms';
-      iconNode.setAttribute('aria-hidden', 'true');
-      iconNode.textContent = iconName;
-      wrapper.classList.add('bb-select--icon-only');
-      trigger.append(iconNode, valueNode);
-    } else {
-      trigger.append(valueNode, caret);
-    }
+    trigger.append(valueNode, caret);
     select.before(wrapper);
     wrapper.append(select, trigger);
     return { generated: true, trigger, valueNode, wrapper };

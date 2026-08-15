@@ -1,4 +1,5 @@
 import { contentCardsMarkup } from './content-card.js';
+import { semanticActionButtonMarkup } from './button.js';
 import {
   mediaCopyListMarkup,
   milestoneTimelineMarkup,
@@ -357,11 +358,9 @@ function themeSummaryCardMarkup(theme, mode) {
         aria-label="Switch ${escapeHtml(theme.label)} card to ${escapeHtml(nextMode)} preview"
         title="Switch to ${escapeHtml(nextMode)} preview"
       >
-        <span
-          class="bb-theme-summary-card__mode-icon"
-          data-theme-mode-icon="${escapeHtml(nextMode)}"
-          aria-hidden="true"
-        ></span>
+        ${semanticIconMarkup(`${nextMode}_mode`, 'bb-theme-summary-card__mode-icon', {
+          family: 'bitsandbolts-theme'
+        })}
       </button>
     </article>
   `;
@@ -438,17 +437,57 @@ function iconsMarkup(theme) {
   `;
 }
 
-function v2IdentityMarkup(mode) {
+function v2IdentityMarkup(mode, { editable = false } = {}) {
   return mode.identity.map((entry) => `
     <div class="bb-theme-v2-identity" data-theme-v2-identity="${escapeHtml(entry.id)}">
       <span class="bb-theme-v2-identity__swatch" aria-hidden="true"></span>
       <span class="bb-theme-v2-identity__label">${escapeHtml(entry.label)}</span>
+      ${editable ? `
+        <label class="bb-theme-v2-identity__editor">
+          <span class="bb-theme-v2-identity__editor-label">${escapeHtml(entry.label)} color</span>
+          <input
+            class="bb-theme-v2-identity__input"
+            type="color"
+            value="${escapeHtml(entry.value)}"
+            aria-label="${escapeHtml(entry.label)} color"
+            title="Edit ${escapeHtml(entry.label.toLowerCase())} color"
+            data-theme-project-color="${escapeHtml(entry.id)}"
+          >
+        </label>
+      ` : ''}
       <span class="bb-theme-v2-identity__value">${escapeHtml(entry.value)}</span>
     </div>
   `).join('');
 }
 
-function v2TypographyMarkup(v2) {
+function fontFamilyOptionsMarkup(fontOptions = [], selected = '') {
+  return [...new Set([...fontOptions, selected].map((value) => String(value || '').trim()).filter(Boolean))]
+    .sort((left, right) => left.localeCompare(right))
+    .map((family) => `<option value="${escapeHtml(family)}"${family === selected ? ' selected' : ''}>${escapeHtml(family)}</option>`)
+    .join('');
+}
+
+function v2FontEditorsMarkup(v2, fontOptions = []) {
+  return `
+    <div class="bb-theme-v2-font-editors">
+      ${Object.entries(v2.typography.families).map(([role, family]) => `
+        <div class="bb-field bb-theme-v2-font-editor">
+          <label class="bb-field__label" for="themeFont-${escapeHtml(role)}">${escapeHtml(tokenLabel(role))} font</label>
+          <select
+            id="themeFont-${escapeHtml(role)}"
+            class="bb-field__input"
+            aria-label="${escapeHtml(tokenLabel(role))} font"
+            data-theme-project-font="${escapeHtml(role)}"
+          >
+            ${fontFamilyOptionsMarkup(fontOptions, family)}
+          </select>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function v2TypographyMarkup(v2, { editable = false, fontOptions = [] } = {}) {
   return v2.typography.specimens.map((specimen) => `
     <div class="bb-theme-v2-type" data-theme-v2-font-specimen="${escapeHtml(specimen.id)}">
       <span class="bb-theme-v2-type__meta">
@@ -457,7 +496,7 @@ function v2TypographyMarkup(v2) {
       </span>
       <span class="bb-theme-v2-type__sample">${escapeHtml(specimen.sample)}</span>
     </div>
-  `).join('');
+  `).join('') + (editable ? v2FontEditorsMarkup(v2, fontOptions) : '');
 }
 
 function v2ButtonMarkup(v2) {
@@ -473,23 +512,18 @@ function v2ButtonMarkup(v2) {
   }).join('');
 }
 
-function workspaceControlIconMarkup(theme, role) {
-  return `<span class="bb-workspace-control-icon">${iconPreviewGlyphMarkup(theme, role)}</span>`;
-}
-
 function workspaceChromeMarkup(theme) {
-  const iconButton = (role, label, { danger = false, disabled = false } = {}) => `
-    <button
-      class="bb-workspace-control-button bb-workspace-control-button--icon${danger ? ' bb-workspace-control-button--danger' : ''}"
-      type="button"
-      tabindex="-1"
-      aria-label="${escapeHtml(label)}"
-      title="${escapeHtml(label)}"
-      ${disabled ? 'disabled' : ''}
-    >
-      ${workspaceControlIconMarkup(theme, role)}
-    </button>
-  `;
+  const iconButton = (role, label, { danger = false, disabled = false } = {}) => (
+    semanticActionButtonMarkup({
+      danger,
+      disabled,
+      iconMarkup: iconPreviewGlyphMarkup(theme, role),
+      iconRole: role,
+      label,
+      recipe: 'workspace',
+      tabIndex: -1
+    })
+  );
 
   return `
     <div class="bb-workspace-specimen">
@@ -527,9 +561,15 @@ function workspaceChromeMarkup(theme) {
             <span>Output 02</span>
             <strong>Supporting content</strong>
           </article>
-          <button class="bb-workspace-add-tile bb-workspace-specimen__preview" type="button" tabindex="-1" aria-label="Add output">
-            ${workspaceControlIconMarkup(theme, 'add')}
-          </button>
+          ${semanticActionButtonMarkup({
+            attributes: { 'aria-label': 'Add output' },
+            className: 'bb-workspace-specimen__preview',
+            iconMarkup: iconPreviewGlyphMarkup(theme, 'add'),
+            iconRole: 'add',
+            label: 'Add output',
+            recipe: 'workspaceAdd',
+            tabIndex: -1
+          })}
         </div>
       </div>
     </div>
@@ -549,7 +589,7 @@ function interfacePrimitiveMarkup(theme) {
           ${disabled ? 'disabled' : ''}
         >
           <span class="bb-select__value">Standard density</span>
-          <span class="bb-select__caret" aria-hidden="true"></span>
+          ${semanticIconMarkup('expand_more', 'bb-select__caret')}
         </button>
       </div>
     </div>
@@ -574,16 +614,16 @@ function interfacePrimitiveMarkup(theme) {
           </button>
           <button class="bb-menu__item bb-interface-action" type="button" tabindex="-1" data-specimen-state="hover">
             <span class="bb-menu__label">Add media</span>
-            <span class="bb-menu__meta"><span class="bb-menu__arrow" aria-hidden="true">›</span></span>
+            <span class="bb-menu__meta">${semanticIconMarkup('submenu', 'bb-menu__arrow')}</span>
           </button>
           <button class="bb-menu__item bb-interface-action" type="button" tabindex="-1" data-specimen-state="pressed">
             <span class="bb-menu__label">Open submenu</span>
-            <span class="bb-menu__meta"><span class="bb-menu__arrow" aria-hidden="true">›</span></span>
+            <span class="bb-menu__meta">${semanticIconMarkup('submenu', 'bb-menu__arrow')}</span>
           </button>
           <div class="bb-menu__separator" role="separator"></div>
           <button class="bb-menu__item bb-interface-action" type="button" tabindex="-1" disabled>
             <span class="bb-menu__label">Unavailable action</span>
-            <span class="bb-menu__meta"><span class="bb-menu__shortcut">⌫</span></span>
+            <span class="bb-menu__meta"><span class="bb-menu__shortcut">Backspace</span></span>
           </button>
         </div>
       </div>
@@ -813,16 +853,24 @@ function sharedWebRecipeMarkup(theme) {
   `;
 }
 
-function v2SemanticColorMarkup(mode) {
+function v2SemanticColorMarkup(mode, { editable = false } = {}) {
   return mode.semanticColors.map((entry) => `
     <div class="bb-theme-v2-semantic" data-theme-v2-color-role="${escapeHtml(entry.role)}">
-      <span aria-hidden="true"></span>
+      ${editable ? `
+        <input
+          type="color"
+          value="${escapeHtml(entry.value)}"
+          aria-label="${escapeHtml(entry.role.replace('color.', ''))} color"
+          title="Edit ${escapeHtml(entry.role.replace('color.', ''))} color"
+          data-theme-project-semantic-color="${escapeHtml(entry.role)}"
+        >
+      ` : '<span aria-hidden="true"></span>'}
       <small>${escapeHtml(entry.role.replace('color.', ''))}</small>
     </div>
   `).join('');
 }
 
-function v2ModeMarkup(theme, mode) {
+function v2ModeMarkup(theme, mode, { editable = false, fontOptions = [] } = {}) {
   const v2 = theme.v2;
   const resolvedMode = v2.modes[mode];
   return `
@@ -835,11 +883,11 @@ function v2ModeMarkup(theme, mode) {
       <div class="bb-theme-v2__body">
         <section class="bb-theme-v2-section">
           <h3>Identity</h3>
-          <div class="bb-theme-v2-identities">${v2IdentityMarkup(resolvedMode)}</div>
+          <div class="bb-theme-v2-identities">${v2IdentityMarkup(resolvedMode, { editable })}</div>
         </section>
         <section class="bb-theme-v2-section">
           <h3>Typography</h3>
-          <div class="bb-theme-v2-types">${v2TypographyMarkup(v2)}</div>
+          <div class="bb-theme-v2-types">${v2TypographyMarkup(v2, { editable, fontOptions })}</div>
         </section>
         <section class="bb-theme-v2-section">
           <h3>Button</h3>
@@ -859,7 +907,7 @@ function v2ModeMarkup(theme, mode) {
         </section>
         <details class="bb-theme-v2-semantics">
           <summary>Semantic color roles · 48</summary>
-          <div>${v2SemanticColorMarkup(resolvedMode)}</div>
+          <div>${v2SemanticColorMarkup(resolvedMode, { editable })}</div>
         </details>
       </div>
     </section>
@@ -909,23 +957,27 @@ export function themeGalleryControlsMarkup() {
   return '';
 }
 
+export function themeDetailMarkup(theme, mode = 'dark', {
+  editable = false,
+  fontOptions = []
+} = {}) {
+  const selected = selectedMode(mode);
+  return `
+    <div class="bb-theme-detail" data-theme-detail-mode="${editable ? 'edit' : 'view'}">
+      <div class="bb-theme-gallery__catalog">
+        ${theme.v2
+          ? v2ModeMarkup(theme, selected, { editable, fontOptions })
+          : modeMarkup(theme, selected)}
+      </div>
+    </div>
+  `;
+}
+
 export function themeGalleryMarkup(catalog, selection = {}) {
   const theme = catalog.themes.find((candidate) => candidate.id === selection.themeId);
   const mode = selectedMode(theme ? selection.cardModes?.[theme.id] ?? selection.mode : selection.mode);
   if (!theme) return themeSummaryGridMarkup(catalog, mode, selection.cardModes);
-  return `
-    <div class="bb-theme-detail">
-      <header class="bb-theme-detail__navigation">
-        <button class="bb-btn bb-btn-text bb-theme-detail__back" type="button" data-theme-gallery-home>
-          <span class="ms" aria-hidden="true">arrow_back</span>
-          Back to themes
-        </button>
-      </header>
-      <div class="bb-theme-gallery__catalog">
-        ${theme.v2 ? v2ModeMarkup(theme, mode) : modeMarkup(theme, mode)}
-      </div>
-    </div>
-  `;
+  return themeDetailMarkup(theme, mode);
 }
 
 export function applyThemeGalleryVariables(host, catalog, selection = {}) {
@@ -982,7 +1034,8 @@ export function createThemeGalleryController({
   catalogUrl = '/theme/catalog.json',
   controlsHost,
   fetchImpl = (...args) => globalThis.fetch(...args),
-  host
+  host,
+  onViewChange
 } = {}) {
   let catalogPromise = null;
   let renderedCatalog = null;
@@ -1006,6 +1059,24 @@ export function createThemeGalleryController({
     host.innerHTML = themeGalleryMarkup(catalog, selection);
     applyThemeGalleryVariables(host, catalog, selection);
     synchronizeFooterYear(host);
+    const currentMode = selectedMode(themeId ? selection.cardModes[themeId] ?? selection.mode : selection.mode);
+    onViewChange?.(Object.freeze({
+      mode: currentMode,
+      themeId,
+      view: themeId ? 'detail' : 'gallery'
+    }));
+  }
+
+  function toggleModeForTheme(themeId, { restoreFocus = false } = {}) {
+    if (!renderedCatalog?.themes.some((theme) => theme.id === themeId)) return false;
+    const nextMode = nextThemeMode(selection.cardModes[themeId] ?? selection.mode);
+    selection = Object.freeze({
+      ...selection,
+      cardModes: Object.freeze({ ...selection.cardModes, [themeId]: nextMode })
+    });
+    renderCatalog(renderedCatalog);
+    if (restoreFocus) host.querySelector?.(`[data-theme-gallery-card-mode="${themeId}"]`)?.focus?.();
+    return true;
   }
 
   function installNavigationListener() {
@@ -1013,28 +1084,14 @@ export function createThemeGalleryController({
     host.addEventListener('click', (event) => {
       const cardMode = event.target?.closest?.('[data-theme-gallery-card-mode]');
       const open = event.target?.closest?.('[data-theme-gallery-open]');
-      const home = event.target?.closest?.('[data-theme-gallery-home]');
-      if (!renderedCatalog || (!cardMode && !open && !home)) return;
+      if (!renderedCatalog || (!cardMode && !open)) return;
       event.preventDefault();
       if (cardMode) {
         const themeId = String(cardMode.dataset.themeGalleryCardMode || '');
-        if (!renderedCatalog.themes.some((theme) => theme.id === themeId)) return;
-        const nextMode = nextThemeMode(selection.cardModes[themeId] ?? selection.mode);
-        selection = Object.freeze({
-          ...selection,
-          cardModes: Object.freeze({ ...selection.cardModes, [themeId]: nextMode })
-        });
-        renderCatalog(renderedCatalog);
-        host.querySelector?.(`[data-theme-gallery-card-mode="${themeId}"]`)?.focus?.();
+        toggleModeForTheme(themeId, { restoreFocus: true });
       } else if (open) {
         selection = Object.freeze({ ...selection, themeId: String(open.dataset.themeGalleryOpen || '') });
         renderCatalog(renderedCatalog);
-        host.querySelector?.('[data-theme-gallery-home]')?.focus?.();
-      } else if (home) {
-        const previousThemeId = selection.themeId;
-        selection = Object.freeze({ ...selection, themeId: '' });
-        renderCatalog(renderedCatalog);
-        host.querySelector?.(`[data-theme-gallery-open="${previousThemeId}"]`)?.focus?.();
       }
     });
     navigationListenerInstalled = true;
@@ -1062,5 +1119,17 @@ export function createThemeGalleryController({
     }
   }
 
-  return Object.freeze({ render });
+  async function showGallery() {
+    const catalog = renderedCatalog ?? await render();
+    selection = Object.freeze({ ...selection, themeId: '' });
+    renderCatalog(catalog);
+    return catalog;
+  }
+
+  function toggleMode() {
+    if (!selection.themeId) return false;
+    return toggleModeForTheme(selection.themeId);
+  }
+
+  return Object.freeze({ render, showGallery, toggleMode });
 }
