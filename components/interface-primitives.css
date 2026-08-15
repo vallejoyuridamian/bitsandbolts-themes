@@ -202,7 +202,46 @@
   padding: 0;
 }
 
-.bb-workspace-control-button--danger:not(:disabled) {
+.bb-workspace-control-button--plain-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  min-width: 18px;
+  min-height: 18px;
+  padding: 0;
+  border-color: transparent;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  filter: drop-shadow(0 0 2px color-mix(in srgb, var(--bb-color-primary) 18%, transparent));
+  transition:
+    color var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing),
+    filter var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing);
+}
+
+.bb-workspace-control-button.bb-workspace-control-button--plain-icon:is(:hover, :focus-visible):not(:disabled):not([aria-pressed="true"]),
+.bb-workspace-control-button.bb-workspace-control-button--plain-icon[data-specimen-state="hover"] {
+  border-color: transparent;
+  color: var(--bb-color-primary);
+  background: transparent;
+  box-shadow: none;
+  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--bb-color-primary) 62%, transparent));
+  text-shadow: none;
+}
+
+.bb-workspace-control-button.bb-workspace-control-button--plain-icon:focus-visible:not(:disabled) {
+  outline: none;
+}
+
+.bb-workspace-control-button--plain-icon .bb-workspace-control-icon {
+  width: 13px;
+  height: 13px;
+  font-size: 13px;
+}
+
+.bb-workspace-control-button--danger:not(:disabled),
+.bb-workspace-control-button.bb-workspace-control-button--danger:is(:hover, :focus-visible):not(:disabled):not([aria-pressed="true"]),
+.bb-workspace-control-button.bb-workspace-control-button--danger[data-specimen-state="hover"] {
   color: var(--bb-color-error);
 }
 

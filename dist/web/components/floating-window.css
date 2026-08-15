@@ -1,0 +1,153 @@
+/*
+ * Canonical handled floating-window shell and confirmation composition.
+ * Consumers retain behavior, state, positioning, invocation, and product semantics.
+ */
+
+.bb-floating-window {
+  position: fixed;
+  z-index: 1150;
+  display: grid;
+  grid-template-rows: 26px minmax(0, 1fr);
+  width: 360px;
+  height: 260px;
+  min-width: 220px;
+  min-height: 120px;
+  max-width: calc(100vw - 24px);
+  max-height: calc(100vh - 24px);
+  overflow: hidden;
+  resize: both;
+  border: 1px solid var(--bb-interface-menu-border);
+  border-radius: var(--bb-radius-md);
+  color: var(--bb-interface-control-foreground);
+  background: var(--bb-interface-menu-background);
+  box-shadow: var(--bb-interface-menu-shadow);
+  font-family: var(--bb-font-family-body);
+}
+
+.bb-floating-window[hidden] {
+  display: none;
+}
+
+.bb-floating-window[data-floating-window-size="content"] {
+  height: auto;
+}
+
+.bb-floating-window.bb-floating-window--specimen {
+  position: relative;
+  z-index: auto;
+  width: min(100%, 360px);
+  max-width: 360px;
+  max-height: none;
+  resize: none;
+}
+
+.bb-floating-window__drag-bar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+  padding: 0 3px 0 8px;
+  user-select: none;
+}
+
+.bb-floating-window__grip {
+  flex: 1 1 auto;
+  align-self: center;
+  box-sizing: border-box;
+  height: 7px;
+  border: 1px solid color-mix(in srgb, var(--bb-color-primary) 20%, transparent);
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--bb-color-primary) 4%, transparent),
+    color-mix(in srgb, var(--bb-color-primary) 30%, transparent),
+    color-mix(in srgb, var(--bb-color-primary) 4%, transparent)
+  );
+  box-shadow:
+    inset 0 0 4px color-mix(in srgb, var(--bb-interface-control-hover-foreground) 5%, transparent),
+    0 0 6px color-mix(in srgb, var(--bb-color-primary) 7%, transparent);
+  cursor: grab;
+  touch-action: none;
+}
+
+.bb-floating-window__grip:is(:hover, :focus-visible),
+.bb-floating-window__grip.is-active {
+  border: 2px solid color-mix(in srgb, var(--bb-color-primary) 78%, transparent);
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--bb-color-primary) 28%, transparent),
+    var(--bb-color-primary),
+    color-mix(in srgb, var(--bb-color-primary) 28%, transparent)
+  );
+  box-shadow:
+    inset 0 0 6px color-mix(in srgb, var(--bb-interface-control-hover-foreground) 22%, transparent),
+    0 0 10px color-mix(in srgb, var(--bb-color-primary) 32%, transparent);
+  outline: none;
+}
+
+.bb-floating-window__grip:active {
+  cursor: grabbing;
+}
+
+.bb-floating-window__close.bb-workspace-control-button {
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+.bb-floating-window__body {
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  scrollbar-color: var(--bb-interface-menu-scrollbar-thumb) var(--bb-interface-menu-scrollbar-track);
+  scrollbar-width: thin;
+}
+
+.bb-floating-confirm {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  min-height: 0;
+}
+
+.bb-floating-confirm__head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 10px;
+}
+
+.bb-floating-confirm__title {
+  width: 100%;
+  margin: 0;
+  color: var(--bb-interface-control-foreground);
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-md);
+  font-weight: var(--bb-font-weight-bold);
+  line-height: 1.2;
+  text-align: center;
+}
+
+.bb-floating-confirm__copy {
+  display: grid;
+  place-items: center;
+  min-height: 48px;
+  margin: 0;
+  padding: 8px 12px;
+  color: var(--bb-interface-menu-muted-foreground);
+  font-size: var(--bb-font-size-sm);
+  line-height: var(--bb-font-line-height-normal);
+  text-align: center;
+}
+
+.bb-floating-confirm__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 5px 8px 7px;
+}
+
+.bb-floating-confirm__actions .bb-workspace-control-button {
+  min-height: 32px;
+  padding-inline: 12px;
+  font-size: var(--bb-font-size-sm);
+}

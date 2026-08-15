@@ -8,6 +8,7 @@ import {
   questionListMarkup
 } from './content-section.js';
 import { footerMarkup } from './footer.js';
+import { floatingWindowConfirmationMarkup } from './floating-window.js';
 import { formFieldsMarkup } from './form-field.js';
 import { navbarMarkup } from './navbar.js';
 import { selectionControlsMarkup } from './select.js';
@@ -26,6 +27,20 @@ export const MANAGED_WEB_COMPONENTS = Object.freeze({
       modules: Object.freeze([])
     }),
     render: buttonMarkup
+  }),
+  'floating-window-confirmation': Object.freeze({
+    dependencies: Object.freeze({
+      stylesheets: Object.freeze([
+        'components/floating-window.css',
+        'components/interface-primitives.css',
+        'components/semantic-icons.css'
+      ]),
+      modules: Object.freeze([
+        'components/floating-window-shell.js',
+        'components/floating-window.js'
+      ])
+    }),
+    render: floatingWindowConfirmationMarkup
   }),
   'content-cards': Object.freeze({
     dependencies: Object.freeze({

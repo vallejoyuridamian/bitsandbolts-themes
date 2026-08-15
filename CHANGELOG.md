@@ -4,6 +4,32 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-15) - Theme projects and handled windows accepted
+
+### What changed
+- Removed the standalone Themes editor, local server, bespoke chrome, saving path,
+  and package entry point. User Theme projects now belong to AppScreen Studio and
+  share the same read-only/editable Theme detail root.
+- Added the canonical handled floating-window shell, grip, small glowing semantic
+  close control, centered confirmation composition, stable danger treatment, and
+  action buttons. The accepted spacing balances the original and compact drafts.
+- Added the exact handled-window specimen to every Theme detail viewer using the
+  same shell and confirmation functions plus each theme's configured icon provider.
+- Kept the visible Open popup on the canonical Select/Menu recipe and the Open
+  action on the normal workspace semantic-button path with packaged Font Awesome
+  Solid `folder_open` artwork for Bits and Bolts.
+- Generated matching `dist/web` and documentation component outputs. AppScreen now
+  uses the handled window for dirty drafts, item deletion, and Screen-set,
+  video-project, and Theme-project deletion without native delete confirmations.
+
+### Acceptance and boundary
+- The owner accepted the final handled window and its Theme-viewer specimen, along
+  with the Open control and palette direction accepted earlier in the slice.
+- Latest focused window/viewer checks pass 18/18, the preceding integrated run
+  passed 32/32, and both Themes and AppScreen builds pass.
+- Broader Theme workflow browser acceptance remains pending. Nothing was pushed;
+  remaining legacy Dialog consumers stay outside this checkpoint.
+
 ## Session wrap-up (2026-08-14) - Workspace chrome accepted
 
 ### What changed

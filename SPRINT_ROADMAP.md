@@ -33,23 +33,27 @@
 - [x] Package Font Awesome Solid, map `folder_open` to `faFolderOpen`, and route
   Open through the same semantic action-button recipe as adjacent actions.
 - [x] Remove the special icon-only Select renderer and CSS. Retain a hidden native
-  select only for project-choice behavior.
+  select as state while the visible popup uses the exact Select/Menu recipe.
 - [x] Share the Theme card sun/moon semantic assets with the detail mode control.
 - [x] Move menu, toolbar, transport, and remaining icon-like affordances onto exact
   semantic roles and provider mappings.
+- [x] Own the editable Colors add-tile and full-sample picker presentation while
+  AppScreen keeps draft state and Save persistence.
+- [x] Own the refined handled-window shell, grip, glowing close control,
+  confirmation and button recipes, plus the exact Theme-viewer specimen.
 - [x] Clean stale generated component and icon directories before every build.
-- [x] Pass both builds, the final focused 18/18 project-control and persistence
-  checks, the earlier 14/14 gallery file, route checks, and repository diff checks.
-- [x] Obtain owner acceptance for the corrected Open action's normal sizing,
-  centering, artwork, and shared behavior.
+- [x] Pass both builds, latest focused 18/18 checks, preceding integrated 32/32
+  checks, and repository diff checks.
+- [x] Obtain owner acceptance for Open, the palette, the refined handled window,
+  and its exact viewer specimen.
 
 ## Owner-Directed Next Work
 
 1. Browser-check the complete current Theme workflow when directed.
 2. Add Theme project fields beyond colors and fonts in owner-selected slices.
-3. Review one existing family or detail composition through a focused visual slice.
-4. Begin the font-library contract and verify candidate redistribution licenses.
-5. Advance DTCG validation or versioned package delivery.
+3. Migrate remaining legacy Dialog consumers in a separately directed UI slice.
+4. Review one existing family or detail composition through a focused visual slice.
+5. Advance the font library, DTCG validation, or versioned package delivery.
 
 ## Guardrails
 

@@ -211,15 +211,15 @@ export function installSelectController(root = globalThis.document, {
     if (!select?.isConnected || !wrapper?.isConnected) return false;
     const selected = selectedOption(record);
     const value = optionLabel(selected) || String(select.value || '').trim() || 'Select';
-    valueNode.textContent = value;
+    if (valueNode) valueNode.textContent = value;
     trigger.disabled = Boolean(select.disabled);
-    wrapper.hidden = Boolean(select.hidden);
+    if (!record.externalTrigger) wrapper.hidden = Boolean(select.hidden);
     wrapper.classList.toggle('is-disabled', Boolean(select.disabled));
     const accessibleLabel = labelTextForSelect(select);
-    if (!trigger.hasAttribute('aria-labelledby')) {
+    if (valueNode && !trigger.hasAttribute('aria-labelledby')) {
       trigger.setAttribute('aria-label', accessibleLabel ? `${accessibleLabel}: ${value}` : value);
     }
-    trigger.title = select.title || '';
+    if (valueNode || select.title) trigger.title = select.title || '';
     if (rebuild || record.optionsSignature !== optionsSignature(select)) {
       record.optionsSignature = optionsSignature(select);
       if (record.menu) renderOptions(record);
@@ -577,13 +577,22 @@ export function installSelectController(root = globalThis.document, {
     const trigger = wrapper?.querySelector?.('[data-bb-select-trigger]');
     const valueNode = trigger?.querySelector?.('.bb-select__value');
     return wrapper && trigger && valueNode
-      ? { generated: false, trigger, valueNode, wrapper }
+      ? { externalTrigger: false, generated: false, trigger, valueNode, wrapper }
+      : null;
+  }
+
+  function externalTriggerMarkup(select) {
+    const identity = selectIdentity(select);
+    const trigger = [...(rootDocument.querySelectorAll?.('[data-bb-select-trigger]') ?? [])]
+      .find((candidate) => candidate.dataset.bbSelectTrigger === identity);
+    return trigger
+      ? { externalTrigger: true, generated: false, trigger, valueNode: null, wrapper: trigger }
       : null;
   }
 
   function enhance(select) {
     if (!select?.matches?.('select') || recordsBySelect.has(select)) return false;
-    const markup = existingMarkup(select);
+    const markup = existingMarkup(select) ?? externalTriggerMarkup(select);
     if (!markup && !enhanceNativeSelects) return false;
     if (select.multiple || Number(select.size) > 1 || select.dataset.nativeSelect === 'true') {
       log('custom-select-enhancement-skipped', {
@@ -594,10 +603,12 @@ export function installSelectController(root = globalThis.document, {
       });
       return false;
     }
-    const { generated, trigger, valueNode, wrapper } = markup ?? generatedMarkup(select);
+    const generatedControl = markup ?? generatedMarkup(select);
+    const { externalTrigger = false, generated, trigger, valueNode, wrapper } = generatedControl;
     const record = {
       anchorContainer: null,
       anchorSignature: '',
+      externalTrigger,
       generated,
       menu: null,
       menuNaturalHeight: 0,

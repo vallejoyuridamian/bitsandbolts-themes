@@ -30,13 +30,15 @@ Last verified: 2026-08-15
   share the same root renderer and specialize only where editing requires it.
 - Theme project editing currently exposes colors and fonts. All other values
   inherit the selected source family until a later owner-directed slice.
+- Editable identity colors begin as the shared add-tile recipe. Once chosen, the
+  full sample is the browser-native picker surface. Colors is the section label.
 
 ## Shared Recipes and Icons
 
-- Themes owns Navbar, Footer, Hero, Button, Select, Menu, workspace chrome,
-  control bars, Stage, selection controls, Dialog, Product Entry, galleries,
-  editorial layouts, cards, forms, timelines, prose, detail media, store badges,
-  and shared interface recipes.
+- Themes owns Navbar, Footer, Hero, Button, Select, Menu, handled floating windows,
+  workspace chrome, control bars, Stage, selection controls, Dialog, Product Entry,
+  galleries, editorial layouts, cards, forms, timelines, prose, detail media,
+  store badges, and shared interface recipes.
 - Every icon-like affordance is routed through a Themes-owned semantic role and
   provider mapping. Text glyphs, emoji, HTML entities, and CSS text content are
   not icon implementations.
@@ -44,7 +46,8 @@ Last verified: 2026-08-15
   `faFolderOpen`. Open is rendered as the same normal semantic action button as
   Back and New, not as a special icon-only Select.
 - Screens, Scenes, and Themes consume one shared project Open action recipe and
-  behavior boundary. A hidden native select supplies project choices only.
+  behavior boundary. The visible project-choice popup is the exact Select/Menu
+  recipe anchored to the shared action.
 - Theme summary cards and both kinds of Theme detail use the same semantic
   `light_mode` and `dark_mode` sun/moon assets.
 - Back and mode live in the shared workspace control bar, not in a bespoke Theme
@@ -53,6 +56,10 @@ Last verified: 2026-08-15
   other toolbar artwork also use owned semantic recipes.
 - Build cleanup removes stale `dist/web/components` and `dist/web/icons` outputs
   before generation, matching the existing documentation cleanup boundary.
+- The handled window recipe owns the shell, grip, small glowing semantic close
+  control, balanced confirmation spacing and type, stable danger treatment,
+  buttons, and exact Theme-viewer specimen. The rejected confirmation-dialog
+  module is removed; unrelated legacy Dialog consumers remain for later work.
 
 ## Managed Product Consumption
 
@@ -67,21 +74,19 @@ Last verified: 2026-08-15
 ## Evidence and Acceptance Boundary
 
 - Bits and Bolts Themes and AppScreen Studio builds pass.
-- The final focused AppScreen project-control, Theme persistence, and current
-  toolbar tests pass 18/18. The full Theme gallery file passed 14/14 earlier in
-  the slice.
-- Diff checks pass in both repositories. Corrected shared component, semantic
-  style, and folder-open asset routes returned HTTP 200.
-- The owner accepted the final Open action's normal shared sizing, centering,
-  artwork, and behavior. Broader browser acceptance of the complete Theme
-  workflow has not been performed after the latest changes.
-- The coordinated changes are committed locally and remain unpushed. Push is
-  user-owned.
+- The latest focused handled-window and Theme-viewer checks pass 18/18. The
+  preceding integrated selection, gallery, and persistence run passed 32/32.
+- Diff checks pass in both repositories, and both builds pass their existing gates.
+- The owner accepted the Open action, palette direction, refined handled window,
+  and its exact Theme-viewer specimen. Broader browser acceptance of the complete
+  Theme workflow remains pending.
+- The coordinated Theme-project and handled-window checkpoint is the current
+  local baseline. Nothing was pushed.
 
 ## Open Gates
 
-- Await owner direction before extending Theme project fields, changing the
-  gallery/detail composition, or beginning browser acceptance.
+- Await owner direction before extending Theme project fields, migrating
+  remaining legacy dialogs, changing composition, or beginning browser acceptance.
 - The v2 contract still needs pinned DTCG resolver validation, full provenance
   enforcement, glyph and fallback checks, and complete React, Compose, and React
   Native component adapters.

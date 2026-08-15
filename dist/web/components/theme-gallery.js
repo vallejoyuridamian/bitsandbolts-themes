@@ -7,6 +7,8 @@ import {
   questionListMarkup
 } from './content-section.js';
 import { footerMarkup, synchronizeFooterYear } from './footer.js';
+import { floatingWindowConfirmationMarkup } from './floating-window.js';
+import { floatingWindowShellMarkup } from './floating-window-shell.js';
 import { formFieldsMarkup } from './form-field.js';
 import { navbarMarkup } from './navbar.js';
 import {
@@ -437,14 +439,13 @@ function iconsMarkup(theme) {
   `;
 }
 
-function v2IdentityMarkup(mode, { editable = false } = {}) {
-  return mode.identity.map((entry) => `
-    <div class="bb-theme-v2-identity" data-theme-v2-identity="${escapeHtml(entry.id)}">
-      <span class="bb-theme-v2-identity__swatch" aria-hidden="true"></span>
-      <span class="bb-theme-v2-identity__label">${escapeHtml(entry.label)}</span>
-      ${editable ? `
-        <label class="bb-theme-v2-identity__editor">
-          <span class="bb-theme-v2-identity__editor-label">${escapeHtml(entry.label)} color</span>
+function v2IdentityMarkup(mode, { editable = false, identityColorOverrides = [] } = {}) {
+  const overrides = new Set(identityColorOverrides.map((value) => String(value || '')));
+  return mode.identity.map((entry) => {
+    const hasOverride = !editable || overrides.has(entry.id);
+    const sample = editable
+      ? `
+        <label class="bb-theme-v2-identity__sample${hasOverride ? ' is-selected' : ' bb-workspace-add-tile'}">
           <input
             class="bb-theme-v2-identity__input"
             type="color"
@@ -453,11 +454,20 @@ function v2IdentityMarkup(mode, { editable = false } = {}) {
             title="Edit ${escapeHtml(entry.label.toLowerCase())} color"
             data-theme-project-color="${escapeHtml(entry.id)}"
           >
+          <span class="bb-theme-v2-identity__sample-visual" aria-hidden="true">
+            ${hasOverride ? '' : `<span class="bb-workspace-control-icon" data-theme-project-color-add>${semanticIconMarkup('add')}</span>`}
+          </span>
         </label>
-      ` : ''}
-      <span class="bb-theme-v2-identity__value">${escapeHtml(entry.value)}</span>
-    </div>
-  `).join('');
+      `
+      : '<span class="bb-theme-v2-identity__swatch" aria-hidden="true"></span>';
+    return `
+      <div class="bb-theme-v2-identity" data-theme-v2-identity="${escapeHtml(entry.id)}">
+        ${sample}
+        <span class="bb-theme-v2-identity__label">${escapeHtml(entry.label)}</span>
+        <span class="bb-theme-v2-identity__value"${hasOverride ? '' : ' hidden'}>${escapeHtml(entry.value)}</span>
+      </div>
+    `;
+  }).join('');
 }
 
 function fontFamilyOptionsMarkup(fontOptions = [], selected = '') {
@@ -626,6 +636,25 @@ function interfacePrimitiveMarkup(theme) {
             <span class="bb-menu__meta"><span class="bb-menu__shortcut">Backspace</span></span>
           </button>
         </div>
+      </div>
+    </div>
+    <div class="bb-floating-window-specimen">
+      <h4>Handled confirmation window</h4>
+      <div class="bb-floating-window-specimen__canvas bb-workspace-stage-surface">
+        ${floatingWindowShellMarkup({
+          ariaLabel: 'Handled confirmation window specimen',
+          bodyMarkup: floatingWindowConfirmationMarkup({
+            cancelLabel: 'Keep item',
+            confirmDanger: true,
+            confirmLabel: 'Remove',
+            description: 'This action cannot be undone.',
+            id: `handled-window-${theme.id}`,
+            specimen: true,
+            title: 'Remove item?'
+          }),
+          closeIconMarkup: iconPreviewGlyphMarkup(theme, 'close'),
+          specimen: true
+        })}
       </div>
     </div>
     ${workspaceChromeMarkup(theme)}
@@ -870,7 +899,11 @@ function v2SemanticColorMarkup(mode, { editable = false } = {}) {
   `).join('');
 }
 
-function v2ModeMarkup(theme, mode, { editable = false, fontOptions = [] } = {}) {
+function v2ModeMarkup(theme, mode, {
+  editable = false,
+  fontOptions = [],
+  identityColorOverrides = []
+} = {}) {
   const v2 = theme.v2;
   const resolvedMode = v2.modes[mode];
   return `
@@ -882,8 +915,8 @@ function v2ModeMarkup(theme, mode, { editable = false, fontOptions = [] } = {}) 
     >
       <div class="bb-theme-v2__body">
         <section class="bb-theme-v2-section">
-          <h3>Identity</h3>
-          <div class="bb-theme-v2-identities">${v2IdentityMarkup(resolvedMode, { editable })}</div>
+          <h3>Colors</h3>
+          <div class="bb-theme-v2-identities">${v2IdentityMarkup(resolvedMode, { editable, identityColorOverrides })}</div>
         </section>
         <section class="bb-theme-v2-section">
           <h3>Typography</h3>
@@ -959,14 +992,15 @@ export function themeGalleryControlsMarkup() {
 
 export function themeDetailMarkup(theme, mode = 'dark', {
   editable = false,
-  fontOptions = []
+  fontOptions = [],
+  identityColorOverrides = []
 } = {}) {
   const selected = selectedMode(mode);
   return `
     <div class="bb-theme-detail" data-theme-detail-mode="${editable ? 'edit' : 'view'}">
       <div class="bb-theme-gallery__catalog">
         ${theme.v2
-          ? v2ModeMarkup(theme, selected, { editable, fontOptions })
+          ? v2ModeMarkup(theme, selected, { editable, fontOptions, identityColorOverrides })
           : modeMarkup(theme, selected)}
       </div>
     </div>
