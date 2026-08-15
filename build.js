@@ -45,6 +45,9 @@ const THEME_LABELS = Object.freeze({
   sober: 'Sober',
 });
 const ICON_PREVIEW_NAMES = Object.freeze([
+  'save',
+  'undo',
+  'redo',
   'settings',
   'arrow_back',
   'share',
@@ -70,6 +73,9 @@ const ICON_PREVIEW_NAMES = Object.freeze([
   'lock',
   'visibility',
   'download',
+  'zoom_out',
+  'fit_screen',
+  'zoom_in',
 ]);
 const WEB_ICON_PREVIEW_FAMILIES = new Set([
   'font-awesome-solid',
@@ -156,6 +162,9 @@ const V2_FAMILY_ROOTS = Object.freeze({
 const V1_INTERFACE_FALLBACK_THEMES = new Set();
 const REQUIRED_INTERFACE_TOKEN_PATHS = Object.freeze([
   'interface.workspace.background',
+  'interface.workspace.stageCheckerStrong',
+  'interface.workspace.stageCheckerSoft',
+  'interface.workspace.selectionSignal',
   'interface.control.foreground',
   'interface.control.hoverForeground',
   'interface.control.disabledForeground',

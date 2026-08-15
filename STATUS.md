@@ -12,7 +12,7 @@ Last verified: 2026-08-14
   `inferno`, and `sober`. Ocean and Robot are removed with no aliases.
 - Bits and Bolts web icons use packaged Font Awesome Free Solid 7.3.1 through
   Themes-owned semantic roles. The other eight families retain Material
-  Symbols, and every showcase family renders the same 25 standard UI roles.
+  Symbols, and every showcase family renders the same 31 standard UI roles.
 - All nine families include semantic colors, typography, interface roles,
   Button recipes, catalog data, web CSS, Android outputs, React Native outputs,
   and GitHub Pages showcase artifacts.
@@ -37,14 +37,14 @@ Last verified: 2026-08-14
   theme view, and each summary card owns an Accent-colored light/dark control.
   Summary headers and identity rails have exact shared heights, and mode icons
   use Themes-owned vector masks that remain centered across browser zoom levels.
-- Themes owns the reusable Navbar, Footer, Hero, Button, Select, Menu,
-  Selection Controls, Dialog, Product Entry, Theme Readiness, Theme Gallery,
-  Page Gallery, editorial layouts, cards, forms, timelines, prose, question
-  lists, detail media, store badges, and shared interface recipes.
-- The AppScreen Studio managed landing and Studio theme selectors expose the
-  current catalog families. Select owns its menu lifecycle and delegated event
-  contract. Theme changes retain the previous presentation until target CSS and
-  fonts are ready, then commit atomically.
+- Themes owns reusable Navbar, Footer, Hero, Button, Select, Menu, Workspace
+  Chrome, Toolbar, Stage, Selection Controls, Dialog, Product Entry, galleries,
+  editorial layouts, cards, forms, timelines, prose, detail media, store badges,
+  and shared interface recipes.
+- AppScreen Studio consumes shared workspace tabs, control bars, semantic icons,
+  checkerboard, preview selection frame, and add tile. Its embedded gallery uses
+  the same specimen and icon assets as the standalone showcase. Theme changes
+  retain the previous presentation until target CSS and fonts are ready.
 - Webfonts use a blocking display policy. Sites keeps first paint hidden until
   active fonts are ready, so fallback typography is never shown and replaced.
 - Navbar and Footer declare their shared brand-mark module dependency. The
@@ -74,10 +74,9 @@ and redistribution licenses must be verified before use.
 
 ## Open Gates
 
-- The owner accepted the AppScreen guest-consumer correction and the exact
-  current Theme Summary Card rendering, visible guest gates, Navbar restoration,
-  and fallback-free font transitions. Navbar action wrapper height remains
-  intrinsic to the canonical Navbar height.
+- The owner accepted AppScreen's shared workspace chrome consumption, exact
+  embedded showcase parity, glow-only hover, current Theme Summary Cards,
+  visible guest gates, Navbar restoration, and fallback-free transitions.
 - The owner accepted the My Website managed editorial and portfolio-detail
   recipes, including the source-matched detail-title letter spacing.
 - The owner accepted the managed Roadmap timeline icon sizing, Font Awesome 7

@@ -11,6 +11,18 @@
   user-select: none;
 }
 
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="save"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/floppy-disk.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="undo"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/rotate-left.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="redo"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/rotate-right.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="settings"] {
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/gear.svg");
 }
@@ -109,6 +121,18 @@
 
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="download"] {
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/download.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="zoom_out"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/magnifying-glass-minus.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="fit_screen"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/expand.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="zoom_in"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/magnifying-glass-plus.svg");
 }
 
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="idea"] {

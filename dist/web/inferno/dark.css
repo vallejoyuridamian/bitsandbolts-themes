@@ -164,6 +164,9 @@
   --bb-color-terminal-border: oklch(0.3843 0.0301 269.7337);
   --bb-opacity-action-icon-inactive: 0.42;
   --bb-interface-workspace-background: oklch(0.2598 0.0306 262.6666);
+  --bb-interface-workspace-stage-checker-strong: oklch(0.2598 0.0306 262.6666);
+  --bb-interface-workspace-stage-checker-soft: oklch(0.3095 0.0266 266.7132);
+  --bb-interface-workspace-selection-signal: oklch(0.6397 0.1720 36.4421);
   --bb-interface-control-foreground: oklch(0.9219 0 0);
   --bb-interface-control-hover-foreground: oklch(0.9219 0 0);
   --bb-interface-control-disabled-foreground: oklch(0.7155 0 0);

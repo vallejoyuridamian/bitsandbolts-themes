@@ -91,6 +91,236 @@
   opacity: 0.42;
 }
 
+.bb-workspace-chrome {
+  color: var(--bb-interface-control-foreground);
+  background: var(--bb-color-background);
+  font-family: var(--bb-font-family-body);
+}
+
+.bb-workspace-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--bb-spacing-4);
+  min-width: 0;
+  min-height: 56px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--bb-color-outline-variant);
+  box-shadow: var(--bb-shadow-md);
+}
+
+.bb-workspace-topbar__identity {
+  flex: 0 0 auto;
+  color: var(--bb-color-on-background);
+  font-family: var(--bb-font-family-display);
+  font-size: var(--bb-font-size-sm);
+  font-weight: var(--bb-font-weight-semibold);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.bb-workspace-tabs {
+  display: inline-flex;
+  flex: 0 1 auto;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+  padding: 3px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.bb-workspace-tab,
+.bb-workspace-control-button {
+  flex: 0 0 auto;
+  border: 1px solid transparent;
+  border-radius: var(--bb-radius-md);
+  color: var(--bb-interface-control-foreground);
+  background: transparent;
+  box-shadow: none;
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-xs);
+  font-weight: var(--bb-font-weight-bold);
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    border-color var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing),
+    box-shadow var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing),
+    color var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing),
+    text-shadow var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing);
+}
+
+.bb-workspace-tab {
+  min-height: 32px;
+  padding: 0 14px;
+}
+
+.bb-workspace-control-button {
+  min-width: 42px;
+  min-height: 30px;
+  padding: 0 10px;
+}
+
+.bb-workspace-tab:is(:hover, :focus-visible):not(:disabled):not([aria-selected="true"]),
+.bb-workspace-control-button:is(:hover, :focus-visible):not(:disabled):not([aria-pressed="true"]),
+.bb-workspace-tab[data-specimen-state="hover"],
+.bb-workspace-control-button[data-specimen-state="hover"] {
+  outline: none;
+  border-color: transparent;
+  color: var(--bb-interface-control-hover-foreground);
+  background: var(--bb-interface-interaction-hover-background);
+  box-shadow: var(--bb-interface-interaction-hover-shadow);
+  text-shadow: var(--bb-interface-interaction-hover-text-shadow);
+}
+
+.bb-workspace-tab:is([aria-selected="true"], [data-specimen-state="selected"]),
+.bb-workspace-control-button:is([aria-pressed="true"], [data-specimen-state="pressed"]) {
+  border-color: transparent;
+  color: var(--bb-interface-control-hover-foreground);
+  background: var(--bb-interface-interaction-pressed-background);
+  box-shadow: var(--bb-interface-interaction-pressed-shadow);
+  text-shadow: var(--bb-interface-interaction-pressed-text-shadow);
+}
+
+.bb-workspace-tab:disabled,
+.bb-workspace-tab:disabled:hover,
+.bb-workspace-control-button:disabled,
+.bb-workspace-control-button:disabled:hover {
+  border-color: transparent;
+  color: var(--bb-interface-control-disabled-foreground);
+  cursor: default;
+  opacity: 0.42;
+}
+
+.bb-workspace-control-button--icon {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  min-width: 30px;
+  padding: 0;
+}
+
+.bb-workspace-control-button--danger:not(:disabled) {
+  color: var(--bb-color-error);
+}
+
+.bb-workspace-control-icon {
+  display: inline-grid;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.bb-workspace-control-icon .ms {
+  --ms-size: 18px;
+  --ms-fill: 0;
+  --ms-weight: 300;
+}
+
+.bb-workspace-control-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+  min-height: 46px;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--bb-color-outline-variant);
+  color: var(--bb-color-on-surface-variant);
+  background: var(--bb-color-background);
+  font-family: var(--bb-font-family-body);
+}
+
+.bb-workspace-control-bar__status {
+  flex: 0 0 auto;
+  overflow: hidden;
+  font-size: var(--bb-font-size-xs);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bb-workspace-control-bar__actions {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+  min-width: 0;
+  padding: 4px 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-color: var(--bb-interface-scrollbar-thumb) var(--bb-interface-scrollbar-track);
+  scrollbar-width: thin;
+}
+
+.bb-workspace-stage-surface {
+  background:
+    linear-gradient(45deg, var(--bb-interface-workspace-stage-checker-strong) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--bb-interface-workspace-stage-checker-strong) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--bb-interface-workspace-stage-checker-strong) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--bb-interface-workspace-stage-checker-strong) 75%);
+  background-color: var(--bb-interface-workspace-stage-checker-soft);
+  background-position: 0 0, 0 12px, 12px -12px, -12px 0;
+  background-size: 24px 24px;
+}
+
+.bb-workspace-preview-frame {
+  position: relative;
+  flex: 0 0 auto;
+  overflow: visible;
+  border: 1px solid var(--bb-color-outline-variant);
+  border-radius: 2px;
+  background: var(--bb-color-surface);
+  box-shadow: var(--bb-shadow-lg);
+}
+
+.bb-workspace-preview-frame[data-selected="true"]::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  z-index: 1;
+  border-radius: 3px;
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--bb-interface-workspace-selection-signal) 28%, transparent), var(--bb-interface-workspace-selection-signal), color-mix(in srgb, var(--bb-interface-workspace-selection-signal) 28%, transparent)) top / 100% 2px no-repeat,
+    linear-gradient(90deg, color-mix(in srgb, var(--bb-interface-workspace-selection-signal) 28%, transparent), var(--bb-interface-workspace-selection-signal), color-mix(in srgb, var(--bb-interface-workspace-selection-signal) 28%, transparent)) bottom / 100% 2px no-repeat,
+    linear-gradient(180deg, color-mix(in srgb, var(--bb-interface-workspace-selection-signal) 28%, transparent), var(--bb-interface-workspace-selection-signal), color-mix(in srgb, var(--bb-interface-workspace-selection-signal) 28%, transparent)) 0 2px / 2px calc(100% - 4px) no-repeat,
+    linear-gradient(180deg, color-mix(in srgb, var(--bb-interface-workspace-selection-signal) 28%, transparent), var(--bb-interface-workspace-selection-signal), color-mix(in srgb, var(--bb-interface-workspace-selection-signal) 28%, transparent)) 100% 2px / 2px calc(100% - 4px) no-repeat;
+  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--bb-interface-workspace-selection-signal) 28%, transparent));
+  pointer-events: none;
+}
+
+.bb-workspace-add-tile {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px dashed var(--bb-color-outline-variant);
+  border-radius: var(--bb-radius-lg);
+  color: var(--bb-color-primary);
+  background: color-mix(in srgb, var(--bb-color-surface) 72%, transparent);
+  cursor: pointer;
+}
+
+.bb-workspace-add-tile:is(:hover, :focus-visible) {
+  outline: none;
+  border-color: var(--bb-color-primary);
+  background: color-mix(in srgb, var(--bb-color-primary) 10%, var(--bb-color-surface));
+}
+
+.bb-workspace-add-tile .bb-workspace-control-icon {
+  width: 42px;
+  height: 42px;
+  font-size: 42px;
+}
+
+.bb-workspace-add-tile .bb-workspace-control-icon .ms {
+  --ms-size: 42px;
+  --ms-weight: 300;
+}
+
 .bb-select {
   position: relative;
   display: inline-grid;
@@ -290,6 +520,8 @@
   .bb-interface-action,
   .bb-interface-controls button:not(.theme-swatch),
   .bb-interface-controls .bb-select__trigger,
+  .bb-workspace-tab,
+  .bb-workspace-control-button,
   .bb-select__caret {
     transition-duration: 0ms;
   }
@@ -298,7 +530,10 @@
 @media (forced-colors: active) {
   .bb-select__trigger,
   .bb-menu,
-  .bb-menu__item {
+  .bb-menu__item,
+  .bb-workspace-tab,
+  .bb-workspace-control-button,
+  .bb-workspace-add-tile {
     border-color: ButtonText;
     color: ButtonText;
     background: ButtonFace;
@@ -307,8 +542,17 @@
   }
 
   .bb-select__trigger:focus-visible,
-  .bb-menu__item:focus-visible {
+  .bb-menu__item:focus-visible,
+  .bb-workspace-tab:focus-visible,
+  .bb-workspace-control-button:focus-visible,
+  .bb-workspace-add-tile:focus-visible {
     outline: 2px solid Highlight;
     outline-offset: 2px;
+  }
+
+  .bb-workspace-preview-frame[data-selected="true"]::after {
+    border: 2px solid Highlight;
+    background: none;
+    filter: none;
   }
 }

@@ -6,7 +6,10 @@
   },
   "interface": {
     "workspace": {
-      "background": { "$value": "{color.workspaceBackground}" }
+      "background": { "$value": "{color.workspaceBackground}" },
+      "stageCheckerStrong": { "$value": "{color.workspaceStageCheckerStrong}" },
+      "stageCheckerSoft": { "$value": "{color.workspaceStageCheckerSoft}" },
+      "selectionSignal": { "$value": "{color.interfaceSignal}" }
     },
     "control": {
       "foreground": { "$value": "{color.onBackground}" },

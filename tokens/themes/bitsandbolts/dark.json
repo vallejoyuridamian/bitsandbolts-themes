@@ -77,6 +77,8 @@
     "cyan":                 { "$value": "#12E6D5", "$type": "color" },
     "accentGlow":           { "$value": "#00FFF7", "$type": "color" },
     "workspaceBackground":  { "$value": "#0F1415", "$type": "color" },
+    "workspaceStageCheckerStrong": { "$value": "#0B0F10", "$type": "color" },
+    "workspaceStageCheckerSoft": { "$value": "#121819", "$type": "color" },
     "interfaceSignal":      { "$value": "#71D2D7", "$type": "color" },
     "interfaceHoverForeground": { "$value": "#E8FEFF", "$type": "color" },
     "interfaceDisabledForeground": { "$value": "#E2FCFF", "$type": "color" },

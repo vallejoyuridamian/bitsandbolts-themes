@@ -169,6 +169,9 @@
             "--bb-color-terminal-border": "#CBD5E1",
             "--bb-opacity-action-icon-inactive": "0.40",
             "--bb-interface-workspace-background": "#F8FAFC",
+            "--bb-interface-workspace-stage-checker-strong": "#F8FAFC",
+            "--bb-interface-workspace-stage-checker-soft": "#E2E8F0",
+            "--bb-interface-workspace-selection-signal": "#4F46E5",
             "--bb-interface-control-foreground": "#0F172A",
             "--bb-interface-control-hover-foreground": "#0F172A",
             "--bb-interface-control-disabled-foreground": "#475569",
@@ -326,6 +329,9 @@
             "--bb-color-terminal-border": "#334155",
             "--bb-opacity-action-icon-inactive": "0.40",
             "--bb-interface-workspace-background": "#0F172A",
+            "--bb-interface-workspace-stage-checker-strong": "#0F172A",
+            "--bb-interface-workspace-stage-checker-soft": "#1E293B",
+            "--bb-interface-workspace-selection-signal": "#A5B4FC",
             "--bb-interface-control-foreground": "#E2E8F0",
             "--bb-interface-control-hover-foreground": "#E2E8F0",
             "--bb-interface-control-disabled-foreground": "#94A3B8",
@@ -360,6 +366,9 @@
         "previewFamily": "material-symbols",
         "exactPreview": true,
         "previewNames": [
+          "save",
+          "undo",
+          "redo",
           "settings",
           "arrow_back",
           "share",
@@ -384,7 +393,10 @@
           "warning",
           "lock",
           "visibility",
-          "download"
+          "download",
+          "zoom_out",
+          "fit_screen",
+          "zoom_in"
         ]
       },
       "v2": {
@@ -1572,6 +1584,8 @@
             "--bb-color-cyan": "#007D75",
             "--bb-color-accent-glow": "#00BFB6",
             "--bb-color-workspace-background": "#F4FBFF",
+            "--bb-color-workspace-stage-checker-strong": "#E1EAF4",
+            "--bb-color-workspace-stage-checker-soft": "#FFFFFF",
             "--bb-color-interface-signal": "#007D75",
             "--bb-color-interface-hover-foreground": "#0B0F14",
             "--bb-color-interface-disabled-foreground": "#40546A",
@@ -1582,6 +1596,9 @@
             "--bb-opacity-neon-ring": "0.28",
             "--bb-opacity-nav-scrim": "0.16",
             "--bb-interface-workspace-background": "#F4FBFF",
+            "--bb-interface-workspace-stage-checker-strong": "#E1EAF4",
+            "--bb-interface-workspace-stage-checker-soft": "#FFFFFF",
+            "--bb-interface-workspace-selection-signal": "#007D75",
             "--bb-interface-control-foreground": "#0B0F14",
             "--bb-interface-control-hover-foreground": "#0B0F14",
             "--bb-interface-control-disabled-foreground": "#40546A",
@@ -1742,6 +1759,8 @@
             "--bb-color-cyan": "#12E6D5",
             "--bb-color-accent-glow": "#00FFF7",
             "--bb-color-workspace-background": "#0F1415",
+            "--bb-color-workspace-stage-checker-strong": "#0B0F10",
+            "--bb-color-workspace-stage-checker-soft": "#121819",
             "--bb-color-interface-signal": "#71D2D7",
             "--bb-color-interface-hover-foreground": "#E8FEFF",
             "--bb-color-interface-disabled-foreground": "#E2FCFF",
@@ -1752,6 +1771,9 @@
             "--bb-opacity-neon-ring": "0.35",
             "--bb-opacity-nav-scrim": "0.50",
             "--bb-interface-workspace-background": "#0F1415",
+            "--bb-interface-workspace-stage-checker-strong": "#0B0F10",
+            "--bb-interface-workspace-stage-checker-soft": "#121819",
+            "--bb-interface-workspace-selection-signal": "#71D2D7",
             "--bb-interface-control-foreground": "#EAEFFC",
             "--bb-interface-control-hover-foreground": "#E8FEFF",
             "--bb-interface-control-disabled-foreground": "#E2FCFF",
@@ -1786,6 +1808,9 @@
         "previewFamily": "font-awesome-solid",
         "exactPreview": true,
         "previewNames": [
+          "save",
+          "undo",
+          "redo",
           "settings",
           "arrow_back",
           "share",
@@ -1810,7 +1835,10 @@
           "warning",
           "lock",
           "visibility",
-          "download"
+          "download",
+          "zoom_out",
+          "fit_screen",
+          "zoom_in"
         ]
       },
       "v2": {
@@ -2995,6 +3023,9 @@
             "--bb-color-terminal-border": "#000000",
             "--bb-opacity-action-icon-inactive": "0.48",
             "--bb-interface-workspace-background": "#FFFFFF",
+            "--bb-interface-workspace-stage-checker-strong": "#FFFFFF",
+            "--bb-interface-workspace-stage-checker-soft": "#F0F0F0",
+            "--bb-interface-workspace-selection-signal": "#FF3333",
             "--bb-interface-control-foreground": "#000000",
             "--bb-interface-control-hover-foreground": "#000000",
             "--bb-interface-control-disabled-foreground": "#333333",
@@ -3152,6 +3183,9 @@
             "--bb-color-terminal-border": "#FFFFFF",
             "--bb-opacity-action-icon-inactive": "0.48",
             "--bb-interface-workspace-background": "#000000",
+            "--bb-interface-workspace-stage-checker-strong": "#000000",
+            "--bb-interface-workspace-stage-checker-soft": "#1A1A1A",
+            "--bb-interface-workspace-selection-signal": "#FF6666",
             "--bb-interface-control-foreground": "#FFFFFF",
             "--bb-interface-control-hover-foreground": "#FFFFFF",
             "--bb-interface-control-disabled-foreground": "#CCCCCC",
@@ -3186,6 +3220,9 @@
         "previewFamily": "material-symbols",
         "exactPreview": true,
         "previewNames": [
+          "save",
+          "undo",
+          "redo",
           "settings",
           "arrow_back",
           "share",
@@ -3210,7 +3247,10 @@
           "warning",
           "lock",
           "visibility",
-          "download"
+          "download",
+          "zoom_out",
+          "fit_screen",
+          "zoom_in"
         ]
       },
       "v2": {
@@ -4396,6 +4436,9 @@
             "--bb-color-terminal-border": "#E0D6C9",
             "--bb-opacity-action-icon-inactive": "0.42",
             "--bb-interface-workspace-background": "#F8F5F0",
+            "--bb-interface-workspace-stage-checker-strong": "#F8F5F0",
+            "--bb-interface-workspace-stage-checker-soft": "#F0E9E0",
+            "--bb-interface-workspace-selection-signal": "#2E7D32",
             "--bb-interface-control-foreground": "#3E2723",
             "--bb-interface-control-hover-foreground": "#3E2723",
             "--bb-interface-control-disabled-foreground": "#6D4C41",
@@ -4554,6 +4597,9 @@
             "--bb-color-terminal-border": "#3E4A3D",
             "--bb-opacity-action-icon-inactive": "0.42",
             "--bb-interface-workspace-background": "#1C2A1F",
+            "--bb-interface-workspace-stage-checker-strong": "#1C2A1F",
+            "--bb-interface-workspace-stage-checker-soft": "#252F26",
+            "--bb-interface-workspace-selection-signal": "#4CAF50",
             "--bb-interface-control-foreground": "#F0EBE5",
             "--bb-interface-control-hover-foreground": "#F0EBE5",
             "--bb-interface-control-disabled-foreground": "#D7CFC4",
@@ -4588,6 +4634,9 @@
         "previewFamily": "material-symbols",
         "exactPreview": true,
         "previewNames": [
+          "save",
+          "undo",
+          "redo",
           "settings",
           "arrow_back",
           "share",
@@ -4612,7 +4661,10 @@
           "warning",
           "lock",
           "visibility",
-          "download"
+          "download",
+          "zoom_out",
+          "fit_screen",
+          "zoom_in"
         ]
       },
       "v2": {
@@ -5832,6 +5884,9 @@
             "--bb-color-terminal-border": "oklch(0.9276 0.0058 264.5313)",
             "--bb-opacity-action-icon-inactive": "0.42",
             "--bb-interface-workspace-background": "oklch(0.9751 0.0127 244.2507)",
+            "--bb-interface-workspace-stage-checker-strong": "oklch(0.9751 0.0127 244.2507)",
+            "--bb-interface-workspace-stage-checker-soft": "oklch(0.9670 0.0029 264.5419)",
+            "--bb-interface-workspace-selection-signal": "oklch(0.7227 0.1920 149.5793)",
             "--bb-interface-control-foreground": "oklch(0.3729 0.0306 259.7328)",
             "--bb-interface-control-hover-foreground": "oklch(0.3729 0.0306 259.7328)",
             "--bb-interface-control-disabled-foreground": "oklch(0.5510 0.0234 264.3637)",
@@ -6023,6 +6078,9 @@
             "--bb-color-terminal-border": "oklch(0.4461 0.0263 256.8018)",
             "--bb-opacity-action-icon-inactive": "0.42",
             "--bb-interface-workspace-background": "oklch(0.2077 0.0398 265.7549)",
+            "--bb-interface-workspace-stage-checker-strong": "oklch(0.2077 0.0398 265.7549)",
+            "--bb-interface-workspace-stage-checker-soft": "oklch(0.2463 0.0275 259.9628)",
+            "--bb-interface-workspace-selection-signal": "oklch(0.7729 0.1535 163.2231)",
             "--bb-interface-control-foreground": "oklch(0.8717 0.0093 258.3382)",
             "--bb-interface-control-hover-foreground": "oklch(0.8717 0.0093 258.3382)",
             "--bb-interface-control-disabled-foreground": "oklch(0.5510 0.0234 264.3637)",
@@ -6057,6 +6115,9 @@
         "previewFamily": "material-symbols",
         "exactPreview": true,
         "previewNames": [
+          "save",
+          "undo",
+          "redo",
           "settings",
           "arrow_back",
           "share",
@@ -6081,7 +6142,10 @@
           "warning",
           "lock",
           "visibility",
-          "download"
+          "download",
+          "zoom_out",
+          "fit_screen",
+          "zoom_in"
         ]
       },
       "v2": {
@@ -7301,6 +7365,9 @@
             "--bb-color-terminal-border": "oklch(0.7473 0.0387 80.5476)",
             "--bb-opacity-action-icon-inactive": "0.42",
             "--bb-interface-workspace-background": "oklch(0.9529 0.0146 102.4597)",
+            "--bb-interface-workspace-stage-checker-strong": "oklch(0.9529 0.0146 102.4597)",
+            "--bb-interface-workspace-stage-checker-soft": "oklch(0.8502 0.0389 49.0874)",
+            "--bb-interface-workspace-selection-signal": "oklch(0.6083 0.0623 44.3588)",
             "--bb-interface-control-foreground": "oklch(0.4063 0.0255 40.3627)",
             "--bb-interface-control-hover-foreground": "oklch(0.4063 0.0255 40.3627)",
             "--bb-interface-control-disabled-foreground": "oklch(0.5416 0.0512 37.2132)",
@@ -7492,6 +7559,9 @@
             "--bb-color-terminal-border": "oklch(0.4063 0.0255 40.3627)",
             "--bb-opacity-action-icon-inactive": "0.42",
             "--bb-interface-workspace-background": "oklch(0.2721 0.0141 48.1783)",
+            "--bb-interface-workspace-stage-checker-strong": "oklch(0.2721 0.0141 48.1783)",
+            "--bb-interface-workspace-stage-checker-soft": "oklch(0.4063 0.0255 40.3627)",
+            "--bb-interface-workspace-selection-signal": "oklch(0.7272 0.0539 52.3320)",
             "--bb-interface-control-foreground": "oklch(0.9529 0.0146 102.4597)",
             "--bb-interface-control-hover-foreground": "oklch(0.9529 0.0146 102.4597)",
             "--bb-interface-control-disabled-foreground": "oklch(0.7575 0.0380 50.8610)",
@@ -7526,6 +7596,9 @@
         "previewFamily": "material-symbols",
         "exactPreview": true,
         "previewNames": [
+          "save",
+          "undo",
+          "redo",
           "settings",
           "arrow_back",
           "share",
@@ -7550,7 +7623,10 @@
           "warning",
           "lock",
           "visibility",
-          "download"
+          "download",
+          "zoom_out",
+          "fit_screen",
+          "zoom_in"
         ]
       },
       "v2": {
@@ -8770,6 +8846,9 @@
             "--bb-color-terminal-border": "oklch(0.8699 0 0)",
             "--bb-opacity-action-icon-inactive": "0.42",
             "--bb-interface-workspace-background": "oklch(0.9809 0.0025 228.7836)",
+            "--bb-interface-workspace-stage-checker-strong": "oklch(0.9809 0.0025 228.7836)",
+            "--bb-interface-workspace-stage-checker-soft": "oklch(0.8828 0.0285 98.1033)",
+            "--bb-interface-workspace-selection-signal": "oklch(0.8677 0.0735 7.0855)",
             "--bb-interface-control-foreground": "oklch(0.3211 0 0)",
             "--bb-interface-control-hover-foreground": "oklch(0.3211 0 0)",
             "--bb-interface-control-disabled-foreground": "oklch(0.5382 0 0)",
@@ -8961,6 +9040,9 @@
             "--bb-color-terminal-border": "oklch(0.3867 0 0)",
             "--bb-opacity-action-icon-inactive": "0.42",
             "--bb-interface-workspace-background": "oklch(0.2303 0.0125 264.2926)",
+            "--bb-interface-workspace-stage-checker-strong": "oklch(0.2303 0.0125 264.2926)",
+            "--bb-interface-workspace-stage-checker-soft": "oklch(0.3867 0 0)",
+            "--bb-interface-workspace-selection-signal": "oklch(0.8027 0.1355 349.2347)",
             "--bb-interface-control-foreground": "oklch(0.9219 0 0)",
             "--bb-interface-control-hover-foreground": "oklch(0.9219 0 0)",
             "--bb-interface-control-disabled-foreground": "oklch(0.7155 0 0)",
@@ -8995,6 +9077,9 @@
         "previewFamily": "material-symbols",
         "exactPreview": true,
         "previewNames": [
+          "save",
+          "undo",
+          "redo",
           "settings",
           "arrow_back",
           "share",
@@ -9019,7 +9104,10 @@
           "warning",
           "lock",
           "visibility",
-          "download"
+          "download",
+          "zoom_out",
+          "fit_screen",
+          "zoom_in"
         ]
       },
       "v2": {
@@ -10239,6 +10327,9 @@
             "--bb-color-terminal-border": "oklch(0.9022 0.0052 247.8822)",
             "--bb-opacity-action-icon-inactive": "0.42",
             "--bb-interface-workspace-background": "oklch(0.9383 0.0042 236.4993)",
+            "--bb-interface-workspace-stage-checker-strong": "oklch(0.9383 0.0042 236.4993)",
+            "--bb-interface-workspace-stage-checker-soft": "oklch(0.9846 0.0017 247.8389)",
+            "--bb-interface-workspace-selection-signal": "oklch(0.6397 0.1720 36.4421)",
             "--bb-interface-control-foreground": "oklch(0.3211 0 0)",
             "--bb-interface-control-hover-foreground": "oklch(0.3211 0 0)",
             "--bb-interface-control-disabled-foreground": "oklch(0.5510 0.0234 264.3637)",
@@ -10430,6 +10521,9 @@
             "--bb-color-terminal-border": "oklch(0.3843 0.0301 269.7337)",
             "--bb-opacity-action-icon-inactive": "0.42",
             "--bb-interface-workspace-background": "oklch(0.2598 0.0306 262.6666)",
+            "--bb-interface-workspace-stage-checker-strong": "oklch(0.2598 0.0306 262.6666)",
+            "--bb-interface-workspace-stage-checker-soft": "oklch(0.3095 0.0266 266.7132)",
+            "--bb-interface-workspace-selection-signal": "oklch(0.6397 0.1720 36.4421)",
             "--bb-interface-control-foreground": "oklch(0.9219 0 0)",
             "--bb-interface-control-hover-foreground": "oklch(0.9219 0 0)",
             "--bb-interface-control-disabled-foreground": "oklch(0.7155 0 0)",
@@ -10464,6 +10558,9 @@
         "previewFamily": "material-symbols",
         "exactPreview": true,
         "previewNames": [
+          "save",
+          "undo",
+          "redo",
           "settings",
           "arrow_back",
           "share",
@@ -10488,7 +10585,10 @@
           "warning",
           "lock",
           "visibility",
-          "download"
+          "download",
+          "zoom_out",
+          "fit_screen",
+          "zoom_in"
         ]
       },
       "v2": {
@@ -11708,6 +11808,9 @@
             "--bb-color-terminal-border": "oklch(0.9251 0.0071 88.6450)",
             "--bb-opacity-action-icon-inactive": "0.42",
             "--bb-interface-workspace-background": "oklch(0.9761 0.0041 91.4461)",
+            "--bb-interface-workspace-stage-checker-strong": "oklch(0.9761 0.0041 91.4461)",
+            "--bb-interface-workspace-stage-checker-soft": "oklch(0.9251 0.0071 88.6450)",
+            "--bb-interface-workspace-selection-signal": "oklch(0.6333 0.0309 154.9039)",
             "--bb-interface-control-foreground": "oklch(0.2417 0.0298 269.8827)",
             "--bb-interface-control-hover-foreground": "oklch(0.2417 0.0298 269.8827)",
             "--bb-interface-control-disabled-foreground": "oklch(0.5510 0.0234 264.3637)",
@@ -11899,6 +12002,9 @@
             "--bb-color-terminal-border": "oklch(0.2850 0 0)",
             "--bb-opacity-action-icon-inactive": "0.42",
             "--bb-interface-workspace-background": "oklch(0.1448 0 0)",
+            "--bb-interface-workspace-stage-checker-strong": "oklch(0.1448 0 0)",
+            "--bb-interface-workspace-stage-checker-soft": "oklch(0.2178 0 0)",
+            "--bb-interface-workspace-selection-signal": "oklch(0.6333 0.0309 154.9039)",
             "--bb-interface-control-foreground": "oklch(0.9702 0 0)",
             "--bb-interface-control-hover-foreground": "oklch(0.9702 0 0)",
             "--bb-interface-control-disabled-foreground": "oklch(0.7058 0 0)",
@@ -11933,6 +12039,9 @@
         "previewFamily": "material-symbols",
         "exactPreview": true,
         "previewNames": [
+          "save",
+          "undo",
+          "redo",
           "settings",
           "arrow_back",
           "share",
@@ -11957,7 +12066,10 @@
           "warning",
           "lock",
           "visibility",
-          "download"
+          "download",
+          "zoom_out",
+          "fit_screen",
+          "zoom_in"
         ]
       },
       "v2": {

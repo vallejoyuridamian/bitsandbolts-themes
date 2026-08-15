@@ -6,7 +6,7 @@
   Cards, Navbar behavior, and fallback-free atomic theme presentation.
 - Keep Themes as the enforceable visual owner across every Bits and Bolts
   product and supported platform.
-- Examine AppScreen Studio UI next and consolidate duplicated presentation at the canonical Themes owner through bounded, approval-gated slices.
+- Continue AppScreen UI consolidation beyond the accepted workspace chrome and stage through bounded, approval-gated slices.
 
 ## Completed Checkpoint
 
@@ -17,8 +17,8 @@
 - [x] Rename the inspiration families to Brutus, Forest, Winter, Coffee,
   Bubblegum, Inferno, and Sober.
 - [x] Build the compact card-first Themes home and preserve full family pages.
-- [x] Move reusable Hero, Navbar, Footer, Select, Menu, landing, gallery, and
-  interface presentation into Themes-owned components.
+- [x] Move reusable Hero, Navbar, Footer, Select, Menu, workspace chrome/stage,
+  landing, gallery, and interface presentation into Themes-owned components.
 - [x] Align AppScreen Studio's managed landing and in-app selectors with the
   canonical theme catalog.
 - [x] Fix theme switching continuity, viewport-aware menu placement, anchor
@@ -43,13 +43,13 @@
   badge recipes for managed content without adding product-local presentation.
 - [x] Owner-accept all 13 managed My Website pages, including the six live
   portfolio details and source-matched detail-title typography.
-- [x] Package Font Awesome Solid for Bits and Bolts web icons, preserve Material Symbols elsewhere, and align the timeline and showcase role mappings.
+- [x] Package Font Awesome Solid for Bits and Bolts web icons, preserve Material Symbols elsewhere, and add accepted toolbar and showcase role mappings.
 
 ## Next Task Menu
 
 Choose one bounded slice in a future chat:
 
-1. Examine AppScreen Studio UI and consolidate duplicated presentation with Themes.
+1. Continue consolidating remaining AppScreen presentation with Themes.
 2. Review an existing family and apply one focused visual correction.
 3. Design the longer family detail page from the accepted summary card grammar.
 4. Begin the font-library contract and verify candidate redistribution licenses.

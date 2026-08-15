@@ -473,7 +473,70 @@ function v2ButtonMarkup(v2) {
   }).join('');
 }
 
-function interfacePrimitiveMarkup() {
+function workspaceControlIconMarkup(theme, role) {
+  return `<span class="bb-workspace-control-icon">${iconPreviewGlyphMarkup(theme, role)}</span>`;
+}
+
+function workspaceChromeMarkup(theme) {
+  const iconButton = (role, label, { danger = false, disabled = false } = {}) => `
+    <button
+      class="bb-workspace-control-button bb-workspace-control-button--icon${danger ? ' bb-workspace-control-button--danger' : ''}"
+      type="button"
+      tabindex="-1"
+      aria-label="${escapeHtml(label)}"
+      title="${escapeHtml(label)}"
+      ${disabled ? 'disabled' : ''}
+    >
+      ${workspaceControlIconMarkup(theme, role)}
+    </button>
+  `;
+
+  return `
+    <div class="bb-workspace-specimen">
+      <h4>Workspace chrome, toolbar &amp; stage</h4>
+      <div class="bb-workspace-specimen__viewport bb-workspace-chrome">
+        <header class="bb-workspace-topbar">
+          <strong class="bb-workspace-topbar__identity">Workspace</strong>
+          <div class="bb-workspace-tabs" role="tablist" aria-label="Workspace views">
+            <button class="bb-workspace-tab" type="button" tabindex="-1" role="tab" aria-selected="true">Primary view</button>
+            <button class="bb-workspace-tab" type="button" tabindex="-1" role="tab" aria-selected="false">Secondary view</button>
+            <button class="bb-workspace-tab" type="button" tabindex="-1" role="tab" aria-selected="false">Assets</button>
+          </div>
+        </header>
+        <div class="bb-workspace-control-bar">
+          <span class="bb-workspace-control-bar__status">Zoom 20%</span>
+          <div class="bb-workspace-control-bar__actions" aria-label="Stage controls">
+            ${iconButton('save', 'Save', { disabled: true })}
+            ${iconButton('undo', 'Undo')}
+            ${iconButton('redo', 'Redo')}
+            ${iconButton('content_copy', 'Duplicate')}
+            ${iconButton('delete', 'Delete', { danger: true })}
+            ${iconButton('zoom_out', 'Zoom out')}
+            ${iconButton('fit_screen', 'Fit to view')}
+            ${iconButton('zoom_in', 'Zoom in')}
+            <button class="bb-workspace-control-button" type="button" tabindex="-1">Export PNG</button>
+            <button class="bb-workspace-control-button" type="button" tabindex="-1">Export PDF</button>
+          </div>
+        </div>
+        <div class="bb-workspace-specimen__stage bb-workspace-stage-surface">
+          <article class="bb-workspace-preview-frame bb-workspace-specimen__preview" data-selected="true">
+            <span>Output 01</span>
+            <strong>Primary content</strong>
+          </article>
+          <article class="bb-workspace-preview-frame bb-workspace-specimen__preview bb-workspace-specimen__preview--secondary">
+            <span>Output 02</span>
+            <strong>Supporting content</strong>
+          </article>
+          <button class="bb-workspace-add-tile bb-workspace-specimen__preview" type="button" tabindex="-1" aria-label="Add output">
+            ${workspaceControlIconMarkup(theme, 'add')}
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function interfacePrimitiveMarkup(theme) {
   const selectSpecimen = (label, state = '', disabled = false) => `
     <div class="bb-interface-select-state">
       <small>${escapeHtml(label)}</small>
@@ -525,6 +588,7 @@ function interfacePrimitiveMarkup() {
         </div>
       </div>
     </div>
+    ${workspaceChromeMarkup(theme)}
   `;
 }
 
@@ -650,7 +714,7 @@ function contentAndFieldRecipeMarkup() {
   `;
 }
 
-function sharedWebRecipeMarkup() {
+function sharedWebRecipeMarkup(theme) {
   return `
     <section class="bb-theme-inspection" aria-label="Current shared web recipe specimens">
       <p class="bb-theme-inspection__label">Current shared web recipes</p>
@@ -743,7 +807,7 @@ function sharedWebRecipeMarkup() {
           </div>
         </div>
         ${contentAndFieldRecipeMarkup()}
-        ${interfacePrimitiveMarkup()}
+        ${interfacePrimitiveMarkup(theme)}
       </div>
     </section>
   `;
@@ -781,7 +845,7 @@ function v2ModeMarkup(theme, mode) {
           <h3>Button</h3>
           <div class="bb-theme-v2-buttons">${v2ButtonMarkup(v2)}</div>
         </section>
-        ${sharedWebRecipeMarkup()}
+        ${sharedWebRecipeMarkup(theme)}
         <section class="bb-theme-v2-section">
           <h3>Icons</h3>
           <p class="bb-theme-mode__meta">${escapeHtml(iconFamilyLabel(theme))}</p>
@@ -823,7 +887,7 @@ function modeMarkup(theme, mode) {
             <span class="bb-theme-scene__status"><span class="ms" aria-hidden="true">check_circle</span>Valid source</span>
           </div>
         </div>
-        ${sharedWebRecipeMarkup()}
+        ${sharedWebRecipeMarkup(theme)}
         <section class="bb-theme-inspection">
           <p class="bb-theme-inspection__label">Fonts</p>
           <div class="bb-theme-type-grid">${typographyMarkup(variables)}</div>

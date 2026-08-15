@@ -6,6 +6,9 @@
  */
 export const SEMANTIC_ICON_FAMILIES = Object.freeze({
   'font-awesome-solid': Object.freeze({
+    save: 'faFloppyDisk',
+    undo: 'faRotateLeft',
+    redo: 'faRotateRight',
     settings: 'faGear',
     arrow_back: 'faArrowLeft',
     share: 'faShareNodes',
@@ -31,6 +34,9 @@ export const SEMANTIC_ICON_FAMILIES = Object.freeze({
     lock: 'faLock',
     visibility: 'faEye',
     download: 'faDownload',
+    zoom_out: 'faMagnifyingGlassMinus',
+    fit_screen: 'faExpand',
+    zoom_in: 'faMagnifyingGlassPlus',
     idea: 'faLightbulb',
     call: 'faPhone',
     agreement: 'faHandshake',

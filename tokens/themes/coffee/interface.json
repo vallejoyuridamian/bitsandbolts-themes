@@ -8,6 +8,15 @@
     "workspace": {
       "background": {
         "$value": "{color.background}"
+      },
+      "stageCheckerStrong": {
+        "$value": "{color.background}"
+      },
+      "stageCheckerSoft": {
+        "$value": "{color.surfaceVariant}"
+      },
+      "selectionSignal": {
+        "$value": "{color.primary}"
       }
     },
     "control": {

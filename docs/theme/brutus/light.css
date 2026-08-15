@@ -130,6 +130,9 @@
   --bb-color-terminal-border: #000000;
   --bb-opacity-action-icon-inactive: 0.48;
   --bb-interface-workspace-background: #FFFFFF;
+  --bb-interface-workspace-stage-checker-strong: #FFFFFF;
+  --bb-interface-workspace-stage-checker-soft: #F0F0F0;
+  --bb-interface-workspace-selection-signal: #FF3333;
   --bb-interface-control-foreground: #000000;
   --bb-interface-control-hover-foreground: #000000;
   --bb-interface-control-disabled-foreground: #333333;

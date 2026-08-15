@@ -50,6 +50,8 @@ export const colors = {
   cyan: '#007D75',
   accentGlow: '#00BFB6',
   workspaceBackground: '#F4FBFF',
+  workspaceStageCheckerStrong: '#E1EAF4',
+  workspaceStageCheckerSoft: '#FFFFFF',
   interfaceSignal: '#007D75',
   interfaceHoverForeground: '#0B0F14',
   interfaceDisabledForeground: '#40546A',

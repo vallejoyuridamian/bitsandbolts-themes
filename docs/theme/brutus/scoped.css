@@ -130,6 +130,9 @@
   --bb-color-terminal-border: #000000;
   --bb-opacity-action-icon-inactive: 0.48;
   --bb-interface-workspace-background: #FFFFFF;
+  --bb-interface-workspace-stage-checker-strong: #FFFFFF;
+  --bb-interface-workspace-stage-checker-soft: #F0F0F0;
+  --bb-interface-workspace-selection-signal: #FF3333;
   --bb-interface-control-foreground: #000000;
   --bb-interface-control-hover-foreground: #000000;
   --bb-interface-control-disabled-foreground: #333333;
@@ -289,6 +292,9 @@
   --bb-color-terminal-border: #FFFFFF;
   --bb-opacity-action-icon-inactive: 0.48;
   --bb-interface-workspace-background: #000000;
+  --bb-interface-workspace-stage-checker-strong: #000000;
+  --bb-interface-workspace-stage-checker-soft: #1A1A1A;
+  --bb-interface-workspace-selection-signal: #FF6666;
   --bb-interface-control-foreground: #FFFFFF;
   --bb-interface-control-hover-foreground: #FFFFFF;
   --bb-interface-control-disabled-foreground: #CCCCCC;

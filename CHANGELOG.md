@@ -4,6 +4,27 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-14) - Workspace chrome accepted
+
+### What changed
+- Added canonical workspace topbar, tab, control-bar button, semantic toolbar
+  icon, checkerboard stage, selected preview frame, and add-tile recipes.
+- Added theme contract roles for stage checker colors and selection signals
+  across all nine families, preserving the accepted Bits and Bolts dark values.
+- Added Font Awesome Solid mappings and generated assets for save, undo, redo,
+  zoom out, fit, and zoom in while retaining Material Symbols in other families.
+- Added the complete workspace specimen to every theme detail showcase and
+  regenerated web, Android, React Native, catalog, and documentation outputs.
+- AppScreen Studio now consumes these recipes directly, and its embedded gallery
+  loads the same semantic icon assets as the standalone showcase.
+
+### Acceptance and boundary
+- The owner accepted the standalone specimen, embedded gallery parity, live
+  Studio consumption, and the restored glow-only hover without a border leak.
+- The final Themes build passes and AppScreen's focused guest UI contract passes
+  9/9. No browser automation, deployment, publication, or push ran.
+- Further AppScreen presentation consolidation remains a future bounded slice.
+
 ## Session wrap-up (2026-08-14) - Managed My Website UI completed
 
 ### What changed

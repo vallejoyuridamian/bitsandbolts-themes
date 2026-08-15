@@ -1,7 +1,12 @@
 {
   "$extensions": { "com.bitsandbolts.interface": { "resolution": "canonical" } },
   "interface": {
-    "workspace": { "background": { "$value": "{color.background}" } },
+    "workspace": {
+      "background": { "$value": "{color.background}" },
+      "stageCheckerStrong": { "$value": "{color.background}" },
+      "stageCheckerSoft": { "$value": "{color.surfaceVariant}" },
+      "selectionSignal": { "$value": "{color.primary}" }
+    },
     "control": {
       "foreground": { "$value": "{color.onBackground}" },
       "hoverForeground": { "$value": "{color.onBackground}" },

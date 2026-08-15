@@ -165,6 +165,9 @@
   --bb-color-terminal-border: oklch(0.9276 0.0058 264.5313);
   --bb-opacity-action-icon-inactive: 0.42;
   --bb-interface-workspace-background: oklch(0.9751 0.0127 244.2507);
+  --bb-interface-workspace-stage-checker-strong: oklch(0.9751 0.0127 244.2507);
+  --bb-interface-workspace-stage-checker-soft: oklch(0.9670 0.0029 264.5419);
+  --bb-interface-workspace-selection-signal: oklch(0.7227 0.1920 149.5793);
   --bb-interface-control-foreground: oklch(0.3729 0.0306 259.7328);
   --bb-interface-control-hover-foreground: oklch(0.3729 0.0306 259.7328);
   --bb-interface-control-disabled-foreground: oklch(0.5510 0.0234 264.3637);
@@ -358,6 +361,9 @@
   --bb-color-terminal-border: oklch(0.4461 0.0263 256.8018);
   --bb-opacity-action-icon-inactive: 0.42;
   --bb-interface-workspace-background: oklch(0.2077 0.0398 265.7549);
+  --bb-interface-workspace-stage-checker-strong: oklch(0.2077 0.0398 265.7549);
+  --bb-interface-workspace-stage-checker-soft: oklch(0.2463 0.0275 259.9628);
+  --bb-interface-workspace-selection-signal: oklch(0.7729 0.1535 163.2231);
   --bb-interface-control-foreground: oklch(0.8717 0.0093 258.3382);
   --bb-interface-control-hover-foreground: oklch(0.8717 0.0093 258.3382);
   --bb-interface-control-disabled-foreground: oklch(0.5510 0.0234 264.3637);
