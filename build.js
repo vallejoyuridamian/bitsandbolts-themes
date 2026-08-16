@@ -954,6 +954,20 @@ function buildV2CatalogPayload(theme) {
       ...entry,
       value: colorValueToCss(resolveDtcgToken(tokens, entry.token), entry.token),
     }));
+    const identityById = Object.fromEntries(identity.map((entry) => [entry.id, entry.value]));
+    const identityRoleBindings = {
+      primary: 'color.interaction.action',
+      secondary: 'color.interaction.selected',
+      neutral: 'color.surface.surface',
+    };
+    for (const [identityId, semanticRole] of Object.entries(identityRoleBindings)) {
+      if (identityById[identityId] !== resolvedColors[semanticRole]) {
+        throw new Error(`[v2-contract] ${theme} ${mode} ${identityId} identity must match ${semanticRole}.`);
+      }
+    }
+    if (new Set(identity.map((entry) => entry.value)).size !== identity.length) {
+      throw new Error(`[v2-contract] ${theme} ${mode} creator identity colors must remain distinct.`);
+    }
     const variables = Object.fromEntries(Object.entries(resolvedColors).map(([path, value]) => [
       `--bb-v2-${kebabCase(path)}`,
       value,

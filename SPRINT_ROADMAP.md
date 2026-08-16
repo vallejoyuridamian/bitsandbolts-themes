@@ -44,12 +44,14 @@
 - [x] Clean stale generated component and icon directories before every build.
 - [x] Pass both builds, latest focused 18/18 checks, preceding integrated 32/32
   checks, and repository diff checks.
-- [x] Obtain owner acceptance for Open, the palette, the refined handled window,
-  and its exact viewer specimen.
+- [x] Accept full-width detail, local identity add-icon sizing, and aligned
+  four-line gallery headlines.
+- [x] Align saved identities with visible card roles and accept the focused
+  Themes build plus AppScreen 15/15 gallery checks.
 
 ## Owner-Directed Next Work
 
-1. Browser-check the complete current Theme workflow when directed.
+1. Continue bounded, owner-directed Theme standardization before typography.
 2. Add Theme project fields beyond colors and fonts in owner-selected slices.
 3. Migrate remaining legacy Dialog consumers in a separately directed UI slice.
 4. Review one existing family or detail composition through a focused visual slice.

@@ -4,6 +4,25 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-16) - Theme gallery identity alignment accepted
+
+### What changed
+- Let Theme detail fill its workspace, reduced only the identity-card add icons,
+  and fixed gallery headlines to four lines so card sections and buttons align.
+- Aligned each saved mode identity with the card it already presented: Primary
+  drives the primary button and `matters.`, Secondary drives the secondary button,
+  Neutral drives the background, and Accent drives the mode circle.
+- Removed the Bits and Bolts neon primary-button exception. Where an old Secondary
+  was displaced by the visible button color, moved it to Accent when useful.
+- Enforced all four identities as distinct during generation without changing
+  semantic role values, persistence, generation, typography, or other products.
+
+### Acceptance and boundary
+- The owner accepted the focused visual state. The Themes build, AppScreen gallery
+  checks 15/15, and repository diff checks pass.
+- Theme standardization continues only through the next owner-directed slice.
+  Typography has not started. Nothing was pushed.
+
 ## Session wrap-up (2026-08-15) - Theme projects and handled windows accepted
 
 ### What changed

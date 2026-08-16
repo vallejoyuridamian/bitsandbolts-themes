@@ -10,6 +10,7 @@
     "secondaryContainer": { "$value": { "colorSpace": "srgb", "components": [0.145098, 0.184314, 0.14902], "alpha": 1, "hex": "#252F26" } },
     "onSecondaryContainer": { "$value": { "colorSpace": "srgb", "components": [0.843137, 0.811765, 0.768627], "alpha": 1, "hex": "#D7CFC4" } },
     "tertiary": { "$value": "{palette.primaryContainer}" },
+    "creatorAccent": { "$value": "{palette.secondary}" },
     "onTertiary": { "$value": "{palette.onPrimaryContainer}" },
     "tertiaryContainer": { "$value": "{palette.primaryContainer}" },
     "onTertiaryContainer": { "$value": "{palette.onPrimaryContainer}" },

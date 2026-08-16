@@ -308,13 +308,10 @@ function themeSummaryIdentityMarkup(mode) {
   `).join('');
 }
 
-function themeSummaryActionsMarkup(theme) {
-  const primary = theme.id === 'bitsandbolts'
-    ? '<span class="bb-btn bb-btn-neon">Primary</span>'
-    : '<span class="bb-v2-button">Primary</span>';
+function themeSummaryActionsMarkup() {
   return `
     <span class="bb-theme-summary-card__actions" aria-hidden="true">
-      ${primary}
+      <span class="bb-v2-button">Primary</span>
       <span class="bb-v2-button bb-v2-button--secondary">Secondary</span>
     </span>
   `;
@@ -349,7 +346,7 @@ function themeSummaryCardMarkup(theme, mode) {
             <span>matters.</span>
           </span>
           <span class="bb-theme-summary-card__summary">${escapeHtml(theme.v2.artDirection.summary)}</span>
-          ${themeSummaryActionsMarkup(theme)}
+          ${themeSummaryActionsMarkup()}
         </span>
         <span class="bb-theme-summary-card__identities" aria-hidden="true">
           ${themeSummaryIdentityMarkup(theme.v2.modes[mode])}

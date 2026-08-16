@@ -258,7 +258,7 @@
 }
 
 .bb-theme-summary-card__headline > span {
-  color: var(--bb-v2-color-content-brand);
+  color: var(--bb-v2-color-interaction-action);
 }
 
 .bb-theme-summary-card__summary {

@@ -17,22 +17,22 @@
     {
       "id": "primary",
       "label": "Primary",
-      "token": "palette.primary"
+      "token": "color.interaction.action"
     },
     {
       "id": "secondary",
       "label": "Secondary",
-      "token": "palette.secondary"
+      "token": "color.interaction.selected"
     },
     {
       "id": "accent",
       "label": "Accent",
-      "token": "palette.tertiary"
+      "token": "palette.secondary"
     },
     {
       "id": "neutral",
       "label": "Neutral",
-      "token": "palette.surfaceVariant"
+      "token": "color.surface.surface"
     }
   ],
   "artDirection": {

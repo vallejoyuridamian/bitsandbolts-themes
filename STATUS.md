@@ -1,6 +1,6 @@
 # Bits and Bolts Themes: Status
 
-Last verified: 2026-08-15
+Last verified: 2026-08-16
 
 ## Current Truth
 
@@ -17,6 +17,13 @@ Last verified: 2026-08-15
   and GitHub Pages showcase artifacts.
 - The established family typography, licensed local fonts, Brutus native Ultra
   weight, Forest Hero leading, and semantic summary-card typography remain intact.
+- The owner accepted the focused gallery cleanup: Theme detail fills the workspace,
+  identity add icons are locally smaller, and card headlines occupy four lines.
+- Saved identities now match the visible card in both modes. Primary drives the
+  primary button and `matters.`, Secondary drives the secondary button, Neutral
+  drives the card background, and Accent drives the mode circle.
+- Every mode keeps four distinct identities. Where the visible secondary button
+  had displaced the old Secondary, the old Secondary moved to Accent when useful.
 
 ## Theme Workspace Ownership
 
@@ -73,20 +80,20 @@ Last verified: 2026-08-15
 
 ## Evidence and Acceptance Boundary
 
-- Bits and Bolts Themes and AppScreen Studio builds pass.
+- The focused Themes build and AppScreen gallery checks pass 15/15.
 - The latest focused handled-window and Theme-viewer checks pass 18/18. The
   preceding integrated selection, gallery, and persistence run passed 32/32.
 - Diff checks pass in both repositories, and both builds pass their existing gates.
 - The owner accepted the Open action, palette direction, refined handled window,
-  and its exact Theme-viewer specimen. Broader browser acceptance of the complete
-  Theme workflow remains pending.
+  exact viewer specimen, focused gallery cleanup, and visible identity-role mapping.
+  Broader browser acceptance of the complete Theme workflow remains pending.
 - The coordinated Theme-project and handled-window checkpoint is the current
   local baseline. Nothing was pushed.
 
 ## Open Gates
 
-- Await owner direction before extending Theme project fields, migrating
-  remaining legacy dialogs, changing composition, or beginning browser acceptance.
+- Continue Theme standardization only through the next bounded owner-directed
+  slice. Typography has not started and remains out of scope.
 - The v2 contract still needs pinned DTCG resolver validation, full provenance
   enforcement, glyph and fallback checks, and complete React, Compose, and React
   Native component adapters.

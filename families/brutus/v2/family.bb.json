@@ -8,10 +8,10 @@
     { "mode": "dark", "density": "standard" }
   ],
   "identity": [
-    { "id": "primary", "label": "Primary", "token": "palette.primary" },
-    { "id": "secondary", "label": "Secondary", "token": "palette.secondary" },
+    { "id": "primary", "label": "Primary", "token": "color.interaction.action" },
+    { "id": "secondary", "label": "Secondary", "token": "color.interaction.selected" },
     { "id": "accent", "label": "Accent", "token": "palette.tertiary" },
-    { "id": "neutral", "label": "Neutral", "token": "palette.surfaceVariant" }
+    { "id": "neutral", "label": "Neutral", "token": "color.surface.surface" }
   ],
   "artDirection": {
     "label": "Hard-edged utility",

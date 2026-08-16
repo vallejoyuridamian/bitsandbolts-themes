@@ -8,10 +8,10 @@
     { "mode": "dark", "density": "standard" }
   ],
   "identity": [
-    { "id": "primary", "label": "Primary", "token": "palette.identityPrimary" },
-    { "id": "secondary", "label": "Secondary", "token": "palette.identitySecondary" },
+    { "id": "primary", "label": "Primary", "token": "color.interaction.action" },
+    { "id": "secondary", "label": "Secondary", "token": "color.interaction.selected" },
     { "id": "accent", "label": "Accent", "token": "palette.identityAccent" },
-    { "id": "neutral", "label": "Neutral", "token": "palette.identityNeutral" }
+    { "id": "neutral", "label": "Neutral", "token": "color.surface.surface" }
   ],
   "artDirection": {
     "label": "Technical industrial",
