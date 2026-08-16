@@ -1,6 +1,6 @@
 # Theme System v2 Implementation Plan
 
-Status: Slice 1 web reference implemented; executable and cross-platform gates remain open  
+Status: Slice 1 web reference implemented; identity-pair and v1 retirement correction authorized
 Research basis: `../research/theme-system-standard-deep-research.md` in the workspace  
 Authoritative owner: `bitsandbolts-themes`
 
@@ -209,6 +209,39 @@ Gate:
 - Machine-verifiable dependency and runtime evidence shows zero v1 consumers.
 - All supported products and platforms consume pinned v2 artifacts.
 - Removal has an approved migration record and rollback release.
+
+### 9A. Exact identity foreground pairs and color-path retirement
+
+Status at safe checkpoint: authorized, not implemented.
+
+Owner review proved that the existing semantic interaction foregrounds do not
+pair with the exact four creator identity colors. The current Accent gallery
+binding also reads a v1 tertiary foreground. That migration state is not an
+accepted permanent compatibility layer.
+
+Before contract mutation, compare Primary, Secondary, Accent, and Neutral in
+both modes across all nine canonical families. Record whether their existing v1
+foregrounds represent intentional authored art direction or merely legacy token
+inheritance. Use that evidence to ratify one portable identity-pair shape, with
+explicit authored exceptions only where the family comparison requires them.
+
+The correction must:
+
+- define an exact foreground paired to each identity color;
+- target at least 4.5:1 contrast after exact sRGB serialization;
+- preserve an explicit canonical foreground when authored and calculate a
+  deterministic foreground otherwise;
+- expose the pair consistently in DTCG source, normalized catalog, web, Android,
+  React Native, documentation, and shared component recipes;
+- bind text and icons placed directly on an identity color to its exact pair;
+- map real v1 consumers directly to the v2 contract and delete superseded source,
+  generators, artifacts, adapters, tests, and fallbacks after zero-use proof;
+- preserve exact Neutral as the Theme detail background and never substitute a
+  generated semantic surface for it.
+
+Exit gate: every canonical family and user-authored Theme has four exact identity
+pairs, required contrast checks pass, removed v1 path searches are empty, generated
+outputs match source, affected consumer checks pass, and the owner accepts both modes.
 
 ## Rare override workflow
 

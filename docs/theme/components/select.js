@@ -107,10 +107,11 @@ export function selectionControlsMarkup({ ariaLabel = '', controls = [] } = {}) 
       ?? { label: 'Select', value: '' };
     const controlId = String(control?.id || '');
     const labelId = `${controlId}Label`;
+    const disabled = Boolean(control?.disabled);
     return `
       <div class="bb-selection-control">
         <span id="${escapeHtml(labelId)}">${escapeHtml(control?.label)}</span>
-        <div class="bb-select" data-bb-select>
+        <div class="bb-select${disabled ? ' is-disabled' : ''}" data-bb-select>
           <select
             id="${escapeHtml(controlId)}"
             class="bb-select__native"
@@ -118,6 +119,7 @@ export function selectionControlsMarkup({ ariaLabel = '', controls = [] } = {}) 
             aria-labelledby="${escapeHtml(labelId)}"
             data-bb-native-select
             ${dataAttribute}
+            ${disabled ? 'disabled' : ''}
           >
           ${(control?.options || []).map((option) => {
             const value = String(option?.value ?? '');
@@ -131,6 +133,7 @@ export function selectionControlsMarkup({ ariaLabel = '', controls = [] } = {}) 
             aria-haspopup="listbox"
             aria-labelledby="${escapeHtml(labelId)} ${escapeHtml(controlId)}Value"
             data-bb-select-trigger="${escapeHtml(controlId)}"
+            ${disabled ? 'disabled' : ''}
           >
             <span id="${escapeHtml(controlId)}Value" class="bb-select__value">${escapeHtml(selectedOption?.label)}</span>
             ${semanticIconMarkup('expand_more', 'bb-select__caret')}

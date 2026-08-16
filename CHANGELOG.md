@@ -4,6 +4,23 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-16) - Palette completion recipe accepted
+
+### What changed
+- Extended the canonical Selection Controls recipe with disabled Select state
+  support and added optional palette-completion composition to the shared Theme
+  detail renderer.
+- Kept the control absent until AppScreen supplies a selected Primary. The same
+  renderer continues to own standalone, read-only, and editable Theme details.
+- Preserved exact identity swatches, Neutral background ownership, typography,
+  icon recipes, and the complete standalone showcase.
+
+### Acceptance and boundary
+- The owner accepted the final AppScreen creator result. Focused AppScreen checks
+  pass 56/56, the AppScreen build passes, and the preceding Themes build passed.
+- The next authorized slice compares all canonical families before adding exact
+  identity foreground pairs and retiring superseded v1 color paths. Nothing was pushed.
+
 ## Session wrap-up (2026-08-16) - Focused AppScreen Theme presentation accepted
 
 ### What changed

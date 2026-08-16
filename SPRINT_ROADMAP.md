@@ -37,8 +37,8 @@
 - [x] Share the Theme card sun/moon semantic assets with the detail mode control.
 - [x] Move menu, toolbar, transport, and remaining icon-like affordances onto exact
   semantic roles and provider mappings.
-- [x] Own the editable Colors add-tile and full-sample picker presentation while
-  AppScreen keeps draft state and Save persistence.
+- [x] Own the editable Colors add-tile, full-sample picker, and Primary-gated
+  palette-completion presentation while AppScreen owns behavior and persistence.
 - [x] Own the refined handled-window shell, grip, glowing close control,
   confirmation and button recipes, plus the exact Theme-viewer specimen.
 - [x] Clean stale generated component and icon directories before every build.
@@ -51,7 +51,7 @@
 
 ## Owner-Directed Next Work
 
-1. Continue bounded, owner-directed Theme standardization before typography.
+1. Compare all canonical families, add exact identity foreground pairs, and retire superseded v1 color paths.
 2. Add Theme project fields beyond colors and fonts in owner-selected slices.
 3. Migrate remaining legacy Dialog consumers in a separately directed UI slice.
 4. Review one existing family or detail composition through a focused visual slice.

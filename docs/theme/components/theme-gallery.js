@@ -1083,10 +1083,23 @@ function v2ModeMarkup(theme, mode, {
   editable = false,
   fontOptions = [],
   includeShowcase = true,
-  identityColorOverrides = []
+  identityColorOverrides = [],
+  paletteCompletion = null
 } = {}) {
   const v2 = theme.v2;
   const resolvedMode = v2.modes[mode];
+  const paletteCompletionMarkup = editable && paletteCompletion ? selectionControlsMarkup({
+    ariaLabel: 'Palette controls',
+    controls: [{
+      id: 'themePaletteCompletion',
+      name: 'themePaletteCompletion',
+      label: 'Auto-complete palette',
+      dataAttribute: 'data-theme-palette-completion',
+      disabled: paletteCompletion.disabled,
+      value: paletteCompletion.value,
+      options: paletteCompletion.options
+    }]
+  }) : '';
   const extendedShowcase = includeShowcase ? `
         <section class="bb-theme-v2-section">
           <h3>Button</h3>
@@ -1118,8 +1131,9 @@ function v2ModeMarkup(theme, mode, {
     >
       <div class="bb-theme-v2__body">
         <section class="bb-theme-v2-section">
-          <h3>Colors</h3>
+          <h3>${editable ? 'Palette' : 'Colors'}</h3>
           <div class="bb-theme-v2-identities">${v2IdentityMarkup(resolvedMode, { editable, identityColorOverrides })}</div>
+          ${paletteCompletionMarkup}
         </section>
         <section class="bb-theme-v2-section">
           <h3>Typography</h3>
@@ -1178,7 +1192,8 @@ export function themeDetailMarkup(theme, mode = 'dark', {
   editable = false,
   fontOptions = [],
   includeShowcase = true,
-  identityColorOverrides = []
+  identityColorOverrides = [],
+  paletteCompletion = null
 } = {}) {
   const selected = selectedMode(mode);
   return `
@@ -1189,7 +1204,8 @@ export function themeDetailMarkup(theme, mode = 'dark', {
             editable,
             fontOptions,
             includeShowcase,
-            identityColorOverrides
+            identityColorOverrides,
+            paletteCompletion
           })
           : modeMarkup(theme, selected)}
       </div>

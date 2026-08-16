@@ -41,8 +41,8 @@ Last verified: 2026-08-16
   its palette workflow, and Typography through `includeShowcase: false`.
 - Theme project editing exposes colors and fonts. All other values inherit the
   selected source family until a later owner-directed slice.
-- Editable identity colors begin as the shared add-tile recipe. Once chosen, the
-  full sample is the browser-native picker surface. Colors is the section label.
+- Editable identity colors use the shared add-tile and full-sample picker recipes.
+  Palette completion is omitted until Primary exists, then uses the exact Select.
 
 ## Shared Recipes and Icons
 
@@ -86,21 +86,18 @@ Last verified: 2026-08-16
 
 ## Evidence and Acceptance Boundary
 
-- The focused Themes build and AppScreen renderer checks pass 17/17.
-- The latest focused handled-window and Theme-viewer checks pass 18/18. The
-  preceding integrated selection, gallery, and persistence run passed 32/32.
-- Diff checks pass in both repositories, and both builds pass their existing gates.
-- The owner accepted the Open action and option owner, palette direction, Neutral
-  fallback, settled color input, focused AppScreen detail, complete standalone
-  showcase, refined handled window, and visible identity-role mapping.
-  Broader browser acceptance of the complete Theme workflow remains pending.
+- The owner accepted Primary-gated palette completion, first-movement empty-slot
+  commits, 50 ms color preview, exact Neutral background preview, and the shared
+  minimal AppScreen detail. Focused AppScreen checks pass 56/56 and its build passes.
+- The preceding Themes build, focused renderer checks, generated-output comparison,
+  and repository diff checks passed. Broader workflow acceptance remains pending.
 - The focused Theme presentation checkpoint is the current local baseline.
   Nothing was pushed.
 
 ## Open Gates
 
-- Continue Theme standardization only through the next bounded owner-directed
-  slice. Typography has not started and remains out of scope.
+- Compare all nine canonical families against exact foreground pairs for Primary,
+  Secondary, Accent, and Neutral, then retire superseded v1 color paths with proof.
 - The v2 contract still needs pinned DTCG resolver validation, full provenance
   enforcement, glyph and fallback checks, and complete React, Compose, and React
   Native component adapters.
