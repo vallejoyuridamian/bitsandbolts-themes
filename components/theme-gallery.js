@@ -1082,26 +1082,12 @@ function v2SemanticColorMarkup(mode, { editable = false } = {}) {
 function v2ModeMarkup(theme, mode, {
   editable = false,
   fontOptions = [],
+  includeShowcase = true,
   identityColorOverrides = []
 } = {}) {
   const v2 = theme.v2;
   const resolvedMode = v2.modes[mode];
-  return `
-    <section
-      class="bb-theme-mode bb-theme-v2"
-      data-theme-preview-id="${escapeHtml(theme.id)}"
-      data-theme-preview-mode="${escapeHtml(mode)}"
-      aria-label="${escapeHtml(`${theme.label} ${mode} theme`)}"
-    >
-      <div class="bb-theme-v2__body">
-        <section class="bb-theme-v2-section">
-          <h3>Colors</h3>
-          <div class="bb-theme-v2-identities">${v2IdentityMarkup(resolvedMode, { editable, identityColorOverrides })}</div>
-        </section>
-        <section class="bb-theme-v2-section">
-          <h3>Typography</h3>
-          <div class="bb-theme-v2-types">${v2TypographyMarkup(v2, { editable, fontOptions })}</div>
-        </section>
+  const extendedShowcase = includeShowcase ? `
         <section class="bb-theme-v2-section">
           <h3>Button</h3>
           <div class="bb-theme-v2-buttons">${v2ButtonMarkup(v2)}</div>
@@ -1121,8 +1107,25 @@ function v2ModeMarkup(theme, mode, {
         <section class="bb-theme-v2-section bb-theme-v2-semantics">
           <h3>Semantic color roles</h3>
           <p class="bb-theme-v2-section__meta">48 roles</p>
-          <div>${v2SemanticColorMarkup(resolvedMode, { editable })}</div>
+          <div>${v2SemanticColorMarkup(resolvedMode)}</div>
+        </section>` : '';
+  return `
+    <section
+      class="bb-theme-mode bb-theme-v2"
+      data-theme-preview-id="${escapeHtml(theme.id)}"
+      data-theme-preview-mode="${escapeHtml(mode)}"
+      aria-label="${escapeHtml(`${theme.label} ${mode} theme`)}"
+    >
+      <div class="bb-theme-v2__body">
+        <section class="bb-theme-v2-section">
+          <h3>Colors</h3>
+          <div class="bb-theme-v2-identities">${v2IdentityMarkup(resolvedMode, { editable, identityColorOverrides })}</div>
         </section>
+        <section class="bb-theme-v2-section">
+          <h3>Typography</h3>
+          <div class="bb-theme-v2-types">${v2TypographyMarkup(v2, { editable, fontOptions })}</div>
+        </section>
+        ${extendedShowcase}
       </div>
     </section>
   `;
@@ -1174,6 +1177,7 @@ export function themeGalleryControlsMarkup() {
 export function themeDetailMarkup(theme, mode = 'dark', {
   editable = false,
   fontOptions = [],
+  includeShowcase = true,
   identityColorOverrides = []
 } = {}) {
   const selected = selectedMode(mode);
@@ -1181,7 +1185,12 @@ export function themeDetailMarkup(theme, mode = 'dark', {
     <div class="bb-theme-detail" data-theme-detail-mode="${editable ? 'edit' : 'view'}">
       <div class="bb-theme-gallery__catalog">
         ${theme.v2
-          ? v2ModeMarkup(theme, selected, { editable, fontOptions, identityColorOverrides })
+          ? v2ModeMarkup(theme, selected, {
+            editable,
+            fontOptions,
+            includeShowcase,
+            identityColorOverrides
+          })
           : modeMarkup(theme, selected)}
       </div>
     </div>
@@ -1192,12 +1201,19 @@ export function themeGalleryMarkup(catalog, selection = {}) {
   const theme = catalog.themes.find((candidate) => candidate.id === selection.themeId);
   const mode = selectedMode(theme ? selection.cardModes?.[theme.id] ?? selection.mode : selection.mode);
   if (!theme) return themeSummaryGridMarkup(catalog, mode, selection.cardModes);
-  return themeDetailMarkup(theme, mode);
+  return themeDetailMarkup(theme, mode, {
+    includeShowcase: selection.includeShowcase
+  });
 }
 
 export function applyThemeGalleryVariables(host, catalog, selection = {}) {
   const selected = selectedTheme(catalog, selection.themeId);
   const selectedVariables = selected.modes[selectedMode(selection.cardModes?.[selected.id] ?? selection.mode)].variables;
+  const identityColorOverrides = new Set(
+    (Array.isArray(selection.identityColorOverrides) ? selection.identityColorOverrides : [])
+      .map((value) => String(value || ''))
+  );
+  const neutralFallback = String(selection.neutralFallback || '').trim();
   for (const name of THEME_GALLERY_SCROLLBAR_VARIABLES) {
     const value = selectedVariables[name];
     if (value) host?.style?.setProperty?.(name, value);
@@ -1217,7 +1233,12 @@ export function applyThemeGalleryVariables(host, catalog, selection = {}) {
         const onAccent = mode.variables['--bb-color-on-tertiary'];
         if (onAccent) preview.style.setProperty('--bb-theme-summary-card-on-accent', onAccent);
       }
-      if (identityNeutral) preview.style.setProperty('--bb-theme-v2-neutral', identityNeutral.value);
+      if (identityNeutral) {
+        const neutral = neutralFallback && !identityColorOverrides.has('neutral')
+          ? neutralFallback
+          : identityNeutral.value;
+        preview.style.setProperty('--bb-theme-v2-neutral', neutral);
+      }
       preview.querySelectorAll('[data-theme-v2-identity]').forEach((swatch) => {
         const identity = v2Mode.identity.find((entry) => entry.id === swatch.dataset.themeV2Identity);
         if (identity) swatch.style.setProperty('--bb-theme-v2-swatch', identity.value);
@@ -1252,6 +1273,7 @@ export function createThemeGalleryController({
   controlsHost,
   fetchImpl = (...args) => globalThis.fetch(...args),
   host,
+  includeShowcase = true,
   onViewChange
 } = {}) {
   let catalogPromise = null;
@@ -1273,7 +1295,7 @@ export function createThemeGalleryController({
       themeId
     });
     if (controlsHost) controlsHost.innerHTML = '';
-    host.innerHTML = themeGalleryMarkup(catalog, selection);
+    host.innerHTML = themeGalleryMarkup(catalog, { ...selection, includeShowcase });
     applyThemeGalleryVariables(host, catalog, selection);
     synchronizeFooterYear(host);
     const currentMode = selectedMode(themeId ? selection.cardModes[themeId] ?? selection.mode : selection.mode);

@@ -20,8 +20,8 @@ Last verified: 2026-08-16
 - The owner accepted the standardized showcase: Theme detail fills the workspace,
   each exact Neutral identity owns its solid background, artificial specimen frames
   are gone, and safe recipes follow one consistent themed section hierarchy.
-- Identity add icons remain locally smaller, card headlines occupy four lines, and
-  standalone and embedded details render the same enriched recipe presentation.
+- Identity add icons remain locally smaller and card headlines occupy four lines.
+  Standalone and AppScreen details use the same renderer with explicit breadth.
 - Saved identities now match the visible card in both modes. Primary drives the
   primary button and `matters.`, Secondary drives the secondary button, Neutral
   drives the card background, and Accent drives the mode circle.
@@ -36,10 +36,11 @@ Last verified: 2026-08-16
   variables, save implementation, and package entry point are removed.
 - User-authored Theme projects now live in AppScreen Studio and consume exact
   Themes-owned recipes. AppScreen owns their behavior and persistence.
-- The gallery's read-only detail and AppScreen's editable Theme project detail
-  share the same root renderer and specialize only where editing requires it.
-- Theme project editing currently exposes colors and fonts. All other values
-  inherit the selected source family until a later owner-directed slice.
+- The gallery and AppScreen share one detail renderer. Standalone detail keeps the
+  full showcase, while AppScreen read-only and creator detail stop after Colors,
+  its palette workflow, and Typography through `includeShowcase: false`.
+- Theme project editing exposes colors and fonts. All other values inherit the
+  selected source family until a later owner-directed slice.
 - Editable identity colors begin as the shared add-tile recipe. Once chosen, the
   full sample is the browser-native picker surface. Colors is the section label.
 
@@ -55,9 +56,8 @@ Last verified: 2026-08-16
 - `folder_open` maps in the Bits and Bolts provider to packaged Font Awesome Solid
   `faFolderOpen`. Open is rendered as the same normal semantic action button as
   Back and New, not as a special icon-only Select.
-- Screens, Scenes, and Themes consume one shared project Open action recipe and
-  behavior boundary. The visible project-choice popup is the exact Select/Menu
-  recipe anchored to the shared action.
+- Screens, Scenes, and Themes consume one shared project Open action and option
+  owner. Its exact Select/Menu popup contains only openable projects.
 - Theme summary cards and both kinds of Theme detail use the same semantic
   `light_mode` and `dark_mode` sun/moon assets.
 - Back and mode live in the shared workspace control bar, not in a bespoke Theme
@@ -77,6 +77,8 @@ Last verified: 2026-08-16
   semantic action buttons, checkerboard, preview selection frame, add tile,
   Select, Menu, and the embedded Theme gallery/detail root. The gallery stylesheet
   declares the complete component dependency set used by that root.
+- An unselected AppScreen Neutral uses the exact Bits and Bolts mode Neutral as a
+  presentation-only fallback. Selecting Neutral restores the authored background.
 - Theme changes retain the previous presentation until target CSS and fonts are
   ready. Webfonts use a blocking display policy.
 - Sites continues to consume the accepted managed landing, My Website editorial
@@ -84,16 +86,16 @@ Last verified: 2026-08-16
 
 ## Evidence and Acceptance Boundary
 
-- The focused Themes build and AppScreen gallery checks pass 16/16.
+- The focused Themes build and AppScreen renderer checks pass 17/17.
 - The latest focused handled-window and Theme-viewer checks pass 18/18. The
   preceding integrated selection, gallery, and persistence run passed 32/32.
 - Diff checks pass in both repositories, and both builds pass their existing gates.
-- The owner accepted the Open action, palette direction, refined handled window,
-  exact viewer specimen, complete showcase standardization, visible identity-role
-  mapping, and standalone/AppScreen visual parity.
+- The owner accepted the Open action and option owner, palette direction, Neutral
+  fallback, settled color input, focused AppScreen detail, complete standalone
+  showcase, refined handled window, and visible identity-role mapping.
   Broader browser acceptance of the complete Theme workflow remains pending.
-- The coordinated Theme-project and handled-window checkpoint is the current
-  local baseline. Nothing was pushed.
+- The focused Theme presentation checkpoint is the current local baseline.
+  Nothing was pushed.
 
 ## Open Gates
 

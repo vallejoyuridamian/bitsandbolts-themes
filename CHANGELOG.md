@@ -4,6 +4,24 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-16) - Focused AppScreen Theme presentation accepted
+
+### What changed
+- Kept one shared Theme detail renderer and added an explicit showcase policy.
+  Standalone Themes details retain the full reusable recipe showcase, while
+  AppScreen read-only and creator details end after Colors and Typography.
+- Added the Themes-owned Neutral fallback application used while an AppScreen
+  Theme has no selected Neutral. The fallback affects presentation only and does
+  not select, persist, or mutate the Theme project.
+- Preserved shared Colors and Typography markup for both consumers. AppScreen
+  received no local hide CSS, copied renderer, or presentation override.
+
+### Acceptance and boundary
+- The owner accepted the final state. The Themes build and AppScreen focused
+  renderer checks 17/17 pass, generated outputs match source, and diff checks pass.
+- Typography values, color generation, project models, persistence, diagnostics,
+  blockers, reset paths, and guest gates remain unchanged. Nothing was pushed.
+
 ## Session wrap-up (2026-08-16) - Showcase standardization and consumer parity accepted
 
 ### What changed

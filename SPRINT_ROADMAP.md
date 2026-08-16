@@ -46,8 +46,8 @@
   checks, and repository diff checks.
 - [x] Accept full-width detail, local identity add-icon sizing, four-line gallery
   headlines, and exact visible identity-role mapping.
-- [x] Standardize the complete showcase and accept standalone/AppScreen parity
-  with the Themes build plus AppScreen 16/16 gallery checks.
+- [x] Keep the full standalone showcase while shared AppScreen view and creator
+  details end after Colors and Typography, with no consumer-local presentation.
 
 ## Owner-Directed Next Work
 
