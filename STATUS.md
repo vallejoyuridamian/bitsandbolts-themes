@@ -17,8 +17,11 @@ Last verified: 2026-08-16
   and GitHub Pages showcase artifacts.
 - The established family typography, licensed local fonts, Brutus native Ultra
   weight, Forest Hero leading, and semantic summary-card typography remain intact.
-- The owner accepted the focused gallery cleanup: Theme detail fills the workspace,
-  identity add icons are locally smaller, and card headlines occupy four lines.
+- The owner accepted the standardized showcase: Theme detail fills the workspace,
+  each exact Neutral identity owns its solid background, artificial specimen frames
+  are gone, and safe recipes follow one consistent themed section hierarchy.
+- Identity add icons remain locally smaller, card headlines occupy four lines, and
+  standalone and embedded details render the same enriched recipe presentation.
 - Saved identities now match the visible card in both modes. Primary drives the
   primary button and `matters.`, Secondary drives the secondary button, Neutral
   drives the card background, and Accent drives the mode circle.
@@ -72,7 +75,8 @@ Last verified: 2026-08-16
 
 - AppScreen Studio consumes shared workspace tabs, project control bars,
   semantic action buttons, checkerboard, preview selection frame, add tile,
-  Select, Menu, and the embedded Theme gallery/detail root.
+  Select, Menu, and the embedded Theme gallery/detail root. The gallery stylesheet
+  declares the complete component dependency set used by that root.
 - Theme changes retain the previous presentation until target CSS and fonts are
   ready. Webfonts use a blocking display policy.
 - Sites continues to consume the accepted managed landing, My Website editorial
@@ -80,12 +84,13 @@ Last verified: 2026-08-16
 
 ## Evidence and Acceptance Boundary
 
-- The focused Themes build and AppScreen gallery checks pass 15/15.
+- The focused Themes build and AppScreen gallery checks pass 16/16.
 - The latest focused handled-window and Theme-viewer checks pass 18/18. The
   preceding integrated selection, gallery, and persistence run passed 32/32.
 - Diff checks pass in both repositories, and both builds pass their existing gates.
 - The owner accepted the Open action, palette direction, refined handled window,
-  exact viewer specimen, focused gallery cleanup, and visible identity-role mapping.
+  exact viewer specimen, complete showcase standardization, visible identity-role
+  mapping, and standalone/AppScreen visual parity.
   Broader browser acceptance of the complete Theme workflow remains pending.
 - The coordinated Theme-project and handled-window checkpoint is the current
   local baseline. Nothing was pushed.

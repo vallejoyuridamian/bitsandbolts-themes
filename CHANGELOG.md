@@ -4,6 +4,27 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-16) - Showcase standardization and consumer parity accepted
+
+### What changed
+- Bound every Theme detail to its mode's exact Neutral identity, removed the grid
+  and artificial specimen frames, and standardized safe shared recipes under one
+  themed section-title hierarchy.
+- Expanded semantic-role coverage, clarified Select/Menu states versus used
+  Selection Controls, retained the used Lab horseshoe recipe, and removed the
+  handled-window specimen's checkerboard.
+- Declared the gallery's complete component dependency set in its owning stylesheet.
+  Standalone Themes and embedded AppScreen now render the same enriched text,
+  card rails, editorial layouts, and segmented controls.
+- Allowed text-effect glow to render without clipping and neutralized consumer
+  button minimum height inside the segmented-control recipe.
+
+### Acceptance and boundary
+- The owner accepted the final visual state. The Themes build, AppScreen focused
+  gallery checks 16/16, and repository diff checks pass.
+- Typography, color behavior, models, persistence, diagnostics, reset paths,
+  guest gates, and parked product areas remain unchanged. Nothing was pushed.
+
 ## Session wrap-up (2026-08-16) - Theme gallery identity alignment accepted
 
 ### What changed

@@ -1,4 +1,5 @@
 import { contentCardsMarkup } from './content-card.js';
+import { spotlightMediaMarkup, storeBadgesMarkup } from './content-media.js';
 import { semanticActionButtonMarkup } from './button.js';
 import {
   mediaCopyListMarkup,
@@ -11,6 +12,7 @@ import { floatingWindowConfirmationMarkup } from './floating-window.js';
 import { floatingWindowShellMarkup } from './floating-window-shell.js';
 import { formFieldsMarkup } from './form-field.js';
 import { navbarMarkup } from './navbar.js';
+import { selectionControlsMarkup } from './select.js';
 import {
   DEFAULT_SEMANTIC_ICON_FAMILY,
   semanticIconMarkup
@@ -407,11 +409,11 @@ function typographyMarkup(variables = {}) {
   `).join('');
 }
 
-function iconPreviewGlyphMarkup(theme, name) {
+function iconPreviewGlyphMarkup(theme, name, className = '') {
   if (theme.icons.previewFamily === DEFAULT_SEMANTIC_ICON_FAMILY) {
-    return semanticIconMarkup(name);
+    return semanticIconMarkup(name, className);
   }
-  return `<span class="ms" aria-hidden="true">${escapeHtml(name)}</span>`;
+  return `<span class="ms${className ? ` ${escapeHtml(className)}` : ''}" aria-hidden="true">${escapeHtml(name)}</span>`;
 }
 
 function iconFamilyLabel(theme) {
@@ -521,6 +523,15 @@ function v2ButtonMarkup(v2) {
   }).join('');
 }
 
+function showcaseSectionMarkup(title, bodyMarkup, className = '') {
+  return `
+    <section class="bb-theme-v2-section${className ? ` ${escapeHtml(className)}` : ''}">
+      <h3>${escapeHtml(title)}</h3>
+      ${bodyMarkup}
+    </section>
+  `;
+}
+
 function workspaceChromeMarkup(theme) {
   const iconButton = (role, label, { danger = false, disabled = false } = {}) => (
     semanticActionButtonMarkup({
@@ -535,9 +546,7 @@ function workspaceChromeMarkup(theme) {
   );
 
   return `
-    <div class="bb-workspace-specimen">
-      <h4>Workspace chrome, toolbar &amp; stage</h4>
-      <div class="bb-workspace-specimen__viewport bb-workspace-chrome">
+    <div class="bb-workspace-specimen__viewport bb-workspace-chrome">
         <header class="bb-workspace-topbar">
           <strong class="bb-workspace-topbar__identity">Workspace</strong>
           <div class="bb-workspace-tabs" role="tablist" aria-label="Workspace views">
@@ -580,7 +589,6 @@ function workspaceChromeMarkup(theme) {
             tabIndex: -1
           })}
         </div>
-      </div>
     </div>
   `;
 }
@@ -605,9 +613,7 @@ function interfacePrimitiveMarkup(theme) {
   `;
 
   return `
-    <div class="bb-interface-specimen">
-      <h4>Workspace, Select &amp; Menu</h4>
-      <div class="bb-interface-specimen__canvas bb-workspace-surface">
+    <div class="bb-interface-specimen__canvas bb-workspace-surface">
         <div class="bb-interface-select-states" aria-label="Select interaction states">
           ${selectSpecimen('Rest')}
           ${selectSpecimen('Hover', 'hover')}
@@ -635,28 +641,28 @@ function interfacePrimitiveMarkup(theme) {
             <span class="bb-menu__meta"><span class="bb-menu__shortcut">Backspace</span></span>
           </button>
         </div>
-      </div>
     </div>
-    <div class="bb-floating-window-specimen">
-      <h4>Handled confirmation window</h4>
-      <div class="bb-floating-window-specimen__canvas bb-workspace-stage-surface">
-        ${floatingWindowShellMarkup({
-          ariaLabel: 'Handled confirmation window specimen',
-          bodyMarkup: floatingWindowConfirmationMarkup({
-            cancelLabel: 'Keep item',
-            confirmDanger: true,
-            confirmLabel: 'Remove',
-            description: 'This action cannot be undone.',
-            id: `handled-window-${theme.id}`,
-            specimen: true,
-            title: 'Remove item?'
-          }),
-          closeIconMarkup: iconPreviewGlyphMarkup(theme, 'close'),
-          specimen: true
-        })}
-      </div>
+  `;
+}
+
+function floatingWindowSpecimenMarkup(theme) {
+  return `
+    <div class="bb-floating-window-specimen__canvas">
+      ${floatingWindowShellMarkup({
+        ariaLabel: 'Handled confirmation window specimen',
+        bodyMarkup: floatingWindowConfirmationMarkup({
+          cancelLabel: 'Keep item',
+          confirmDanger: true,
+          confirmLabel: 'Remove',
+          description: 'This action cannot be undone.',
+          id: `handled-window-${theme.id}`,
+          specimen: true,
+          title: 'Remove item?'
+        }),
+        closeIconMarkup: iconPreviewGlyphMarkup(theme, 'close'),
+        specimen: true
+      })}
     </div>
-    ${workspaceChromeMarkup(theme)}
   `;
 }
 
@@ -745,9 +751,8 @@ function contentAndFieldRecipeMarkup() {
     ]
   });
 
-  return `
-    <div>
-      <h4>Text layout &amp; fields</h4>
+  return [
+    showcaseSectionMarkup('Text layout and fields', `
       <div class="bb-theme-text-form-specimen">
         <header class="bb-centered-heading">
           <h3 class="bb-centered-heading__title bb-text-effect--neon-glow">Primary headline</h3>
@@ -760,9 +765,8 @@ function contentAndFieldRecipeMarkup() {
           <div class="bb-form-region">${fields}</div>
         </div>
       </div>
-    </div>
-    <div>
-      <h4>Information panel &amp; card rail</h4>
+    `),
+    showcaseSectionMarkup('Information panel and card rail', `
       <div class="bb-theme-content-surfaces-specimen">
         <article class="bb-information-panel">
           <h3>Information panel</h3>
@@ -771,114 +775,291 @@ function contentAndFieldRecipeMarkup() {
         <div class="bb-theme-card-rail">${railCards}</div>
       </div>
       <div class="bb-theme-alternating-cards">${alternatingCards}</div>
-    </div>
-    <div>
-      <h4>Editorial sections</h4>
+    `),
+    showcaseSectionMarkup('Editorial sections', `
       <div class="bb-theme-editorial-specimen">
         <div>${mediaCopy}${portraitCopy}${prose}</div>
         <div>${questions}${timeline}</div>
+      </div>
+    `)
+  ].join('');
+}
+
+function selectionControlSpecimenMarkup() {
+  return `
+    <div class="bb-selection-controls-specimen" inert>
+      ${selectionControlsMarkup({
+        ariaLabel: 'Selection controls specimen',
+        controls: [
+          {
+            dataAttribute: 'data-theme-specimen-family',
+            id: 'theme-specimen-family',
+            label: 'Family',
+            name: 'theme-specimen-family',
+            options: [
+              { label: 'Current theme', value: 'current' },
+              { label: 'Alternate theme', value: 'alternate' }
+            ],
+            value: 'current'
+          },
+          {
+            dataAttribute: 'data-theme-specimen-density',
+            id: 'theme-specimen-density',
+            label: 'Density',
+            name: 'theme-specimen-density',
+            options: [
+              { label: 'Comfortable', value: 'comfortable' },
+              { label: 'Compact', value: 'compact' }
+            ],
+            value: 'comfortable'
+          }
+        ]
+      })}
+    </div>
+  `;
+}
+
+function compactControlSpecimenMarkup() {
+  return `
+    <div class="bb-compact-controls-specimen" inert>
+      <div>
+        <small>Segmented control</small>
+        <div class="bb-segmented-control" aria-label="Theme mode specimen">
+          <button class="bb-segmented-control__item active" type="button" tabindex="-1">System</button>
+          <button class="bb-segmented-control__item" type="button" tabindex="-1">Light</button>
+          <button class="bb-segmented-control__item" type="button" tabindex="-1">Dark</button>
+        </div>
+      </div>
+      <div>
+        <small>Toggle</small>
+        <span class="bb-toggle-specimen__states">
+          <label><span>Off</span><span class="bb-toggle"><input type="checkbox" tabindex="-1"><span class="bb-toggle__slider"></span></span></label>
+          <label><span>On</span><span class="bb-toggle"><input type="checkbox" checked tabindex="-1"><span class="bb-toggle__slider"></span></span></label>
+        </span>
+      </div>
+    </div>
+  `;
+}
+
+function dialogSpecimenMarkup(theme) {
+  return `
+    <div class="bb-dialog-specimen" inert>
+      <dialog class="bb-dialog" open aria-labelledby="theme-dialog-title">
+        <div class="bb-dialog__body">
+          <span class="bb-dialog__kicker">Confirmation</span>
+          <h4 id="theme-dialog-title" class="bb-dialog__title">Continue with this action?</h4>
+          <p class="bb-dialog__description">A shared dialog keeps its hierarchy, message, note, and actions consistent.</p>
+          <div class="bb-dialog__note">
+            ${iconPreviewGlyphMarkup(theme, 'info')}
+            <span>Supporting context belongs in the canonical note treatment.</span>
+          </div>
+          <div class="bb-dialog__actions">
+            <button class="bb-btn bb-btn-filled" type="button" tabindex="-1">Continue</button>
+            <button class="bb-btn bb-btn-text" type="button" tabindex="-1">Cancel</button>
+          </div>
+        </div>
+      </dialog>
+    </div>
+  `;
+}
+
+function loadingSpecimenMarkup() {
+  return `
+    <div class="bb-skeleton-list bb-loading-specimen" aria-label="Loading skeleton specimen">
+      <div class="bb-skeleton-row">
+        <span class="bb-skeleton bb-skeleton-thumb" aria-hidden="true"></span>
+        <span class="bb-skeleton-stack bb-skeleton-stack-grow" aria-hidden="true">
+          <span class="bb-skeleton bb-skeleton-line bb-skeleton-line-lg"></span>
+          <span class="bb-skeleton bb-skeleton-line bb-skeleton-line-md"></span>
+        </span>
+        <span class="bb-skeleton-actions" aria-hidden="true">
+          <span class="bb-skeleton bb-skeleton-action"></span>
+          <span class="bb-skeleton bb-skeleton-action"></span>
+        </span>
+      </div>
+      <div class="bb-skeleton-row">
+        <span class="bb-skeleton bb-skeleton-thumb" aria-hidden="true"></span>
+        <span class="bb-skeleton-stack bb-skeleton-stack-grow" aria-hidden="true">
+          <span class="bb-skeleton bb-skeleton-line bb-skeleton-line-md"></span>
+          <span class="bb-skeleton bb-skeleton-line bb-skeleton-line-sm"></span>
+        </span>
+      </div>
+    </div>
+  `;
+}
+
+function mediaRecipeSpecimenMarkup() {
+  return `
+    <div class="bb-media-recipe-specimen" inert>
+      ${spotlightMediaMarkup({
+        label: 'Spotlight media specimen',
+        media: { alt: 'Abstract spotlight media specimen', src: '/theme/icons/android.svg' }
+      })}
+      ${storeBadgesMarkup({
+        label: 'Store badges specimen',
+        items: [
+          { href: '#', image: { alt: 'Download on the App Store', src: '/theme/brand/store/app-store-badge.svg' } },
+          { href: '#', image: { alt: 'Get it on Google Play', src: '/theme/brand/store/google-play-badge.png' } }
+        ]
+      })}
+    </div>
+  `;
+}
+
+function horseshoeMeterSpecimenMarkup() {
+  return `
+    <div class="bb-horseshoe-specimen">
+      <div class="bb-horseshoe" style="--bb-horseshoe-value: 68">
+        <svg viewBox="0 0 128 88" aria-hidden="true">
+          <path class="bb-horseshoe-track" pathLength="100" d="M20 72a44 44 0 0 1 88 0"></path>
+          <path class="bb-horseshoe-fill" pathLength="100" d="M20 72a44 44 0 0 1 88 0"></path>
+        </svg>
+        <span class="bb-horseshoe-label">68%</span>
+      </div>
+    </div>
+  `;
+}
+
+function inlineIconTextSpecimenMarkup(theme) {
+  return `
+    <p class="bb-icon-text bb-inline-icon-specimen">
+      ${iconPreviewGlyphMarkup(theme, 'info', 'bb-icon-text__icon')}
+      Semantic icons align with supporting text through one shared recipe.
+    </p>
+  `;
+}
+
+function authenticationSpecimenMarkup(theme) {
+  return `
+    <div class="bb-auth-page bb-auth-specimen" inert>
+      <div class="bb-auth-card">
+        <div class="bb-auth-logo">${iconPreviewGlyphMarkup(theme, 'lock')}</div>
+        <strong class="bb-auth-title">Product account</strong>
+        <p class="bb-auth-subtitle">Continue through the shared authentication surface.</p>
+        <button class="bb-google-btn" type="button" tabindex="-1">
+          <img class="bb-google-btn__icon" src="/theme/icons/google-logo.svg" alt="">
+          <span class="bb-google-btn__label">Continue with Google</span>
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function pageGallerySpecimenMarkup() {
+  return `
+    <div class="bb-page-gallery bb-page-gallery--specimen" inert>
+      <div class="bb-inspection-toolbar bb-page-gallery__management">
+        <div class="bb-page-gallery__publish">
+          <p role="status">Draft preview is ready.</p>
+          <button class="bb-v2-button bb-v2-button--secondary" type="button" tabindex="-1">Publish online</button>
+        </div>
+      </div>
+      <div class="bb-page-gallery__viewport">
+        <div class="bb-page-preview bb-page-preview--specimen">
+          <span>Managed page preview</span>
+        </div>
       </div>
     </div>
   `;
 }
 
 function sharedWebRecipeMarkup(theme) {
-  return `
-    <section class="bb-theme-inspection" aria-label="Current shared web recipe specimens">
-      <p class="bb-theme-inspection__label">Current shared web recipes</p>
-      <div class="bb-theme-recipe-battery">
-        <div>
-          <h4>Hero</h4>
-          <section class="bb-hero bb-hero--split bb-hero-specimen__viewport" aria-label="Hero specimen">
-            <div class="bb-hero__copy">
-              <span class="bb-hero__eyebrow">Eyebrow</span>
-              <h3 class="bb-hero__heading">Primary headline</h3>
-              <p class="bb-hero__support">Supporting copy clarifies the promise, audience, and immediate outcome.</p>
-              <div class="bb-hero__actions">
-                <button class="bb-btn bb-btn-neon" type="button" tabindex="-1">Primary CTA</button>
-                <button class="bb-btn bb-btn-text" type="button" tabindex="-1">Secondary CTA</button>
-              </div>
-            </div>
-            <div class="bb-hero__visual bb-hero-specimen__visual">
-              <small>Product proof rail</small>
-              <strong>Product visual or output</strong>
-              <span>Product evidence occupies the second rail.</span>
-            </div>
-          </section>
+  return [
+    showcaseSectionMarkup('Hero', `
+      <section class="bb-hero bb-hero--split bb-hero-specimen__viewport" aria-label="Hero specimen">
+        <div class="bb-hero__copy">
+          <span class="bb-hero__eyebrow">Eyebrow</span>
+          <h3 class="bb-hero__heading">Primary headline</h3>
+          <p class="bb-hero__support">Supporting copy clarifies the promise, audience, and immediate outcome.</p>
+          <div class="bb-hero__actions">
+            <button class="bb-btn bb-btn-neon" type="button" tabindex="-1">Primary CTA</button>
+            <button class="bb-btn bb-btn-text" type="button" tabindex="-1">Secondary CTA</button>
+          </div>
         </div>
-        <div class="bb-navbar-specimen">
-          <h4>Navbar</h4>
-          <div class="bb-navbar-specimen__surface bb-scrollbar">
-            <div class="bb-navbar-specimen__rail">
-              <div class="bb-navbar-specimen__state">
-                <small>Desktop</small>
-                <div class="bb-navbar-specimen__viewport">
-                  ${navbarMarkup(NAVBAR_SPECIMEN, { placement: 'static', layout: 'desktop', specimen: true })}
-                </div>
-              </div>
-              <div class="bb-navbar-specimen__state bb-navbar-specimen__state--compact">
-                <small>Compact menu</small>
-                <div class="bb-navbar-specimen__viewport">
-                  ${navbarMarkup(NAVBAR_SPECIMEN, {
-                    placement: 'static',
-                    layout: 'compact',
-                    specimen: true,
-                    specimenMenuVisible: true
-                  })}
-                </div>
-              </div>
+        <div class="bb-hero__visual bb-hero-specimen__visual">
+          <small>Product proof rail</small>
+          <strong>Product visual or output</strong>
+          <span>Product evidence occupies the second rail.</span>
+        </div>
+      </section>
+    `),
+    showcaseSectionMarkup('Navbar', `
+      <div class="bb-navbar-specimen__surface bb-scrollbar">
+        <div class="bb-navbar-specimen__rail">
+          <div class="bb-navbar-specimen__state">
+            <small>Desktop</small>
+            <div class="bb-navbar-specimen__viewport">
+              ${navbarMarkup(NAVBAR_SPECIMEN, { placement: 'static', layout: 'desktop', specimen: true })}
+            </div>
+          </div>
+          <div class="bb-navbar-specimen__state bb-navbar-specimen__state--compact">
+            <small>Compact menu</small>
+            <div class="bb-navbar-specimen__viewport">
+              ${navbarMarkup(NAVBAR_SPECIMEN, {
+                placement: 'static',
+                layout: 'compact',
+                specimen: true,
+                specimenMenuVisible: true
+              })}
             </div>
           </div>
         </div>
-        <div class="bb-footer-specimen">
-          <h4>Footer</h4>
-          <div class="bb-footer-specimen__viewport">
-            ${footerMarkup(FOOTER_SPECIMEN, { specimen: true })}
-          </div>
-        </div>
-        <div>
-          <h4>Button variants</h4>
-          <div class="bb-actions">
-            <button class="bb-btn bb-btn-filled" type="button" tabindex="-1">Filled</button>
-            <button class="bb-btn bb-btn-tonal" type="button" tabindex="-1">Tonal</button>
-            <button class="bb-btn bb-btn-outline" type="button" tabindex="-1">Outline</button>
-            <button class="bb-btn bb-btn-text" type="button" tabindex="-1">Text</button>
-            <button class="bb-btn bb-btn-neon" type="button" tabindex="-1">Neon</button>
-          </div>
-        </div>
-        <div>
-          <h4>Information surfaces</h4>
-          <div class="bb-grid-3">
-            <article class="bb-card">
-              <span class="bb-card__eyebrow">Information</span>
-              <h3>Shared card</h3>
-              <p>Surface, content, outline, shape, and type come from this theme.</p>
-            </article>
-            <article class="bb-download-card">
-              <div class="bb-download-card__head"><h3>Platform card</h3></div>
-              <p>Actions reuse the same Button recipe.</p>
-              <div class="bb-download-actions"><button class="bb-btn bb-btn-filled" type="button" tabindex="-1">Primary action</button></div>
-            </article>
-            <article class="bb-faq-item">
-              <h3>Answer card</h3>
-              <p>Editorial information uses the shared information-surface roles.</p>
-            </article>
-          </div>
-        </div>
-        <div>
-          <h4>Status and plan tones</h4>
-          <div class="bb-banner is-visible" role="status">Information status</div>
-          <div class="bb-pricing-grid">
-            <article class="bb-price-card bb-price-card--coal"><span class="bb-price-card__eyebrow">Free</span><h3>Neutral</h3></article>
-            <article class="bb-price-card bb-price-card--silver"><span class="bb-price-card__eyebrow">Monthly</span><h3>Silver</h3></article>
-            <article class="bb-price-card bb-price-card--gold"><span class="bb-price-card__eyebrow">Yearly</span><h3>Gold</h3></article>
-          </div>
-        </div>
-        ${contentAndFieldRecipeMarkup()}
-        ${interfacePrimitiveMarkup(theme)}
       </div>
-    </section>
-  `;
+    `, 'bb-navbar-specimen'),
+    showcaseSectionMarkup('Footer', `
+      <div class="bb-footer-specimen__viewport">
+        ${footerMarkup(FOOTER_SPECIMEN, { specimen: true })}
+      </div>
+    `, 'bb-footer-specimen'),
+    showcaseSectionMarkup('Button variants', `
+      <div class="bb-actions">
+        <button class="bb-btn bb-btn-filled" type="button" tabindex="-1">Filled</button>
+        <button class="bb-btn bb-btn-tonal" type="button" tabindex="-1">Tonal</button>
+        <button class="bb-btn bb-btn-outline" type="button" tabindex="-1">Outline</button>
+        <button class="bb-btn bb-btn-text" type="button" tabindex="-1">Text</button>
+        <button class="bb-btn bb-btn-neon" type="button" tabindex="-1">Neon</button>
+      </div>
+    `),
+    showcaseSectionMarkup('Information surfaces', `
+      <div class="bb-grid-3">
+        <article class="bb-card">
+          <span class="bb-card__eyebrow">Information</span>
+          <h3>Shared card</h3>
+          <p>Surface, content, outline, shape, and type come from this theme.</p>
+        </article>
+        <article class="bb-download-card">
+          <div class="bb-download-card__head"><h3>Platform card</h3></div>
+          <p>Actions reuse the same Button recipe.</p>
+          <div class="bb-download-actions"><button class="bb-btn bb-btn-filled" type="button" tabindex="-1">Primary action</button></div>
+        </article>
+        <article class="bb-faq-item">
+          <h3>Answer card</h3>
+          <p>Editorial information uses the shared information-surface roles.</p>
+        </article>
+      </div>
+    `),
+    showcaseSectionMarkup('Status and plan tones', `
+      <div class="bb-banner is-visible" role="status">Information status</div>
+      <div class="bb-pricing-grid">
+        <article class="bb-price-card bb-price-card--coal"><span class="bb-price-card__eyebrow">Free</span><h3>Neutral</h3></article>
+        <article class="bb-price-card bb-price-card--silver"><span class="bb-price-card__eyebrow">Monthly</span><h3>Silver</h3></article>
+        <article class="bb-price-card bb-price-card--gold"><span class="bb-price-card__eyebrow">Yearly</span><h3>Gold</h3></article>
+      </div>
+    `),
+    contentAndFieldRecipeMarkup(),
+    showcaseSectionMarkup('Select and Menu states', interfacePrimitiveMarkup(theme)),
+    showcaseSectionMarkup('Selection control groups', selectionControlSpecimenMarkup()),
+    showcaseSectionMarkup('Segmented control and toggle', compactControlSpecimenMarkup()),
+    showcaseSectionMarkup('Handled confirmation window', floatingWindowSpecimenMarkup(theme)),
+    showcaseSectionMarkup('Dialog', dialogSpecimenMarkup(theme)),
+    showcaseSectionMarkup('Workspace chrome, toolbar and stage', workspaceChromeMarkup(theme)),
+    showcaseSectionMarkup('Loading states', loadingSpecimenMarkup()),
+    showcaseSectionMarkup('Spotlight media and store badges', mediaRecipeSpecimenMarkup()),
+    showcaseSectionMarkup('Horseshoe meter', horseshoeMeterSpecimenMarkup()),
+    showcaseSectionMarkup('Inline icon and text', inlineIconTextSpecimenMarkup(theme)),
+    showcaseSectionMarkup('Authentication', authenticationSpecimenMarkup(theme)),
+    showcaseSectionMarkup('Page gallery', pageGallerySpecimenMarkup())
+  ].join('');
 }
 
 function v2SemanticColorMarkup(mode, { editable = false } = {}) {
@@ -928,7 +1109,7 @@ function v2ModeMarkup(theme, mode, {
         ${sharedWebRecipeMarkup(theme)}
         <section class="bb-theme-v2-section">
           <h3>Icons</h3>
-          <p class="bb-theme-mode__meta">${escapeHtml(iconFamilyLabel(theme))}</p>
+          <p class="bb-theme-v2-section__meta">${escapeHtml(iconFamilyLabel(theme))}</p>
           <div class="bb-theme-v2-icons" data-bb-icon-family="${escapeHtml(theme.icons.previewFamily)}">
             ${theme.icons.previewNames.map((name) => `
               <span class="bb-theme-v2-icon" role="img" aria-label="${escapeHtml(name)}">
@@ -937,10 +1118,11 @@ function v2ModeMarkup(theme, mode, {
             `).join('')}
           </div>
         </section>
-        <details class="bb-theme-v2-semantics">
-          <summary>Semantic color roles · 48</summary>
+        <section class="bb-theme-v2-section bb-theme-v2-semantics">
+          <h3>Semantic color roles</h3>
+          <p class="bb-theme-v2-section__meta">48 roles</p>
           <div>${v2SemanticColorMarkup(resolvedMode, { editable })}</div>
-        </details>
+        </section>
       </div>
     </section>
   `;
@@ -1029,11 +1211,13 @@ export function applyThemeGalleryVariables(host, catalog, selection = {}) {
     if (v2Mode) {
       for (const [name, value] of Object.entries(v2Mode.variables)) preview.style.setProperty(name, value);
       const identityAccent = v2Mode.identity.find((entry) => entry.id === 'accent');
+      const identityNeutral = v2Mode.identity.find((entry) => entry.id === 'neutral');
       if (identityAccent) {
         preview.style.setProperty('--bb-theme-summary-card-accent', identityAccent.value);
         const onAccent = mode.variables['--bb-color-on-tertiary'];
         if (onAccent) preview.style.setProperty('--bb-theme-summary-card-on-accent', onAccent);
       }
+      if (identityNeutral) preview.style.setProperty('--bb-theme-v2-neutral', identityNeutral.value);
       preview.querySelectorAll('[data-theme-v2-identity]').forEach((swatch) => {
         const identity = v2Mode.identity.find((entry) => entry.id === swatch.dataset.themeV2Identity);
         if (identity) swatch.style.setProperty('--bb-theme-v2-swatch', identity.value);

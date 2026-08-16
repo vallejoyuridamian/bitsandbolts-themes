@@ -44,10 +44,10 @@
 - [x] Clean stale generated component and icon directories before every build.
 - [x] Pass both builds, latest focused 18/18 checks, preceding integrated 32/32
   checks, and repository diff checks.
-- [x] Accept full-width detail, local identity add-icon sizing, and aligned
-  four-line gallery headlines.
-- [x] Align saved identities with visible card roles and accept the focused
-  Themes build plus AppScreen 15/15 gallery checks.
+- [x] Accept full-width detail, local identity add-icon sizing, four-line gallery
+  headlines, and exact visible identity-role mapping.
+- [x] Standardize the complete showcase and accept standalone/AppScreen parity
+  with the Themes build plus AppScreen 16/16 gallery checks.
 
 ## Owner-Directed Next Work
 
