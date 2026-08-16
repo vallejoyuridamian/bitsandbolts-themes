@@ -343,8 +343,10 @@ function themeSummaryCardMarkup(theme, mode) {
         </span>
         <span class="bb-theme-summary-card__hero">
           <span class="bb-theme-summary-card__headline">
-            Place the <em>accent</em><br>
-            where it <span>matters.</span>
+            Place the<br>
+            <em>accent</em><br>
+            where it<br>
+            <span>matters.</span>
           </span>
           <span class="bb-theme-summary-card__summary">${escapeHtml(theme.v2.artDirection.summary)}</span>
           ${themeSummaryActionsMarkup(theme)}

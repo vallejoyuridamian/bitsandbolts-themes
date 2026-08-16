@@ -23,6 +23,10 @@
   user-select: none;
 }
 
+.bb-theme-gallery:has(> .bb-theme-detail) {
+  padding: 0;
+}
+
 .bb-theme-mode__meta,
 .bb-theme-inspection__label,
 .bb-theme-color__name,
@@ -326,9 +330,14 @@
 
 .bb-theme-detail {
   display: grid;
-  gap: var(--bb-spacing-4);
-  max-width: 1440px;
-  margin: 0 auto;
+  width: 100%;
+  min-height: 100%;
+}
+
+.bb-theme-detail > .bb-theme-gallery__catalog {
+  width: 100%;
+  max-width: none;
+  min-height: 100%;
 }
 
 .bb-theme-icon-config {
@@ -1026,6 +1035,7 @@ article.bb-workspace-specimen__preview--secondary {
 /* Theme contract v2 reference specimen. */
 
 .bb-theme-v2 {
+  min-height: 100%;
   overflow: visible;
   border: 0;
   border-radius: 0;
@@ -1153,6 +1163,10 @@ article.bb-workspace-specimen__preview--secondary {
   gap: 22px;
 }
 
+.bb-theme-v2__body > .bb-theme-v2-section:first-child {
+  border-top: 0;
+}
+
 .bb-theme-v2-section h3 {
   margin: 0;
   color: var(--bb-v2-color-content-tertiary);
@@ -1207,6 +1221,16 @@ article.bb-workspace-specimen__preview--secondary {
   display: grid;
   place-items: center;
   pointer-events: none;
+}
+
+.bb-theme-v2-identity__sample.bb-workspace-add-tile .bb-workspace-control-icon {
+  width: 28px;
+  height: 28px;
+  font-size: 28px;
+}
+
+.bb-theme-v2-identity__sample.bb-workspace-add-tile .bb-workspace-control-icon .ms {
+  --ms-size: 28px;
 }
 
 .bb-theme-v2-identity__label {
