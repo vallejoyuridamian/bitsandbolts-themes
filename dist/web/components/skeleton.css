@@ -3,8 +3,8 @@
   overflow: hidden;
   background: color-mix(
     in srgb,
-    var(--bb-color-surface-variant) 82%,
-    var(--bb-color-surface) 18%
+    var(--bb-v2-color-surface-subtle) 82%,
+    var(--bb-v2-color-surface-surface) 18%
   );
 }
 
@@ -16,7 +16,7 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    color-mix(in srgb, var(--bb-color-on-surface) 10%, transparent) 50%,
+    color-mix(in srgb, var(--bb-v2-color-content-primary) 10%, transparent) 50%,
     transparent 100%
   );
   animation: bb-skeleton-shimmer 1.35s ease-in-out infinite;

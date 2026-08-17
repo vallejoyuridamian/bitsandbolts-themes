@@ -6,39 +6,39 @@
   },
   "interface": {
     "workspace": {
-      "background": { "$value": "{color.workspaceBackground}" },
-      "stageCheckerStrong": { "$value": "{color.workspaceStageCheckerStrong}" },
-      "stageCheckerSoft": { "$value": "{color.workspaceStageCheckerSoft}" },
-      "selectionSignal": { "$value": "{color.interfaceSignal}" }
+      "background": { "$value": "{color.surface.canvas}" },
+      "stageCheckerStrong": { "$value": "{color.surface.subtle}" },
+      "stageCheckerSoft": { "$value": "{color.surface.surface}" },
+      "selectionSignal": { "$value": "{color.interaction.action}" }
     },
     "control": {
-      "foreground": { "$value": "{color.onBackground}" },
-      "hoverForeground": { "$value": "{color.interfaceHoverForeground}" },
-      "disabledForeground": { "$value": "{color.interfaceDisabledForeground}" },
-      "focusRing": { "$value": "{color.primary}" }
+      "foreground": { "$value": "{color.content.primary}" },
+      "hoverForeground": { "$value": "{color.content.primary}" },
+      "disabledForeground": { "$value": "{color.content.disabled}" },
+      "focusRing": { "$value": "{color.interaction.action}" }
     },
     "interaction": {
-      "hoverBackground": { "$value": "radial-gradient(ellipse at center, color-mix(in srgb, {color.interfaceSignal} 1%, transparent) 0%, color-mix(in srgb, {color.interfaceSignal} 1%, transparent) 72%, color-mix(in srgb, {color.interfaceSignal} 4%, transparent) 84%, color-mix(in srgb, {color.interfaceSignal} 14%, transparent) 96%, color-mix(in srgb, {color.interfaceSignal} 7%, transparent) 100%)" },
-      "hoverShadow": { "$value": "inset 0 0 11px color-mix(in srgb, {color.interfaceSignal} 8%, transparent), 0 0 12px color-mix(in srgb, {color.interfaceSignal} 10%, transparent)" },
-      "hoverTextShadow": { "$value": "0 0 8px color-mix(in srgb, {color.interfaceSignal} 20%, transparent)" },
-      "pressedBackground": { "$value": "radial-gradient(ellipse at center, color-mix(in srgb, {color.interfaceSignal} 2%, transparent) 0%, color-mix(in srgb, {color.interfaceSignal} 2%, transparent) 56%, color-mix(in srgb, {color.interfaceSignal} 8%, transparent) 70%, color-mix(in srgb, {color.interfaceSignal} 20%, transparent) 88%, color-mix(in srgb, {color.interfaceSignal} 28%, transparent) 97%, color-mix(in srgb, {color.interfaceSignal} 14%, transparent) 100%)" },
-      "pressedShadow": { "$value": "inset 0 0 14px color-mix(in srgb, {color.interfaceSignal} 18%, transparent), 0 0 14px color-mix(in srgb, {color.interfaceSignal} 15%, transparent)" },
-      "pressedTextShadow": { "$value": "0 0 10px color-mix(in srgb, {color.interfaceSignal} 32%, transparent)" }
+      "hoverBackground": { "$value": "radial-gradient(ellipse at center, color-mix(in srgb, {color.interaction.action} 1%, transparent) 0%, color-mix(in srgb, {color.interaction.action} 1%, transparent) 72%, color-mix(in srgb, {color.interaction.action} 4%, transparent) 84%, color-mix(in srgb, {color.interaction.action} 14%, transparent) 96%, color-mix(in srgb, {color.interaction.action} 7%, transparent) 100%)" },
+      "hoverShadow": { "$value": "inset 0 0 11px color-mix(in srgb, {color.interaction.action} 8%, transparent), 0 0 12px color-mix(in srgb, {color.interaction.action} 10%, transparent)" },
+      "hoverTextShadow": { "$value": "0 0 8px color-mix(in srgb, {color.interaction.action} 20%, transparent)" },
+      "pressedBackground": { "$value": "radial-gradient(ellipse at center, color-mix(in srgb, {color.interaction.action} 2%, transparent) 0%, color-mix(in srgb, {color.interaction.action} 2%, transparent) 56%, color-mix(in srgb, {color.interaction.action} 8%, transparent) 70%, color-mix(in srgb, {color.interaction.action} 20%, transparent) 88%, color-mix(in srgb, {color.interaction.action} 28%, transparent) 97%, color-mix(in srgb, {color.interaction.action} 14%, transparent) 100%)" },
+      "pressedShadow": { "$value": "inset 0 0 14px color-mix(in srgb, {color.interaction.action} 18%, transparent), 0 0 14px color-mix(in srgb, {color.interaction.action} 15%, transparent)" },
+      "pressedTextShadow": { "$value": "0 0 10px color-mix(in srgb, {color.interaction.action} 32%, transparent)" }
     },
     "scrollbar": {
-      "thumb": { "$value": "color-mix(in srgb, {color.interfaceSignal} 82%, transparent)" },
-      "track": { "$value": "color-mix(in srgb, {color.background} 64%, transparent)" },
-      "border": { "$value": "color-mix(in srgb, {color.background} 78%, transparent)" },
-      "highlight": { "$value": "color-mix(in srgb, {color.onBackground} 22%, transparent)" }
+      "thumb": { "$value": "color-mix(in srgb, {color.interaction.action} 82%, transparent)" },
+      "track": { "$value": "color-mix(in srgb, {color.surface.canvas} 64%, transparent)" },
+      "border": { "$value": "color-mix(in srgb, {color.surface.canvas} 78%, transparent)" },
+      "highlight": { "$value": "color-mix(in srgb, {color.content.primary} 22%, transparent)" }
     },
     "menu": {
-      "background": { "$value": "color-mix(in srgb, {color.surface} 98%, transparent)" },
-      "border": { "$value": "color-mix(in srgb, {color.primary} 28%, transparent)" },
+      "background": { "$value": "color-mix(in srgb, {color.surface.surface} 98%, transparent)" },
+      "border": { "$value": "color-mix(in srgb, {color.interaction.action} 28%, transparent)" },
       "shadow": { "$value": "{shadow.xl}" },
-      "mutedForeground": { "$value": "{color.onSurfaceVariant}" },
-      "metaForeground": { "$value": "{color.interfaceMetaForeground}" },
-      "disabledForeground": { "$value": "color-mix(in srgb, {color.interfaceDisabledForeground} 42%, transparent)" },
-      "divider": { "$value": "color-mix(in srgb, {color.interfaceSignal} 18%, transparent)" },
+      "mutedForeground": { "$value": "{color.content.secondary}" },
+      "metaForeground": { "$value": "{color.content.secondary}" },
+      "disabledForeground": { "$value": "color-mix(in srgb, {color.content.disabled} 42%, transparent)" },
+      "divider": { "$value": "color-mix(in srgb, {color.interaction.action} 18%, transparent)" },
       "scrollbarThumb": { "$value": "{interface.scrollbar.thumb}" },
       "scrollbarTrack": { "$value": "{interface.scrollbar.track}" }
     },

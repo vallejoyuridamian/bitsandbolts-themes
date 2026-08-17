@@ -7,35 +7,35 @@
   "interface": {
     "workspace": {
       "background": {
-        "$value": "{color.background}"
+        "$value": "{color.surface.canvas}"
       },
       "stageCheckerStrong": {
-        "$value": "{color.background}"
+        "$value": "{color.surface.canvas}"
       },
       "stageCheckerSoft": {
-        "$value": "{color.surfaceVariant}"
+        "$value": "{color.surface.subtle}"
       },
       "selectionSignal": {
-        "$value": "{color.primary}"
+        "$value": "{color.interaction.action}"
       }
     },
     "control": {
       "foreground": {
-        "$value": "{color.onBackground}"
+        "$value": "{color.content.primary}"
       },
       "hoverForeground": {
-        "$value": "{color.onBackground}"
+        "$value": "{color.content.primary}"
       },
       "disabledForeground": {
-        "$value": "{color.onSurfaceVariant}"
+        "$value": "{color.content.secondary}"
       },
       "focusRing": {
-        "$value": "{color.ring}"
+        "$value": "{color.border.focusRing}"
       }
     },
     "interaction": {
       "hoverBackground": {
-        "$value": "color-mix(in srgb, {color.primary} 10%, transparent)"
+        "$value": "color-mix(in srgb, {color.interaction.action} 10%, transparent)"
       },
       "hoverShadow": {
         "$value": "{shadow.sm}"
@@ -44,10 +44,10 @@
         "$value": "none"
       },
       "pressedBackground": {
-        "$value": "color-mix(in srgb, {color.primary} 18%, transparent)"
+        "$value": "color-mix(in srgb, {color.interaction.action} 18%, transparent)"
       },
       "pressedShadow": {
-        "$value": "inset 0 1px 3px color-mix(in srgb, {color.scrim} 16%, transparent)"
+        "$value": "inset 0 1px 3px color-mix(in srgb, {color.surface.scrim} 16%, transparent)"
       },
       "pressedTextShadow": {
         "$value": "none"
@@ -55,39 +55,39 @@
     },
     "scrollbar": {
       "thumb": {
-        "$value": "color-mix(in srgb, {color.primary} 72%, transparent)"
+        "$value": "color-mix(in srgb, {color.interaction.action} 72%, transparent)"
       },
       "track": {
-        "$value": "{color.surfaceVariant}"
+        "$value": "{color.surface.subtle}"
       },
       "border": {
-        "$value": "{color.outline}"
+        "$value": "{color.border.default}"
       },
       "highlight": {
-        "$value": "color-mix(in srgb, {color.onBackground} 18%, transparent)"
+        "$value": "color-mix(in srgb, {color.content.primary} 18%, transparent)"
       }
     },
     "menu": {
       "background": {
-        "$value": "{color.popover}"
+        "$value": "{color.surface.raised}"
       },
       "border": {
-        "$value": "{color.outline}"
+        "$value": "{color.border.default}"
       },
       "shadow": {
         "$value": "{shadow.lg}"
       },
       "mutedForeground": {
-        "$value": "{color.onSurfaceVariant}"
+        "$value": "{color.content.secondary}"
       },
       "metaForeground": {
-        "$value": "{color.onSurfaceVariant}"
+        "$value": "{color.content.secondary}"
       },
       "disabledForeground": {
-        "$value": "color-mix(in srgb, {color.onSurfaceVariant} 44%, transparent)"
+        "$value": "color-mix(in srgb, {color.content.secondary} 44%, transparent)"
       },
       "divider": {
-        "$value": "{color.outlineVariant}"
+        "$value": "{color.border.subtle}"
       },
       "scrollbarThumb": {
         "$value": "{interface.scrollbar.thumb}"

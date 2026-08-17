@@ -95,8 +95,8 @@ Use tokens in your CSS/Vue:
 
 ```css
 .button-primary {
-  background: var(--bb-color-primary);
-  color: var(--bb-color-on-primary);
+  background: var(--bb-v2-identity-primary);
+  color: var(--bb-v2-identity-primary-foreground);
   border-radius: var(--bb-radius-md);
   padding: var(--bb-spacing-3) var(--bb-spacing-6);
   font-family: var(--bb-font-family-body);
@@ -184,17 +184,9 @@ Requires Node 18+.
 
 ## Customising a theme
 
-To use a theme with an override (e.g. cloud colors but a different primary), add an override token file in `tokens/themes/` and merge it in `build.js` by adding it to the `source` array:
-
-```js
-source: [
-  'tokens/base/**/*.json',
-  `tokens/themes/${theme}/${mode}.json`,
-  'tokens/themes/my-override.json',   // wins last-write
-],
-```
-
-Alternatively, just copy the theme JSON and change what you need. It is just JSON.
+Edit the family contract and mode tokens under `families/<family>/v2/`. Each
+identity role declares both its background token and exact foreground token.
+The build rejects any identity pair below 4.5:1 contrast.
 
 ---
 
@@ -207,9 +199,15 @@ generic family names are invalid, and every declared family must have a bundled
 font face in the generated web distribution.
 
 ```
---bb-color-primary
---bb-color-on-primary
---bb-color-primary-container
+--bb-v2-identity-primary
+--bb-v2-identity-primary-foreground
+--bb-v2-identity-secondary
+--bb-v2-identity-secondary-foreground
+--bb-v2-identity-accent
+--bb-v2-identity-accent-foreground
+--bb-v2-identity-neutral
+--bb-v2-identity-neutral-foreground
+--bb-v2-color-surface-* / content-* / border-* / interaction-* / status-*
 ...
 --bb-spacing-1 through --bb-spacing-24
 --bb-radius-none through --bb-radius-full

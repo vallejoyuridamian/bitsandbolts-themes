@@ -13,7 +13,7 @@
   width: 0.875em;
   height: 1em;
   margin-inline: 0.08em;
-  color: var(--bb-color-warning);
+  color: var(--bb-v2-color-status-warning-border);
   vertical-align: -0.125em;
 }
 
@@ -59,12 +59,12 @@
   max-width: 85%;
   max-height: 85%;
   border-radius: 20px;
-  box-shadow: 0 0 10px color-mix(in srgb, var(--bb-color-secondary) 60%, transparent);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--bb-v2-identity-secondary) 60%, transparent);
   transition: box-shadow 200ms ease, transform 200ms ease;
 }
 
 .bb-media-copy--panel .bb-media-copy__media img:hover {
-  box-shadow: 0 6px 18px color-mix(in srgb, var(--bb-color-scrim) 40%, transparent);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--bb-v2-color-surface-scrim) 40%, transparent);
   transform: translateY(-6px);
 }
 
@@ -132,7 +132,7 @@
   width: 100%;
   max-width: 200px;
   border-radius: var(--bb-radius-full);
-  box-shadow: 0 0 30px color-mix(in srgb, var(--bb-color-primary) 50%, transparent);
+  box-shadow: 0 0 30px color-mix(in srgb, var(--bb-v2-identity-primary) 50%, transparent);
 }
 
 .bb-prose-block {
@@ -200,7 +200,7 @@
   width: 1em;
   height: 1em;
   flex: 0 0 auto;
-  color: var(--bb-color-primary);
+  color: var(--bb-v2-identity-primary);
 }
 
 .bb-milestone-timeline {
@@ -246,12 +246,12 @@
   width: 8px;
   height: 8px;
   border-radius: var(--bb-radius-full);
-  background: var(--bb-color-primary);
+  background: var(--bb-v2-identity-primary);
   transition: box-shadow 200ms ease, transform 200ms ease;
 }
 
 .bb-milestone-timeline__point:hover {
-  box-shadow: 0 0 14px color-mix(in srgb, var(--bb-color-primary) 50%, transparent);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--bb-v2-identity-primary) 50%, transparent);
   transform: scale(1.3);
 }
 
@@ -278,16 +278,16 @@
   width: 50px;
   height: 50px;
   flex-basis: 50px;
-  border: 2px solid var(--bb-color-primary);
+  border: 2px solid var(--bb-v2-identity-primary);
   border-radius: var(--bb-radius-full);
-  color: var(--bb-color-primary);
-  background: var(--bb-color-background);
+  color: var(--bb-v2-identity-primary);
+  background: var(--bb-v2-color-surface-canvas);
   font-size: 30px;
   transition: box-shadow 200ms ease, transform 200ms ease;
 }
 
 .bb-milestone-timeline__milestone:hover {
-  box-shadow: 0 0 14px color-mix(in srgb, var(--bb-color-primary) 50%, transparent);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--bb-v2-identity-primary) 50%, transparent);
   transform: scale(1.2);
 }
 

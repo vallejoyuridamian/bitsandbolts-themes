@@ -58,11 +58,10 @@ const FOOTER_SPECIMEN = Object.freeze({
   note: 'All rights reserved'
 });
 
-const CATALOG_SCHEMA_VERSION = 1;
+const CATALOG_SCHEMA_VERSION = 2;
 const REQUIRED_MODES = Object.freeze(['light', 'dark']);
 const THEME_ID_PATTERN = /^[a-z0-9-]+$/;
 const V2_ID_PATTERN = /^[a-z][a-zA-Z0-9-]*$/;
-const CSS_VARIABLE_PATTERN = /^--bb-[a-z0-9-]+$/;
 const V2_CSS_VARIABLE_PATTERN = /^--bb-v2-[a-z0-9-]+$/;
 const V2_CONTRACT_VERSION = '2.0.0';
 const ICON_NAME_PATTERN = /^[a-z0-9_]+$/;
@@ -83,41 +82,6 @@ function safeCssVariableValue(value) {
     throw new TypeError('Theme catalog contains an unsafe CSS variable value.');
   }
   return normalized;
-}
-
-function normalizeVariables(value = {}) {
-  if (!value || typeof value !== 'object' || Array.isArray(value)) {
-    throw new TypeError('Theme catalog mode variables are invalid.');
-  }
-  const variables = {};
-  for (const [name, rawValue] of Object.entries(value)) {
-    if (!CSS_VARIABLE_PATTERN.test(name)) {
-      throw new TypeError(`Theme catalog variable is invalid: ${name}`);
-    }
-    const normalizedValue = safeCssVariableValue(rawValue);
-    const unquotedFontFamily = normalizedValue.replace(/^(['"])(.*)\1$/, '$2').toLowerCase();
-    if (name.startsWith('--bb-font-family-') && (
-      normalizedValue.includes(',')
-      || GENERIC_FONT_FAMILIES.has(unquotedFontFamily)
-    )) {
-      throw new TypeError(`Theme catalog font role must name one primary family: ${name}`);
-    }
-    variables[name] = normalizedValue;
-  }
-  if (!variables['--bb-color-background'] || !variables['--bb-color-on-background']) {
-    throw new TypeError('Theme catalog mode is missing required surface colors.');
-  }
-  return Object.freeze(variables);
-}
-
-function normalizeMode(value = {}, mode = '') {
-  if (!value || typeof value !== 'object' || Array.isArray(value)) {
-    throw new TypeError(`Theme catalog ${mode} mode is invalid.`);
-  }
-  return Object.freeze({
-    cssPath: String(value.cssPath || ''),
-    variables: normalizeVariables(value.variables)
-  });
 }
 
 function normalizeIcons(value = {}) {
@@ -168,8 +132,19 @@ function normalizeV2Mode(value = {}, mode = '') {
   }
   const identity = Array.isArray(value.identity) ? value.identity.map((entry) => {
     const id = String(entry?.id || '').trim();
-    if (!THEME_ID_PATTERN.test(id) || !entry?.label || !entry?.token) throw new TypeError('Theme catalog v2 identity role is invalid.');
+    const contrastRatio = Number(entry?.contrastRatio);
+    if (
+      !THEME_ID_PATTERN.test(id)
+      || !entry?.label
+      || !entry?.token
+      || !entry?.foregroundToken
+      || !Number.isFinite(contrastRatio)
+      || contrastRatio < 4.5
+    ) throw new TypeError('Theme catalog v2 identity role is invalid.');
     return Object.freeze({
+      contrastRatio,
+      foreground: safeCssVariableValue(entry.foreground),
+      foregroundToken: String(entry.foregroundToken),
       id,
       label: String(entry.label),
       token: String(entry.token),
@@ -246,16 +221,14 @@ function normalizeTheme(value = {}) {
   const id = String(value.id || '').trim().toLowerCase();
   const label = String(value.label || '').trim();
   if (!THEME_ID_PATTERN.test(id) || !label) throw new TypeError('Theme catalog entry is invalid.');
+  const v2 = normalizeV2(value.v2);
+  if (!v2) throw new TypeError('Theme catalog entry is missing the version-two contract.');
   return Object.freeze({
     icons: normalizeIcons(value.icons),
     id,
     label,
-    modes: Object.freeze(Object.fromEntries(REQUIRED_MODES.map((mode) => [
-      mode,
-      normalizeMode(value.modes?.[mode], mode)
-    ]))),
     source: String(value.source || 'first-party'),
-    v2: normalizeV2(value.v2)
+    v2
   });
 }
 
@@ -380,33 +353,6 @@ function themeSummaryGridMarkup(catalog, mode, cardModes = {}) {
       </div>
     </section>
   `;
-}
-
-function colorMarkup(variables = {}) {
-  return Object.keys(variables)
-    .filter((name) => name.startsWith('--bb-color-'))
-    .map((name) => `
-      <div class="bb-theme-color" data-theme-color-variable="${escapeHtml(name)}">
-        <span class="bb-theme-color__swatch" aria-hidden="true"></span>
-        <span class="bb-theme-color__copy">
-          <span class="bb-theme-color__name">${escapeHtml(tokenLabel(name, '--bb-color-'))}</span>
-          <span class="bb-theme-color__value">${escapeHtml(variables[name])}</span>
-        </span>
-      </div>
-    `).join('');
-}
-
-function typographyMarkup(variables = {}) {
-  const families = Object.keys(variables).filter((name) => name.startsWith('--bb-font-family-'));
-  return families.map((name) => `
-    <div class="bb-theme-type" data-theme-font-variable="${escapeHtml(name)}">
-      <span class="bb-theme-type__copy">
-        <span class="bb-theme-type__role">${escapeHtml(tokenLabel(name, '--bb-font-family-'))}</span>
-        <span class="bb-theme-type__value">${escapeHtml(variables[name])}</span>
-      </span>
-      <span class="bb-theme-type__sample">AppScreen Studio · Aa 0123</span>
-    </div>
-  `).join('');
 }
 
 function iconPreviewGlyphMarkup(theme, name, className = '') {
@@ -1145,45 +1091,6 @@ function v2ModeMarkup(theme, mode, {
   `;
 }
 
-function modeMarkup(theme, mode) {
-  const variables = theme.modes[mode].variables;
-  return `
-    <section
-      class="bb-theme-mode"
-      data-theme-preview-id="${escapeHtml(theme.id)}"
-      data-theme-preview-mode="${escapeHtml(mode)}"
-      aria-label="${escapeHtml(`${theme.label} ${mode} theme`)}"
-    >
-      <div class="bb-theme-mode__body">
-        <div class="bb-theme-scene" aria-label="Semantic surface preview">
-          <div class="bb-theme-scene__primary">
-            <span class="bb-theme-scene__kicker">Theme preview</span>
-            <strong class="bb-theme-scene__title">Build the visual system once.</strong>
-            <p class="bb-theme-scene__copy">Surface, text, border, type, and status roles rendered from this exact mode.</p>
-          </div>
-          <div class="bb-theme-scene__secondary">
-            <strong>Ready</strong>
-            <span class="bb-theme-scene__status"><span class="ms" aria-hidden="true">check_circle</span>Valid source</span>
-          </div>
-        </div>
-        ${sharedWebRecipeMarkup(theme)}
-        <section class="bb-theme-inspection">
-          <p class="bb-theme-inspection__label">Fonts</p>
-          <div class="bb-theme-type-grid">${typographyMarkup(variables)}</div>
-        </section>
-        <section class="bb-theme-inspection">
-          <p class="bb-theme-inspection__label">Icon treatment</p>
-          ${iconsMarkup(theme)}
-        </section>
-        <section class="bb-theme-inspection">
-          <p class="bb-theme-inspection__label">All color roles</p>
-          <div class="bb-theme-colors">${colorMarkup(variables)}</div>
-        </section>
-      </div>
-    </section>
-  `;
-}
-
 export function themeGalleryControlsMarkup() {
   return '';
 }
@@ -1199,15 +1106,13 @@ export function themeDetailMarkup(theme, mode = 'dark', {
   return `
     <div class="bb-theme-detail" data-theme-detail-mode="${editable ? 'edit' : 'view'}">
       <div class="bb-theme-gallery__catalog">
-        ${theme.v2
-          ? v2ModeMarkup(theme, selected, {
-            editable,
-            fontOptions,
-            includeShowcase,
-            identityColorOverrides,
-            paletteCompletion
-          })
-          : modeMarkup(theme, selected)}
+        ${v2ModeMarkup(theme, selected, {
+          editable,
+          fontOptions,
+          includeShowcase,
+          identityColorOverrides,
+          paletteCompletion
+        })}
       </div>
     </div>
   `;
@@ -1224,21 +1129,24 @@ export function themeGalleryMarkup(catalog, selection = {}) {
 
 export function applyThemeGalleryVariables(host, catalog, selection = {}) {
   const selected = selectedTheme(catalog, selection.themeId);
-  const selectedVariables = selected.modes[selectedMode(selection.cardModes?.[selected.id] ?? selection.mode)].variables;
+  const selectedVariables = selected.v2.modes[selectedMode(selection.cardModes?.[selected.id] ?? selection.mode)].variables;
   const identityColorOverrides = new Set(
     (Array.isArray(selection.identityColorOverrides) ? selection.identityColorOverrides : [])
       .map((value) => String(value || ''))
   );
   const neutralFallback = String(selection.neutralFallback || '').trim();
+  const scrollbarValues = {
+    '--bb-interface-scrollbar-thumb': selectedVariables['--bb-v2-color-content-secondary'],
+    '--bb-interface-scrollbar-track': selectedVariables['--bb-v2-color-surface-canvas'],
+    '--bb-interface-scrollbar-border': selectedVariables['--bb-v2-color-border-subtle'],
+    '--bb-interface-scrollbar-highlight': selectedVariables['--bb-v2-color-content-primary']
+  };
   for (const name of THEME_GALLERY_SCROLLBAR_VARIABLES) {
-    const value = selectedVariables[name];
-    if (value) host?.style?.setProperty?.(name, value);
+    host?.style?.setProperty?.(name, scrollbarValues[name]);
   }
   host?.querySelectorAll?.('[data-theme-preview-id][data-theme-preview-mode]').forEach((preview) => {
     const theme = catalog.themes.find((candidate) => candidate.id === preview.dataset.themePreviewId);
-    const mode = theme?.modes?.[preview.dataset.themePreviewMode];
-    if (!theme || !mode) return;
-    for (const [name, value] of Object.entries(mode.variables)) preview.style.setProperty(name, value);
+    if (!theme) return;
     const v2Mode = theme.v2?.modes?.[preview.dataset.themePreviewMode];
     if (v2Mode) {
       for (const [name, value] of Object.entries(v2Mode.variables)) preview.style.setProperty(name, value);
@@ -1246,18 +1154,21 @@ export function applyThemeGalleryVariables(host, catalog, selection = {}) {
       const identityNeutral = v2Mode.identity.find((entry) => entry.id === 'neutral');
       if (identityAccent) {
         preview.style.setProperty('--bb-theme-summary-card-accent', identityAccent.value);
-        const onAccent = mode.variables['--bb-color-on-tertiary'];
-        if (onAccent) preview.style.setProperty('--bb-theme-summary-card-on-accent', onAccent);
+        preview.style.setProperty('--bb-theme-summary-card-on-accent', identityAccent.foreground);
       }
       if (identityNeutral) {
         const neutral = neutralFallback && !identityColorOverrides.has('neutral')
           ? neutralFallback
           : identityNeutral.value;
         preview.style.setProperty('--bb-theme-v2-neutral', neutral);
+        preview.style.setProperty('--bb-theme-v2-neutral-foreground', identityNeutral.foreground);
       }
       preview.querySelectorAll('[data-theme-v2-identity]').forEach((swatch) => {
         const identity = v2Mode.identity.find((entry) => entry.id === swatch.dataset.themeV2Identity);
-        if (identity) swatch.style.setProperty('--bb-theme-v2-swatch', identity.value);
+        if (identity) {
+          swatch.style.setProperty('--bb-theme-v2-swatch', identity.value);
+          swatch.style.setProperty('--bb-theme-v2-swatch-foreground', identity.foreground);
+        }
       });
       preview.querySelectorAll('[data-theme-v2-color-role]').forEach((swatch) => {
         const color = v2Mode.semanticColors.find((entry) => entry.role === swatch.dataset.themeV2ColorRole);
@@ -1275,12 +1186,6 @@ export function applyThemeGalleryVariables(host, catalog, selection = {}) {
     }
     preview.style.setProperty('--bb-theme-icon-fill', theme.icons.style === 'filled' ? '1' : '0');
     preview.style.setProperty('--bb-theme-icon-weight', theme.icons.style === 'filled' ? '400' : '300');
-    preview.querySelectorAll('[data-theme-color-variable]').forEach((color) => {
-      color.style.setProperty('--bb-theme-swatch-color', mode.variables[color.dataset.themeColorVariable]);
-    });
-    preview.querySelectorAll('[data-theme-font-variable]').forEach((font) => {
-      font.style.setProperty('--bb-theme-font-preview-family', mode.variables[font.dataset.themeFontVariable]);
-    });
   });
 }
 

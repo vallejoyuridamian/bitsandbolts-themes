@@ -20,7 +20,7 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: var(--bb-color-background);
+  background: var(--bb-v2-color-surface-canvas);
 }
 
 .bb-auth-card {
@@ -51,14 +51,14 @@
   font-family: var(--bb-font-family-display);
   font-size: var(--bb-font-size-xl);
   font-weight: var(--bb-font-weight-bold);
-  color: var(--bb-color-on-surface);
+  color: var(--bb-v2-color-content-primary);
   margin: 0 0 var(--bb-spacing-2);
 }
 
 .bb-auth-subtitle {
   font-family: var(--bb-font-family-body);
   font-size: var(--bb-font-size-sm);
-  color: var(--bb-color-on-surface-variant);
+  color: var(--bb-v2-color-content-secondary);
   margin: 0 0 var(--bb-spacing-6);
   line-height: var(--bb-font-line-height-normal);
 }

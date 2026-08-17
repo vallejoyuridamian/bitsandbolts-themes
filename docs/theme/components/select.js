@@ -7,6 +7,27 @@ const DATA_ATTRIBUTE_PATTERN = /^data-[a-z0-9-]+$/;
 const MAX_MENU_HEIGHT = 360;
 const MENU_GAP = 4;
 const MIN_MENU_WIDTH = 180;
+const PORTAL_PRESENTATION_PROPERTIES = Object.freeze([
+  '--bb-font-family-body',
+  '--bb-interface-control-foreground',
+  '--bb-interface-control-hover-foreground',
+  '--bb-interface-control-disabled-foreground',
+  '--bb-interface-interaction-hover-background',
+  '--bb-interface-interaction-hover-shadow',
+  '--bb-interface-interaction-hover-text-shadow',
+  '--bb-interface-interaction-pressed-background',
+  '--bb-interface-interaction-pressed-shadow',
+  '--bb-interface-interaction-pressed-text-shadow',
+  '--bb-interface-menu-background',
+  '--bb-interface-menu-border',
+  '--bb-interface-menu-shadow',
+  '--bb-interface-menu-muted-foreground',
+  '--bb-interface-menu-meta-foreground',
+  '--bb-interface-menu-disabled-foreground',
+  '--bb-interface-menu-divider',
+  '--bb-interface-menu-scrollbar-thumb',
+  '--bb-interface-menu-scrollbar-track'
+]);
 const VIEWPORT_GAP = 8;
 const installedControllers = new WeakMap();
 
@@ -35,6 +56,15 @@ function labelTextForSelect(select) {
   const clone = label.cloneNode(true);
   clone.querySelectorAll('select, input, textarea, button').forEach((control) => control.remove());
   return String(clone.textContent || '').replace(/\s+/g, ' ').trim();
+}
+
+function projectPortalPresentation(source, target, view) {
+  const presentation = view?.getComputedStyle?.(source);
+  if (!presentation || !target?.style?.setProperty) return;
+  PORTAL_PRESENTATION_PROPERTIES.forEach((property) => {
+    const value = presentation.getPropertyValue(property).trim();
+    if (value) target.style.setProperty(property, value);
+  });
 }
 
 function optionsSignature(select) {
@@ -483,6 +513,7 @@ export function installSelectController(root = globalThis.document, {
     menu.setAttribute('aria-label', labelTextForSelect(record.select) || selectIdentity(record.select));
     record.menu = menu;
     renderOptions(record);
+    projectPortalPresentation(record.wrapper, menu, view);
     menu.style.visibility = 'hidden';
     rootDocument.body.appendChild(menu);
     activeRecord = record;

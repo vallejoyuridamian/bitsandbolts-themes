@@ -63,7 +63,7 @@
   align-items: center;
   padding: 0;
   border: 0;
-  color: var(--bb-color-primary);
+  color: var(--bb-v2-identity-primary);
   background: transparent;
   font: inherit;
   text-align: left;
@@ -76,7 +76,7 @@
   z-index: -1;
   inset: 0;
   border-radius: inherit;
-  background: var(--bb-color-primary);
+  background: var(--bb-v2-identity-primary);
   content: "";
   filter: blur(16px);
   opacity: 0;
@@ -97,7 +97,7 @@
 }
 
 .bb-navbar__brand-mark {
-  color: var(--bb-color-primary);
+  color: var(--bb-v2-identity-primary);
 }
 
 .bb-navbar__brand-mark--monochrome {
@@ -116,7 +116,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: var(--bb-color-primary);
+  color: var(--bb-v2-identity-primary);
   font-family: var(--bb-font-family-display);
   font-weight: var(--bb-font-weight-semibold);
   line-height: 1.1;
@@ -169,8 +169,8 @@
 .bb-navbar__link:focus-visible {
   color: var(--bb-marketing-chrome-navigation);
   background: color-mix(in srgb, var(--bb-marketing-chrome-navigation) 10%, transparent);
-  text-shadow: 0 0 5px var(--bb-color-primary), 0 0 10px var(--bb-color-primary),
-    0 0 20px var(--bb-color-primary), 0 0 40px var(--bb-color-primary),
+  text-shadow: 0 0 5px var(--bb-v2-identity-primary), 0 0 10px var(--bb-v2-identity-primary),
+    0 0 20px var(--bb-v2-identity-primary), 0 0 40px var(--bb-v2-identity-primary),
     0 0 60px var(--bb-marketing-portfolio-glow-far), 0 0 80px var(--bb-marketing-portfolio-glow-far);
 }
 
@@ -188,7 +188,7 @@
   border: 0;
   border-radius: 6px;
   color: var(--bb-marketing-chrome-on-accent);
-  background: var(--bb-color-primary);
+  background: var(--bb-v2-identity-primary);
   font-family: var(--bb-font-family-display);
   font-size: 1rem;
   font-weight: var(--bb-font-weight-semibold);
@@ -214,7 +214,7 @@
 .bb-navbar__close {
   padding: 0;
   border: 0;
-  color: var(--bb-color-primary);
+  color: var(--bb-v2-identity-primary);
   background: transparent;
   cursor: pointer;
 }
@@ -276,7 +276,7 @@
   justify-content: center;
   align-self: flex-end;
   border-radius: var(--bb-radius-full);
-  background: color-mix(in srgb, var(--bb-color-scrim) 50%, transparent);
+  background: color-mix(in srgb, var(--bb-v2-color-surface-scrim) 50%, transparent);
   font-size: 1.3rem;
   transition: background 200ms ease, transform 200ms ease;
 }
@@ -365,7 +365,7 @@
     justify-content: center;
     align-self: flex-end;
     border-radius: var(--bb-radius-full);
-    background: color-mix(in srgb, var(--bb-color-scrim) 50%, transparent);
+    background: color-mix(in srgb, var(--bb-v2-color-surface-scrim) 50%, transparent);
     font-size: 1.3rem;
     transition: background 200ms ease, transform 200ms ease;
   }

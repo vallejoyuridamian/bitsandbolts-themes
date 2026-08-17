@@ -4,6 +4,34 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-16) - Exact identity pairs and V1 retirement implemented
+
+### What changed
+- Added an exact foreground token to Primary, Secondary, Accent, and Neutral for
+  all nine families in both modes. Catalog entries include the pair, token, and
+  serialized contrast ratio, while web outputs publish exact identity variables.
+- Preserved every authored foreground that already passed 4.5:1. Repaired 8
+  Primary or Secondary pairs and 4 Accent fallback candidates with family tokens
+  or role-colored ramp values. All 72 canonical pairs pass, with 59 palette-derived
+  foregrounds and 13 deliberate literal black or white values.
+- Added structured DTCG color serialization and a generated-CSS guard so an object
+  value cannot silently invalidate Menu or floating-window backgrounds again.
+- Removed authored V1 color blocks, generated V1 web variables, top-level
+  catalog modes, gallery fallbacks, and consumer references. Android and React
+  Native generation now consume the V2 semantic and identity contract directly.
+- Updated Selection Controls and Theme detail recipes so text placed on exact
+  Neutral uses its exact foreground, including AppScreen live picker preview.
+- Projected live Neutral foreground/background and Primary interaction roles at
+  the Theme root. The shared Select controller carries the resolved roles and active
+  font into its body-portaled menu, preserving one canonical interface state.
+
+### Acceptance and boundary
+- The Themes build and `pnpm dev` health check pass without generator warnings.
+  AppScreen affected checks pass 83/83, its build passes, and V1 searches are empty.
+- The owner accepted the exact-pair, Neutral completion, Theme-root Select, font
+  Select, portaled menu, and handled-window result. A local checkpoint commit was
+  authorized; nothing was pushed.
+
 ## Session wrap-up (2026-08-16) - Palette completion recipe accepted
 
 ### What changed

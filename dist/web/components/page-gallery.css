@@ -38,7 +38,7 @@
 
 .bb-page-gallery__publish p {
   margin: 0;
-  color: var(--bb-color-on-surface-variant);
+  color: var(--bb-v2-color-content-secondary);
   font-size: 12px;
   line-height: 1.45;
 }

@@ -36,7 +36,7 @@
   width: 30px;
   height: 30px;
   object-fit: contain;
-  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--bb-color-primary) 45%, transparent));
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--bb-v2-identity-primary) 45%, transparent));
 }
 
 .bb-interface-action,
@@ -93,7 +93,7 @@
 
 .bb-workspace-chrome {
   color: var(--bb-interface-control-foreground);
-  background: var(--bb-color-background);
+  background: var(--bb-v2-color-surface-canvas);
   font-family: var(--bb-font-family-body);
 }
 
@@ -105,13 +105,13 @@
   min-width: 0;
   min-height: 56px;
   padding: 8px 14px;
-  border-bottom: 1px solid var(--bb-color-outline-variant);
+  border-bottom: 1px solid var(--bb-v2-color-border-subtle);
   box-shadow: var(--bb-shadow-md);
 }
 
 .bb-workspace-topbar__identity {
   flex: 0 0 auto;
-  color: var(--bb-color-on-background);
+  color: var(--bb-v2-color-content-primary);
   font-family: var(--bb-font-family-display);
   font-size: var(--bb-font-size-sm);
   font-weight: var(--bb-font-weight-semibold);
@@ -213,7 +213,7 @@
   border-radius: 0;
   background: transparent;
   box-shadow: none;
-  filter: drop-shadow(0 0 2px color-mix(in srgb, var(--bb-color-primary) 18%, transparent));
+  filter: drop-shadow(0 0 2px color-mix(in srgb, var(--bb-v2-identity-primary) 18%, transparent));
   transition:
     color var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing),
     filter var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing);
@@ -222,10 +222,10 @@
 .bb-workspace-control-button.bb-workspace-control-button--plain-icon:is(:hover, :focus-visible):not(:disabled):not([aria-pressed="true"]),
 .bb-workspace-control-button.bb-workspace-control-button--plain-icon[data-specimen-state="hover"] {
   border-color: transparent;
-  color: var(--bb-color-primary);
+  color: var(--bb-v2-identity-primary);
   background: transparent;
   box-shadow: none;
-  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--bb-color-primary) 62%, transparent));
+  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--bb-v2-identity-primary) 62%, transparent));
   text-shadow: none;
 }
 
@@ -242,7 +242,7 @@
 .bb-workspace-control-button--danger:not(:disabled),
 .bb-workspace-control-button.bb-workspace-control-button--danger:is(:hover, :focus-visible):not(:disabled):not([aria-pressed="true"]),
 .bb-workspace-control-button.bb-workspace-control-button--danger[data-specimen-state="hover"] {
-  color: var(--bb-color-error);
+  color: var(--bb-v2-color-status-danger-border);
 }
 
 .bb-workspace-control-icon {
@@ -268,9 +268,9 @@
   min-width: 0;
   min-height: 46px;
   padding: 0 12px;
-  border-bottom: 1px solid var(--bb-color-outline-variant);
-  color: var(--bb-color-on-surface-variant);
-  background: var(--bb-color-background);
+  border-bottom: 1px solid var(--bb-v2-color-border-subtle);
+  color: var(--bb-v2-color-content-secondary);
+  background: var(--bb-v2-color-surface-canvas);
   font-family: var(--bb-font-family-body);
 }
 
@@ -320,9 +320,9 @@
   position: relative;
   flex: 0 0 auto;
   overflow: visible;
-  border: 1px solid var(--bb-color-outline-variant);
+  border: 1px solid var(--bb-v2-color-border-subtle);
   border-radius: 2px;
-  background: var(--bb-color-surface);
+  background: var(--bb-v2-color-surface-surface);
   box-shadow: var(--bb-shadow-lg);
 }
 
@@ -345,17 +345,17 @@
   display: grid;
   flex: 0 0 auto;
   place-items: center;
-  border: 1px dashed var(--bb-color-outline-variant);
+  border: 1px dashed var(--bb-v2-color-border-subtle);
   border-radius: var(--bb-radius-lg);
-  color: var(--bb-color-primary);
-  background: color-mix(in srgb, var(--bb-color-surface) 72%, transparent);
+  color: var(--bb-v2-identity-primary);
+  background: color-mix(in srgb, var(--bb-v2-color-surface-surface) 72%, transparent);
   cursor: pointer;
 }
 
 .bb-workspace-add-tile:is(:hover, :focus-visible) {
   outline: none;
-  border-color: var(--bb-color-primary);
-  background: color-mix(in srgb, var(--bb-color-primary) 10%, var(--bb-color-surface));
+  border-color: var(--bb-v2-identity-primary);
+  background: color-mix(in srgb, var(--bb-v2-identity-primary) 10%, var(--bb-v2-color-surface-surface));
 }
 
 .bb-workspace-add-tile .bb-workspace-control-icon {

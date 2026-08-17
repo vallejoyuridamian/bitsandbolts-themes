@@ -19,7 +19,7 @@ html:has(.bb-portfolio-home),
 body.bb-portfolio-home {
   min-height: 100%;
   margin: 0;
-  background: var(--bb-color-background);
+  background: var(--bb-v2-color-surface-canvas);
 }
 
 html:has(.bb-portfolio-home) {
@@ -28,7 +28,7 @@ html:has(.bb-portfolio-home) {
 
 body.bb-portfolio-home {
   min-width: 320px;
-  color: var(--bb-color-on-background);
+  color: var(--bb-v2-color-content-primary);
   font-family: system-ui;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -88,8 +88,8 @@ body.bb-portfolio-home {
   padding: 0.2rem 0.45rem;
   border: 0;
   border-radius: var(--bb-radius-full);
-  color: var(--bb-color-primary);
-  background: color-mix(in srgb, var(--bb-color-scrim) 70%, transparent);
+  color: var(--bb-v2-identity-primary);
+  background: color-mix(in srgb, var(--bb-v2-color-surface-scrim) 70%, transparent);
   font-family: var(--bb-font-family-body);
   font-size: 0.7rem;
   font-weight: var(--bb-font-weight-regular);
@@ -124,8 +124,8 @@ body.bb-portfolio-home {
 }
 
 .bb-portfolio-neon {
-  text-shadow: 0 0 5px var(--bb-color-primary), 0 0 10px var(--bb-color-primary),
-    0 0 20px var(--bb-color-primary), 0 0 40px var(--bb-color-primary),
+  text-shadow: 0 0 5px var(--bb-v2-identity-primary), 0 0 10px var(--bb-v2-identity-primary),
+    0 0 20px var(--bb-v2-identity-primary), 0 0 40px var(--bb-v2-identity-primary),
     0 0 60px var(--bb-marketing-portfolio-glow-far), 0 0 80px var(--bb-marketing-portfolio-glow-far);
 }
 
@@ -149,8 +149,8 @@ body.bb-portfolio-home {
   letter-spacing: 1px;
   text-align: center;
   text-decoration: none;
-  text-shadow: 0 0 5px var(--bb-color-primary), 0 0 10px var(--bb-color-primary),
-    0 0 20px var(--bb-color-primary), 0 0 40px var(--bb-color-primary),
+  text-shadow: 0 0 5px var(--bb-v2-identity-primary), 0 0 10px var(--bb-v2-identity-primary),
+    0 0 20px var(--bb-v2-identity-primary), 0 0 40px var(--bb-v2-identity-primary),
     0 0 60px var(--bb-marketing-portfolio-glow-far), 0 0 80px var(--bb-marketing-portfolio-glow-far);
   transition: box-shadow 300ms ease, transform 300ms ease;
 }
@@ -166,7 +166,7 @@ body.bb-portfolio-home {
   z-index: -1;
   padding: 2px;
   border-radius: 30px;
-  background: linear-gradient(to bottom, var(--bb-color-accent-glow), var(--bb-marketing-highlight));
+  background: linear-gradient(to bottom, var(--bb-v2-identity-accent), var(--bb-marketing-highlight));
   content: "";
   pointer-events: none;
   mask: linear-gradient(var(--bb-marketing-highlight) 0 0) content-box,
@@ -176,7 +176,7 @@ body.bb-portfolio-home {
 
 .bb-portfolio-cta:hover,
 .bb-portfolio-cta:focus-visible {
-  box-shadow: 0 0 14px color-mix(in srgb, var(--bb-color-accent-glow) 50%, transparent);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--bb-v2-identity-accent) 50%, transparent);
   transform: scale(1.2);
 }
 
@@ -421,7 +421,7 @@ body.bb-portfolio-home {
 .bb-portfolio-review__stars {
   display: block;
   margin-bottom: 10px;
-  color: var(--bb-color-warning);
+  color: var(--bb-v2-color-status-warning-border);
   font-size: 1.2rem;
 }
 
@@ -442,7 +442,7 @@ body.bb-portfolio-home {
   border: 0;
   border-radius: var(--bb-radius-full);
   color: var(--bb-marketing-highlight);
-  background: color-mix(in srgb, var(--bb-color-scrim) 40%, transparent);
+  background: color-mix(in srgb, var(--bb-v2-color-surface-scrim) 40%, transparent);
   font-size: 32px;
   font-weight: var(--bb-font-weight-bold);
   cursor: pointer;
@@ -514,8 +514,8 @@ body.bb-portfolio-home {
   margin: 0 auto;
   overflow: hidden;
   border-radius: var(--bb-radius-xl);
-  background: var(--bb-color-scrim);
-  box-shadow: 0 0 20px color-mix(in srgb, var(--bb-color-secondary) 10%, transparent);
+  background: var(--bb-v2-color-surface-scrim);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--bb-v2-identity-secondary) 10%, transparent);
 }
 
 .bb-portfolio-case-study__media img {
@@ -535,9 +535,9 @@ body.bb-portfolio-home {
   z-index: 2;
   width: 0.75em;
   color: var(--bb-marketing-highlight);
-  filter: drop-shadow(0 0 10px var(--bb-color-primary));
+  filter: drop-shadow(0 0 10px var(--bb-v2-identity-primary));
   font-size: 3rem;
-  text-shadow: 0 0 10px var(--bb-color-primary);
+  text-shadow: 0 0 10px var(--bb-v2-identity-primary);
   transform: translate(-50%, -50%);
 }
 
@@ -605,7 +605,7 @@ body.bb-portfolio-home {
 
 .bb-portfolio-roadmap__subtitle {
   margin: 0 0 3vw !important;
-  color: var(--bb-color-primary) !important;
+  color: var(--bb-v2-identity-primary) !important;
   font-family: "BB Portfolio Orbitron" !important;
   font-size: clamp(1.1rem, 2.5vw, 3rem) !important;
   font-weight: var(--bb-font-weight-bold) !important;
@@ -632,7 +632,7 @@ body.bb-portfolio-home {
   height: 80px;
   margin-inline: auto;
   border-radius: 10px;
-  box-shadow: 0 0 12px color-mix(in srgb, var(--bb-color-secondary) 35%, transparent);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--bb-v2-identity-secondary) 35%, transparent);
   object-fit: fill;
 }
 

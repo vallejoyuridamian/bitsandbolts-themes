@@ -56,7 +56,9 @@
       "color.status.dangerContent",
       "color.status.dangerBorder"
     ],
-    "creatorIdentityRoles": ["primary", "secondary", "accent", "neutral"]
+    "creatorIdentityRoles": ["primary", "secondary", "accent", "neutral"],
+    "creatorIdentityRequiredFields": ["id", "label", "token", "foregroundToken"],
+    "creatorIdentityMinimumTextContrast": 4.5
   },
   "typography": {
     "mandatoryFamilyRoles": ["primary", "mono"],

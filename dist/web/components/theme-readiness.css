@@ -1,5 +1,5 @@
 html[data-bb-theme-readiness="pending"] {
-  background: var(--bb-color-background);
+  background: var(--bb-v2-color-surface-canvas);
 }
 
 html[data-bb-theme-readiness="pending"] body {

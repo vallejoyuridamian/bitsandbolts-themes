@@ -276,6 +276,10 @@ function oklchToHex(value) {
 function colorToPlatformHex(value) {
   const normalized = String(value).trim();
   if (/^#[0-9a-f]{6}$/i.test(normalized)) return normalized.toUpperCase();
+  const rgb = normalized.match(/^rgb\(\s*(\d+)\s+(\d+)\s+(\d+)(?:\s*\/\s*[\d.]+)?\s*\)$/i);
+  if (rgb) {
+    return `#${rgb.slice(1).map((channel) => Number(channel).toString(16).padStart(2, '0')).join('')}`.toUpperCase();
+  }
   const converted = oklchToHex(normalized);
   if (converted) return converted;
   throw new Error(`[platform-color] Unsupported color value: ${normalized}`);
@@ -287,39 +291,92 @@ function dimensionToPixels(value) {
   return Number.parseFloat(normalized);
 }
 
+function platformColorTokenValue(token) {
+  const value = token?.value ?? token?.$value;
+  return value && typeof value === 'object'
+    ? colorValueToCss(value, token.path.join('.'))
+    : String(value || '');
+}
+
+StyleDictionary.registerTransform({
+  name: 'color/dtcg-css',
+  type: 'value',
+  transitive: true,
+  filter: (token, options) => (
+    (options.usesDtcg ? token.$type : token.type) === 'color'
+    || token.path[0] === 'color'
+    || token.path[0] === 'palette'
+  ),
+  transform: (token, config, options) => {
+    const value = options.usesDtcg ? token.$value : token.value;
+    return value && typeof value === 'object'
+      ? colorValueToCss(value, token.path.join('.'))
+      : value;
+  },
+});
+
 // ─── Custom Format: Kotlin Color Scheme ──────────────────────────────────────
 
 StyleDictionary.registerFormat({
   name: 'kotlin/color-scheme',
   format: ({ dictionary, options }) => {
-    const { theme, mode } = options;
+    const { identity, theme, mode } = options;
     const ThemeName  = theme.charAt(0).toUpperCase() + theme.slice(1);
     const ModeName   = mode.charAt(0).toUpperCase() + mode.slice(1);
     const schemeType = mode === 'light' ? 'lightColorScheme' : 'darkColorScheme';
 
-    // M3 ColorScheme only accepts these standard roles; extra tokens become standalone vals.
-    const M3_ROLES = new Set([
-      'primary','onPrimary','primaryContainer','onPrimaryContainer',
-      'secondary','onSecondary','secondaryContainer','onSecondaryContainer',
-      'tertiary','onTertiary','tertiaryContainer','onTertiaryContainer',
-      'background','onBackground',
-      'surface','onSurface','surfaceVariant','onSurfaceVariant','surfaceTint',
-      'inversePrimary','inverseSurface','inverseOnSurface',
-      'error','onError','errorContainer','onErrorContainer',
-      'outline','outlineVariant','scrim',
-    ]);
-
-    const colorTokens  = dictionary.allTokens.filter(t => t.path[0] === 'color');
+    const colorTokens = dictionary.allTokens.filter((token) => token.path[0] === 'color');
     const opacityTokens = dictionary.allTokens.filter(t => t.path[0] === 'opacity');
-    const m3Tokens     = colorTokens.filter(t => M3_ROLES.has(t.path[1]));
-    const extraTokens  = colorTokens.filter(t => !M3_ROLES.has(t.path[1]));
+    const tokens = new Map(dictionary.allTokens.map((token) => [token.path.join('.'), token]));
+    const androidRoles = {
+      primary: 'color.interaction.action',
+      onPrimary: 'color.interaction.onAction',
+      primaryContainer: 'color.interaction.selected',
+      onPrimaryContainer: 'color.interaction.onSelected',
+      secondary: 'color.interaction.selected',
+      onSecondary: 'color.interaction.onSelected',
+      secondaryContainer: 'color.interaction.selection',
+      onSecondaryContainer: 'color.interaction.onSelection',
+      tertiary: 'identity.accent.background',
+      onTertiary: 'identity.accent.foreground',
+      tertiaryContainer: 'color.interaction.dragPreview',
+      onTertiaryContainer: 'identity.accent.foreground',
+      background: 'color.surface.canvas',
+      onBackground: 'color.content.primary',
+      surface: 'color.surface.surface',
+      onSurface: 'color.content.primary',
+      surfaceVariant: 'color.surface.subtle',
+      onSurfaceVariant: 'color.content.secondary',
+      surfaceTint: 'color.interaction.action',
+      inversePrimary: 'color.content.brand',
+      inverseSurface: 'color.surface.inverse',
+      inverseOnSurface: 'color.content.inverse',
+      error: 'color.status.dangerBorder',
+      onError: 'color.status.dangerContent',
+      errorContainer: 'color.status.dangerSurface',
+      onErrorContainer: 'color.status.dangerContent',
+      outline: 'color.border.default',
+      outlineVariant: 'color.border.subtle',
+      scrim: 'color.surface.scrim',
+    };
     const val = t => t.value ?? t.$value;
     const toPascal = parts => parts.map(p => p.charAt(0).toUpperCase() + p.slice(1)).join('');
-
+    const colorForPath = (path) => {
+      const identityMatch = /^identity\.([a-z]+)\.(background|foreground)$/.exec(path);
+      if (identityMatch) return identity[identityMatch[1]]?.[identityMatch[2]] || '';
+      const token = tokens.get(path);
+      if (!token) throw new Error(`[android-v2] Missing ${path} for ${theme}/${mode}.`);
+      return platformColorTokenValue(token);
+    };
     const toKotlin = color => `Color(0xFF${colorToPlatformHex(color).replace('#', '')})`;
-    const consts   = colorTokens.map(t => `private val _${t.path[1]} = ${toKotlin(val(t))}`).join('\n');
-    const entries  = m3Tokens.map(t => `    ${t.path[1]} = _${t.path[1]}`).join(',\n');
-    const extraColorVals = extraTokens.map(t => `val ${ThemeName}${ModeName}${t.path[1].charAt(0).toUpperCase() + t.path[1].slice(1)} = _${t.path[1]}`);
+    const consts = Object.entries(androidRoles).map(([role, path]) => {
+      return `private val _${role} = ${toKotlin(colorForPath(path))}`;
+    }).join('\n');
+    const entries = Object.keys(androidRoles).map((role) => `    ${role} = _${role}`).join(',\n');
+    const extraColorVals = colorTokens.map((token) => {
+      const name = toPascal(token.path);
+      return `val ${ThemeName}${ModeName}${name} = ${toKotlin(platformColorTokenValue(token))}`;
+    });
     const extraOpacityVals = opacityTokens.map(t => {
       const name = toPascal(t.path.slice(1));
       return `val ${ThemeName}${ModeName}${name} = ${parseFloat(val(t)).toFixed(2)}f`;
@@ -353,9 +410,10 @@ ${extras}
 StyleDictionary.registerFormat({
   name: 'typescript/react-native',
   format: ({ dictionary, options }) => {
-    const { theme, mode } = options;
+    const { identity, theme, mode } = options;
 
-    const colorTokens    = dictionary.allTokens.filter(t => t.path[0] === 'color');
+    const colorTokens = dictionary.allTokens.filter(t => t.path[0] === 'color');
+    const tokens = new Map(dictionary.allTokens.map((token) => [token.path.join('.'), token]));
     const spacingTokens  = dictionary.allTokens.filter(t => t.path[0] === 'spacing');
     const radiusTokens   = dictionary.allTokens.filter(t => t.path[0] === 'radius');
     const fontSizeTokens = dictionary.allTokens.filter(t => t.path[0] === 'font' && t.path[1] === 'size');
@@ -364,7 +422,13 @@ StyleDictionary.registerFormat({
 
     const v     = t => t.value ?? t.$value;
     const toNum = t => dimensionToPixels(v(t));
-    const colFmt  = colorTokens.map(t => `  ${t.path[1]}: '${colorToPlatformHex(v(t))}'`).join(',\n');
+    const colFmt = colorTokens.map((token) => (
+      `  '${token.path.slice(1).join('.')}': '${colorToPlatformHex(platformColorTokenValue(token))}'`
+    )).join(',\n');
+    const identityFmt = Object.entries(identity).map(([role, pair]) => {
+      if (!pair.background || !pair.foreground) throw new Error(`[react-native-v2] Missing ${role} identity pair for ${theme}/${mode}.`);
+      return `  ${role}: { background: '${colorToPlatformHex(pair.background)}', foreground: '${colorToPlatformHex(pair.foreground)}' }`;
+    }).join(',\n');
     const spFmt   = spacingTokens.map(t => `  '${t.path[1]}': ${toNum(t)}`).join(',\n');
     const radFmt  = radiusTokens.map(t => `  '${t.path[1]}': ${toNum(t)}`).join(',\n');
     const fsFmt   = fontSizeTokens.map(t => `  '${t.path[2]}': ${toNum(t)}`).join(',\n');
@@ -377,6 +441,10 @@ StyleDictionary.registerFormat({
 
 export const colors = {
 ${colFmt}
+} as const;
+
+export const identity = {
+${identityFmt}
 } as const;
 
 export const spacing = {
@@ -405,7 +473,13 @@ ${ffFmt}
 // ─── Build ────────────────────────────────────────────────────────────────────
 
 for (const theme of THEMES) {
+  const v2Family = readJsonFile(`${V2_FAMILY_ROOTS[theme]}/family.bb.json`);
   for (const mode of MODES) {
+    const v2Tokens = flattenDtcgTokens(readJsonFile(`${V2_FAMILY_ROOTS[theme]}/modes/${mode}.tokens.json`));
+    const identity = Object.fromEntries(v2Family.identity.map((entry) => [entry.id, {
+      background: colorValueToCss(resolveDtcgToken(v2Tokens, entry.token), entry.token),
+      foreground: colorValueToCss(resolveDtcgToken(v2Tokens, entry.foregroundToken), entry.foregroundToken),
+    }]));
     const modeName = mode.charAt(0).toUpperCase() + mode.slice(1);
     const selector = mode === 'light' ? ':root' : '[data-theme="dark"]';
 
@@ -416,29 +490,31 @@ for (const theme of THEMES) {
       source: [
         `tokens/themes/${theme}/${mode}.json`,
         `tokens/themes/${theme}/interface.json`,
+        `${V2_FAMILY_ROOTS[theme]}/modes/${mode}.tokens.json`,
       ],
       platforms: {
         // CSS custom properties for Tauri, Vue, or any web project
         web: {
-          transforms: ['attribute/cti', 'name/kebab', 'time/seconds', 'size/rem', 'fontFamily/css'],
+          transforms: ['attribute/cti', 'name/kebab', 'time/seconds', 'size/rem', 'fontFamily/css', 'color/dtcg-css'],
           prefix: 'bb',
           buildPath: `dist/web/${theme}/`,
           files: [{
             destination: `${mode}.css`,
             format: 'css/variables',
+            filter: (token) => !['color', 'palette'].includes(token.path[0]),
             options: { selector, outputReferences: false },
           }],
         },
 
         // Kotlin color scheme for ui/theme/generated/ in Android projects
         android: {
-          transforms: ['attribute/cti'],
+          transforms: ['attribute/cti', 'name/pascal'],
           buildPath: `dist/android/${theme}/`,
           files: [{
             destination: `${modeName}Colors.kt`,
             format: 'kotlin/color-scheme',
             filter: token => token.path[0] === 'color' || token.path[0] === 'opacity',
-            options: { theme, mode },
+            options: { identity, theme, mode },
           }],
         },
 
@@ -449,7 +525,8 @@ for (const theme of THEMES) {
           files: [{
             destination: `${mode}.ts`,
             format: 'typescript/react-native',
-            options: { theme, mode },
+            filter: (token) => ['color', 'font', 'opacity', 'radius', 'spacing'].includes(token.path[0]),
+            options: { identity, theme, mode },
           }],
         },
       },
@@ -457,6 +534,9 @@ for (const theme of THEMES) {
 
     await sd.buildAllPlatforms();
     const generatedInterfaceCss = readFileSync(`dist/web/${theme}/${mode}.css`, 'utf8');
+    if (generatedInterfaceCss.includes('[object Object]')) {
+      throw new Error(`[web-contract] ${theme}/${mode} contains an unresolved structured token value.`);
+    }
     for (const variable of REQUIRED_INTERFACE_VARIABLES) {
       if (!generatedInterfaceCss.includes(`${variable}:`)) {
         throw new Error(`[interface-contract] ${theme}/${mode} is missing ${variable}.`);
@@ -842,6 +922,38 @@ function colorValueToCss(value, path) {
   return `rgb(${channels.join(' ')} / ${alpha})`;
 }
 
+function linearizeSrgbChannel(value) {
+  if (value <= 0.04045) return value / 12.92;
+  return ((value + 0.055) / 1.055) ** 2.4;
+}
+
+function colorValueToLinearSrgb(value, path) {
+  colorValueToCss(value, path);
+  if (value.colorSpace === 'srgb') return value.components.map(linearizeSrgbChannel);
+  const [lightness, chroma, hue] = value.components;
+  const radians = hue * Math.PI / 180;
+  const a = chroma * Math.cos(radians);
+  const b = chroma * Math.sin(radians);
+  const l = (lightness + (0.3963377773761749 * a) + (0.2158037573099136 * b)) ** 3;
+  const m = (lightness - (0.1055613458156586 * a) - (0.0638541728258133 * b)) ** 3;
+  const s = (lightness - (0.0894841775298119 * a) - (1.2914855480194092 * b)) ** 3;
+  return [
+    (4.076741661347994 * l) - (3.307711591300588 * m) + (0.230969929981965 * s),
+    (-1.2684380040921763 * l) + (2.6097574006633715 * m) - (0.3413193963102197 * s),
+    (-0.004196086541837188 * l) - (0.7034186144594493 * m) + (1.7076147009309444 * s),
+  ].map((channel) => Math.min(1, Math.max(0, channel)));
+}
+
+function contrastRatioForDtcgColors(foreground, background, foregroundPath, backgroundPath) {
+  const luminance = (value, path) => {
+    const [red, green, blue] = colorValueToLinearSrgb(value, path);
+    return (0.2126 * red) + (0.7152 * green) + (0.0722 * blue);
+  };
+  const first = luminance(foreground, foregroundPath);
+  const second = luminance(background, backgroundPath);
+  return (Math.max(first, second) + 0.05) / (Math.min(first, second) + 0.05);
+}
+
 function kebabCase(value) {
   return String(value)
     .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
@@ -893,6 +1005,13 @@ function buildV2CatalogPayload(theme) {
     contract.color.creatorIdentityRoles,
     'creator identity roles'
   );
+  for (const entry of family.identity) {
+    for (const field of contract.color.creatorIdentityRequiredFields) {
+      if (!String(entry?.[field] || '').trim()) {
+        throw new Error(`[v2-contract] ${family.displayName} identity ${entry?.id || 'entry'} is missing ${field}.`);
+      }
+    }
+  }
 
   for (const role of contract.typography.mandatoryFamilyRoles) {
     assertSingleV2FontFamily(family.typography.families?.[role], role);
@@ -950,10 +1069,25 @@ function buildV2CatalogPayload(theme) {
       path,
       colorValueToCss(resolveDtcgToken(tokens, path), path),
     ]));
-    const identity = family.identity.map((entry) => ({
-      ...entry,
-      value: colorValueToCss(resolveDtcgToken(tokens, entry.token), entry.token),
-    }));
+    const identity = family.identity.map((entry) => {
+      const background = resolveDtcgToken(tokens, entry.token);
+      const foreground = resolveDtcgToken(tokens, entry.foregroundToken);
+      const contrastRatio = contrastRatioForDtcgColors(
+        foreground,
+        background,
+        entry.foregroundToken,
+        entry.token
+      );
+      if (contrastRatio < contract.color.creatorIdentityMinimumTextContrast) {
+        throw new Error(`[v2-contract] ${theme} ${mode} ${entry.id} identity foreground contrast is ${contrastRatio.toFixed(2)}:1, below ${contract.color.creatorIdentityMinimumTextContrast}:1.`);
+      }
+      return {
+        ...entry,
+        contrastRatio,
+        foreground: colorValueToCss(foreground, entry.foregroundToken),
+        value: colorValueToCss(background, entry.token),
+      };
+    });
     const identityById = Object.fromEntries(identity.map((entry) => [entry.id, entry.value]));
     const identityRoleBindings = {
       primary: 'color.interaction.action',
@@ -972,6 +1106,10 @@ function buildV2CatalogPayload(theme) {
       `--bb-v2-${kebabCase(path)}`,
       value,
     ]));
+    for (const entry of identity) {
+      variables[`--bb-v2-identity-${kebabCase(entry.id)}`] = entry.value;
+      variables[`--bb-v2-identity-${kebabCase(entry.id)}-foreground`] = entry.foreground;
+    }
 
     for (const [role, familyName] of Object.entries(family.typography.families)) {
       variables[`--bb-v2-font-family-${kebabCase(role)}`] = familyName;
@@ -1013,8 +1151,37 @@ const v2CatalogPayloads = Object.fromEntries(Object.keys(V2_FAMILY_ROOTS).map((t
   theme,
   buildV2CatalogPayload(theme),
 ]));
+
+function injectV2Variables(source, selector, variables) {
+  const marker = `${selector} {`;
+  if (!source.includes(marker)) throw new Error(`[v2-contract] Missing CSS selector ${selector}.`);
+  const declarations = Object.entries(variables)
+    .map(([name, value]) => `  ${name}: ${value};`)
+    .join('\n');
+  return source.replace(marker, `${marker}\n${declarations}`);
+}
+
+for (const theme of THEMES) {
+  const payload = v2CatalogPayloads[theme];
+  for (const mode of MODES) {
+    const file = `dist/web/${theme}/${mode}.css`;
+    const selector = mode === 'light' ? ':root' : '[data-theme="dark"]';
+    writeFileSync(file, injectV2Variables(readFileSync(file, 'utf8'), selector, payload.modes[mode].variables));
+  }
+  const scopedFile = `dist/web/${theme}/scoped.css`;
+  let scoped = readFileSync(scopedFile, 'utf8');
+  for (const mode of MODES) {
+    scoped = injectV2Variables(
+      scoped,
+      `[data-bb-theme-family="${theme}"][data-bb-theme-mode="${mode}"]`,
+      payload.modes[mode].variables
+    );
+  }
+  writeFileSync(scopedFile, scoped);
+}
+
 const catalog = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   packageVersion: packageManifest.version,
   sharedAssets: SHARED_WEB_ASSETS.map(({ sourcePath: _sourcePath, ...asset }) => asset),
   themes: THEMES.map((theme) => {
@@ -1026,13 +1193,6 @@ const catalog = {
       id: theme,
       label: THEME_LABELS[theme] ?? theme,
       source: 'first-party',
-      modes: Object.fromEntries(MODES.map((mode) => [
-        mode,
-        {
-          cssPath: `${theme}/${mode}.css`,
-          variables: cssVariablesFromGeneratedFile(`dist/web/${theme}/${mode}.css`),
-        },
-      ])),
       icons: {
         family: configuredIcons.family,
         style: configuredIcons.style,

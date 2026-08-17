@@ -1,6 +1,7 @@
 {
   "palette": {
     "$type": "color",
+    "identityAccentForeground": { "$value": { "colorSpace": "srgb", "components": [0.941176, 0.921569, 0.898039], "alpha": 1, "hex": "#F0EBE5" } },
     "primary": { "$value": { "colorSpace": "srgb", "components": [0.298039, 0.686275, 0.313725], "alpha": 1, "hex": "#4CAF50" } },
     "onPrimary": { "$value": { "colorSpace": "srgb", "components": [0.039216, 0.121569, 0.047059], "alpha": 1, "hex": "#0A1F0C" } },
     "primaryContainer": { "$value": { "colorSpace": "srgb", "components": [0.219608, 0.556863, 0.235294], "alpha": 1, "hex": "#388E3C" } },
@@ -57,7 +58,7 @@
     },
     "interaction": {
       "action": { "$value": "{palette.primary}" }, "onAction": { "$value": "{palette.onPrimary}" }, "actionHover": { "$value": "{palette.primaryContainer}" }, "actionPressed": { "$value": "{palette.primaryContainer}" },
-      "selected": { "$value": "{palette.primaryContainer}" }, "onSelected": { "$value": "{palette.onPrimaryContainer}" }, "selection": { "$value": "{palette.tertiary}" }, "onSelection": { "$value": "{palette.onTertiary}" },
+      "selected": { "$value": "{palette.primaryContainer}" }, "onSelected": { "$value": { "colorSpace": "srgb", "components": [0.047059, 0.054902, 0.047059], "alpha": 1, "hex": "#0C0E0C" } }, "selection": { "$value": "{palette.tertiary}" }, "onSelection": { "$value": "{palette.onTertiary}" },
       "caret": { "$value": "{palette.primary}" }, "dropTarget": { "$value": "{palette.primary}" }, "dragPreview": { "$value": "{palette.primaryContainer}" }
     },
     "status": {

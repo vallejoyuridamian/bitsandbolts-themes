@@ -1,5 +1,6 @@
 {
   "palette": {
+    "identityAccentForeground": { "$value": { "colorSpace": "srgb", "components": [0.984314, 0.952941, 0.945098], "alpha": 1, "hex": "#FBF3F1" } },
     "primary": {
       "$value": {
         "colorSpace": "oklch",

@@ -9,8 +9,8 @@
   overscroll-behavior: contain;
   border: 1px solid var(--bb-interface-menu-border);
   border-radius: var(--bb-radius-lg);
-  color: var(--bb-color-on-surface);
-  background: var(--bb-color-surface);
+  color: var(--bb-v2-color-content-primary);
+  background: var(--bb-v2-color-surface-surface);
   box-shadow: var(--bb-shadow-xl);
   font-family: var(--bb-font-family-body);
   scrollbar-color: var(--bb-interface-menu-scrollbar-thumb) var(--bb-interface-menu-scrollbar-track);
@@ -18,7 +18,7 @@
 }
 
 .bb-dialog::backdrop {
-  background: color-mix(in srgb, var(--bb-color-background) 78%, transparent);
+  background: color-mix(in srgb, var(--bb-v2-color-surface-canvas) 78%, transparent);
   backdrop-filter: blur(7px);
 }
 
@@ -29,7 +29,7 @@
 }
 
 .bb-dialog__kicker {
-  color: var(--bb-color-primary);
+  color: var(--bb-v2-identity-primary);
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-bold);
   letter-spacing: 0.08em;
@@ -39,7 +39,7 @@
 
 .bb-dialog__title {
   margin: 0;
-  color: var(--bb-color-on-surface);
+  color: var(--bb-v2-color-content-primary);
   font-family: var(--bb-font-family-display);
   font-size: var(--bb-font-size-xl);
   font-weight: var(--bb-font-weight-bold);
@@ -48,7 +48,7 @@
 
 .bb-dialog__description {
   margin: 0;
-  color: var(--bb-color-on-surface-variant);
+  color: var(--bb-v2-color-content-secondary);
   font-size: var(--bb-font-size-sm);
   line-height: var(--bb-font-line-height-relaxed);
 }
@@ -61,8 +61,8 @@
   padding: var(--bb-spacing-4);
   border: 1px solid var(--bb-interface-menu-border);
   border-radius: var(--bb-radius-md);
-  color: var(--bb-color-on-surface-variant);
-  background: var(--bb-color-surface-variant);
+  color: var(--bb-v2-color-content-secondary);
+  background: var(--bb-v2-color-surface-subtle);
   font-size: var(--bb-font-size-xs);
   line-height: var(--bb-font-line-height-normal);
 }
@@ -71,7 +71,7 @@
   --ms-size: 18px;
   --ms-fill: 0;
   --ms-weight: 300;
-  color: var(--bb-color-primary);
+  color: var(--bb-v2-identity-primary);
 }
 
 .bb-dialog__actions {
@@ -92,7 +92,7 @@
 .bb-dialog-action {
   background: transparent;
   border: none;
-  color: var(--bb-color-primary);
+  color: var(--bb-v2-identity-primary);
   cursor: pointer;
   font-family: var(--bb-font-family-body);
   font-size: var(--bb-font-size-md);

@@ -13,8 +13,8 @@
 
 .bb-horseshoe {
   --bb-horseshoe-value: 0;
-  --bb-horseshoe-color: var(--bb-color-primary);
-  --bb-horseshoe-track: var(--bb-color-outline-variant);
+  --bb-horseshoe-color: var(--bb-v2-identity-primary);
+  --bb-horseshoe-track: var(--bb-v2-color-border-subtle);
   --bb-horseshoe-size: 132px;
   position: relative;
   display: grid;
@@ -48,7 +48,7 @@
 .bb-horseshoe-label {
   position: absolute;
   bottom: 2px;
-  color: var(--bb-color-on-surface);
+  color: var(--bb-v2-color-content-primary);
   font-family: var(--bb-font-family-display);
   font-size: var(--bb-font-size-xl);
   font-weight: var(--bb-font-weight-bold);
@@ -56,9 +56,9 @@
 }
 
 .bb-horseshoe[data-pressure="warn"] {
-  --bb-horseshoe-color: var(--bb-color-warning);
+  --bb-horseshoe-color: var(--bb-v2-color-status-warning-border);
 }
 
 .bb-horseshoe[data-pressure="critical"] {
-  --bb-horseshoe-color: var(--bb-color-error);
+  --bb-horseshoe-color: var(--bb-v2-color-status-danger-border);
 }

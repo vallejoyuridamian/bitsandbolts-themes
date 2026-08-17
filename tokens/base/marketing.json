@@ -1,13 +1,13 @@
 {
   "marketing": {
     "page": {
-      "canvas": { "$value": "{color.background}", "$type": "color" }
+      "canvas": { "$value": "{color.surface.canvas}", "$type": "color" }
     },
     "chrome": {
-      "background": { "$value": "{color.scrim}", "$type": "color" },
-      "accent": { "$value": "{color.primary}", "$type": "color" },
-      "onAccent": { "$value": "{color.onPrimary}", "$type": "color" },
-      "navigation": { "$value": "{color.onBackground}", "$type": "color" },
+      "background": { "$value": "{color.surface.scrim}", "$type": "color" },
+      "accent": { "$value": "{color.interaction.action}", "$type": "color" },
+      "onAccent": { "$value": "{color.interaction.onAction}", "$type": "color" },
+      "navigation": { "$value": "{color.content.primary}", "$type": "color" },
       "metaFont": { "$value": "{font.family.body}" }
     },
     "heroIconGlow": { "$value": "#00FFF7", "$type": "color" },
@@ -18,17 +18,17 @@
       "clientText": { "$value": "#AAAAAA", "$type": "color" }
     },
     "content": {
-      "panelSurface": { "$value": "{color.surface}", "$type": "color" },
-      "bodyText": { "$value": "{color.onSurfaceVariant}", "$type": "color" }
+      "panelSurface": { "$value": "{color.surface.surface}", "$type": "color" },
+      "bodyText": { "$value": "{color.content.secondary}", "$type": "color" }
     },
     "form": {
-      "fieldSurface": { "$value": "{color.surfaceVariant}", "$type": "color" },
-      "fieldContent": { "$value": "{color.onSurface}", "$type": "color" },
-      "fieldBorder": { "$value": "{color.outline}", "$type": "color" },
-      "fieldFocus": { "$value": "{color.primary}", "$type": "color" },
-      "fieldError": { "$value": "{color.error}", "$type": "color" },
-      "fieldInsetGlow": { "$value": "{color.primary}", "$type": "color" },
-      "fieldErrorGlow": { "$value": "{color.error}", "$type": "color" }
+      "fieldSurface": { "$value": "{color.surface.subtle}", "$type": "color" },
+      "fieldContent": { "$value": "{color.content.primary}", "$type": "color" },
+      "fieldBorder": { "$value": "{color.border.default}", "$type": "color" },
+      "fieldFocus": { "$value": "{color.interaction.action}", "$type": "color" },
+      "fieldError": { "$value": "{color.status.dangerBorder}", "$type": "color" },
+      "fieldInsetGlow": { "$value": "{color.interaction.action}", "$type": "color" },
+      "fieldErrorGlow": { "$value": "{color.status.dangerBorder}", "$type": "color" }
     },
     "highlight": { "$value": "#FFFFFF", "$type": "color" },
     "storeBadge": {

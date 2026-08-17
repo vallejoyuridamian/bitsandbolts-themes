@@ -71,7 +71,7 @@
 }
 
 .bb-hero__eyebrow {
-  color: var(--bb-color-primary);
+  color: var(--bb-v2-identity-primary);
   font-family: var(--bb-font-family-display);
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-bold);
@@ -109,10 +109,10 @@
   align-items: center;
   gap: var(--bb-spacing-2);
   padding: var(--bb-spacing-1) var(--bb-spacing-3);
-  border: 1px solid var(--bb-color-outline-variant);
+  border: 1px solid var(--bb-v2-color-border-subtle);
   border-radius: var(--bb-radius-full);
-  color: var(--bb-color-on-surface-variant);
-  background: var(--bb-color-surface);
+  color: var(--bb-v2-color-content-secondary);
+  background: var(--bb-v2-color-surface-surface);
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-medium);
 }
@@ -130,7 +130,7 @@
   gap: var(--bb-spacing-2);
   margin: 0;
   padding: 0;
-  color: var(--bb-color-on-surface-variant);
+  color: var(--bb-v2-color-content-secondary);
   font-size: var(--bb-font-size-sm);
   list-style: none;
 }

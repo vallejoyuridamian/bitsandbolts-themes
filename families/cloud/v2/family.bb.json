@@ -8,10 +8,10 @@
     { "mode": "dark", "density": "standard" }
   ],
   "identity": [
-    { "id": "primary", "label": "Primary", "token": "color.interaction.action" },
-    { "id": "secondary", "label": "Secondary", "token": "color.interaction.selected" },
-    { "id": "accent", "label": "Accent", "token": "palette.tertiary" },
-    { "id": "neutral", "label": "Neutral", "token": "color.surface.surface" }
+    { "id": "primary", "label": "Primary", "token": "color.interaction.action", "foregroundToken": "color.interaction.onAction" },
+    { "id": "secondary", "label": "Secondary", "token": "color.interaction.selected", "foregroundToken": "color.interaction.onSelected" },
+    { "id": "accent", "label": "Accent", "token": "palette.tertiary", "foregroundToken": "palette.identityAccentForeground" },
+    { "id": "neutral", "label": "Neutral", "token": "color.surface.surface", "foregroundToken": "color.content.primary" }
   ],
   "artDirection": {
     "label": "Calm utility",

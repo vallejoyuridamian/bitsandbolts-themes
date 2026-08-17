@@ -17,7 +17,7 @@
   padding: 0.25vw 0;
   border: 0;
   color: var(--bb-marketing-chrome-on-accent);
-  background: var(--bb-color-primary);
+  background: var(--bb-v2-identity-primary);
   font-family: var(--bb-font-family-body);
   font-size: 0.9rem;
   line-height: normal;

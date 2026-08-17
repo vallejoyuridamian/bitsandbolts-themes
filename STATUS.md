@@ -15,6 +15,11 @@ Last verified: 2026-08-16
 - All nine families include semantic colors, typography, interface roles,
   reusable recipes, catalog data, web CSS, Android outputs, React Native outputs,
   and GitHub Pages showcase artifacts.
+- Catalog schema 2 publishes four exact identity foreground pairs per mode. All 72
+  pairs pass 4.5:1 after exact serialization. Canonical art direction retains 59
+  palette-derived foregrounds and 13 deliberate literal black or white values.
+- Authored V1 color blocks and generated V1 web variables are removed.
+  Web, Android, React Native, documentation, and shared recipes consume V2 only.
 - The established family typography, licensed local fonts, Brutus native Ultra
   weight, Forest Hero leading, and semantic summary-card typography remain intact.
 - The owner accepted the standardized showcase: Theme detail fills the workspace,
@@ -42,7 +47,7 @@ Last verified: 2026-08-16
 - Theme project editing exposes colors and fonts. All other values inherit the
   selected source family until a later owner-directed slice.
 - Editable identity colors use the shared add-tile and full-sample picker recipes.
-  Palette completion is omitted until Primary exists, then uses the exact Select.
+  Palette completion is Primary-gated; all Theme Selects inherit live root roles.
 
 ## Shared Recipes and Icons
 
@@ -86,18 +91,15 @@ Last verified: 2026-08-16
 
 ## Evidence and Acceptance Boundary
 
-- The owner accepted Primary-gated palette completion, first-movement empty-slot
-  commits, 50 ms color preview, exact Neutral background preview, and the shared
-  minimal AppScreen detail. Focused AppScreen checks pass 56/56 and its build passes.
-- The preceding Themes build, focused renderer checks, generated-output comparison,
-  and repository diff checks passed. Broader workflow acceptance remains pending.
-- The focused Theme presentation checkpoint is the current local baseline.
-  Nothing was pushed.
+- The exact-pair contract and V1 retirement are locally complete. Themes builds
+  without generator warnings, rejects structured colors serialized as objects,
+  its dev health check passes, and affected AppScreen checks pass 83/83.
+- The owner accepted this exact-pair and Select result; it is committed locally
+  and nothing was pushed.
 
 ## Open Gates
 
-- Compare all nine canonical families against exact foreground pairs for Primary,
-  Secondary, Accent, and Neutral, then retire superseded v1 color paths with proof.
+- The changed renderer is owner-accepted; any later visual change requires review.
 - The v2 contract still needs pinned DTCG resolver validation, full provenance
   enforcement, glyph and fallback checks, and complete React, Compose, and React
   Native component adapters.

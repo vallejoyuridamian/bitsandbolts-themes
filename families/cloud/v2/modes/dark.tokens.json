@@ -1,6 +1,7 @@
 {
   "palette": {
     "$type": "color",
+    "identityAccentForeground": { "$value": { "colorSpace": "srgb", "components": [0.047059, 0.290196, 0.431373], "alpha": 1, "hex": "#0C4A6E" } },
     "primary": { "$value": { "colorSpace": "srgb", "components": [0.647059, 0.705882, 0.988235], "alpha": 1, "hex": "#A5B4FC" } },
     "onPrimary": { "$value": { "colorSpace": "srgb", "components": [0.117647, 0.105882, 0.294118], "alpha": 1, "hex": "#1E1B4B" } },
     "primaryContainer": { "$value": { "colorSpace": "srgb", "components": [0.192157, 0.180392, 0.505882], "alpha": 1, "hex": "#312E81" } },

@@ -42,8 +42,8 @@
 - [x] Own the refined handled-window shell, grip, glowing close control,
   confirmation and button recipes, plus the exact Theme-viewer specimen.
 - [x] Clean stale generated component and icon directories before every build.
-- [x] Pass both builds, latest focused 18/18 checks, preceding integrated 32/32
-  checks, and repository diff checks.
+- [x] Add four exact identity foreground pairs, retain palette-aware art direction,
+  publish schema 2, and retire superseded V1 color paths without aliases.
 - [x] Accept full-width detail, local identity add-icon sizing, four-line gallery
   headlines, and exact visible identity-role mapping.
 - [x] Keep the full standalone showcase while shared AppScreen view and creator
@@ -51,7 +51,7 @@
 
 ## Owner-Directed Next Work
 
-1. Compare all canonical families, add exact identity foreground pairs, and retire superseded v1 color paths.
+1. Obtain fresh owner acceptance for the changed exact-pair renderer in both modes.
 2. Add Theme project fields beyond colors and fonts in owner-selected slices.
 3. Migrate remaining legacy Dialog consumers in a separately directed UI slice.
 4. Review one existing family or detail composition through a focused visual slice.

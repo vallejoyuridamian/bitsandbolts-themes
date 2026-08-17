@@ -15,7 +15,7 @@ body.bb-theme-showcase {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
   overflow: hidden;
-  color: var(--bb-color-on-background);
+  color: var(--bb-v2-color-content-primary);
   background: var(--bb-interface-workspace-background);
   font-family: var(--bb-font-family-body);
 }
@@ -26,8 +26,8 @@ body.bb-theme-showcase {
   gap: var(--bb-spacing-3);
   min-height: 48px;
   padding: var(--bb-spacing-2) var(--bb-spacing-4);
-  border-bottom: 1px solid var(--bb-color-outline-variant);
-  background: var(--bb-color-background);
+  border-bottom: 1px solid var(--bb-v2-color-border-subtle);
+  background: var(--bb-v2-color-surface-canvas);
 }
 
 .bb-theme-showcase__mark {
@@ -48,7 +48,7 @@ body.bb-theme-showcase {
 }
 
 .bb-theme-showcase__identity span {
-  color: var(--bb-color-on-surface-variant);
+  color: var(--bb-v2-color-content-secondary);
   font-size: var(--bb-font-size-sm);
 }
 

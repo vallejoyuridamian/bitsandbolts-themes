@@ -55,33 +55,33 @@
   align-self: center;
   box-sizing: border-box;
   height: 7px;
-  border: 1px solid color-mix(in srgb, var(--bb-color-primary) 20%, transparent);
+  border: 1px solid color-mix(in srgb, var(--bb-v2-identity-primary) 20%, transparent);
   border-radius: 999px;
   background: linear-gradient(
     90deg,
-    color-mix(in srgb, var(--bb-color-primary) 4%, transparent),
-    color-mix(in srgb, var(--bb-color-primary) 30%, transparent),
-    color-mix(in srgb, var(--bb-color-primary) 4%, transparent)
+    color-mix(in srgb, var(--bb-v2-identity-primary) 4%, transparent),
+    color-mix(in srgb, var(--bb-v2-identity-primary) 30%, transparent),
+    color-mix(in srgb, var(--bb-v2-identity-primary) 4%, transparent)
   );
   box-shadow:
     inset 0 0 4px color-mix(in srgb, var(--bb-interface-control-hover-foreground) 5%, transparent),
-    0 0 6px color-mix(in srgb, var(--bb-color-primary) 7%, transparent);
+    0 0 6px color-mix(in srgb, var(--bb-v2-identity-primary) 7%, transparent);
   cursor: grab;
   touch-action: none;
 }
 
 .bb-floating-window__grip:is(:hover, :focus-visible),
 .bb-floating-window__grip.is-active {
-  border: 2px solid color-mix(in srgb, var(--bb-color-primary) 78%, transparent);
+  border: 2px solid color-mix(in srgb, var(--bb-v2-identity-primary) 78%, transparent);
   background: linear-gradient(
     90deg,
-    color-mix(in srgb, var(--bb-color-primary) 28%, transparent),
-    var(--bb-color-primary),
-    color-mix(in srgb, var(--bb-color-primary) 28%, transparent)
+    color-mix(in srgb, var(--bb-v2-identity-primary) 28%, transparent),
+    var(--bb-v2-identity-primary),
+    color-mix(in srgb, var(--bb-v2-identity-primary) 28%, transparent)
   );
   box-shadow:
     inset 0 0 6px color-mix(in srgb, var(--bb-interface-control-hover-foreground) 22%, transparent),
-    0 0 10px color-mix(in srgb, var(--bb-color-primary) 32%, transparent);
+    0 0 10px color-mix(in srgb, var(--bb-v2-identity-primary) 32%, transparent);
   outline: none;
 }
 

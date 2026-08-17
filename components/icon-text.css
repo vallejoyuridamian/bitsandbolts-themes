@@ -14,7 +14,7 @@
   height: 1em;
   margin-right: 0.4em;
   overflow: visible;
-  color: var(--bb-color-primary);
+  color: var(--bb-v2-identity-primary);
   font-size: 1.2em;
   vertical-align: -0.125em;
 }

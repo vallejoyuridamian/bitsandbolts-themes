@@ -16,8 +16,8 @@ html:has(body.bb-immersive-page),
 body.bb-immersive-page {
   min-height: 100%;
   margin: 0;
-  color: var(--bb-color-on-background);
-  background: var(--bb-color-background);
+  color: var(--bb-v2-color-content-primary);
+  background: var(--bb-v2-color-surface-canvas);
   font-family: var(--bb-font-family-body);
 }
 
@@ -46,7 +46,7 @@ body.bb-immersive-page {
   position: relative;
   z-index: 1;
   min-height: 100vh;
-  background: color-mix(in srgb, var(--bb-color-scrim) 60%, transparent);
+  background: color-mix(in srgb, var(--bb-v2-color-surface-scrim) 60%, transparent);
 }
 
 .bb-backdrop-layout__main {
@@ -76,7 +76,7 @@ body.bb-immersive-page {
 .bb-centered-heading__subtitle {
   margin: 0 0 3vw;
   padding: inherit;
-  color: var(--bb-color-primary);
+  color: var(--bb-v2-identity-primary);
   font-family: var(--bb-font-family-display);
   font-size: clamp(1.1rem, 2.5vw, 3rem);
   font-weight: var(--bb-font-weight-bold);

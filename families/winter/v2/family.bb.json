@@ -17,22 +17,26 @@
     {
       "id": "primary",
       "label": "Primary",
-      "token": "color.interaction.action"
+      "token": "color.interaction.action",
+      "foregroundToken": "color.interaction.onAction"
     },
     {
       "id": "secondary",
       "label": "Secondary",
-      "token": "color.interaction.selected"
+      "token": "color.interaction.selected",
+      "foregroundToken": "color.interaction.onSelected"
     },
     {
       "id": "accent",
       "label": "Accent",
-      "token": "palette.secondary"
+      "token": "palette.secondary",
+      "foregroundToken": "palette.identityAccentForeground"
     },
     {
       "id": "neutral",
       "label": "Neutral",
-      "token": "color.surface.surface"
+      "token": "color.surface.surface",
+      "foregroundToken": "color.content.primary"
     }
   ],
   "artDirection": {

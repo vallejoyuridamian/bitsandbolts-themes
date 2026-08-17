@@ -212,7 +212,7 @@ Gate:
 
 ### 9A. Exact identity foreground pairs and color-path retirement
 
-Status at safe checkpoint: authorized, not implemented.
+Status: implemented, validated, and owner-accepted.
 
 Owner review proved that the existing semantic interaction foregrounds do not
 pair with the exact four creator identity colors. The current Accent gallery
@@ -242,6 +242,18 @@ The correction must:
 Exit gate: every canonical family and user-authored Theme has four exact identity
 pairs, required contrast checks pass, removed v1 path searches are empty, generated
 outputs match source, affected consumer checks pass, and the owner accepts both modes.
+
+Implementation evidence on 2026-08-16: all nine families now expose four exact
+pairs in both modes. The comparison retained passing authored foregrounds and
+repaired 8 Primary or Secondary pairs plus 4 Accent fallback candidates with
+existing family tokens or role-colored ramp values. All 72 pairs pass 4.5:1;
+59 are palette-derived and 13 retain deliberate literal black or white values.
+Catalog schema 2, web, Android, React Native, documentation, and shared recipes
+consume V2 directly. Authored V1 color blocks, generated V1 variables, top-level
+catalog modes, and fallback consumers are gone. The Themes build and dev health
+check pass, as do 83 affected AppScreen checks and its production build. The
+owner accepted the exact-pair, Neutral completion, Theme-root Select, font Select,
+portaled menu, and handled-window result.
 
 ## Rare override workflow
 

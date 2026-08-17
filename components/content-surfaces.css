@@ -11,13 +11,13 @@
   padding: 20px;
   border-radius: var(--bb-radius-xl);
   background: var(--bb-marketing-content-panel-surface);
-  box-shadow: 0 0 5px color-mix(in srgb, var(--bb-color-secondary) 35%, transparent);
+  box-shadow: 0 0 5px color-mix(in srgb, var(--bb-v2-identity-secondary) 35%, transparent);
   transition: box-shadow 200ms ease, transform 200ms ease;
 }
 
 .bb-information-panel:hover,
 .bb-information-panel:focus-within {
-  box-shadow: 0 6px 18px color-mix(in srgb, var(--bb-color-scrim) 40%, transparent);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--bb-v2-color-surface-scrim) 40%, transparent);
   transform: translateY(-6px);
 }
 
@@ -39,13 +39,13 @@
   border-radius: var(--bb-radius-xl);
   color: inherit;
   background: var(--bb-marketing-content-panel-surface);
-  box-shadow: 0 0 5px color-mix(in srgb, var(--bb-color-secondary) 35%, transparent);
+  box-shadow: 0 0 5px color-mix(in srgb, var(--bb-v2-identity-secondary) 35%, transparent);
   text-decoration: none;
 }
 
 .bb-content-card:hover,
 .bb-content-card:focus-within {
-  box-shadow: 0 6px 18px color-mix(in srgb, var(--bb-color-scrim) 40%, transparent);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--bb-v2-color-surface-scrim) 40%, transparent);
   transform: translateY(-6px);
 }
 
@@ -61,7 +61,7 @@
 
 .bb-content-card--horizontal:hover,
 .bb-content-card--horizontal:focus-within {
-  box-shadow: 0 8px 20px color-mix(in srgb, var(--bb-color-scrim) 40%, transparent);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--bb-v2-color-surface-scrim) 40%, transparent);
   transform: translateY(-4px);
 }
 
@@ -89,7 +89,7 @@
   height: 90px;
   margin: 0;
   border-radius: 10px;
-  box-shadow: 0 0 12px color-mix(in srgb, var(--bb-color-secondary) 35%, transparent);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--bb-v2-identity-secondary) 35%, transparent);
   object-fit: fill;
 }
 
@@ -124,7 +124,7 @@
   width: 0.875em;
   height: 1em;
   margin-inline: 0.08em;
-  color: var(--bb-color-warning);
+  color: var(--bb-v2-color-status-warning-border);
   vertical-align: -0.125em;
 }
 
@@ -176,7 +176,7 @@
   border: 0;
   border-radius: var(--bb-radius-full);
   color: var(--bb-marketing-highlight);
-  background: color-mix(in srgb, var(--bb-color-scrim) 40%, transparent);
+  background: color-mix(in srgb, var(--bb-v2-color-surface-scrim) 40%, transparent);
   cursor: pointer;
   transform: translateY(-50%);
 }

@@ -17,7 +17,7 @@ body.bb-marketing-page {
   margin: 0;
   min-height: 100vh;
   background: var(--bb-marketing-page-canvas);
-  color: var(--bb-color-on-background);
+  color: var(--bb-v2-color-content-primary);
   font-family: var(--bb-font-family-body);
   line-height: var(--bb-font-line-height-normal);
 }
@@ -32,7 +32,7 @@ body.bb-marketing-page {
 }
 
 .bb-eyebrow {
-  color: var(--bb-color-primary);
+  color: var(--bb-v2-identity-primary);
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-bold);
   letter-spacing: 0.16em;
@@ -109,7 +109,7 @@ body.bb-marketing-page {
 .bb-lead {
   margin: 10px 0 0;
   font-size: clamp(1rem, 1.7vw, 1.2rem);
-  color: var(--bb-color-primary);
+  color: var(--bb-v2-identity-primary);
   max-width: 56ch;
 }
 
@@ -123,7 +123,7 @@ body.bb-marketing-page {
   max-width: 34ch;
   font-size: clamp(1rem, 1.35vw, 1.1rem);
   line-height: 1.45;
-  color: var(--bb-color-on-surface-variant);
+  color: var(--bb-v2-color-content-secondary);
 }
 
 .bb-actions {
@@ -185,8 +185,8 @@ body.bb-marketing-page {
   min-height: 34px;
   padding: 0 12px;
   border-radius: var(--bb-radius-full);
-  background: color-mix(in srgb, var(--bb-color-primary-container) 72%, transparent);
-  color: var(--bb-color-on-primary-container);
+  background: color-mix(in srgb, var(--bb-v2-identity-secondary) 72%, transparent);
+  color: var(--bb-v2-identity-secondary-foreground);
   font-size: var(--bb-font-size-sm);
   font-weight: var(--bb-font-weight-medium);
 }
@@ -217,8 +217,8 @@ body.bb-marketing-page {
 }
 
 .bb-chip--neutral {
-  background: color-mix(in srgb, var(--bb-color-surface-variant) 86%, transparent);
-  color: var(--bb-color-on-surface-variant);
+  background: color-mix(in srgb, var(--bb-v2-color-surface-subtle) 86%, transparent);
+  color: var(--bb-v2-color-content-secondary);
 }
 
 .bb-proof-card {
@@ -226,8 +226,8 @@ body.bb-marketing-page {
   padding: clamp(22px, 3vw, 30px);
   border-radius: 28px;
   background:
-    linear-gradient(180deg, color-mix(in srgb, var(--bb-color-surface) 90%, var(--bb-marketing-highlight) 10%) 0%, var(--bb-color-surface) 100%);
-  border: 1px solid color-mix(in srgb, var(--bb-color-outline-variant) 90%, transparent);
+    linear-gradient(180deg, color-mix(in srgb, var(--bb-v2-color-surface-surface) 90%, var(--bb-marketing-highlight) 10%) 0%, var(--bb-v2-color-surface-surface) 100%);
+  border: 1px solid color-mix(in srgb, var(--bb-v2-color-border-subtle) 90%, transparent);
   box-shadow: var(--bb-shadow-xl);
   overflow: hidden;
 }
@@ -239,7 +239,7 @@ body.bb-marketing-page {
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--bb-color-secondary-container) 76%, transparent);
+  background: color-mix(in srgb, var(--bb-v2-color-interaction-selection) 76%, transparent);
   filter: blur(42px);
   opacity: 0.8;
 }
@@ -257,8 +257,8 @@ body.bb-marketing-page {
   border-radius: 18px;
   display: grid;
   place-items: center;
-  background: color-mix(in srgb, var(--bb-color-primary-container) 72%, transparent);
-  border: 1px solid color-mix(in srgb, var(--bb-color-primary) 18%, transparent);
+  background: color-mix(in srgb, var(--bb-v2-identity-secondary) 72%, transparent);
+  border: 1px solid color-mix(in srgb, var(--bb-v2-identity-primary) 18%, transparent);
 }
 
 .bb-proof-card__icon-wrap img {
@@ -275,7 +275,7 @@ body.bb-marketing-page {
 .bb-note,
 .bb-terminal pre {
   margin: 0;
-  color: var(--bb-color-on-surface-variant);
+  color: var(--bb-v2-color-content-secondary);
 }
 
 .bb-workflow {
@@ -290,13 +290,13 @@ body.bb-marketing-page {
   align-items: start;
   padding: 14px 16px;
   border-radius: 18px;
-  background: color-mix(in srgb, var(--bb-color-surface-variant) 42%, transparent);
+  background: color-mix(in srgb, var(--bb-v2-color-surface-subtle) 42%, transparent);
 }
 
 .bb-workflow__lane strong {
   font-family: var(--bb-font-family-display);
   font-size: var(--bb-font-size-sm);
-  color: var(--bb-color-on-surface);
+  color: var(--bb-v2-color-content-primary);
 }
 
 .bb-workflow__clip {
@@ -312,9 +312,9 @@ body.bb-marketing-page {
   min-height: 28px;
   padding: 0 10px;
   border-radius: 999px;
-  background: var(--bb-color-background);
-  border: 1px solid var(--bb-color-outline-variant);
-  color: var(--bb-color-on-surface);
+  background: var(--bb-v2-color-surface-canvas);
+  border: 1px solid var(--bb-v2-color-border-subtle);
+  color: var(--bb-v2-color-content-primary);
   font-size: var(--bb-font-size-xs);
   font-family: var(--bb-font-family-mono);
 }
@@ -329,22 +329,22 @@ body.bb-marketing-page {
 .bb-proof-stat {
   padding: 14px 16px;
   border-radius: 18px;
-  background: color-mix(in srgb, var(--bb-color-background) 78%, transparent);
-  border: 1px solid color-mix(in srgb, var(--bb-color-outline-variant) 72%, transparent);
+  background: color-mix(in srgb, var(--bb-v2-color-surface-canvas) 78%, transparent);
+  border: 1px solid color-mix(in srgb, var(--bb-v2-color-border-subtle) 72%, transparent);
 }
 
 .bb-proof-stat strong {
   display: block;
   font-family: var(--bb-font-family-display);
   font-size: var(--bb-font-size-lg);
-  color: var(--bb-color-on-surface);
+  color: var(--bb-v2-color-content-primary);
 }
 
 .bb-proof-stat span {
   display: block;
   margin-top: 4px;
   font-size: var(--bb-font-size-xs);
-  color: var(--bb-color-on-surface-variant);
+  color: var(--bb-v2-color-content-secondary);
 }
 
 .bb-section {
@@ -393,8 +393,8 @@ body.bb-marketing-page {
 .bb-faq-item,
 .bb-banner,
 .bb-terminal {
-  background: color-mix(in srgb, var(--bb-color-surface) 92%, var(--bb-marketing-highlight) 8%);
-  border: 1px solid color-mix(in srgb, var(--bb-color-outline-variant) 86%, transparent);
+  background: color-mix(in srgb, var(--bb-v2-color-surface-surface) 92%, var(--bb-marketing-highlight) 8%);
+  border: 1px solid color-mix(in srgb, var(--bb-v2-color-border-subtle) 86%, transparent);
   border-radius: var(--bb-radius-2xl);
 }
 
@@ -416,8 +416,8 @@ body.bb-marketing-page {
 
 .bb-step--linklike:hover {
   transform: translateY(-1px);
-  border-color: color-mix(in srgb, var(--bb-color-primary) 34%, var(--bb-color-outline-variant));
-  box-shadow: 0 14px 32px color-mix(in srgb, var(--bb-color-primary-container) 22%, transparent);
+  border-color: color-mix(in srgb, var(--bb-v2-identity-primary) 34%, var(--bb-v2-color-border-subtle));
+  box-shadow: 0 14px 32px color-mix(in srgb, var(--bb-v2-identity-secondary) 22%, transparent);
 }
 
 .bb-card h3,
@@ -436,8 +436,8 @@ body.bb-marketing-page {
   margin-bottom: 12px;
   padding: 6px 10px;
   border-radius: var(--bb-radius-full);
-  background: color-mix(in srgb, var(--bb-color-secondary-container) 78%, transparent);
-  color: var(--bb-color-on-secondary-container);
+  background: color-mix(in srgb, var(--bb-v2-color-interaction-selection) 78%, transparent);
+  color: var(--bb-v2-color-interaction-on-selection);
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-bold);
   letter-spacing: 0.08em;
@@ -457,8 +457,8 @@ body.bb-marketing-page {
   width: 40px;
   height: 40px;
   border-radius: 14px;
-  background: var(--bb-color-primary-container);
-  color: var(--bb-color-on-primary-container);
+  background: var(--bb-v2-identity-secondary);
+  color: var(--bb-v2-identity-secondary-foreground);
   font-family: var(--bb-font-family-display);
   font-size: var(--bb-font-size-lg);
   font-weight: var(--bb-font-weight-bold);
@@ -512,8 +512,8 @@ body.bb-marketing-page {
   display: none;
   padding: 5px 8px;
   border-radius: 999px;
-  background: var(--bb-color-primary-container);
-  color: var(--bb-color-on-primary-container);
+  background: var(--bb-v2-identity-secondary);
+  color: var(--bb-v2-identity-secondary-foreground);
   font-size: 11px;
   font-weight: var(--bb-font-weight-bold);
   letter-spacing: 0.08em;
@@ -526,8 +526,8 @@ body.bb-marketing-page {
 }
 
 .bb-download-card.is-detected {
-  border-color: color-mix(in srgb, var(--bb-color-primary) 36%, var(--bb-color-outline-variant));
-  box-shadow: 0 20px 48px color-mix(in srgb, var(--bb-color-primary-container) 56%, transparent);
+  border-color: color-mix(in srgb, var(--bb-v2-identity-primary) 36%, var(--bb-v2-color-border-subtle));
+  box-shadow: 0 20px 48px color-mix(in srgb, var(--bb-v2-identity-secondary) 56%, transparent);
 }
 
 .bb-download-actions {
@@ -551,8 +551,8 @@ body.bb-marketing-page {
 }
 
 .bb-download-actions .bb-btn-outline[href$=".deb"] {
-  color: var(--bb-color-primary);
-  border-color: var(--bb-color-outline);
+  color: var(--bb-v2-identity-primary);
+  border-color: var(--bb-v2-color-border-default);
 }
 
 .bb-terminal {
@@ -566,7 +566,7 @@ body.bb-marketing-page {
   padding: 12px 16px;
   font-size: var(--bb-font-size-sm);
   font-weight: var(--bb-font-weight-semibold);
-  color: var(--bb-color-on-surface);
+  color: var(--bb-v2-color-content-primary);
 }
 
 .bb-terminal summary::-webkit-details-marker {
@@ -576,7 +576,7 @@ body.bb-marketing-page {
 .bb-terminal__body {
   margin: 0 16px 16px;
   padding: 1px;
-  border: 1px solid color-mix(in srgb, var(--bb-color-outline-variant) 88%, var(--bb-marketing-highlight) 12%);
+  border: 1px solid color-mix(in srgb, var(--bb-v2-color-border-subtle) 88%, var(--bb-marketing-highlight) 12%);
   border-radius: 18px;
   overflow: hidden;
   background: var(--bb-marketing-page-canvas);
@@ -590,8 +590,8 @@ body.bb-marketing-page {
   font-family: var(--bb-font-family-mono);
   font-size: var(--bb-font-size-xs);
   line-height: 1.7;
-  color: var(--bb-color-terminal-foreground);
-  background: color-mix(in srgb, var(--bb-color-terminal-background) 84%, var(--bb-marketing-terminal-blend) 16%);
+  color: var(--bb-v2-color-content-inverse);
+  background: color-mix(in srgb, var(--bb-v2-color-surface-inverse) 84%, var(--bb-marketing-terminal-blend) 16%);
 }
 
 .bb-banner {
@@ -600,8 +600,8 @@ body.bb-marketing-page {
   gap: 10px;
   padding: 12px 16px;
   margin-bottom: var(--bb-spacing-4);
-  color: var(--bb-color-on-primary-container);
-  background: color-mix(in srgb, var(--bb-color-primary-container) 86%, transparent);
+  color: var(--bb-v2-identity-secondary-foreground);
+  background: color-mix(in srgb, var(--bb-v2-identity-secondary) 86%, transparent);
 }
 
 .bb-pricing-grid {
@@ -611,7 +611,7 @@ body.bb-marketing-page {
 .bb-pricing-intro {
   margin: 0 0 18px;
   max-width: 64ch;
-  color: var(--bb-color-on-surface-variant);
+  color: var(--bb-v2-color-content-secondary);
   font-size: var(--bb-font-size-md);
   line-height: 1.6;
 }
@@ -831,8 +831,8 @@ body:has(> .bb-navbar[data-placement="sticky"]) :is(.bb-section, .bb-cta-band) {
   padding: clamp(24px, 4vw, 38px);
   border-radius: 28px;
   background:
-    linear-gradient(135deg, color-mix(in srgb, var(--bb-color-primary-container) 78%, var(--bb-marketing-highlight) 22%) 0%, color-mix(in srgb, var(--bb-color-secondary-container) 82%, var(--bb-marketing-highlight) 18%) 100%);
-  border: 1px solid color-mix(in srgb, var(--bb-color-primary) 18%, transparent);
+    linear-gradient(135deg, color-mix(in srgb, var(--bb-v2-identity-secondary) 78%, var(--bb-marketing-highlight) 22%) 0%, color-mix(in srgb, var(--bb-v2-color-interaction-selection) 82%, var(--bb-marketing-highlight) 18%) 100%);
+  border: 1px solid color-mix(in srgb, var(--bb-v2-identity-primary) 18%, transparent);
   display: grid;
   gap: var(--bb-spacing-3);
 }
@@ -886,7 +886,7 @@ body:has(> .bb-navbar[data-placement="sticky"]) :is(.bb-section, .bb-cta-band) {
 .bb-auth-card__body > p,
 .bb-auth-card__support,
 .bb-auth-action__brand span {
-  color: var(--bb-color-on-surface-variant);
+  color: var(--bb-v2-color-content-secondary);
   line-height: 1.7;
 }
 
@@ -902,14 +902,14 @@ body:has(> .bb-navbar[data-placement="sticky"]) :is(.bb-section, .bb-cta-band) {
 
 .bb-content-card {
   padding: 22px;
-  background: color-mix(in srgb, var(--bb-color-surface) 92%, var(--bb-marketing-highlight) 8%);
-  border: 1px solid color-mix(in srgb, var(--bb-color-outline-variant) 86%, transparent);
+  background: color-mix(in srgb, var(--bb-v2-color-surface-surface) 92%, var(--bb-marketing-highlight) 8%);
+  border: 1px solid color-mix(in srgb, var(--bb-v2-color-border-subtle) 86%, transparent);
   border-radius: var(--bb-radius-2xl);
 }
 
 .bb-content-card h2 {
   margin-bottom: 10px;
-  color: var(--bb-color-primary);
+  color: var(--bb-v2-identity-primary);
   font-size: 1.1rem;
 }
 
@@ -931,7 +931,7 @@ body:has(> .bb-navbar[data-placement="sticky"]) :is(.bb-section, .bb-cta-band) {
 }
 
 .bb-content-card a {
-  color: var(--bb-color-primary);
+  color: var(--bb-v2-identity-primary);
 }
 
 .bb-managed-form {
@@ -954,7 +954,7 @@ body:has(> .bb-navbar[data-placement="sticky"]) :is(.bb-section, .bb-cta-band) {
   grid-template-columns: 20px minmax(0, 1fr);
   gap: 10px;
   align-items: start;
-  color: var(--bb-color-on-surface);
+  color: var(--bb-v2-color-content-primary);
   font-weight: var(--bb-font-weight-semibold);
   line-height: 1.5;
 }
@@ -963,7 +963,7 @@ body:has(> .bb-navbar[data-placement="sticky"]) :is(.bb-section, .bb-cta-band) {
   width: 18px;
   height: 18px;
   margin: 3px 0 0;
-  accent-color: var(--bb-color-primary);
+  accent-color: var(--bb-v2-identity-primary);
 }
 
 .bb-managed-form__hint,
@@ -981,27 +981,27 @@ body:has(> .bb-navbar[data-placement="sticky"]) :is(.bb-section, .bb-cta-band) {
   margin-top: var(--bb-spacing-3);
   padding: 10px 12px;
   border-radius: var(--bb-radius-md);
-  border: 1px solid var(--bb-color-outline-variant);
-  background: color-mix(in srgb, var(--bb-color-surface-variant) 80%, transparent);
+  border: 1px solid var(--bb-v2-color-border-subtle);
+  background: color-mix(in srgb, var(--bb-v2-color-surface-subtle) 80%, transparent);
 }
 
 .bb-managed-status--success {
-  color: var(--bb-color-on-success-container);
-  border-color: var(--bb-color-success);
-  background: var(--bb-color-success-container);
+  color: var(--bb-v2-color-status-success-content);
+  border-color: var(--bb-v2-color-status-success-border);
+  background: var(--bb-v2-color-status-success-surface);
 }
 
 .bb-managed-status--danger {
-  color: var(--bb-color-on-error-container);
-  border-color: var(--bb-color-error);
-  background: var(--bb-color-error-container);
+  color: var(--bb-v2-color-status-danger-content);
+  border-color: var(--bb-v2-color-status-danger-border);
+  background: var(--bb-v2-color-status-danger-surface);
 }
 
 /* Hosted auth action ------------------------------------------------------ */
 
 .bb-marketing-page:has(.bb-auth-action) {
   background:
-    radial-gradient(circle at 20% 0%, color-mix(in srgb, var(--bb-color-primary-container) 28%, transparent) 0%, transparent 52%),
+    radial-gradient(circle at 20% 0%, color-mix(in srgb, var(--bb-v2-identity-secondary) 28%, transparent) 0%, transparent 52%),
     var(--bb-marketing-page-canvas);
 }
 
@@ -1023,7 +1023,7 @@ body:has(> .bb-navbar[data-placement="sticky"]) :is(.bb-section, .bb-cta-band) {
   gap: 10px;
   width: fit-content;
   margin: 0 auto var(--bb-spacing-5);
-  color: var(--bb-color-on-surface);
+  color: var(--bb-v2-color-content-primary);
   text-align: center;
   text-decoration: none;
 }
@@ -1052,31 +1052,31 @@ body:has(> .bb-navbar[data-placement="sticky"]) :is(.bb-section, .bb-cta-band) {
 
 .bb-auth-card {
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--bb-color-outline) 55%, transparent);
+  border: 1px solid color-mix(in srgb, var(--bb-v2-color-border-default) 55%, transparent);
   border-radius: var(--bb-radius-2xl);
-  background: linear-gradient(180deg, color-mix(in srgb, var(--bb-color-surface-variant) 94%, var(--bb-marketing-highlight) 6%) 0%, var(--bb-color-surface) 100%);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--bb-v2-color-surface-subtle) 94%, var(--bb-marketing-highlight) 6%) 0%, var(--bb-v2-color-surface-surface) 100%);
   box-shadow: var(--bb-shadow-xl);
 }
 
 .bb-auth-card__head {
   padding: 28px 28px 18px;
   text-align: center;
-  border-bottom: 1px solid color-mix(in srgb, var(--bb-color-outline) 30%, transparent);
-  background: linear-gradient(180deg, color-mix(in srgb, var(--bb-color-background) 20%, transparent) 0%, transparent 100%);
+  border-bottom: 1px solid color-mix(in srgb, var(--bb-v2-color-border-default) 30%, transparent);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--bb-v2-color-surface-canvas) 20%, transparent) 0%, transparent 100%);
 }
 
 .bb-auth-card__eyebrow {
   display: inline-flex;
   margin: 0 0 12px;
   padding: 6px 10px;
-  color: var(--bb-color-primary);
+  color: var(--bb-v2-identity-primary);
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-bold);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  border: 1px solid color-mix(in srgb, var(--bb-color-primary) 35%, transparent);
+  border: 1px solid color-mix(in srgb, var(--bb-v2-identity-primary) 35%, transparent);
   border-radius: var(--bb-radius-full);
-  background: color-mix(in srgb, var(--bb-color-primary) 8%, transparent);
+  background: color-mix(in srgb, var(--bb-v2-identity-primary) 8%, transparent);
 }
 
 .bb-auth-card__head h1 {
@@ -1110,10 +1110,10 @@ body:has(> .bb-navbar[data-placement="sticky"]) :is(.bb-section, .bb-cta-band) {
   width: 42px;
   height: 42px;
   margin: 0 auto 14px;
-  border: 1px solid var(--bb-color-outline);
+  border: 1px solid var(--bb-v2-color-border-default);
   border-radius: var(--bb-radius-full);
-  color: var(--bb-color-primary);
-  background: var(--bb-color-primary-container);
+  color: var(--bb-v2-identity-primary);
+  background: var(--bb-v2-identity-secondary);
 }
 
 .bb-auth-card__status::before {
@@ -1122,9 +1122,9 @@ body:has(> .bb-navbar[data-placement="sticky"]) :is(.bb-section, .bb-cta-band) {
 }
 
 .bb-auth-card--success .bb-auth-card__status {
-  color: var(--bb-color-on-success-container);
-  border-color: var(--bb-color-success);
-  background: var(--bb-color-success-container);
+  color: var(--bb-v2-color-status-success-content);
+  border-color: var(--bb-v2-color-status-success-border);
+  background: var(--bb-v2-color-status-success-surface);
 }
 
 .bb-auth-card--success .bb-auth-card__status::before {
@@ -1132,9 +1132,9 @@ body:has(> .bb-navbar[data-placement="sticky"]) :is(.bb-section, .bb-cta-band) {
 }
 
 .bb-auth-card--danger .bb-auth-card__status {
-  color: var(--bb-color-on-error-container);
-  border-color: var(--bb-color-error);
-  background: var(--bb-color-error-container);
+  color: var(--bb-v2-color-status-danger-content);
+  border-color: var(--bb-v2-color-status-danger-border);
+  background: var(--bb-v2-color-status-danger-surface);
 }
 
 .bb-auth-card--danger .bb-auth-card__status::before {

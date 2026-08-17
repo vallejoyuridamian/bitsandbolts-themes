@@ -14,7 +14,7 @@
   flex: 1 1 240px;
   gap: var(--bb-spacing-2);
   max-width: 360px;
-  color: var(--bb-color-on-surface-variant);
+  color: var(--bb-theme-v2-neutral-foreground, var(--bb-v2-color-content-primary));
   font-family: var(--bb-font-family-body);
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-semibold);
@@ -30,6 +30,7 @@
 .bb-selection-controls .bb-selection-control .bb-select__trigger {
   width: 100%;
   min-height: 42px;
+  color: var(--bb-theme-v2-neutral-foreground, var(--bb-v2-color-content-primary));
   text-transform: none;
 }
 
@@ -37,10 +38,10 @@
   width: 100%;
   min-height: 42px;
   padding: var(--bb-spacing-2) var(--bb-spacing-3);
-  border: 1px solid var(--bb-color-outline);
+  border: 1px solid var(--bb-v2-color-border-default);
   border-radius: var(--bb-radius-md);
-  color: var(--bb-color-on-surface);
-  background: var(--bb-color-surface-variant);
+  color: var(--bb-v2-color-content-primary);
+  background: var(--bb-v2-color-surface-subtle);
   font: inherit;
   font-size: var(--bb-font-size-sm);
   font-weight: var(--bb-font-weight-semibold);
@@ -49,12 +50,12 @@
 }
 
 .bb-selection-controls .bb-selection-control select:hover {
-  border-color: var(--bb-color-primary);
+  border-color: var(--bb-v2-color-border-focus-ring);
 }
 
 .bb-selection-controls .bb-selection-control select:focus-visible {
-  border-color: var(--bb-color-primary);
-  outline: 2px solid var(--bb-color-primary);
+  border-color: var(--bb-v2-color-border-focus-ring);
+  outline: 2px solid var(--bb-v2-color-border-focus-ring);
   outline-offset: 2px;
 }
 

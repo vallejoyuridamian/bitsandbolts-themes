@@ -18,7 +18,7 @@
   height: auto;
   max-height: 200px;
   border-radius: 12px;
-  box-shadow: 0 0 12px color-mix(in srgb, var(--bb-color-secondary) 35%, transparent);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--bb-v2-identity-secondary) 35%, transparent);
 }
 
 .bb-store-badge-list {

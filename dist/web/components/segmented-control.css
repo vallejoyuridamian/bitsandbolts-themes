@@ -14,7 +14,7 @@
 
 .bb-segmented-control {
   display: flex;
-  background: var(--bb-color-surface-variant);
+  background: var(--bb-v2-color-surface-subtle);
   border-radius: 8px;
   padding: 2px;
   gap: 2px;
@@ -31,15 +31,15 @@
   cursor: pointer;
   font-size: 0.8rem;
   font-family: var(--bb-font-family-body);
-  color: var(--bb-color-on-surface-variant);
+  color: var(--bb-v2-color-content-secondary);
   transition: background 0.15s, color 0.15s;
   white-space: nowrap;
   text-align: center;
 }
 
 .bb-segmented-control__item.active {
-  background: var(--bb-color-surface);
-  color: var(--bb-color-on-surface);
+  background: var(--bb-v2-color-surface-surface);
+  color: var(--bb-v2-color-content-primary);
   font-weight: 600;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 }

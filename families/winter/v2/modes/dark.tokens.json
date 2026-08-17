@@ -1,5 +1,6 @@
 {
   "palette": {
+    "identityAccentForeground": { "$value": { "colorSpace": "srgb", "components": [0.631373, 0.631373, 0.666667], "alpha": 1, "hex": "#A1A1AA" } },
     "primary": {
       "$value": {
         "colorSpace": "oklch",
@@ -510,7 +511,7 @@
         "$value": "{palette.primaryContainer}"
       },
       "onSelected": {
-        "$value": "{palette.onPrimaryContainer}"
+        "$value": "{palette.onBackground}"
       },
       "selection": {
         "$value": "{palette.secondaryContainer}"
