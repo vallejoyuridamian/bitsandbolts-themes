@@ -433,43 +433,43 @@ function v2IdentityMarkup(mode, { editable = false, identityColorOverrides = [] 
   }).join('');
 }
 
-function fontFamilyOptionsMarkup(fontOptions = [], selected = '') {
-  return [...new Set([...fontOptions, selected].map((value) => String(value || '').trim()).filter(Boolean))]
-    .sort((left, right) => left.localeCompare(right))
-    .map((family) => `<option value="${escapeHtml(family)}"${family === selected ? ' selected' : ''}>${escapeHtml(family)}</option>`)
-    .join('');
-}
-
-function v2FontEditorsMarkup(v2, fontOptions = []) {
+function fontSpecimenStyleControlsMarkup(specimen) {
+  const boldSelected = Number.parseInt(specimen.fontWeight, 10) >= 600;
+  const controls = [
+    { id: 'bold', iconRole: 'format_bold', label: 'Bold', selected: boldSelected },
+    { id: 'italic', iconRole: 'format_italic', label: 'Italic', selected: false },
+    { id: 'underline', iconRole: 'format_underline', label: 'Underline', selected: false }
+  ];
   return `
-    <div class="bb-theme-v2-font-editors">
-      ${Object.entries(v2.typography.families).map(([role, family]) => `
-        <div class="bb-field bb-theme-v2-font-editor">
-          <label class="bb-field__label" for="themeFont-${escapeHtml(role)}">${escapeHtml(tokenLabel(role))} font</label>
-          <select
-            id="themeFont-${escapeHtml(role)}"
-            class="bb-field__input"
-            aria-label="${escapeHtml(tokenLabel(role))} font"
-            data-theme-project-font="${escapeHtml(role)}"
-          >
-            ${fontFamilyOptionsMarkup(fontOptions, family)}
-          </select>
-        </div>
-      `).join('')}
+    <div class="bb-theme-v2-type__style-controls" role="group" aria-label="${escapeHtml(specimen.label)} preview styles">
+      ${controls.map((control) => semanticActionButtonMarkup({
+        ariaLabel: `${control.label} ${specimen.label.toLowerCase()} preview`,
+        attributes: {
+          'aria-pressed': control.selected ? 'true' : 'false',
+          'data-theme-font-preview-style': control.id
+        },
+        help: `${control.label} preview`,
+        iconRole: control.iconRole,
+        label: control.label,
+        recipe: 'workspace'
+      })).join('')}
     </div>
   `;
 }
 
-function v2TypographyMarkup(v2, { editable = false, fontOptions = [] } = {}) {
-  return v2.typography.specimens.map((specimen) => `
-    <div class="bb-theme-v2-type" data-theme-v2-font-specimen="${escapeHtml(specimen.id)}">
-      <span class="bb-theme-v2-type__meta">
-        <strong>${escapeHtml(specimen.label)}</strong>
-        <span>${escapeHtml(v2.typography.families[specimen.familyRole])}</span>
-      </span>
-      <span class="bb-theme-v2-type__sample">${escapeHtml(specimen.sample)}</span>
-    </div>
-  `).join('') + (editable ? v2FontEditorsMarkup(v2, fontOptions) : '');
+function v2TypographyMarkup(v2, { editable = false } = {}) {
+  return v2.typography.specimens.map((specimen) => {
+    const family = v2.typography.families[specimen.familyRole];
+    return `
+      <div class="bb-theme-v2-type" data-theme-v2-font-specimen="${escapeHtml(specimen.id)}">
+        <span class="bb-theme-v2-type__meta">
+          <strong>${escapeHtml(specimen.label)}</strong>
+        </span>
+        <span class="bb-theme-v2-type__sample">${escapeHtml(family)}</span>
+        ${editable ? fontSpecimenStyleControlsMarkup(specimen) : ''}
+      </div>
+    `;
+  }).join('');
 }
 
 function v2ButtonMarkup(v2) {
@@ -895,6 +895,34 @@ function mediaPickerRecipeSpecimenMarkup() {
   `;
 }
 
+function fontPickerRecipeSpecimenMarkup() {
+  const preview = new MediaPreviewCard();
+  return `
+    <div class="bb-media-card-grid bb-font-preview-card-grid" inert>
+      ${preview.renderFontCard({
+        familyName: 'Montserrat',
+        fontFamily: 'Montserrat'
+      })}
+      ${preview.renderFontCard({
+        familyName: 'Orbitron',
+        fontFamily: 'Orbitron'
+      })}
+      ${preview.renderFontCard({
+        familyName: 'JetBrains Mono',
+        fontFamily: 'JetBrains Mono'
+      })}
+      ${preview.renderFontCard({
+        familyName: 'Source Serif 4',
+        fontFamily: 'Source Serif 4'
+      })}
+      ${preview.renderAddCard({
+        kind: 'font',
+        presentation: mediaPreviewCardPresentations.reduced
+      })}
+    </div>
+  `;
+}
+
 function horseshoeMeterSpecimenMarkup() {
   return `
     <div class="bb-horseshoe-specimen">
@@ -1045,6 +1073,7 @@ function sharedWebRecipeMarkup(theme) {
     showcaseSectionMarkup('Loading states', loadingSpecimenMarkup()),
     showcaseSectionMarkup('Spotlight media and store badges', mediaRecipeSpecimenMarkup()),
     showcaseSectionMarkup('Media picker and reference image', mediaPickerRecipeSpecimenMarkup()),
+    showcaseSectionMarkup('Font asset presenter', fontPickerRecipeSpecimenMarkup()),
     showcaseSectionMarkup('Horseshoe meter', horseshoeMeterSpecimenMarkup()),
     showcaseSectionMarkup('Inline icon and text', inlineIconTextSpecimenMarkup(theme)),
     showcaseSectionMarkup('Authentication', authenticationSpecimenMarkup(theme)),
@@ -1134,7 +1163,7 @@ function v2ModeMarkup(theme, mode, {
         </section>
         <section class="bb-theme-v2-section">
           <h3>Typography</h3>
-          <div class="bb-theme-v2-types">${v2TypographyMarkup(v2, { editable, fontOptions })}</div>
+          <div class="bb-theme-v2-types">${v2TypographyMarkup(v2, { editable })}</div>
         </section>
         ${extendedShowcase}
       </div>

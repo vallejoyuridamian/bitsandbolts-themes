@@ -110,6 +110,23 @@ export const MANAGED_WEB_COMPONENTS = Object.freeze({
     }),
     render: (model) => mediaPreviewCard.renderCard(model)
   }),
+  'font-preview-card': Object.freeze({
+    dependencies: Object.freeze({
+      stylesheets: Object.freeze([
+        'components/interface-primitives.css',
+        'components/media-picker.css',
+        'components/semantic-icons.css',
+        'components/typography.css'
+      ]),
+      modules: Object.freeze([
+        'components/media-picker.js',
+        'components/semantic-icons.js'
+      ])
+    }),
+    render: (model = {}) => model.variant === 'add'
+      ? mediaPreviewCard.renderAddCard({ ...model, kind: 'font' })
+      : mediaPreviewCard.renderFontCard(model)
+  }),
   'milestone-timeline': Object.freeze({
     dependencies: Object.freeze({
       stylesheets: Object.freeze(['components/content-sections.css', 'components/content-surfaces.css', 'components/semantic-icons.css']),

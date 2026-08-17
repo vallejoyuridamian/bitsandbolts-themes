@@ -1,6 +1,6 @@
 # Theme System v2 Implementation Plan
 
-Status: Slice 1 web reference implemented; identity-pair and v1 retirement correction authorized
+Status: Web reference and local-first font presentation checkpoint accepted
 Research basis: `../research/theme-system-standard-deep-research.md` in the workspace  
 Authoritative owner: `bitsandbolts-themes`
 
@@ -10,7 +10,7 @@ Authoritative owner: `bitsandbolts-themes`
 - DTCG 2025.10 Format and Resolver are the portable token foundation. The separately versioned Bits & Bolts contract owns recipes, art direction, assets, validation, fallbacks, overrides, and release metadata.
 - Runtime selection is `familyId + mode + declared density`. Art direction is authored into a family, not exposed as an independent switch.
 - Normal creators begin with four identity color decisions. Themes resolve those inputs into 48 required semantic color roles.
-- Typography requires one primary family and one mono family; accent is optional. Authored fallback stacks are forbidden. Usage is expressed through semantic text styles.
+- Typography targets Signature, Interface, and Technical font asset assignments. Authored fallback stacks are forbidden, and usage is expressed through semantic text styles.
 - Products own structure, content, behavior, semantic accessibility wiring, domain state, and functional geometry. They do not own reusable colors, typography, icons, visual spacing, radii, borders, depth, control appearance, visual states, or decorative motion.
 - v2 ships beside v1. No v1 path is removed until automated evidence shows zero consumers.
 
@@ -254,6 +254,31 @@ catalog modes, and fallback consumers are gone. The Themes build and dev health
 check pass, as do 83 affected AppScreen checks and its production build. The
 owner accepted the exact-pair, Neutral completion, Theme-root Select, font Select,
 portaled menu, and handled-window result.
+
+### 9B. Shared font presentation and AppScreen Vault checkpoint
+
+Status: local-first presentation implemented, validated, and owner-accepted on
+2026-08-17.
+
+Themes now owns the reusable font presentation inside the ordinary media-card
+recipe plus the read-only Signature, Interface, and Technical composition. Each
+Typography row shows the family name once, centered horizontally in the full
+row and vertically against its role label. Bold, Italic, and Underline are
+transient semantic inspection controls.
+
+Font cards inherit the ordinary checker preview, border, body metadata, and
+favorite overlay. One Themes-owned measurement helper gives every card and Add
+Font card the width required by the widest rendered family name. The preview is
+compact and the body sizes to content instead of reserving an absent action row.
+
+AppScreen owns `font` as a Vault sibling, the 23-family global catalog, local
+user upload, validation, loading, storage, reference, category, usage, and
+favorite behavior. Themes does not own Vault or writable font management.
+
+Open gates are the shared AppScreen picker, atomic Signature, Interface, and
+Technical schema migration, Theme assignment persistence, render and export
+parity, sanitizer and complete metadata extraction, rights attestation, cloud
+migration, and the final font-source ownership cutover.
 
 ## Rare override workflow
 

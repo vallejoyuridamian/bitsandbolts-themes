@@ -29,8 +29,9 @@ Last verified: 2026-08-17
   persistence, and transient reference-image state.
 - Gallery and AppScreen share one detail renderer. Standalone keeps the full
   showcase, while AppScreen detail stops after Colors and Typography.
-- The completed editable builder slice is Colors. Typography and font editing is
-  the next owner-directed slice.
+- Colors remains the completed editable builder slice. The read-only Typography
+  presentation and shared font-card recipe are accepted; writable behavior stays
+  in AppScreen and has not been connected to Theme assignments.
 - Exact canonical family pairs are the fit corpus for AppScreen's deterministic
   first-selection light-dark equivalence and foreground generation. Themes does
   not add ad hoc family exceptions or alter public preset values.
@@ -61,6 +62,13 @@ Last verified: 2026-08-17
 - AppScreen imports the exact browser recipe through its `/theme/components`
   boundary and retains behavior only.
 
+## Accepted Typography and Font Recipes
+
+- Signature, Interface, and Technical rows show each centered family name once in its own face.
+- Bold, Italic, and Underline controls are transient inspection affordances using semantic vector roles.
+- Font assets use the complete media-card recipe with checker preview, favorite, body metadata, equal widest-name width, compact preview height, and content-height body.
+- Themes owns presentation and semantic icons only. AppScreen owns Vault records, loading, upload, references, usage, persistence, and future selection behavior.
+
 ## Shared Recipes and Icons
 
 - Themes owns Navbar, Footer, Hero, Button, Select, Menu, handled windows,
@@ -81,17 +89,17 @@ Last verified: 2026-08-17
 
 ## Evidence and Acceptance Boundary
 
-- The focused media-picker suite passes 6/6. AppScreen's combined Theme-gallery
-  and Theme-project reference suite passes 41/41. Both production builds pass.
+- The focused media-picker suite passes 7/7. AppScreen's focused asset, font,
+  and reference suites pass 16/16. Both production builds pass.
 - The owner accepted the final compact Palette and interactive reference viewer,
   including live Theme scrollbars and light-mode toolbar contrast.
 - Any later UI, CSS, theme, icon, or renderer change requires fresh visual
   acceptance before another visual checkpoint commit.
-- This checkpoint is committed locally. Nothing has been pushed or deployed.
+- This accepted checkpoint is committed locally. Nothing is pushed or deployed.
 
 ## Open Gates
 
-- Typography and font editing is next only when the owner directs it.
+- The shared AppScreen font picker is next only when the owner directs it.
 - The v2 contract still needs pinned DTCG resolver validation, full provenance,
   glyph and fallback checks, and complete platform component adapters.
 - Versioned npm, Maven, and static distribution remain unimplemented. Manual

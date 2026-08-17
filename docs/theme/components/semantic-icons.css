@@ -159,6 +159,22 @@
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/mobile-screen-button.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="media_font"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/font.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="format_bold"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/bold.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="format_italic"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/italic.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="format_underline"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/underline.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="arrow_selector_tool"] {
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/arrow-pointer.svg");
 }

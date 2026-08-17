@@ -10,17 +10,31 @@
   gap: 12px;
 }
 
+.bb-font-preview-card-grid {
+  --bb-font-media-card-width: 216px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--bb-font-media-card-width));
+  align-items: start;
+  justify-content: start;
+  gap: 12px;
+}
+
 .bb-media-card,
 .vault-card {
+  --bb-media-card-body-min-height: 88px;
   position: relative;
   display: grid;
-  grid-template-rows: auto minmax(88px, auto);
+  grid-template-rows: auto minmax(var(--bb-media-card-body-min-height), auto);
   min-width: 0;
   overflow: visible;
   border: 1px solid var(--bb-v2-color-border-subtle);
   border-radius: 8px;
   color: var(--bb-v2-color-content-primary);
   background: var(--bb-v2-color-surface-raised);
+}
+
+.bb-font-preview-card {
+  --bb-media-card-body-min-height: 0px;
 }
 
 .bb-media-card.is-selectable,
@@ -85,6 +99,24 @@
 
 :is(.bb-media-preview--image, .bb-media-preview--video, .media-preview-element-image, .media-preview-element-video, .vault-thumb-image, .vault-thumb-video) {
   cursor: zoom-in;
+}
+
+.bb-media-preview--font {
+  min-height: 120px;
+  aspect-ratio: auto;
+  padding: 16px;
+  color: var(--bb-v2-color-content-primary);
+}
+
+.bb-font-preview-card__name {
+  width: 100%;
+  font-family: var(--bb-font-preview-family);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.1;
+  overflow-wrap: normal;
+  text-align: center;
+  white-space: nowrap;
 }
 
 :is(.bb-media-preview, .media-preview-element, .vault-thumb) :is(img, video) {

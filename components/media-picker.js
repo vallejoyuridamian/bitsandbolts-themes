@@ -25,15 +25,23 @@ function actionDataset(action = {}, escapeAttribute = escapeHtml) {
 }
 
 function normalizeMediaKind(kind = '') {
-  return ['image', 'audio', 'video', 'device'].includes(kind) ? kind : 'image';
+  return ['image', 'audio', 'video', 'device', 'font'].includes(kind) ? kind : 'image';
 }
 
 const MEDIA_ICON_ROLES = Object.freeze({
   audio: 'media_audio',
   device: 'media_device',
+  font: 'media_font',
   image: 'media_image',
   video: 'media_video'
 });
+
+function cssFontFamily(value = '') {
+  const normalized = String(value || '')
+    .trim()
+    .replace(/[\u0000-\u001f\u007f]/g, ' ');
+  return `"${normalized.replaceAll('\\', '\\\\').replaceAll('"', '\\"')}"`;
+}
 
 export const mediaPreviewCardPresentations = Object.freeze({
   full: 'full',
@@ -45,6 +53,7 @@ export function mediaAssetKindLabel(kind = '') {
   if (kind === 'audio') return 'Audio';
   if (kind === 'video') return 'Video';
   if (kind === 'device') return 'Device';
+  if (kind === 'font') return 'Font';
   return 'Asset';
 }
 
@@ -57,6 +66,7 @@ export function mediaAssetFormatLabel(kind = '') {
   if (kind === 'audio') return 'WAV MP3 M4A OGG OPUS';
   if (kind === 'video') return 'MP4 WEBM';
   if (kind === 'device') return 'GLB GLTF STEP STP';
+  if (kind === 'font') return 'TTF OTF WOFF WOFF2';
   return 'FILE';
 }
 
@@ -70,7 +80,7 @@ export function assetLabelFromPath(assetPath = '') {
 
 export function mediaAssetDisplayName(kind = '', label = '', assetPath = '') {
   const text = String(label || '');
-  if (!text || !['image', 'audio', 'video'].includes(kind)) return text;
+  if (!text || !['image', 'audio', 'video', 'font'].includes(kind)) return text;
   const fileName = fileNameFromPath(assetPath);
   const extension = fileName.match(/\.[^./]+$/)?.[0] || '';
   if (!extension || !text.toLocaleLowerCase('en').endsWith(extension.toLocaleLowerCase('en'))) {
@@ -114,6 +124,7 @@ export class MediaPreviewElement {
     interactive = true,
     measured = false,
     className = '',
+    fontFamily = '',
     videoPlayAffordance = true
   } = {}) {
     const mediaKind = normalizeMediaKind(kind);
@@ -158,6 +169,15 @@ export class MediaPreviewElement {
         </${tag}>
       `;
     }
+    if (mediaKind === 'font' && (label || fontFamily)) {
+      const displayName = String(label || fontFamily).trim() || 'Font';
+      const previewFamily = cssFontFamily(fontFamily || displayName);
+      return `
+        <div class="${classes}" data-media-preview-kind="font" data-media-preview-path="${safePath}"${actionAccessibility} ${dataset}>
+          <span class="bb-font-preview-card__name" style="--bb-font-preview-family: ${this.escapeAttribute(previewFamily)}">${this.escapeHtml(displayName)}</span>
+        </div>
+      `;
+    }
     if (mediaKind === 'video' && (path || sourceUrl)) {
       const thumbnailUrl = sourceUrl ? '' : this.videoThumbnailUrl(path);
       return `
@@ -193,8 +213,15 @@ export class MediaPreviewCard extends MediaPreviewElement {
     overlayActions = [],
     actions = [],
     extraHtml = '',
+    fontFamily = '',
+    loading = false,
     presentation = mediaPreviewCardPresentations.full,
     selectable = false,
+    selected = false,
+    showBody = true,
+    showBodyLabel = true,
+    statusHtml = '',
+    unavailable = false,
     videoPlayAffordance = true
   } = {}) {
     const mediaKind = normalizeMediaKind(kind);
@@ -211,6 +238,9 @@ export class MediaPreviewCard extends MediaPreviewElement {
       'media-preview-card',
       reduced ? 'is-reduced' : '',
       selectable ? 'is-selectable' : '',
+      selected ? 'is-selected' : '',
+      loading ? 'is-loading' : '',
+      unavailable ? 'is-unavailable' : '',
       className
     ].filter(Boolean).join(' ');
     return `
@@ -221,7 +251,10 @@ export class MediaPreviewCard extends MediaPreviewElement {
         data-media-card-label="${safeLabel}"
         ${attrs}
         draggable="${draggable ? 'true' : 'false'}"
-        ${selectable ? 'role="button" tabindex="0"' : ''}
+        ${selectable ? `role="button" tabindex="0" aria-pressed="${selected ? 'true' : 'false'}"` : ''}
+        ${loading ? 'aria-busy="true"' : ''}
+        ${unavailable ? 'aria-disabled="true"' : ''}
+        aria-label="${safeLabel}"
       >
         ${this.render({
           kind: mediaKind,
@@ -233,18 +266,78 @@ export class MediaPreviewCard extends MediaPreviewElement {
           interactive: !selectable || hasPreviewAction,
           measured,
           action: previewAction,
+          fontFamily,
           videoPlayAffordance
         })}
+        ${statusHtml}
         ${overlayActions.length ? `<div class="bb-media-card__overlay-actions vault-card-overlay-actions media-preview-card-overlay-actions">${overlayActions.map((action) => this.renderAction(action)).join('')}</div>` : ''}
-        <div class="bb-media-card__body vault-card-body media-preview-card-body">
-          <strong title="${safeLabel}">${this.escapeHtml(displayLabel)}</strong>
-          ${!reduced && displaySubtitle ? `<span title="${this.escapeAttribute(displaySubtitle)}">${this.escapeHtml(displaySubtitle)}</span>` : ''}
-          ${!reduced && badges.length ? `<div class="bb-media-card__meta vault-card-meta media-preview-card-meta">${badges.map((badge) => this.renderBadge(badge)).join('')}</div>` : ''}
-          ${reduced ? '' : extraHtml}
-          ${!reduced && actions.length ? `<div class="bb-media-card__actions vault-card-actions media-preview-card-actions">${actions.map((action) => this.renderAction(action)).join('')}</div>` : ''}
-        </div>
+        ${showBody
+          ? `<div class="bb-media-card__body vault-card-body media-preview-card-body">
+            ${showBodyLabel ? `<strong title="${safeLabel}">${this.escapeHtml(displayLabel)}</strong>` : ''}
+            ${!reduced && displaySubtitle ? `<span title="${this.escapeAttribute(displaySubtitle)}">${this.escapeHtml(displaySubtitle)}</span>` : ''}
+            ${!reduced && badges.length ? `<div class="bb-media-card__meta vault-card-meta media-preview-card-meta">${badges.map((badge) => this.renderBadge(badge)).join('')}</div>` : ''}
+            ${reduced ? '' : extraHtml}
+            ${!reduced && actions.length ? `<div class="bb-media-card__actions vault-card-actions media-preview-card-actions">${actions.map((action) => this.renderAction(action)).join('')}</div>` : ''}
+          </div>`
+          : ''}
       </article>
     `;
+  }
+
+  renderFontCard({
+    familyName = '',
+    fontFamily = familyName,
+    path = '',
+    className = '',
+    dataset = {},
+    presentation = mediaPreviewCardPresentations.full,
+    selectable = false,
+    selected = false,
+    badges = [],
+    overlayActions = [],
+    actions = [],
+    loading = false
+  } = {}) {
+    const name = String(familyName || '').trim() || 'Font';
+    return this.renderCard({
+      kind: 'font',
+      path,
+      label: name,
+      fontFamily,
+      className: ['bb-font-preview-card', className].filter(Boolean).join(' '),
+      dataset,
+      presentation,
+      selectable,
+      selected,
+      badges,
+      overlayActions,
+      actions,
+      loading
+    });
+  }
+
+  syncFontCardGridWidths(root = globalThis.document) {
+    const grids = root?.matches?.('.bb-font-preview-card-grid')
+      ? [root]
+      : [...(root?.querySelectorAll?.('.bb-font-preview-card-grid') ?? [])];
+    const measure = () => grids.map((grid) => {
+      grid.style?.removeProperty?.('--bb-font-media-card-width');
+      const textWidths = [...grid.querySelectorAll(
+        '.bb-font-preview-card__name, .bb-font-preview-card .bb-media-card__body > strong'
+      )].map((element) => Number(element.scrollWidth) || 0);
+      const width = Math.max(216, ...textWidths.map((value) => Math.ceil(value + 40)));
+      grid.style?.setProperty?.('--bb-font-media-card-width', `${width}px`);
+      return width;
+    });
+    measure();
+    const fontReadiness = grids[0]?.ownerDocument?.fonts?.ready;
+    if (fontReadiness?.then) {
+      Promise.resolve(fontReadiness).then(() => {
+        const schedule = globalThis.requestAnimationFrame || ((callback) => callback());
+        schedule(measure);
+      });
+    }
+    return grids.length;
   }
 
   renderDeviceCard({
