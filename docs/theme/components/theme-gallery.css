@@ -1328,6 +1328,17 @@ article.bb-workspace-specimen__preview--secondary {
   color: var(--bb-theme-v2-neutral-foreground, var(--bb-v2-color-content-primary));
 }
 
+.bb-theme-v2-mode-label {
+  margin: -14px 0 0;
+  color: var(--bb-v2-color-content-brand);
+  font-family: var(--bb-v2-font-family-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
 .bb-theme-v2-section__meta {
   margin: -14px 0 0;
   color: var(--bb-v2-color-content-tertiary);

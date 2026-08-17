@@ -202,6 +202,25 @@
   padding: 0;
 }
 
+.bb-workspace-control-button--icon-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--bb-spacing-2);
+}
+
+.bb-workspace-control-button--icon-label > :is(.bb-workspace-control-icon, .bb-workspace-control-label) {
+  display: inline-grid;
+  height: 18px;
+  align-self: center;
+  place-items: center;
+  line-height: 1;
+}
+
+.bb-workspace-control-button--icon-label > .bb-workspace-control-label {
+  transform: translateY(1px);
+}
+
 .bb-workspace-control-button--plain-icon {
   display: inline-grid;
   place-items: center;

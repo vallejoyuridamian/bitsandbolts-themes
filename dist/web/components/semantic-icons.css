@@ -143,6 +143,22 @@
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/image.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="media_audio"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/volume-high.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="media_video"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/video.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="media_image"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/image.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="media_device"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/mobile-screen-button.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="arrow_selector_tool"] {
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/arrow-pointer.svg");
 }
@@ -173,6 +189,10 @@
 
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="play_arrow"] {
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/play.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="progress"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/spinner.svg");
 }
 
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="stop"] {

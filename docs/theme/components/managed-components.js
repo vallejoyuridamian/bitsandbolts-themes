@@ -10,8 +10,11 @@ import {
 import { footerMarkup } from './footer.js';
 import { floatingWindowConfirmationMarkup } from './floating-window.js';
 import { formFieldsMarkup } from './form-field.js';
+import { MediaPreviewCard, referenceImagePickerMarkup } from './media-picker.js';
 import { navbarMarkup } from './navbar.js';
 import { selectionControlsMarkup } from './select.js';
+
+const mediaPreviewCard = new MediaPreviewCard();
 
 /**
  * Theme-owned managed web component registry.
@@ -75,6 +78,36 @@ export const MANAGED_WEB_COMPONENTS = Object.freeze({
       modules: Object.freeze([])
     }),
     render: mediaCopyListMarkup
+  }),
+  'reference-image-picker': Object.freeze({
+    dependencies: Object.freeze({
+      stylesheets: Object.freeze([
+        'components/button.css',
+        'components/interface-primitives.css',
+        'components/media-picker.css',
+        'components/semantic-icons.css'
+      ]),
+      modules: Object.freeze([
+        'components/button.js',
+        'components/media-picker.js',
+        'components/semantic-icons.js'
+      ])
+    }),
+    render: referenceImagePickerMarkup
+  }),
+  'media-preview-card': Object.freeze({
+    dependencies: Object.freeze({
+      stylesheets: Object.freeze([
+        'components/interface-primitives.css',
+        'components/media-picker.css',
+        'components/semantic-icons.css'
+      ]),
+      modules: Object.freeze([
+        'components/media-picker.js',
+        'components/semantic-icons.js'
+      ])
+    }),
+    render: (model) => mediaPreviewCard.renderCard(model)
   }),
   'milestone-timeline': Object.freeze({
     dependencies: Object.freeze({

@@ -11,6 +11,11 @@ import { footerMarkup, synchronizeFooterYear } from './footer.js';
 import { floatingWindowConfirmationMarkup } from './floating-window.js';
 import { floatingWindowShellMarkup } from './floating-window-shell.js';
 import { formFieldsMarkup } from './form-field.js';
+import {
+  MediaPreviewCard,
+  mediaPreviewCardPresentations,
+  referenceImagePickerMarkup
+} from './media-picker.js';
 import { navbarMarkup } from './navbar.js';
 import { selectionControlsMarkup } from './select.js';
 import {
@@ -637,12 +642,12 @@ function contentAndFieldRecipeMarkup() {
       {
         title: 'Horizontal card',
         body: ['The shared surface accepts horizontal media and copy.'],
-        media: { src: '/theme/icons/android.svg', alt: 'Abstract media specimen' }
+        media: { src: './theme/icons/android.svg', alt: 'Abstract media specimen' }
       },
       {
         title: 'Alternating card',
         body: ['A collection can alternate the same card without a new component.'],
-        media: { src: '/theme/icons/linux.svg', alt: 'Second abstract media specimen' }
+        media: { src: './theme/icons/linux.svg', alt: 'Second abstract media specimen' }
       }
     ]
   }, { specimen: true });
@@ -654,7 +659,7 @@ function contentAndFieldRecipeMarkup() {
       items: [{
         title: 'Media and copy',
         body: ['A reusable row keeps illustration and supporting content in one responsive recipe.'],
-        media: { src: '/theme/icons/android.svg', alt: 'Abstract media specimen' }
+        media: { src: './theme/icons/android.svg', alt: 'Abstract media specimen' }
       }]
     }]
   });
@@ -665,7 +670,7 @@ function contentAndFieldRecipeMarkup() {
     groups: [{
       items: [{
         body: ['Portrait-led editorial content uses the same abstract media and copy owner.'],
-        media: { src: '/theme/icons/linux.svg', alt: 'Abstract portrait specimen' },
+        media: { src: './theme/icons/linux.svg', alt: 'Abstract portrait specimen' },
         mediaPosition: 'end'
       }]
     }]
@@ -839,14 +844,41 @@ function mediaRecipeSpecimenMarkup() {
     <div class="bb-media-recipe-specimen" inert>
       ${spotlightMediaMarkup({
         label: 'Spotlight media specimen',
-        media: { alt: 'Abstract spotlight media specimen', src: '/theme/icons/android.svg' }
+        media: { alt: 'Abstract spotlight media specimen', src: './theme/icons/android.svg' }
       })}
       ${storeBadgesMarkup({
         label: 'Store badges specimen',
         items: [
-          { href: '#', image: { alt: 'Download on the App Store', src: '/theme/brand/store/app-store-badge.svg' } },
-          { href: '#', image: { alt: 'Get it on Google Play', src: '/theme/brand/store/google-play-badge.png' } }
+          { href: '#', image: { alt: 'Download on the App Store', src: './theme/brand/store/app-store-badge.svg' } },
+          { href: '#', image: { alt: 'Get it on Google Play', src: './theme/brand/store/google-play-badge.png' } }
         ]
+      })}
+    </div>
+  `;
+}
+
+function mediaPickerRecipeSpecimenMarkup() {
+  const preview = new MediaPreviewCard();
+  return `
+    <div class="bb-media-picker-specimen" inert>
+      <div class="bb-media-picker-specimen__cards">
+        ${preview.renderCard({
+          kind: 'image',
+          label: 'Reference image',
+          presentation: mediaPreviewCardPresentations.reduced,
+          url: './theme/icons/android.svg'
+        })}
+        ${preview.renderAddCard({
+          kind: 'image',
+          presentation: mediaPreviewCardPresentations.reduced
+        })}
+      </div>
+      ${referenceImagePickerMarkup({
+        image: {
+          alt: 'Abstract reference image specimen',
+          label: 'Optional palette reference',
+          src: './theme/icons/linux.svg'
+        }
       })}
     </div>
   `;
@@ -883,7 +915,7 @@ function authenticationSpecimenMarkup(theme) {
         <strong class="bb-auth-title">Product account</strong>
         <p class="bb-auth-subtitle">Continue through the shared authentication surface.</p>
         <button class="bb-google-btn" type="button" tabindex="-1">
-          <img class="bb-google-btn__icon" src="/theme/icons/google-logo.svg" alt="">
+          <img class="bb-google-btn__icon" src="./theme/icons/google-logo.svg" alt="">
           <span class="bb-google-btn__label">Continue with Google</span>
         </button>
       </div>
@@ -1001,6 +1033,7 @@ function sharedWebRecipeMarkup(theme) {
     showcaseSectionMarkup('Workspace chrome, toolbar and stage', workspaceChromeMarkup(theme)),
     showcaseSectionMarkup('Loading states', loadingSpecimenMarkup()),
     showcaseSectionMarkup('Spotlight media and store badges', mediaRecipeSpecimenMarkup()),
+    showcaseSectionMarkup('Media picker and reference image', mediaPickerRecipeSpecimenMarkup()),
     showcaseSectionMarkup('Horseshoe meter', horseshoeMeterSpecimenMarkup()),
     showcaseSectionMarkup('Inline icon and text', inlineIconTextSpecimenMarkup(theme)),
     showcaseSectionMarkup('Authentication', authenticationSpecimenMarkup(theme)),
@@ -1030,7 +1063,8 @@ function v2ModeMarkup(theme, mode, {
   fontOptions = [],
   includeShowcase = true,
   identityColorOverrides = [],
-  paletteCompletion = null
+  paletteCompletion = null,
+  referenceImage = null
 } = {}) {
   const v2 = theme.v2;
   const resolvedMode = v2.modes[mode];
@@ -1045,6 +1079,9 @@ function v2ModeMarkup(theme, mode, {
       value: paletteCompletion.value,
       options: paletteCompletion.options
     }]
+  }) : '';
+  const paletteReferenceMarkup = editable ? referenceImagePickerMarkup({
+    image: referenceImage
   }) : '';
   const extendedShowcase = includeShowcase ? `
         <section class="bb-theme-v2-section">
@@ -1078,8 +1115,10 @@ function v2ModeMarkup(theme, mode, {
       <div class="bb-theme-v2__body">
         <section class="bb-theme-v2-section">
           <h3>${editable ? 'Palette' : 'Colors'}</h3>
+          ${editable ? `<p class="bb-theme-v2-mode-label" data-theme-palette-mode-label>${escapeHtml(mode)} mode</p>` : ''}
           <div class="bb-theme-v2-identities">${v2IdentityMarkup(resolvedMode, { editable, identityColorOverrides })}</div>
           ${paletteCompletionMarkup}
+          ${paletteReferenceMarkup}
         </section>
         <section class="bb-theme-v2-section">
           <h3>Typography</h3>
@@ -1100,7 +1139,8 @@ export function themeDetailMarkup(theme, mode = 'dark', {
   fontOptions = [],
   includeShowcase = true,
   identityColorOverrides = [],
-  paletteCompletion = null
+  paletteCompletion = null,
+  referenceImage = null
 } = {}) {
   const selected = selectedMode(mode);
   return `
@@ -1111,7 +1151,8 @@ export function themeDetailMarkup(theme, mode = 'dark', {
           fontOptions,
           includeShowcase,
           identityColorOverrides,
-          paletteCompletion
+          paletteCompletion,
+          referenceImage
         })}
       </div>
     </div>

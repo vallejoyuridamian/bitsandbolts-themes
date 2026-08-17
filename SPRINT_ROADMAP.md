@@ -5,7 +5,7 @@
 - Preserve Themes as the enforceable visual owner across every Bits and Bolts
   product and supported platform.
 - Keep Theme project behavior and persistence in AppScreen Studio while sharing
-  the exact gallery/detail root and all presentation recipes.
+  the exact gallery/detail root and presentation recipes.
 - Continue only through bounded, owner-directed, approval-gated slices.
 
 ## Completed Foundation
@@ -14,53 +14,51 @@
 - [x] Implement nine complete light/dark v2 families with semantic mappings,
   interface recipes, licensed fonts, and generated platform outputs.
 - [x] Build the compact card-first Themes home and preserve full family pages.
-- [x] Move reusable Hero, Navbar, Footer, Button, Select, Menu, workspace chrome,
-  Stage, Dialog, Product Entry, gallery, editorial, form, card, timeline,
-  detail-media, and store-badge presentation into Themes-owned components.
+- [x] Move shared workspace, content, form, card, media, and editorial recipes
+  into Themes-owned components.
 - [x] Add fallback-free first paint and atomic theme-change font readiness.
-- [x] Align AppScreen Studio and Sites with the canonical theme catalog and
-  accepted managed product recipes.
+- [x] Align AppScreen Studio and Sites with the canonical catalog and recipes.
 
-## Completed Theme Project Correction
+## Completed Theme Builder and Media Correction
 
-- [x] Remove the standalone theme editor, local server, bespoke chrome, custom
-  variables, save implementation, and package entry point from this repository.
-- [x] Keep Theme project creation and persistence in AppScreen Studio.
-- [x] Share one Theme detail root between the read-only gallery and editable
-  AppScreen project view, with editing initially limited to colors and fonts.
-- [x] Place Back and light/dark mode in the shared control-bar architecture for
-  both read-only and editable Theme detail.
-- [x] Package Font Awesome Solid, map `folder_open` to `faFolderOpen`, and route
-  Open through the same semantic action-button recipe as adjacent actions.
-- [x] Remove the special icon-only Select renderer and CSS. Retain a hidden native
-  select as state while the visible popup uses the exact Select/Menu recipe.
-- [x] Share the Theme card sun/moon semantic assets with the detail mode control.
-- [x] Move menu, toolbar, transport, and remaining icon-like affordances onto exact
-  semantic roles and provider mappings.
-- [x] Own the editable Colors add-tile, full-sample picker, and Primary-gated
-  palette-completion presentation while AppScreen owns behavior and persistence.
-- [x] Own the refined handled-window shell, grip, glowing close control,
-  confirmation and button recipes, plus the exact Theme-viewer specimen.
-- [x] Clean stale generated component and icon directories before every build.
-- [x] Add four exact identity foreground pairs, retain palette-aware art direction,
-  publish schema 2, and retire superseded V1 color paths without aliases.
-- [x] Accept full-width detail, local identity add-icon sizing, four-line gallery
-  headlines, and exact visible identity-role mapping.
-- [x] Keep the full standalone showcase while shared AppScreen view and creator
-  details end after Colors and Typography, with no consumer-local presentation.
+- [x] Remove Theme project behavior and persistence from Themes and keep them in
+  AppScreen Studio.
+- [x] Share one Theme detail renderer with explicit standalone and AppScreen
+  breadth, shared control bars, handled windows, Select, and Menu recipes.
+- [x] Package Font Awesome Solid and route every icon-like affordance through an
+  exact semantic role and provider mapping.
+- [x] Own editable color add tiles, full-sample pickers, palette completion, and
+  the explicit Dark Mode and Light Mode label.
+- [x] Publish schema 2 exact identity pairs, retain palette-aware art direction,
+  and retire superseded V1 color paths without aliases.
+- [x] Preserve canonical light-dark pairs as the fit corpus for deterministic
+  equivalence and foreground generation without ad hoc family changes.
+- [x] Own canonical media preview cards, add cards, picker layout, reference-image
+  presentation, and their semantic icons.
+- [x] Register `media-preview-card` and `reference-image-picker` as managed
+  component recipes consumed directly by AppScreen.
+- [x] Standardize icon-and-label workspace controls with accepted spacing,
+  midpoint alignment boxes, and font-metric correction.
+- [x] Remove the reference-image filename caption and grey lower strip.
+- [x] Add the media/reference specimen to the showcase and make its assets
+  repository-relative for GitHub Pages and local development.
+- [x] Synchronize source, generated web output, and documentation output.
+- [x] Accept the exact final color, media-reference, alignment, caption-free, and
+  showcase result in the owner-rendered browser state.
 
 ## Owner-Directed Next Work
 
-1. Obtain fresh owner acceptance for the changed exact-pair renderer in both modes.
-2. Add Theme project fields beyond colors and fonts in owner-selected slices.
+1. Build the Typography and font editing recipes with AppScreen behavior.
+2. Add later Theme project fields in separately selected slices.
 3. Migrate remaining legacy Dialog consumers in a separately directed UI slice.
-4. Review one existing family or detail composition through a focused visual slice.
-5. Advance the font library, DTCG validation, or versioned package delivery.
+4. Review an existing family or detail composition through a focused visual slice.
+5. Advance DTCG validation, glyph coverage, platform adapters, or versioned
+   package delivery.
 
 ## Guardrails
 
 - Verify exact Themes ownership before any consumer UI is exposed or edited.
-- Create a missing semantic recipe here before continuing consumer work.
+- Create missing semantic recipes here before continuing consumer work.
 - Preserve exact public preset values and identify derived values explicitly.
-- Use only official locally bundled fonts with compatible licenses.
-- Do not use browser automation. Browser acceptance and push remain user-owned.
+- Use only officially bundled fonts with compatible licenses.
+- Browser acceptance, push, and deployment remain user-owned.

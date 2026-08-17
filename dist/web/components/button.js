@@ -44,6 +44,7 @@ export function semanticActionButtonMarkup(model = {}) {
   const classes = [
     ...recipeClasses,
     ...(recipe === 'workspace' && iconOnly ? ['bb-workspace-control-button--icon'] : []),
+    ...(recipe === 'workspace' && !iconOnly ? ['bb-workspace-control-button--icon-label'] : []),
     ...(recipe === 'workspace' && model.danger ? ['bb-workspace-control-button--danger'] : []),
     ...String(model.className || '').split(/\s+/).filter(Boolean)
   ];
@@ -60,7 +61,8 @@ export function semanticActionButtonMarkup(model = {}) {
     family: model.iconFamily || DEFAULT_SEMANTIC_ICON_FAMILY
   });
   const iconWrapper = `<span class="bb-workspace-control-icon" aria-hidden="true">${icon}</span>`;
-  const body = `${iconWrapper}${iconOnly ? '' : `<span>${escapeHtml(label)}</span>`}`;
+  const labelClass = recipe === 'workspace' ? ' class="bb-workspace-control-label"' : '';
+  const body = `${iconWrapper}${iconOnly ? '' : `<span${labelClass}>${escapeHtml(label)}</span>`}`;
   return `<button type="${escapeHtml(model.type || 'button')}" class="${classes.map(escapeHtml).join(' ')}"${attributesMarkup(attributes)}>${body}</button>`;
 }
 
