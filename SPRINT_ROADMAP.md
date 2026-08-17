@@ -44,12 +44,12 @@
 - [x] Add the media/reference specimen to the showcase and make its assets
   repository-relative for GitHub Pages and local development.
 - [x] Synchronize source, generated web output, and documentation output.
-- [x] Accept the compact Palette, reference viewer, centered Typography rows,
-  and shared font media-card composition in the owner-rendered browser state.
+- [x] Accept the compact Palette, reference viewer, Typography, shared font picker,
+  Theme assignments, and body-free reduced font cards in the owner-rendered state.
 
 ## Owner-Directed Next Work
 
-1. Build the shared AppScreen font picker, then connect canonical Theme roles.
+1. Support the next owner-selected font consumer or render-parity slice.
 2. Add later Theme project fields in separately selected slices.
 3. Migrate remaining legacy Dialog consumers in a separately directed UI slice.
 4. Review an existing family or detail composition through a focused visual slice.

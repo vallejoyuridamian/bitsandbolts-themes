@@ -1,6 +1,6 @@
 # Theme System v2 Implementation Plan
 
-Status: Web reference and local-first font presentation checkpoint accepted
+Status: Web reference, shared font picker, and local Theme assignment checkpoint accepted
 Research basis: `../research/theme-system-standard-deep-research.md` in the workspace  
 Authoritative owner: `bitsandbolts-themes`
 
@@ -255,30 +255,31 @@ check pass, as do 83 affected AppScreen checks and its production build. The
 owner accepted the exact-pair, Neutral completion, Theme-root Select, font Select,
 portaled menu, and handled-window result.
 
-### 9B. Shared font presentation and AppScreen Vault checkpoint
+### 9B. Shared font presentation and AppScreen assignment checkpoint
 
-Status: local-first presentation implemented, validated, and owner-accepted on
-2026-08-17.
+Status: local-first presentation, shared picker, and Theme assignment implemented,
+validated, and owner-accepted on 2026-08-17.
 
-Themes now owns the reusable font presentation inside the ordinary media-card
-recipe plus the read-only Signature, Interface, and Technical composition. Each
-Typography row shows the family name once, centered horizontally in the full
-row and vertically against its role label. Bold, Italic, and Underline are
-transient semantic inspection controls.
+Themes now owns the reusable font presentation inside one common media-card base
+with explicit full Vault and reduced picker siblings. It also owns the read-only
+and editable Signature, Interface, and Technical composition. Each Typography
+row shows the family name once, centered horizontally in the full row and
+vertically against its role label. Bold, Italic, and Underline remain transient.
 
-Font cards inherit the ordinary checker preview, border, body metadata, and
-favorite overlay. One Themes-owned measurement helper gives every card and Add
-Font card the width required by the widest rendered family name. The preview is
-compact and the body sizes to content instead of reserving an absent action row.
+Every asset kind shares the reduced picker presentation without metadata or format
+pills. Font grids additionally share the width required by the widest rendered
+family. Reduced font cards omit the duplicate lower name body and use the accepted
+56 px preview, while full Vault font cards retain their 120 px preview and metadata.
 
-AppScreen owns `font` as a Vault sibling, the 23-family global catalog, local
-user upload, validation, loading, storage, reference, category, usage, and
-favorite behavior. Themes does not own Vault or writable font management.
+AppScreen owns `font` as a Vault sibling, the 23-family global catalog, local user
+upload, validation, loading, storage, reference, category, usage, favorite,
+selection, Theme assignment, migration, and persistence behavior. Themes owns no
+Vault or writable font management behavior.
 
-Open gates are the shared AppScreen picker, atomic Signature, Interface, and
-Technical schema migration, Theme assignment persistence, render and export
-parity, sanitizer and complete metadata extraction, rights attestation, cloud
-migration, and the final font-source ownership cutover.
+Open gates are detach behavior, generated vocabulary cutover, Studio-wide picker
+adoption, authoring, Preview, browser export, and hosted render parity, sanitizer
+and complete metadata extraction, rights attestation, cloud migration, and the
+final font-source ownership cutover.
 
 ## Rare override workflow
 

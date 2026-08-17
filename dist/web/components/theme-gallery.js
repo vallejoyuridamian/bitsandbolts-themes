@@ -457,16 +457,59 @@ function fontSpecimenStyleControlsMarkup(specimen) {
   `;
 }
 
-function v2TypographyMarkup(v2, { editable = false } = {}) {
+const THEME_TYPOGRAPHY_ROLES = new Set(['signature', 'interface', 'technical']);
+
+function typographyRole(specimen = {}) {
+  const role = String(specimen.label || '').trim().toLowerCase();
+  return THEME_TYPOGRAPHY_ROLES.has(role) ? role : '';
+}
+
+function editableFontSpecimenMarkup(specimen, assignment) {
+  const role = typographyRole(specimen);
+  if (!role) throw new TypeError('Editable Theme typography requires a canonical font role label.');
+  if (!assignment) {
+    return `
+      <button
+        class="bb-theme-v2-type__sample bb-theme-v2-type__font-control bb-theme-v2-type__font-add bb-workspace-add-tile"
+        type="button"
+        aria-label="Add ${escapeHtml(specimen.label)} font"
+        title="Add ${escapeHtml(specimen.label.toLowerCase())} font"
+        data-theme-project-font-add="${escapeHtml(role)}"
+      >
+        <span class="bb-workspace-control-icon" aria-hidden="true">${semanticIconMarkup('add')}</span>
+      </button>
+    `;
+  }
+  const familyName = String(assignment.familyName || '').trim() || 'Font';
+  const fontFamily = safeCssVariableValue(assignment.fontFamily || familyName);
+  return `
+    <button
+      class="bb-theme-v2-type__sample bb-theme-v2-type__font-control is-assigned"
+      type="button"
+      aria-label="Replace ${escapeHtml(specimen.label)} font, currently ${escapeHtml(familyName)}"
+      title="Replace ${escapeHtml(specimen.label.toLowerCase())} font"
+      data-theme-project-font-add="${escapeHtml(role)}"
+      style="--bb-theme-v2-specimen-family: ${escapeHtml(fontFamily)}"
+    >${escapeHtml(familyName)}</button>
+  `;
+}
+
+function v2TypographyMarkup(v2, { editable = false, fontAssignments = null } = {}) {
+  const assignmentContext = fontAssignments && typeof fontAssignments === 'object';
   return v2.typography.specimens.map((specimen) => {
     const family = v2.typography.families[specimen.familyRole];
+    const role = typographyRole(specimen);
+    const assignment = assignmentContext && role ? fontAssignments[role] : null;
+    const sample = editable && assignmentContext
+      ? editableFontSpecimenMarkup(specimen, assignment)
+      : `<span class="bb-theme-v2-type__sample">${escapeHtml(family)}</span>`;
     return `
       <div class="bb-theme-v2-type" data-theme-v2-font-specimen="${escapeHtml(specimen.id)}">
         <span class="bb-theme-v2-type__meta">
           <strong>${escapeHtml(specimen.label)}</strong>
         </span>
-        <span class="bb-theme-v2-type__sample">${escapeHtml(family)}</span>
-        ${editable ? fontSpecimenStyleControlsMarkup(specimen) : ''}
+        ${sample}
+        ${editable && (!assignmentContext || assignment) ? fontSpecimenStyleControlsMarkup(specimen) : ''}
       </div>
     `;
   }).join('');
@@ -901,19 +944,23 @@ function fontPickerRecipeSpecimenMarkup() {
     <div class="bb-media-card-grid bb-font-preview-card-grid" inert>
       ${preview.renderFontCard({
         familyName: 'Montserrat',
-        fontFamily: 'Montserrat'
+        fontFamily: 'Montserrat',
+        presentation: mediaPreviewCardPresentations.reduced
       })}
       ${preview.renderFontCard({
         familyName: 'Orbitron',
-        fontFamily: 'Orbitron'
+        fontFamily: 'Orbitron',
+        presentation: mediaPreviewCardPresentations.reduced
       })}
       ${preview.renderFontCard({
         familyName: 'JetBrains Mono',
-        fontFamily: 'JetBrains Mono'
+        fontFamily: 'JetBrains Mono',
+        presentation: mediaPreviewCardPresentations.reduced
       })}
       ${preview.renderFontCard({
         familyName: 'Source Serif 4',
-        fontFamily: 'Source Serif 4'
+        fontFamily: 'Source Serif 4',
+        presentation: mediaPreviewCardPresentations.reduced
       })}
       ${preview.renderAddCard({
         kind: 'font',
@@ -1100,7 +1147,7 @@ function v2SemanticColorMarkup(mode, { editable = false } = {}) {
 
 function v2ModeMarkup(theme, mode, {
   editable = false,
-  fontOptions = [],
+  fontAssignments = null,
   includeShowcase = true,
   identityColorOverrides = [],
   paletteCompletion = null,
@@ -1163,7 +1210,7 @@ function v2ModeMarkup(theme, mode, {
         </section>
         <section class="bb-theme-v2-section">
           <h3>Typography</h3>
-          <div class="bb-theme-v2-types">${v2TypographyMarkup(v2, { editable })}</div>
+          <div class="bb-theme-v2-types">${v2TypographyMarkup(v2, { editable, fontAssignments })}</div>
         </section>
         ${extendedShowcase}
       </div>
@@ -1177,7 +1224,7 @@ export function themeGalleryControlsMarkup() {
 
 export function themeDetailMarkup(theme, mode = 'dark', {
   editable = false,
-  fontOptions = [],
+  fontAssignments = null,
   includeShowcase = true,
   identityColorOverrides = [],
   paletteCompletion = null,
@@ -1189,7 +1236,7 @@ export function themeDetailMarkup(theme, mode = 'dark', {
       <div class="bb-theme-gallery__catalog">
         ${v2ModeMarkup(theme, selected, {
           editable,
-          fontOptions,
+          fontAssignments,
           includeShowcase,
           identityColorOverrides,
           paletteCompletion,

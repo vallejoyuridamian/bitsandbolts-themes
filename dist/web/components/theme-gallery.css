@@ -1486,14 +1486,54 @@ article.bb-workspace-specimen__preview--secondary {
 .bb-theme-v2-type__sample {
   grid-column: 2;
   justify-self: center;
+  max-width: 100%;
+  margin: 0;
   overflow-wrap: anywhere;
+  border: 0;
   color: var(--bb-v2-color-content-primary);
+  background: transparent;
   font-family: var(--bb-theme-v2-specimen-family);
   font-size: var(--bb-theme-v2-specimen-size);
   font-weight: var(--bb-theme-v2-specimen-weight);
   letter-spacing: var(--bb-theme-v2-specimen-tracking);
   line-height: var(--bb-theme-v2-specimen-leading);
   text-align: center;
+}
+
+.bb-theme-v2-type__font-control {
+  appearance: none;
+  cursor: pointer;
+}
+
+.bb-theme-v2-type__font-control.is-assigned {
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  border-radius: var(--bb-radius-md);
+}
+
+.bb-theme-v2-type__font-control.is-assigned:is(:hover, :focus-visible) {
+  outline: none;
+  border-color: var(--bb-v2-color-border-focus-ring);
+  background: color-mix(in srgb, var(--bb-v2-identity-primary) 8%, transparent);
+}
+
+.bb-theme-v2-type__font-add {
+  width: min(172px, 100%);
+  min-height: 60px;
+  padding: 0;
+  font-size: inherit;
+  letter-spacing: normal;
+  line-height: normal;
+}
+
+.bb-theme-v2-type__font-add .bb-workspace-control-icon {
+  width: 28px;
+  height: 28px;
+  font-size: 28px;
+}
+
+.bb-theme-v2-type__font-add .bb-workspace-control-icon .ms {
+  --ms-size: 28px;
 }
 
 .bb-theme-v2-type__style-controls {

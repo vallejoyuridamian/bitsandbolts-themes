@@ -234,9 +234,9 @@ export class MediaPreviewCard extends MediaPreviewElement {
     const attrs = actionDataset(dataset, this.escapeAttribute);
     const cardClass = [
       'bb-media-card',
+      reduced ? 'bb-media-card--reduced' : 'bb-media-card--full',
       'vault-card',
       'media-preview-card',
-      reduced ? 'is-reduced' : '',
       selectable ? 'is-selectable' : '',
       selected ? 'is-selected' : '',
       loading ? 'is-loading' : '',
@@ -299,6 +299,7 @@ export class MediaPreviewCard extends MediaPreviewElement {
     loading = false
   } = {}) {
     const name = String(familyName || '').trim() || 'Font';
+    const reduced = presentation === mediaPreviewCardPresentations.reduced;
     return this.renderCard({
       kind: 'font',
       path,
@@ -312,7 +313,8 @@ export class MediaPreviewCard extends MediaPreviewElement {
       badges,
       overlayActions,
       actions,
-      loading
+      loading,
+      showBody: !reduced
     });
   }
 
@@ -320,15 +322,15 @@ export class MediaPreviewCard extends MediaPreviewElement {
     const grids = root?.matches?.('.bb-font-preview-card-grid')
       ? [root]
       : [...(root?.querySelectorAll?.('.bb-font-preview-card-grid') ?? [])];
-    const measure = () => grids.map((grid) => {
-      grid.style?.removeProperty?.('--bb-font-media-card-width');
-      const textWidths = [...grid.querySelectorAll(
+    const measure = () => {
+      grids.forEach((grid) => grid.style?.removeProperty?.('--bb-font-media-card-width'));
+      const textWidths = grids.flatMap((grid) => [...grid.querySelectorAll(
         '.bb-font-preview-card__name, .bb-font-preview-card .bb-media-card__body > strong'
-      )].map((element) => Number(element.scrollWidth) || 0);
+      )].map((element) => Number(element.scrollWidth) || 0));
       const width = Math.max(216, ...textWidths.map((value) => Math.ceil(value + 40)));
-      grid.style?.setProperty?.('--bb-font-media-card-width', `${width}px`);
+      grids.forEach((grid) => grid.style?.setProperty?.('--bb-font-media-card-width', `${width}px`));
       return width;
-    });
+    };
     measure();
     const fontReadiness = grids[0]?.ownerDocument?.fonts?.ready;
     if (fontReadiness?.then) {
@@ -390,10 +392,10 @@ export class MediaPreviewCard extends MediaPreviewElement {
     const cardClass = [
       'bb-media-card',
       'bb-media-add-card',
+      reduced ? 'bb-media-card--reduced' : 'bb-media-card--full',
       'vault-card',
       'vault-add-card',
       'media-preview-add-card',
-      reduced ? 'is-reduced' : '',
       className
     ].filter(Boolean).join(' ');
     const attrs = actionDataset(dataset, this.escapeAttribute);
@@ -403,7 +405,7 @@ export class MediaPreviewCard extends MediaPreviewElement {
         <span class="bb-media-card__body bb-media-add-card__body vault-card-body vault-add-card-body">
           <strong>${this.escapeHtml(label)}</strong>
           <span>${this.escapeHtml(subtitle)}</span>
-          <span class="bb-media-add-card__formats vault-add-card-formats">${this.escapeHtml(formats)}</span>
+          ${!reduced && formats ? `<span class="bb-media-add-card__formats vault-add-card-formats">${this.escapeHtml(formats)}</span>` : ''}
         </span>
       </button>
     `;

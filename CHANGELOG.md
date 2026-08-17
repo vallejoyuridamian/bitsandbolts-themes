@@ -4,6 +4,31 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-17) - Shared font picker presentation accepted
+
+### What changed
+- Extended the canonical Theme Typography composition with Themes-owned add tiles
+  and replaceable Signature, Interface, and Technical family specimens while
+  retaining transient Bold, Italic, and Underline controls.
+- Formalized one common media-card base with explicit full Vault and reduced picker
+  siblings. Image, video, audio, device, and font pickers consume the same reduced
+  presentation, which never emits metadata or format pills.
+- Kept font-specific specialization at the shared owner: all font grids use the
+  widest rendered family width, reduced font cards omit the duplicate lower name
+  body, and their accepted preview height is 56 px. Full Vault font cards retain
+  their 120 px preview and ordinary metadata body.
+- Updated the standalone specimen and synchronized source, `dist/web`, and `docs`
+  outputs. AppScreen retains all picker behavior, Vault data, upload, references,
+  assignments, and persistence.
+
+### Acceptance and boundary
+- The owner accepted the final shared picker, assignment composition, pill-free
+  reduced cards, shared font widths, and compact body-free font presentation.
+- The focused Themes suite passes 8/8, corrected AppScreen picker and presentation
+  checks pass, both production builds pass, and repository diff checks pass.
+- This checkpoint commit was authorized. Nothing was pushed or deployed. Detach,
+  render parity, Screens and Scenes adoption, and hosted font work remain separate.
+
 ## Session wrap-up (2026-08-16) - Exact identity pairs and V1 retirement implemented
 
 ### What changed

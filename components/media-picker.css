@@ -21,10 +21,8 @@
 
 .bb-media-card,
 .vault-card {
-  --bb-media-card-body-min-height: 88px;
   position: relative;
   display: grid;
-  grid-template-rows: auto minmax(var(--bb-media-card-body-min-height), auto);
   min-width: 0;
   overflow: visible;
   border: 1px solid var(--bb-v2-color-border-subtle);
@@ -33,8 +31,23 @@
   background: var(--bb-v2-color-surface-raised);
 }
 
-.bb-font-preview-card {
+.bb-media-card--full {
+  --bb-media-card-body-min-height: 88px;
+  grid-template-rows: auto minmax(var(--bb-media-card-body-min-height), auto);
+}
+
+.bb-media-card--reduced {
   --bb-media-card-body-min-height: 0px;
+  grid-template-rows: auto auto;
+}
+
+.bb-font-preview-card.bb-media-card--full {
+  --bb-media-card-body-min-height: 0px;
+  --bb-font-preview-min-height: 120px;
+}
+
+.bb-font-preview-card.bb-media-card--reduced {
+  --bb-font-preview-min-height: 56px;
 }
 
 .bb-media-card.is-selectable,
@@ -50,11 +63,6 @@
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--bb-v2-color-border-focus-ring) 28%, transparent);
 }
 
-.bb-media-card.is-reduced,
-.media-preview-card.is-reduced {
-  grid-template-rows: auto auto;
-}
-
 :is(.bb-media-card, .vault-card).is-vault-drag-source {
   opacity: 0.42;
 }
@@ -68,8 +76,7 @@
   opacity: 0.78;
 }
 
-.bb-media-card.is-reduced :is(.bb-media-card__body, .media-preview-card-body),
-.media-preview-card.is-reduced .media-preview-card-body {
+.bb-media-card--reduced :is(.bb-media-card__body, .media-preview-card-body) {
   min-height: 0;
   gap: 6px;
   padding: 8px;
@@ -102,10 +109,14 @@
 }
 
 .bb-media-preview--font {
-  min-height: 120px;
+  min-height: var(--bb-font-preview-min-height, 120px);
   aspect-ratio: auto;
   padding: 16px;
   color: var(--bb-v2-color-content-primary);
+}
+
+.bb-font-preview-card.bb-media-card--reduced .bb-media-preview--font {
+  border-radius: 7px;
 }
 
 .bb-font-preview-card__name {
@@ -352,8 +363,6 @@
 
 .bb-media-add-card,
 .vault-add-card {
-  grid-template-rows: minmax(128px, 1fr) minmax(112px, auto);
-  min-height: 246px;
   width: 100%;
   padding: 0;
   color: var(--bb-v2-color-content-primary);
@@ -363,13 +372,18 @@
   background: transparent;
 }
 
+:is(.bb-media-add-card, .vault-add-card).bb-media-card--full {
+  grid-template-rows: minmax(128px, 1fr) minmax(112px, auto);
+  min-height: 246px;
+}
+
 :is(.bb-media-add-card, .vault-add-card):is(:hover, :focus-visible) {
   border-color: var(--bb-v2-color-border-focus-ring);
   outline: 2px solid transparent;
   background: color-mix(in srgb, var(--bb-v2-identity-primary) 5%, transparent);
 }
 
-:is(.bb-media-add-card, .vault-add-card).is-reduced {
+:is(.bb-media-add-card, .vault-add-card).bb-media-card--reduced {
   grid-template-rows: auto auto;
   min-height: 0;
 }
@@ -405,18 +419,18 @@
   text-transform: uppercase;
 }
 
-:is(.bb-media-add-card, .vault-add-card).is-reduced :is(.bb-media-add-card__preview, .vault-add-card-thumb) {
+:is(.bb-media-add-card, .vault-add-card).bb-media-card--reduced :is(.bb-media-add-card__preview, .vault-add-card-thumb) {
   min-height: 0;
   aspect-ratio: 1;
 }
 
-:is(.bb-media-add-card, .vault-add-card).is-reduced :is(.bb-media-add-card__body, .vault-add-card-body) {
+:is(.bb-media-add-card, .vault-add-card).bb-media-card--reduced :is(.bb-media-add-card__body, .vault-add-card-body) {
   min-height: 0;
   gap: 4px;
   padding: 8px;
 }
 
-:is(.bb-media-add-card, .vault-add-card).is-reduced :is(.bb-media-add-card__formats, .vault-add-card-formats) {
+:is(.bb-media-add-card, .vault-add-card).bb-media-card--reduced :is(.bb-media-add-card__formats, .vault-add-card-formats) {
   display: none;
 }
 
@@ -437,6 +451,10 @@
   align-content: start;
   justify-content: start;
   gap: 9px;
+}
+
+:is(.bb-media-picker, .floating-media-picker) .bb-font-preview-card-grid {
+  grid-template-columns: repeat(auto-fill, var(--bb-font-media-card-width));
 }
 
 .bb-media-picker__section,
