@@ -59,6 +59,20 @@
   outline-offset: 2px;
 }
 
+.bb-selection-controls--inline {
+  align-items: center;
+  width: min(100%, 440px);
+  margin: 0;
+  justify-self: start;
+}
+
+.bb-selection-controls--inline .bb-selection-control {
+  grid-template-columns: auto minmax(160px, 1fr);
+  align-items: center;
+  flex: 1 1 auto;
+  max-width: none;
+}
+
 /* The same selector owner adapts to Studio's canonical resizable side toolbar. */
 .bb-inspection-toolbar {
   box-sizing: border-box;
@@ -101,5 +115,9 @@
     flex: none;
     width: 100%;
     max-width: none;
+  }
+
+  .bb-selection-controls--inline .bb-selection-control {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

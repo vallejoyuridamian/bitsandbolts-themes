@@ -53,6 +53,7 @@ export const SEMANTIC_ICON_FAMILIES = Object.freeze({
     play_arrow: 'faPlay',
     progress: 'faSpinner',
     stop: 'faStop',
+    swap_horiz: 'faRightLeft',
     zoom_out: 'faMagnifyingGlassMinus',
     fit_screen: 'faExpand',
     zoom_in: 'faMagnifyingGlassPlus',

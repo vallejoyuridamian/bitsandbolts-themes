@@ -85,6 +85,7 @@ export const MANAGED_WEB_COMPONENTS = Object.freeze({
         'components/button.css',
         'components/interface-primitives.css',
         'components/media-picker.css',
+        'components/scrollbar.css',
         'components/semantic-icons.css'
       ]),
       modules: Object.freeze([

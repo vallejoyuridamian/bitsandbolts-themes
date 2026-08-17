@@ -361,7 +361,7 @@ export function referenceImagePickerMarkup({
 } = {}) {
   const source = String(image?.src || '');
   const label = String(image?.label || image?.alt || 'Reference image');
-  const choose = semanticActionButtonMarkup({
+  const choose = source ? '' : semanticActionButtonMarkup({
     label: buttonLabel,
     ariaLabel: buttonLabel,
     help: 'Choose an optional image to sample palette colors from',
@@ -370,17 +370,57 @@ export function referenceImagePickerMarkup({
     className: 'bb-media-reference-picker__choose',
     attributes: { 'data-theme-reference-image-action': 'choose' }
   });
-  const preview = source ? `
-    <figure class="bb-media-reference-picker__preview" data-theme-reference-image-preview>
-      <img src="${escapeHtml(source)}" alt="${escapeHtml(label)}" draggable="false">
+  const controls = source ? `
+    <div class="bb-media-reference-picker__controls bb-interface-controls" role="toolbar" aria-label="Reference image controls">
+      ${semanticActionButtonMarkup({
+        label: 'Swap reference image',
+        help: 'Swap reference image',
+        iconRole: 'swap_horiz',
+        className: 'bb-media-reference-picker__control',
+        attributes: { 'data-theme-reference-image-action': 'swap' }
+      })}
+      ${semanticActionButtonMarkup({
+        label: 'Zoom out',
+        help: 'Zoom out',
+        iconRole: 'zoom_out',
+        className: 'bb-media-reference-picker__control',
+        attributes: { 'data-theme-reference-image-action': 'zoom-out' }
+      })}
+      ${semanticActionButtonMarkup({
+        label: 'Fit image',
+        help: 'Fit image',
+        iconRole: 'fit_screen',
+        className: 'bb-media-reference-picker__control',
+        attributes: {
+          'aria-pressed': 'true',
+          'data-theme-reference-image-action': 'fit'
+        }
+      })}
+      ${semanticActionButtonMarkup({
+        label: 'Zoom in',
+        help: 'Zoom in',
+        iconRole: 'zoom_in',
+        className: 'bb-media-reference-picker__control',
+        attributes: { 'data-theme-reference-image-action': 'zoom-in' }
+      })}
       ${semanticActionButtonMarkup({
         label: 'Remove reference image',
-        ariaLabel: 'Remove reference image',
         help: 'Remove reference image',
         iconRole: 'close',
-        className: 'bb-media-reference-picker__remove',
+        danger: true,
+        className: 'bb-media-reference-picker__control',
         attributes: { 'data-theme-reference-image-action': 'remove' }
       })}
+    </div>
+  ` : '';
+  const preview = source ? `
+    <figure class="bb-media-reference-picker__preview" data-theme-reference-image-preview>
+      <div class="bb-media-reference-picker__viewport bb-scrollbar" data-theme-reference-image-viewport data-theme-reference-image-zoom-mode="fit">
+        <div class="bb-media-reference-picker__stage">
+          <img src="${escapeHtml(source)}" alt="${escapeHtml(label)}" draggable="false" data-theme-reference-image>
+        </div>
+      </div>
+      ${controls}
     </figure>
   ` : '';
   return `<div class="bb-media-reference-picker" data-theme-reference-image-picker>${choose}${preview}</div>`;

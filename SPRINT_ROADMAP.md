@@ -27,14 +27,15 @@
   breadth, shared control bars, handled windows, Select, and Menu recipes.
 - [x] Package Font Awesome Solid and route every icon-like affordance through an
   exact semantic role and provider mapping.
-- [x] Own editable color add tiles, full-sample pickers, palette completion, and
-  the explicit Dark Mode and Light Mode label.
+- [x] Own editable color tiles, full-sample pickers, palette completion, explicit
+  mode labels, compact swatches, and flush-left completion controls.
 - [x] Publish schema 2 exact identity pairs, retain palette-aware art direction,
   and retire superseded V1 color paths without aliases.
 - [x] Preserve canonical light-dark pairs as the fit corpus for deterministic
   equivalence and foreground generation without ad hoc family changes.
-- [x] Own canonical media preview cards, add cards, picker layout, reference-image
-  presentation, and their semantic icons.
+- [x] Own canonical media cards, picker and reference presentation, semantic
+  hover controls, scrollbar clearance, live Primary scrollbar roles, and
+  contrast-safe toolbar icon roles.
 - [x] Register `media-preview-card` and `reference-image-picker` as managed
   component recipes consumed directly by AppScreen.
 - [x] Standardize icon-and-label workspace controls with accepted spacing,
@@ -43,8 +44,8 @@
 - [x] Add the media/reference specimen to the showcase and make its assets
   repository-relative for GitHub Pages and local development.
 - [x] Synchronize source, generated web output, and documentation output.
-- [x] Accept the exact final color, media-reference, alignment, caption-free, and
-  showcase result in the owner-rendered browser state.
+- [x] Accept the final compact Palette and interactive reference viewer in the
+  owner-rendered light and dark browser states.
 
 ## Owner-Directed Next Work
 

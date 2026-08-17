@@ -199,6 +199,10 @@
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/stop.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="swap_horiz"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/right-left.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="zoom_out"] {
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/magnifying-glass-minus.svg");
 }

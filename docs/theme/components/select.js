@@ -125,7 +125,7 @@ export function resolveSelectMenuPosition({
   });
 }
 
-export function selectionControlsMarkup({ ariaLabel = '', controls = [] } = {}) {
+export function selectionControlsMarkup({ ariaLabel = '', controls = [], layout = '' } = {}) {
   const controlMarkup = controls.map((control) => {
     const dataAttribute = String(control?.dataAttribute || '');
     if (!DATA_ATTRIBUTE_PATTERN.test(dataAttribute)) {
@@ -173,7 +173,8 @@ export function selectionControlsMarkup({ ariaLabel = '', controls = [] } = {}) 
     `;
   }).join('');
 
-  return `<div class="bb-selection-controls" aria-label="${escapeHtml(ariaLabel)}">${controlMarkup}</div>`;
+  const layoutClass = layout === 'inline' ? ' bb-selection-controls--inline' : '';
+  return `<div class="bb-selection-controls${layoutClass}" aria-label="${escapeHtml(ariaLabel)}">${controlMarkup}</div>`;
 }
 
 export function selectHasFocus(select, rootDocument = globalThis.document) {

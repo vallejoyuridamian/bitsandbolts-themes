@@ -35,6 +35,8 @@ Last verified: 2026-08-17
   first-selection light-dark equivalence and foreground generation. Themes does
   not add ad hoc family exceptions or alter public preset values.
 - The Palette heading now states `DARK MODE` or `LIGHT MODE`.
+- Editable Palette spacing is compact, cropped-corner swatches are shorter, and
+  Auto-complete plus its Select remain flush left on one row.
 
 ## Accepted Media and Reference Recipes
 
@@ -47,8 +49,12 @@ Last verified: 2026-08-17
 - The reference-image action is an exact workspace icon-and-label button. Shared
   layout uses a tokenized 8 px gap, equal 18 px icon and label alignment boxes,
   centered midpoints, and a 1 px label font-metric correction.
-- Reference-image presentation contains only the image and semantic close action.
-  The filename caption and grey lower strip are removed.
+- Reference-image presentation owns hover and focus controls for semantic Swap,
+  Zoom out, Fit, Zoom in, and Remove actions. The separate change-image row,
+  filename caption, and grey lower strip are absent.
+- The toolbar clears the viewport scrollbar. Theme page and image scrollbars
+  follow the live Primary identity, and toolbar icons use the inverse surface
+  role for light and dark contrast.
 - The standalone showcase includes the canonical media picker and reference-image
   specimen. Asset URLs are repository-relative so GitHub Pages and local
   `pnpm dev` render the required assets.
@@ -75,13 +81,10 @@ Last verified: 2026-08-17
 
 ## Evidence and Acceptance Boundary
 
-- The focused media-picker suite passes 4/4 and the Themes production build passes.
-- AppScreen passed its 50 focused media, layout, and Theme-manager checks, 30
-  resolver-affected checks, and 19 Theme-gallery checks for this slice.
-- AppScreen's production build and direct development module boundary pass.
-  Both repositories pass `git diff --check`.
-- The owner accepted the exact final color, reference-image, button-alignment,
-  caption-free, and showcase result.
+- The focused media-picker suite passes 6/6. AppScreen's combined Theme-gallery
+  and Theme-project reference suite passes 41/41. Both production builds pass.
+- The owner accepted the final compact Palette and interactive reference viewer,
+  including live Theme scrollbars and light-mode toolbar contrast.
 - Any later UI, CSS, theme, icon, or renderer change requires fresh visual
   acceptance before another visual checkpoint commit.
 - This checkpoint is committed locally. Nothing has been pushed or deployed.

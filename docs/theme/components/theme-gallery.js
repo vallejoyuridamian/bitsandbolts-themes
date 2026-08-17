@@ -35,6 +35,17 @@ const THEME_GALLERY_SCROLLBAR_VARIABLES = Object.freeze([
   '--bb-interface-scrollbar-highlight'
 ]);
 
+function applyThemeScrollbarPresentation(target, values) {
+  if (!target?.style?.setProperty) return;
+  for (const name of THEME_GALLERY_SCROLLBAR_VARIABLES) {
+    target.style.setProperty(name, values[name]);
+  }
+  target.style.setProperty(
+    'scrollbar-color',
+    `${values['--bb-interface-scrollbar-thumb']} ${values['--bb-interface-scrollbar-track']}`
+  );
+}
+
 const NAVBAR_SPECIMEN = Object.freeze({
   label: 'Example navigation',
   brand: Object.freeze({
@@ -1070,6 +1081,7 @@ function v2ModeMarkup(theme, mode, {
   const resolvedMode = v2.modes[mode];
   const paletteCompletionMarkup = editable && paletteCompletion ? selectionControlsMarkup({
     ariaLabel: 'Palette controls',
+    layout: 'inline',
     controls: [{
       id: 'themePaletteCompletion',
       name: 'themePaletteCompletion',
@@ -1170,21 +1182,24 @@ export function themeGalleryMarkup(catalog, selection = {}) {
 
 export function applyThemeGalleryVariables(host, catalog, selection = {}) {
   const selected = selectedTheme(catalog, selection.themeId);
-  const selectedVariables = selected.v2.modes[selectedMode(selection.cardModes?.[selected.id] ?? selection.mode)].variables;
+  const resolvedMode = selected.v2.modes[selectedMode(selection.cardModes?.[selected.id] ?? selection.mode)];
+  const selectedVariables = resolvedMode.variables;
+  const primaryIdentity = resolvedMode.identity.find((entry) => entry.id === 'primary');
   const identityColorOverrides = new Set(
     (Array.isArray(selection.identityColorOverrides) ? selection.identityColorOverrides : [])
       .map((value) => String(value || ''))
   );
   const neutralFallback = String(selection.neutralFallback || '').trim();
   const scrollbarValues = {
-    '--bb-interface-scrollbar-thumb': selectedVariables['--bb-v2-color-content-secondary'],
+    '--bb-interface-scrollbar-thumb': primaryIdentity.value,
     '--bb-interface-scrollbar-track': selectedVariables['--bb-v2-color-surface-canvas'],
     '--bb-interface-scrollbar-border': selectedVariables['--bb-v2-color-border-subtle'],
-    '--bb-interface-scrollbar-highlight': selectedVariables['--bb-v2-color-content-primary']
+    '--bb-interface-scrollbar-highlight': primaryIdentity.foreground
   };
-  for (const name of THEME_GALLERY_SCROLLBAR_VARIABLES) {
-    host?.style?.setProperty?.(name, scrollbarValues[name]);
-  }
+  applyThemeScrollbarPresentation(host, scrollbarValues);
+  host?.querySelectorAll?.('.bb-scrollbar').forEach((scrollOwner) => {
+    applyThemeScrollbarPresentation(scrollOwner, scrollbarValues);
+  });
   host?.querySelectorAll?.('[data-theme-preview-id][data-theme-preview-mode]').forEach((preview) => {
     const theme = catalog.themes.find((candidate) => candidate.id === preview.dataset.themePreviewId);
     if (!theme) return;

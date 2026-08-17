@@ -8,7 +8,10 @@ import {
   mediaPreviewIcon,
   referenceImagePickerMarkup
 } from '../components/media-picker.js';
-import { themeDetailMarkup } from '../components/theme-gallery.js';
+import {
+  applyThemeGalleryVariables,
+  themeDetailMarkup
+} from '../components/theme-gallery.js';
 
 const catalog = JSON.parse(await readFile(
   new URL('../dist/web/catalog.json', import.meta.url),
@@ -19,6 +22,9 @@ const interfacePrimitives = await readFile(
   new URL('../components/interface-primitives.css', import.meta.url),
   'utf8'
 );
+const mediaPickerCss = await readFile(new URL('../components/media-picker.css', import.meta.url), 'utf8');
+const selectionControlsCss = await readFile(new URL('../components/selection-controls.css', import.meta.url), 'utf8');
+const themeGalleryCss = await readFile(new URL('../components/theme-gallery.css', import.meta.url), 'utf8');
 const theme = catalog.themes.find((entry) => entry.id === 'bitsandbolts');
 
 test('media preview icons use Themes semantic roles without inline artwork', () => {
@@ -38,6 +44,7 @@ test('media cards and reference images use the canonical shared recipes', () => 
   });
   const addCard = preview.renderAddCard({ kind: 'image' });
   const busyAction = preview.renderAction({ busy: true, label: 'Transcribing' });
+  const emptyReference = referenceImagePickerMarkup();
   const reference = referenceImagePickerMarkup({
     image: { label: 'Palette reference', src: './theme/icons/linux.svg' }
   });
@@ -49,10 +56,18 @@ test('media cards and reference images use the canonical shared recipes', () => 
   assert.doesNotMatch(addCard, /<svg|<path/);
   assert.match(busyAction, /data-bb-icon-role="progress"/);
   assert.doesNotMatch(busyAction, /<svg|<path/);
-  assert.match(reference, /data-theme-reference-image-action="choose"/);
+  assert.match(emptyReference, /data-theme-reference-image-action="choose"/);
+  assert.match(emptyReference, /bb-workspace-control-button--icon-label/);
+  assert.match(emptyReference, /bb-workspace-control-label">Choose reference image/);
+  assert.doesNotMatch(reference, /data-theme-reference-image-action="choose"/);
+  assert.match(reference, /data-theme-reference-image-action="swap"/);
+  assert.match(reference, /data-theme-reference-image-action="zoom-out"/);
+  assert.match(reference, /data-theme-reference-image-action="fit"/);
+  assert.match(reference, /data-theme-reference-image-action="zoom-in"/);
   assert.match(reference, /data-theme-reference-image-action="remove"/);
-  assert.match(reference, /bb-workspace-control-button--icon-label/);
-  assert.match(reference, /bb-workspace-control-label">Change reference image/);
+  assert.match(reference, /data-bb-icon-role="swap_horiz"/);
+  assert.match(reference, /data-theme-reference-image-viewport/);
+  assert.match(reference, /class="bb-media-reference-picker__viewport bb-scrollbar"/);
   assert.doesNotMatch(reference, /<figcaption>/);
   assert.match(
     interfacePrimitives,
@@ -65,6 +80,44 @@ test('media cards and reference images use the canonical shared recipes', () => 
   assert.match(reference, /\.\/theme\/icons\/linux\.svg/);
   assert.ok(MANAGED_WEB_COMPONENTS['media-preview-card']);
   assert.ok(MANAGED_WEB_COMPONENTS['reference-image-picker']);
+  assert.ok(MANAGED_WEB_COMPONENTS['reference-image-picker'].dependencies.stylesheets.includes('components/scrollbar.css'));
+  assert.match(mediaPickerCss, /data-theme-reference-image-zoom-mode="custom"/);
+  assert.match(mediaPickerCss, /bb-media-reference-picker__controls\s*\{[^}]*right:\s*16px;/s);
+  assert.match(mediaPickerCss, /bb-media-reference-picker__preview:is\(:hover, :focus-within\)[\s\S]*opacity:\s*1/);
+  assert.match(mediaPickerCss, /bb-media-reference-picker__viewport\.is-pannable[\s\S]*cursor:\s*grab/);
+});
+
+test('Theme gallery scrollbars use the selected Theme identity within the gallery host', () => {
+  const values = new Map();
+  const scrollOwnerValues = new Map();
+  const scrollOwner = {
+    style: {
+      setProperty(name, value) { scrollOwnerValues.set(name, value); }
+    }
+  };
+  const host = {
+    querySelectorAll(selector) { return selector === '.bb-scrollbar' ? [scrollOwner] : []; },
+    style: {
+      setProperty(name, value) { values.set(name, value); }
+    }
+  };
+  const selectedMode = theme.v2.modes.dark.variables;
+
+  applyThemeGalleryVariables(host, catalog, {
+    mode: 'dark',
+    themeId: theme.id
+  });
+
+  assert.equal(values.get('--bb-interface-scrollbar-thumb'), selectedMode['--bb-v2-identity-primary']);
+  assert.equal(values.get('--bb-interface-scrollbar-track'), selectedMode['--bb-v2-color-surface-canvas']);
+  assert.equal(values.get('--bb-interface-scrollbar-border'), selectedMode['--bb-v2-color-border-subtle']);
+  assert.equal(values.get('--bb-interface-scrollbar-highlight'), selectedMode['--bb-v2-identity-primary-foreground']);
+  assert.equal(
+    values.get('scrollbar-color'),
+    `${selectedMode['--bb-v2-identity-primary']} ${selectedMode['--bb-v2-color-surface-canvas']}`
+  );
+  assert.equal(scrollOwnerValues.get('--bb-interface-scrollbar-thumb'), selectedMode['--bb-v2-identity-primary']);
+  assert.equal(scrollOwnerValues.get('scrollbar-color'), values.get('scrollbar-color'));
 });
 
 test('editable Theme detail identifies the mode and always exposes a reference-image action', () => {
@@ -77,6 +130,25 @@ test('editable Theme detail identifies the mode and always exposes a reference-i
     assert.match(markup, /data-theme-reference-image-action="choose"/);
     assert.doesNotMatch(markup, /data-theme-reference-image-preview/);
   }
+});
+
+test('editable Theme detail uses the compact palette recipe and neutral hierarchy color', () => {
+  const markup = themeDetailMarkup(theme, 'dark', {
+    editable: true,
+    includeShowcase: false,
+    paletteCompletion: {
+      options: [{ value: 'manual', label: 'Manual' }],
+      value: 'manual'
+    }
+  });
+
+  assert.match(markup, /bb-selection-controls bb-selection-controls--inline/);
+  assert.match(selectionControlsCss, /bb-selection-controls--inline\s*\{[^}]*margin:\s*0;[^}]*justify-self:\s*start;/s);
+  assert.match(themeGalleryCss, /data-theme-detail-mode="edit"[\s\S]*padding-block:\s*clamp\(18px, 2\.5vw, 32px\)/);
+  assert.match(themeGalleryCss, /bb-theme-v2-mode-label[\s\S]*bb-theme-v2-neutral-foreground[\s\S]*68%/);
+  assert.match(themeGalleryCss, /data-theme-detail-mode="edit"[\s\S]*grid-template-columns:\s*repeat\(4, minmax\(112px, 172px\)\)/);
+  assert.match(mediaPickerCss, /bb-media-reference-picker__controls\s*\{[\s\S]*--bb-interface-control-foreground:\s*var\(--bb-v2-color-surface-inverse\)/);
+  assert.match(mediaPickerCss, /bb-media-reference-picker__controls\s*\{[\s\S]*--bb-interface-control-disabled-foreground:[\s\S]*52%/);
 });
 
 test('the standalone showcase loads media recipes and uses repository-safe asset URLs', () => {
