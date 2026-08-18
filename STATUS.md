@@ -47,7 +47,7 @@ Last verified: 2026-08-18
 ## Accepted Theme Detail and Floating Windows
 
 - The toolbar centers a Signature title and semantic pencil without clipping.
-- One floating form owns confirmation, naming, and media-picker structure.
+- One floating form owns naming, media picking, and optional secondary confirmation.
 - Editable translucent colors derive valid opaque native-control bases while
   retaining their alpha representation.
 - `displayLarge` replaces the use-specific `marketingHero` contract name across
@@ -94,10 +94,10 @@ Last verified: 2026-08-18
 
 ## Evidence and Acceptance Boundary
 
-- Final Guest, experience, Account, route, and Open checks pass 20/20. Themes and
-  AppScreen production builds pass and generated outputs match source.
-- The owner accepted workspace Account presentation, larger workspace tabs and
-  compact brand, and the larger bold Signature navbar action.
+- AppScreen project creation and Guest checks pass 45/45; its production build
+  passes. Themes confirmation checks pass 2/2 and generated outputs match source.
+- The owner accepted workspace Account presentation, Guest project creation
+  windows, larger workspace tabs, compact brand, and bold Signature navbar action.
 - The earlier Theme authoring and gallery checkpoint remains accepted.
 - Any later UI, CSS, Theme, icon, or renderer change requires fresh acceptance.
 - This checkpoint is closed in a local repository commit. Nothing is pushed or

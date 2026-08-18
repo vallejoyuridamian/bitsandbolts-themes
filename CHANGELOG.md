@@ -4,6 +4,23 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-18) - Project replacement confirmation accepted
+
+### What changed
+- Extended the canonical floating-window confirmation recipe with an optional
+  secondary action and independent destructive presentation.
+- Kept Cancel and primary confirmation behavior unchanged when no secondary
+  action is requested.
+- Synchronized the source component, generated web output, and documentation
+  output. AppScreen uses the recipe for signed-in Discard Changes beside Save
+  Project; Guest receives only Cancel and destructive Discard Changes.
+
+### Acceptance and boundary
+- Themes confirmation checks pass 2/2 with exact generated-source parity.
+  AppScreen focused creation checks pass 45/45 and its production build passes.
+- The owner accepted the AppScreen Guest creation flow. Nothing was pushed,
+  deployed, published, or activated.
+
 ## Session wrap-up (2026-08-18) - Account workspace and Guest entry accepted
 
 ### What changed

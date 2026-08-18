@@ -45,6 +45,7 @@
 - [x] Center larger Signature titles and support semantic pencil layout without
   growing the toolbar or clipping consumer controls.
 - [x] Apply canonical card Signatures and shared handled-window form structure.
+- [x] Add the optional destructive secondary confirmation action.
 - [x] Rename `marketingHero` to `displayLarge` and keep alpha colors editable.
 - [x] Synchronize source, generated web output, and documentation output.
 - [x] Rebuild and accept the final owner-rendered checkpoint.
