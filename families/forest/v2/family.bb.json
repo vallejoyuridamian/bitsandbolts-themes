@@ -49,11 +49,11 @@
       "metric": { "familyRole": "accent", "fontSize": "26px", "fontWeight": "700", "lineHeight": "1.15", "letterSpacing": "-0.01em" },
       "editorialBody": { "familyRole": "accent", "fontSize": "18px", "fontWeight": "400", "lineHeight": "1.65", "letterSpacing": "0em" },
       "editorialHeading": { "familyRole": "accent", "fontSize": "26px", "fontWeight": "700", "lineHeight": "1.28", "letterSpacing": "-0.005em" },
-      "marketingHero": { "familyRole": "accent", "fontSize": "48px", "fontWeight": "700", "lineHeight": "1.08", "letterSpacing": "-0.02em" }
+      "displayLarge": { "familyRole": "accent", "fontSize": "48px", "fontWeight": "700", "lineHeight": "1.08", "letterSpacing": "-0.02em" }
     },
     "specimens": [
       {
-        "id": "marketingHero",
+        "id": "displayLarge",
         "label": "Signature",
         "familyRole": "accent",
         "sample": "A grounded place to begin",

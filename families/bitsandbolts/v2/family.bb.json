@@ -49,11 +49,11 @@
       "metric": { "familyRole": "mono", "fontSize": "24px", "fontWeight": "700", "lineHeight": "1.1", "letterSpacing": "-0.02em" },
       "editorialBody": { "familyRole": "primary", "fontSize": "18px", "fontWeight": "500", "lineHeight": "1.65", "letterSpacing": "0em" },
       "editorialHeading": { "familyRole": "accent", "fontSize": "24px", "fontWeight": "600", "lineHeight": "1.2", "letterSpacing": "0.015em" },
-      "marketingHero": { "familyRole": "accent", "fontSize": "44px", "fontWeight": "700", "lineHeight": "1.02", "letterSpacing": "0.025em" }
+      "displayLarge": { "familyRole": "accent", "fontSize": "44px", "fontWeight": "700", "lineHeight": "1.02", "letterSpacing": "0.025em" }
     },
     "specimens": [
       {
-        "id": "marketingHero",
+        "id": "displayLarge",
         "label": "Signature",
         "familyRole": "accent",
         "sample": "SYSTEMS, BUILT TO SHIP.",

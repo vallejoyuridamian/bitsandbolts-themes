@@ -36,6 +36,7 @@
         <strong>Bits &amp; Bolts Themes</strong>
       </span>
     </header>
+    <div id="themeGalleryControls" class="bb-theme-showcase__toolbar" hidden></div>
     <main id="themeGallery" class="bb-theme-gallery bb-theme-showcase__gallery" aria-live="polite">
       <div class="bb-theme-gallery__loading" role="status">Loading first-party themes…</div>
     </main>
@@ -44,6 +45,7 @@
 
       const controller = createThemeGalleryController({
         catalogUrl: './theme/catalog.json',
+        controlsHost: document.getElementById('themeGalleryControls'),
         host: document.getElementById('themeGallery')
       });
       controller.render();

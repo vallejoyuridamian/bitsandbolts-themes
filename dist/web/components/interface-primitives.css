@@ -487,6 +487,55 @@
   scrollbar-width: thin;
 }
 
+.bb-theme-detail-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, auto) minmax(0, 1fr);
+}
+
+.bb-theme-detail-toolbar > .bb-workspace-control-bar__leading {
+  grid-column: 1;
+  justify-self: start;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.bb-theme-detail-toolbar > .bb-workspace-control-bar__status {
+  grid-column: 2;
+  justify-self: center;
+  max-width: min(42vw, 480px);
+  color: var(--bb-v2-color-content-primary);
+  font-family: var(--bb-theme-detail-title-font-family);
+  font-size: var(--bb-font-size-3xl);
+  font-weight: var(--bb-theme-detail-title-font-weight, var(--bb-font-weight-bold));
+  text-align: center;
+}
+
+.bb-theme-detail-toolbar__title {
+  position: relative;
+  overflow: visible;
+  line-height: 1.2;
+}
+
+.bb-theme-detail-toolbar__title > [data-control-bar-status-label] {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bb-theme-detail-toolbar__title > [data-control-bar-action="renameTheme"] {
+  position: absolute;
+  left: calc(100% + 6px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.bb-theme-detail-toolbar > .bb-workspace-control-bar__actions {
+  grid-column: 3;
+  justify-self: stretch;
+}
+
 .bb-workspace-stage-surface {
   background:
     linear-gradient(45deg, var(--bb-interface-workspace-stage-checker-strong) 25%, transparent 25%),

@@ -417,7 +417,7 @@
           "lineHeight": "1.28",
           "letterSpacing": "-0.005em"
         },
-        "marketingHero": {
+        "displayLarge": {
           "familyRole": "accent",
           "fontSize": "48px",
           "fontWeight": "700",
@@ -427,7 +427,7 @@
       },
       "specimens": [
         {
-          "id": "marketingHero",
+          "id": "displayLarge",
           "label": "Signature",
           "familyRole": "accent",
           "sample": "Turn up the signal",

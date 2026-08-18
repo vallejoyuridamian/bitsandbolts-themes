@@ -3,7 +3,7 @@
 // Note: font files must be bundled in your app. See README.
 
 export const colors = {
-  'surface.canvas': '#0B0F14',
+  'surface.canvas': '#080D12',
   'surface.surface': '#0F1520',
   'surface.subtle': '#101826',
   'surface.raised': '#152031',
@@ -27,7 +27,7 @@ export const colors = {
   'border.disabled': '#243447',
   'border.divider': '#243447',
   'border.focusRing': '#12E6D5',
-  'border.focusRingOffset': '#0B0F14',
+  'border.focusRingOffset': '#080D12',
   'interaction.action': '#12E6D5',
   'interaction.onAction': '#101826',
   'interaction.actionHover': '#3EF3FF',

@@ -8,7 +8,7 @@
     "identityNeutral": { "$value": { "colorSpace": "srgb", "components": [0.062745, 0.094118, 0.14902], "alpha": 1, "hex": "#101826" } },
     "white": { "$value": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 1, "hex": "#FFFFFF" } },
     "black": { "$value": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 1, "hex": "#000000" } },
-    "canvas": { "$value": { "colorSpace": "srgb", "components": [0.043137, 0.058824, 0.078431], "alpha": 1, "hex": "#0B0F14" } },
+    "canvas": { "$value": { "colorSpace": "srgb", "components": [0.031373, 0.05098, 0.070588], "alpha": 1, "hex": "#080D12" } },
     "surface": { "$value": { "colorSpace": "srgb", "components": [0.058824, 0.082353, 0.12549], "alpha": 1, "hex": "#0F1520" } },
     "surfaceSubtle": { "$value": { "colorSpace": "srgb", "components": [0.062745, 0.094118, 0.14902], "alpha": 1, "hex": "#101826" } },
     "surfaceRaised": { "$value": { "colorSpace": "srgb", "components": [0.082353, 0.12549, 0.192157], "alpha": 1, "hex": "#152031" } },

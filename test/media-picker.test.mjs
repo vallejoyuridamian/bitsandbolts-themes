@@ -31,7 +31,18 @@ const productEntryCss = await readFile(new URL('../components/product-entry.css'
 const navbarCss = await readFile(new URL('../components/navbar.css', import.meta.url), 'utf8');
 const buttonCss = await readFile(new URL('../components/button.css', import.meta.url), 'utf8');
 const typographyCss = await readFile(new URL('../components/typography.css', import.meta.url), 'utf8');
+const bitsAndBoltsDarkCss = await readFile(
+  new URL('../dist/web/bitsandbolts/dark.css', import.meta.url),
+  'utf8'
+);
 const theme = catalog.themes.find((entry) => entry.id === 'bitsandbolts');
+
+test('Bits and Bolts dark mode owns the accepted app canvas', () => {
+  const darkVariables = theme.v2.modes.dark.variables;
+
+  assert.equal(darkVariables['--bb-v2-color-surface-canvas'], '#080D12');
+  assert.match(bitsAndBoltsDarkCss, /--bb-interface-workspace-background:\s*#080D12;/);
+});
 
 test('workspace sections share one Themes-owned shell and semantic disclosure icon', () => {
   const markup = workspaceSectionMarkup({
@@ -276,7 +287,7 @@ test('landing recipes consume semantic typography roles without synthesizing Ult
   );
   assert.match(
     heroCss,
-    /\.bb-hero__heading\s*\{[^}]*font-family:\s*var\(--bb-v2-type-marketing-hero-family\);[^}]*font-weight:\s*var\(--bb-v2-type-marketing-hero-font-weight,[^}]*letter-spacing:\s*var\(--bb-v2-type-marketing-hero-letter-spacing, 0\);/s
+    /\.bb-hero__heading\s*\{[^}]*font-family:\s*var\(--bb-v2-type-display-large-family\);[^}]*font-weight:\s*var\(--bb-v2-type-display-large-font-weight,[^}]*letter-spacing:\s*var\(--bb-v2-type-display-large-letter-spacing, 0\);/s
   );
   assert.doesNotMatch(heroCss, /\.bb-hero__heading\s*\{[^}]*letter-spacing:\s*0\.1rem;/s);
   assert.match(
@@ -344,7 +355,7 @@ test('the standalone showcase loads media recipes and uses repository-safe asset
   const markup = themeDetailMarkup(theme, 'dark');
   assert.match(showcase, /\.\/theme\/components\/content-media\.css/);
   assert.match(showcase, /\.\/theme\/components\/media-picker\.css/);
-  assert.match(markup, /Media picker and reference image/);
+  assert.match(markup, /Handled media picker window/);
   assert.match(markup, /src="\.\/theme\//);
   assert.doesNotMatch(markup, /(?:src|href)="\/theme\//);
 });

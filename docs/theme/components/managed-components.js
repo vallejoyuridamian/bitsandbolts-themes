@@ -8,7 +8,11 @@ import {
   questionListMarkup
 } from './content-section.js';
 import { footerMarkup } from './footer.js';
-import { floatingWindowConfirmationMarkup } from './floating-window.js';
+import {
+  floatingWindowConfirmationMarkup,
+  floatingWindowFormMarkup,
+  floatingWindowPanelMarkup
+} from './floating-window.js';
 import { formFieldsMarkup } from './form-field.js';
 import { MediaPreviewCard, referenceImagePickerMarkup } from './media-picker.js';
 import { navbarMarkup } from './navbar.js';
@@ -45,6 +49,36 @@ export const MANAGED_WEB_COMPONENTS = Object.freeze({
       ])
     }),
     render: floatingWindowConfirmationMarkup
+  }),
+  'floating-window-form': Object.freeze({
+    dependencies: Object.freeze({
+      stylesheets: Object.freeze([
+        'components/floating-window.css',
+        'components/form-field.css',
+        'components/interface-primitives.css',
+        'components/semantic-icons.css'
+      ]),
+      modules: Object.freeze([
+        'components/floating-window-shell.js',
+        'components/floating-window.js',
+        'components/semantic-icons.js'
+      ])
+    }),
+    render: floatingWindowFormMarkup
+  }),
+  'floating-window-panel': Object.freeze({
+    dependencies: Object.freeze({
+      stylesheets: Object.freeze([
+        'components/floating-window.css',
+        'components/interface-primitives.css',
+        'components/semantic-icons.css'
+      ]),
+      modules: Object.freeze([
+        'components/floating-window-shell.js',
+        'components/floating-window.js'
+      ])
+    }),
+    render: floatingWindowPanelMarkup
   }),
   'content-cards': Object.freeze({
     dependencies: Object.freeze({

@@ -13,7 +13,7 @@ body {
 
 body.bb-theme-showcase {
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-rows: auto auto minmax(0, 1fr);
   overflow: hidden;
   color: var(--bb-v2-color-content-primary);
   background: var(--bb-interface-workspace-background);
@@ -54,6 +54,10 @@ body.bb-theme-showcase {
 
 .bb-theme-showcase__gallery {
   min-height: 0;
+}
+
+.bb-theme-showcase__toolbar[hidden] {
+  display: none;
 }
 
 @media (max-width: 640px) {

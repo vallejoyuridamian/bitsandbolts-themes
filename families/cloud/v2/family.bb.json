@@ -49,11 +49,11 @@
       "metric": { "familyRole": "accent", "fontSize": "24px", "fontWeight": "700", "lineHeight": "1.17", "letterSpacing": "0em" },
       "editorialBody": { "familyRole": "primary", "fontSize": "18px", "fontWeight": "400", "lineHeight": "1.56", "letterSpacing": "0em" },
       "editorialHeading": { "familyRole": "accent", "fontSize": "24px", "fontWeight": "600", "lineHeight": "1.33", "letterSpacing": "0em" },
-      "marketingHero": { "familyRole": "accent", "fontSize": "44px", "fontWeight": "700", "lineHeight": "1.1", "letterSpacing": "-0.01em" }
+      "displayLarge": { "familyRole": "accent", "fontSize": "44px", "fontWeight": "700", "lineHeight": "1.1", "letterSpacing": "-0.01em" }
     },
     "specimens": [
       {
-        "id": "marketingHero",
+        "id": "displayLarge",
         "label": "Signature",
         "familyRole": "accent",
         "sample": "A clear place to begin",

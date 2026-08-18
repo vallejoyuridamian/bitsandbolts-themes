@@ -1,6 +1,6 @@
 # Bits and Bolts Themes: Status
 
-Last verified: 2026-08-17
+Last verified: 2026-08-18
 
 ## Current Truth
 
@@ -44,6 +44,19 @@ Last verified: 2026-08-17
   Signature to Interface to Technical.
 - Fixed shared card rows keep the lower identity swatch and label region equal
   across canonical families and user Themes.
+- Every canonical card title consumes its actual Signature family through the
+  application-agnostic `displayLarge` role.
+
+## Accepted Theme Detail and Floating Windows
+
+- The existing-height toolbar centers a larger Signature title and supports a
+  semantic pencil action without clipping. GitHub Pages shares that title recipe.
+- One floating panel and form abstraction owns handles, close action, headings,
+  fields, validation, and actions across confirmation, naming, and media pickers.
+- Editable translucent colors derive valid opaque native-control bases while
+  retaining their alpha representation.
+- `displayLarge` replaces the use-specific `marketingHero` contract name across
+  authored families, generated outputs, components, showcase, and documentation.
 
 ## Accepted Media, Reference, and Font Recipes
 
@@ -58,16 +71,12 @@ Last verified: 2026-08-17
   Bold, Italic, and Underline are transient semantic-vector controls.
 - Reference presentation owns Swap, Zoom out, Fit, Zoom in, and Remove controls,
   exact Fit framing, scrollbar clearance, and contrast-safe toolbar roles.
-- Managed component entries expose media preview, reference picker, workspace
-  section, Theme card/detail, and their dependencies to consumers.
 
 ## Accepted Shared Presentation Corrections
 
 - Landing recipes consume semantic typography roles. Bits and Bolts display copy
   retains Orbitron. Brutus uses native Ultra 400 without browser-synthesized heavy
   weight or hardcoded positive display tracking.
-- Navbar, Hero, neon Button, product proof, poster, identity section, and pricing
-  assign display, label, caption, and support roles through shared recipes.
 - Selection Controls declares the semantic-icons dependency required by managed
   Product Entry, fixing the landing identity Select's missing resource.
 - One resizable-toolbar component owns both top and side handles. A 9 px stripe,
@@ -78,23 +87,18 @@ Last verified: 2026-08-17
 
 ## Shared Recipes and Icons
 
-- Themes owns Navbar, Footer, Hero, Button, Select, Menu, handled windows,
-  workspace chrome, control bars, Stage, Dialog, Product Entry, galleries,
-  editorial layouts, cards, forms, timelines, prose, and detail media.
 - Every icon-like affordance routes through a Themes-owned semantic role and
-  provider mapping. Text glyphs, emoji, entities, CSS text content, and local
-  consumer artwork are forbidden.
-- Build cleanup removes stale generated outputs. Source, `dist/web`, and `docs`
-  remain synchronized.
+  provider mapping. Text glyphs, CSS text content, and consumer artwork are forbidden.
+- Source, `dist/web`, and `docs` remain synchronized.
 
 ## Evidence and Acceptance Boundary
 
-- Focused Themes media-picker checks pass 12/12. Final AppScreen Theme gallery
-  and handle checks pass 23/23. Sites Product Entry checks pass 3/3.
-- Themes, AppScreen, and Sites production builds pass. Repository diff checks
-  pass before closeout docs.
-- The owner accepted the full Theme gallery, card, font, landing typography,
-  dependency, and resizable-handle checkpoint in the rendered products.
+- Focused Themes media and shared-surface checks pass 13/13. Focused AppScreen
+  Theme model, gallery, naming, and persistence checks pass 71/71.
+- Themes and AppScreen production builds pass. Repository diff checks pass before
+  closeout docs. Sites was not changed in this checkpoint.
+- The owner accepted the gallery, cards, detail title, floating-window hierarchy,
+  application-agnostic typography, naming, cloning, and rename checkpoint.
 - Any later UI, CSS, Theme, icon, or renderer change requires fresh acceptance.
 - This checkpoint is closed in a local repository commit. Nothing is pushed or
   deployed.

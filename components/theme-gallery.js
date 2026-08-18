@@ -8,7 +8,11 @@ import {
   questionListMarkup
 } from './content-section.js';
 import { footerMarkup, synchronizeFooterYear } from './footer.js';
-import { floatingWindowConfirmationMarkup } from './floating-window.js';
+import {
+  floatingWindowConfirmationMarkup,
+  floatingWindowFormMarkup,
+  floatingWindowPanelMarkup
+} from './floating-window.js';
 import { floatingWindowShellMarkup } from './floating-window-shell.js';
 import { formFieldsMarkup } from './form-field.js';
 import {
@@ -82,6 +86,8 @@ const V2_ID_PATTERN = /^[a-z][a-zA-Z0-9-]*$/;
 const V2_CSS_VARIABLE_PATTERN = /^--bb-v2-[a-z0-9-]+$/;
 const V2_CONTRACT_VERSION = '2.0.0';
 const ICON_NAME_PATTERN = /^[a-z0-9_]+$/;
+const HEX_COLOR_PATTERN = /^#[0-9a-f]{6}$/i;
+const RGB_COLOR_PATTERN = /^rgb\(\s*(\d{1,3})\s+(\d{1,3})\s+(\d{1,3})(?:\s*\/\s*((?:\d+\.?\d*)|(?:\.\d+)))?\s*\)$/i;
 const GENERIC_FONT_FAMILIES = new Set(['cursive', 'fantasy', 'monospace', 'sans-serif', 'serif', 'system-ui']);
 
 function escapeHtml(value = '') {
@@ -99,6 +105,16 @@ function safeCssVariableValue(value) {
     throw new TypeError('Theme catalog contains an unsafe CSS variable value.');
   }
   return normalized;
+}
+
+function editableColorInputValue(value) {
+  const normalized = String(value || '').trim();
+  if (HEX_COLOR_PATTERN.test(normalized)) return normalized;
+  const match = RGB_COLOR_PATTERN.exec(normalized);
+  if (!match) return '#000000';
+  const channels = match.slice(1, 4).map(Number);
+  if (channels.some((channel) => channel < 0 || channel > 255)) return '#000000';
+  return `#${channels.map((channel) => channel.toString(16).padStart(2, '0')).join('')}`;
 }
 
 function normalizeIcons(value = {}) {
@@ -746,6 +762,21 @@ function floatingWindowSpecimenMarkup(theme) {
         closeIconMarkup: iconPreviewGlyphMarkup(theme, 'close'),
         specimen: true
       })}
+      ${floatingWindowShellMarkup({
+        ariaLabel: 'Handled form window specimen',
+        bodyMarkup: floatingWindowFormMarkup({
+          cancelDanger: true,
+          cancelLabel: 'Cancel',
+          confirmLabel: 'Create',
+          description: 'Choose a clear name for this Theme.',
+          fieldsMarkup: '<div class="bb-field"><label class="bb-field__label" for="theme-name-specimen">Theme name</label><input id="theme-name-specimen" name="themeName" class="bb-field__input" type="text" value="Theme 1" tabindex="-1"></div>',
+          id: `handled-form-${theme.id}`,
+          specimen: true,
+          title: 'Name Theme'
+        }),
+        closeIconMarkup: iconPreviewGlyphMarkup(theme, 'close'),
+        specimen: true
+      })}
     </div>
   `;
 }
@@ -992,7 +1023,7 @@ function mediaRecipeSpecimenMarkup() {
 
 function mediaPickerRecipeSpecimenMarkup() {
   const preview = new MediaPreviewCard();
-  return `
+  const contentMarkup = `
     <div class="bb-media-picker-specimen" inert>
       <div class="bb-media-picker-specimen__cards">
         ${preview.renderCard({
@@ -1012,6 +1043,20 @@ function mediaPickerRecipeSpecimenMarkup() {
           label: 'Optional palette reference',
           src: './theme/icons/linux.svg'
         }
+      })}
+    </div>
+  `;
+  return `
+    <div class="bb-floating-window-specimen__canvas">
+      ${floatingWindowShellMarkup({
+        ariaLabel: 'Handled media picker window specimen',
+        bodyMarkup: floatingWindowPanelMarkup({
+          contentMarkup,
+          description: 'Choose a saved image or add one from your computer.',
+          id: 'handled-media-picker',
+          title: 'Choose Media'
+        }),
+        specimen: true
       })}
     </div>
   `;
@@ -1198,7 +1243,7 @@ function sharedWebRecipeMarkup(theme) {
     showcaseSectionMarkup('Workspace chrome, toolbar and stage', workspaceChromeMarkup(theme)),
     showcaseSectionMarkup('Loading states', loadingSpecimenMarkup()),
     showcaseSectionMarkup('Spotlight media and store badges', mediaRecipeSpecimenMarkup()),
-    showcaseSectionMarkup('Media picker and reference image', mediaPickerRecipeSpecimenMarkup()),
+    showcaseSectionMarkup('Handled media picker window', mediaPickerRecipeSpecimenMarkup()),
     showcaseSectionMarkup('Font asset presenter', fontPickerRecipeSpecimenMarkup()),
     showcaseSectionMarkup('Horseshoe meter', horseshoeMeterSpecimenMarkup()),
     showcaseSectionMarkup('Inline icon and text', inlineIconTextSpecimenMarkup(theme)),
@@ -1213,7 +1258,7 @@ function v2SemanticColorMarkup(mode, { editable = false } = {}) {
       ${editable ? `
         <input
           type="color"
-          value="${escapeHtml(entry.value)}"
+          value="${escapeHtml(editableColorInputValue(entry.value))}"
           aria-label="${escapeHtml(entry.role.replace('color.', ''))} color"
           title="Edit ${escapeHtml(entry.role.replace('color.', ''))} color"
           data-theme-project-semantic-color="${escapeHtml(entry.role)}"
@@ -1277,7 +1322,7 @@ function v2ModeMarkup(theme, mode, {
         <section class="bb-theme-v2-section bb-theme-v2-semantics">
           <h3>Semantic color roles</h3>
           <p class="bb-theme-v2-section__meta">48 roles</p>
-          <div>${v2SemanticColorMarkup(resolvedMode)}</div>
+          <div>${v2SemanticColorMarkup(resolvedMode, { editable })}</div>
         </section>` : '';
   return `
     <section
@@ -1306,8 +1351,48 @@ function v2ModeMarkup(theme, mode, {
   `;
 }
 
-export function themeGalleryControlsMarkup() {
-  return '';
+export function themeDetailTitlePresentation(theme = {}) {
+  const signature = (theme?.v2?.typography?.specimens ?? []).find((specimen) => (
+    typographyRole(specimen) === 'signature'
+  ));
+  const fontFamily = theme?.v2?.typography?.families?.[signature?.familyRole];
+  if (!theme?.label || !signature || !fontFamily) return null;
+  return Object.freeze({
+    fontFamily: safeCssVariableValue(fontFamily),
+    fontWeight: safeCssVariableValue(signature.fontWeight),
+    label: String(theme.label)
+  });
+}
+
+export function themeGalleryControlsMarkup(theme, mode = 'dark') {
+  const title = themeDetailTitlePresentation(theme);
+  if (!title) return '';
+  const nextMode = nextThemeMode(mode);
+  return `
+    <div class="bb-workspace-control-bar bb-theme-detail-toolbar" data-theme-gallery-detail-toolbar>
+      <div class="bb-workspace-control-bar__leading">
+        ${semanticActionButtonMarkup({
+          attributes: { 'data-theme-gallery-back': true },
+          iconRole: 'arrow_back',
+          label: 'Back to themes',
+          recipe: 'workspace'
+        })}
+      </div>
+      <strong
+        class="bb-workspace-control-bar__status"
+        style="--bb-theme-detail-title-font-family: ${escapeHtml(title.fontFamily)}; --bb-theme-detail-title-font-weight: ${escapeHtml(title.fontWeight)}"
+      >${escapeHtml(title.label)}</strong>
+      <div class="bb-workspace-control-bar__actions" aria-label="Theme detail controls">
+        ${semanticActionButtonMarkup({
+          attributes: { 'data-theme-gallery-detail-mode': true },
+          iconFamily: 'bitsandbolts-theme',
+          iconRole: `${nextMode}_mode`,
+          label: `Use ${nextMode} mode`,
+          recipe: 'workspace'
+        })}
+      </div>
+    </div>
+  `;
 }
 
 export function themeDetailMarkup(theme, mode = 'dark', {
@@ -1444,6 +1529,7 @@ export function createThemeGalleryController({
     themeId: ''
   });
   let navigationListenerInstalled = false;
+  let controlsListenerInstalled = false;
 
   async function loadCatalog() {
     const response = await fetchImpl(catalogUrl, { credentials: 'same-origin' });
@@ -1505,7 +1591,10 @@ export function createThemeGalleryController({
     const detailTheme = themeId
       ? presentation.themes.find((theme) => theme.id === themeId)
       : null;
-    if (controlsHost) controlsHost.innerHTML = '';
+    if (controlsHost) {
+      controlsHost.innerHTML = detailTheme ? themeGalleryControlsMarkup(detailTheme, currentMode) : '';
+      controlsHost.toggleAttribute?.('hidden', !detailTheme);
+    }
     host.innerHTML = themeGalleryMarkup(presentation, {
       ...selection,
       groups: themeId ? null : galleryGroups(catalog),
@@ -1537,17 +1626,30 @@ export function createThemeGalleryController({
     return true;
   }
 
-  function installNavigationListener() {
-    if (navigationListenerInstalled || !host?.addEventListener) return;
-    host.addEventListener('click', (event) => {
+  function handleNavigationClick(event) {
       const cardMode = event.target?.closest?.('[data-theme-gallery-card-mode]');
+      const detailBack = event.target?.closest?.('[data-theme-gallery-back]');
+      const detailMode = event.target?.closest?.('[data-theme-gallery-detail-mode]');
       const inspectionToggle = event.target?.closest?.('[data-theme-inspection-toggle]');
       const open = event.target?.closest?.('[data-theme-gallery-open]');
-      if (!renderedCatalog || (!cardMode && !inspectionToggle && !open)) return;
+      if (!renderedCatalog || (!cardMode && !detailBack && !detailMode && !inspectionToggle && !open)) return;
       event.preventDefault();
       if (cardMode) {
         const themeId = String(cardMode.dataset.themeGalleryCardMode || '');
         toggleModeForTheme(themeId, { restoreFocus: true });
+      } else if (detailBack && selection.themeId) {
+        const themeId = selection.themeId;
+        selection = Object.freeze({
+          ...selection,
+          paletteDetailsExpanded: false,
+          showcaseExpanded: false,
+          themeId: ''
+        });
+        renderCatalog(renderedCatalog);
+        host.querySelector?.(`[data-theme-gallery-open="${themeId}"]`)?.focus?.();
+      } else if (detailMode && selection.themeId) {
+        toggleModeForTheme(selection.themeId);
+        controlsHost?.querySelector?.('[data-theme-gallery-detail-mode]')?.focus?.();
       } else if (inspectionToggle && selection.themeId) {
         const inspection = String(inspectionToggle.dataset.themeInspectionToggle || '');
         if (!['palette', 'showcase'].includes(inspection)) return;
@@ -1574,8 +1676,17 @@ export function createThemeGalleryController({
         });
         renderCatalog(renderedCatalog);
       }
-    });
-    navigationListenerInstalled = true;
+  }
+
+  function installNavigationListener() {
+    if (!navigationListenerInstalled && host?.addEventListener) {
+      host.addEventListener('click', handleNavigationClick);
+      navigationListenerInstalled = true;
+    }
+    if (!controlsListenerInstalled && controlsHost?.addEventListener) {
+      controlsHost.addEventListener('click', handleNavigationClick);
+      controlsListenerInstalled = true;
+    }
   }
 
   async function render() {
@@ -1586,7 +1697,10 @@ export function createThemeGalleryController({
       throw error;
     });
     host.innerHTML = '<div class="bb-theme-gallery__loading" role="status">Loading first-party themes…</div>';
-    if (controlsHost) controlsHost.innerHTML = '';
+    if (controlsHost) {
+      controlsHost.innerHTML = '';
+      controlsHost.toggleAttribute?.('hidden', true);
+    }
     try {
       const catalog = await catalogPromise;
       renderedCatalog = catalog;
@@ -1594,7 +1708,10 @@ export function createThemeGalleryController({
       renderCatalog(catalog);
       return catalog;
     } catch (error) {
-      if (controlsHost) controlsHost.innerHTML = '';
+      if (controlsHost) {
+        controlsHost.innerHTML = '';
+        controlsHost.toggleAttribute?.('hidden', true);
+      }
       host.innerHTML = `<div class="bb-theme-gallery__error" role="alert">${escapeHtml(error?.message || 'Theme catalog could not be loaded.')}</div>`;
       throw error;
     }

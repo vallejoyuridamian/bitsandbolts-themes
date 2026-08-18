@@ -102,21 +102,47 @@
   scrollbar-width: thin;
 }
 
-.bb-floating-confirm {
+.bb-floating-window-content {
   display: grid;
+  min-height: 0;
+  color: var(--bb-interface-control-foreground);
+  background: var(--bb-interface-menu-background);
+}
+
+.bb-floating-panel {
+  grid-template-rows: auto auto minmax(0, 1fr);
+  min-height: 100%;
+}
+
+.bb-floating-confirm {
   grid-template-rows: auto auto auto;
+}
+
+.bb-floating-form {
+  grid-template-rows: auto auto minmax(0, 1fr) auto auto;
+  min-height: 100%;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.bb-floating-window[data-floating-window-size="content"] .bb-floating-form {
+  grid-template-rows: auto auto auto auto auto;
   min-height: 0;
 }
 
-.bb-floating-confirm__head {
+.bb-floating-window-content__head {
+  position: sticky;
+  z-index: 2;
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 38px;
   padding: 0 10px;
+  background: var(--bb-interface-menu-background);
 }
 
-.bb-floating-confirm__title {
+.bb-floating-window-content__title {
   width: 100%;
   margin: 0;
   color: var(--bb-interface-control-foreground);
@@ -127,7 +153,7 @@
   text-align: center;
 }
 
-.bb-floating-confirm__copy {
+.bb-floating-window-content__copy {
   display: grid;
   place-items: center;
   min-height: 48px;
@@ -139,15 +165,71 @@
   text-align: center;
 }
 
-.bb-floating-confirm__actions {
+.bb-floating-window-content__body {
+  min-width: 0;
+  min-height: 0;
+}
+
+.bb-floating-window-content__actions {
   display: flex;
   justify-content: flex-end;
   gap: 6px;
   padding: 5px 8px 7px;
 }
 
-.bb-floating-confirm__actions .bb-workspace-control-button {
+.bb-floating-window-content__actions .bb-workspace-control-button {
   min-height: 32px;
   padding-inline: 12px;
   font-size: var(--bb-font-size-sm);
+}
+
+.bb-floating-form__head {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) 18px;
+  gap: var(--bb-spacing-2);
+}
+
+.bb-floating-form__head::after {
+  width: 18px;
+  content: "";
+}
+
+.bb-floating-form__head .bb-floating-window-content__title {
+  grid-column: 2;
+}
+
+.bb-floating-form__back {
+  grid-column: 1;
+}
+
+.bb-floating-form__fields {
+  display: grid;
+  align-content: start;
+  gap: var(--bb-spacing-3);
+  padding: 0 12px 12px;
+}
+
+.bb-floating-form__fields > .bb-field {
+  margin: 0;
+}
+
+.bb-floating-form__fields :is(input, textarea, select, [contenteditable="true"]) {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.bb-floating-form.is-pending .bb-floating-form__fields {
+  opacity: 0.58;
+  pointer-events: none;
+}
+
+.bb-floating-form__error {
+  margin: 0 12px 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--bb-v2-color-status-danger-border);
+  border-radius: var(--bb-radius-md);
+  color: var(--bb-v2-color-status-danger-content);
+  background: var(--bb-v2-color-status-danger-surface);
+  font-size: var(--bb-font-size-xs);
+  line-height: var(--bb-font-line-height-normal);
 }

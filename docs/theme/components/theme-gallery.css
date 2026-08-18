@@ -207,9 +207,9 @@
 .bb-theme-summary-card__header strong {
   overflow: hidden;
   color: var(--bb-v2-color-content-primary);
-  font-family: var(--bb-v2-type-title-family);
+  font-family: var(--bb-v2-type-display-large-family);
   font-size: var(--bb-v2-type-title-font-size);
-  font-weight: var(--bb-v2-type-title-font-weight);
+  font-weight: var(--bb-v2-type-display-large-font-weight);
   line-height: var(--bb-v2-type-title-line-height);
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -294,9 +294,9 @@
   font-family: var(--bb-v2-font-family-accent);
   font-synthesis: style;
   font-size: clamp(28px, 3vw, 40px);
-  font-weight: var(--bb-v2-type-marketing-hero-font-weight);
+  font-weight: var(--bb-v2-type-display-large-font-weight);
   letter-spacing: -0.02em;
-  line-height: var(--bb-v2-type-marketing-hero-line-height);
+  line-height: var(--bb-v2-type-display-large-line-height);
 }
 
 .bb-theme-summary-card__headline em {
@@ -695,6 +695,7 @@
 
 .bb-floating-window-specimen__canvas {
   display: grid;
+  gap: var(--bb-spacing-4);
   place-items: center;
   min-width: 0;
   padding: 0;

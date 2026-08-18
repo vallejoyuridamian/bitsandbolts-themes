@@ -4,6 +4,30 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-18) - Theme creation surfaces accepted
+
+### What changed
+- Centered a larger Signature Theme title in the existing detail toolbar and
+  exposed shared layout support for a semantic pencil action without clipping.
+- Made every canonical card title consume its actual Signature family, including
+  Bits and Bolts, across the source gallery and generated GitHub Pages output.
+- Added shared floating-window panel and form abstractions for handle, close
+  action, title, description, field, validation, and actions. Confirmation,
+  naming, and handled media-picker examples now use the same hierarchy.
+- Replaced the use-specific `marketingHero` typography contract with the
+  application-neutral `displayLarge` role across families, components, tests,
+  generated platform output, the showcase, and documentation.
+- Made translucent serialized semantic colors safe for native editable color
+  inputs by deriving an opaque control base while preserving alpha representation.
+
+### Acceptance and boundary
+- Focused Themes media and shared-surface checks pass 13/13. The Themes production
+  build and repository diff check pass, and generated `dist` and `docs` outputs
+  are synchronized.
+- The owner accepted the exact Theme title, card Signature, floating-window,
+  application-neutral typography, and color-input result. Nothing was pushed or
+  deployed. Sites was not changed in this checkpoint.
+
 ## Session wrap-up (2026-08-17) - Theme gallery and shared UI checkpoint accepted
 
 ### What changed

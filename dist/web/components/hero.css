@@ -11,7 +11,7 @@
   --bb-hero-heading-measure: 17ch;
   --bb-hero-heading-size: clamp(1.5rem, 7.2vw, 2.5rem);
   --bb-hero-heading-line-height: var(
-    --bb-v2-type-marketing-hero-line-height,
+    --bb-v2-type-display-large-line-height,
     var(--bb-font-line-height-tight, normal)
   );
   --bb-hero-support-measure: 56ch;
@@ -56,12 +56,12 @@
 .bb-hero__heading {
   max-inline-size: var(--bb-hero-heading-measure);
   margin: 0;
-  font-family: var(--bb-v2-type-marketing-hero-family);
+  font-family: var(--bb-v2-type-display-large-family);
   font-synthesis: style;
   font-size: var(--bb-hero-heading-size);
-  font-weight: var(--bb-v2-type-marketing-hero-font-weight, var(--bb-font-weight-semibold));
+  font-weight: var(--bb-v2-type-display-large-font-weight, var(--bb-font-weight-semibold));
   line-height: var(--bb-hero-heading-line-height);
-  letter-spacing: var(--bb-v2-type-marketing-hero-letter-spacing, 0);
+  letter-spacing: var(--bb-v2-type-display-large-letter-spacing, 0);
   text-wrap: balance;
 }
 

@@ -42,6 +42,10 @@
 - [x] Declare the managed Selection Controls semantic-icon dependency.
 - [x] Unify horizontal and vertical resizers under one 9 px stripe and centered
   96 px by 3 px grip recipe with equal divider spacing.
+- [x] Center larger Signature titles and support semantic pencil layout without
+  growing the toolbar or clipping consumer controls.
+- [x] Apply canonical card Signatures and shared handled-window form structure.
+- [x] Rename `marketingHero` to `displayLarge` and keep alpha colors editable.
 - [x] Synchronize source, generated web output, and documentation output.
 - [x] Rebuild and accept the final owner-rendered checkpoint.
 

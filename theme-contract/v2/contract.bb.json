@@ -77,10 +77,10 @@
       "metric",
       "editorialBody",
       "editorialHeading",
-      "marketingHero"
+      "displayLarge"
     ],
     "referenceSpecimens": [
-      { "id": "marketingHero", "label": "Signature" },
+      { "id": "displayLarge", "label": "Signature" },
       { "id": "body", "label": "Interface" },
       { "id": "terminal", "label": "Technical" }
     ]
