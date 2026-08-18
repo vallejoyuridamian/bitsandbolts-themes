@@ -40,7 +40,7 @@
     }
   ],
   "artDirection": {
-    "label": "Crisp coastal utility",
+    "label": "Crisp coastal",
     "summary": "Cool blue-gray surfaces, fresh green accents, moderate rounding, readable editorial contrast, and buoyant depth.",
     "traits": {
       "geometry": "soft-rounded",
@@ -160,6 +160,11 @@
         "lineHeight": "1.08",
         "letterSpacing": "-0.02em"
       }
+    },
+    "variants": {
+      "signature": { "bold": true, "italic": false, "underline": false },
+      "interface": { "bold": false, "italic": false, "underline": false },
+      "technical": { "bold": false, "italic": false, "underline": false }
     },
     "specimens": [
       {

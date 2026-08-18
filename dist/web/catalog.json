@@ -81,7 +81,7 @@
         "contractVersion": "2.0.0",
         "themeVersion": "2.0.0",
         "artDirection": {
-          "label": "Calm utility",
+          "label": "Calm",
           "summary": "Clear indigo signals, deep blue-gray surfaces, compact rounded geometry, and direct interface feedback.",
           "traits": {
             "geometry": "compact-rounded",
@@ -200,6 +200,23 @@
               "fontWeight": "700",
               "lineHeight": "1.1",
               "letterSpacing": "-0.01em"
+            }
+          },
+          "variants": {
+            "signature": {
+              "bold": true,
+              "italic": false,
+              "underline": false
+            },
+            "interface": {
+              "bold": false,
+              "italic": false,
+              "underline": false
+            },
+            "technical": {
+              "bold": false,
+              "italic": false,
+              "underline": false
             }
           },
           "specimens": [
@@ -1332,6 +1349,23 @@
               "letterSpacing": "0.025em"
             }
           },
+          "variants": {
+            "signature": {
+              "bold": true,
+              "italic": false,
+              "underline": false
+            },
+            "interface": {
+              "bold": false,
+              "italic": false,
+              "underline": false
+            },
+            "technical": {
+              "bold": false,
+              "italic": false,
+              "underline": false
+            }
+          },
           "specimens": [
             {
               "id": "displayLarge",
@@ -2341,7 +2375,7 @@
         "contractVersion": "2.0.0",
         "themeVersion": "1.0.0",
         "artDirection": {
-          "label": "Hard-edged utility",
+          "label": "Hard-edged",
           "summary": "Primary red, signal yellow, electric blue, square geometry, black outlines, and offset hard shadows.",
           "traits": {
             "geometry": "square",
@@ -2460,6 +2494,23 @@
               "fontWeight": "400",
               "lineHeight": "1.02",
               "letterSpacing": "-0.025em"
+            }
+          },
+          "variants": {
+            "signature": {
+              "bold": false,
+              "italic": false,
+              "underline": false
+            },
+            "interface": {
+              "bold": false,
+              "italic": false,
+              "underline": false
+            },
+            "technical": {
+              "bold": true,
+              "italic": false,
+              "underline": false
             }
           },
           "specimens": [
@@ -3471,7 +3522,7 @@
         "contractVersion": "2.0.0",
         "themeVersion": "1.0.0",
         "artDirection": {
-          "label": "Warm organic utility",
+          "label": "Warm organic",
           "summary": "Forest greens, warm mineral neutrals, restrained rounding, editorial serif accents, and quiet depth.",
           "traits": {
             "geometry": "soft-rounded",
@@ -3590,6 +3641,23 @@
               "fontWeight": "700",
               "lineHeight": "1.08",
               "letterSpacing": "-0.02em"
+            }
+          },
+          "variants": {
+            "signature": {
+              "bold": true,
+              "italic": false,
+              "underline": false
+            },
+            "interface": {
+              "bold": false,
+              "italic": false,
+              "underline": false
+            },
+            "technical": {
+              "bold": false,
+              "italic": false,
+              "underline": false
             }
           },
           "specimens": [
@@ -4601,7 +4669,7 @@
         "contractVersion": "2.0.0",
         "themeVersion": "1.0.0",
         "artDirection": {
-          "label": "Crisp coastal utility",
+          "label": "Crisp coastal",
           "summary": "Cool blue-gray surfaces, fresh green accents, moderate rounding, readable editorial contrast, and buoyant depth.",
           "traits": {
             "geometry": "soft-rounded",
@@ -4720,6 +4788,23 @@
               "fontWeight": "700",
               "lineHeight": "1.08",
               "letterSpacing": "-0.02em"
+            }
+          },
+          "variants": {
+            "signature": {
+              "bold": true,
+              "italic": false,
+              "underline": false
+            },
+            "interface": {
+              "bold": false,
+              "italic": false,
+              "underline": false
+            },
+            "technical": {
+              "bold": false,
+              "italic": false,
+              "underline": false
             }
           },
           "specimens": [
@@ -5731,7 +5816,7 @@
         "contractVersion": "2.0.0",
         "themeVersion": "1.0.0",
         "artDirection": {
-          "label": "Warm cafe utility",
+          "label": "Warm cafe",
           "summary": "Cream and coffee neutrals, compact rounding, offset shadows, editorial warmth, and grounded interface contrast.",
           "traits": {
             "geometry": "soft-rounded",
@@ -5850,6 +5935,23 @@
               "fontWeight": "700",
               "lineHeight": "1.08",
               "letterSpacing": "-0.02em"
+            }
+          },
+          "variants": {
+            "signature": {
+              "bold": true,
+              "italic": false,
+              "underline": false
+            },
+            "interface": {
+              "bold": false,
+              "italic": false,
+              "underline": false
+            },
+            "technical": {
+              "bold": false,
+              "italic": false,
+              "underline": false
             }
           },
           "specimens": [
@@ -6861,7 +6963,7 @@
         "contractVersion": "2.0.0",
         "themeVersion": "1.0.0",
         "artDirection": {
-          "label": "Playful candy utility",
+          "label": "Playful candy",
           "summary": "Pastel pink, blue, yellow, and green accents, friendly rounding, light depth, and cheerful high-clarity typography.",
           "traits": {
             "geometry": "soft-rounded",
@@ -6980,6 +7082,23 @@
               "fontWeight": "700",
               "lineHeight": "1.08",
               "letterSpacing": "-0.02em"
+            }
+          },
+          "variants": {
+            "signature": {
+              "bold": true,
+              "italic": false,
+              "underline": false
+            },
+            "interface": {
+              "bold": false,
+              "italic": false,
+              "underline": false
+            },
+            "technical": {
+              "bold": false,
+              "italic": false,
+              "underline": false
             }
           },
           "specimens": [
@@ -7991,7 +8110,7 @@
         "contractVersion": "2.0.0",
         "themeVersion": "1.0.0",
         "artDirection": {
-          "label": "Hot signal utility",
+          "label": "Hot signal",
           "summary": "Hot orange action color over cool slate surfaces, generous rounding, restrained depth, and sharp technical clarity.",
           "traits": {
             "geometry": "rounded",
@@ -8110,6 +8229,23 @@
               "fontWeight": "700",
               "lineHeight": "1.08",
               "letterSpacing": "-0.02em"
+            }
+          },
+          "variants": {
+            "signature": {
+              "bold": true,
+              "italic": false,
+              "underline": false
+            },
+            "interface": {
+              "bold": false,
+              "italic": false,
+              "underline": false
+            },
+            "technical": {
+              "bold": false,
+              "italic": false,
+              "underline": false
             }
           },
           "specimens": [
@@ -9121,7 +9257,7 @@
         "contractVersion": "2.0.0",
         "themeVersion": "1.0.0",
         "artDirection": {
-          "label": "Restrained garden utility",
+          "label": "Restrained garden",
           "summary": "Quiet sage and stone surfaces, compact rounding, nearly flat depth, and calm editorial hierarchy.",
           "traits": {
             "geometry": "compact-rounded",
@@ -9240,6 +9376,23 @@
               "fontWeight": "700",
               "lineHeight": "1.08",
               "letterSpacing": "-0.02em"
+            }
+          },
+          "variants": {
+            "signature": {
+              "bold": true,
+              "italic": false,
+              "underline": false
+            },
+            "interface": {
+              "bold": false,
+              "italic": false,
+              "underline": false
+            },
+            "technical": {
+              "bold": false,
+              "italic": false,
+              "underline": false
             }
           },
           "specimens": [

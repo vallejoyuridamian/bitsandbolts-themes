@@ -196,11 +196,13 @@
   color: var(--bb-v2-color-content-tertiary);
   font-family: var(--bb-v2-type-caption-family);
   font-size: 9px;
-  font-weight: var(--bb-v2-type-caption-font-weight);
+  font-weight: var(--bb-theme-typography-interface-font-weight, var(--bb-v2-type-caption-font-weight));
+  font-style: var(--bb-theme-typography-interface-font-style, normal);
   line-height: var(--bb-v2-type-caption-line-height);
   letter-spacing: 0.08em;
   text-overflow: ellipsis;
   text-transform: uppercase;
+  text-decoration: var(--bb-theme-typography-interface-text-decoration, none);
   white-space: nowrap;
 }
 
@@ -209,9 +211,11 @@
   color: var(--bb-v2-color-content-primary);
   font-family: var(--bb-v2-type-display-large-family);
   font-size: var(--bb-v2-type-title-font-size);
-  font-weight: var(--bb-v2-type-display-large-font-weight);
+  font-weight: var(--bb-theme-typography-signature-font-weight, var(--bb-v2-type-display-large-font-weight));
+  font-style: var(--bb-theme-typography-signature-font-style, normal);
   line-height: var(--bb-v2-type-title-line-height);
   text-overflow: ellipsis;
+  text-decoration: var(--bb-theme-typography-signature-text-decoration, none);
   white-space: nowrap;
 }
 
@@ -294,13 +298,15 @@
   font-family: var(--bb-v2-font-family-accent);
   font-synthesis: style;
   font-size: clamp(28px, 3vw, 40px);
-  font-weight: var(--bb-v2-type-display-large-font-weight);
+  font-weight: var(--bb-theme-typography-signature-font-weight, var(--bb-v2-type-display-large-font-weight));
+  font-style: var(--bb-theme-typography-signature-font-style, normal);
   letter-spacing: -0.02em;
   line-height: var(--bb-v2-type-display-large-line-height);
+  text-decoration: var(--bb-theme-typography-signature-text-decoration, none);
 }
 
 .bb-theme-summary-card__headline em {
-  font-style: italic;
+  font-style: inherit;
   font-weight: inherit;
 }
 
@@ -312,8 +318,10 @@
   color: var(--bb-v2-color-content-secondary);
   font-family: var(--bb-v2-type-body-compact-family);
   font-size: var(--bb-v2-type-body-compact-font-size);
-  font-weight: var(--bb-v2-type-body-compact-font-weight);
+  font-weight: var(--bb-theme-typography-interface-font-weight, var(--bb-v2-type-body-compact-font-weight));
+  font-style: var(--bb-theme-typography-interface-font-style, normal);
   line-height: var(--bb-v2-type-body-compact-line-height);
+  text-decoration: var(--bb-theme-typography-interface-text-decoration, none);
 }
 
 .bb-theme-summary-card__actions {
@@ -327,6 +335,12 @@
 
 .bb-theme-summary-card__actions .bb-btn {
   width: auto;
+}
+
+.bb-theme-summary-card__actions .bb-v2-button {
+  font-weight: var(--bb-theme-typography-interface-font-weight, var(--bb-v2-type-label-font-weight));
+  font-style: var(--bb-theme-typography-interface-font-style, normal);
+  text-decoration: var(--bb-theme-typography-interface-text-decoration, none);
 }
 
 .bb-theme-summary-card__identities {
@@ -369,8 +383,11 @@
   color: var(--bb-v2-color-content-tertiary);
   font-family: var(--bb-v2-font-family-mono);
   font-size: 8px;
+  font-weight: var(--bb-theme-typography-technical-font-weight, 400);
+  font-style: var(--bb-theme-typography-technical-font-style, normal);
   line-height: 10px;
   text-overflow: ellipsis;
+  text-decoration: var(--bb-theme-typography-technical-text-decoration, none);
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -1538,8 +1555,10 @@ article.bb-workspace-specimen__preview--secondary {
   font-family: var(--bb-theme-v2-specimen-family);
   font-size: var(--bb-theme-v2-specimen-size);
   font-weight: var(--bb-theme-v2-specimen-weight);
+  font-style: var(--bb-theme-v2-specimen-style, normal);
   letter-spacing: var(--bb-theme-v2-specimen-tracking);
   line-height: var(--bb-theme-v2-specimen-leading);
+  text-decoration: var(--bb-theme-v2-specimen-decoration, none);
   text-align: center;
 }
 

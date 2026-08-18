@@ -2,10 +2,8 @@
 
 ## Current Focus
 
-- Preserve Themes as the enforceable visual owner across every Bits and Bolts
-  product and supported platform.
-- Keep Theme project behavior and persistence in AppScreen Studio while sharing
-  exact gallery, detail, media, workspace, and typography recipes.
+- Preserve Themes as the visual owner across every Bits and Bolts product.
+- Keep Theme behavior in AppScreen while sharing exact presentation recipes.
 - Continue only through bounded, owner-directed, approval-gated slices.
 
 ## Completed Foundation
@@ -27,19 +25,22 @@
   equivalence inputs, mode labels, compact swatches, and reference presentation.
 - [x] Own one media-card ancestor with explicit full Vault and reduced picker
   siblings for image, audio, video, device, and font media.
-- [x] Accept centered Theme font assignments, 23-family Global Vault presentation,
-  local User Vault presentation, widest-name sizing, and body-free 56 px cards.
+- [x] Accept centered Theme font assignments, Global and User Vault presentation,
+  reduced font cards, and persistent variants for all three semantic roles.
 - [x] Add one workspace-section recipe for conditional Global and User Theme
   sections, transparent divider composition, and closed-only count badges.
 - [x] Keep user cards at canonical width and provide Cloud-derived card, Button,
   and hover fallbacks without exposing user Themes in the public repository.
-- [x] Apply semantic assigned-font roles across every Theme-card text and control.
+- [x] Apply assigned fonts and saved variants across Typography, Theme cards, and
+  centered titles, and remove `Utility` from canonical descriptions.
 - [x] Add optional full-showcase and color-diagnostics policies after compact
   consumer detail for transient parity inspection.
 - [x] Fix Theme-card identity-strip rows across canonical and user cards.
 - [x] Correct semantic landing typography so Bits and Bolts retains Orbitron and
   Brutus retains native Ultra 400 without synthesis or wide tracking.
 - [x] Declare the managed Selection Controls semantic-icon dependency.
+- [x] Keep Theme Open aligned with Screens and Scenes by excluding horizontal-only
+  clipping ancestors from the shared Select's vertical placement boundary.
 - [x] Unify horizontal and vertical resizers under one 9 px stripe and centered
   96 px by 3 px grip recipe with equal divider spacing.
 - [x] Center larger Signature titles and support semantic pencil layout without
@@ -52,11 +53,10 @@
 ## Parked, Not Scheduled
 
 1. Support the next owner-selected font consumer or render-parity slice.
-2. Add later Theme project fields in separately selected slices.
+2. Add later Theme fields in separately selected slices.
 3. Migrate remaining legacy Dialog consumers when directed.
 4. Review an existing family or detail composition through a focused visual slice.
-5. Advance DTCG validation, glyph coverage, platform adapters, or versioned
-   package delivery.
+5. Advance DTCG validation, glyph coverage, adapters, or versioned delivery.
 
 ## Current Boundary
 

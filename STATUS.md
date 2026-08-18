@@ -13,8 +13,8 @@ Last verified: 2026-08-18
   semantic roles. Other families retain Material Symbols.
 - Catalog schema 2 publishes exact identity foreground pairs in both modes. All
   72 pairs pass 4.5:1 after serialization. V1 color paths are removed.
-- Canonical typography, licensed local fonts, Brutus native Ultra weight 400,
-  Forest Hero leading, and semantic summary-card typography remain intact.
+- Canonical typography, licensed fonts, Brutus native Ultra 400, Forest Hero
+  leading, and semantic summary-card typography remain intact.
 
 ## Theme Workspace Ownership
 
@@ -42,6 +42,8 @@ Last verified: 2026-08-18
 - Theme cards consume semantic Signature, Interface, and Technical font roles
   across all text and controls. AppScreen supplies missing-role fallback from
   Signature to Interface to Technical.
+- Bold, Italic, and Underline persist per role across cards and the Signature
+  title. Canonical files publish all fields, and descriptions omit `Utility`.
 - Fixed shared card rows keep the lower identity swatch and label region equal
   across canonical families and user Themes.
 - Every canonical card title consumes its actual Signature family through the
@@ -49,10 +51,8 @@ Last verified: 2026-08-18
 
 ## Accepted Theme Detail and Floating Windows
 
-- The existing-height toolbar centers a larger Signature title and supports a
-  semantic pencil action without clipping. GitHub Pages shares that title recipe.
-- One floating panel and form abstraction owns handles, close action, headings,
-  fields, validation, and actions across confirmation, naming, and media pickers.
+- The toolbar centers a Signature title and semantic pencil without clipping.
+- One floating form owns confirmation, naming, and media-picker structure.
 - Editable translucent colors derive valid opaque native-control bases while
   retaining their alpha representation.
 - `displayLarge` replaces the use-specific `marketingHero` contract name across
@@ -68,7 +68,7 @@ Last verified: 2026-08-18
 - Reduced cards never show format or metadata pills. Reduced font cards also omit
   the lower body, use a 56 px preview, and share the widest rendered family width.
 - Signature, Interface, and Technical rows show one centered family-name specimen.
-  Bold, Italic, and Underline are transient semantic-vector controls.
+  Bold, Italic, and Underline are persistent semantic-vector controls.
 - Reference presentation owns Swap, Zoom out, Fit, Zoom in, and Remove controls,
   exact Fit framing, scrollbar clearance, and contrast-safe toolbar roles.
 
@@ -77,8 +77,8 @@ Last verified: 2026-08-18
 - Landing recipes consume semantic typography roles. Bits and Bolts display copy
   retains Orbitron. Brutus uses native Ultra 400 without browser-synthesized heavy
   weight or hardcoded positive display tracking.
-- Selection Controls declares the semantic-icons dependency required by managed
-  Product Entry, fixing the landing identity Select's missing resource.
+- Selection Controls declares its semantic-icons dependency, and shared placement
+  ignores horizontal clipping so Theme Open renders its complete option list.
 - One resizable-toolbar component owns both top and side handles. A 9 px stripe,
   96 px by 3 px grip, equal subtle divider lines, and grid centering are shared;
   `aria-orientation` is the only visual variant.
@@ -93,12 +93,12 @@ Last verified: 2026-08-18
 
 ## Evidence and Acceptance Boundary
 
-- Focused Themes media and shared-surface checks pass 13/13. Focused AppScreen
-  Theme model, gallery, naming, and persistence checks pass 71/71.
+- Focused Themes variant and Select checks pass 16/16. The corrected AppScreen
+  canonical-copy recovery and editor-click persistence checks pass 2/2.
 - Themes and AppScreen production builds pass. Repository diff checks pass before
   closeout docs. Sites was not changed in this checkpoint.
-- The owner accepted the gallery, cards, detail title, floating-window hierarchy,
-  application-agnostic typography, naming, cloning, and rename checkpoint.
+- The owner accepted shared Open behavior, saved variants, variant-aware cards and
+  title, and canonical descriptions without `Utility`.
 - Any later UI, CSS, Theme, icon, or renderer change requires fresh acceptance.
 - This checkpoint is closed in a local repository commit. Nothing is pushed or
   deployed.

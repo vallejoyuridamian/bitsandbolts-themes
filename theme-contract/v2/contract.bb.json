@@ -63,6 +63,8 @@
   "typography": {
     "mandatoryFamilyRoles": ["primary", "mono"],
     "optionalFamilyRoles": ["accent"],
+    "variantRoles": ["signature", "interface", "technical"],
+    "variantFields": ["bold", "italic", "underline"],
     "mandatoryStyles": [
       "display",
       "headline",

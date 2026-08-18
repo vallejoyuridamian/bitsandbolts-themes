@@ -14,7 +14,7 @@
     { "id": "neutral", "label": "Neutral", "token": "color.surface.surface", "foregroundToken": "color.content.primary" }
   ],
   "artDirection": {
-    "label": "Calm utility",
+    "label": "Calm",
     "summary": "Clear indigo signals, deep blue-gray surfaces, compact rounded geometry, and direct interface feedback.",
     "traits": {
       "geometry": "compact-rounded",
@@ -50,6 +50,11 @@
       "editorialBody": { "familyRole": "primary", "fontSize": "18px", "fontWeight": "400", "lineHeight": "1.56", "letterSpacing": "0em" },
       "editorialHeading": { "familyRole": "accent", "fontSize": "24px", "fontWeight": "600", "lineHeight": "1.33", "letterSpacing": "0em" },
       "displayLarge": { "familyRole": "accent", "fontSize": "44px", "fontWeight": "700", "lineHeight": "1.1", "letterSpacing": "-0.01em" }
+    },
+    "variants": {
+      "signature": { "bold": true, "italic": false, "underline": false },
+      "interface": { "bold": false, "italic": false, "underline": false },
+      "technical": { "bold": false, "italic": false, "underline": false }
     },
     "specimens": [
       {

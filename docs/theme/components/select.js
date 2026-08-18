@@ -125,6 +125,10 @@ export function resolveSelectMenuPosition({
   });
 }
 
+export function isSelectMenuVerticalBoundary(style = {}) {
+  return /^(auto|scroll|overlay)$/.test(String(style?.overflowY || '').trim());
+}
+
 export function selectionControlsMarkup({ ariaLabel = '', controls = [], layout = '' } = {}) {
   const controlMarkup = controls.map((control) => {
     const dataAttribute = String(control?.dataAttribute || '');
@@ -353,8 +357,9 @@ export function installSelectController(root = globalThis.document, {
     let ancestor = trigger?.parentElement;
     while (ancestor && ancestor !== rootDocument.body && ancestor !== rootDocument.documentElement) {
       const style = view?.getComputedStyle?.(ancestor);
-      const overflow = `${style?.overflowY || ''} ${style?.overflow || ''}`;
-      if (/\b(auto|scroll|overlay|hidden|clip)\b/.test(overflow)) return ancestor;
+      // The menu is portaled to the document body, so horizontal toolbar overflow
+      // and non-scrolling clipping ancestors must not constrain its vertical height.
+      if (isSelectMenuVerticalBoundary(style)) return ancestor;
       ancestor = ancestor.parentElement;
     }
     return null;

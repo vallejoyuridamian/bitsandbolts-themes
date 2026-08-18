@@ -40,7 +40,7 @@
     }
   ],
   "artDirection": {
-    "label": "Warm cafe utility",
+    "label": "Warm cafe",
     "summary": "Cream and coffee neutrals, compact rounding, offset shadows, editorial warmth, and grounded interface contrast.",
     "traits": {
       "geometry": "soft-rounded",
@@ -160,6 +160,11 @@
         "lineHeight": "1.08",
         "letterSpacing": "-0.02em"
       }
+    },
+    "variants": {
+      "signature": { "bold": true, "italic": false, "underline": false },
+      "interface": { "bold": false, "italic": false, "underline": false },
+      "technical": { "bold": false, "italic": false, "underline": false }
     },
     "specimens": [
       {

@@ -14,7 +14,7 @@
     { "id": "neutral", "label": "Neutral", "token": "color.surface.surface", "foregroundToken": "color.content.primary" }
   ],
   "artDirection": {
-    "label": "Warm organic utility",
+    "label": "Warm organic",
     "summary": "Forest greens, warm mineral neutrals, restrained rounding, editorial serif accents, and quiet depth.",
     "traits": {
       "geometry": "soft-rounded",
@@ -50,6 +50,11 @@
       "editorialBody": { "familyRole": "accent", "fontSize": "18px", "fontWeight": "400", "lineHeight": "1.65", "letterSpacing": "0em" },
       "editorialHeading": { "familyRole": "accent", "fontSize": "26px", "fontWeight": "700", "lineHeight": "1.28", "letterSpacing": "-0.005em" },
       "displayLarge": { "familyRole": "accent", "fontSize": "48px", "fontWeight": "700", "lineHeight": "1.08", "letterSpacing": "-0.02em" }
+    },
+    "variants": {
+      "signature": { "bold": true, "italic": false, "underline": false },
+      "interface": { "bold": false, "italic": false, "underline": false },
+      "technical": { "bold": false, "italic": false, "underline": false }
     },
     "specimens": [
       {

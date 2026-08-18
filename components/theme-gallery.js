@@ -26,6 +26,12 @@ import {
   DEFAULT_SEMANTIC_ICON_FAMILY,
   semanticIconMarkup
 } from './semantic-icons.js';
+import {
+  normalizeThemeTypographyVariants,
+  themeTypographyRole,
+  themeTypographyVariantPresentation,
+  themeTypographyVariantVariables
+} from './theme-typography.js';
 import { workspaceSectionMarkup } from './workspace-section.js';
 
 const ICON_FAMILY_LABELS = Object.freeze({
@@ -242,6 +248,7 @@ function normalizeV2(value) {
       sample: String(specimen.sample || '')
     });
   }) : [];
+  const variants = normalizeThemeTypographyVariants(value.typography?.variants, specimens);
   const buttonCases = Array.isArray(value.button?.specimenCases) ? value.button.specimenCases.map((entry) => {
     const variant = String(entry?.variant || '').trim();
     const state = String(entry?.state || '').trim();
@@ -262,7 +269,11 @@ function normalizeV2(value) {
     typography: Object.freeze({
       families: Object.freeze(families),
       specimens: Object.freeze(specimens),
-      styles: Object.freeze(styles)
+      styles: Object.freeze(styles),
+      variants: Object.freeze(Object.fromEntries(Object.entries(variants).map(([role, variant]) => [
+        role,
+        Object.freeze(variant)
+      ])))
     })
   });
 }
@@ -342,6 +353,12 @@ function themeSummaryActionsMarkup() {
   `;
 }
 
+function themeTypographyVariantStyleAttribute(typography = {}) {
+  return Object.entries(themeTypographyVariantVariables(typography.variants, typography.specimens))
+    .map(([name, value]) => `${name}: ${value}`)
+    .join('; ');
+}
+
 function themeSummaryCardMarkup(theme, mode) {
   if (!theme.v2) return '';
   const nextMode = nextThemeMode(mode);
@@ -351,6 +368,7 @@ function themeSummaryCardMarkup(theme, mode) {
       class="bb-theme-summary-card"
       data-theme-preview-id="${escapeHtml(theme.id)}"
       data-theme-preview-mode="${escapeHtml(mode)}"
+      style="${escapeHtml(themeTypographyVariantStyleAttribute(theme.v2.typography))}"
     >
       <button
         class="bb-theme-summary-card__open"
@@ -494,12 +512,11 @@ function v2IdentityMarkup(mode, { editable = false, identityColorOverrides = [] 
   }).join('');
 }
 
-function fontSpecimenStyleControlsMarkup(specimen) {
-  const boldSelected = Number.parseInt(specimen.fontWeight, 10) >= 600;
+function fontSpecimenStyleControlsMarkup(specimen, variant) {
   const controls = [
-    { id: 'bold', iconRole: 'format_bold', label: 'Bold', selected: boldSelected },
-    { id: 'italic', iconRole: 'format_italic', label: 'Italic', selected: false },
-    { id: 'underline', iconRole: 'format_underline', label: 'Underline', selected: false }
+    { id: 'bold', iconRole: 'format_bold', label: 'Bold', selected: variant.bold },
+    { id: 'italic', iconRole: 'format_italic', label: 'Italic', selected: variant.italic },
+    { id: 'underline', iconRole: 'format_underline', label: 'Underline', selected: variant.underline }
   ];
   return `
     <div class="bb-theme-v2-type__style-controls" role="group" aria-label="${escapeHtml(specimen.label)} preview styles">
@@ -518,15 +535,8 @@ function fontSpecimenStyleControlsMarkup(specimen) {
   `;
 }
 
-const THEME_TYPOGRAPHY_ROLES = new Set(['signature', 'interface', 'technical']);
-
-function typographyRole(specimen = {}) {
-  const role = String(specimen.label || '').trim().toLowerCase();
-  return THEME_TYPOGRAPHY_ROLES.has(role) ? role : '';
-}
-
 function editableFontSpecimenMarkup(specimen, assignment) {
-  const role = typographyRole(specimen);
+  const role = themeTypographyRole(specimen);
   if (!role) throw new TypeError('Editable Theme typography requires a canonical font role label.');
   if (!assignment) {
     return `
@@ -557,20 +567,21 @@ function editableFontSpecimenMarkup(specimen, assignment) {
 
 function v2TypographyMarkup(v2, { editable = false, fontAssignments = null } = {}) {
   const assignmentContext = fontAssignments && typeof fontAssignments === 'object';
+  const variants = normalizeThemeTypographyVariants(v2.typography.variants, v2.typography.specimens);
   return v2.typography.specimens.map((specimen) => {
     const family = v2.typography.families[specimen.familyRole];
-    const role = typographyRole(specimen);
+    const role = themeTypographyRole(specimen);
     const assignment = assignmentContext && role ? fontAssignments[role] : null;
     const sample = editable && assignmentContext
       ? editableFontSpecimenMarkup(specimen, assignment)
       : `<span class="bb-theme-v2-type__sample">${escapeHtml(family)}</span>`;
     return `
-      <div class="bb-theme-v2-type" data-theme-v2-font-specimen="${escapeHtml(specimen.id)}">
+      <div class="bb-theme-v2-type" data-theme-v2-font-specimen="${escapeHtml(specimen.id)}" data-theme-typography-role="${escapeHtml(role)}">
         <span class="bb-theme-v2-type__meta">
           <strong>${escapeHtml(specimen.label)}</strong>
         </span>
         ${sample}
-        ${editable && (!assignmentContext || assignment) ? fontSpecimenStyleControlsMarkup(specimen) : ''}
+        ${editable && (!assignmentContext || assignment) ? fontSpecimenStyleControlsMarkup(specimen, variants[role]) : ''}
       </div>
     `;
   }).join('');
@@ -1353,14 +1364,21 @@ function v2ModeMarkup(theme, mode, {
 
 export function themeDetailTitlePresentation(theme = {}) {
   const signature = (theme?.v2?.typography?.specimens ?? []).find((specimen) => (
-    typographyRole(specimen) === 'signature'
+    themeTypographyRole(specimen) === 'signature'
   ));
   const fontFamily = theme?.v2?.typography?.families?.[signature?.familyRole];
   if (!theme?.label || !signature || !fontFamily) return null;
+  const variants = normalizeThemeTypographyVariants(
+    theme.v2.typography.variants,
+    theme.v2.typography.specimens
+  );
+  const presentation = themeTypographyVariantPresentation(variants.signature);
   return Object.freeze({
     fontFamily: safeCssVariableValue(fontFamily),
-    fontWeight: safeCssVariableValue(signature.fontWeight),
-    label: String(theme.label)
+    fontStyle: presentation.fontStyle,
+    fontWeight: presentation.fontWeight,
+    label: String(theme.label),
+    textDecoration: presentation.textDecoration
   });
 }
 
@@ -1380,7 +1398,7 @@ export function themeGalleryControlsMarkup(theme, mode = 'dark') {
       </div>
       <strong
         class="bb-workspace-control-bar__status"
-        style="--bb-theme-detail-title-font-family: ${escapeHtml(title.fontFamily)}; --bb-theme-detail-title-font-weight: ${escapeHtml(title.fontWeight)}"
+        style="--bb-theme-detail-title-font-family: ${escapeHtml(title.fontFamily)}; --bb-theme-detail-title-font-style: ${escapeHtml(title.fontStyle)}; --bb-theme-detail-title-font-weight: ${escapeHtml(title.fontWeight)}; --bb-theme-detail-title-text-decoration: ${escapeHtml(title.textDecoration)}"
       >${escapeHtml(title.label)}</strong>
       <div class="bb-workspace-control-bar__actions" aria-label="Theme detail controls">
         ${semanticActionButtonMarkup({
@@ -1495,9 +1513,17 @@ export function applyThemeGalleryVariables(host, catalog, selection = {}) {
       preview.querySelectorAll('[data-theme-v2-font-specimen]').forEach((sample) => {
         const specimen = theme.v2.typography.specimens.find((entry) => entry.id === sample.dataset.themeV2FontSpecimen);
         if (!specimen) return;
+        const role = themeTypographyRole(specimen);
+        const variants = normalizeThemeTypographyVariants(
+          theme.v2.typography.variants,
+          theme.v2.typography.specimens
+        );
+        const variant = themeTypographyVariantPresentation(variants[role]);
         sample.style.setProperty('--bb-theme-v2-specimen-family', theme.v2.typography.families[specimen.familyRole]);
         sample.style.setProperty('--bb-theme-v2-specimen-size', specimen.fontSize);
-        sample.style.setProperty('--bb-theme-v2-specimen-weight', specimen.fontWeight);
+        sample.style.setProperty('--bb-theme-v2-specimen-weight', variant.fontWeight);
+        sample.style.setProperty('--bb-theme-v2-specimen-style', variant.fontStyle);
+        sample.style.setProperty('--bb-theme-v2-specimen-decoration', variant.textDecoration);
         sample.style.setProperty('--bb-theme-v2-specimen-leading', specimen.lineHeight);
         sample.style.setProperty('--bb-theme-v2-specimen-tracking', specimen.letterSpacing);
       });

@@ -4,6 +4,27 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-18) - Theme variants and shared Open accepted
+
+### What changed
+- Added a shared Theme typography variant contract for Bold, Italic, and Underline
+  across Signature, Interface, and Technical roles. Canonical families and the
+  generated catalog now publish every value explicitly.
+- Applied saved variants to Typography specimens, semantic Theme-card content,
+  card titles, and the centered Signature Theme name. Existing documents retain a
+  safe legacy weight-derived default when explicit values are absent.
+- Corrected shared Select placement so horizontal-only overflow does not act as a
+  vertical menu boundary. AppScreen Theme Open now exposes the same complete list
+  behavior already shared by Screens and Scenes.
+- Removed `Utility` from the eight affected canonical art-direction descriptions.
+
+### Acceptance and boundary
+- Focused Themes variant and Select checks pass 16/16. Corrected AppScreen
+  canonical-copy recovery and editor-click persistence checks pass 2/2. Themes
+  and AppScreen production builds pass, and generated outputs are synchronized.
+- The owner accepted the result. Nothing was pushed or deployed. Sites was not
+  changed in this checkpoint.
+
 ## Session wrap-up (2026-08-18) - Theme creation surfaces accepted
 
 ### What changed

@@ -40,7 +40,7 @@
     }
   ],
   "artDirection": {
-    "label": "Hot signal utility",
+    "label": "Hot signal",
     "summary": "Hot orange action color over cool slate surfaces, generous rounding, restrained depth, and sharp technical clarity.",
     "traits": {
       "geometry": "rounded",
@@ -160,6 +160,11 @@
         "lineHeight": "1.08",
         "letterSpacing": "-0.02em"
       }
+    },
+    "variants": {
+      "signature": { "bold": true, "italic": false, "underline": false },
+      "interface": { "bold": false, "italic": false, "underline": false },
+      "technical": { "bold": false, "italic": false, "underline": false }
     },
     "specimens": [
       {

@@ -507,8 +507,10 @@
   color: var(--bb-v2-color-content-primary);
   font-family: var(--bb-theme-detail-title-font-family);
   font-size: var(--bb-font-size-3xl);
+  font-style: var(--bb-theme-detail-title-font-style, normal);
   font-weight: var(--bb-theme-detail-title-font-weight, var(--bb-font-weight-bold));
   text-align: center;
+  text-decoration: var(--bb-theme-detail-title-text-decoration, none);
 }
 
 .bb-theme-detail-toolbar__title {
@@ -520,6 +522,7 @@
 .bb-theme-detail-toolbar__title > [data-control-bar-status-label] {
   display: block;
   overflow: hidden;
+  text-decoration: var(--bb-theme-detail-title-text-decoration, none);
   text-overflow: ellipsis;
   white-space: nowrap;
 }

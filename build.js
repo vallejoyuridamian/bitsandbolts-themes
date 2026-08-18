@@ -1040,6 +1040,24 @@ function buildV2CatalogPayload(theme) {
       throw new Error(`[v2-contract] typography specimen ${reference.id} must be labeled ${reference.label}.`);
     }
   }
+  assertExactMembers(
+    Object.keys(family.typography.variants || {}),
+    contract.typography.variantRoles,
+    'typography variant roles'
+  );
+  for (const role of contract.typography.variantRoles) {
+    const variant = family.typography.variants[role];
+    assertExactMembers(
+      Object.keys(variant || {}),
+      contract.typography.variantFields,
+      `typography.variants.${role} fields`
+    );
+    for (const field of contract.typography.variantFields) {
+      if (typeof variant[field] !== 'boolean') {
+        throw new Error(`[v2-contract] typography.variants.${role}.${field} must be boolean.`);
+      }
+    }
+  }
 
   for (const field of contract.componentRecipes.requiredFields) {
     if (!Object.hasOwn(button, field)) throw new Error(`[v2-contract] Button recipe is missing ${field}.`);
