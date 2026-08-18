@@ -4,6 +4,32 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-17) - Theme gallery and shared UI checkpoint accepted
+
+### What changed
+- Added the shared workspace-section recipe used by AppScreen's conditional Global
+  Themes and User Themes sections, with transparent divider presentation,
+  canonical card widths, heading spacing, and closed-only count badges.
+- Extended the canonical Theme-card composition for user-authored Theme inputs.
+  Shared rows align the identity strip, semantic font roles cover every text and
+  control, and Cloud supplies fallback card, Button, and hover shape.
+- Added optional full-showcase and color-diagnostics policies to the shared Theme
+  renderer so AppScreen can inspect complete UI and ramp output after its compact
+  detail without changing the public repository gallery.
+- Corrected shared landing typography roles. Bits and Bolts display surfaces keep
+  Orbitron, while Brutus uses native Ultra 400 without synthesized weight or
+  hardcoded wide tracking. Selection Controls now declares its semantic-icon
+  dependency for managed Product Entry.
+- Unified horizontal and vertical workspace resizers under one Themes-owned
+  toolbar-handle recipe with a 9 px stripe, 96 px by 3 px centered grip, equal
+  subtle divider lines, and orientation as the only variant.
+
+### Acceptance and boundary
+- Focused Themes checks pass 12/12, final AppScreen Theme and handle checks pass
+  23/23, Sites Product Entry checks pass 3/3, and all three production builds pass.
+- The owner accepted the final gallery, cards, landing typography, dependency,
+  and shared handle presentation. Nothing was pushed or deployed.
+
 ## Session wrap-up (2026-08-17) - Shared font picker presentation accepted
 
 ### What changed

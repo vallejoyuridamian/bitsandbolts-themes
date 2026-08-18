@@ -8,100 +8,99 @@ Last verified: 2026-08-17
   products. Tokens, components, fonts, licenses, semantic icons, platform assets,
   catalog data, and committed generated outputs live here.
 - Nine v2 families ship in light and dark modes: `cloud`, `bitsandbolts`,
-  `brutus`, `forest`, `winter`, `coffee`, `bubblegum`, `inferno`, and
-  `sober`. Ocean and Robot remain removed without aliases.
+  `brutus`, `forest`, `winter`, `coffee`, `bubblegum`, `inferno`, and `sober`.
 - Bits and Bolts web icons use packaged Font Awesome Free Solid 7.3.1 through
-  semantic roles. The other families retain Material Symbols.
-- All families include semantic colors, typography, interface roles, recipes,
-  catalog data, web CSS, Android, React Native, and showcase artifacts.
-- Catalog schema 2 publishes four exact identity foreground pairs per mode. All
-  72 pairs pass 4.5:1 after exact serialization, with palette-aware art direction
-  retained and literal black or white reserved for deliberate or safety use.
-- V1 authored and generated color paths are removed. All consumers use V2.
-- The established typography, licensed local fonts, Brutus native Ultra weight,
+  semantic roles. Other families retain Material Symbols.
+- Catalog schema 2 publishes exact identity foreground pairs in both modes. All
+  72 pairs pass 4.5:1 after serialization. V1 color paths are removed.
+- Canonical typography, licensed local fonts, Brutus native Ultra weight 400,
   Forest Hero leading, and semantic summary-card typography remain intact.
 
 ## Theme Workspace Ownership
 
-- Themes is a full-width gallery and read-only family-detail workspace. It does
-  not own user project creation, persistence, or an editable product.
-- User-authored Theme projects live in AppScreen Studio. AppScreen owns behavior,
-  persistence, and transient reference-image state.
-- Gallery and AppScreen share one detail renderer. Standalone keeps the full
-  showcase, while AppScreen detail stops after Colors and Typography.
-- Colors and local Theme font assignment are accepted editable slices. Themes owns
-  the font add tiles, assigned specimens, and accepted reduced picker presentation;
-  AppScreen owns picker behavior and persistence.
-- Exact canonical family pairs are the fit corpus for AppScreen's deterministic
-  first-selection light-dark equivalence and foreground generation. Themes does
-  not add ad hoc family exceptions or alter public preset values.
-- The Palette heading now states `DARK MODE` or `LIGHT MODE`.
-- Editable Palette spacing is compact, cropped-corner swatches are shorter, and
-  Auto-complete plus its Select remain flush left on one row.
+- Themes remains the canonical-only gallery and read-only family-detail owner.
+  It does not own or expose AppScreen user Theme projects.
+- User Themes live in AppScreen Studio. AppScreen owns project behavior,
+  persistence, guest state, picker orchestration, and transient reference images.
+- Gallery and AppScreen share one Theme renderer. Standalone detail keeps the
+  full showcase; AppScreen defaults to compact Colors and Typography detail.
+- The Palette states its active mode, keeps compact cropped swatches, and places
+  Auto-complete with its Select on one row.
+- The transient Full UI showcase and Color ramps and diagnostics switches are
+  optional renderer policies. They expose the shared complete composition after
+  compact AppScreen detail without changing the standalone gallery.
 
-## Accepted Media and Reference Recipes
+## Accepted Gallery and Theme-Card Recipes
+
+- One workspace-section recipe owns transparent section layout, divider rhythm,
+  heading spacing, disclosure behavior, and closed-only count presentation.
+- Global and User Theme sections consume that same recipe. User Theme cards keep
+  the canonical card width and the same shared Theme-card composition.
+- User Theme fallback shape, Button shape, and hover state inherit Cloud. Their
+  cards omit the canonical art-direction label and use a fixed product-identity
+  summary supplied by AppScreen.
+- Theme cards consume semantic Signature, Interface, and Technical font roles
+  across all text and controls. AppScreen supplies missing-role fallback from
+  Signature to Interface to Technical.
+- Fixed shared card rows keep the lower identity swatch and label region equal
+  across canonical families and user Themes.
+
+## Accepted Media, Reference, and Font Recipes
 
 - Themes owns media preview cards, add cards, picker layout, reference-image
-  presentation, and the semantic media icon mappings.
-- Managed component registry entries expose `media-preview-card` and
-  `reference-image-picker` as canonical recipes.
-- Semantic roles cover image, audio, video, device, progress, visibility,
-  transport, close, favorite, and all related picker affordances.
-- The reference-image action is an exact workspace icon-and-label button. Shared
-  layout uses a tokenized 8 px gap, equal 18 px icon and label alignment boxes,
-  centered midpoints, and a 1 px label font-metric correction.
-- Reference-image presentation owns hover and focus controls for semantic Swap,
-  Zoom out, Fit, Zoom in, and Remove actions. The separate change-image row,
-  filename caption, and grey lower strip are absent.
-- The toolbar clears the viewport scrollbar. Theme page and image scrollbars
-  follow the live Primary identity, and toolbar icons use the inverse surface
-  role for light and dark contrast.
-- The standalone showcase includes the canonical media picker and reference-image
-  specimen. Asset URLs are repository-relative so GitHub Pages and local
-  `pnpm dev` render the required assets.
-- AppScreen imports the exact browser recipe through its `/theme/components`
-  boundary and retains behavior only.
+  presentation, and all semantic media icon mappings.
+- One media-card base owns checker, typography, borders, preview, favorite, and
+  add-card rules. Full Vault and reduced picker cards are explicit siblings for
+  image, audio, video, device, and font media.
+- Reduced cards never show format or metadata pills. Reduced font cards also omit
+  the lower body, use a 56 px preview, and share the widest rendered family width.
+- Signature, Interface, and Technical rows show one centered family-name specimen.
+  Bold, Italic, and Underline are transient semantic-vector controls.
+- Reference presentation owns Swap, Zoom out, Fit, Zoom in, and Remove controls,
+  exact Fit framing, scrollbar clearance, and contrast-safe toolbar roles.
+- Managed component entries expose media preview, reference picker, workspace
+  section, Theme card/detail, and their dependencies to consumers.
 
-## Accepted Typography and Font Recipes
+## Accepted Shared Presentation Corrections
 
-- Signature, Interface, and Technical rows show each centered family name once in its own face.
-- Bold, Italic, and Underline controls are transient inspection affordances using semantic vector roles.
-- One media-card base owns checker, typography, borders, preview, favorite, and add-card rules. Full Vault and reduced picker cards are explicit siblings.
-- Reduced font cards omit the lower body and use an accepted 56 px preview. Font picker grids share the widest rendered family width instead of the generic 116 px media width.
-- Themes owns presentation and semantic icons only. AppScreen owns Vault records, loading, upload, references, usage, persistence, and selection behavior.
+- Landing recipes consume semantic typography roles. Bits and Bolts display copy
+  retains Orbitron. Brutus uses native Ultra 400 without browser-synthesized heavy
+  weight or hardcoded positive display tracking.
+- Navbar, Hero, neon Button, product proof, poster, identity section, and pricing
+  assign display, label, caption, and support roles through shared recipes.
+- Selection Controls declares the semantic-icons dependency required by managed
+  Product Entry, fixing the landing identity Select's missing resource.
+- One resizable-toolbar component owns both top and side handles. A 9 px stripe,
+  96 px by 3 px grip, equal subtle divider lines, and grid centering are shared;
+  `aria-orientation` is the only visual variant.
+- Shared workspace surfaces preserve the accepted dark, almost-black background
+  role instead of introducing product-local blue wrappers.
 
 ## Shared Recipes and Icons
 
 - Themes owns Navbar, Footer, Hero, Button, Select, Menu, handled windows,
-  workspace chrome, control bars, Stage, selection controls, Dialog, Product
-  Entry, galleries, editorial layouts, cards, forms, timelines, prose, detail
-  media, store badges, and shared interface recipes.
+  workspace chrome, control bars, Stage, Dialog, Product Entry, galleries,
+  editorial layouts, cards, forms, timelines, prose, and detail media.
 - Every icon-like affordance routes through a Themes-owned semantic role and
-  provider mapping. Text glyphs, emoji, entities, CSS text content, and
-  consumer-local artwork are not icon implementations.
-- Open uses the same semantic action-button recipe as Back and New. Its exact
-  Select/Menu popup contains only openable projects.
-- Back and mode use shared control-bar architecture. Theme cards and detail use
-  the same semantic sun and moon assets.
-- The handled-window recipe owns its shell, grip, glowing semantic close control,
-  balanced spacing, stable danger treatment, buttons, and Theme-viewer specimen.
-- Build cleanup removes stale generated component and icon outputs before
-  generation. Source, `dist/web`, and `docs` remain synchronized.
+  provider mapping. Text glyphs, emoji, entities, CSS text content, and local
+  consumer artwork are forbidden.
+- Build cleanup removes stale generated outputs. Source, `dist/web`, and `docs`
+  remain synchronized.
 
 ## Evidence and Acceptance Boundary
 
-- The focused media-picker suite passes 8/8. AppScreen's corrected picker and
-  presentation checks pass 4/4. Both production builds pass.
-- The owner accepted the compact Palette, reference viewer, shared font picker,
-  Theme assignments, shared font widths, and 56 px body-free reduced font cards.
-- Any later UI, CSS, theme, icon, or renderer change requires fresh visual
-  acceptance before another visual checkpoint commit.
-- This accepted checkpoint is committed locally. Nothing is pushed or deployed.
+- Focused Themes media-picker checks pass 12/12. Final AppScreen Theme gallery
+  and handle checks pass 23/23. Sites Product Entry checks pass 3/3.
+- Themes, AppScreen, and Sites production builds pass. Repository diff checks
+  pass before closeout docs.
+- The owner accepted the full Theme gallery, card, font, landing typography,
+  dependency, and resizable-handle checkpoint in the rendered products.
+- Any later UI, CSS, Theme, icon, or renderer change requires fresh acceptance.
+- This checkpoint is closed in a local repository commit. Nothing is pushed or
+  deployed.
 
 ## Open Gates
 
-- This local font picker and Theme assignment slice is complete and accepted.
-- The v2 contract still needs pinned DTCG resolver validation, full provenance,
-  glyph and fallback checks, and complete platform component adapters.
-- Versioned npm, Maven, and static distribution remain unimplemented. Manual
-  consumer mirrors are migration debt and must not become authorities.
+- No implementation is preselected. Wait for the owner's next direction.
+- DTCG resolver validation, full provenance, glyph and fallback checks, platform
+  adapters, and versioned distribution remain future owner-directed work.

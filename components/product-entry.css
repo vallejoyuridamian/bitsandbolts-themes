@@ -78,8 +78,9 @@ body.bb-product-entry {
 .bb-product-plan h2,
 .bb-guest-gate h2 {
   margin: 0;
-  font-family: var(--bb-font-family-display);
-  font-weight: var(--bb-font-weight-bold);
+  font-family: var(--bb-v2-type-display-family);
+  font-synthesis: style;
+  font-weight: var(--bb-v2-type-display-font-weight, var(--bb-font-weight-bold));
 }
 
 .bb-product-lead {
@@ -129,9 +130,12 @@ body.bb-product-entry {
 
 .bb-product-proof__placeholder strong {
   color: var(--bb-v2-color-content-primary);
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-v2-type-display-family);
+  font-synthesis: style;
   font-size: clamp(1.5rem, calc(1.15rem + 1.2vw), 2.25rem);
-  line-height: 1.08;
+  font-weight: var(--bb-v2-type-display-font-weight, var(--bb-font-weight-bold));
+  line-height: var(--bb-v2-type-display-line-height, 1.08);
+  letter-spacing: var(--bb-v2-type-display-letter-spacing, 0);
   text-wrap: balance;
 }
 
@@ -239,9 +243,12 @@ body.bb-product-entry {
 
 .bb-product-poster strong {
   overflow-wrap: anywhere;
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-v2-type-display-family);
+  font-synthesis: style;
   font-size: clamp(0.72rem, 1.25vw, 1.18rem);
-  line-height: 1.12;
+  font-weight: var(--bb-v2-type-display-font-weight, var(--bb-font-weight-semibold));
+  line-height: var(--bb-v2-type-display-line-height, 1.12);
+  letter-spacing: var(--bb-v2-type-display-letter-spacing, 0);
 }
 
 .bb-product-poster small {
@@ -272,10 +279,11 @@ body.bb-product-entry {
 
 .bb-product-section--identity h2 {
   max-width: none;
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-v2-type-display-family);
   font-size: clamp(1.5rem, 3.2vw, 2rem);
-  line-height: normal;
-  letter-spacing: 0.1rem;
+  font-weight: var(--bb-v2-type-display-font-weight, var(--bb-font-weight-bold));
+  line-height: var(--bb-v2-type-display-line-height, normal);
+  letter-spacing: var(--bb-v2-type-display-letter-spacing, 0);
 }
 
 .bb-product-section--identity {
@@ -377,8 +385,10 @@ body.bb-product-entry {
 
 .bb-product-price strong {
   color: var(--bb-v2-color-content-primary);
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-v2-type-display-family);
+  font-synthesis: style;
   font-size: clamp(2.6rem, 5vw, 4.5rem);
+  font-weight: var(--bb-v2-type-display-font-weight, var(--bb-font-weight-bold));
   line-height: 1;
 }
 

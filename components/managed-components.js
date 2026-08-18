@@ -13,6 +13,7 @@ import { formFieldsMarkup } from './form-field.js';
 import { MediaPreviewCard, referenceImagePickerMarkup } from './media-picker.js';
 import { navbarMarkup } from './navbar.js';
 import { selectionControlsMarkup } from './select.js';
+import { workspaceSectionMarkup } from './workspace-section.js';
 
 const mediaPreviewCard = new MediaPreviewCard();
 
@@ -176,8 +177,24 @@ export const MANAGED_WEB_COMPONENTS = Object.freeze({
         'components/selection-controls.css',
         'components/semantic-icons.css'
       ]),
-      modules: Object.freeze(['components/select.js'])
+      modules: Object.freeze([
+        'components/semantic-icons.js',
+        'components/select.js'
+      ])
     }),
     render: selectionControlsMarkup
+  }),
+  'workspace-section': Object.freeze({
+    dependencies: Object.freeze({
+      stylesheets: Object.freeze([
+        'components/interface-primitives.css',
+        'components/semantic-icons.css'
+      ]),
+      modules: Object.freeze([
+        'components/semantic-icons.js',
+        'components/workspace-section.js'
+      ])
+    }),
+    render: workspaceSectionMarkup
   })
 });

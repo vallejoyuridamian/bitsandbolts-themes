@@ -22,6 +22,7 @@ import {
   DEFAULT_SEMANTIC_ICON_FAMILY,
   semanticIconMarkup
 } from './semantic-icons.js';
+import { workspaceSectionMarkup } from './workspace-section.js';
 
 const ICON_FAMILY_LABELS = Object.freeze({
   'font-awesome-solid': 'Font Awesome Solid',
@@ -197,6 +198,19 @@ function normalizeV2(value) {
     normalizeSingleFontFamily(family, `v2.${role}`)
   ]));
   if (!families.primary || !families.mono) throw new TypeError('Theme catalog v2 typography is missing required families.');
+  const styles = Object.fromEntries(Object.entries(value.typography?.styles || {}).map(([id, style]) => {
+    const familyRole = String(style?.familyRole || '').trim();
+    if (!V2_ID_PATTERN.test(id) || !families[familyRole]) {
+      throw new TypeError('Theme catalog v2 typography style is invalid.');
+    }
+    return [id, Object.freeze({
+      familyRole,
+      fontSize: safeCssVariableValue(style.fontSize),
+      fontWeight: safeCssVariableValue(style.fontWeight),
+      letterSpacing: safeCssVariableValue(style.letterSpacing),
+      lineHeight: safeCssVariableValue(style.lineHeight)
+    })];
+  }));
   const specimens = Array.isArray(value.typography?.specimens) ? value.typography.specimens.map((specimen) => {
     const id = String(specimen?.id || '').trim();
     const familyRole = String(specimen?.familyRole || '').trim();
@@ -229,7 +243,11 @@ function normalizeV2(value) {
     contractVersion: V2_CONTRACT_VERSION,
     modes: Object.freeze(Object.fromEntries(REQUIRED_MODES.map((mode) => [mode, normalizeV2Mode(value.modes?.[mode], mode)]))),
     themeVersion: String(value.themeVersion || ''),
-    typography: Object.freeze({ families: Object.freeze(families), specimens: Object.freeze(specimens) })
+    typography: Object.freeze({
+      families: Object.freeze(families),
+      specimens: Object.freeze(specimens),
+      styles: Object.freeze(styles)
+    })
   });
 }
 
@@ -311,6 +329,7 @@ function themeSummaryActionsMarkup() {
 function themeSummaryCardMarkup(theme, mode) {
   if (!theme.v2) return '';
   const nextMode = nextThemeMode(mode);
+  const artDirectionLabel = String(theme.v2.artDirection.label || '').trim();
   return `
     <article
       class="bb-theme-summary-card"
@@ -325,7 +344,7 @@ function themeSummaryCardMarkup(theme, mode) {
       >
         <span class="bb-theme-summary-card__header">
           <span>
-            <small>${escapeHtml(theme.v2.artDirection.label)}</small>
+            ${artDirectionLabel ? `<small>${escapeHtml(artDirectionLabel)}</small>` : ''}
             <strong>${escapeHtml(theme.label)}</strong>
           </span>
         </span>
@@ -358,9 +377,9 @@ function themeSummaryCardMarkup(theme, mode) {
   `;
 }
 
-function themeSummaryGridMarkup(catalog, mode, cardModes = {}) {
+function themeSummaryGridMarkup(catalog, mode, cardModes = {}, label = 'Theme families') {
   return `
-    <section class="bb-theme-summary" aria-label="Theme families">
+    <section class="bb-theme-summary" aria-label="${escapeHtml(label)}">
       <div class="bb-theme-summary__grid">
         ${catalog.themes.map((theme) => themeSummaryCardMarkup(
           theme,
@@ -368,6 +387,32 @@ function themeSummaryGridMarkup(catalog, mode, cardModes = {}) {
         )).join('')}
       </div>
     </section>
+  `;
+}
+
+function themeSummaryGroupsMarkup(catalog, mode, cardModes = {}, groups = []) {
+  const themeById = new Map(catalog.themes.map((theme) => [theme.id, theme]));
+  return `
+    <div class="bb-theme-gallery__groups">
+      ${groups.map((group) => {
+        const themes = (group.themeIds ?? []).map((themeId) => themeById.get(themeId)).filter(Boolean);
+        if (!themes.length) return '';
+        return workspaceSectionMarkup({
+          attributes: { 'data-theme-gallery-group': group.id },
+          className: 'bb-theme-gallery__group',
+          content: themeSummaryGridMarkup(
+            { ...catalog, themes },
+            mode,
+            cardModes,
+            `${group.label} theme families`
+          ),
+          count: themes.length,
+          id: `theme-gallery-${group.id}`,
+          label: group.label,
+          open: true
+        });
+      }).join('')}
+    </div>
   `;
 }
 
@@ -526,6 +571,40 @@ function v2ButtonMarkup(v2) {
       </button>
     `;
   }).join('');
+}
+
+function themeInspectionControlsMarkup({
+  paletteDetailsExpanded = false,
+  showcaseExpanded = false
+} = {}) {
+  return `
+    <div class="bb-theme-v2-inspection-controls" role="group" aria-label="Temporary Theme inspection views">
+      ${semanticActionButtonMarkup({
+        ariaLabel: 'Toggle full UI showcase',
+        attributes: {
+          'aria-pressed': showcaseExpanded ? 'true' : 'false',
+          'data-theme-inspection-toggle': 'showcase'
+        },
+        className: 'bb-theme-v2-inspection-toggle',
+        iconOnly: false,
+        iconRole: 'visibility',
+        label: 'Full UI showcase',
+        recipe: 'workspace'
+      })}
+      ${semanticActionButtonMarkup({
+        ariaLabel: 'Toggle color ramps and diagnostics',
+        attributes: {
+          'aria-pressed': paletteDetailsExpanded ? 'true' : 'false',
+          'data-theme-inspection-toggle': 'palette'
+        },
+        className: 'bb-theme-v2-inspection-toggle',
+        iconOnly: false,
+        iconRole: 'analysis',
+        label: 'Color ramps and diagnostics',
+        recipe: 'workspace'
+      })}
+    </div>
+  `;
 }
 
 function showcaseSectionMarkup(title, bodyMarkup, className = '') {
@@ -1149,8 +1228,11 @@ function v2ModeMarkup(theme, mode, {
   editable = false,
   fontAssignments = null,
   includeShowcase = true,
+  inspectionControls = false,
   identityColorOverrides = [],
   paletteCompletion = null,
+  paletteDetailsExpanded = false,
+  paletteDetailsMarkup = '',
   referenceImage = null
 } = {}) {
   const v2 = theme.v2;
@@ -1170,6 +1252,10 @@ function v2ModeMarkup(theme, mode, {
   }) : '';
   const paletteReferenceMarkup = editable ? referenceImagePickerMarkup({
     image: referenceImage
+  }) : '';
+  const inspectionMarkup = inspectionControls ? themeInspectionControlsMarkup({
+    paletteDetailsExpanded,
+    showcaseExpanded: includeShowcase
   }) : '';
   const extendedShowcase = includeShowcase ? `
         <section class="bb-theme-v2-section">
@@ -1212,6 +1298,8 @@ function v2ModeMarkup(theme, mode, {
           <h3>Typography</h3>
           <div class="bb-theme-v2-types">${v2TypographyMarkup(v2, { editable, fontAssignments })}</div>
         </section>
+        ${inspectionMarkup}
+        ${paletteDetailsExpanded ? String(paletteDetailsMarkup || '') : ''}
         ${extendedShowcase}
       </div>
     </section>
@@ -1226,8 +1314,11 @@ export function themeDetailMarkup(theme, mode = 'dark', {
   editable = false,
   fontAssignments = null,
   includeShowcase = true,
+  inspectionControls = false,
   identityColorOverrides = [],
   paletteCompletion = null,
+  paletteDetailsExpanded = false,
+  paletteDetailsMarkup = '',
   referenceImage = null
 } = {}) {
   const selected = selectedMode(mode);
@@ -1238,8 +1329,11 @@ export function themeDetailMarkup(theme, mode = 'dark', {
           editable,
           fontAssignments,
           includeShowcase,
+          inspectionControls,
           identityColorOverrides,
           paletteCompletion,
+          paletteDetailsExpanded,
+          paletteDetailsMarkup,
           referenceImage
         })}
       </div>
@@ -1250,9 +1344,16 @@ export function themeDetailMarkup(theme, mode = 'dark', {
 export function themeGalleryMarkup(catalog, selection = {}) {
   const theme = catalog.themes.find((candidate) => candidate.id === selection.themeId);
   const mode = selectedMode(theme ? selection.cardModes?.[theme.id] ?? selection.mode : selection.mode);
-  if (!theme) return themeSummaryGridMarkup(catalog, mode, selection.cardModes);
+  if (!theme) {
+    return Array.isArray(selection.groups) && selection.groups.length
+      ? themeSummaryGroupsMarkup(catalog, mode, selection.cardModes, selection.groups)
+      : themeSummaryGridMarkup(catalog, mode, selection.cardModes);
+  }
   return themeDetailMarkup(theme, mode, {
-    includeShowcase: selection.includeShowcase
+    includeShowcase: selection.includeShowcase,
+    inspectionControls: selection.inspectionControls,
+    paletteDetailsExpanded: selection.paletteDetailsExpanded,
+    paletteDetailsMarkup: selection.paletteDetailsMarkup
   });
 }
 
@@ -1323,15 +1424,25 @@ export function applyThemeGalleryVariables(host, catalog, selection = {}) {
 
 export function createThemeGalleryController({
   catalogUrl = '/theme/catalog.json',
+  colorDetailsMarkup,
   controlsHost,
   fetchImpl = (...args) => globalThis.fetch(...args),
   host,
   includeShowcase = true,
+  inspectionControls = false,
+  onUserThemeOpen,
   onViewChange
 } = {}) {
   let catalogPromise = null;
   let renderedCatalog = null;
-  let selection = Object.freeze({ cardModes: Object.freeze({}), mode: 'dark', themeId: '' });
+  let userThemeItems = Object.freeze([]);
+  let selection = Object.freeze({
+    cardModes: Object.freeze({}),
+    mode: 'dark',
+    paletteDetailsExpanded: false,
+    showcaseExpanded: false,
+    themeId: ''
+  });
   let navigationListenerInstalled = false;
 
   async function loadCatalog() {
@@ -1340,18 +1451,72 @@ export function createThemeGalleryController({
     return normalizeThemeCatalog(await response.json());
   }
 
+  function presentationCatalog(catalog) {
+    if (!userThemeItems.length) return catalog;
+    const themes = [...catalog.themes, ...userThemeItems.map((item) => item.theme)];
+    if (new Set(themes.map((theme) => theme.id)).size !== themes.length) {
+      throw new TypeError('Global and user Theme previews must have unique presentation identifiers.');
+    }
+    return Object.freeze({ ...catalog, themes: Object.freeze(themes) });
+  }
+
+  function galleryGroups(catalog) {
+    if (!userThemeItems.length) return null;
+    return Object.freeze([
+      Object.freeze({
+        id: 'global-themes',
+        label: 'Global Themes',
+        themeIds: Object.freeze(catalog.themes.map((theme) => theme.id))
+      }),
+      Object.freeze({
+        id: 'user-themes',
+        label: 'User Themes',
+        themeIds: Object.freeze(userThemeItems.map((item) => item.theme.id))
+      })
+    ]);
+  }
+
+  function normalizeUserThemeItems(items = []) {
+    if (!Array.isArray(items)) throw new TypeError('User Theme previews must be an array.');
+    if (!items.length) return Object.freeze([]);
+    const userCatalog = normalizeThemeCatalog({
+      packageVersion: 'user-authored',
+      schemaVersion: CATALOG_SCHEMA_VERSION,
+      themes: items.map((item) => item?.theme)
+    });
+    return Object.freeze(items.map((item, index) => {
+      const projectPath = String(item?.projectPath || '').trim();
+      if (!projectPath) throw new TypeError('User Theme preview is missing its project path.');
+      return Object.freeze({ projectPath, theme: userCatalog.themes[index] });
+    }));
+  }
+
   function renderCatalog(catalog) {
-    const themeId = catalog.themes.some((theme) => theme.id === selection.themeId) ? selection.themeId : '';
+    const presentation = presentationCatalog(catalog);
+    const themeId = presentation.themes.some((theme) => theme.id === selection.themeId) ? selection.themeId : '';
     selection = Object.freeze({
-      cardModes: selectedCardModes(catalog, selection.cardModes),
+      cardModes: selectedCardModes(presentation, selection.cardModes),
       mode: selectedMode(selection.mode),
+      paletteDetailsExpanded: Boolean(selection.paletteDetailsExpanded),
+      showcaseExpanded: Boolean(selection.showcaseExpanded),
       themeId
     });
-    if (controlsHost) controlsHost.innerHTML = '';
-    host.innerHTML = themeGalleryMarkup(catalog, { ...selection, includeShowcase });
-    applyThemeGalleryVariables(host, catalog, selection);
-    synchronizeFooterYear(host);
     const currentMode = selectedMode(themeId ? selection.cardModes[themeId] ?? selection.mode : selection.mode);
+    const detailTheme = themeId
+      ? presentation.themes.find((theme) => theme.id === themeId)
+      : null;
+    if (controlsHost) controlsHost.innerHTML = '';
+    host.innerHTML = themeGalleryMarkup(presentation, {
+      ...selection,
+      groups: themeId ? null : galleryGroups(catalog),
+      includeShowcase: includeShowcase || selection.showcaseExpanded,
+      inspectionControls,
+      paletteDetailsMarkup: selection.paletteDetailsExpanded
+        ? colorDetailsMarkup?.({ mode: currentMode, theme: detailTheme }) ?? ''
+        : ''
+    });
+    applyThemeGalleryVariables(host, presentation, selection);
+    synchronizeFooterYear(host);
     onViewChange?.(Object.freeze({
       mode: currentMode,
       themeId,
@@ -1360,7 +1525,8 @@ export function createThemeGalleryController({
   }
 
   function toggleModeForTheme(themeId, { restoreFocus = false } = {}) {
-    if (!renderedCatalog?.themes.some((theme) => theme.id === themeId)) return false;
+    const presentation = renderedCatalog ? presentationCatalog(renderedCatalog) : null;
+    if (!presentation?.themes.some((theme) => theme.id === themeId)) return false;
     const nextMode = nextThemeMode(selection.cardModes[themeId] ?? selection.mode);
     selection = Object.freeze({
       ...selection,
@@ -1375,14 +1541,37 @@ export function createThemeGalleryController({
     if (navigationListenerInstalled || !host?.addEventListener) return;
     host.addEventListener('click', (event) => {
       const cardMode = event.target?.closest?.('[data-theme-gallery-card-mode]');
+      const inspectionToggle = event.target?.closest?.('[data-theme-inspection-toggle]');
       const open = event.target?.closest?.('[data-theme-gallery-open]');
-      if (!renderedCatalog || (!cardMode && !open)) return;
+      if (!renderedCatalog || (!cardMode && !inspectionToggle && !open)) return;
       event.preventDefault();
       if (cardMode) {
         const themeId = String(cardMode.dataset.themeGalleryCardMode || '');
         toggleModeForTheme(themeId, { restoreFocus: true });
+      } else if (inspectionToggle && selection.themeId) {
+        const inspection = String(inspectionToggle.dataset.themeInspectionToggle || '');
+        if (!['palette', 'showcase'].includes(inspection)) return;
+        selection = Object.freeze({
+          ...selection,
+          ...(inspection === 'palette'
+            ? { paletteDetailsExpanded: !selection.paletteDetailsExpanded }
+            : { showcaseExpanded: !selection.showcaseExpanded })
+        });
+        renderCatalog(renderedCatalog);
+        host.querySelector?.(`[data-theme-inspection-toggle="${inspection}"]`)?.focus?.();
       } else if (open) {
-        selection = Object.freeze({ ...selection, themeId: String(open.dataset.themeGalleryOpen || '') });
+        const themeId = String(open.dataset.themeGalleryOpen || '');
+        const userTheme = userThemeItems.find((item) => item.theme.id === themeId);
+        if (userTheme && typeof onUserThemeOpen === 'function') {
+          onUserThemeOpen(userTheme);
+          return;
+        }
+        selection = Object.freeze({
+          ...selection,
+          paletteDetailsExpanded: false,
+          showcaseExpanded: false,
+          themeId
+        });
         renderCatalog(renderedCatalog);
       }
     });
@@ -1413,7 +1602,12 @@ export function createThemeGalleryController({
 
   async function showGallery() {
     const catalog = renderedCatalog ?? await render();
-    selection = Object.freeze({ ...selection, themeId: '' });
+    selection = Object.freeze({
+      ...selection,
+      paletteDetailsExpanded: false,
+      showcaseExpanded: false,
+      themeId: ''
+    });
     renderCatalog(catalog);
     return catalog;
   }
@@ -1423,5 +1617,11 @@ export function createThemeGalleryController({
     return toggleModeForTheme(selection.themeId);
   }
 
-  return Object.freeze({ render, showGallery, toggleMode });
+  function setUserThemes(items = [], { render: shouldRender = true } = {}) {
+    userThemeItems = normalizeUserThemeItems(items);
+    if (renderedCatalog && shouldRender) renderCatalog(renderedCatalog);
+    return userThemeItems.length;
+  }
+
+  return Object.freeze({ render, setUserThemes, showGallery, toggleMode });
 }

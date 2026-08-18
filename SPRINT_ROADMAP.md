@@ -5,61 +5,58 @@
 - Preserve Themes as the enforceable visual owner across every Bits and Bolts
   product and supported platform.
 - Keep Theme project behavior and persistence in AppScreen Studio while sharing
-  the exact gallery/detail root and presentation recipes.
+  exact gallery, detail, media, workspace, and typography recipes.
 - Continue only through bounded, owner-directed, approval-gated slices.
 
 ## Completed Foundation
 
 - [x] Ratify the DTCG 2025.10 plus Bits and Bolts contract architecture.
-- [x] Implement nine complete light/dark v2 families with semantic mappings,
+- [x] Implement nine complete light and dark v2 families with semantic mappings,
   interface recipes, licensed fonts, and generated platform outputs.
 - [x] Build the compact card-first Themes home and preserve full family pages.
 - [x] Move shared workspace, content, form, card, media, and editorial recipes
   into Themes-owned components.
-- [x] Add fallback-free first paint and atomic theme-change font readiness.
+- [x] Add fallback-free first paint and atomic Theme-change font readiness.
 - [x] Align AppScreen Studio and Sites with the canonical catalog and recipes.
 
-## Completed Theme Builder and Media Correction
+## Completed Theme Builder and Shared UI Checkpoint
 
-- [x] Remove Theme project behavior and persistence from Themes and keep them in
-  AppScreen Studio.
-- [x] Share one Theme detail renderer with explicit standalone and AppScreen
-  breadth, shared control bars, handled windows, Select, and Menu recipes.
-- [x] Package Font Awesome Solid and route every icon-like affordance through an
-  exact semantic role and provider mapping.
-- [x] Own editable color tiles, full-sample pickers, palette completion, explicit
-  mode labels, compact swatches, and flush-left completion controls.
-- [x] Publish schema 2 exact identity pairs, retain palette-aware art direction,
-  and retire superseded V1 color paths without aliases.
-- [x] Preserve canonical light-dark pairs as the fit corpus for deterministic
-  equivalence and foreground generation without ad hoc family changes.
-- [x] Own canonical media cards, picker and reference presentation, semantic
-  hover controls, scrollbar clearance, live Primary scrollbar roles, and
-  contrast-safe toolbar icon roles.
-- [x] Register `media-preview-card` and `reference-image-picker` as managed
-  component recipes consumed directly by AppScreen.
-- [x] Standardize icon-and-label workspace controls with accepted spacing,
-  midpoint alignment boxes, and font-metric correction.
-- [x] Remove the reference-image filename caption and grey lower strip.
-- [x] Add the media/reference specimen to the showcase and make its assets
-  repository-relative for GitHub Pages and local development.
+- [x] Keep Theme project behavior and persistence in AppScreen while sharing one
+  Theme renderer with explicit standalone and consumer breadth.
+- [x] Own editable colors, palette completion, exact identity pairs, deterministic
+  equivalence inputs, mode labels, compact swatches, and reference presentation.
+- [x] Own one media-card ancestor with explicit full Vault and reduced picker
+  siblings for image, audio, video, device, and font media.
+- [x] Accept centered Theme font assignments, 23-family Global Vault presentation,
+  local User Vault presentation, widest-name sizing, and body-free 56 px cards.
+- [x] Add one workspace-section recipe for conditional Global and User Theme
+  sections, transparent divider composition, and closed-only count badges.
+- [x] Keep user cards at canonical width and provide Cloud-derived card, Button,
+  and hover fallbacks without exposing user Themes in the public repository.
+- [x] Apply semantic assigned-font roles across every Theme-card text and control.
+- [x] Add optional full-showcase and color-diagnostics policies after compact
+  consumer detail for transient parity inspection.
+- [x] Fix Theme-card identity-strip rows across canonical and user cards.
+- [x] Correct semantic landing typography so Bits and Bolts retains Orbitron and
+  Brutus retains native Ultra 400 without synthesis or wide tracking.
+- [x] Declare the managed Selection Controls semantic-icon dependency.
+- [x] Unify horizontal and vertical resizers under one 9 px stripe and centered
+  96 px by 3 px grip recipe with equal divider spacing.
 - [x] Synchronize source, generated web output, and documentation output.
-- [x] Accept the compact Palette, reference viewer, Typography, shared font picker,
-  Theme assignments, and body-free reduced font cards in the owner-rendered state.
+- [x] Rebuild and accept the final owner-rendered checkpoint.
 
-## Owner-Directed Next Work
+## Parked, Not Scheduled
 
 1. Support the next owner-selected font consumer or render-parity slice.
 2. Add later Theme project fields in separately selected slices.
-3. Migrate remaining legacy Dialog consumers in a separately directed UI slice.
+3. Migrate remaining legacy Dialog consumers when directed.
 4. Review an existing family or detail composition through a focused visual slice.
 5. Advance DTCG validation, glyph coverage, platform adapters, or versioned
    package delivery.
 
-## Guardrails
+## Current Boundary
 
-- Verify exact Themes ownership before any consumer UI is exposed or edited.
-- Create missing semantic recipes here before continuing consumer work.
-- Preserve exact public preset values and identify derived values explicitly.
-- Use only officially bundled fonts with compatible licenses.
+- No implementation is preselected. Wait for the owner's next direction.
+- Verify exact Themes ownership before consumer UI is exposed or edited.
+- Preserve exact public preset values and officially bundled font licenses.
 - Browser acceptance, push, and deployment remain user-owned.

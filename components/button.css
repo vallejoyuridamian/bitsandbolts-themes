@@ -95,11 +95,12 @@
   border-radius: 30px;
   color: var(--bb-marketing-highlight, var(--bb-v2-color-content-primary));
   background: transparent;
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-v2-type-display-family);
+  font-synthesis: style;
   font-size: clamp(1.5rem, 1.8vw, 2rem);
-  font-weight: var(--bb-font-weight-semibold);
-  line-height: normal;
-  letter-spacing: 1px;
+  font-weight: var(--bb-v2-type-display-font-weight, var(--bb-font-weight-semibold));
+  line-height: var(--bb-v2-type-display-line-height, normal);
+  letter-spacing: var(--bb-v2-type-display-letter-spacing, 0);
   text-shadow: 0 0 5px var(--bb-v2-identity-primary),
     0 0 10px var(--bb-v2-identity-primary),
     0 0 20px var(--bb-v2-identity-primary),

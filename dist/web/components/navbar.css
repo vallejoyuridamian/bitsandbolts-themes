@@ -117,21 +117,23 @@
   flex-direction: column;
   justify-content: center;
   color: var(--bb-v2-identity-primary);
-  font-family: var(--bb-font-family-display);
-  font-weight: var(--bb-font-weight-semibold);
-  line-height: 1.1;
+  font-family: var(--bb-v2-type-display-family);
+  font-weight: var(--bb-v2-type-display-font-weight, var(--bb-font-weight-semibold));
+  line-height: var(--bb-v2-type-display-line-height, 1.1);
 }
 
 .bb-navbar__brand strong {
   font-size: clamp(0.8rem, 1.2vw, 1rem);
-  font-weight: var(--bb-font-weight-semibold);
-  letter-spacing: 0;
+  font-weight: inherit;
+  letter-spacing: var(--bb-v2-type-display-letter-spacing, 0);
 }
 
 .bb-navbar__brand small {
+  font-family: var(--bb-v2-type-caption-family);
   font-size: 0.7rem;
-  font-weight: var(--bb-font-weight-regular);
-  letter-spacing: 0;
+  font-weight: var(--bb-v2-type-caption-font-weight, var(--bb-font-weight-regular));
+  line-height: var(--bb-v2-type-caption-line-height, 1.1);
+  letter-spacing: var(--bb-v2-type-caption-letter-spacing, 0);
 }
 
 .bb-navbar__links {
@@ -158,8 +160,11 @@
   border-radius: 6px;
   color: color-mix(in srgb, var(--bb-marketing-chrome-navigation) 60%, transparent);
   background: transparent;
-  font-family: var(--bb-font-family-display);
-  font-weight: var(--bb-font-weight-semibold);
+  font-family: var(--bb-v2-type-label-family);
+  font-size: var(--bb-v2-type-label-font-size, 1rem);
+  font-weight: var(--bb-v2-type-label-font-weight, var(--bb-font-weight-semibold));
+  line-height: var(--bb-v2-type-label-line-height, normal);
+  letter-spacing: var(--bb-v2-type-label-letter-spacing, 0);
   text-align: center;
   text-decoration: none;
   transition: background 200ms ease;
@@ -189,9 +194,11 @@
   border-radius: 6px;
   color: var(--bb-marketing-chrome-on-accent);
   background: var(--bb-v2-identity-primary);
-  font-family: var(--bb-font-family-display);
-  font-size: 1rem;
-  font-weight: var(--bb-font-weight-semibold);
+  font-family: var(--bb-v2-type-label-family);
+  font-size: var(--bb-v2-type-label-font-size, 1rem);
+  font-weight: var(--bb-v2-type-label-font-weight, var(--bb-font-weight-semibold));
+  line-height: var(--bb-v2-type-label-line-height, normal);
+  letter-spacing: var(--bb-v2-type-label-letter-spacing, 0);
   text-align: center;
   text-decoration: none;
   transition: transform 200ms ease;

@@ -12,6 +12,7 @@ import {
   applyThemeGalleryVariables,
   themeDetailMarkup
 } from '../components/theme-gallery.js';
+import { workspaceSectionMarkup } from '../components/workspace-section.js';
 
 const catalog = JSON.parse(await readFile(
   new URL('../dist/web/catalog.json', import.meta.url),
@@ -25,7 +26,40 @@ const interfacePrimitives = await readFile(
 const mediaPickerCss = await readFile(new URL('../components/media-picker.css', import.meta.url), 'utf8');
 const selectionControlsCss = await readFile(new URL('../components/selection-controls.css', import.meta.url), 'utf8');
 const themeGalleryCss = await readFile(new URL('../components/theme-gallery.css', import.meta.url), 'utf8');
+const heroCss = await readFile(new URL('../components/hero.css', import.meta.url), 'utf8');
+const productEntryCss = await readFile(new URL('../components/product-entry.css', import.meta.url), 'utf8');
+const navbarCss = await readFile(new URL('../components/navbar.css', import.meta.url), 'utf8');
+const buttonCss = await readFile(new URL('../components/button.css', import.meta.url), 'utf8');
+const typographyCss = await readFile(new URL('../components/typography.css', import.meta.url), 'utf8');
 const theme = catalog.themes.find((entry) => entry.id === 'bitsandbolts');
+
+test('workspace sections share one Themes-owned shell and semantic disclosure icon', () => {
+  const markup = workspaceSectionMarkup({
+    compact: true,
+    content: '<div>Cards</div>',
+    count: 2,
+    id: 'user-fonts',
+    label: 'User Fonts',
+    open: true
+  });
+
+  assert.match(markup, /class="bb-workspace-section bb-workspace-section--compact"/);
+  assert.match(markup, /data-bb-icon-role="submenu"/);
+  assert.match(markup, /bb-workspace-section__label">User Fonts/);
+  assert.match(markup, /bb-workspace-section__count">2/);
+  assert.match(markup, /<details[^>]* open>/);
+  assert.ok(MANAGED_WEB_COMPONENTS['workspace-section']);
+  assert.match(interfacePrimitives, /\.bb-workspace-section\s*\{[^}]*border-bottom:\s*1px solid var\(--bb-v2-color-border-subtle\);[^}]*border-radius:\s*0;[^}]*background:\s*transparent;/s);
+  assert.match(interfacePrimitives, /\.bb-workspace-section\[open\] > summary \.bb-workspace-section__count\s*\{[^}]*display:\s*none;/s);
+  assert.doesNotMatch(interfacePrimitives, /\.bb-workspace-section > summary::before/);
+});
+
+test('managed selection controls publish their semantic icon runtime dependency', () => {
+  assert.deepEqual(
+    MANAGED_WEB_COMPONENTS['selection-controls'].dependencies.modules,
+    ['components/semantic-icons.js', 'components/select.js']
+  );
+});
 
 test('media preview icons use Themes semantic roles without inline artwork', () => {
   for (const kind of ['audio', 'video', 'image', 'device', 'font', 'play', 'stop']) {
@@ -222,6 +256,57 @@ test('Theme gallery scrollbars use the selected Theme identity within the galler
   );
   assert.equal(scrollOwnerValues.get('--bb-interface-scrollbar-thumb'), selectedMode['--bb-v2-identity-primary']);
   assert.equal(scrollOwnerValues.get('scrollbar-color'), values.get('scrollbar-color'));
+});
+
+test('Theme summary cards reserve one exact shared row for the identity strip', () => {
+  assert.match(
+    themeGalleryCss,
+    /\.bb-theme-summary-card\s*\{[^}]*grid-template-rows:\s*minmax\(0, 1fr\);/s
+  );
+  assert.match(
+    themeGalleryCss,
+    /\.bb-theme-summary-card__open\s*\{[^}]*height:\s*100%;[^}]*grid-template-rows:\s*var\(--bb-theme-summary-card-header-block-size\)\s*minmax\(260px, 1fr\)\s*var\(--bb-theme-summary-card-identities-block-size\);/s
+  );
+});
+
+test('landing recipes consume semantic typography roles without synthesizing Ultra weights', () => {
+  assert.match(
+    typographyCss,
+    /@font-face\s*\{[^}]*font-family:\s*"Ultra";[^}]*font-weight:\s*400;/s
+  );
+  assert.match(
+    heroCss,
+    /\.bb-hero__heading\s*\{[^}]*font-family:\s*var\(--bb-v2-type-marketing-hero-family\);[^}]*font-weight:\s*var\(--bb-v2-type-marketing-hero-font-weight,[^}]*letter-spacing:\s*var\(--bb-v2-type-marketing-hero-letter-spacing, 0\);/s
+  );
+  assert.doesNotMatch(heroCss, /\.bb-hero__heading\s*\{[^}]*letter-spacing:\s*0\.1rem;/s);
+  assert.match(
+    productEntryCss,
+    /\.bb-product-proof__placeholder strong\s*\{[^}]*font-family:\s*var\(--bb-v2-type-display-family\);[^}]*font-weight:\s*var\(--bb-v2-type-display-font-weight,[^}]*letter-spacing:\s*var\(--bb-v2-type-display-letter-spacing, 0\);/s
+  );
+  assert.match(
+    productEntryCss,
+    /\.bb-product-section--identity h2\s*\{[^}]*font-family:\s*var\(--bb-v2-type-display-family\);[^}]*font-weight:\s*var\(--bb-v2-type-display-font-weight,[^}]*letter-spacing:\s*var\(--bb-v2-type-display-letter-spacing, 0\);/s
+  );
+  assert.match(
+    productEntryCss,
+    /\.bb-product-poster strong\s*\{[^}]*font-family:\s*var\(--bb-v2-type-display-family\);[^}]*font-weight:\s*var\(--bb-v2-type-display-font-weight,[^}]*letter-spacing:\s*var\(--bb-v2-type-display-letter-spacing, 0\);/s
+  );
+  assert.match(
+    navbarCss,
+    /\.bb-navbar__brand > span:last-child\s*\{[^}]*font-family:\s*var\(--bb-v2-type-display-family\);[^}]*font-weight:\s*var\(--bb-v2-type-display-font-weight,/s
+  );
+  assert.match(
+    navbarCss,
+    /\.bb-navbar__link\s*\{[^}]*font-family:\s*var\(--bb-v2-type-label-family\);[^}]*font-weight:\s*var\(--bb-v2-type-label-font-weight,[^}]*letter-spacing:\s*var\(--bb-v2-type-label-letter-spacing, 0\);/s
+  );
+  assert.match(
+    navbarCss,
+    /\.bb-navbar__brand small\s*\{[^}]*font-family:\s*var\(--bb-v2-type-caption-family\);[^}]*font-weight:\s*var\(--bb-v2-type-caption-font-weight,/s
+  );
+  assert.match(
+    buttonCss,
+    /\.bb-btn-neon\s*\{[^}]*font-family:\s*var\(--bb-v2-type-display-family\);[^}]*font-weight:\s*var\(--bb-v2-type-display-font-weight,[^}]*letter-spacing:\s*var\(--bb-v2-type-display-letter-spacing, 0\);/s
+  );
 });
 
 test('editable Theme detail identifies the mode and always exposes a reference-image action', () => {

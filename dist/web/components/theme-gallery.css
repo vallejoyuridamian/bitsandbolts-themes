@@ -47,6 +47,10 @@
   padding: 0;
 }
 
+.bb-theme-gallery:has(> .bb-theme-gallery__groups) {
+  padding: 0;
+}
+
 .bb-theme-mode__meta,
 .bb-theme-inspection__label,
 .bb-theme-color__name,
@@ -79,6 +83,23 @@
   margin: 0 auto;
 }
 
+.bb-theme-gallery__groups {
+  display: grid;
+  gap: 0;
+  max-width: none;
+  margin: 0;
+}
+
+.bb-theme-gallery__group > .bb-theme-summary {
+  max-width: none;
+  margin: var(--bb-spacing-5) 0 0;
+}
+
+.bb-theme-gallery__groups .bb-theme-summary__grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 304px));
+  justify-content: start;
+}
+
 .bb-theme-summary {
   display: grid;
   max-width: 1440px;
@@ -97,6 +118,7 @@
   position: relative;
   width: 100%;
   display: grid;
+  grid-template-rows: minmax(0, 1fr);
   min-width: 0;
   padding: 0;
   appearance: none;
@@ -118,7 +140,12 @@
 .bb-theme-summary-card__open {
   display: grid;
   width: 100%;
+  height: 100%;
   min-width: 0;
+  grid-template-rows:
+    var(--bb-theme-summary-card-header-block-size)
+    minmax(260px, 1fr)
+    var(--bb-theme-summary-card-identities-block-size);
   padding: 0;
   appearance: none;
   border: 0;
@@ -1211,6 +1238,21 @@ article.bb-workspace-specimen__preview--secondary {
   display: grid;
   gap: 0;
   background: var(--bb-theme-v2-neutral, var(--bb-v2-color-surface-surface));
+}
+
+.bb-theme-v2-inspection-controls {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: var(--bb-spacing-3);
+  padding: clamp(18px, 3vw, 32px) clamp(24px, 4vw, 52px);
+  overflow-x: auto;
+  border-top: 1px solid var(--bb-v2-color-border-divider);
+}
+
+.bb-theme-v2-inspection-toggle {
+  width: auto;
+  min-width: max-content;
 }
 
 .bb-theme-v2__eyebrow,
