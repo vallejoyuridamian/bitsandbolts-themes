@@ -28,6 +28,11 @@
   display: none;
 }
 
+.bb-floating-window[data-floating-window-measuring="true"] {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .bb-floating-window[data-floating-window-size="content"] {
   height: auto;
 }

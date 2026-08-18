@@ -72,6 +72,7 @@ const ICON_PREVIEW_NAMES = Object.freeze([
   'warning',
   'lock',
   'visibility',
+  'visibility_off',
   'download',
   'zoom_out',
   'fit_screen',

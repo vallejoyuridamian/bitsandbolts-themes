@@ -86,6 +86,7 @@ Last verified: 2026-08-18
   `aria-orientation` is the only visual variant.
 - Shared workspace surfaces preserve the accepted dark, almost-black background
   role instead of introducing product-local blue wrappers.
+- Account headers center titles independently and align Back to the content gutter.
 
 ## Shared Recipes and Icons
 
@@ -94,17 +95,16 @@ Last verified: 2026-08-18
 
 ## Evidence and Acceptance Boundary
 
-- AppScreen project creation and Guest checks pass 45/45; its production build
-  passes. Themes confirmation checks pass 2/2 and generated outputs match source.
+- AppScreen focused account checks pass 16/16 and its production build passes.
+  Themes account-funnel checks pass 3/3 and the Themes build passes.
 - The owner accepted workspace Account presentation, Guest project creation
   windows, larger workspace tabs, compact brand, and bold Signature navbar action.
 - The earlier Theme authoring and gallery checkpoint remains accepted.
-- Any later UI, CSS, Theme, icon, or renderer change requires fresh acceptance.
-- This checkpoint is closed in a local repository commit. Nothing is pushed or
-  deployed.
+- The owner accepted the account-funnel recipe and bounded polish as good enough
+  for this local checkpoint. It is not pushed or deployed.
 
 ## Open Gates
 
-- No implementation is preselected. Wait for the owner's next direction.
+- No next work is selected; wait for owner direction.
 - DTCG resolver validation, full provenance, glyph and fallback checks, platform
   adapters, and versioned distribution remain future owner-directed work.

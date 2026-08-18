@@ -135,6 +135,10 @@
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/eye.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="visibility_off"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/eye-slash.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="download"] {
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/download.svg");
 }

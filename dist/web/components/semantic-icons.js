@@ -37,6 +37,7 @@ export const SEMANTIC_ICON_FAMILIES = Object.freeze({
     warning: 'faTriangleExclamation',
     lock: 'faLock',
     visibility: 'faEye',
+    visibility_off: 'faEyeSlash',
     download: 'faDownload',
     add_photo_alternate: 'faImage',
     media_audio: 'faVolumeHigh',

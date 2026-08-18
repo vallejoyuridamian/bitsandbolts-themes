@@ -60,7 +60,7 @@
 
 ## Current Boundary
 
-- Theme authoring and gallery are accepted. No implementation is preselected.
-- Verify exact Themes ownership before consumer UI is exposed or edited.
+- Theme authoring, gallery, and the account-funnel recipe are accepted locally.
+- Themes now owns paired password icons, inline field errors, and midpoint-aligned consent rows.
 - Preserve exact public preset values and officially bundled font licenses.
-- Browser acceptance, push, and deployment remain user-owned.
+- No next work is selected. Push and deployment remain user-owned.

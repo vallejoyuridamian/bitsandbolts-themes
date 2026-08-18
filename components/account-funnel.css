@@ -1,0 +1,233 @@
+/*
+ * Product-neutral account access and plan-choice composition for the canonical
+ * handled floating-window shell.
+ */
+
+.bb-floating-window:has(.bb-account-funnel) {
+  width: min(440px, calc(100vw - 24px));
+  min-width: min(320px, calc(100vw - 24px));
+}
+
+.bb-account-funnel {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto auto;
+  min-width: 0;
+  min-height: 0;
+  color: var(--bb-interface-control-foreground);
+  background: var(--bb-interface-menu-background);
+  font-family: var(--bb-font-family-body);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.bb-account-funnel__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  padding-inline: 0;
+}
+
+.bb-account-funnel__head .bb-floating-window-content__title {
+  grid-column: 1;
+  justify-self: center;
+  width: auto;
+}
+
+.bb-account-funnel__back {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 16px;
+  transform: translateY(-50%);
+}
+
+.bb-account-funnel__description {
+  min-height: 0;
+  padding-block: 8px 12px;
+}
+
+.bb-account-funnel__body {
+  display: grid;
+  align-content: start;
+  gap: var(--bb-spacing-3);
+  min-width: 0;
+  padding: 0 16px 14px;
+}
+
+.bb-account-funnel__head + .bb-account-funnel__body {
+  padding-block-start: var(--bb-spacing-3);
+}
+
+.bb-account-funnel__body .bb-form-fields {
+  gap: var(--bb-spacing-3);
+}
+
+.bb-account-funnel__body .bb-field {
+  margin: 0;
+}
+
+.bb-account-funnel__body :is(input, textarea, [contenteditable="true"]) {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.bb-account-funnel__recovery {
+  justify-self: end;
+}
+
+.bb-account-funnel__body .bb-checkbox-field {
+  margin: 0;
+}
+
+.bb-account-funnel__switch {
+  margin: 2px 0 0;
+  color: var(--bb-interface-menu-muted-foreground);
+  font-size: var(--bb-font-size-xs);
+  line-height: var(--bb-font-line-height-normal);
+  text-align: center;
+}
+
+.bb-account-funnel__switch-action {
+  font-weight: var(--bb-font-weight-bold);
+}
+
+.bb-account-funnel__error {
+  margin: 0 16px 8px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.bb-account-funnel__actions {
+  padding: 6px 16px 12px;
+}
+
+.bb-account-funnel__actions .bb-workspace-control-button {
+  min-width: 112px;
+}
+
+.bb-account-funnel__primary.bb-workspace-control-button {
+  color: var(--bb-v2-identity-primary-foreground);
+  background: var(--bb-v2-identity-primary);
+}
+
+.bb-account-funnel__primary.bb-workspace-control-button:is(:hover, :focus-visible):not(:disabled) {
+  color: var(--bb-v2-identity-primary-foreground);
+  background: color-mix(in srgb, var(--bb-v2-identity-primary) 88%, var(--bb-interface-control-hover-foreground));
+}
+
+.bb-account-funnel__plans {
+  display: grid;
+  gap: var(--bb-spacing-3);
+}
+
+.bb-account-funnel__plan {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--bb-spacing-3);
+  padding: 12px;
+  border: 1px solid var(--bb-interface-menu-border);
+  border-radius: var(--bb-radius-md);
+  color: var(--bb-interface-control-foreground);
+  background: var(--bb-v2-color-surface-subtle);
+  cursor: pointer;
+}
+
+.bb-account-funnel__plan:has(input:checked) {
+  border-color: var(--bb-v2-identity-primary);
+  background: var(--bb-interface-interaction-pressed-background);
+  box-shadow: var(--bb-interface-interaction-pressed-shadow);
+}
+
+.bb-account-funnel__plan input {
+  width: 16px;
+  height: 16px;
+  margin: 2px 0 0;
+  accent-color: var(--bb-v2-identity-primary);
+}
+
+.bb-account-funnel__plan-copy {
+  display: grid;
+  gap: var(--bb-spacing-1);
+  min-width: 0;
+}
+
+.bb-account-funnel__plan-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--bb-spacing-3);
+  font-size: var(--bb-font-size-sm);
+}
+
+.bb-account-funnel__plan-head strong {
+  font-family: var(--bb-font-family-body);
+  font-weight: var(--bb-font-weight-bold);
+}
+
+.bb-account-funnel__plan-summary,
+.bb-account-funnel__plan-badge {
+  color: var(--bb-interface-menu-muted-foreground);
+  font-size: var(--bb-font-size-xs);
+  line-height: var(--bb-font-line-height-normal);
+}
+
+.bb-account-funnel__plan-badge {
+  color: var(--bb-v2-identity-primary);
+  font-weight: var(--bb-font-weight-bold);
+}
+
+.bb-account-funnel--status {
+  grid-template-rows: auto auto auto auto;
+}
+
+.bb-account-funnel__status {
+  display: grid;
+  place-items: center;
+  min-height: 58px;
+}
+
+.bb-account-funnel__status-icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--bb-v2-identity-primary);
+  border-radius: 50%;
+  color: var(--bb-v2-identity-primary);
+}
+
+.bb-account-funnel__status-icon .bb-semantic-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.bb-account-funnel[data-account-funnel-status="processing"] .bb-account-funnel__status-icon {
+  animation: bb-account-funnel-spin 900ms linear infinite;
+}
+
+.bb-account-funnel[data-account-funnel-status="error"] .bb-account-funnel__status-icon {
+  border-color: var(--bb-v2-color-status-danger-border);
+  color: var(--bb-v2-color-status-danger-content);
+}
+
+@keyframes bb-account-funnel-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 520px) {
+  .bb-account-funnel__plan-head {
+    display: grid;
+    gap: var(--bb-spacing-1);
+  }
+
+  .bb-account-funnel__actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .bb-account-funnel__actions .bb-workspace-control-button {
+    width: 100%;
+  }
+}
