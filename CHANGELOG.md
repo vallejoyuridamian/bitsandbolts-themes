@@ -4,6 +4,27 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-18) - Account workspace and Guest entry accepted
+
+### What changed
+- Added a product-neutral workspace-settings recipe for full-page Account
+  composition, including sections, rows, statuses, forms, private simulation
+  controls, destructive panels, loading state, and responsive behavior.
+- Added shared compact workspace branding, larger workspace tabs, one grouped
+  tablist owner, and an action slot that can switch Account into Sign in without
+  creating a separate consumer button group.
+- Updated the shared navbar action to use the Signature family at title size with
+  bold and persistent Signature variants. Ordinary navigation links retain their
+  Interface typography.
+- Updated Product Entry descendants to target the exact semantic-icon ancestor.
+- Rebuilt and synchronized source, `dist/web`, and `docs` outputs.
+
+### Acceptance and boundary
+- Focused AppScreen Guest, Account, experience, route, and Open checks pass 20/20.
+  Themes and AppScreen production builds pass and generated outputs match source.
+- The owner accepted the final larger bold Sign in action and workspace chrome.
+  Nothing was pushed, deployed, published, or activated.
+
 ## Session wrap-up (2026-08-18) - Theme authoring closure accepted
 
 ### What changed

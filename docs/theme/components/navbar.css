@@ -194,13 +194,15 @@
   border-radius: 6px;
   color: var(--bb-marketing-chrome-on-accent);
   background: var(--bb-v2-identity-primary);
-  font-family: var(--bb-v2-type-label-family);
-  font-size: var(--bb-v2-type-label-font-size, 1rem);
-  font-weight: var(--bb-v2-type-label-font-weight, var(--bb-font-weight-semibold));
+  font-family: var(--bb-v2-type-display-large-family);
+  font-size: var(--bb-v2-type-title-font-size, 1.25rem);
+  font-weight: var(--bb-theme-typography-signature-font-weight, var(--bb-v2-type-display-large-font-weight, var(--bb-font-weight-semibold)));
+  font-style: var(--bb-theme-typography-signature-font-style, normal);
   line-height: var(--bb-v2-type-label-line-height, normal);
   letter-spacing: var(--bb-v2-type-label-letter-spacing, 0);
   text-align: center;
-  text-decoration: none;
+  text-decoration: var(--bb-theme-typography-signature-text-decoration, none);
+  cursor: pointer;
   transition: transform 200ms ease;
 }
 

@@ -4,9 +4,8 @@ Last verified: 2026-08-18
 
 ## Current Truth
 
-- This public repository is the canonical visual owner for Bits and Bolts
-  products. Tokens, components, fonts, licenses, semantic icons, platform assets,
-  catalog data, and committed generated outputs live here.
+- This public repository canonically owns product tokens, components, fonts,
+  icons, assets, catalog data, and committed generated outputs.
 - Nine v2 families ship in light and dark modes: `cloud`, `bitsandbolts`,
   `brutus`, `forest`, `winter`, `coffee`, `bubblegum`, `inferno`, and `sober`.
 - Bits and Bolts web icons use packaged Font Awesome Free Solid 7.3.1 through
@@ -20,29 +19,24 @@ Last verified: 2026-08-18
 
 - Themes remains the canonical-only gallery and read-only family-detail owner.
   It does not own or expose AppScreen user Theme projects.
-- User Themes live in AppScreen Studio. AppScreen owns project behavior,
-  persistence, guest state, picker orchestration, and transient reference images.
-- Gallery and AppScreen share one renderer. Standalone keeps the full showcase;
-  AppScreen defaults to compact Colors and Typography detail.
+- AppScreen owns user Theme behavior, persistence, Guest state, picker
+  orchestration, and transient reference images while sharing the renderer.
 - The Palette states its active mode, keeps compact cropped swatches, and places
   Auto-complete with its Select on one row.
 - AppScreen uses tinted light Neutral and releases stale copied semantics on edit
   or load while preserving manual values and alpha scrims.
-- Optional full-showcase and color-diagnostics policies expose shared complete
-  output after compact AppScreen detail without changing the standalone gallery.
+- Optional inspection policies expose full output after compact AppScreen detail.
 
 ## Accepted Gallery and Theme-Card Recipes
 
-- One workspace-section recipe owns transparent section layout, divider rhythm,
-  heading spacing, disclosure behavior, and closed-only count presentation.
+- One workspace-section recipe owns layout, disclosure, and divider rhythm.
 - Global and User Theme sections consume that same recipe. User Theme cards keep
   the canonical card width and the same shared Theme-card composition.
 - User Theme fallback shape, Button shape, and hover state inherit Cloud. Their
   cards omit the canonical art-direction label and use a fixed product-identity
   summary supplied by AppScreen.
-- Theme cards consume semantic Signature, Interface, and Technical font roles
-  across all text and controls. AppScreen supplies missing-role fallback from
-  Signature to Interface to Technical.
+- Theme cards consume semantic font roles across all text and controls with
+  AppScreen-supplied Signature to Interface to Technical fallback.
 - Bold, Italic, and Underline persist per role across cards and the Signature
   title. Canonical files publish all fields, and descriptions omit `Utility`.
 - Fixed shared card rows keep the lower identity swatch and label region equal
@@ -59,19 +53,26 @@ Last verified: 2026-08-18
 - `displayLarge` replaces the use-specific `marketingHero` contract name across
   authored families, generated outputs, components, showcase, and documentation.
 
+## Accepted Workspace Account and Entry Recipes
+
+- One product-neutral workspace-settings recipe owns Account page structure,
+  sections, rows, status, forms, simulation controls, and responsive layout.
+- Shared workspace brand presentation is smaller while workspace tabs use the
+  accepted larger height, padding, and tablist grouping.
+- The navbar action consumes the Signature family at title size with bold and
+  persistent Signature variants. Ordinary navigation links remain Interface.
+- Product Entry icon selectors use the exact shared semantic-icon ancestor.
+
 ## Accepted Media, Reference, and Font Recipes
 
 - Themes owns media preview cards, add cards, picker layout, reference-image
   presentation, and all semantic media icon mappings.
-- One media-card base owns checker, typography, borders, preview, favorite, and
-  add-card rules. Full Vault and reduced picker cards are explicit siblings for
-  image, audio, video, device, and font media.
+- One media-card base owns full Vault and reduced picker siblings for every media.
 - Reduced cards never show format or metadata pills. Reduced font cards also omit
   the lower body, use a 56 px preview, and share the widest rendered family width.
 - Signature, Interface, and Technical rows show one centered family-name specimen.
   Bold, Italic, and Underline are persistent semantic-vector controls.
-- Reference presentation owns Swap, Zoom out, Fit, Zoom in, and Remove controls,
-  exact Fit framing, scrollbar clearance, and contrast-safe toolbar roles.
+- Reference presentation owns semantic controls, exact Fit, and safe framing.
 
 ## Accepted Shared Presentation Corrections
 
@@ -93,12 +94,11 @@ Last verified: 2026-08-18
 
 ## Evidence and Acceptance Boundary
 
-- Focused Themes variant and Select checks pass 16/16. The final AppScreen Theme
-  model suite passes 20/20, including light Neutral and saved-copy migration.
-- Prior Themes and AppScreen builds remain accepted. This model correction passed
-  its focused suite and diff check; Sites was unchanged.
-- The owner accepted shared Open behavior, variants, canonical-copy regeneration,
-  light Neutral, variant-aware cards, and descriptions without `Utility`.
+- Final Guest, experience, Account, route, and Open checks pass 20/20. Themes and
+  AppScreen production builds pass and generated outputs match source.
+- The owner accepted workspace Account presentation, larger workspace tabs and
+  compact brand, and the larger bold Signature navbar action.
+- The earlier Theme authoring and gallery checkpoint remains accepted.
 - Any later UI, CSS, Theme, icon, or renderer change requires fresh acceptance.
 - This checkpoint is closed in a local repository commit. Nothing is pushed or
   deployed.

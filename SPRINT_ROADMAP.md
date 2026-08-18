@@ -16,6 +16,9 @@
   into Themes-owned components.
 - [x] Add fallback-free first paint and atomic Theme-change font readiness.
 - [x] Align AppScreen Studio and Sites with the canonical catalog and recipes.
+- [x] Add product-neutral workspace-settings presentation for Account tabs.
+- [x] Accept compact workspace branding and larger grouped workspace tabs.
+- [x] Make navbar actions larger bold Signature while links remain Interface.
 
 ## Completed Theme Builder and Shared UI Checkpoint
 
@@ -23,16 +26,12 @@
   Theme renderer with explicit standalone and consumer breadth.
 - [x] Own editable colors, palette completion, exact identity pairs, deterministic
   equivalence inputs, tinted light Neutral, mode labels, and compact swatches.
-- [x] Own one media-card ancestor with explicit full Vault and reduced picker
-  siblings for image, audio, video, device, and font media.
-- [x] Accept centered Theme font assignments, Global and User Vault presentation,
-  reduced font cards, and persistent variants for all three semantic roles.
-- [x] Add one workspace-section recipe for conditional Global and User Theme
-  sections, transparent divider composition, and closed-only count badges.
+- [x] Own one media-card ancestor for full Vault and reduced picker media.
+- [x] Accept centered font assignments, reduced cards, and persistent variants.
+- [x] Share conditional Global and User Theme section presentation.
 - [x] Keep user cards at canonical width and provide Cloud-derived card, Button,
   and hover fallbacks, with copied semantics refreshed after identity edits.
-- [x] Apply assigned fonts and saved variants across Typography, Theme cards, and
-  centered titles, and remove `Utility` from canonical descriptions.
+- [x] Apply semantic fonts and variants across cards and titles.
 - [x] Add optional full-showcase and color-diagnostics policies after compact
   consumer detail for transient parity inspection.
 - [x] Fix Theme-card identity-strip rows across canonical and user cards.
