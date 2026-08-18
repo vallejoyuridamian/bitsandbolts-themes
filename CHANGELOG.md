@@ -4,6 +4,23 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-18) - Theme authoring closure accepted
+
+### What changed
+- AppScreen now consumes the existing mode-neutral ramp contract correctly:
+  light Neutral uses primary-tinted step 50 instead of the absolute-white surface
+  pole, while dark Neutral remains at step 950.
+- Canonical user copies retain exact source semantics until an identity changes.
+  AppScreen then releases still-source generated semantics so Buttons, headline
+  action copy, hover states, and other consumers follow the edited palette.
+- Existing edited copies migrate during load. Manual semantic edits and alpha
+  scrims remain preserved. No Themes source or generated output changed.
+
+### Acceptance and boundary
+- The focused AppScreen Theme model suite passes 20/20 and the final diff check is
+  clean. The owner accepted existing Bits and Bolts and Brutus copies in light
+  and dark modes. Nothing was pushed or deployed.
+
 ## Session wrap-up (2026-08-18) - Theme variants and shared Open accepted
 
 ### What changed

@@ -22,7 +22,7 @@
 - [x] Keep Theme project behavior and persistence in AppScreen while sharing one
   Theme renderer with explicit standalone and consumer breadth.
 - [x] Own editable colors, palette completion, exact identity pairs, deterministic
-  equivalence inputs, mode labels, compact swatches, and reference presentation.
+  equivalence inputs, tinted light Neutral, mode labels, and compact swatches.
 - [x] Own one media-card ancestor with explicit full Vault and reduced picker
   siblings for image, audio, video, device, and font media.
 - [x] Accept centered Theme font assignments, Global and User Vault presentation,
@@ -30,7 +30,7 @@
 - [x] Add one workspace-section recipe for conditional Global and User Theme
   sections, transparent divider composition, and closed-only count badges.
 - [x] Keep user cards at canonical width and provide Cloud-derived card, Button,
-  and hover fallbacks without exposing user Themes in the public repository.
+  and hover fallbacks, with copied semantics refreshed after identity edits.
 - [x] Apply assigned fonts and saved variants across Typography, Theme cards, and
   centered titles, and remove `Utility` from canonical descriptions.
 - [x] Add optional full-showcase and color-diagnostics policies after compact
@@ -60,7 +60,7 @@
 
 ## Current Boundary
 
-- No implementation is preselected. Wait for the owner's next direction.
+- Theme authoring and gallery are accepted. No implementation is preselected.
 - Verify exact Themes ownership before consumer UI is exposed or edited.
 - Preserve exact public preset values and officially bundled font licenses.
 - Browser acceptance, push, and deployment remain user-owned.

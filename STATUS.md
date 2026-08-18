@@ -22,13 +22,14 @@ Last verified: 2026-08-18
   It does not own or expose AppScreen user Theme projects.
 - User Themes live in AppScreen Studio. AppScreen owns project behavior,
   persistence, guest state, picker orchestration, and transient reference images.
-- Gallery and AppScreen share one Theme renderer. Standalone detail keeps the
-  full showcase; AppScreen defaults to compact Colors and Typography detail.
+- Gallery and AppScreen share one renderer. Standalone keeps the full showcase;
+  AppScreen defaults to compact Colors and Typography detail.
 - The Palette states its active mode, keeps compact cropped swatches, and places
   Auto-complete with its Select on one row.
-- The transient Full UI showcase and Color ramps and diagnostics switches are
-  optional renderer policies. They expose the shared complete composition after
-  compact AppScreen detail without changing the standalone gallery.
+- AppScreen uses tinted light Neutral and releases stale copied semantics on edit
+  or load while preserving manual values and alpha scrims.
+- Optional full-showcase and color-diagnostics policies expose shared complete
+  output after compact AppScreen detail without changing the standalone gallery.
 
 ## Accepted Gallery and Theme-Card Recipes
 
@@ -87,18 +88,17 @@ Last verified: 2026-08-18
 
 ## Shared Recipes and Icons
 
-- Every icon-like affordance routes through a Themes-owned semantic role and
-  provider mapping. Text glyphs, CSS text content, and consumer artwork are forbidden.
+- Every icon-like affordance uses a Themes-owned role; text glyphs, CSS text content, and consumer artwork remain forbidden.
 - Source, `dist/web`, and `docs` remain synchronized.
 
 ## Evidence and Acceptance Boundary
 
-- Focused Themes variant and Select checks pass 16/16. The corrected AppScreen
-  canonical-copy recovery and editor-click persistence checks pass 2/2.
-- Themes and AppScreen production builds pass. Repository diff checks pass before
-  closeout docs. Sites was not changed in this checkpoint.
-- The owner accepted shared Open behavior, saved variants, variant-aware cards and
-  title, and canonical descriptions without `Utility`.
+- Focused Themes variant and Select checks pass 16/16. The final AppScreen Theme
+  model suite passes 20/20, including light Neutral and saved-copy migration.
+- Prior Themes and AppScreen builds remain accepted. This model correction passed
+  its focused suite and diff check; Sites was unchanged.
+- The owner accepted shared Open behavior, variants, canonical-copy regeneration,
+  light Neutral, variant-aware cards, and descriptions without `Utility`.
 - Any later UI, CSS, Theme, icon, or renderer change requires fresh acceptance.
 - This checkpoint is closed in a local repository commit. Nothing is pushed or
   deployed.
