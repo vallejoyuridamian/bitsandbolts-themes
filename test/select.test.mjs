@@ -3,6 +3,7 @@ import test from 'node:test';
 
 import {
   isSelectMenuVerticalBoundary,
+  resolveSelectMenuPreferredHeight,
   resolveSelectMenuPosition
 } from '../components/select.js';
 
@@ -31,4 +32,19 @@ test('an unconstrained portaled Select menu keeps its natural height', () => {
 
   assert.equal(position.maxHeight, 240);
   assert.equal(position.placement, 'below');
+});
+
+test('a Select menu reserves its full short list and caps long lists at five options', () => {
+  assert.equal(resolveSelectMenuPreferredHeight({
+    menuHeight: 74,
+    menuTop: 100,
+    optionBottoms: [131, 162],
+    tailInset: 6
+  }), 74);
+  assert.equal(resolveSelectMenuPreferredHeight({
+    menuHeight: 291,
+    menuTop: 100,
+    optionBottoms: [131, 162, 193, 224, 255, 286, 317, 348, 379],
+    tailInset: 6
+  }), 161);
 });

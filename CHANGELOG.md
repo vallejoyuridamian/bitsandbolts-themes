@@ -4,6 +4,24 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-19) - Managed Select window reservation accepted
+
+### What changed
+- Extended the canonical managed Select so a content-sized floating window can
+  temporarily reserve the vertical room needed by its open menu.
+- Short menus reserve their full natural height. Longer menus reserve through the
+  fifth option and remain scrollable, preventing small export and project-creation
+  windows from collapsing an open menu to a single row.
+- Restored the window's prior inline height and position when the menu closes or
+  its options are rebuilt.
+- Synchronized source, generated web output, and documentation output.
+
+### Acceptance and boundary
+- The focused Select check passes with generated-source parity, and the Themes
+  production build passes.
+- The owner accepted the bounded window growth in AppScreen export and project
+  creation. Nothing was pushed, deployed, published, or activated.
+
 ## Session wrap-up (2026-08-18) - Project replacement confirmation accepted
 
 ### What changed

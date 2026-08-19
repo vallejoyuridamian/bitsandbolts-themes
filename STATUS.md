@@ -1,6 +1,6 @@
 # Bits and Bolts Themes: Status
 
-Last verified: 2026-08-18
+Last verified: 2026-08-19
 
 ## Current Truth
 
@@ -81,6 +81,9 @@ Last verified: 2026-08-18
   weight or hardcoded positive display tracking.
 - Selection Controls declares its semantic-icons dependency, and shared placement
   ignores horizontal clipping so Theme Open renders its complete option list.
+- Managed Select reserves enough content-sized floating-window space for every
+  option in a short list and at most five options in a longer list, then releases
+  that temporary reservation when the menu closes.
 - One resizable-toolbar component owns both top and side handles. A 9 px stripe,
   96 px by 3 px grip, equal subtle divider lines, and grid centering are shared;
   `aria-orientation` is the only visual variant.
@@ -95,13 +98,10 @@ Last verified: 2026-08-18
 
 ## Evidence and Acceptance Boundary
 
-- AppScreen focused account checks pass 16/16 and its production build passes.
-  Themes account-funnel checks pass 3/3 and the Themes build passes.
-- The owner accepted workspace Account presentation, Guest project creation
-  windows, larger workspace tabs, compact brand, and bold Signature navbar action.
-- The earlier Theme authoring and gallery checkpoint remains accepted.
-- The owner accepted the account-funnel recipe and bounded polish as good enough
-  for this local checkpoint. It is not pushed or deployed.
+- The focused Select check, generated parity, and Themes production build pass.
+- The owner accepted content-sized window growth and the five-option cap.
+- Earlier Account, Theme authoring, gallery, and workspace checkpoints remain
+  accepted. Nothing is pushed, deployed, published, or activated.
 
 ## Open Gates
 

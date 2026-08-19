@@ -47,6 +47,8 @@
 - [x] Apply canonical card Signatures and shared handled-window form structure.
 - [x] Add the optional destructive secondary confirmation action.
 - [x] Rename `marketingHero` to `displayLarge` and keep alpha colors editable.
+- [x] Let content-sized floating windows reserve Select menu room for every item
+  in short lists and at most five items in long lists, releasing it on close.
 - [x] Synchronize source, generated web output, and documentation output.
 - [x] Rebuild and accept the final owner-rendered checkpoint.
 
@@ -60,7 +62,7 @@
 
 ## Current Boundary
 
-- Theme authoring, gallery, and the account-funnel recipe are accepted locally.
-- Themes now owns paired password icons, inline field errors, and midpoint-aligned consent rows.
+- Theme authoring, gallery, account funnel, and managed Select window reservation
+  are accepted locally.
 - Preserve exact public preset values and officially bundled font licenses.
 - No next work is selected. Push and deployment remain user-owned.

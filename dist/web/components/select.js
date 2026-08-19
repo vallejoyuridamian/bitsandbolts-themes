@@ -5,6 +5,7 @@ import {
 
 const DATA_ATTRIBUTE_PATTERN = /^data-[a-z0-9-]+$/;
 const MAX_MENU_HEIGHT = 360;
+const MAX_VISIBLE_MENU_OPTIONS = 5;
 const MENU_GAP = 4;
 const MIN_MENU_WIDTH = 180;
 const PORTAL_PRESENTATION_PROPERTIES = Object.freeze([
@@ -123,6 +124,26 @@ export function resolveSelectMenuPosition({
     placement: 'below',
     top: Math.round(top)
   });
+}
+
+export function resolveSelectMenuPreferredHeight({
+  maxVisibleOptions = MAX_VISIBLE_MENU_OPTIONS,
+  menuHeight = 0,
+  menuTop = 0,
+  optionBottoms = [],
+  tailInset = 0
+} = {}) {
+  const resolvedMenuHeight = Math.max(0, Number(menuHeight) || 0);
+  const visibleLimit = Math.max(1, Math.floor(Number(maxVisibleOptions) || MAX_VISIBLE_MENU_OPTIONS));
+  const resolvedBottoms = optionBottoms
+    .map(Number)
+    .filter(Number.isFinite);
+  if (resolvedBottoms.length <= visibleLimit) return resolvedMenuHeight;
+  const cutoffBottom = resolvedBottoms[visibleLimit - 1];
+  const cappedHeight = cutoffBottom
+    - (Number(menuTop) || 0)
+    + Math.max(0, Number(tailInset) || 0);
+  return Math.round(Math.min(resolvedMenuHeight, Math.max(0, cappedHeight)));
 }
 
 export function isSelectMenuVerticalBoundary(style = {}) {
@@ -349,8 +370,10 @@ export function installSelectController(root = globalThis.document, {
       nodes.push(item);
     });
     menu.replaceChildren(...nodes);
+    releaseFloatingWindowReservation(record);
     record.anchorSignature = '';
     record.menuNaturalHeight = 0;
+    record.menuPreferredHeight = 0;
   }
 
   function anchorContainerFor(trigger) {
@@ -398,6 +421,50 @@ export function installSelectController(root = globalThis.document, {
     return Math.max(0, scrollHeight - scrollTop - triggerRect.bottom - VIEWPORT_GAP);
   }
 
+  function releaseFloatingWindowReservation(record) {
+    const reservation = record?.floatingWindowReservation;
+    if (!reservation) return;
+    if (reservation.node?.isConnected) {
+      reservation.node.style.height = reservation.height;
+      reservation.node.style.top = reservation.top;
+    }
+    record.floatingWindowReservation = null;
+  }
+
+  function preferredMenuHeight(menu, naturalHeight) {
+    const menuRect = menu.getBoundingClientRect();
+    const options = [...menu.querySelectorAll('[data-bb-select-option-index]')];
+    const lastOptionRect = options.at(-1)?.getBoundingClientRect?.();
+    return resolveSelectMenuPreferredHeight({
+      menuHeight: naturalHeight,
+      menuTop: menuRect.top,
+      optionBottoms: options.map((option) => option.getBoundingClientRect().bottom),
+      tailInset: lastOptionRect ? Math.max(0, menuRect.bottom - lastOptionRect.bottom) : 0
+    });
+  }
+
+  function reserveFloatingWindowMenuSpace(record, triggerRect, menuHeight) {
+    if (record.floatingWindowReservation || menuHeight <= 0) return;
+    const node = record.wrapper.closest?.('.bb-floating-window[data-floating-window-size="content"]');
+    if (!node) return;
+    const shortfall = Math.ceil(menuHeight - anchorContainerAvailableHeight(record, triggerRect));
+    if (shortfall <= 0) return;
+    const nodeRect = node.getBoundingClientRect();
+    const viewport = viewportRect();
+    const maximumHeight = Math.max(0, viewport.bottom - viewport.top - (VIEWPORT_GAP * 2));
+    const height = Math.min(maximumHeight, Math.ceil(nodeRect.height + shortfall));
+    if (height <= nodeRect.height) return;
+    const maximumTop = Math.max(VIEWPORT_GAP, viewport.bottom - height - VIEWPORT_GAP);
+    const top = Math.min(Math.max(VIEWPORT_GAP, nodeRect.top), maximumTop);
+    record.floatingWindowReservation = {
+      height: node.style.height,
+      node,
+      top: node.style.top
+    };
+    node.style.height = `${height}px`;
+    node.style.top = `${Math.round(top)}px`;
+  }
+
   function triggerIsVisible(record, triggerRect = record.trigger?.getBoundingClientRect?.()) {
     const { select, trigger, wrapper } = record;
     if (!select?.isConnected || !trigger?.isConnected || !wrapper?.isConnected || select.hidden || wrapper.hidden) {
@@ -433,13 +500,16 @@ export function installSelectController(root = globalThis.document, {
     if (!record.menuNaturalHeight) {
       menu.style.maxHeight = 'none';
       record.menuNaturalHeight = Math.ceil(menu.getBoundingClientRect().height);
+      record.menuPreferredHeight = preferredMenuHeight(menu, record.menuNaturalHeight);
     }
+    reserveFloatingWindowMenuSpace(record, triggerRect, record.menuPreferredHeight);
+    const resolvedTriggerRect = trigger.getBoundingClientRect();
     const menuRect = menu.getBoundingClientRect();
     const position = resolveSelectMenuPosition({
-      containerAvailableHeight: anchorContainerAvailableHeight(record, triggerRect),
-      menuHeight: record.menuNaturalHeight,
+      containerAvailableHeight: anchorContainerAvailableHeight(record, resolvedTriggerRect),
+      menuHeight: record.menuPreferredHeight,
       menuWidth: menuRect.width,
-      triggerRect,
+      triggerRect: resolvedTriggerRect,
       viewportWidth
     });
     const signature = `${position.left}:${position.top}:${position.maxHeight}`;
@@ -484,6 +554,7 @@ export function installSelectController(root = globalThis.document, {
     if (!record) return false;
     activeRecord = null;
     stopAnchorTracking();
+    releaseFloatingWindowReservation(record);
     record.wrapper.classList.remove('is-open');
     record.trigger.setAttribute('aria-expanded', 'false');
     record.trigger.removeAttribute('aria-controls');
@@ -492,6 +563,7 @@ export function installSelectController(root = globalThis.document, {
     record.anchorContainer = null;
     record.anchorSignature = '';
     record.menuNaturalHeight = 0;
+    record.menuPreferredHeight = 0;
     if (restoreFocus && record.trigger.isConnected) record.trigger.focus();
     log('custom-select-hidden', {
       listenerFile: 'bitsandbolts-themes/components/select.js',
@@ -649,9 +721,11 @@ export function installSelectController(root = globalThis.document, {
       anchorContainer: null,
       anchorSignature: '',
       externalTrigger,
+      floatingWindowReservation: null,
       generated,
       menu: null,
       menuNaturalHeight: 0,
+      menuPreferredHeight: 0,
       optionsSignature: '',
       originalAriaHidden: select.getAttribute('aria-hidden'),
       originalNativeClass: select.classList.contains('bb-select__native'),
