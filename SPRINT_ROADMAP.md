@@ -52,6 +52,18 @@
 - [x] Synchronize source, generated web output, and documentation output.
 - [x] Rebuild and accept the final owner-rendered checkpoint.
 
+## Completed Shared Editor Recipe Checkpoint
+
+- [x] Add one shared Background editor recipe for screen and scene consumers in
+  source, synchronized web output, and documentation output.
+- [x] Own visible Background palette swatches and the semantic swap affordance while
+  AppScreen retains behavior, state, persistence, and media orchestration.
+- [x] Add exact layout-editor selection, snap-guide, resize-handle, and placement
+  preview values without changing the established visual language.
+- [x] Separate the placement content border from the equivalent outer dashed paint
+  used by AppScreen to avoid transformed-iframe trace artifacts.
+- [x] Accept the owner-rendered Background and trail-free placement consumers.
+
 ## Parked, Not Scheduled
 
 1. Support the next owner-selected font consumer or render-parity slice.
@@ -62,7 +74,7 @@
 
 ## Current Boundary
 
-- Theme authoring, gallery, account funnel, and managed Select window reservation
-  are accepted locally.
+- Theme authoring, gallery, account funnel, managed Select, Background editor, and
+  layout-editor selection recipe checkpoints are accepted locally.
 - Preserve exact public preset values and officially bundled font licenses.
 - No next work is selected. Push and deployment remain user-owned.

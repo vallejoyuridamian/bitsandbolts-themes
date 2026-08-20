@@ -1,110 +1,74 @@
 # Bits and Bolts Themes: Status
 
-Last verified: 2026-08-19
+Last verified: 2026-08-20
 
 ## Current Truth
 
-- This public repository canonically owns product tokens, components, fonts,
+- This repository canonically owns product tokens, components, fonts, semantic
   icons, assets, catalog data, and committed generated outputs.
-- Nine v2 families ship in light and dark modes: `cloud`, `bitsandbolts`,
-  `brutus`, `forest`, `winter`, `coffee`, `bubblegum`, `inferno`, and `sober`.
-- Bits and Bolts web icons use packaged Font Awesome Free Solid 7.3.1 through
-  semantic roles. Other families retain Material Symbols.
-- Catalog schema 2 publishes exact identity foreground pairs in both modes. All
-  72 pairs pass 4.5:1 after serialization. V1 color paths are removed.
-- Canonical typography, licensed fonts, Brutus native Ultra 400, Forest Hero
-  leading, and semantic summary-card typography remain intact.
-
-## Theme Workspace Ownership
-
+- Nine v2 families ship in light and dark modes: Cloud, Bits and Bolts, Brutus,
+  Forest, Winter, Coffee, Bubblegum, Inferno, and Sober.
 - Themes remains the canonical-only gallery and read-only family-detail owner.
-  It does not own or expose AppScreen user Theme projects.
-- AppScreen owns user Theme behavior, persistence, Guest state, picker
-  orchestration, and transient reference images while sharing the renderer.
-- The Palette states its active mode, keeps compact cropped swatches, and places
-  Auto-complete with its Select on one row.
-- AppScreen uses tinted light Neutral and releases stale copied semantics on edit
-  or load while preserving manual values and alpha scrims.
-- Optional inspection policies expose full output after compact AppScreen detail.
+  AppScreen owns user Theme behavior, persistence, Guest state, and orchestration.
+- Every icon-like affordance must use an exact Themes-owned semantic recipe.
+- The shared editor-recipe checkpoint described here is locally accepted. Nothing
+  is pushed, deployed, published, or activated.
 
-## Accepted Gallery and Theme-Card Recipes
+## Accepted Shared Editor Recipes
 
-- One workspace-section recipe owns layout, disclosure, and divider rhythm.
-- Global and User Theme sections consume that same recipe. User Theme cards keep
-  the canonical card width and the same shared Theme-card composition.
-- User Theme fallback shape, Button shape, and hover state inherit Cloud. Their
-  cards omit the canonical art-direction label and use a fixed product-identity
-  summary supplied by AppScreen.
-- Theme cards consume semantic font roles across all text and controls with
-  AppScreen-supplied Signature to Interface to Technical fallback.
-- Bold, Italic, and Underline persist per role across cards and the Signature
-  title. Canonical files publish all fields, and descriptions omit `Utility`.
-- Fixed shared card rows keep the lower identity swatch and label region equal
-  across canonical families and user Themes.
-- Every canonical card title consumes its actual Signature family through the
-  application-agnostic `displayLarge` role.
+- `components/background-editor.css` and `background-editor.js` own the shared
+  screen and scene Background form presentation and markup.
+- Source, `dist/web`, and docs copies are present and synchronized by the Themes
+  build completed during this session.
+- The recipe includes visible palette swatches and a semantic `swap_horiz` icon.
+- AppScreen owns binding, background state, persistence, media choices, and the
+  shared floating-window behavior that consumes this recipe.
+- The owner reported the swatch visibility correction was good before work moved
+  to the unrelated selection-trace defect.
+- The owner accepted the Background consumer result for the local checkpoint.
 
-## Accepted Theme Detail and Floating Windows
+## Selection Recipe Boundary
 
-- The toolbar centers a Signature title and semantic pencil without clipping.
-- One floating form owns naming, media picking, and optional secondary confirmation.
-- Editable translucent colors derive valid opaque native-control bases while
-  retaining their alpha representation.
-- `displayLarge` replaces the use-specific `marketingHero` contract name across
-  authored families, generated outputs, components, showcase, and documentation.
+- `components/layout-editor-selection.js` and its synchronized `dist/web` copy own
+  the existing selection signal, snap-guide, resize-handle, and placement-preview
+  values without changing their established colors or dimensions.
+- The placement recipe separates a transparent 4 px content border from the same
+  dashed red border painted by AppScreen outside its transformed preview iframe.
+  This preserves placement geometry and presentation while avoiding stale iframe
+  border paint.
+- Themes owns these visual values. AppScreen owns placement behavior, geometry,
+  scaling, lifecycle, and cleanup.
+- A speculative AppScreen route serving arbitrary Themes source files broke
+  generated semantic icon delivery and remains removed. AppScreen serves Themes
+  from `bitsandbolts-themes/dist/web`.
 
-## Accepted Workspace Account and Entry Recipes
+## Earlier Accepted Theme Boundaries
 
-- One product-neutral workspace-settings recipe owns Account page structure,
-  sections, rows, status, forms, simulation controls, and responsive layout.
-- Shared workspace brand presentation is smaller while workspace tabs use the
-  accepted larger height, padding, and tablist grouping.
-- The navbar action consumes the Signature family at title size with bold and
-  persistent Signature variants. Ordinary navigation links remain Interface.
-- Product Entry icon selectors use the exact shared semantic-icon ancestor.
-
-## Accepted Media, Reference, and Font Recipes
-
-- Themes owns media preview cards, add cards, picker layout, reference-image
-  presentation, and all semantic media icon mappings.
-- One media-card base owns full Vault and reduced picker siblings for every media.
-- Reduced cards never show format or metadata pills. Reduced font cards also omit
-  the lower body, use a 56 px preview, and share the widest rendered family width.
-- Signature, Interface, and Technical rows show one centered family-name specimen.
-  Bold, Italic, and Underline are persistent semantic-vector controls.
-- Reference presentation owns semantic controls, exact Fit, and safe framing.
-
-## Accepted Shared Presentation Corrections
-
-- Landing recipes consume semantic typography roles. Bits and Bolts display copy
-  retains Orbitron. Brutus uses native Ultra 400 without browser-synthesized heavy
-  weight or hardcoded positive display tracking.
-- Selection Controls declares its semantic-icons dependency, and shared placement
-  ignores horizontal clipping so Theme Open renders its complete option list.
-- Managed Select reserves enough content-sized floating-window space for every
-  option in a short list and at most five options in a longer list, then releases
-  that temporary reservation when the menu closes.
-- One resizable-toolbar component owns both top and side handles. A 9 px stripe,
-  96 px by 3 px grip, equal subtle divider lines, and grid centering are shared;
-  `aria-orientation` is the only visual variant.
-- Shared workspace surfaces preserve the accepted dark, almost-black background
-  role instead of introducing product-local blue wrappers.
-- Account headers center titles independently and align Back to the content gutter.
-
-## Shared Recipes and Icons
-
-- Every icon-like affordance uses a Themes-owned role; text glyphs, CSS text content, and consumer artwork remain forbidden.
-- Source, `dist/web`, and `docs` remain synchronized.
+- Catalog schema 2 retains exact identity foreground pairs, semantic typography,
+  licensed fonts, and canonical light and dark output for all families.
+- Global and User Theme sections share workspace-section and Theme-card recipes.
+- Theme cards retain semantic font roles, persistent Bold, Italic, and Underline,
+  fixed card rows, and application-neutral `displayLarge` titles.
+- One floating-form and floating-window system owns naming, media selection,
+  confirmation, sizing, and bounded Select reservation.
+- Workspace settings, Account, navbar, resizer, media cards, reference images,
+  font controls, Product Entry, and semantic icon recipes remain accepted.
+- Source, generated web output, and documentation remain synchronized at the
+  current accepted local checkpoint.
 
 ## Evidence and Acceptance Boundary
 
-- The focused Select check, generated parity, and Themes production build pass.
-- The owner accepted content-sized window growth and the five-option cap.
-- Earlier Account, Theme authoring, gallery, and workspace checkpoints remain
-  accepted. Nothing is pushed, deployed, published, or activated.
+- The Themes production build passed after adding the Background editor recipe.
+- The owner confirmed the exact corrected placement after diagnostic and
+  failed-attempt cleanup.
+- The Background and layout-editor selection recipes are accepted as the current
+  local Themes checkpoint.
+- Source, `dist/web`, and documentation copies compare byte-for-byte where present;
+  changed JavaScript syntax and Git whitespace checks pass.
 
-## Open Gates
+## Next Boundary
 
-- No next work is selected; wait for owner direction.
-- DTCG resolver validation, full provenance, glyph and fallback checks, platform
-  adapters, and versioned distribution remain future owner-directed work.
+- No next Themes implementation is selected. A fresh chat must load both projects'
+  complete hot context and handoffs, then stop for owner direction.
+- Preserve the accepted local checkpoint. Do not push, deploy, publish, or add
+  speculative editor recipes.

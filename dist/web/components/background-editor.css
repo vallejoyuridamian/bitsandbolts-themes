@@ -1,0 +1,172 @@
+/*
+ * Canonical Background editor composition.
+ * Consumers retain background data, mutations, asset workflows, and invocation.
+ */
+
+.bb-background-editor {
+  display: grid;
+  align-content: start;
+  gap: var(--bb-spacing-3);
+  min-width: 0;
+  color: var(--bb-interface-control-foreground);
+  font-family: var(--bb-font-family-body);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.bb-background-editor--window {
+  padding: 0 var(--bb-spacing-3) var(--bb-spacing-3);
+}
+
+.bb-background-editor > .bb-field {
+  min-width: 0;
+  margin: 0;
+}
+
+.bb-background-editor .bb-field__input,
+.bb-background-editor .bb-select {
+  width: 100%;
+  min-width: 0;
+}
+
+.bb-background-editor__inherit {
+  justify-self: stretch;
+}
+
+.bb-background-editor__color-row {
+  display: grid;
+  grid-template-columns: minmax(66px, 1fr) 36px minmax(66px, 1fr);
+  align-items: end;
+  gap: var(--bb-spacing-2);
+  min-width: 0;
+}
+
+.bb-background-editor__color-target {
+  --bb-background-editor-picked-color: var(--bb-v2-color-surface-canvas);
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--bb-spacing-2);
+  min-width: 0;
+  min-height: 62px;
+  padding: var(--bb-spacing-2);
+  border: 1px solid transparent;
+  border-radius: var(--bb-radius-md);
+  color: var(--bb-v2-color-content-secondary);
+  font-size: var(--bb-font-size-xs);
+  font-weight: var(--bb-font-weight-medium);
+  cursor: pointer;
+}
+
+.bb-background-editor__color-target::after {
+  position: absolute;
+  inset-block-end: var(--bb-spacing-2);
+  inset-inline-start: 50%;
+  box-sizing: border-box;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--bb-v2-color-border-subtle);
+  border-radius: var(--bb-radius-full);
+  background: var(--bb-background-editor-picked-color);
+  content: '';
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.bb-background-editor__color-target.is-active {
+  border-color: var(--bb-v2-identity-primary);
+  background: color-mix(in srgb, var(--bb-v2-identity-primary) 8%, transparent);
+}
+
+.bb-background-editor__color-control {
+  position: relative;
+  z-index: 1;
+  display: block;
+  box-sizing: border-box;
+  width: 28px;
+  min-width: 28px;
+  max-width: 28px;
+  height: 28px;
+  min-height: 28px;
+  max-height: 28px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--bb-radius-full);
+  background: transparent;
+  cursor: pointer;
+  opacity: 0;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.bb-background-editor__color-control::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.bb-background-editor__color-control::-webkit-color-swatch,
+.bb-background-editor__color-control::-moz-color-swatch {
+  border: 0;
+  border-radius: var(--bb-radius-full);
+}
+
+.bb-background-editor__swap {
+  align-self: end;
+  justify-self: center;
+}
+
+.bb-background-editor__swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--bb-spacing-2);
+  min-width: 0;
+}
+
+.bb-background-editor__swatch {
+  position: relative;
+  box-sizing: border-box;
+  width: 26px;
+  min-width: 26px;
+  height: 26px;
+  min-height: 26px;
+  padding: 0;
+  border: 2px solid var(--bb-v2-color-border-strong);
+  border-radius: var(--bb-radius-full);
+  background: var(--bb-v2-color-surface-canvas);
+  cursor: pointer;
+}
+
+.bb-background-editor__swatch::before {
+  position: absolute;
+  inset: 3px;
+  border-radius: inherit;
+  background: var(--bb-background-editor-swatch);
+  content: '';
+  pointer-events: none;
+}
+
+.bb-background-editor__swatch:is(:hover, :focus-visible) {
+  border-color: var(--bb-v2-identity-primary);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bb-interface-control-focus-ring);
+}
+
+.bb-background-editor__asset-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--bb-spacing-2);
+}
+
+.bb-background-editor__asset-actions .bb-workspace-control-button {
+  min-width: 0;
+}
+
+.bb-background-editor__range {
+  width: 100%;
+  min-width: 0;
+  accent-color: var(--bb-v2-identity-primary);
+}
+
+.bb-background-editor [hidden] {
+  display: none;
+}
