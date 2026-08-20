@@ -9,60 +9,33 @@
 ## Completed Foundation
 
 - [x] Ratify the DTCG 2025.10 plus Bits and Bolts contract architecture.
-- [x] Implement nine complete light and dark v2 families with semantic mappings,
-  interface recipes, licensed fonts, and generated platform outputs.
-- [x] Build the compact card-first Themes home and preserve full family pages.
-- [x] Move shared workspace, content, form, card, media, and editorial recipes
-  into Themes-owned components.
-- [x] Add fallback-free first paint and atomic Theme-change font readiness.
-- [x] Align AppScreen Studio and Sites with the canonical catalog and recipes.
-- [x] Add product-neutral workspace-settings presentation for Account tabs.
-- [x] Accept compact workspace branding and larger grouped workspace tabs.
-- [x] Make navbar actions larger bold Signature while links remain Interface.
-
-## Completed Theme Builder and Shared UI Checkpoint
-
-- [x] Keep Theme project behavior and persistence in AppScreen while sharing one
-  Theme renderer with explicit standalone and consumer breadth.
-- [x] Own editable colors, palette completion, exact identity pairs, deterministic
-  equivalence inputs, tinted light Neutral, mode labels, and compact swatches.
-- [x] Own one media-card ancestor for full Vault and reduced picker media.
-- [x] Accept centered font assignments, reduced cards, and persistent variants.
-- [x] Share conditional Global and User Theme section presentation.
-- [x] Keep user cards at canonical width and provide Cloud-derived card, Button,
-  and hover fallbacks, with copied semantics refreshed after identity edits.
-- [x] Apply semantic fonts and variants across cards and titles.
-- [x] Add optional full-showcase and color-diagnostics policies after compact
-  consumer detail for transient parity inspection.
-- [x] Fix Theme-card identity-strip rows across canonical and user cards.
-- [x] Correct semantic landing typography so Bits and Bolts retains Orbitron and
-  Brutus retains native Ultra 400 without synthesis or wide tracking.
-- [x] Declare the managed Selection Controls semantic-icon dependency.
-- [x] Keep Theme Open aligned with Screens and Scenes by excluding horizontal-only
-  clipping ancestors from the shared Select's vertical placement boundary.
-- [x] Unify horizontal and vertical resizers under one 9 px stripe and centered
-  96 px by 3 px grip recipe with equal divider spacing.
-- [x] Center larger Signature titles and support semantic pencil layout without
-  growing the toolbar or clipping consumer controls.
-- [x] Apply canonical card Signatures and shared handled-window form structure.
-- [x] Add the optional destructive secondary confirmation action.
-- [x] Rename `marketingHero` to `displayLarge` and keep alpha colors editable.
-- [x] Let content-sized floating windows reserve Select menu room for every item
-  in short lists and at most five items in long lists, releasing it on close.
-- [x] Synchronize source, generated web output, and documentation output.
-- [x] Rebuild and accept the final owner-rendered checkpoint.
+- [x] Ship nine complete light and dark v2 families with semantic mappings,
+  licensed fonts, assets, recipes, and generated platform output.
+- [x] Own the canonical gallery, detail pages, catalog, atomic theme readiness,
+  workspace chrome, Account, navbar, cards, media, forms, and editorial recipes.
+- [x] Keep Theme behavior in AppScreen while sharing one portable renderer and
+  complete visual schema for first-party and user-authored themes.
+- [x] Accept exact identity pairs, deterministic palettes, semantic typography,
+  Theme cards, variants, managed Select, floating windows, and resizers.
+- [x] Synchronize source, web output, documentation output, and consumer contracts.
 
 ## Completed Shared Editor Recipe Checkpoint
 
-- [x] Add one shared Background editor recipe for screen and scene consumers in
-  source, synchronized web output, and documentation output.
-- [x] Own visible Background palette swatches and the semantic swap affordance while
-  AppScreen retains behavior, state, persistence, and media orchestration.
-- [x] Add exact layout-editor selection, snap-guide, resize-handle, and placement
-  preview values without changing the established visual language.
-- [x] Separate the placement content border from the equivalent outer dashed paint
-  used by AppScreen to avoid transformed-iframe trace artifacts.
-- [x] Accept the owner-rendered Background and trail-free placement consumers.
+- [x] Own the shared Background editor markup and presentation recipe.
+- [x] Own visible palette swatches and the semantic `swap_horiz` affordance.
+- [x] Own exact selection, snap-guide, resize-handle, and placement values.
+- [x] Separate the transparent placement content border from equivalent outer paint.
+- [x] Preserve established colors, dimensions, tint, and content geometry.
+- [x] Accept the Background and trail-free placement consumers.
+
+## Completed AppScreen Text Consumer Checkpoint
+
+- [x] Reuse the existing Themes `play_arrow` role for voiceover Preview.
+- [x] Keep text layout, editing, persistence, sizing, and rendering in AppScreen.
+- [x] Preserve the existing layout-editor selection, resize, and placement recipes.
+- [x] Accept AppScreen click depth, caret routing, bounded wrapping, scaling,
+  cursor, edge alignment, and click-placement behavior.
+- [x] Keep Themes source and generated output unchanged at `e7c5404`.
 
 ## Parked, Not Scheduled
 
@@ -74,7 +47,7 @@
 
 ## Current Boundary
 
-- Theme authoring, gallery, account funnel, managed Select, Background editor, and
-  layout-editor selection recipe checkpoints are accepted locally.
-- Preserve exact public preset values and officially bundled font licenses.
-- No next work is selected. Push and deployment remain user-owned.
+- Accepted Themes recipes remain the sole reusable visual authority.
+- No next Themes implementation is selected.
+- Preserve preset values, bundled font licenses, and accepted generated output.
+- Push, deployment, publication, and activation remain user-owned.

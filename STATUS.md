@@ -13,6 +13,8 @@ Last verified: 2026-08-20
 - Every icon-like affordance must use an exact Themes-owned semantic recipe.
 - The shared editor-recipe checkpoint described here is locally accepted. Nothing
   is pushed, deployed, published, or activated.
+- Themes source and generated output remain unchanged at accepted source checkpoint
+  `e7c5404`. The paired AppScreen text-interaction consumer is now accepted.
 
 ## Accepted Shared Editor Recipes
 
@@ -65,6 +67,10 @@ Last verified: 2026-08-20
   local Themes checkpoint.
 - Source, `dist/web`, and documentation copies compare byte-for-byte where present;
   changed JavaScript syntax and Git whitespace checks pass.
+- AppScreen reused the existing `play_arrow` semantic role and required no new
+  Themes recipe. Its focused text-interaction acceptance set passes 19/19.
+- Final AppScreen logs contain no error or warning indicators, and the owner
+  accepted click depth, caret routing, wrapping, scaling, cursor, and placement.
 
 ## Next Boundary
 

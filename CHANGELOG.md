@@ -4,6 +4,23 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-20) - AppScreen text consumer accepted
+
+### What changed
+- AppScreen completed text-aware overlap depth, caret routing, bounded wrapping,
+  proportional typography scaling, move-versus-edit cursors, active-edge pointer
+  alignment, and exact ghost-origin placement.
+- AppScreen reused the existing Themes `play_arrow` semantic role for voiceover
+  Preview and the existing layout-editor selection and placement recipes.
+- Themes source, generated web output, and documentation output remain unchanged
+  at accepted source checkpoint `e7c5404`.
+
+### Acceptance and boundary
+- AppScreen's focused acceptance set passes 19/19. Final runtime logs contain no
+  error or warning indicators, and the owner accepted the complete result.
+- No next Themes implementation is selected. Nothing was pushed, deployed,
+  published, or activated.
+
 ## Session wrap-up (2026-08-19) - Managed Select window reservation accepted
 
 ### What changed
