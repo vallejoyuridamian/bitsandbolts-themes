@@ -15,9 +15,8 @@
   workspace chrome, Account, navbar, cards, media, forms, and editorial recipes.
 - [x] Keep Theme behavior in AppScreen while sharing one portable renderer and
   complete visual schema for first-party and user-authored themes.
-- [x] Accept exact identity pairs, deterministic palettes, semantic typography,
-  Theme cards, variants, managed Select, floating windows, and resizers.
-- [x] Synchronize source, web output, documentation output, and consumer contracts.
+- [x] Accept identity pairs, palettes, typography, Theme cards, managed Select,
+  floating windows, resizers, and synchronized generated consumer contracts.
 
 ## Completed Shared Editor Recipe Checkpoint
 
@@ -38,18 +37,20 @@
 - [x] Preserve the accepted interaction behavior at AppScreen checkpoint
   `9b0bf4b` before the later text-controls slice.
 
-## Completed Text Controls Surfaces Recipe
+## Completed Toolbar-First Text Controls Recipe
 
-- [x] Own one layout-text-editor recipe for toolbar, sidebar, and window presentation.
-- [x] Use floating-window interface colors, compact spacing, and content sizing.
+- [x] Own one layout-text-editor recipe for toolbar and sidebar presentation.
+- [x] Remove the text-editor window variant while preserving generic floating windows.
 - [x] Standardize clipboard, style, and alignment controls as semantic icon buttons.
 - [x] Add generated Paste and alignment vectors through Themes-owned roles.
 - [x] Own the toolbar's centered geometry, compact gaps, and hidden labels.
 - [x] Add one reusable toolbar popover for active color and palette selection.
 - [x] Preserve one canonical Select trigger, caret, and open-state animation recipe.
 - [x] Prevent repeated ordinary selects from binding another select's trigger.
+- [x] Render selected-theme family names in their actual fonts in canonical Select.
+- [x] Share the theme presentation's cut-corner geometry with text color controls.
 - [x] Synchronize source, web output, docs output, tests, and icon assets.
-- [x] Accept Themes implementation `a26b8ec` and AppScreen consumer `d4913c2`.
+- [x] Accept Themes implementation `69b260b` and AppScreen consumer `78e88e7`.
 
 ## Parked, Not Scheduled
 
@@ -61,7 +62,5 @@
 
 ## Current Boundary
 
-- Accepted Themes recipes remain the sole reusable visual authority.
-- No next Themes implementation is selected.
-- Preserve preset values, bundled font licenses, and accepted generated output.
-- Push, deployment, publication, and activation remain user-owned.
+- Accepted Themes recipes remain the sole authority. No next work is selected.
+- Preserve presets, fonts, and output. Push and activation remain user-owned.

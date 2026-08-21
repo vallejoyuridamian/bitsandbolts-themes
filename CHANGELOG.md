@@ -576,3 +576,25 @@ Keep new changes easy to scan at the top.
 ### Verification
 - JSON token files parsed successfully.
 - `node --check build.js` passed.
+
+## Session wrap-up (2026-08-21) - Toolbar-first text controls accepted
+
+### What changed
+
+- Removed the layout-text-editor window presentation while preserving the generic
+  floating-window system for unrelated consumers.
+- Kept one Themes layout-text-editor recipe for AppScreen's toolbar and migration
+  sidebar.
+- Extended canonical Select with opt-in font previews so actual selected-theme
+  family names render in their represented fonts.
+- Extracted the identity presentation's two-cut-corner geometry into one shared
+  swatch recipe and reused it for the text color trigger, input, and palette.
+- Regenerated synchronized `dist/web` and documentation output.
+
+### Verification
+
+- The owner accepted the no-window, real-font selector, and cut-corner color result.
+- Focused checks passed Themes 11/11 and AppScreen 21/21.
+- Both production builds passed, and generated recipe copies match source.
+- Accepted implementation checkpoints are Themes `69b260b` and AppScreen
+  `78e88e7`. Nothing was pushed, deployed, published, or activated.

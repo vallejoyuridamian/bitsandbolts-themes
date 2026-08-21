@@ -13,8 +13,8 @@ Last verified: 2026-08-21
 - Every icon-like affordance must use an exact Themes-owned semantic recipe.
 - The shared editor-recipe checkpoint described here is locally accepted. Nothing
   is pushed, deployed, published, or activated.
-- The accepted text-controls recipe implementation checkpoint is `a26b8ec`.
-  The paired AppScreen consumer implementation checkpoint is `d4913c2`.
+- The accepted toolbar-first text-controls recipe checkpoint is `69b260b`.
+  The paired AppScreen consumer implementation checkpoint is `78e88e7`.
 
 ## Accepted Shared Editor Recipes
 
@@ -46,24 +46,29 @@ Last verified: 2026-08-21
 
 ## Accepted Layout Text Editor Recipe
 
-- `layout-text-editor.css` and `layout-text-editor.js` own the shared toolbar,
-  sidebar, and floating-window presentation without owning AppScreen behavior.
-- The window recipe uses floating-window interface colors, compact spacing, a
-  content-sized panel, and a bounded minimum width so its controls fit cleanly.
+- `layout-text-editor.css` and `layout-text-editor.js` own the shared toolbar and
+  sidebar presentation without owning AppScreen behavior.
+- The text-editor floating-window presentation is removed. Generic floating-window
+  recipes remain available to unrelated consumers.
 - The toolbar recipe owns centered 30 px controls, compact spacing, hidden labels,
-  canonical font Select geometry, and semantic icon sizing.
+  expanded font Select geometry, and semantic icon sizing.
 - `toolbar-popover.js` and its interface recipe own the active-color trigger,
   floating palette positioning, viewport bounds, dismissal, and focus restoration.
 - The canonical Select controller gives every ordinary repeated select its own
   generated trigger. Only explicitly marked native selects bind external triggers.
+- Canonical Select font-preview options render selected-theme family names in the
+  represented families. Signature, Interface, and Technical map to accent, primary,
+  and mono without changing stored AppScreen font values.
 - The canonical Select caret and open-state rotation remain the unique definition.
+- A shared cut-corner swatch recipe now owns the accepted two-cut-corner geometry
+  used by Themes presentation and AppScreen text color controls.
 - Copy, Cut, Paste, Bold, Italic, Underline, and text alignment use the exact
   workspace icon-button recipe with accessible labels and hover help.
 - New semantic roles `content_paste`, `format_align_left`,
   `format_align_center`, and `format_align_right` map to generated Font Awesome
   vectors. Existing Copy, Cut, Bold, Italic, and Underline roles are reused.
-- Source, `dist/web`, docs, semantic CSS, and generated vector assets are
-  synchronized and accepted by the owner through the AppScreen consumer.
+- Source, `dist/web`, docs, semantic CSS, and generated vector assets remain
+  synchronized and accepted through the AppScreen consumer.
 
 ## Earlier Accepted Theme Boundaries
 
@@ -94,10 +99,12 @@ Last verified: 2026-08-21
 - AppScreen final toolbar checks pass 11/11 and its production build passes.
 - Final AppScreen logs contain no error or warning indicators, and the owner
   accepted click depth, caret routing, wrapping, scaling, cursor, and placement.
+- The toolbar refinement passes Themes checks 11/11 and AppScreen checks 21/21.
+  Both production builds pass, and the owner accepted the final visual result.
 
 ## Next Boundary
 
 - No next Themes implementation is selected. A fresh chat must load both projects'
   complete hot context and handoffs, then stop for owner direction.
-- Preserve implementation checkpoint `a26b8ec`. Do not push, deploy, publish, or
+- Preserve implementation checkpoint `69b260b`. Do not push, deploy, publish, or
   add speculative editor recipes.
