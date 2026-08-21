@@ -4,6 +4,7 @@ import test from 'node:test';
 
 import {
   applyLayoutTextEditorRecipe,
+  layoutTextEditorCheckboxMarkup,
   layoutTextEditorIconButtonMarkup,
   layoutTextEditorOriginalColorMarkup,
   layoutTextEditorProjectColorAddMarkup
@@ -83,6 +84,20 @@ test('layout text editor icon buttons use the workspace icon recipe and hover he
   assert.match(markup, /aria-label="Bold"/);
   assert.match(markup, /title="Bold \(Ctrl\+B\)"/);
   assert.match(markup, /aria-pressed="false"/);
+});
+
+test('layout text editor owns checkbox markup', async () => {
+  const checkbox = layoutTextEditorCheckboxMarkup({
+    attributes: { 'data-device-debug': 'hide-screen' },
+    checked: true,
+    label: 'Hide image'
+  });
+  const css = await readFile(new URL('../components/layout-text-editor.css', import.meta.url), 'utf8');
+
+  assert.match(checkbox, /bb-checkbox-field__label bb-layout-text-editor__checkbox/);
+  assert.match(checkbox, /data-device-debug="hide-screen"/);
+  assert.match(checkbox, / checked/);
+  assert.match(css, /\.bb-layout-text-editor \.bb-layout-text-editor__checkbox/);
 });
 
 test('layout text editor project colors use the shared add-tile and semantic icon recipes', async () => {

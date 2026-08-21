@@ -9,6 +9,7 @@ export const SEMANTIC_ICON_FAMILIES = Object.freeze({
     save: 'faFloppyDisk',
     undo: 'faRotateLeft',
     redo: 'faRotateRight',
+    rotate: 'faRotateLeft',
     settings: 'faGear',
     arrow_back: 'faArrowLeft',
     share: 'faShareNodes',

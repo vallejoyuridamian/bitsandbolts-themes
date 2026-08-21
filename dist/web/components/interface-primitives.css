@@ -513,6 +513,34 @@
   font-family: var(--bb-font-family-body);
 }
 
+input.bb-workspace-control-input.bb-workspace-control-input[type="number"] {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: 30px;
+  min-height: 30px;
+  padding: 0 var(--bb-spacing-3);
+  border: 1px solid transparent;
+  border-radius: var(--bb-radius-md);
+  outline: none;
+  color: var(--bb-interface-control-foreground);
+  background: transparent;
+  box-shadow: none;
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-xs);
+  font-weight: var(--bb-font-weight-bold);
+  line-height: 1.2;
+  transition:
+    border-color var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing),
+    box-shadow var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing),
+    color var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing),
+    text-shadow var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing);
+}
+
+input.bb-workspace-control-input.bb-workspace-control-input[type="number"]:focus {
+  border-color: var(--bb-v2-identity-primary);
+}
+
 .bb-workspace-control-bar__status {
   flex: 0 0 auto;
   overflow: hidden;
@@ -829,9 +857,14 @@
 }
 
 .bb-toolbar-popover__trigger-value-icon {
-  width: 11px;
-  height: 11px;
+  width: 9px;
+  height: 9px;
   color: var(--bb-interface-control-foreground);
+}
+
+.bb-toolbar-popover__trigger[data-bb-toolbar-popover-trigger] .bb-toolbar-popover__trigger-value-icon {
+  width: 9px;
+  height: 9px;
 }
 
 .bb-toolbar-popover {
@@ -840,10 +873,10 @@
   box-sizing: border-box;
   max-width: min(320px, calc(100vw - 16px));
   padding: var(--bb-spacing-2);
-  border: 1px solid var(--bb-interface-menu-border);
+  border: 1px solid var(--bb-v2-color-border-subtle);
   border-radius: var(--bb-radius-md);
   color: var(--bb-interface-control-foreground);
-  background: var(--bb-interface-menu-background);
+  background: var(--bb-v2-color-surface-canvas);
   box-shadow: var(--bb-interface-menu-shadow);
   font-family: var(--bb-font-family-body);
 }
@@ -857,6 +890,61 @@
   align-items: center;
   flex-wrap: wrap;
   gap: var(--bb-spacing-2);
+}
+
+.bb-toolbar-popover__fields {
+  display: grid;
+  gap: var(--bb-spacing-2);
+  min-width: 0;
+}
+
+.bb-toolbar-popover__fields:has(> .bb-toolbar-popover__field) {
+  grid-template-columns: max-content 68px;
+}
+
+.bb-toolbar-popover__controls + .bb-toolbar-popover__fields {
+  margin-top: var(--bb-spacing-2);
+}
+
+.bb-toolbar-popover__field {
+  display: grid;
+  grid-template-columns: max-content 68px;
+  align-items: center;
+  gap: var(--bb-spacing-2);
+  color: var(--bb-interface-menu-muted-foreground);
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-xs);
+  font-weight: var(--bb-font-weight-medium);
+  line-height: var(--bb-font-line-height-normal);
+}
+
+.bb-toolbar-popover__field-label {
+  color: var(--bb-v2-color-content-secondary);
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-xs);
+  font-weight: var(--bb-font-weight-semibold);
+  line-height: var(--bb-font-line-height-normal);
+}
+
+.bb-toolbar-popover__fields:has(> .bb-toolbar-popover__field) > .bb-toolbar-popover__field {
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+}
+
+.bb-toolbar-popover__fields:has(> .bb-toolbar-popover__field) > .bb-toolbar-popover__status {
+  grid-column: 1 / -1;
+}
+
+.bb-toolbar-popover__field-input {
+  width: 100%;
+  min-width: 0;
+}
+
+.bb-toolbar-popover__status {
+  color: var(--bb-interface-menu-muted-foreground);
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-xs);
+  line-height: var(--bb-font-line-height-normal);
 }
 
 .bb-toolbar-popover__color-input,

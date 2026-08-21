@@ -119,6 +119,12 @@
   line-height: var(--bb-font-line-height-normal);
 }
 
+.bb-layout-text-editor .bb-layout-text-editor__checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--bb-spacing-2);
+}
+
 .bb-layout-text-editor :is(input[type="text"], input[type="number"], select, textarea) {
   box-sizing: border-box;
   width: 100%;

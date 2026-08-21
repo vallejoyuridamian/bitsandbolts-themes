@@ -59,6 +59,14 @@ export function layoutTextEditorIconButtonMarkup({
   });
 }
 
+export function layoutTextEditorCheckboxMarkup({
+  attributes = {},
+  checked = false,
+  label = ''
+} = {}) {
+  return `<div class="bb-checkbox-field"><label class="bb-checkbox-field__label bb-layout-text-editor__checkbox"><input class="bb-checkbox-field__control" type="checkbox"${checked ? ' checked' : ''}${attributesMarkup(attributes)}><span class="bb-checkbox-field__text">${escapeHtml(label)}</span></label></div>`;
+}
+
 export function applyLayoutTextEditorRecipe({
   node = null,
   presentation = 'sidebar'

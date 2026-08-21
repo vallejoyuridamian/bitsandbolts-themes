@@ -44,6 +44,20 @@ export function toolbarPopoverTriggerMarkup({
   return `<button type="button" class="bb-toolbar-popover__trigger bb-workspace-control-button bb-workspace-control-button--icon"${attributesMarkup(resolvedAttributes)}><span class="bb-toolbar-popover__trigger-value bb-cut-corner-swatch" aria-hidden="true">${valueIcon}</span></button>`;
 }
 
+export function toolbarPopoverNumericFieldMarkup({
+  attributes = {},
+  label = ''
+} = {}) {
+  return `<label class="bb-toolbar-popover__field"><span class="bb-toolbar-popover__field-label">${escapeHtml(label)}</span><input class="bb-workspace-control-input bb-toolbar-popover__field-input" type="number"${attributesMarkup(attributes)}></label>`;
+}
+
+export function toolbarPopoverStatusMarkup({
+  attributes = {},
+  text = ''
+} = {}) {
+  return `<small class="bb-toolbar-popover__status"${attributesMarkup(attributes)}>${escapeHtml(text)}</small>`;
+}
+
 export function applyToolbarPopoverRecipe({
   ariaLabel = 'Toolbar options',
   node = null
