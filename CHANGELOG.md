@@ -4,6 +4,22 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-21) - Image original-color recipe accepted
+
+### What changed
+- Added a canonical transparent Original image-color option using the shared
+  cut-corner swatch and Themes semantic `close` icon.
+- Extended the toolbar color trigger to expose that semantic Original indicator
+  while preserving the existing color-filled trigger state.
+- Synchronized source, generated web output, and documentation output.
+
+### Acceptance and boundary
+- Focused Themes checks pass 9/9 and the Themes production build passes.
+- The paired AppScreen controller extraction, real integer resize settlement,
+  targeted image color presentation, and selection preservation are complete.
+- The owner accepted the complete paired image-toolbar result.
+- Nothing was pushed, deployed, published, or activated.
+
 ## Session wrap-up (2026-08-21) - Text toolbar surfaces accepted
 
 ### What changed

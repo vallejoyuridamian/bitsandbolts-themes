@@ -12,6 +12,9 @@ Last verified: 2026-08-21
   persistence, Guest state, interaction, rendering, and orchestration.
 - The accepted project-color add recipe is implementation `02bd65b`. The paired
   AppScreen project text-resource implementation is `eb91a57`.
+- The owner accepted the canonical transparent Original image-color swatch and
+  toolbar-trigger indicator with the semantic `close` icon, paired with the
+  AppScreen image-toolbar migration.
 - Nothing is pushed, deployed, published, or activated.
 
 ## Preserved Shared Editor Recipes
@@ -67,12 +70,16 @@ Last verified: 2026-08-21
   production build pass.
 - Source, `dist/web`, and documentation copies are byte-identical for the changed
   recipe. Tests and semantic assets remain synchronized.
+- The accepted Original-color recipe passes 9/9 focused checks and the Themes
+  production build. Its source, generated web, and docs outputs are synchronized.
+- The paired AppScreen result preserves selection through targeted image color and
+  mode replacement without rebuilding the screen.
 - Focused diagnostics are disabled and development logging remains quiet.
 - The former 3 MB bundle gate remains retired and non-blocking.
 
 ## Next Boundary
 
-- No next Themes implementation is selected. A fresh chat must load both projects'
-  complete hot context and handoffs, then stop for owner direction.
-- Preserve Themes `02bd65b` and paired AppScreen `eb91a57`.
-- Do not push, deploy, publish, activate, or add speculative editor recipes.
+- The Original image-color recipe and paired AppScreen toolbar are accepted.
+- No additional Themes implementation is selected. Preserve generated output and
+  wait for owner direction.
+- Push, deployment, publication, and activation remain user-owned.

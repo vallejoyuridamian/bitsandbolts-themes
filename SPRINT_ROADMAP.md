@@ -62,5 +62,5 @@
 
 ## Current Boundary
 
-- Accepted Themes recipes remain the sole authority. No next work is selected.
-- Preserve presets, fonts, and output. Push and activation remain user-owned.
+- The Original image-color recipe and paired AppScreen image toolbar are accepted.
+- No further Themes work is selected. Preserve output; push remains user-owned.
