@@ -11,46 +11,46 @@
 - [x] Ratify the DTCG 2025.10 plus Bits and Bolts contract architecture.
 - [x] Ship nine complete light and dark v2 families with semantic mappings,
   licensed fonts, assets, recipes, and generated platform output.
-- [x] Own the canonical gallery, detail pages, catalog, atomic theme readiness,
+- [x] Own the canonical gallery, detail pages, catalog, atomic readiness,
   workspace chrome, Account, navbar, cards, media, forms, and editorial recipes.
 - [x] Keep Theme behavior in AppScreen while sharing one portable renderer and
   complete visual schema for first-party and user-authored themes.
-- [x] Accept identity pairs, palettes, typography, Theme cards, managed Select,
-  floating windows, resizers, and synchronized generated consumer contracts.
 
-## Completed Shared Editor Recipe Checkpoint
+## Completed Shared Editor Recipes
 
-- [x] Own the shared Background editor markup and presentation recipe.
-- [x] Own visible palette swatches and the semantic `swap_horiz` affordance.
-- [x] Own exact selection, snap-guide, resize-handle, and placement values.
-- [x] Separate the transparent placement content border from equivalent outer paint.
-- [x] Preserve established colors, dimensions, tint, and content geometry.
-- [x] Accept the Background and trail-free placement consumers.
-
-## Completed AppScreen Text Consumer Checkpoint
-
-- [x] Reuse the existing Themes `play_arrow` role for voiceover Preview.
-- [x] Keep text layout, editing, persistence, sizing, and rendering in AppScreen.
-- [x] Preserve the existing layout-editor selection, resize, and placement recipes.
-- [x] Accept AppScreen click depth, caret routing, bounded wrapping, scaling,
-  cursor, edge alignment, and click-placement behavior.
-- [x] Preserve the accepted interaction behavior at AppScreen checkpoint
-  `9b0bf4b` before the later text-controls slice.
-
-## Completed Toolbar-First Text Controls Recipe
-
+- [x] Own shared Background editor markup and presentation.
+- [x] Own visible palette swatches and semantic `swap_horiz`.
+- [x] Own selection, snap-guide, resize-handle, and placement values.
+- [x] Separate transparent placement content borders from equivalent outer paint.
+- [x] Accept the Background and trace-free placement consumers.
 - [x] Own one layout-text-editor recipe for toolbar and sidebar presentation.
-- [x] Remove the text-editor window variant while preserving generic floating windows.
-- [x] Standardize clipboard, style, and alignment controls as semantic icon buttons.
-- [x] Add generated Paste and alignment vectors through Themes-owned roles.
-- [x] Own the toolbar's centered geometry, compact gaps, and hidden labels.
-- [x] Add one reusable toolbar popover for active color and palette selection.
-- [x] Preserve one canonical Select trigger, caret, and open-state animation recipe.
-- [x] Prevent repeated ordinary selects from binding another select's trigger.
-- [x] Render selected-theme family names in their actual fonts in canonical Select.
-- [x] Share the theme presentation's cut-corner geometry with text color controls.
-- [x] Synchronize source, web output, docs output, tests, and icon assets.
-- [x] Accept Themes implementation `69b260b` and AppScreen consumer `78e88e7`.
+- [x] Remove the text-editor window variant while preserving generic windows.
+- [x] Standardize clipboard, style, and alignment as semantic icon buttons.
+- [x] Own compact toolbar geometry, hidden labels, and active-color popover.
+- [x] Preserve canonical Select trigger, caret, animation, five-item limit, and
+  font previews.
+- [x] Share cut-corner swatch geometry across text color controls.
+
+## Completed Project Color Add Recipe
+
+- [x] Add a reusable compact project color action to layout-text-editor markup.
+- [x] Compose the shared cut-corner swatch and workspace add-tile recipes.
+- [x] Use the semantic `add` vector behind a transparent native color input.
+- [x] Preserve dashed hover and focus treatment at color-swatch dimensions.
+- [x] Reuse the recipe in AppScreen toolbar and migration sidebar palettes.
+- [x] Keep project color persistence, ordering, deduplication, and selection in
+  AppScreen.
+- [x] Synchronize source, generated web output, docs output, and tests.
+- [x] Accept Themes `02bd65b` and AppScreen `eb91a57`.
+
+## Completed Paired Palette Alignment
+
+- [x] Expose Primary, Secondary, Accent, and Neutral from theme palettes.
+- [x] Keep black and white before project colors and the add action.
+- [x] Expose hex-only help for project colors.
+- [x] Preserve exact canonical identity values in read-only Theme diagnostics.
+- [x] Anchor Accent and Neutral ramps to exact canonical identities.
+- [x] Reuse cut-corner geometry across palette and ramp diagnostics.
 
 ## Parked, Not Scheduled
 
