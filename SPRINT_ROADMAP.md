@@ -35,7 +35,17 @@
 - [x] Preserve the existing layout-editor selection, resize, and placement recipes.
 - [x] Accept AppScreen click depth, caret routing, bounded wrapping, scaling,
   cursor, edge alignment, and click-placement behavior.
-- [x] Keep Themes source and generated output unchanged at `e7c5404`.
+- [x] Preserve the accepted interaction behavior at AppScreen checkpoint
+  `9b0bf4b` before the later text-controls slice.
+
+## Completed Text Controls Window Recipe
+
+- [x] Own one layout-text-editor recipe for sidebar and window presentation.
+- [x] Use floating-window interface colors, compact spacing, and content sizing.
+- [x] Standardize clipboard, style, and alignment controls as semantic icon buttons.
+- [x] Add generated Paste and alignment vectors through Themes-owned roles.
+- [x] Synchronize source, web output, docs output, tests, and icon assets.
+- [x] Accept Themes implementation `274db5d` and AppScreen consumer `6429874`.
 
 ## Parked, Not Scheduled
 
