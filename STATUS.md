@@ -1,6 +1,6 @@
 # Bits and Bolts Themes: Status
 
-Last verified: 2026-08-20
+Last verified: 2026-08-21
 
 ## Current Truth
 
@@ -13,8 +13,8 @@ Last verified: 2026-08-20
 - Every icon-like affordance must use an exact Themes-owned semantic recipe.
 - The shared editor-recipe checkpoint described here is locally accepted. Nothing
   is pushed, deployed, published, or activated.
-- The accepted text-controls recipe implementation checkpoint is `274db5d`.
-  The paired AppScreen consumer implementation checkpoint is `6429874`.
+- The accepted text-controls recipe implementation checkpoint is `a26b8ec`.
+  The paired AppScreen consumer implementation checkpoint is `d4913c2`.
 
 ## Accepted Shared Editor Recipes
 
@@ -46,10 +46,17 @@ Last verified: 2026-08-20
 
 ## Accepted Layout Text Editor Recipe
 
-- `layout-text-editor.css` and `layout-text-editor.js` own the shared sidebar and
-  floating-window presentation without owning AppScreen behavior.
+- `layout-text-editor.css` and `layout-text-editor.js` own the shared toolbar,
+  sidebar, and floating-window presentation without owning AppScreen behavior.
 - The window recipe uses floating-window interface colors, compact spacing, a
   content-sized panel, and a bounded minimum width so its controls fit cleanly.
+- The toolbar recipe owns centered 30 px controls, compact spacing, hidden labels,
+  canonical font Select geometry, and semantic icon sizing.
+- `toolbar-popover.js` and its interface recipe own the active-color trigger,
+  floating palette positioning, viewport bounds, dismissal, and focus restoration.
+- The canonical Select controller gives every ordinary repeated select its own
+  generated trigger. Only explicitly marked native selects bind external triggers.
+- The canonical Select caret and open-state rotation remain the unique definition.
 - Copy, Cut, Paste, Bold, Italic, Underline, and text alignment use the exact
   workspace icon-button recipe with accessible labels and hover help.
 - New semantic roles `content_paste`, `format_align_left`,
@@ -83,8 +90,8 @@ Last verified: 2026-08-20
   changed JavaScript syntax and Git whitespace checks pass.
 - AppScreen reuses the existing `play_arrow` role. The text-controls slice adds
   the accepted layout-text-editor recipe and four missing semantic icon roles.
-- Themes focused tests pass 5/5 and the production build passes.
-- AppScreen focused tests pass 20/20 and its production build passes.
+- Themes final toolbar checks pass 9/9 and the production build passes.
+- AppScreen final toolbar checks pass 11/11 and its production build passes.
 - Final AppScreen logs contain no error or warning indicators, and the owner
   accepted click depth, caret routing, wrapping, scaling, cursor, and placement.
 
@@ -92,5 +99,5 @@ Last verified: 2026-08-20
 
 - No next Themes implementation is selected. A fresh chat must load both projects'
   complete hot context and handoffs, then stop for owner direction.
-- Preserve implementation checkpoint `274db5d`. Do not push, deploy, publish, or
+- Preserve implementation checkpoint `a26b8ec`. Do not push, deploy, publish, or
   add speculative editor recipes.

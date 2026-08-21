@@ -38,14 +38,18 @@
 - [x] Preserve the accepted interaction behavior at AppScreen checkpoint
   `9b0bf4b` before the later text-controls slice.
 
-## Completed Text Controls Window Recipe
+## Completed Text Controls Surfaces Recipe
 
-- [x] Own one layout-text-editor recipe for sidebar and window presentation.
+- [x] Own one layout-text-editor recipe for toolbar, sidebar, and window presentation.
 - [x] Use floating-window interface colors, compact spacing, and content sizing.
 - [x] Standardize clipboard, style, and alignment controls as semantic icon buttons.
 - [x] Add generated Paste and alignment vectors through Themes-owned roles.
+- [x] Own the toolbar's centered geometry, compact gaps, and hidden labels.
+- [x] Add one reusable toolbar popover for active color and palette selection.
+- [x] Preserve one canonical Select trigger, caret, and open-state animation recipe.
+- [x] Prevent repeated ordinary selects from binding another select's trigger.
 - [x] Synchronize source, web output, docs output, tests, and icon assets.
-- [x] Accept Themes implementation `274db5d` and AppScreen consumer `6429874`.
+- [x] Accept Themes implementation `a26b8ec` and AppScreen consumer `d4913c2`.
 
 ## Parked, Not Scheduled
 

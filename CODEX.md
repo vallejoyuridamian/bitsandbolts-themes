@@ -1,4 +1,4 @@
-# Bits and Bolts Themes — Project Context
+# Bits and Bolts Themes: Project Context
 
 ## Purpose
 

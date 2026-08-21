@@ -4,6 +4,26 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-21) - Text toolbar surfaces accepted
+
+### What changed
+- Extended the shared layout-text-editor recipe to toolbar presentation while
+  retaining the accepted sidebar and floating-window surfaces.
+- Added a canonical toolbar popover for the active text color and palette, including
+  viewport-aware placement, dismissal behavior, and focus restoration.
+- Kept the font control on the canonical Themes Select. Repeated ordinary selects
+  now receive independent generated triggers, while explicitly marked external
+  trigger controls retain their existing contract and caret animation.
+- Synchronized source, generated web output, documentation output, tests, and
+  semantic assets at implementation checkpoint `a26b8ec`.
+
+### Acceptance and boundary
+- Themes focused toolbar checks pass 9/9, AppScreen checks pass 11/11, and both
+  production builds pass. The owner accepted the toolbar, sidebar, window, font
+  dropdown, and caret state at AppScreen checkpoint `d4913c2`.
+- No next implementation is selected. Nothing was pushed, deployed, published,
+  or activated.
+
 ## Session wrap-up (2026-08-20) - AppScreen text consumer accepted
 
 ### What changed
