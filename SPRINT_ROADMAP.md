@@ -52,6 +52,17 @@
 - [x] Anchor Accent and Neutral ramps to exact canonical identities.
 - [x] Reuse cut-corner geometry across palette and ramp diagnostics.
 
+## Completed Device Toolbar Recipes
+
+- [x] Add shared checkbox, numeric-field, and status markup for toolbar popovers.
+- [x] Match popover surfaces to workspace toolbar background and border tokens.
+- [x] Match numeric fields to toolbar Size and field labels to checkbox typography.
+- [x] Keep the Original-color indicator centered at its accepted vector size.
+- [x] Add a semantic `rotate` vector role.
+- [x] Own device-pose rotation overlay styles and icon markup.
+- [x] Synchronize source, generated web output, docs output, and focused tests.
+- [x] Accept Themes `408406e` and AppScreen `2564e9a`.
+
 ## Parked, Not Scheduled
 
 1. Support the next owner-selected font consumer or render-parity slice.
@@ -62,5 +73,5 @@
 
 ## Current Boundary
 
-- The Original image-color recipe and paired AppScreen image toolbar are accepted.
+- The shared device-toolbar recipes and paired AppScreen consumer are accepted.
 - No further Themes work is selected. Preserve output; push remains user-owned.

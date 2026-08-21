@@ -5,16 +5,13 @@ Last verified: 2026-08-21
 ## Current Truth
 
 - This repository owns product tokens, components, fonts, semantic icons, assets,
-  catalog data, and committed generated outputs.
+  catalog data, committed generated outputs, and shared editor recipes.
 - Nine v2 families ship in light and dark modes: Cloud, Bits and Bolts, Brutus,
   Forest, Winter, Coffee, Bubblegum, Inferno, and Sober.
 - Themes owns canonical visual recipes. AppScreen owns user Theme behavior,
   persistence, Guest state, interaction, rendering, and orchestration.
-- The accepted project-color add recipe is implementation `02bd65b`. The paired
-  AppScreen project text-resource implementation is `eb91a57`.
-- The owner accepted the canonical transparent Original image-color swatch and
-  toolbar-trigger indicator with the semantic `close` icon, paired with the
-  AppScreen image-toolbar migration.
+- The accepted device-toolbar recipe is implementation `408406e`, paired with
+  AppScreen implementation `2564e9a`.
 - Nothing is pushed, deployed, published, or activated.
 
 ## Preserved Shared Editor Recipes
@@ -29,57 +26,61 @@ Last verified: 2026-08-21
 - The text-editor floating-window variant remains removed while generic floating
   windows remain available to unrelated workflows.
 - The toolbar recipe retains compact geometry, hidden labels, semantic clipboard,
-  style and alignment controls, hover help, active-color popover, and canonical
-  Select presentation.
+  style and alignment controls, hover help, color popovers, and canonical Select.
+- Project color Add and image Original retain the shared cut-corner recipes and
+  semantic vector roles.
 - Every ordinary repeated Select receives its own trigger. Only explicitly marked
   native selects may bind an external trigger.
-- The canonical Select retains its five-visible-item limit, caret, animation, and
-  font preview behavior.
-- The shared cut-corner swatch recipe owns accepted color geometry.
 
-## Accepted Project Color Add Recipe
+## Accepted Device Toolbar Recipes
 
-- `layoutTextEditorProjectColorAddMarkup` owns the reusable project color action.
-- The action has the same compact geometry as color swatches and composes the
-  shared cut-corner swatch and workspace add-tile recipes.
-- A transparent native color input covers the action while the visible affordance
-  uses the Themes semantic `add` icon.
-- Hover and focus use the established dashed add treatment and identity color.
-- AppScreen consumes the same markup in the toolbar popover and migration sidebar.
-- AppScreen owns project color mutation, deduplication, ordering, selection, and
-  Screen Set and Video persistence.
+- `layoutTextEditorCheckboxMarkup` owns reusable checkbox markup for toolbar
+  popovers without taking AppScreen mutation ownership.
+- `toolbarPopoverNumericFieldMarkup` and `toolbarPopoverStatusMarkup` own compact
+  numeric rows and status presentation.
+- Numeric toolbar inputs share the same control recipe as top-toolbar Size.
+- Toolbar popovers share the workspace toolbar background and border tokens.
+- Numeric field labels match the accepted checkbox-label typography, including
+  the Studio-resolved semibold weight.
+- The Original-color trigger indicator retains its accepted centered 9px vector.
+- The semantic `rotate` role maps to the Themes-owned Font Awesome vector.
+- `layoutEditorSelectionRotationStyles` and
+  `layoutEditorRotationIconMarkup` own device-pose overlay presentation.
+- AppScreen owns rotation interaction, media-picker routing, visibility mutation,
+  integer geometry settlement, selection clearing, and toolbar orchestration.
 
-## Accepted Paired Consumer Result
+## Accepted Paired AppScreen Result
 
-- AppScreen font Selects show the selected canvas theme's actual family names and
-  retain the Themes five-item menu boundary.
-- Existing theme and project font picker choices select without being duplicated.
-  Genuinely new project fonts are added and selected.
-- Text palettes expose Primary, Secondary, Accent, and Neutral, followed by black,
-  white, project colors, and the add tile.
-- Project color help is hex-only. Theme and utility labels remain semantic.
-- Canonical Theme detail uses exact identity values and identity-anchored Accent
-  and Neutral ramps. Diagnostic swatches use the cut-corner recipe.
+- Text, image, and device selection use one shared toolbar-context boundary while
+  retaining distinct controls and behavior owners.
+- Device sidebar, Name, Source, Add from disk, Width, Height, Play, Reset, Hide
+  image, and Transparent body controls remain absent.
+- Screens opens the image picker directly. Scenes exposes image and video choices
+  through the shared popover before opening the existing picker.
+- Device Size preserves aspect ratio, writes real integer geometry, and remains
+  synchronized through field and handle resizing.
+- Visibility and rotation popovers retain accepted checkbox and Tilt, Turn, and
+  Roll presentation.
+- Workspace-tab changes clear element and timeline selection, popovers, rendered
+  overlays, and selection toolbar contexts together.
+- The preserved image toolbar still uses targeted color and mode replacement with
+  visible selection intact.
 
 ## Evidence and Acceptance Boundary
 
-- The owner accepted the complete project font, project color, ordering,
-  deduplication, selection, and canonical palette result.
-- Themes focused recipe checks and the production build pass.
-- AppScreen focused project-resource, toolbar, picker, and Preview checks and its
-  production build pass.
-- Source, `dist/web`, and documentation copies are byte-identical for the changed
-  recipe. Tests and semantic assets remain synchronized.
-- The accepted Original-color recipe passes 9/9 focused checks and the Themes
-  production build. Its source, generated web, and docs outputs are synchronized.
-- The paired AppScreen result preserves selection through targeted image color and
-  mode replacement without rebuilding the screen.
-- Focused diagnostics are disabled and development logging remains quiet.
+- The owner accepted the complete paired device-toolbar and coherent tab-clear
+  result.
+- Themes focused checks pass 13/13 and its production build passes.
+- AppScreen focused checks pass 37/37 and its production build passes.
+- Source, `dist/web`, and documentation copies are synchronized for changed
+  recipes. Git whitespace checks pass in both repositories.
+- Focused diagnostics remain disabled and development logging remains quiet.
 - The former 3 MB bundle gate remains retired and non-blocking.
 
 ## Next Boundary
 
-- The Original image-color recipe and paired AppScreen toolbar are accepted.
+- Preserve the accepted placement, text, project-resource, image, and device
+  recipes and their paired AppScreen behaviors.
 - No additional Themes implementation is selected. Preserve generated output and
   wait for owner direction.
 - Push, deployment, publication, and activation remain user-owned.

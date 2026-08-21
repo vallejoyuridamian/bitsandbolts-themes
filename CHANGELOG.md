@@ -4,6 +4,26 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-21) - Device toolbar recipes accepted
+
+### What changed
+- Added shared checkbox, numeric-field, and status markup for toolbar popovers.
+- Matched toolbar popover surfaces to workspace toolbar background and border
+  tokens, numeric inputs to top-toolbar Size, and field labels to the accepted
+  checkbox typography.
+- Kept the Original-color trigger indicator centered at its accepted 9px size.
+- Added the semantic `rotate` role and moved device-pose overlay presentation into
+  the Themes-owned layout-editor selection recipe.
+- Synchronized source, generated web output, documentation output, and tests.
+
+### Acceptance and boundary
+- Themes focused checks pass 13/13 and its production build passes.
+- AppScreen focused checks pass 37/37 and its production build passes.
+- The owner accepted the complete paired device toolbar, integer resize, shared
+  popovers, and coherent workspace-tab clear at Themes `408406e` and AppScreen
+  `2564e9a`.
+- Nothing was pushed, deployed, published, or activated.
+
 ## Session wrap-up (2026-08-21) - Image original-color recipe accepted
 
 ### What changed
