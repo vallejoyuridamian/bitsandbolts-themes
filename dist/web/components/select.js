@@ -45,6 +45,21 @@ function optionLabel(option) {
   return String(option?.label || option?.textContent || option?.value || '').trim();
 }
 
+function optionFontFamily(option) {
+  return String(option?.dataset?.bbSelectFontFamily || '').trim();
+}
+
+function syncFontPreview(node, option) {
+  if (!node?.classList || !node?.style) return;
+  const fontFamily = optionFontFamily(option);
+  node.classList.toggle('bb-select__font-preview', Boolean(fontFamily));
+  if (fontFamily) {
+    node.style.setProperty('--bb-select-font-preview-family', fontFamily);
+  } else {
+    node.style.removeProperty('--bb-select-font-preview-family');
+  }
+}
+
 function selectIdentity(select) {
   return String(select?.id || select?.name || select?.getAttribute?.('aria-label') || 'anonymous-select');
 }
@@ -72,6 +87,7 @@ function optionsSignature(select) {
   return Array.from(select?.options ?? []).map((option) => [
     option.value,
     optionLabel(option),
+    optionFontFamily(option),
     option.disabled,
     option.hidden,
     option.parentElement?.tagName === 'OPTGROUP' ? option.parentElement.label : ''
@@ -275,6 +291,7 @@ export function installSelectController(root = globalThis.document, {
     const selected = selectedOption(record);
     const value = optionLabel(selected) || String(select.value || '').trim() || 'Select';
     if (valueNode) valueNode.textContent = value;
+    syncFontPreview(valueNode, selected);
     trigger.disabled = Boolean(select.disabled);
     if (!record.externalTrigger) wrapper.hidden = Boolean(select.hidden);
     wrapper.classList.toggle('is-disabled', Boolean(select.disabled));
@@ -370,6 +387,7 @@ export function installSelectController(root = globalThis.document, {
       const label = rootDocument.createElement('span');
       label.className = 'bb-menu__label';
       label.textContent = optionLabel(option);
+      syncFontPreview(label, option);
       item.appendChild(label);
       nodes.push(item);
     });

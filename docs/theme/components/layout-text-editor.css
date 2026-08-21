@@ -20,15 +20,6 @@
   border-bottom: 1px solid var(--bb-interface-menu-border);
 }
 
-.bb-layout-text-editor.bb-layout-text-editor--window {
-  gap: var(--bb-spacing-2);
-  min-inline-size: min(420px, calc(100vw - 48px));
-  padding: 4px 12px 14px;
-  border: 0;
-  color: var(--bb-interface-control-foreground);
-  background: var(--bb-interface-menu-background);
-}
-
 .bb-layout-text-editor.bb-layout-text-editor--toolbar {
   display: flex;
   flex: 0 0 auto;
@@ -206,13 +197,13 @@
 }
 
 .bb-layout-text-editor input[type="color"] {
-  width: 26px;
-  min-width: 26px;
-  height: 26px;
-  min-height: 26px;
+  width: 30px;
+  min-width: 30px;
+  height: 22px;
+  min-height: 22px;
   padding: 0;
   border: 0;
-  border-radius: 999px;
+  border-radius: 0;
   background: transparent;
   overflow: hidden;
   cursor: pointer;
@@ -227,7 +218,7 @@
 .bb-layout-text-editor input[type="color"]::-webkit-color-swatch,
 .bb-layout-text-editor input[type="color"]::-moz-color-swatch {
   border: 2px solid var(--bb-interface-menu-border);
-  border-radius: 999px;
+  border-radius: 0;
 }
 
 .bb-layout-text-editor .segmented {
@@ -248,13 +239,13 @@
 }
 
 .bb-layout-text-editor .theme-swatch {
-  width: 26px;
-  min-width: 26px;
-  height: 26px;
-  min-height: 26px;
+  width: 30px;
+  min-width: 30px;
+  height: 22px;
+  min-height: 22px;
   padding: 0;
   border: 2px solid var(--bb-interface-menu-border);
-  border-radius: 999px;
+  border-radius: 0;
   background: var(--swatch);
 }
 
@@ -468,7 +459,7 @@
 }
 
 .bb-layout-text-editor.bb-layout-text-editor--toolbar > .bb-layout-text-editor__font-control {
-  inline-size: 116px;
+  inline-size: 156px;
 }
 
 .bb-layout-text-editor.bb-layout-text-editor--toolbar > .bb-layout-text-editor__font-control > .bb-select {

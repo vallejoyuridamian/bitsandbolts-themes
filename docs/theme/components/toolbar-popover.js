@@ -35,7 +35,7 @@ export function toolbarPopoverTriggerMarkup({
     'data-bb-toolbar-popover-trigger': '',
     ...attributes
   };
-  return `<button type="button" class="bb-toolbar-popover__trigger bb-workspace-control-button bb-workspace-control-button--icon"${attributesMarkup(resolvedAttributes)}><span class="bb-toolbar-popover__trigger-value" aria-hidden="true"></span></button>`;
+  return `<button type="button" class="bb-toolbar-popover__trigger bb-workspace-control-button bb-workspace-control-button--icon"${attributesMarkup(resolvedAttributes)}><span class="bb-toolbar-popover__trigger-value bb-cut-corner-swatch" aria-hidden="true"></span></button>`;
 }
 
 export function applyToolbarPopoverRecipe({

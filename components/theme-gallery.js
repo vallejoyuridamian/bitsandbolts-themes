@@ -487,7 +487,7 @@ function v2IdentityMarkup(mode, { editable = false, identityColorOverrides = [] 
     const hasOverride = !editable || overrides.has(entry.id);
     const sample = editable
       ? `
-        <label class="bb-theme-v2-identity__sample${hasOverride ? ' is-selected' : ' bb-workspace-add-tile'}">
+        <label class="bb-theme-v2-identity__sample bb-cut-corner-swatch${hasOverride ? ' is-selected' : ' bb-workspace-add-tile'}">
           <input
             class="bb-theme-v2-identity__input"
             type="color"
@@ -501,7 +501,7 @@ function v2IdentityMarkup(mode, { editable = false, identityColorOverrides = [] 
           </span>
         </label>
       `
-      : '<span class="bb-theme-v2-identity__swatch" aria-hidden="true"></span>';
+      : '<span class="bb-theme-v2-identity__swatch bb-cut-corner-swatch" aria-hidden="true"></span>';
     return `
       <div class="bb-theme-v2-identity" data-theme-v2-identity="${escapeHtml(entry.id)}">
         ${sample}

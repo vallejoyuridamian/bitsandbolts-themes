@@ -1429,21 +1429,21 @@ article.bb-workspace-specimen__preview--secondary {
 }
 
 .bb-theme-v2-identity__swatch {
+  --bb-cut-corner-swatch-size: 8px;
   grid-column: 1 / -1;
   height: clamp(56px, 6vw, 76px);
   border: 1px solid color-mix(in srgb, var(--bb-v2-color-content-primary) 20%, transparent);
   background: var(--bb-theme-v2-swatch);
-  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
 }
 
 .bb-theme-v2-identity__sample {
+  --bb-cut-corner-swatch-size: 8px;
   position: relative;
   display: grid;
   grid-column: 1 / -1;
   place-items: center;
   height: clamp(56px, 6vw, 76px);
   overflow: hidden;
-  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
 }
 
 .bb-theme-v2-identity__sample.is-selected {

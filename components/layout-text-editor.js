@@ -1,7 +1,7 @@
 import { semanticActionButtonMarkup } from './button.js';
 
 const ROOT_CLASS = 'bb-layout-text-editor';
-const PRESENTATIONS = new Set(['sidebar', 'toolbar', 'window']);
+const PRESENTATIONS = new Set(['sidebar', 'toolbar']);
 
 export function layoutTextEditorIconButtonMarkup({
   attributes = {},

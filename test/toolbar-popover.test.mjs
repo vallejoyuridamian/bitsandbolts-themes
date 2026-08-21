@@ -19,6 +19,7 @@ test('toolbar popover trigger uses the canonical workspace button recipe', () =>
   assert.match(markup, /aria-expanded="false"/);
   assert.match(markup, /data-text-color-trigger=""/);
   assert.match(markup, /title="Text color"/);
+  assert.match(markup, /bb-toolbar-popover__trigger-value bb-cut-corner-swatch/);
 });
 
 test('toolbar popover stays in the viewport and flips above when needed', () => {

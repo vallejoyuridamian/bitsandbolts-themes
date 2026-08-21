@@ -8,6 +8,19 @@ import {
   selectUsesExplicitExternalTrigger
 } from '../components/select.js';
 
+test('canonical Select owns opt-in font preview presentation', async () => {
+  const source = await import('node:fs/promises').then(({ readFile }) => (
+    readFile(new URL('../components/select.js', import.meta.url), 'utf8')
+  ));
+  const css = await import('node:fs/promises').then(({ readFile }) => (
+    readFile(new URL('../components/interface-primitives.css', import.meta.url), 'utf8')
+  ));
+
+  assert.match(source, /bbSelectFontFamily/);
+  assert.match(source, /bb-select__font-preview/);
+  assert.match(css, /\.bb-select__font-preview/);
+});
+
 test('only explicitly hidden native selects can bind an external trigger', () => {
   const classList = (classes = []) => ({
     contains: (className) => classes.includes(className)

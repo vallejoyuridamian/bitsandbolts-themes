@@ -15,7 +15,7 @@ function classList() {
   };
 }
 
-test('layout text editor applies the canonical window recipe', () => {
+test('layout text editor applies the canonical sidebar recipe', () => {
   const summaryClasses = classList();
   const node = {
     classList: classList(),
@@ -23,10 +23,10 @@ test('layout text editor applies the canonical window recipe', () => {
     querySelector: () => ({ classList: summaryClasses })
   };
 
-  assert.equal(applyLayoutTextEditorRecipe({ node, presentation: 'window' }), true);
+  assert.equal(applyLayoutTextEditorRecipe({ node, presentation: 'sidebar' }), true);
   assert.equal(node.classList.contains('bb-layout-text-editor'), true);
   assert.equal(node.classList.contains('bb-interface-controls'), true);
-  assert.equal(node.classList.contains('bb-layout-text-editor--window'), true);
+  assert.equal(node.classList.contains('bb-layout-text-editor--sidebar'), true);
   assert.equal(summaryClasses.contains('bb-layout-text-editor__summary'), true);
 });
 
@@ -58,6 +58,7 @@ test('layout text editor CSS owns its text, segmented, animation, and range cont
   assert.match(css, /input\[type="number"\]/);
   assert.match(css, /\.bb-semantic-icon/);
   assert.match(css, /> \.bb-layout-text-editor__font-control > \.bb-select/);
+  assert.doesNotMatch(css, /bb-layout-text-editor--window/);
   assert.doesNotMatch(css, /\.bb-select__caret/);
   assert.doesNotMatch(css, /\.bb-layout-text-editor__font-control \.bb-select__trigger/);
   assert.match(interfaceCss, /\.bb-select:is\(\.is-open, \[data-specimen-state="open"\]\) \.bb-select__caret/);
