@@ -4,7 +4,8 @@ import test from 'node:test';
 
 import {
   applyLayoutTextEditorRecipe,
-  layoutTextEditorIconButtonMarkup
+  layoutTextEditorIconButtonMarkup,
+  layoutTextEditorProjectColorAddMarkup
 } from '../components/layout-text-editor.js';
 
 function classList() {
@@ -81,4 +82,20 @@ test('layout text editor icon buttons use the workspace icon recipe and hover he
   assert.match(markup, /aria-label="Bold"/);
   assert.match(markup, /title="Bold \(Ctrl\+B\)"/);
   assert.match(markup, /aria-pressed="false"/);
+});
+
+test('layout text editor project colors use the shared add-tile and semantic icon recipes', async () => {
+  const markup = layoutTextEditorProjectColorAddMarkup({
+    attributes: { 'data-text-color-add': '' },
+    value: '#12AB34'
+  });
+  const interfaceCss = await readFile(new URL('../components/interface-primitives.css', import.meta.url), 'utf8');
+
+  assert.match(markup, /bb-color-swatch-add bb-workspace-add-tile bb-cut-corner-swatch/);
+  assert.match(markup, /data-text-color-add=""/);
+  assert.match(markup, /data-bb-icon-role="add"/);
+  assert.match(markup, /value="#12AB34"/);
+  assert.match(interfaceCss, /\.bb-color-swatch-add \{/);
+  assert.match(interfaceCss, /\.bb-color-swatch-add:is\(:hover, :focus-within\)/);
+  assert.match(interfaceCss, /\.bb-color-swatch-add__input \{/);
 });
