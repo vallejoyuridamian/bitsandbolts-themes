@@ -5,6 +5,7 @@ import test from 'node:test';
 import {
   applyLayoutTextEditorRecipe,
   layoutTextEditorIconButtonMarkup,
+  layoutTextEditorOriginalColorMarkup,
   layoutTextEditorProjectColorAddMarkup
 } from '../components/layout-text-editor.js';
 
@@ -98,4 +99,20 @@ test('layout text editor project colors use the shared add-tile and semantic ico
   assert.match(interfaceCss, /\.bb-color-swatch-add \{/);
   assert.match(interfaceCss, /\.bb-color-swatch-add:is\(:hover, :focus-within\)/);
   assert.match(interfaceCss, /\.bb-color-swatch-add__input \{/);
+});
+
+test('layout editor original image color uses the shared cut-corner and semantic icon recipes', async () => {
+  const markup = layoutTextEditorOriginalColorMarkup({
+    attributes: { 'data-image-color-original': '' },
+    selected: true
+  });
+  const interfaceCss = await readFile(new URL('../components/interface-primitives.css', import.meta.url), 'utf8');
+
+  assert.match(markup, /theme-swatch bb-color-swatch-original bb-cut-corner-swatch/);
+  assert.match(markup, /data-image-color-original=""/);
+  assert.match(markup, /data-bb-icon-role="close"/);
+  assert.match(markup, /aria-pressed="true"/);
+  assert.match(markup, /title="Original"/);
+  assert.match(interfaceCss, /\.bb-color-swatch-original \{/);
+  assert.match(interfaceCss, /\.bb-color-swatch-original \.bb-semantic-icon \{/);
 });

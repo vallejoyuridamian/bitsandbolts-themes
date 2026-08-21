@@ -715,6 +715,18 @@
   --ms-size: 14px;
 }
 
+.bb-color-swatch-original {
+  display: inline-grid;
+  place-items: center;
+  color: var(--bb-interface-control-foreground);
+  background: transparent;
+}
+
+.bb-color-swatch-original .bb-semantic-icon {
+  width: 12px;
+  height: 12px;
+}
+
 .bb-select {
   position: relative;
   display: inline-grid;
@@ -806,12 +818,20 @@
 }
 
 .bb-toolbar-popover__trigger-value {
+  display: inline-grid;
+  place-items: center;
   width: 20px;
   height: 14px;
   border: 1px solid var(--bb-interface-menu-border);
   border-radius: 0;
   background: var(--bb-toolbar-popover-trigger-value, transparent);
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--bb-interface-control-foreground) 14%, transparent);
+}
+
+.bb-toolbar-popover__trigger-value-icon {
+  width: 11px;
+  height: 11px;
+  color: var(--bb-interface-control-foreground);
 }
 
 .bb-toolbar-popover {

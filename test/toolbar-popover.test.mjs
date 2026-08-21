@@ -22,6 +22,19 @@ test('toolbar popover trigger uses the canonical workspace button recipe', () =>
   assert.match(markup, /bb-toolbar-popover__trigger-value bb-cut-corner-swatch/);
 });
 
+test('toolbar popover trigger can expose a semantic original-color indicator', () => {
+  const markup = toolbarPopoverTriggerMarkup({
+    attributes: { 'data-image-color-trigger': '' },
+    help: 'Image color',
+    label: 'Choose image color',
+    valueIconRole: 'close'
+  });
+
+  assert.match(markup, /data-image-color-trigger=""/);
+  assert.match(markup, /bb-toolbar-popover__trigger-value-icon/);
+  assert.match(markup, /data-bb-icon-role="close"/);
+});
+
 test('toolbar popover stays in the viewport and flips above when needed', () => {
   assert.deepEqual(resolveToolbarPopoverPosition({
     anchorRect: { bottom: 46, left: 12, top: 16 },

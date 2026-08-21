@@ -34,6 +34,13 @@ export function layoutTextEditorProjectColorAddMarkup({
   return `<label class="bb-color-swatch-add bb-workspace-add-tile bb-cut-corner-swatch" aria-label="Add color to project" title="Add color to project"><input class="bb-color-swatch-add__input" type="color" value="${escapeHtml(value)}" aria-label="Add color to project"${attributesMarkup(attributes)}><span class="bb-workspace-control-icon" aria-hidden="true">${semanticIconMarkup('add')}</span></label>`;
 }
 
+export function layoutTextEditorOriginalColorMarkup({
+  attributes = {},
+  selected = false
+} = {}) {
+  return `<button type="button" class="theme-swatch bb-color-swatch-original bb-cut-corner-swatch" aria-label="Use original image colors" title="Original"${selected ? ' aria-pressed="true"' : ''}${attributesMarkup(attributes)}>${semanticIconMarkup('close')}</button>`;
+}
+
 export function layoutTextEditorIconButtonMarkup({
   attributes = {},
   disabled = false,

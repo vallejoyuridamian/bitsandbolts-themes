@@ -1,3 +1,5 @@
+import { semanticIconMarkup } from './semantic-icons.js';
+
 function escapeHtml(value) {
   return String(value ?? '')
     .replaceAll('&', '&amp;')
@@ -24,7 +26,8 @@ function attributesMarkup(attributes = {}) {
 export function toolbarPopoverTriggerMarkup({
   attributes = {},
   help = '',
-  label = 'Open toolbar options'
+  label = 'Open toolbar options',
+  valueIconRole = ''
 } = {}) {
   const resolvedLabel = String(label || 'Open toolbar options');
   const resolvedAttributes = {
@@ -35,7 +38,10 @@ export function toolbarPopoverTriggerMarkup({
     'data-bb-toolbar-popover-trigger': '',
     ...attributes
   };
-  return `<button type="button" class="bb-toolbar-popover__trigger bb-workspace-control-button bb-workspace-control-button--icon"${attributesMarkup(resolvedAttributes)}><span class="bb-toolbar-popover__trigger-value bb-cut-corner-swatch" aria-hidden="true"></span></button>`;
+  const valueIcon = valueIconRole
+    ? semanticIconMarkup(valueIconRole, 'bb-toolbar-popover__trigger-value-icon')
+    : '';
+  return `<button type="button" class="bb-toolbar-popover__trigger bb-workspace-control-button bb-workspace-control-button--icon"${attributesMarkup(resolvedAttributes)}><span class="bb-toolbar-popover__trigger-value bb-cut-corner-swatch" aria-hidden="true">${valueIcon}</span></button>`;
 }
 
 export function applyToolbarPopoverRecipe({
