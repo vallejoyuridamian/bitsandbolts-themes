@@ -737,6 +737,83 @@
   transform: rotate(180deg);
 }
 
+.bb-toolbar-popover__trigger.bb-workspace-control-button {
+  width: 30px;
+  min-width: 30px;
+  height: 30px;
+  min-height: 30px;
+  padding: 0;
+}
+
+.bb-toolbar-popover__trigger-value {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--bb-interface-menu-border);
+  border-radius: 999px;
+  background: var(--bb-toolbar-popover-trigger-value, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--bb-interface-control-foreground) 14%, transparent);
+}
+
+.bb-toolbar-popover {
+  position: fixed;
+  z-index: 1260;
+  box-sizing: border-box;
+  max-width: min(320px, calc(100vw - 16px));
+  padding: var(--bb-spacing-2);
+  border: 1px solid var(--bb-interface-menu-border);
+  border-radius: var(--bb-radius-md);
+  color: var(--bb-interface-control-foreground);
+  background: var(--bb-interface-menu-background);
+  box-shadow: var(--bb-interface-menu-shadow);
+  font-family: var(--bb-font-family-body);
+}
+
+.bb-toolbar-popover[hidden] {
+  display: none;
+}
+
+.bb-toolbar-popover__controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--bb-spacing-2);
+}
+
+.bb-toolbar-popover__color-input,
+.bb-toolbar-popover .theme-swatch {
+  box-sizing: border-box;
+  width: 26px;
+  min-width: 26px;
+  height: 26px;
+  min-height: 26px;
+  margin: 0;
+  padding: 0;
+  border: 2px solid var(--bb-interface-menu-border);
+  border-radius: 999px;
+  background: var(--swatch, transparent);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.bb-toolbar-popover__color-input {
+  appearance: none;
+}
+
+.bb-toolbar-popover__color-input::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.bb-toolbar-popover__color-input::-webkit-color-swatch,
+.bb-toolbar-popover__color-input::-moz-color-swatch {
+  border: 0;
+  border-radius: 999px;
+}
+
+.bb-toolbar-popover :is(.bb-toolbar-popover__color-input, .theme-swatch):is(:hover, :focus-visible),
+.bb-toolbar-popover .theme-swatch[aria-pressed="true"] {
+  border-color: var(--bb-v2-identity-primary);
+}
+
 .bb-menu {
   display: grid;
   gap: 1px;

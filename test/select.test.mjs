@@ -4,8 +4,20 @@ import test from 'node:test';
 import {
   isSelectMenuVerticalBoundary,
   resolveSelectMenuPreferredHeight,
-  resolveSelectMenuPosition
+  resolveSelectMenuPosition,
+  selectUsesExplicitExternalTrigger
 } from '../components/select.js';
+
+test('only explicitly hidden native selects can bind an external trigger', () => {
+  const classList = (classes = []) => ({
+    contains: (className) => classes.includes(className)
+  });
+
+  assert.equal(selectUsesExplicitExternalTrigger({ classList: classList([]) }), false);
+  assert.equal(selectUsesExplicitExternalTrigger({
+    classList: classList(['bb-select__native'])
+  }), true);
+});
 
 test('portaled Select menus ignore horizontal-only toolbar overflow', () => {
   assert.equal(isSelectMenuVerticalBoundary({ overflowX: 'auto', overflowY: 'hidden' }), false);

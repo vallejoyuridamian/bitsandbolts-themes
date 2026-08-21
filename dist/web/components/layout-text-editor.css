@@ -29,6 +29,35 @@
   background: var(--bb-interface-menu-background);
 }
 
+.bb-layout-text-editor.bb-layout-text-editor--toolbar {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 5px;
+  width: max-content;
+  padding: 0;
+  border: 0;
+  color: var(--bb-interface-control-foreground);
+  background: transparent;
+}
+
+.bb-workspace-control-bar__leading:has(> .bb-layout-text-editor--toolbar) {
+  flex: 1 1 auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-color: var(--bb-interface-scrollbar-thumb) var(--bb-interface-scrollbar-track);
+  scrollbar-width: thin;
+}
+
+.bb-layout-text-editor--toolbar .bb-layout-text-editor__field-label {
+  display: none;
+}
+
+.bb-layout-text-editor--toolbar > .bb-layout-text-editor__voiceover,
+.bb-layout-text-editor--toolbar > .section-panel {
+  inline-size: 260px;
+}
+
 .bb-layout-text-editor > .bb-layout-text-editor__summary {
   display: grid;
   grid-template-columns: 14px minmax(0, 1fr);
@@ -417,4 +446,62 @@
   height: 30px;
   min-height: 30px;
   padding: 0;
+}
+
+.bb-layout-text-editor.bb-layout-text-editor--toolbar > * {
+  align-self: center;
+}
+
+.bb-layout-text-editor.bb-layout-text-editor--toolbar > .bb-layout-text-editor__actions,
+.bb-layout-text-editor.bb-layout-text-editor--toolbar > .text-color-controls,
+.bb-layout-text-editor.bb-layout-text-editor--toolbar .segmented {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.bb-layout-text-editor.bb-layout-text-editor--toolbar > .bb-layout-text-editor__font-control,
+.bb-layout-text-editor.bb-layout-text-editor--toolbar > .bb-layout-text-editor__size-control {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.bb-layout-text-editor.bb-layout-text-editor--toolbar > .bb-layout-text-editor__font-control {
+  inline-size: 116px;
+}
+
+.bb-layout-text-editor.bb-layout-text-editor--toolbar > .bb-layout-text-editor__font-control > .bb-select {
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+.bb-layout-text-editor.bb-layout-text-editor--toolbar > .bb-layout-text-editor__size-control {
+  inline-size: 68px;
+}
+
+.bb-layout-text-editor.bb-layout-text-editor--toolbar > .text-color-controls,
+.bb-layout-text-editor.bb-layout-text-editor--toolbar > .bb-layout-text-editor__control-group {
+  inline-size: auto;
+}
+
+.bb-layout-text-editor.bb-layout-text-editor--toolbar :is(select, input[type="number"]) {
+  height: 30px;
+  min-height: 30px;
+  padding-block: 0;
+}
+
+.bb-layout-text-editor.bb-layout-text-editor--toolbar .bb-layout-text-editor__icon-button,
+.bb-layout-text-editor.bb-layout-text-editor--toolbar .bb-toolbar-popover__trigger {
+  align-self: center;
+  width: 30px;
+  min-width: 30px;
+  height: 30px;
+  min-height: 30px;
+}
+
+.bb-layout-text-editor.bb-layout-text-editor--toolbar .bb-layout-text-editor__icon-button .bb-workspace-control-icon,
+.bb-layout-text-editor.bb-layout-text-editor--toolbar .bb-layout-text-editor__icon-button .bb-semantic-icon {
+  width: 18px;
+  height: 18px;
 }

@@ -1,19 +1,20 @@
 import { semanticActionButtonMarkup } from './button.js';
 
 const ROOT_CLASS = 'bb-layout-text-editor';
-const PRESENTATIONS = new Set(['sidebar', 'window']);
+const PRESENTATIONS = new Set(['sidebar', 'toolbar', 'window']);
 
 export function layoutTextEditorIconButtonMarkup({
   attributes = {},
   disabled = false,
   iconRole = '',
-  label = ''
+  label = '',
+  shortcut = ''
 } = {}) {
   return semanticActionButtonMarkup({
     attributes,
     className: `${ROOT_CLASS}__icon-button`,
     disabled,
-    help: label,
+    help: shortcut ? `${label} (${shortcut})` : label,
     iconRole,
     label,
     recipe: 'workspace'

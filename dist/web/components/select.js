@@ -150,6 +150,10 @@ export function isSelectMenuVerticalBoundary(style = {}) {
   return /^(auto|scroll|overlay)$/.test(String(style?.overflowY || '').trim());
 }
 
+export function selectUsesExplicitExternalTrigger(select) {
+  return select?.classList?.contains?.('bb-select__native') === true;
+}
+
 export function selectionControlsMarkup({ ariaLabel = '', controls = [], layout = '' } = {}) {
   const controlMarkup = controls.map((control) => {
     const dataAttribute = String(control?.dataAttribute || '');
@@ -694,6 +698,7 @@ export function installSelectController(root = globalThis.document, {
   }
 
   function externalTriggerMarkup(select) {
+    if (!selectUsesExplicitExternalTrigger(select)) return null;
     const identity = selectIdentity(select);
     const trigger = [...(rootDocument.querySelectorAll?.('[data-bb-select-trigger]') ?? [])]
       .find((candidate) => candidate.dataset.bbSelectTrigger === identity);
