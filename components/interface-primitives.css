@@ -14,6 +14,10 @@
   background: var(--bb-interface-workspace-background);
 }
 
+.bb-workspace-surface[tabindex="-1"]:focus {
+  outline: none;
+}
+
 .bb-workspace-section {
   display: grid;
   align-content: start;
