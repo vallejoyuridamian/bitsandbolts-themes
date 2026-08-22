@@ -19,6 +19,18 @@
 - [x] Own shared checkbox, numeric-field, status, popover, rotation-vector, and
   device-pose overlay presentation for the accepted device toolbar.
 
+## Completed Background Scope Recipe
+
+- [x] Extend the shared Background editor with Project versus selected Screen or
+  Scene scope presentation.
+- [x] Share Theme, mode, and background controls across both scopes without
+  taking AppScreen mutation or persistence ownership.
+- [x] Keep Screens and Scenes on one reusable markup and style contract.
+- [x] Reuse the existing semantic image action for the AppScreen Background
+  toolbar entry and hover help.
+- [x] Synchronize source, generated web output, documentation output, and tests.
+- [x] Accept Themes `8d17e97` and AppScreen `8495618`.
+
 ## Completed Fixed Screen-Space Overlay Recipe
 
 - [x] Remove programmatic workspace focus paint from empty toolbar clicks.

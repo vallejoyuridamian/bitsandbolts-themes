@@ -6,12 +6,11 @@ Last verified: 2026-08-21
 
 - This repository owns product tokens, components, fonts, semantic icons, assets,
   catalog data, committed generated outputs, and shared editor recipes.
-- Nine v2 families ship in light and dark modes: Cloud, Bits and Bolts, Brutus,
-  Forest, Winter, Coffee, Bubblegum, Inferno, and Sober.
+- Nine v2 families ship in both modes, including all accepted first-party themes.
 - Themes owns canonical visual recipes. AppScreen owns user Theme behavior,
   persistence, Guest state, interaction, rendering, and orchestration.
-- The accepted fixed screen-space editor-overlay recipe is implementation
-  `bbb236c`, paired with AppScreen implementation `615c022`.
+- The accepted shared Background scope recipe is implementation `8d17e97`,
+  paired with AppScreen implementation `8495618`.
 - Nothing is pushed, deployed, published, or activated.
 
 ## Preserved Shared Editor Recipes
@@ -31,6 +30,18 @@ Last verified: 2026-08-21
   semantic vector roles.
 - Every ordinary repeated Select receives its own trigger. Only explicitly marked
   native selects may bind an external trigger.
+
+## Accepted Background Scope Recipe
+
+- The shared Background editor owns Project versus Screen or Scene scope
+  presentation plus reusable Theme, mode, and background controls.
+- The same markup and style contract serves Screens and Scenes. AppScreen owns
+  selected-layout and project mutation, persistence, and window orchestration.
+- AppScreen sidebars retain project and layout names while background and Theme
+  editing stays in the shared floating window.
+- The existing Themes semantic image action supplies the toolbar Background icon
+  and hover-help presentation without creating a parallel recipe.
+- Source, generated output, documentation, and focused coverage are synchronized.
 
 ## Accepted Device Toolbar Recipes
 
@@ -81,10 +92,10 @@ Last verified: 2026-08-21
 
 ## Evidence and Acceptance Boundary
 
-- The owner accepted the paired device-toolbar baseline, toolbar focus fix, and
-  complete fixed screen-space overlay appearance across zoom levels.
-- This slice's Themes focused checks pass 3/3 and its production build passes.
-- This slice's AppScreen focused checks pass 4/4 and its production build passes.
+- The owner accepted the complete paired editor baseline.
+- The Themes Background check passes 1/1 and its production build passes.
+- Paired AppScreen Background checks pass 7/7, toolbar and command checks pass
+  19/19, and its production build passes.
 - Source, `dist/web`, and documentation copies are synchronized for changed
   recipes. Git whitespace checks pass in both repositories.
 - Focused diagnostics remain disabled and development logging remains quiet.
@@ -92,8 +103,8 @@ Last verified: 2026-08-21
 
 ## Next Boundary
 
-- Preserve the accepted placement, text, project-resource, image, device,
-  toolbar-focus, and fixed screen-space overlay recipes.
+- Preserve the accepted Background, placement, text, project-resource, image,
+  device, toolbar-focus, and fixed screen-space overlay recipes.
 - No additional Themes implementation is selected. Preserve generated output and
   wait for owner direction.
 - Push, deployment, publication, and activation remain user-owned.

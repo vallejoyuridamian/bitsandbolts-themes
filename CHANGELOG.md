@@ -4,6 +4,27 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-21) - Background scope controls accepted
+
+### What changed
+- Extended the shared Background editor recipe with an explicit Project versus
+  Screen or Scene scope control.
+- Added shared Theme and mode presentation so AppScreen can expose the same
+  variables for project and selected-layout background editing.
+- Preserved Themes ownership of markup and presentation while AppScreen retains
+  selection, mutation, persistence, and window orchestration.
+- Synchronized source, generated web output, documentation output, and focused
+  contract coverage.
+
+### Acceptance and boundary
+- The focused Themes Background test passes 1/1 and its production build passes.
+- Paired AppScreen Background checks pass 7/7, toolbar and command checks pass
+  19/19, and its production build passes.
+- The owner accepted the complete result at Themes `8d17e97` and AppScreen
+  `8495618`.
+- No next implementation is selected. Nothing was pushed, deployed, published,
+  or activated.
+
 ## Session wrap-up (2026-08-21) - Fixed screen-space overlays accepted
 
 ### What changed
