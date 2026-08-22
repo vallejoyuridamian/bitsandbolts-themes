@@ -23,6 +23,22 @@
   margin: 0;
 }
 
+.bb-background-editor__scope {
+  width: 100%;
+}
+
+.bb-background-editor__theme-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--bb-spacing-2);
+  min-width: 0;
+}
+
+.bb-background-editor__theme-row > .bb-field {
+  min-width: 0;
+  margin: 0;
+}
+
 .bb-background-editor .bb-field__input,
 .bb-background-editor .bb-select {
   width: 100%;

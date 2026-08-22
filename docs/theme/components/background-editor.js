@@ -26,9 +26,13 @@ export function backgroundEditorSwatchesMarkup(colors = []) {
 export function backgroundEditorMarkup({
   id = 'backgroundEditor',
   inheritLabel = 'Use project background',
+  itemScopeLabel = 'Screen',
   presentation = 'embedded',
+  showScope = false,
   showInherit = true
 } = {}) {
+  const themeId = controlId(id, 'theme');
+  const themeModeId = controlId(id, 'theme-mode');
   const modeId = controlId(id, 'mode');
   const orientationId = controlId(id, 'orientation');
   const themeColorsId = controlId(id, 'theme-colors');
@@ -42,10 +46,27 @@ export function backgroundEditorMarkup({
   const inherit = showInherit
     ? `<button class="bb-background-editor__inherit bb-workspace-control-button" type="button" data-bb-background-editor-role="clear-own">${escapeHtml(inheritLabel)}</button>`
     : '';
+  const scope = showScope
+    ? `<div class="bb-background-editor__scope bb-segmented-control" role="group" aria-label="Background editing scope">
+      <button class="bb-segmented-control__item" type="button" aria-pressed="false" data-bb-background-editor-scope="project">Project</button>
+      <button class="bb-segmented-control__item active" type="button" aria-pressed="true" data-bb-background-editor-scope="surface">${escapeHtml(itemScopeLabel)}</button>
+    </div>`
+    : '';
   return `<div class="bb-background-editor bb-interface-controls${presentationClass}" data-bb-background-editor>
+    ${scope}
+    <div class="bb-background-editor__theme-row">
+      <div class="bb-field">
+        <label class="bb-field__label" for="${themeId}">Theme</label>
+        <select id="${themeId}" class="bb-field__input" data-bb-background-editor-role="theme-name"></select>
+      </div>
+      <div class="bb-field">
+        <label class="bb-field__label" for="${themeModeId}">Theme mode</label>
+        <select id="${themeModeId}" class="bb-field__input" data-bb-background-editor-role="theme-mode"></select>
+      </div>
+    </div>
     ${inherit}
     <div class="bb-field">
-      <label class="bb-field__label" for="${modeId}">Mode</label>
+      <label class="bb-field__label" for="${modeId}">Background</label>
       <select id="${modeId}" class="bb-field__input" data-bb-background-editor-role="mode">
         <option value="default">Default spotlight</option>
         <option value="solid">Single color</option>
