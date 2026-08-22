@@ -18,6 +18,7 @@ import { formFieldsMarkup } from './form-field.js';
 import { MediaPreviewCard, referenceImagePickerMarkup } from './media-picker.js';
 import { navbarMarkup } from './navbar.js';
 import { selectionControlsMarkup } from './select.js';
+import { workspaceItemInfoMarkup } from './workspace-item-info.js';
 import { workspaceSectionMarkup } from './workspace-section.js';
 
 const mediaPreviewCard = new MediaPreviewCard();
@@ -98,6 +99,17 @@ export const MANAGED_WEB_COMPONENTS = Object.freeze({
       ])
     }),
     render: floatingWindowPanelMarkup
+  }),
+  'workspace-item-info': Object.freeze({
+    dependencies: Object.freeze({
+      stylesheets: Object.freeze([
+        'components/form-field.css',
+        'components/interface-primitives.css',
+        'components/workspace-item-info.css'
+      ]),
+      modules: Object.freeze(['components/workspace-item-info.js'])
+    }),
+    render: workspaceItemInfoMarkup
   }),
   'content-cards': Object.freeze({
     dependencies: Object.freeze({

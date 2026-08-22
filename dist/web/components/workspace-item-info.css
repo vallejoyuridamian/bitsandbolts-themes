@@ -1,0 +1,38 @@
+/*
+ * Canonical compact metadata editor composition for a selected workspace item.
+ * Consumers retain project data, mutation, persistence, selection, and window behavior.
+ */
+
+.bb-workspace-item-info {
+  display: grid;
+  align-content: start;
+  gap: var(--bb-spacing-3);
+  min-width: 0;
+  padding: 0 var(--bb-spacing-3) var(--bb-spacing-3);
+  color: var(--bb-interface-control-foreground);
+  font-family: var(--bb-font-family-body);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.bb-workspace-item-info > .bb-field {
+  min-width: 0;
+  margin: 0;
+}
+
+.bb-workspace-item-info .bb-field__input {
+  width: 100%;
+  min-width: 0;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.bb-workspace-item-info__value {
+  display: block;
+  min-width: 0;
+  padding-block: var(--bb-spacing-2);
+  color: var(--bb-v2-color-content-primary);
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-sm);
+  line-height: var(--bb-font-line-height-normal);
+}
