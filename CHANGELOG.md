@@ -4,6 +4,26 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-22) - Workspace project info accepted
+
+### What changed
+- Added one reusable `Project info` floating-window recipe for Screens and
+  Scenes, with editable project and selected-layout names plus read-only
+  resolution information.
+- Reused the canonical semantic settings icon, toolbar action, hover help,
+  window shell, form fields, and spacing recipes.
+- Kept AppScreen responsible for selection, interaction, mutation, persistence,
+  and the differing Screens and Scenes sidebar boundaries.
+- Synchronized source, generated web output, documentation output, and tests.
+
+### Acceptance and boundary
+- Themes project-info and Background checks pass 2/2 and its production build
+  passes. Paired AppScreen structure and shortcut checks pass, and its production
+  build passes.
+- The owner accepted Themes `a766904`, paired with AppScreen `42f846a`.
+- No next implementation is selected. Nothing was pushed, deployed, published,
+  or activated.
+
 ## Session wrap-up (2026-08-21) - Background scope controls accepted
 
 ### What changed

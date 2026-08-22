@@ -31,6 +31,17 @@
 - [x] Synchronize source, generated web output, documentation output, and tests.
 - [x] Accept Themes `8d17e97` and AppScreen `8495618`.
 
+## Completed Workspace Project Info Recipe
+
+- [x] Add one reusable `Project info` floating-window recipe for Screens and
+  Scenes with project name, selected-layout name, and read-only resolution.
+- [x] Reuse the canonical semantic settings icon, toolbar action, hover help,
+  window shell, form fields, and spacing recipes.
+- [x] Keep AppScreen selection, mutation, persistence, and sidebar ownership
+  outside Themes.
+- [x] Synchronize source, generated web output, documentation output, and tests.
+- [x] Accept Themes `a766904` and AppScreen `42f846a`.
+
 ## Completed Fixed Screen-Space Overlay Recipe
 
 - [x] Remove programmatic workspace focus paint from empty toolbar clicks.
@@ -48,5 +59,6 @@
 ## Current Boundary
 
 - No further Themes or AppScreen implementation is selected.
-- Preserve every accepted editor recipe and paired AppScreen behavior.
+- Preserve every accepted editor recipe, project-info route, and paired
+  AppScreen behavior.
 - Push, deployment, publication, and activation remain user-owned.

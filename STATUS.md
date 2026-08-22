@@ -1,6 +1,6 @@
 # Bits and Bolts Themes: Status
 
-Last verified: 2026-08-21
+Last verified: 2026-08-22
 
 ## Current Truth
 
@@ -9,8 +9,8 @@ Last verified: 2026-08-21
 - Nine v2 families ship in both modes, including all accepted first-party themes.
 - Themes owns canonical visual recipes. AppScreen owns user Theme behavior,
   persistence, Guest state, interaction, rendering, and orchestration.
-- The accepted shared Background scope recipe is implementation `8d17e97`,
-  paired with AppScreen implementation `8495618`.
+- The accepted shared workspace project-info recipe is implementation `a766904`,
+  paired with AppScreen implementation `42f846a`.
 - Nothing is pushed, deployed, published, or activated.
 
 ## Preserved Shared Editor Recipes
@@ -43,35 +43,33 @@ Last verified: 2026-08-21
   and hover-help presentation without creating a parallel recipe.
 - Source, generated output, documentation, and focused coverage are synchronized.
 
+## Accepted Workspace Project Info Recipe
+
+- One reusable recipe supplies the `Project info` floating window for both
+  Screens and Scenes without owning AppScreen behavior or persistence.
+- The recipe exposes editable project and selected-layout name fields plus an
+  informative read-only resolution value.
+- The existing semantic settings icon, toolbar action, hover help, window shell,
+  form fields, and spacing recipes remain the only presentation owners.
+- AppScreen uses the same action and controller on both surfaces, removes the
+  complete Screens sidebar, and preserves the Scenes sidebar.
+- Background hover help is visibly `Background (B)` on both surfaces.
+- Source, generated web output, documentation output, and tests are synchronized.
+
 ## Accepted Device Toolbar Recipes
 
-- `layoutTextEditorCheckboxMarkup` owns reusable checkbox markup for toolbar
-  popovers without taking AppScreen mutation ownership.
-- `toolbarPopoverNumericFieldMarkup` and `toolbarPopoverStatusMarkup` own compact
-  numeric rows and status presentation.
-- Numeric toolbar inputs share the same control recipe as top-toolbar Size.
-- Toolbar popovers share the workspace toolbar background and border tokens.
-- Numeric field labels match the accepted checkbox-label typography, including
-  the Studio-resolved semibold weight.
-- The Original-color trigger indicator retains its accepted centered 9px vector.
-- The semantic `rotate` role maps to the Themes-owned Font Awesome vector.
-- `layoutEditorSelectionRotationStyles` and
-  `layoutEditorRotationIconMarkup` own device-pose overlay presentation.
-- AppScreen owns rotation interaction, media-picker routing, visibility mutation,
-  integer geometry settlement, selection clearing, and toolbar orchestration.
+- Shared checkbox, numeric-field, status, popover, Original-color, semantic
+  rotate, and device-pose recipes retain their accepted presentation.
+- AppScreen owns rotation, media routing, visibility, integer geometry,
+  selection clearing, and toolbar orchestration.
 
 ## Accepted Fixed Screen-Space Overlay Recipe
 
 - Programmatically focused workspace surfaces do not paint a white container
   outline when the user clicks empty toolbar space.
-- Every editor selection, placement, snap, region, and rotation presentation
-  consumes one shared zoom-compensated recipe.
-- Dashed selection and rotation lines remain 1px in screen space at every zoom.
-- Resize handles remain solid 8px accent squares with no border or radius.
-- Rotation axes retain subdued idle opacity. Rotation vectors remain flat 16px
-  semantic accent icons without a border, background, or shadow.
-- AppScreen owns zoom publication and interaction. Themes owns every metric,
-  color, vector, and presentation rule.
+- One shared zoom-compensated recipe keeps dashed lines at 1px, square handles at
+  8px, axes subdued, and semantic rotation icons flat at 16px.
+- AppScreen owns zoom and interaction. Themes owns presentation.
 
 ## Accepted Paired AppScreen Result
 
@@ -93,9 +91,11 @@ Last verified: 2026-08-21
 ## Evidence and Acceptance Boundary
 
 - The owner accepted the complete paired editor baseline.
-- The Themes Background check passes 1/1 and its production build passes.
-- Paired AppScreen Background checks pass 7/7, toolbar and command checks pass
-  19/19, and its production build passes.
+- Themes project-info and Background checks pass 2/2 and its production build
+  passes.
+- The paired AppScreen focused batch passes 39/40. The sole failure is an
+  unrelated source-spelling assertion in untouched control-bar code. Its
+  production build and final `Background (B)` shortcut contract pass.
 - Source, `dist/web`, and documentation copies are synchronized for changed
   recipes. Git whitespace checks pass in both repositories.
 - Focused diagnostics remain disabled and development logging remains quiet.
@@ -103,8 +103,8 @@ Last verified: 2026-08-21
 
 ## Next Boundary
 
-- Preserve the accepted Background, placement, text, project-resource, image,
-  device, toolbar-focus, and fixed screen-space overlay recipes.
+- Preserve the accepted project-info, Background, placement, text,
+  project-resource, image, device, toolbar-focus, and fixed overlay recipes.
 - No additional Themes implementation is selected. Preserve generated output and
   wait for owner direction.
 - Push, deployment, publication, and activation remain user-owned.
