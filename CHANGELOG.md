@@ -4,6 +4,28 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-21) - Fixed screen-space overlays accepted
+
+### What changed
+- Added one zoom-compensated selection metric contract for AppScreen editor
+  outlines, handles, placement, snap, region, and rotation presentation.
+- Standardized thin 1px dashed accent lines and solid 8px accent square handles
+  without borders or radius at every zoom level.
+- Standardized subdued rotation axes and flat 16px semantic rotation icons
+  without borders, backgrounds, or shadows.
+- Added generic region and draw-overlay recipes, replacing duplicated AppScreen
+  scene-animation styling.
+- Removed programmatic workspace-surface focus paint for empty toolbar clicks.
+- Synchronized source, generated web output, documentation output, and tests.
+
+### Acceptance and boundary
+- Themes focused checks pass 3/3 and its production build passes.
+- AppScreen focused checks pass 4/4 and its production build passes.
+- The owner accepted the complete result at Themes `bbb236c` and AppScreen
+  `615c022`.
+- No next implementation is selected. Nothing was pushed, deployed, published,
+  or activated.
+
 ## Session wrap-up (2026-08-21) - Device toolbar recipes accepted
 
 ### What changed

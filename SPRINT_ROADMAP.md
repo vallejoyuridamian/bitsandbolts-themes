@@ -3,75 +3,38 @@
 ## Current Focus
 
 - Preserve Themes as the visual owner across every Bits and Bolts product.
-- Keep Theme behavior in AppScreen while sharing exact presentation recipes.
-- Continue only through bounded, owner-directed, approval-gated slices.
+- Keep AppScreen behavior in AppScreen while sharing exact presentation recipes.
+- Continue only through bounded, owner-selected, approval-gated slices.
 
 ## Completed Foundation
 
-- [x] Ratify the DTCG 2025.10 plus Bits and Bolts contract architecture.
 - [x] Ship nine complete light and dark v2 families with semantic mappings,
   licensed fonts, assets, recipes, and generated platform output.
-- [x] Own the canonical gallery, detail pages, catalog, atomic readiness,
-  workspace chrome, Account, navbar, cards, media, forms, and editorial recipes.
+- [x] Own canonical product tokens, components, fonts, semantic icons, assets,
+  catalog data, and synchronized generated output.
 - [x] Keep Theme behavior in AppScreen while sharing one portable renderer and
   complete visual schema for first-party and user-authored themes.
+- [x] Own shared Background, text-editor, toolbar, Select, palette, cut-corner,
+  placement, snap-guide, resize-handle, and selection recipes.
+- [x] Own shared checkbox, numeric-field, status, popover, rotation-vector, and
+  device-pose overlay presentation for the accepted device toolbar.
 
-## Completed Shared Editor Recipes
+## Completed Fixed Screen-Space Overlay Recipe
 
-- [x] Own shared Background editor markup and presentation.
-- [x] Own visible palette swatches and semantic `swap_horiz`.
-- [x] Own selection, snap-guide, resize-handle, and placement values.
-- [x] Separate transparent placement content borders from equivalent outer paint.
-- [x] Accept the Background and trace-free placement consumers.
-- [x] Own one layout-text-editor recipe for toolbar and sidebar presentation.
-- [x] Remove the text-editor window variant while preserving generic windows.
-- [x] Standardize clipboard, style, and alignment as semantic icon buttons.
-- [x] Own compact toolbar geometry, hidden labels, and active-color popover.
-- [x] Preserve canonical Select trigger, caret, animation, five-item limit, and
-  font previews.
-- [x] Share cut-corner swatch geometry across text color controls.
-
-## Completed Project Color Add Recipe
-
-- [x] Add a reusable compact project color action to layout-text-editor markup.
-- [x] Compose the shared cut-corner swatch and workspace add-tile recipes.
-- [x] Use the semantic `add` vector behind a transparent native color input.
-- [x] Preserve dashed hover and focus treatment at color-swatch dimensions.
-- [x] Reuse the recipe in AppScreen toolbar and migration sidebar palettes.
-- [x] Keep project color persistence, ordering, deduplication, and selection in
-  AppScreen.
-- [x] Synchronize source, generated web output, docs output, and tests.
-- [x] Accept Themes `02bd65b` and AppScreen `eb91a57`.
-
-## Completed Paired Palette Alignment
-
-- [x] Expose Primary, Secondary, Accent, and Neutral from theme palettes.
-- [x] Keep black and white before project colors and the add action.
-- [x] Expose hex-only help for project colors.
-- [x] Preserve exact canonical identity values in read-only Theme diagnostics.
-- [x] Anchor Accent and Neutral ramps to exact canonical identities.
-- [x] Reuse cut-corner geometry across palette and ramp diagnostics.
-
-## Completed Device Toolbar Recipes
-
-- [x] Add shared checkbox, numeric-field, and status markup for toolbar popovers.
-- [x] Match popover surfaces to workspace toolbar background and border tokens.
-- [x] Match numeric fields to toolbar Size and field labels to checkbox typography.
-- [x] Keep the Original-color indicator centered at its accepted vector size.
-- [x] Add a semantic `rotate` vector role.
-- [x] Own device-pose rotation overlay styles and icon markup.
-- [x] Synchronize source, generated web output, docs output, and focused tests.
-- [x] Accept Themes `408406e` and AppScreen `2564e9a`.
-
-## Parked, Not Scheduled
-
-1. Support the next owner-selected font consumer or render-parity slice.
-2. Add later Theme fields in separately selected slices.
-3. Migrate remaining legacy Dialog consumers when directed.
-4. Review an existing family or detail composition through a focused visual slice.
-5. Advance DTCG validation, glyph coverage, adapters, or versioned delivery.
+- [x] Remove programmatic workspace focus paint from empty toolbar clicks.
+- [x] Define one zoom-compensated metric contract for every editor overlay.
+- [x] Standardize 1px dashed selection, placement, snap, region, and rotation
+  lines at every zoom level.
+- [x] Standardize solid 8px accent square handles without borders or radius.
+- [x] Standardize subdued rotation axes and flat 16px semantic rotation icons
+  without borders, backgrounds, or shadows.
+- [x] Replace AppScreen's duplicated scene-region and draw-overlay styling with
+  generic Themes-owned region recipes.
+- [x] Synchronize source, generated web output, documentation output, and tests.
+- [x] Accept Themes `bbb236c` and AppScreen `615c022`.
 
 ## Current Boundary
 
-- The shared device-toolbar recipes and paired AppScreen consumer are accepted.
-- No further Themes work is selected. Preserve output; push remains user-owned.
+- No further Themes or AppScreen implementation is selected.
+- Preserve every accepted editor recipe and paired AppScreen behavior.
+- Push, deployment, publication, and activation remain user-owned.

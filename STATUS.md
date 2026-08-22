@@ -10,8 +10,8 @@ Last verified: 2026-08-21
   Forest, Winter, Coffee, Bubblegum, Inferno, and Sober.
 - Themes owns canonical visual recipes. AppScreen owns user Theme behavior,
   persistence, Guest state, interaction, rendering, and orchestration.
-- The accepted device-toolbar recipe is implementation `408406e`, paired with
-  AppScreen implementation `2564e9a`.
+- The accepted fixed screen-space editor-overlay recipe is implementation
+  `bbb236c`, paired with AppScreen implementation `615c022`.
 - Nothing is pushed, deployed, published, or activated.
 
 ## Preserved Shared Editor Recipes
@@ -49,6 +49,19 @@ Last verified: 2026-08-21
 - AppScreen owns rotation interaction, media-picker routing, visibility mutation,
   integer geometry settlement, selection clearing, and toolbar orchestration.
 
+## Accepted Fixed Screen-Space Overlay Recipe
+
+- Programmatically focused workspace surfaces do not paint a white container
+  outline when the user clicks empty toolbar space.
+- Every editor selection, placement, snap, region, and rotation presentation
+  consumes one shared zoom-compensated recipe.
+- Dashed selection and rotation lines remain 1px in screen space at every zoom.
+- Resize handles remain solid 8px accent squares with no border or radius.
+- Rotation axes retain subdued idle opacity. Rotation vectors remain flat 16px
+  semantic accent icons without a border, background, or shadow.
+- AppScreen owns zoom publication and interaction. Themes owns every metric,
+  color, vector, and presentation rule.
+
 ## Accepted Paired AppScreen Result
 
 - Text, image, and device selection use one shared toolbar-context boundary while
@@ -68,10 +81,10 @@ Last verified: 2026-08-21
 
 ## Evidence and Acceptance Boundary
 
-- The owner accepted the complete paired device-toolbar and coherent tab-clear
-  result.
-- Themes focused checks pass 13/13 and its production build passes.
-- AppScreen focused checks pass 37/37 and its production build passes.
+- The owner accepted the paired device-toolbar baseline, toolbar focus fix, and
+  complete fixed screen-space overlay appearance across zoom levels.
+- This slice's Themes focused checks pass 3/3 and its production build passes.
+- This slice's AppScreen focused checks pass 4/4 and its production build passes.
 - Source, `dist/web`, and documentation copies are synchronized for changed
   recipes. Git whitespace checks pass in both repositories.
 - Focused diagnostics remain disabled and development logging remains quiet.
@@ -79,8 +92,8 @@ Last verified: 2026-08-21
 
 ## Next Boundary
 
-- Preserve the accepted placement, text, project-resource, image, and device
-  recipes and their paired AppScreen behaviors.
+- Preserve the accepted placement, text, project-resource, image, device,
+  toolbar-focus, and fixed screen-space overlay recipes.
 - No additional Themes implementation is selected. Preserve generated output and
   wait for owner direction.
 - Push, deployment, publication, and activation remain user-owned.
