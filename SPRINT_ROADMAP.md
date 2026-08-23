@@ -52,8 +52,18 @@
 - [x] Confirm every element used an exact existing Themes recipe with no gap.
 - [x] Keep all renderer behavior and evidence in AppScreen with no Themes change.
 
+## Completed Stage 8 Comparison Recipe Audit
+
+- [x] Audit every Stage 8 element before AppScreen consumer edits.
+- [x] Confirm every element used the exact existing comparison recipe.
+- [x] Keep format behavior, measurement, evidence, and ownership in AppScreen
+  with no Themes source or generated-output change.
+
 ## Current Boundary
 
-- Stages 2 through 7 passed in AppScreen; existing study recipes remain exact.
-- Stage 8 awaits explicit fresh-chat authorization. Stage 9 remains conditional.
+- Stages 2 through 8 passed in AppScreen; existing study recipes remain exact.
+- AppScreen's future Reel 3 causal profiling is a conditional pre-migration gate,
+  not the automatic next task. It remains AppScreen logging and evidence work.
+- Themes participates only if an authorized future UI exposes a concrete recipe gap.
+- Stage 9 remains conditional and unauthorized.
 - Commit, push, deployment, publication, and activation remain user-owned.
