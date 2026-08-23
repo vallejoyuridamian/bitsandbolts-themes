@@ -1,6 +1,6 @@
 # Bits and Bolts Themes: Status
 
-Last verified: 2026-08-22
+Last verified: 2026-08-23
 
 ## Current Truth
 
@@ -96,15 +96,15 @@ Last verified: 2026-08-22
 - The paired AppScreen focused batch passes 39/40. The sole failure is an
   unrelated source-spelling assertion in untouched control-bar code. Its
   production build and final `Background (B)` shortcut contract pass.
-- Source, `dist/web`, and documentation copies are synchronized for changed
-  recipes. Git whitespace checks pass in both repositories.
-- Focused diagnostics remain disabled and development logging remains quiet.
-- The former 3 MB bundle gate remains retired and non-blocking.
+- Stages 2 through 6 completed in AppScreen. The Stage 6 recipe audit passed
+  without a Themes change; Lean PBR 512 without glass remains selected.
+- Diagnostics remain quiet and the former 3 MB bundle gate remains retired.
 
 ## Next Boundary
 
 - Preserve the accepted project-info, Background, placement, text,
   project-resource, image, device, toolbar-focus, and fixed overlay recipes.
-- No additional Themes implementation is selected. Preserve generated output and
-  wait for owner direction.
-- Push, deployment, publication, and activation remain user-owned.
+- Stage 6 is complete. Stage 7 awaits explicit fresh-chat authorization.
+- Stages 8 and 9 plus production migration remain unauthorized.
+- Preserve the checksum-pinned Stage 6 audit and exact comparison recipe.
+- Do not add speculative UI recipes or perform external activation.

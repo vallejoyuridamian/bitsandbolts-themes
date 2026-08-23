@@ -4,61 +4,49 @@
 
 - Preserve Themes as the visual owner across every Bits and Bolts product.
 - Keep AppScreen behavior in AppScreen while sharing exact presentation recipes.
-- Continue only through bounded, owner-selected, approval-gated slices.
+- Preserve the accepted Stage 6 audit result without adding a parallel recipe.
 
 ## Completed Foundation
 
-- [x] Ship nine complete light and dark v2 families with semantic mappings,
-  licensed fonts, assets, recipes, and generated platform output.
-- [x] Own canonical product tokens, components, fonts, semantic icons, assets,
-  catalog data, and synchronized generated output.
-- [x] Keep Theme behavior in AppScreen while sharing one portable renderer and
-  complete visual schema for first-party and user-authored themes.
-- [x] Own shared Background, text-editor, toolbar, Select, palette, cut-corner,
-  placement, snap-guide, resize-handle, and selection recipes.
-- [x] Own shared checkbox, numeric-field, status, popover, rotation-vector, and
-  device-pose overlay presentation for the accepted device toolbar.
+- [x] Ship nine complete light and dark v2 families with canonical tokens,
+  components, fonts, icons, assets, recipes, and generated platform output.
+- [x] Keep behavior in AppScreen while Themes owns shared editor presentation.
 
 ## Completed Background Scope Recipe
 
-- [x] Extend the shared Background editor with Project versus selected Screen or
-  Scene scope presentation.
-- [x] Share Theme, mode, and background controls across both scopes without
-  taking AppScreen mutation or persistence ownership.
-- [x] Keep Screens and Scenes on one reusable markup and style contract.
-- [x] Reuse the existing semantic image action for the AppScreen Background
-  toolbar entry and hover help.
-- [x] Synchronize source, generated web output, documentation output, and tests.
+- [x] Share Project and selected-layout Background presentation across Screens
+  and Scenes without taking AppScreen mutation or persistence ownership.
+- [x] Reuse the semantic image action and synchronize every generated copy.
 - [x] Accept Themes `8d17e97` and AppScreen `8495618`.
 
 ## Completed Workspace Project Info Recipe
 
-- [x] Add one reusable `Project info` floating-window recipe for Screens and
-  Scenes with project name, selected-layout name, and read-only resolution.
-- [x] Reuse the canonical semantic settings icon, toolbar action, hover help,
-  window shell, form fields, and spacing recipes.
-- [x] Keep AppScreen selection, mutation, persistence, and sidebar ownership
-  outside Themes.
-- [x] Synchronize source, generated web output, documentation output, and tests.
+- [x] Share one `Project info` recipe, semantic settings action, fields, and
+  read-only resolution while AppScreen retains behavior and persistence.
 - [x] Accept Themes `a766904` and AppScreen `42f846a`.
 
 ## Completed Fixed Screen-Space Overlay Recipe
 
-- [x] Remove programmatic workspace focus paint from empty toolbar clicks.
-- [x] Define one zoom-compensated metric contract for every editor overlay.
-- [x] Standardize 1px dashed selection, placement, snap, region, and rotation
-  lines at every zoom level.
-- [x] Standardize solid 8px accent square handles without borders or radius.
-- [x] Standardize subdued rotation axes and flat 16px semantic rotation icons
-  without borders, backgrounds, or shadows.
-- [x] Replace AppScreen's duplicated scene-region and draw-overlay styling with
-  generic Themes-owned region recipes.
-- [x] Synchronize source, generated web output, documentation output, and tests.
+- [x] Keep every overlay on one zoom-compensated contract with 1px dashed lines,
+  8px square handles, and flat 16px semantic rotation icons.
+- [x] Replace duplicated consumer styling and synchronize every generated copy.
 - [x] Accept Themes `bbb236c` and AppScreen `615c022`.
+
+## Completed Stage 5 Comparison Recipe Audit
+
+- [x] Audit every Stage 5 consumer element before UI edits.
+- [x] Confirm the abstract comparison recipe owns every used element exactly.
+- [x] Keep source, generated web, and documentation copies byte-identical with
+  no speculative recipe addition or migration.
+
+## Completed Stage 6 Comparison Recipe Audit
+
+- [x] Audit every Stage 6 element against the exact comparison recipe first.
+- [x] Confirm no Themes recipe gap, migration, or file change was required.
+- [x] Preserve Themes ownership while AppScreen retained all lab behavior.
 
 ## Current Boundary
 
-- No further Themes or AppScreen implementation is selected.
-- Preserve every accepted editor recipe, project-info route, and paired
-  AppScreen behavior.
-- Push, deployment, publication, and activation remain user-owned.
+- Stages 2 through 6 passed in AppScreen; existing study recipes remain exact.
+- Stage 7 awaits explicit fresh-chat authorization. Later stages remain conditional.
+- Commit, push, deployment, publication, and activation remain user-owned.
