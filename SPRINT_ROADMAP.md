@@ -45,8 +45,15 @@
 - [x] Confirm no Themes recipe gap, migration, or file change was required.
 - [x] Preserve Themes ownership while AppScreen retained all lab behavior.
 
+## Completed Stage 7 Comparison Recipe Audit
+
+- [x] Audit the extended candidate rows and interactive two-renderer review
+  before every AppScreen UI edit.
+- [x] Confirm every element used an exact existing Themes recipe with no gap.
+- [x] Keep all renderer behavior and evidence in AppScreen with no Themes change.
+
 ## Current Boundary
 
-- Stages 2 through 6 passed in AppScreen; existing study recipes remain exact.
-- Stage 7 awaits explicit fresh-chat authorization. Later stages remain conditional.
+- Stages 2 through 7 passed in AppScreen; existing study recipes remain exact.
+- Stage 8 awaits explicit fresh-chat authorization. Stage 9 remains conditional.
 - Commit, push, deployment, publication, and activation remain user-owned.

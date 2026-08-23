@@ -91,20 +91,19 @@ Last verified: 2026-08-23
 ## Evidence and Acceptance Boundary
 
 - The owner accepted the complete paired editor baseline.
-- Themes project-info and Background checks pass 2/2 and its production build
-  passes.
-- The paired AppScreen focused batch passes 39/40. The sole failure is an
-  unrelated source-spelling assertion in untouched control-bar code. Its
-  production build and final `Background (B)` shortcut contract pass.
-- Stages 2 through 6 completed in AppScreen. The Stage 6 recipe audit passed
-  without a Themes change; Lean PBR 512 without glass remains selected.
+- Themes project-info and Background checks pass 2/2; its production build passes.
+- The paired AppScreen batch passes 39/40 with one unrelated old spelling assertion; its build and `Background (B)` contract pass.
+- Stages 2 through 7 completed in AppScreen using exact existing comparison recipes.
+- Stage 7 audits passed with the exact checksum and no Themes source or generated-output change.
+- Three.js Lean PBR 512 without glass is the accepted Stage 7 winner. Renderer
+  behavior, evidence, and the future efficiency audit remain AppScreen-owned.
 - Diagnostics remain quiet and the former 3 MB bundle gate remains retired.
 
 ## Next Boundary
 
 - Preserve the accepted project-info, Background, placement, text,
   project-resource, image, device, toolbar-focus, and fixed overlay recipes.
-- Stage 6 is complete. Stage 7 awaits explicit fresh-chat authorization.
-- Stages 8 and 9 plus production migration remain unauthorized.
-- Preserve the checksum-pinned Stage 6 audit and exact comparison recipe.
+- Stage 7 is complete. Stage 8 awaits explicit fresh-chat authorization.
+- Preserve the checksum-pinned Stage 5 through 7 audits and exact recipe.
+- Stage 9 and production migration remain unauthorized.
 - Do not add speculative UI recipes or perform external activation.
