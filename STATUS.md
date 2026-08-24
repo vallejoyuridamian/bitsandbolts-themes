@@ -93,9 +93,8 @@ Last verified: 2026-08-23
 - The owner accepted the complete paired editor baseline.
 - Themes project-info and Background checks pass 2/2; its production build passes.
 - The paired AppScreen batch passes 39/40 with one unrelated old spelling assertion; its build and `Background (B)` contract pass.
-- Stages 2 through 8 completed in AppScreen using exact existing comparison recipes.
-- The narrow Stage 8 audit passed with exact recipe ownership and no Themes source
-  or generated-output change.
+- AppScreen's first nine-body roster review failed. The replacement source-choice surface uses the new exact comparison-lab asset-gallery recipe plus existing button and choice recipes.
+- Themes source and generated copies are synchronized and the production build passes. AppScreen owner source choice remains pending, with zero admitted bodies.
 - Three.js Lean PBR 512 without glass, format decisions, measurements, and the
   completed integration audit remain AppScreen-owned.
 - Diagnostics remain quiet and the former 3 MB bundle gate remains retired.
@@ -104,7 +103,7 @@ Last verified: 2026-08-23
 
 - Preserve the accepted project-info, Background, placement, text,
   project-resource, image, device, toolbar-focus, and fixed overlay recipes.
-- Stage 8 is accepted. Preserve the checksum-pinned Stage 5 through 8 audits.
-- Reel 3 profiling is planned in AppScreen before migration and creates no current Themes work.
-- Stage 9 and production migration remain unauthorized.
+- Preserve the checksum-pinned Stage 5 through 8 audits and closed Stage 9 decisions.
+- AppScreen's deferred Preview steady-state and export audits create no current Themes work.
+- Production switchover remains false. Themes work begins only at a concrete recipe gap.
 - Do not add speculative UI recipes or perform external activation.

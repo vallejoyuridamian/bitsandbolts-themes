@@ -61,9 +61,11 @@
 
 ## Current Boundary
 
-- Stages 2 through 8 passed in AppScreen; existing study recipes remain exact.
-- AppScreen's future Reel 3 causal profiling is a conditional pre-migration gate,
-  not the automatic next task. It remains AppScreen logging and evidence work.
+- Stages 2 through 9 planning are closed in AppScreen; existing study recipes remain exact.
+- AppScreen's first nine-body review failed with 0 admitted bodies. Its complete
+  source-choice gallery now uses the exact Themes-owned asset-gallery recipe.
+- Themes source and generated output are synchronized. Owner source choice is
+  the active AppScreen boundary.
+- Preview steady state, exact export, and owner review outcomes remain AppScreen boundaries.
 - Themes participates only if an authorized future UI exposes a concrete recipe gap.
-- Stage 9 remains conditional and unauthorized.
 - Commit, push, deployment, publication, and activation remain user-owned.
