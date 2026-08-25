@@ -248,7 +248,7 @@
 }
 
 .bb-interface-action,
-.bb-interface-controls button:not(.theme-swatch),
+.bb-interface-controls button:not(.theme-swatch):not([data-bb-theme-control]),
 .bb-interface-controls .bb-select__trigger {
   transition:
     border-color var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing),
@@ -257,7 +257,7 @@
     text-shadow var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing);
 }
 
-.bb-interface-controls button:not(.theme-swatch),
+.bb-interface-controls button:not(.theme-swatch):not([data-bb-theme-control]),
 .bb-interface-controls .bb-select__trigger {
   border-color: transparent;
   color: var(--bb-interface-control-foreground);
@@ -271,7 +271,7 @@
 
 .bb-interface-action:is(:hover, :focus-visible):not(:disabled),
 .bb-interface-action:is([data-specimen-state="hover"], [data-specimen-state="focusVisible"]):not(:disabled),
-.bb-interface-controls button:not(.theme-swatch):is(:hover, :focus-visible):not(:disabled),
+.bb-interface-controls button:not(.theme-swatch):not([data-bb-theme-control]):is(:hover, :focus-visible):not(:disabled),
 .bb-interface-controls .bb-select__trigger:is(:hover, :focus-visible):not(:disabled) {
   outline: none;
   border-color: transparent;
@@ -283,7 +283,7 @@
 }
 
 .bb-interface-action:is(:active, [aria-pressed="true"], [data-specimen-state="pressed"]):not(:disabled),
-.bb-interface-controls button:not(.theme-swatch):is(:active, .active, [aria-pressed="true"]):not(:disabled),
+.bb-interface-controls button:not(.theme-swatch):not([data-bb-theme-control]):is(:active, .active, [aria-pressed="true"]):not(:disabled),
 .bb-select:is(.is-open, [data-specimen-state="open"]) .bb-select__trigger:not(:disabled) {
   border-color: transparent;
   color: var(--bb-interface-control-hover-foreground);
@@ -293,7 +293,7 @@
 }
 
 .bb-interface-action:disabled,
-.bb-interface-controls button:not(.theme-swatch):disabled {
+.bb-interface-controls button:not(.theme-swatch):not([data-bb-theme-control]):disabled {
   color: var(--bb-interface-control-disabled-foreground);
   cursor: default;
   opacity: 0.42;
@@ -1080,7 +1080,7 @@ input.bb-workspace-control-input.bb-workspace-control-input[type="number"]:focus
 
 @media (prefers-reduced-motion: reduce) {
   .bb-interface-action,
-  .bb-interface-controls button:not(.theme-swatch),
+  .bb-interface-controls button:not(.theme-swatch):not([data-bb-theme-control]),
   .bb-interface-controls .bb-select__trigger,
   .bb-workspace-tab,
   .bb-workspace-control-button,

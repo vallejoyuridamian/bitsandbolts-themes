@@ -1,6 +1,6 @@
 # Bits and Bolts Themes: Status
 
-Last verified: 2026-08-23
+Last verified: 2026-08-25
 
 ## Current Truth
 
@@ -11,7 +11,7 @@ Last verified: 2026-08-23
   persistence, Guest state, interaction, rendering, and orchestration.
 - The accepted shared workspace project-info recipe is implementation `a766904`,
   paired with AppScreen implementation `42f846a`.
-- Nothing is pushed, deployed, published, or activated.
+- The compact Theme checkpoint is owner-accepted. Nothing is pushed or deployed.
 
 ## Preserved Shared Editor Recipes
 
@@ -91,19 +91,20 @@ Last verified: 2026-08-23
 ## Evidence and Acceptance Boundary
 
 - The owner accepted the complete paired editor baseline.
-- Themes project-info and Background checks pass 2/2; its production build passes.
-- The paired AppScreen batch passes 39/40 with one unrelated old spelling assertion; its build and `Background (B)` contract pass.
-- AppScreen's first nine-body roster review failed. The replacement source-choice surface uses the new exact comparison-lab asset-gallery recipe plus existing button and choice recipes.
-- Themes source and generated copies are synchronized and the production build passes. AppScreen owner source choice remains pending, with zero admitted bodies.
-- Three.js Lean PBR 512 without glass, format decisions, measurements, and the
-  completed integration audit remain AppScreen-owned.
-- Diagnostics remain quiet and the former 3 MB bundle gate remains retired.
+- The compact Theme recipe owns flexible auto-fit columns with rendered-font
+  two-column sizing, full names, equal swatches, hover clearance, and each
+  card's own Theme-defined hover depth. Generic interface effects are excluded.
+- Background uses this mount while AppScreen retains behavior and inheritance.
+- Existing Theme summary cards reuse the shared mode-toggle primitive.
+- Themes source, generated copies, and documentation are synchronized; its
+  production build and 47 focused AppScreen contracts pass.
+- AppScreen owner visual review is complete and accepted.
 
 ## Next Boundary
 
 - Preserve the accepted project-info, Background, placement, text,
   project-resource, image, device, toolbar-focus, and fixed overlay recipes.
-- Preserve the checksum-pinned Stage 5 through 8 audits and closed Stage 9 decisions.
-- AppScreen's deferred Preview steady-state and export audits create no current Themes work.
-- Production switchover remains false. Themes work begins only at a concrete recipe gap.
+- Preserve the accepted compact and full Theme cards while selection flows move
+  into owner-directed product use.
+- Further Themes work begins only from owner evidence or a concrete recipe gap.
 - Do not add speculative UI recipes or perform external activation.

@@ -1,4 +1,5 @@
 import { contentCardsMarkup } from './content-card.js';
+import { themeModeToggleMarkup } from './compact-theme-selector.js';
 import { spotlightMediaMarkup, storeBadgesMarkup } from './content-media.js';
 import { semanticActionButtonMarkup } from './button.js';
 import {
@@ -396,17 +397,14 @@ function themeSummaryCardMarkup(theme, mode) {
           ${themeSummaryIdentityMarkup(theme.v2.modes[mode])}
         </span>
       </button>
-      <button
-        class="bb-theme-summary-card__mode-toggle"
-        type="button"
-        data-theme-gallery-card-mode="${escapeHtml(theme.id)}"
-        aria-label="Switch ${escapeHtml(theme.label)} card to ${escapeHtml(nextMode)} preview"
-        title="Switch to ${escapeHtml(nextMode)} preview"
-      >
-        ${semanticIconMarkup(`${nextMode}_mode`, 'bb-theme-summary-card__mode-icon', {
-          family: 'bitsandbolts-theme'
-        })}
-      </button>
+      ${themeModeToggleMarkup({
+        attributes: { 'data-theme-gallery-card-mode': theme.id },
+        className: 'bb-theme-summary-card__mode-toggle',
+        currentMode: mode,
+        iconClass: 'bb-theme-summary-card__mode-icon',
+        label: `Switch ${theme.label} card to ${nextMode} preview`,
+        title: `Switch to ${nextMode} preview`
+      })}
     </article>
   `;
 }

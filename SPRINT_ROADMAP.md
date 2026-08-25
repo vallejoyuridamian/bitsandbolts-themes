@@ -32,40 +32,22 @@
 - [x] Replace duplicated consumer styling and synchronize every generated copy.
 - [x] Accept Themes `bbb236c` and AppScreen `615c022`.
 
-## Completed Stage 5 Comparison Recipe Audit
+## Completed Stage 5 Through 8 Audits
 
-- [x] Audit every Stage 5 consumer element before UI edits.
-- [x] Confirm the abstract comparison recipe owns every used element exactly.
-- [x] Keep source, generated web, and documentation copies byte-identical with
-  no speculative recipe addition or migration.
+- [x] Audit every comparison consumer before UI edits and confirm its exact
+  Themes-owned recipe without adding speculative presentation.
+- [x] Keep renderer behavior, measurements, and evidence in AppScreen.
 
-## Completed Stage 6 Comparison Recipe Audit
+## Completed Compact Theme Recipe
 
-- [x] Audit every Stage 6 element against the exact comparison recipe first.
-- [x] Confirm no Themes recipe gap, migration, or file change was required.
-- [x] Preserve Themes ownership while AppScreen retained all lab behavior.
-
-## Completed Stage 7 Comparison Recipe Audit
-
-- [x] Audit the extended candidate rows and interactive two-renderer review
-  before every AppScreen UI edit.
-- [x] Confirm every element used an exact existing Themes recipe with no gap.
-- [x] Keep all renderer behavior and evidence in AppScreen with no Themes change.
-
-## Completed Stage 8 Comparison Recipe Audit
-
-- [x] Audit every Stage 8 element before AppScreen consumer edits.
-- [x] Confirm every element used the exact existing comparison recipe.
-- [x] Keep format behavior, measurement, evidence, and ownership in AppScreen
-  with no Themes source or generated-output change.
-
+- [x] Owner-validate the compact Theme card and picker now used by AppScreen New
+  Project and Background.
+- [x] Own the compact typography, identity swatches, Theme shape, hover depth,
+  semantic mode toggle, picker layout, and generated copies.
+- [x] Keep picker behavior, Theme state, inheritance, and persistence in AppScreen.
+- [x] Reuse the mode-toggle primitive without changing the full Theme card role.
 ## Current Boundary
 
-- Stages 2 through 9 planning are closed in AppScreen; existing study recipes remain exact.
-- AppScreen's first nine-body review failed with 0 admitted bodies. Its complete
-  source-choice gallery now uses the exact Themes-owned asset-gallery recipe.
-- Themes source and generated output are synchronized. Owner source choice is
-  the active AppScreen boundary.
-- Preview steady state, exact export, and owner review outcomes remain AppScreen boundaries.
-- Themes participates only if an authorized future UI exposes a concrete recipe gap.
-- Commit, push, deployment, publication, and activation remain user-owned.
+- Preview, export, and owner interaction remain AppScreen boundaries.
+- Further Themes work requires owner evidence or a concrete recipe gap.
+- Push, deployment, publication, and activation remain user-owned.

@@ -31,8 +31,6 @@ export function backgroundEditorMarkup({
   showScope = false,
   showInherit = true
 } = {}) {
-  const themeId = controlId(id, 'theme');
-  const themeModeId = controlId(id, 'theme-mode');
   const modeId = controlId(id, 'mode');
   const orientationId = controlId(id, 'orientation');
   const themeColorsId = controlId(id, 'theme-colors');
@@ -54,16 +52,7 @@ export function backgroundEditorMarkup({
     : '';
   return `<div class="bb-background-editor bb-interface-controls${presentationClass}" data-bb-background-editor>
     ${scope}
-    <div class="bb-background-editor__theme-row">
-      <div class="bb-field">
-        <label class="bb-field__label" for="${themeId}">Theme</label>
-        <select id="${themeId}" class="bb-field__input" data-bb-background-editor-role="theme-name"></select>
-      </div>
-      <div class="bb-field">
-        <label class="bb-field__label" for="${themeModeId}">Theme mode</label>
-        <select id="${themeModeId}" class="bb-field__input" data-bb-background-editor-role="theme-mode"></select>
-      </div>
-    </div>
+    <div class="bb-background-editor__theme" data-bb-background-editor-role="theme-control"></div>
     ${inherit}
     <div class="bb-field">
       <label class="bb-field__label" for="${modeId}">Background</label>

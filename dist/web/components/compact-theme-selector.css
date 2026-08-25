@@ -1,0 +1,217 @@
+/*
+ * Canonical compact Theme selection and picker presentation.
+ * Consumers own selection, mode mutation, persistence, and window state.
+ */
+
+.bb-theme-mode-toggle {
+  all: unset;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  min-width: 32px;
+  max-width: 32px;
+  height: 32px;
+  min-height: 32px;
+  max-height: 32px;
+  aspect-ratio: 1;
+  box-sizing: border-box;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--bb-theme-mode-toggle-background, var(--bb-v2-identity-accent));
+  border-radius: 50%;
+  color: var(--bb-theme-mode-toggle-foreground, var(--bb-v2-identity-accent-foreground));
+  background: var(--bb-theme-mode-toggle-background, var(--bb-v2-identity-accent));
+  cursor: pointer;
+  line-height: 0;
+}
+
+.bb-theme-mode-toggle:is(:hover, :focus-visible) {
+  border-color: var(--bb-theme-mode-toggle-background, var(--bb-v2-identity-accent));
+  background: var(--bb-theme-mode-toggle-background, var(--bb-v2-identity-accent));
+  outline: none;
+  box-shadow: none;
+}
+
+.bb-theme-mode-toggle:active {
+  box-shadow: none;
+}
+
+.bb-theme-mode-toggle:focus-visible {
+  outline: 2px solid var(--bb-theme-mode-toggle-background, var(--bb-v2-identity-accent));
+  outline-offset: 2px;
+}
+
+.bb-theme-mode-toggle__icon {
+  display: none;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+}
+
+.bb-theme-mode-toggle[data-bb-theme-mode-target="light"] [data-bb-theme-mode-icon="light"],
+.bb-theme-mode-toggle[data-bb-theme-mode-target="dark"] [data-bb-theme-mode-icon="dark"] {
+  display: grid;
+}
+
+.bb-theme-mode-toggle__glyph,
+.bb-theme-mode-toggle__icon .bb-semantic-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.bb-compact-theme-field {
+  display: grid;
+  gap: var(--bb-spacing-2);
+  min-width: 0;
+  margin: 0;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.bb-compact-theme-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  min-width: 0;
+  min-height: 58px;
+  overflow: hidden;
+  border: 1px solid var(--bb-v2-color-border-default);
+  border-radius: var(--bb-v2-button-shape-radius);
+  color: var(--bb-v2-color-content-primary);
+  background: var(--bb-compact-theme-neutral, var(--bb-v2-color-surface-surface));
+  box-shadow: none;
+  font-family: var(--bb-v2-font-family-primary);
+  transition:
+    border-color var(--bb-v2-button-transition-duration) var(--bb-v2-button-transition-easing),
+    box-shadow var(--bb-v2-button-transition-duration) var(--bb-v2-button-transition-easing),
+    transform var(--bb-v2-button-transition-duration) var(--bb-v2-button-transition-easing);
+}
+
+.bb-compact-theme-card:hover {
+  border-color: var(--bb-v2-color-border-strong);
+  box-shadow: var(--bb-v2-button-depth-hover);
+  transform: translateY(-2px);
+}
+
+.bb-compact-theme-card__select {
+  display: flex;
+  align-items: center;
+  gap: var(--bb-spacing-3);
+  min-width: 0;
+  min-height: 56px;
+  padding: var(--bb-spacing-3);
+  border: 0;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.bb-compact-theme-card__select:focus-visible {
+  outline: 2px solid var(--bb-v2-color-border-focus-ring);
+  outline-offset: -3px;
+}
+
+.bb-compact-theme-card__name {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--bb-v2-color-content-primary);
+  font-family: var(--bb-v2-type-display-large-family);
+  font-size: var(--bb-v2-type-title-font-size);
+  font-weight: var(--bb-theme-typography-signature-font-weight, var(--bb-v2-type-display-large-font-weight));
+  font-style: var(--bb-theme-typography-signature-font-style, normal);
+  line-height: var(--bb-v2-type-title-line-height);
+  text-overflow: ellipsis;
+  text-decoration: var(--bb-theme-typography-signature-text-decoration, none);
+  white-space: nowrap;
+}
+
+.bb-compact-theme-card__swatches {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--bb-spacing-1);
+  min-width: 0;
+}
+
+.bb-compact-theme-card__swatch {
+  display: block;
+  box-sizing: border-box;
+  width: 16px;
+  min-width: 16px;
+  max-width: 16px;
+  height: 16px;
+  min-height: 16px;
+  max-height: 16px;
+  border: 1px solid color-mix(in srgb, var(--bb-v2-color-content-primary) 18%, transparent);
+  border-radius: var(--bb-v2-button-shape-radius);
+  background: var(--bb-compact-theme-swatch);
+  box-shadow: none;
+  clip-path: polygon(
+    var(--bb-v2-button-shape-cut) 0,
+    100% 0,
+    100% calc(100% - var(--bb-v2-button-shape-cut)),
+    calc(100% - var(--bb-v2-button-shape-cut)) 100%,
+    0 100%,
+    0 var(--bb-v2-button-shape-cut)
+  );
+}
+
+.bb-compact-theme-card__mode-toggle {
+  flex: 0 0 auto;
+  margin-inline-end: var(--bb-spacing-3);
+  --bb-theme-mode-toggle-background: var(--bb-theme-summary-card-accent, var(--bb-v2-identity-accent));
+  --bb-theme-mode-toggle-foreground: var(--bb-theme-summary-card-on-accent, var(--bb-v2-identity-accent-foreground));
+}
+
+.bb-compact-theme-picker {
+  --bb-compact-theme-card-min-inline-size: var(--bb-floating-window-grid-item-min-inline-size, 280px);
+  grid-template-rows: auto minmax(0, 1fr);
+  min-width: 0;
+  min-height: 100%;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.bb-compact-theme-picker__head {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) 18px;
+  gap: var(--bb-spacing-2);
+}
+
+.bb-compact-theme-picker__head::after {
+  width: 18px;
+  content: "";
+}
+
+.bb-compact-theme-picker__head .bb-floating-window-content__title {
+  grid-column: 2;
+}
+
+.bb-compact-theme-picker__back {
+  grid-column: 1;
+}
+
+.bb-compact-theme-picker__body {
+  min-width: 0;
+  padding: var(--bb-spacing-2) var(--bb-spacing-3) var(--bb-spacing-3);
+}
+
+.bb-compact-theme-picker__grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, var(--bb-compact-theme-card-min-inline-size)), 1fr)
+  );
+  align-items: start;
+  gap: var(--bb-spacing-3);
+  min-width: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bb-compact-theme-card {
+    transition-duration: var(--bb-v2-button-reduced-duration);
+  }
+}
