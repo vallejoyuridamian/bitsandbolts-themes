@@ -1,6 +1,6 @@
 # Bits and Bolts Themes: Status
 
-Last verified: 2026-08-25
+Last verified: 2026-08-27
 
 ## Current Truth
 
@@ -67,8 +67,8 @@ Last verified: 2026-08-25
 
 - Programmatically focused workspace surfaces do not paint a white container
   outline when the user clicks empty toolbar space.
-- One shared zoom-compensated recipe keeps dashed lines at 1px, square handles at
-  8px, axes subdued, and semantic rotation icons flat at 16px.
+- One shared zoom-compensated recipe keeps dashed lines at 1px, square handles at 8px,
+  axes subdued, rotation icons flat at 16px, and text drawing feedback canonical.
 - AppScreen owns zoom and interaction. Themes owns presentation.
 
 ## Accepted Paired AppScreen Result

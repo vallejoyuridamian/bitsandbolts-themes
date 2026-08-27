@@ -27,8 +27,8 @@
 
 ## Completed Fixed Screen-Space Overlay Recipe
 
-- [x] Keep every overlay on one zoom-compensated contract with 1px dashed lines,
-  8px square handles, and flat 16px semantic rotation icons.
+- [x] Keep overlays and text drawing feedback on one zoom-compensated contract
+  with 1px dashed lines, 8px square handles, and flat 16px rotation icons.
 - [x] Replace duplicated consumer styling and synchronize every generated copy.
 - [x] Accept Themes `bbb236c` and AppScreen `615c022`.
 

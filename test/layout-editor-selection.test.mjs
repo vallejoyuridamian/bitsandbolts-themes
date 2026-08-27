@@ -44,6 +44,9 @@ test('layout editor overlays use compact screen-space metrics across shared reci
   assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-region-box/);
   assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-region-handle/);
   assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-draw-box/);
+  assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-draw-layer--text/);
+  assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-draw-box--text/);
+  assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-draw-handle/);
   assert.match(layoutEditorRegionOverlayStyles, new RegExp(zoomProperty));
   assert.match(layoutEditorResizeHandleResetStyles, /box-sizing:border-box/);
   assert.match(layoutEditorResizeHandleResetStyles, /min-width:0/);

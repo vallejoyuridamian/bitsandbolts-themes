@@ -84,6 +84,13 @@ export const layoutEditorRegionOverlayStyles = `
 .bb-layout-editor-draw-layer{position:absolute;inset:0;z-index:180;cursor:crosshair;background:transparent;pointer-events:auto}
 .bb-layout-editor-draw-box{position:absolute;box-sizing:border-box;border:0;outline:${layoutEditorSelectionRecipe.outlineWidth} ${layoutEditorSelectionRecipe.outlineStyle} ${layoutEditorSelectionRecipe.alternateSignalColor};outline-offset:0;background:transparent;pointer-events:none}
 .bb-layout-editor-draw-box--tinted{background:rgb(18 230 213 / 8%);visibility:hidden}
+.bb-layout-editor-draw-layer--text{cursor:text}
+.bb-layout-editor-draw-box--text{outline-color:${layoutEditorSelectionRecipe.signalColor}}
+.bb-layout-editor-draw-handle{${layoutEditorResizeHandleResetStyles};position:absolute;width:${layoutEditorSelectionRecipe.resizeHandleSize};height:${layoutEditorSelectionRecipe.resizeHandleSize};border:${layoutEditorSelectionRecipe.resizeHandleBorder};border-radius:${layoutEditorSelectionRecipe.resizeHandleBorderRadius};background:${layoutEditorSelectionRecipe.resizeHandleBackground};pointer-events:none}
+.bb-layout-editor-draw-handle[data-corner="nw"]{top:${layoutEditorSelectionRecipe.resizeHandleOffset};left:${layoutEditorSelectionRecipe.resizeHandleOffset}}
+.bb-layout-editor-draw-handle[data-corner="ne"]{top:${layoutEditorSelectionRecipe.resizeHandleOffset};right:${layoutEditorSelectionRecipe.resizeHandleOffset}}
+.bb-layout-editor-draw-handle[data-corner="sw"]{bottom:${layoutEditorSelectionRecipe.resizeHandleOffset};left:${layoutEditorSelectionRecipe.resizeHandleOffset}}
+.bb-layout-editor-draw-handle[data-corner="se"]{right:${layoutEditorSelectionRecipe.resizeHandleOffset};bottom:${layoutEditorSelectionRecipe.resizeHandleOffset}}
 `;
 
 export function layoutEditorRotationIconMarkup() {
