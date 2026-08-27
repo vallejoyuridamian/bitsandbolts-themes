@@ -4,7 +4,7 @@
 
 - Preserve Themes as the visual owner across every Bits and Bolts product.
 - Keep AppScreen behavior in AppScreen while sharing exact presentation recipes.
-- Preserve the accepted Stage 6 audit result without adding a parallel recipe.
+- Preserve the owner-accepted Master Stage Phase 4 hull without a parallel recipe.
 
 ## Completed Foundation
 
@@ -31,6 +31,9 @@
   with 1px dashed lines, 8px square handles, and flat 16px rotation icons.
 - [x] Replace duplicated consumer styling and synchronize every generated copy.
 - [x] Accept Themes `bbb236c` and AppScreen `615c022`.
+- [x] Add one shared chrome plane so retained text, image, Device, generic, and
+  future hull hosts paint above consumer element content.
+- [x] Accept the paired AppScreen Phase 4 owner checkpoint and final healthy log.
 
 ## Completed Stage 5 Through 8 Audits
 

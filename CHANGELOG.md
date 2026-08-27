@@ -4,6 +4,26 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-27) - Master Stage Phase 4 hull accepted
+
+### What changed
+- Added one retained layout-editor hull recipe for hover and selection across
+  text, images, Devices, generic regions, and future spatial element kinds.
+- Kept the hull path, line weight, corner handles, rotation controls, and native
+  resize pointer on one shared presentation contract.
+- Added one shared chrome plane so hulls and handles paint above overlapping
+  consumer element content without product-local stacking rules.
+- Synchronized source, generated web output, documentation output, and focused
+  contract coverage.
+
+### Acceptance and boundary
+- Focused Themes checks pass 3/3 and paired AppScreen Phase 4 validation passes.
+- The owner accepted the complete Phase 4 editor result and its final AppScreen
+  diagnostic audit is fully healthy.
+- Phase 5 remains an AppScreen behavior and renderer migration. Further Themes
+  work requires a concrete recipe gap. Nothing was pushed, deployed, published,
+  or activated.
+
 ## Session wrap-up (2026-08-22) - Workspace project info accepted
 
 ### What changed

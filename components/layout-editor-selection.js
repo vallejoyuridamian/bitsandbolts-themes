@@ -7,9 +7,12 @@ export const layoutEditorSelectionRecipe = Object.freeze({
   signalColor: '#ff5a5f',
   alternateSignalColor: '#12e6d5',
   mutedSignalColor: 'rgba(255,90,95,.65)',
+  chromeZIndex: '2147483000',
   zoomCompensationProperty: overlayZoomCompensationProperty,
   outlineWidth: overlayMetric(1),
   outlineStyle: 'dashed',
+  outlineDashLength: overlayMetric(3),
+  outlineDashGap: overlayMetric(3),
   outlineOffset: '0',
   selectedTextOutlineOffset: '0',
   guideOpacity: '.92',
@@ -24,6 +27,7 @@ export const layoutEditorSelectionRecipe = Object.freeze({
     border: '1px dashed #ff5a5f',
     contentBorder: `${overlayMetric(1)} solid transparent`,
     background: 'rgba(255, 90, 95, 0.08)',
+    hullFill: 'rgba(255,90,95,.12)',
     outerBackground: 'transparent',
     fallbackColor: '#ffffff',
     fallbackFontFamily: 'var(--bb-font-family-body, sans-serif)',
@@ -70,13 +74,17 @@ export const layoutEditorSelectionRotationStyles = `
 `;
 
 export const layoutEditorRegionOverlayStyles = `
-.bb-layout-editor-region-box{--bb-layout-editor-region-accent:${layoutEditorSelectionRecipe.signalColor};position:absolute;z-index:175;box-sizing:border-box;outline:${layoutEditorSelectionRecipe.outlineWidth} ${layoutEditorSelectionRecipe.outlineStyle} transparent;outline-offset:0;background:transparent;cursor:default;pointer-events:none}
-.bb-layout-editor-region-box.bb-layout-editor-region-box--alternate{--bb-layout-editor-region-accent:${layoutEditorSelectionRecipe.alternateSignalColor}}
-.bb-layout-editor-region-box.spatial-hovered,.bb-layout-editor-region-box.selected{outline-color:var(--bb-layout-editor-region-accent)}
+.bb-layout-editor-chrome{z-index:${layoutEditorSelectionRecipe.chromeZIndex}}
+.bb-layout-editor-hull{--bb-layout-editor-region-accent:${layoutEditorSelectionRecipe.signalColor}}
+.bb-layout-editor-hull.bb-layout-editor-hull--alternate,.bb-layout-editor-region-box.bb-layout-editor-region-box--alternate{--bb-layout-editor-region-accent:${layoutEditorSelectionRecipe.alternateSignalColor}}
+.bb-layout-editor-hull-outline{position:absolute;inset:0;width:100%;height:100%;overflow:visible;visibility:hidden;pointer-events:none}
+.bb-layout-editor-hull:is(.spatial-hovered,.selected,.spatial-preview)>.bb-layout-editor-hull-outline{visibility:visible}
+.bb-layout-editor-hull-outline>.bb-layout-editor-hull-shape{fill:none;stroke:var(--bb-layout-editor-region-accent);stroke-width:${layoutEditorSelectionRecipe.outlineWidth};stroke-dasharray:${layoutEditorSelectionRecipe.outlineDashLength} ${layoutEditorSelectionRecipe.outlineDashGap};stroke-linecap:butt;vector-effect:non-scaling-stroke}
+.bb-layout-editor-region-box{position:absolute;z-index:175;box-sizing:border-box;outline:0;background:transparent;cursor:default;pointer-events:none}
 .bb-layout-editor-region-box.spatial-interactive{cursor:move;pointer-events:auto}
 .bb-layout-editor-region-box[data-layout-region-interactive="false"]{pointer-events:none}
 .bb-layout-editor-region-handle{${layoutEditorResizeHandleResetStyles};position:absolute;width:${layoutEditorSelectionRecipe.resizeHandleSize};height:${layoutEditorSelectionRecipe.resizeHandleSize};border:${layoutEditorSelectionRecipe.resizeHandleBorder};border-radius:${layoutEditorSelectionRecipe.resizeHandleBorderRadius};background:var(--bb-layout-editor-region-accent);visibility:hidden;pointer-events:none}
-.bb-layout-editor-region-box.selected>.bb-layout-editor-region-handle{visibility:visible;pointer-events:auto}
+.bb-layout-editor-hull.selected>.bb-layout-editor-region-handle{visibility:visible;pointer-events:auto}
 .bb-layout-editor-region-handle[data-corner="nw"]{top:${layoutEditorSelectionRecipe.resizeHandleOffset};left:${layoutEditorSelectionRecipe.resizeHandleOffset};cursor:nwse-resize}
 .bb-layout-editor-region-handle[data-corner="ne"]{top:${layoutEditorSelectionRecipe.resizeHandleOffset};right:${layoutEditorSelectionRecipe.resizeHandleOffset};cursor:nesw-resize}
 .bb-layout-editor-region-handle[data-corner="sw"]{bottom:${layoutEditorSelectionRecipe.resizeHandleOffset};left:${layoutEditorSelectionRecipe.resizeHandleOffset};cursor:nesw-resize}

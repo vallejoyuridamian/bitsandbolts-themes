@@ -11,7 +11,7 @@ Last verified: 2026-08-27
   persistence, Guest state, interaction, rendering, and orchestration.
 - The accepted shared workspace project-info recipe is implementation `a766904`,
   paired with AppScreen implementation `42f846a`.
-- The compact Theme checkpoint is owner-accepted. Nothing is pushed or deployed.
+- The compact Theme and Phase 4 hull checkpoints are accepted; nothing is pushed or deployed.
 
 ## Preserved Shared Editor Recipes
 
@@ -96,9 +96,9 @@ Last verified: 2026-08-27
   card's own Theme-defined hover depth. Generic interface effects are excluded.
 - Background uses this mount while AppScreen retains behavior and inheritance.
 - Existing Theme summary cards reuse the shared mode-toggle primitive.
-- Themes source, generated copies, and documentation are synchronized; its
-  production build and 47 focused AppScreen contracts pass.
-- AppScreen owner visual review is complete and accepted.
+- Themes source, generated copies, and docs are synchronized. The hull recipe gives
+  every shape one path, preserves the resize pointer, and owns one chrome plane.
+- Focused recipe checks pass 3/3; paired AppScreen visual acceptance is complete.
 
 ## Next Boundary
 
@@ -106,5 +106,5 @@ Last verified: 2026-08-27
   project-resource, image, device, toolbar-focus, and fixed overlay recipes.
 - Preserve the accepted compact and full Theme cards while selection flows move
   into owner-directed product use.
-- Further Themes work begins only from owner evidence or a concrete recipe gap.
+- Further Themes work requires a concrete recipe gap; preserve the accepted hull during AppScreen Phase 5.
 - Do not add speculative UI recipes or perform external activation.

@@ -24,6 +24,7 @@ test('layout editor overlays use compact screen-space metrics across shared reci
   const zoomProperty = layoutEditorSelectionRecipe.zoomCompensationProperty;
 
   assert.equal(zoomProperty, '--bb-layout-editor-overlay-zoom-compensation');
+  assert.equal(layoutEditorSelectionRecipe.chromeZIndex, '2147483000');
   assert.match(layoutEditorSelectionRecipe.outlineWidth, /calc\(1px/);
   assert.match(layoutEditorSelectionRecipe.resizeHandleSize, /calc\(8px/);
   assert.equal(layoutEditorSelectionRecipe.resizeHandleBorder, '0');
@@ -42,12 +43,17 @@ test('layout editor overlays use compact screen-space metrics across shared reci
   assert.match(layoutEditorSelectionRotationStyles, /width:calc\(16px \* var\(--bb-layout-editor-overlay-zoom-compensation, 1\)\);height:calc\(16px \* var\(--bb-layout-editor-overlay-zoom-compensation, 1\)\)/);
   assert.doesNotMatch(layoutEditorSelectionRotationStyles, /drop-shadow/);
   assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-region-box/);
+  assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-chrome\{z-index:2147483000\}/);
+  assert.doesNotMatch(layoutEditorRegionOverlayStyles, /cursor:none|resize-pointer-active/);
+  assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-hull-outline/);
+  assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-hull-shape/);
   assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-region-handle/);
   assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-draw-box/);
   assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-draw-layer--text/);
   assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-draw-box--text/);
   assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-draw-handle/);
   assert.match(layoutEditorRegionOverlayStyles, new RegExp(zoomProperty));
+  assert.match(layoutEditorRegionOverlayStyles, /stroke-dasharray:/);
   assert.match(layoutEditorResizeHandleResetStyles, /box-sizing:border-box/);
   assert.match(layoutEditorResizeHandleResetStyles, /min-width:0/);
   assert.match(layoutEditorResizeHandleResetStyles, /padding:0/);
@@ -55,6 +61,7 @@ test('layout editor overlays use compact screen-space metrics across shared reci
   assert.match(layoutEditorRegionOverlayStyles, /layout-editor-region-handle\{display:block;box-sizing:border-box/);
   assert.match(layoutEditorRegionOverlayStyles, /border-radius:0/);
   assert.match(layoutEditorRegionOverlayStyles, /background:var\(--bb-layout-editor-region-accent\)/);
+  assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-hull\.selected>\.bb-layout-editor-region-handle/);
   assert.doesNotMatch(layoutEditorRegionOverlayStyles, /22px|4px dashed/);
 });
 
