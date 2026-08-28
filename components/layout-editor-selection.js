@@ -42,6 +42,12 @@ export const layoutEditorSelectionRecipe = Object.freeze({
 
 export const layoutEditorResizeHandleResetStyles = 'display:block;box-sizing:border-box;min-width:0;min-height:0;max-width:none;max-height:none;margin:0;padding:0;overflow:hidden;-webkit-appearance:none;appearance:none;box-shadow:none;font-size:0;line-height:0';
 
+export const layoutEditorSnapGuideStyles = `
+.bb-layout-editor-snap-guide{position:absolute;z-index:19;pointer-events:none;border-color:${layoutEditorSelectionRecipe.signalColor};opacity:${layoutEditorSelectionRecipe.guideOpacity}}
+.bb-layout-editor-snap-guide--vertical{top:0;bottom:0;border-left:${layoutEditorSelectionRecipe.outlineWidth} ${layoutEditorSelectionRecipe.outlineStyle} ${layoutEditorSelectionRecipe.signalColor}}
+.bb-layout-editor-snap-guide--horizontal{left:0;right:0;border-top:${layoutEditorSelectionRecipe.outlineWidth} ${layoutEditorSelectionRecipe.outlineStyle} ${layoutEditorSelectionRecipe.signalColor}}
+`;
+
 export const layoutEditorSelectionRotationStyles = `
 .body-rotation-axis,.body-rotation-handle{position:absolute;border:0;padding:0;color:${layoutEditorSelectionRecipe.signalColor};background:transparent;pointer-events:auto}
 .body-rotation-axis::before{content:"";position:absolute;opacity:.36}

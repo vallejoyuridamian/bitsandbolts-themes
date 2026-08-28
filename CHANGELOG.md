@@ -4,6 +4,20 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-28) - Master Stage Phase 6 snap guides accepted
+
+### What changed
+- Added the shared layout-editor snap-guide recipe for horizontal and vertical
+  guides using the canonical selection signal color, opacity, outline, and zoom
+  compensation contract.
+- Synchronized source, generated web output, documentation output, and focused
+  recipe coverage.
+
+### Acceptance and boundary
+- AppScreen consumes this recipe through the shared parent-stage snap owner.
+- Phase 6 owner acceptance is complete. No push, deployment, publication,
+  admission, or activation occurred.
+
 ## Session wrap-up (2026-08-27) - Master Stage Phase 4 hull accepted
 
 ### What changed

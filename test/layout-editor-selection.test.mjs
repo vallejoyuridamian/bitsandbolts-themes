@@ -7,7 +7,8 @@ import {
   layoutEditorResizeHandleResetStyles,
   layoutEditorRotationIconMarkup,
   layoutEditorSelectionRecipe,
-  layoutEditorSelectionRotationStyles
+  layoutEditorSelectionRotationStyles,
+  layoutEditorSnapGuideStyles
 } from '../components/layout-editor-selection.js';
 
 test('layout editor selection owns rotation controls and their semantic vector', () => {
@@ -63,6 +64,13 @@ test('layout editor overlays use compact screen-space metrics across shared reci
   assert.match(layoutEditorRegionOverlayStyles, /background:var\(--bb-layout-editor-region-accent\)/);
   assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-hull\.selected>\.bb-layout-editor-region-handle/);
   assert.doesNotMatch(layoutEditorRegionOverlayStyles, /22px|4px dashed/);
+  assert.match(layoutEditorSnapGuideStyles, /\.bb-layout-editor-snap-guide/);
+  assert.match(layoutEditorSnapGuideStyles, /\.bb-layout-editor-snap-guide--vertical/);
+  assert.match(layoutEditorSnapGuideStyles, /\.bb-layout-editor-snap-guide--horizontal/);
+  assert.match(layoutEditorSnapGuideStyles, new RegExp(layoutEditorSelectionRecipe.signalColor));
+  assert.match(layoutEditorSnapGuideStyles, new RegExp(layoutEditorSelectionRecipe.guideOpacity.replace('.', '\\.')));
+  assert.match(layoutEditorSnapGuideStyles, new RegExp(zoomProperty));
+  assert.doesNotMatch(layoutEditorSnapGuideStyles, /snap-guide-vertical|snap-guide-horizontal/);
 });
 
 test('programmatic workspace focus does not paint a surface overlay', async () => {
