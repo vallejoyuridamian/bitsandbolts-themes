@@ -684,15 +684,30 @@ for (const [family, roles] of Object.entries(SEMANTIC_ICON_FAMILIES)) {
       continue;
     }
     if (family !== FONT_AWESOME_FAMILY) throw new Error(`[semantic-icons] Unsupported build family: ${family}`);
-    const definition = fontAwesomeSolidIcons[exportName];
-    if (!definition?.icon || definition.prefix !== 'fas') {
-      throw new Error(`[semantic-icons] Missing Font Awesome Solid export ${exportName} for role ${role}.`);
-    }
-    const [width, height, , , rawPaths] = definition.icon;
-    const paths = (Array.isArray(rawPaths) ? rawPaths : [rawPaths])
-      .map((path) => `<path d="${path}"/>`)
-      .join('');
-    const fileName = `${definition.iconName}.svg`;
+    const exportNames = Array.isArray(exportName) ? exportName : [exportName];
+    const definitions = exportNames.map((providerExportName) => {
+      const definition = fontAwesomeSolidIcons[providerExportName];
+      if (!definition?.icon || definition.prefix !== 'fas') {
+        throw new Error(`[semantic-icons] Missing Font Awesome Solid export ${providerExportName} for role ${role}.`);
+      }
+      return definition;
+    });
+    const width = Math.max(...definitions.map((definition) => definition.icon[0]));
+    const height = Math.max(...definitions.map((definition) => definition.icon[1]));
+    const paths = definitions.map((definition) => {
+      const [iconWidth, iconHeight, , , rawPaths] = definition.icon;
+      const translatedX = (width - iconWidth) / 2;
+      const translatedY = (height - iconHeight) / 2;
+      const iconPaths = (Array.isArray(rawPaths) ? rawPaths : [rawPaths])
+        .map((path) => `<path d="${path}"/>`)
+        .join('');
+      return translatedX || translatedY
+        ? `<g transform="translate(${translatedX} ${translatedY})">${iconPaths}</g>`
+        : iconPaths;
+    }).join('');
+    const fileName = definitions.length === 1
+      ? `${definitions[0].iconName}.svg`
+      : `${role.replaceAll('_', '-')}.svg`;
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}">${paths}</svg>\n`;
     writeFileSync(join(FONT_AWESOME_DIST, fileName), svg);
     semanticIconCss.push(

@@ -40,6 +40,8 @@ export const SEMANTIC_ICON_FAMILIES = Object.freeze({
     lock: 'faLock',
     visibility: 'faEye',
     visibility_off: 'faEyeSlash',
+    magnet: 'faMagnet',
+    magnet_off: Object.freeze(['faMagnet', 'faSlash']),
     download: 'faDownload',
     add_photo_alternate: 'faImage',
     media_audio: 'faVolumeHigh',

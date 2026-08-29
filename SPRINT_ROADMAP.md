@@ -5,6 +5,7 @@
 - Preserve Themes as the visual owner across every Bits and Bolts product.
 - Keep AppScreen behavior in AppScreen while sharing exact presentation recipes.
 - Preserve the owner-accepted Master Stage Phase 4 hull without a parallel recipe.
+- Preserve the owner-accepted free-only semantic magnet and crossed-magnet roles.
 
 ## Completed Foundation
 

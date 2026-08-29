@@ -1,6 +1,6 @@
 # Bits and Bolts Themes: Status
 
-Last verified: 2026-08-27
+Last verified: 2026-08-29
 
 ## Current Truth
 
@@ -11,7 +11,7 @@ Last verified: 2026-08-27
   persistence, Guest state, interaction, rendering, and orchestration.
 - The accepted shared workspace project-info recipe is implementation `a766904`,
   paired with AppScreen implementation `42f846a`.
-- The compact Theme and Phase 4 hull checkpoints are accepted; nothing is pushed or deployed.
+- Compact Theme, Phase 4 hull, and free-only magnet roles are owner-accepted; nothing is pushed or deployed.
 
 ## Preserved Shared Editor Recipes
 
