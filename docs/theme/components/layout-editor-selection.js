@@ -8,6 +8,9 @@ export const layoutEditorSelectionRecipe = Object.freeze({
   alternateSignalColor: '#12e6d5',
   mutedSignalColor: 'rgba(255,90,95,.65)',
   chromeZIndex: '2147483000',
+  hoverChromeZIndex: '2147482999',
+  snapTargetChromeZIndex: '2147482998',
+  guideZIndex: '19',
   zoomCompensationProperty: overlayZoomCompensationProperty,
   outlineWidth: overlayMetric(1),
   outlineStyle: 'dashed',
@@ -40,12 +43,27 @@ export const layoutEditorSelectionRecipe = Object.freeze({
   resizeHandleBackground: '#ff5a5f'
 });
 
+export function applyLayoutEditorOverlayZoomCompensation(element, scale = 1) {
+  const numericScale = Number(scale);
+  const resolvedScale = Number.isFinite(numericScale) && numericScale > 0 ? numericScale : 1;
+  const compensation = 1 / resolvedScale;
+  element?.style?.setProperty?.(
+    layoutEditorSelectionRecipe.zoomCompensationProperty,
+    String(compensation)
+  );
+  return compensation;
+}
+
+const layoutEditorDashedLineBackground = (direction) => (
+  `repeating-linear-gradient(to ${direction},${layoutEditorSelectionRecipe.signalColor} 0 ${layoutEditorSelectionRecipe.outlineDashLength},transparent ${layoutEditorSelectionRecipe.outlineDashLength} calc(${layoutEditorSelectionRecipe.outlineDashLength} + ${layoutEditorSelectionRecipe.outlineDashGap}))`
+);
+
 export const layoutEditorResizeHandleResetStyles = 'display:block;box-sizing:border-box;min-width:0;min-height:0;max-width:none;max-height:none;margin:0;padding:0;overflow:hidden;-webkit-appearance:none;appearance:none;box-shadow:none;font-size:0;line-height:0';
 
 export const layoutEditorSnapGuideStyles = `
-.bb-layout-editor-snap-guide{position:absolute;z-index:19;pointer-events:none;border-color:${layoutEditorSelectionRecipe.signalColor};opacity:${layoutEditorSelectionRecipe.guideOpacity}}
-.bb-layout-editor-snap-guide--vertical{top:0;bottom:0;border-left:${layoutEditorSelectionRecipe.outlineWidth} ${layoutEditorSelectionRecipe.outlineStyle} ${layoutEditorSelectionRecipe.signalColor}}
-.bb-layout-editor-snap-guide--horizontal{left:0;right:0;border-top:${layoutEditorSelectionRecipe.outlineWidth} ${layoutEditorSelectionRecipe.outlineStyle} ${layoutEditorSelectionRecipe.signalColor}}
+.bb-layout-editor-snap-guide{position:absolute;z-index:${layoutEditorSelectionRecipe.guideZIndex};box-sizing:border-box;border:0;pointer-events:none;opacity:${layoutEditorSelectionRecipe.guideOpacity}}
+.bb-layout-editor-snap-guide--vertical{top:0;bottom:0;width:${layoutEditorSelectionRecipe.outlineWidth};transform:translateX(-50%);background:${layoutEditorDashedLineBackground('bottom')}}
+.bb-layout-editor-snap-guide--horizontal{left:0;right:0;height:${layoutEditorSelectionRecipe.outlineWidth};transform:translateY(-50%);background:${layoutEditorDashedLineBackground('right')}}
 `;
 
 export const layoutEditorSelectionRotationStyles = `
@@ -80,12 +98,16 @@ export const layoutEditorSelectionRotationStyles = `
 `;
 
 export const layoutEditorRegionOverlayStyles = `
-.bb-layout-editor-chrome{z-index:${layoutEditorSelectionRecipe.chromeZIndex}}
+.bb-layout-editor-chrome{z-index:${layoutEditorSelectionRecipe.hoverChromeZIndex}}
+.bb-layout-editor-hull.spatial-hovered{z-index:${layoutEditorSelectionRecipe.hoverChromeZIndex}}
+.bb-layout-editor-hull.snap-target{z-index:${layoutEditorSelectionRecipe.snapTargetChromeZIndex}}
+.bb-layout-editor-hull.selected{z-index:${layoutEditorSelectionRecipe.chromeZIndex}}
 .bb-layout-editor-hull{--bb-layout-editor-region-accent:${layoutEditorSelectionRecipe.signalColor}}
 .bb-layout-editor-hull.bb-layout-editor-hull--alternate,.bb-layout-editor-region-box.bb-layout-editor-region-box--alternate{--bb-layout-editor-region-accent:${layoutEditorSelectionRecipe.alternateSignalColor}}
 .bb-layout-editor-hull-outline{position:absolute;inset:0;width:100%;height:100%;overflow:visible;visibility:hidden;pointer-events:none}
-.bb-layout-editor-hull:is(.spatial-hovered,.selected,.spatial-preview)>.bb-layout-editor-hull-outline{visibility:visible}
+.bb-layout-editor-hull:is(.spatial-hovered,.selected,.spatial-preview,.snap-target)>.bb-layout-editor-hull-outline{visibility:visible}
 .bb-layout-editor-hull-outline>.bb-layout-editor-hull-shape{fill:none;stroke:var(--bb-layout-editor-region-accent);stroke-width:${layoutEditorSelectionRecipe.outlineWidth};stroke-dasharray:${layoutEditorSelectionRecipe.outlineDashLength} ${layoutEditorSelectionRecipe.outlineDashGap};stroke-linecap:butt;vector-effect:non-scaling-stroke}
+.bb-layout-editor-hull.snap-target>.bb-layout-editor-hull-outline>.bb-layout-editor-hull-shape{stroke-width:${layoutEditorSelectionRecipe.outlineWidth};vector-effect:none}
 .bb-layout-editor-region-box{position:absolute;z-index:175;box-sizing:border-box;outline:0;background:transparent;cursor:default;pointer-events:none}
 .bb-layout-editor-region-box.spatial-interactive{cursor:move;pointer-events:auto}
 .bb-layout-editor-region-box[data-layout-region-interactive="false"]{pointer-events:none}

@@ -31,6 +31,21 @@ export function floatingWindowPanelMarkup({
   return `<div class="bb-floating-window-content bb-floating-panel"${sizeAttribute} aria-labelledby="${heading.titleId}"${heading.describedBy}>${heading.headingMarkup}${heading.descriptionMarkup}<div class="bb-floating-window-content__body" data-bb-floating-window-content-body>${contentMarkup}</div></div>`;
 }
 
+export function floatingWindowRangeControlsMarkup({ fields = [] } = {}) {
+  const controls = (Array.isArray(fields) ? fields : []).map((field) => {
+    const id = escapeHtml(field?.id || 'bbFloatingRange');
+    const label = escapeHtml(field?.label || 'Value');
+    const max = escapeHtml(field?.max ?? 100);
+    const min = escapeHtml(field?.min ?? 0);
+    const name = escapeHtml(field?.name || 'value');
+    const step = escapeHtml(field?.step ?? 1);
+    const unit = escapeHtml(field?.unit || '');
+    const value = escapeHtml(field?.value ?? 0);
+    return `<label class="bb-floating-range-field" for="${id}"><span class="bb-floating-range-field__head"><span class="bb-floating-range-field__label">${label}</span><output class="bb-floating-range-field__value" for="${id}" data-bb-floating-range-output>${value}${unit}</output></span><input id="${id}" class="bb-floating-range-field__input" name="${name}" type="range" min="${min}" max="${max}" step="${step}" value="${value}" data-bb-floating-range-input></label>`;
+  }).join('');
+  return `<div class="bb-floating-range-controls" data-bb-floating-range-controls>${controls}</div>`;
+}
+
 export function floatingWindowFormMarkup({
   backLabel = 'Back',
   cancelDanger = false,
