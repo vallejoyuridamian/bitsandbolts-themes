@@ -55,6 +55,11 @@ export const SEMANTIC_ICON_FAMILIES = Object.freeze({
     format_align_left: 'faAlignLeft',
     format_align_center: 'faAlignCenter',
     format_align_right: 'faAlignRight',
+    align_viewport_horizontal: 'faArrowsLeftRightToLine',
+    align_viewport_vertical: Object.freeze({
+      exportName: 'faArrowsLeftRightToLine',
+      rotate: 90
+    }),
     arrow_selector_tool: 'faArrowPointer',
     content_cut: 'faScissors',
     flag: 'faFlag',

@@ -24,3 +24,30 @@ test('snap preferences use Themes-owned magnet and crossed-magnet semantic roles
   assert.match(crossedMagnet, /translate\(64 0\)/);
   assert.equal((crossedMagnet.match(/<path /g) ?? []).length, 2);
 });
+
+test('viewport centering controls use Themes-owned axis-specific semantic roles', async () => {
+  const roles = SEMANTIC_ICON_FAMILIES['font-awesome-solid'];
+  assert.equal(roles.align_viewport_horizontal, 'faArrowsLeftRightToLine');
+  assert.deepEqual(roles.align_viewport_vertical, {
+    exportName: 'faArrowsLeftRightToLine',
+    rotate: 90
+  });
+  assert.match(
+    semanticIconMarkup('align_viewport_horizontal'),
+    /data-bb-icon-role="align_viewport_horizontal"/
+  );
+  assert.match(
+    semanticIconMarkup('align_viewport_vertical'),
+    /data-bb-icon-role="align_viewport_vertical"/
+  );
+
+  const css = await readFile(new URL('../dist/web/components/semantic-icons.css', import.meta.url), 'utf8');
+  const vertical = await readFile(new URL(
+    '../dist/web/icons/font-awesome-solid/align-viewport-vertical.svg',
+    import.meta.url
+  ), 'utf8');
+  assert.match(css, /data-bb-icon-role="align_viewport_horizontal"/);
+  assert.match(css, /data-bb-icon-role="align_viewport_vertical"/);
+  assert.match(vertical, /viewBox="0 0 512 576"/);
+  assert.match(vertical, /matrix\(0 1 -1 0 512 0\)/);
+});

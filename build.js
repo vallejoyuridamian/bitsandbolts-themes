@@ -670,8 +670,9 @@ const semanticIconCss = [
 rmSync(FONT_AWESOME_DIST, { recursive: true, force: true });
 mkdirSync(FONT_AWESOME_DIST, { recursive: true });
 for (const [family, roles] of Object.entries(SEMANTIC_ICON_FAMILIES)) {
-  for (const [role, exportName] of Object.entries(roles)) {
+  for (const [role, exportValue] of Object.entries(roles)) {
     if (LOCAL_VECTOR_ICON_FAMILIES.has(family)) {
+      const exportName = exportValue;
       if (!/^[a-z0-9-]+\.svg$/.test(exportName) || !existsSync(join(ICONS_SRC, exportName))) {
         throw new Error(`[semantic-icons] Missing Themes-owned vector ${exportName} for role ${role}.`);
       }
@@ -684,7 +685,16 @@ for (const [family, roles] of Object.entries(SEMANTIC_ICON_FAMILIES)) {
       continue;
     }
     if (family !== FONT_AWESOME_FAMILY) throw new Error(`[semantic-icons] Unsupported build family: ${family}`);
-    const exportNames = Array.isArray(exportName) ? exportName : [exportName];
+    const descriptor = exportValue && typeof exportValue === 'object' && !Array.isArray(exportValue)
+      ? exportValue
+      : null;
+    const exportNames = Array.isArray(exportValue)
+      ? exportValue
+      : [descriptor?.exportName ?? exportValue];
+    const rotation = Number(descriptor?.rotate) || 0;
+    if (![0, 90].includes(rotation)) {
+      throw new Error(`[semantic-icons] Unsupported rotation ${rotation} for role ${role}.`);
+    }
     const definitions = exportNames.map((providerExportName) => {
       const definition = fontAwesomeSolidIcons[providerExportName];
       if (!definition?.icon || definition.prefix !== 'fas') {
@@ -705,10 +715,15 @@ for (const [family, roles] of Object.entries(SEMANTIC_ICON_FAMILIES)) {
         ? `<g transform="translate(${translatedX} ${translatedY})">${iconPaths}</g>`
         : iconPaths;
     }).join('');
-    const fileName = definitions.length === 1
+    const renderedWidth = rotation === 90 ? height : width;
+    const renderedHeight = rotation === 90 ? width : height;
+    const renderedPaths = rotation === 90
+      ? `<g transform="matrix(0 1 -1 0 ${height} 0)">${paths}</g>`
+      : paths;
+    const fileName = definitions.length === 1 && rotation === 0
       ? `${definitions[0].iconName}.svg`
       : `${role.replaceAll('_', '-')}.svg`;
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}">${paths}</svg>\n`;
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${renderedWidth} ${renderedHeight}">${renderedPaths}</svg>\n`;
     writeFileSync(join(FONT_AWESOME_DIST, fileName), svg);
     semanticIconCss.push(
       `.bb-semantic-icon[data-bb-icon-family="${family}"][data-bb-icon-role="${role}"] {`,

@@ -6,6 +6,7 @@
 - Keep AppScreen behavior in AppScreen while sharing exact presentation recipes.
 - Preserve the owner-accepted Master Stage Phase 4 hull without a parallel recipe.
 - Preserve the owner-accepted free-only semantic magnet and crossed-magnet roles.
+- Preserve the owner-accepted horizontal and vertical viewport-centering roles.
 
 ## Completed Foundation
 
@@ -50,6 +51,15 @@
   semantic mode toggle, picker layout, and generated copies.
 - [x] Keep picker behavior, Theme state, inheritance, and persistence in AppScreen.
 - [x] Reuse the mode-toggle primitive without changing the full Theme card role.
+
+## Completed Viewport Centering Roles
+
+- [x] Own `align_viewport_horizontal` and `align_viewport_vertical` provider
+  mappings for the AppScreen selected-element toolbar.
+- [x] Generate the vertical vector from the free solid provider through one
+  Themes-owned rotation descriptor, with source, dist, docs, and tests synchronized.
+- [x] Accept the paired AppScreen centering controls and focused 2/2 icon checks.
+
 ## Current Boundary
 
 - Preview, export, and owner interaction remain AppScreen boundaries.

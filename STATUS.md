@@ -11,7 +11,7 @@ Last verified: 2026-08-29
   persistence, Guest state, interaction, rendering, and orchestration.
 - The accepted shared workspace project-info recipe is implementation `a766904`,
   paired with AppScreen implementation `42f846a`.
-- Compact Theme, Phase 4 hull, and free-only magnet roles are owner-accepted; nothing is pushed or deployed.
+- Compact Theme, Phase 4 hull, magnet, and viewport-centering roles are accepted.
 
 ## Preserved Shared Editor Recipes
 
@@ -24,8 +24,8 @@ Last verified: 2026-08-29
   presentation without owning AppScreen behavior.
 - The text-editor floating-window variant remains removed while generic floating
   windows remain available to unrelated workflows.
-- The toolbar recipe retains compact geometry, hidden labels, semantic clipboard,
-  style and alignment controls, hover help, color popovers, and canonical Select.
+- The toolbar recipe retains compact geometry, semantic clipboard, text alignment,
+  viewport centering, hover help, color popovers, and canonical Select.
 - Project color Add and image Original retain the shared cut-corner recipes and
   semantic vector roles.
 - Every ordinary repeated Select receives its own trigger. Only explicitly marked
@@ -98,13 +98,13 @@ Last verified: 2026-08-29
 - Existing Theme summary cards reuse the shared mode-toggle primitive.
 - Themes source, generated copies, and docs are synchronized. The hull recipe gives
   every shape one path, preserves the resize pointer, and owns one chrome plane.
-- Focused recipe checks pass 3/3; paired AppScreen visual acceptance is complete.
+- Themes owns both viewport-centering roles and the bounded vertical rotation descriptor.
+- Viewport icon checks pass 2/2; paired AppScreen visual acceptance is complete.
 
 ## Next Boundary
 
 - Preserve the accepted project-info, Background, placement, text,
   project-resource, image, device, toolbar-focus, and fixed overlay recipes.
-- Preserve the accepted compact and full Theme cards while selection flows move
-  into owner-directed product use.
-- Further Themes work requires a concrete recipe gap; preserve the accepted hull during AppScreen Phase 5.
+- Preserve accepted compact and full Theme cards during owner-directed product use.
+- Further Themes work requires a concrete recipe gap; preserve accepted editor recipes.
 - Do not add speculative UI recipes or perform external activation.
