@@ -215,6 +215,42 @@
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/align-viewport-vertical.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="arrange"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/align-center.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="align_selection_left"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/align-left.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="align_selection_center_x"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/align-center.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="align_selection_right"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/align-right.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="align_selection_top"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/align-selection-top.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="align_selection_center_y"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/align-selection-center-y.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="align_selection_bottom"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/align-selection-bottom.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="distribute_horizontal"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/arrows-left-right.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="distribute_vertical"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/arrows-up-down.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="group"] {
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/object-group.svg");
 }

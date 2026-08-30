@@ -63,3 +63,57 @@ test('layout grouping controls use Themes-owned semantic roles', async () => {
   assert.match(css, /data-bb-icon-role="group"/);
   assert.match(css, /data-bb-icon-role="ungroup"/);
 });
+
+test('layout arrangement controls use axis-specific Themes-owned roles', async () => {
+  const roles = SEMANTIC_ICON_FAMILIES['font-awesome-solid'];
+  assert.equal(roles.arrange, 'faAlignCenter');
+  assert.equal(roles.align_selection_left, 'faAlignLeft');
+  assert.equal(roles.align_selection_center_x, 'faAlignCenter');
+  assert.equal(roles.align_selection_right, 'faAlignRight');
+  assert.deepEqual(roles.align_selection_top, { exportName: 'faAlignLeft', rotate: 90 });
+  assert.deepEqual(roles.align_selection_center_y, { exportName: 'faAlignCenter', rotate: 90 });
+  assert.deepEqual(roles.align_selection_bottom, { exportName: 'faAlignRight', rotate: 90 });
+  assert.equal(roles.distribute_horizontal, 'faArrowsLeftRight');
+  assert.equal(roles.distribute_vertical, 'faArrowsUpDown');
+
+  for (const role of [
+    'arrange',
+    'align_selection_left',
+    'align_selection_center_x',
+    'align_selection_right',
+    'align_selection_top',
+    'align_selection_center_y',
+    'align_selection_bottom',
+    'distribute_horizontal',
+    'distribute_vertical'
+  ]) {
+    assert.match(semanticIconMarkup(role), new RegExp(`data-bb-icon-role="${role}"`));
+  }
+
+  const css = await readFile(new URL('../dist/web/components/semantic-icons.css', import.meta.url), 'utf8');
+  for (const role of [
+    'arrange',
+    'align_selection_left',
+    'align_selection_center_x',
+    'align_selection_right',
+    'align_selection_top',
+    'align_selection_center_y',
+    'align_selection_bottom',
+    'distribute_horizontal',
+    'distribute_vertical'
+  ]) {
+    assert.match(css, new RegExp(`data-bb-icon-role="${role}"`));
+  }
+  for (const asset of [
+    'align-selection-top.svg',
+    'align-selection-center-y.svg',
+    'align-selection-bottom.svg'
+  ]) {
+    const svg = await readFile(new URL(
+      `../dist/web/icons/font-awesome-solid/${asset}`,
+      import.meta.url
+    ), 'utf8');
+    assert.match(svg, /viewBox="0 0 512 448"/);
+    assert.match(svg, /matrix\(0 1 -1 0 512 0\)/);
+  }
+});

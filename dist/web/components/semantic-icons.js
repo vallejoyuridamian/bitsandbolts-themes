@@ -60,6 +60,24 @@ export const SEMANTIC_ICON_FAMILIES = Object.freeze({
       exportName: 'faArrowsLeftRightToLine',
       rotate: 90
     }),
+    arrange: 'faAlignCenter',
+    align_selection_left: 'faAlignLeft',
+    align_selection_center_x: 'faAlignCenter',
+    align_selection_right: 'faAlignRight',
+    align_selection_top: Object.freeze({
+      exportName: 'faAlignLeft',
+      rotate: 90
+    }),
+    align_selection_center_y: Object.freeze({
+      exportName: 'faAlignCenter',
+      rotate: 90
+    }),
+    align_selection_bottom: Object.freeze({
+      exportName: 'faAlignRight',
+      rotate: 90
+    }),
+    distribute_horizontal: 'faArrowsLeftRight',
+    distribute_vertical: 'faArrowsUpDown',
     group: 'faObjectGroup',
     ungroup: 'faObjectUngroup',
     arrow_selector_tool: 'faArrowPointer',

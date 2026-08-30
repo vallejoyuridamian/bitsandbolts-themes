@@ -1,3 +1,4 @@
+import { semanticActionButtonMarkup } from './button.js';
 import { semanticIconMarkup } from './semantic-icons.js';
 
 function escapeHtml(value) {
@@ -26,6 +27,7 @@ function attributesMarkup(attributes = {}) {
 export function toolbarPopoverTriggerMarkup({
   attributes = {},
   help = '',
+  iconRole = '',
   label = 'Open toolbar options',
   valueIconRole = ''
 } = {}) {
@@ -38,6 +40,16 @@ export function toolbarPopoverTriggerMarkup({
     'data-bb-toolbar-popover-trigger': '',
     ...attributes
   };
+  if (iconRole) {
+    return semanticActionButtonMarkup({
+      attributes: resolvedAttributes,
+      className: 'bb-toolbar-popover__trigger',
+      help: String(help || resolvedLabel),
+      iconRole,
+      label: resolvedLabel,
+      recipe: 'workspace'
+    });
+  }
   const valueIcon = valueIconRole
     ? semanticIconMarkup(valueIconRole, 'bb-toolbar-popover__trigger-value-icon')
     : '';

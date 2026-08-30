@@ -61,6 +61,105 @@ export function layoutTextEditorIconButtonMarkup({
   });
 }
 
+function layoutArrangeActionMarkup({ action = '', iconRole = '', label = '' } = {}) {
+  return layoutTextEditorIconButtonMarkup({
+    attributes: {
+      'data-bb-layout-arrange-action': action
+    },
+    iconRole,
+    label
+  });
+}
+
+function layoutArrangeGroupMarkup({
+  actions = [],
+  label = '',
+  role = ''
+} = {}) {
+  return `<div class="bb-layout-arrange-popover__group" role="group" aria-label="${escapeHtml(label)}"${role ? ` data-bb-layout-arrange-${escapeHtml(role)}` : ''}><span class="bb-layout-arrange-popover__label">${escapeHtml(label)}</span><div class="bb-layout-arrange-popover__actions">${actions.join('')}</div></div>`;
+}
+
+export function layoutTextEditorArrangePopoverMarkup({
+  includeSelectionDistribution = false,
+  includeViewportDistribution = false,
+  layoutLabel = 'Screen'
+} = {}) {
+  const resolvedLayoutLabel = String(layoutLabel || 'Screen');
+  const groups = [layoutArrangeGroupMarkup({
+    label: 'Align',
+    role: 'alignment',
+    actions: [
+      layoutArrangeActionMarkup({
+        action: 'align-left',
+        iconRole: 'align_selection_left',
+        label: 'Align left edges'
+      }),
+      layoutArrangeActionMarkup({
+        action: 'align-center-x',
+        iconRole: 'align_selection_center_x',
+        label: 'Align X centers to first selection'
+      }),
+      layoutArrangeActionMarkup({
+        action: 'align-right',
+        iconRole: 'align_selection_right',
+        label: 'Align right edges'
+      }),
+      layoutArrangeActionMarkup({
+        action: 'align-top',
+        iconRole: 'align_selection_top',
+        label: 'Align top edges'
+      }),
+      layoutArrangeActionMarkup({
+        action: 'align-center-y',
+        iconRole: 'align_selection_center_y',
+        label: 'Align Y centers to first selection'
+      }),
+      layoutArrangeActionMarkup({
+        action: 'align-bottom',
+        iconRole: 'align_selection_bottom',
+        label: 'Align bottom edges'
+      })
+    ]
+  })];
+  if (includeSelectionDistribution) {
+    groups.push(layoutArrangeGroupMarkup({
+      label: 'Distribute within selection',
+      role: 'selection-distribution',
+      actions: [
+        layoutArrangeActionMarkup({
+          action: 'distribute-selection-horizontal',
+          iconRole: 'distribute_horizontal',
+          label: 'Distribute horizontal gaps within selection'
+        }),
+        layoutArrangeActionMarkup({
+          action: 'distribute-selection-vertical',
+          iconRole: 'distribute_vertical',
+          label: 'Distribute vertical gaps within selection'
+        })
+      ]
+    }));
+  }
+  if (includeViewportDistribution) {
+    groups.push(layoutArrangeGroupMarkup({
+      label: `Distribute within ${resolvedLayoutLabel}`,
+      role: 'viewport-distribution',
+      actions: [
+        layoutArrangeActionMarkup({
+          action: 'distribute-viewport-horizontal',
+          iconRole: 'distribute_horizontal',
+          label: `Distribute horizontally within ${resolvedLayoutLabel}`
+        }),
+        layoutArrangeActionMarkup({
+          action: 'distribute-viewport-vertical',
+          iconRole: 'distribute_vertical',
+          label: `Distribute vertically within ${resolvedLayoutLabel}`
+        })
+      ]
+    }));
+  }
+  return `<div class="bb-layout-arrange-popover" data-bb-layout-arrange-popover>${groups.join('')}</div>`;
+}
+
 export function layoutTextEditorCheckboxMarkup({
   attributes = {},
   checked = false,

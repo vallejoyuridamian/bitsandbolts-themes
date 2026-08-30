@@ -6,6 +6,7 @@ import {
   applyLayoutTextEditorRecipe,
   LAYOUT_TEXT_EDITOR_MIXED_VALUE,
   layoutTextEditorCheckboxMarkup,
+  layoutTextEditorArrangePopoverMarkup,
   layoutTextEditorIconButtonMarkup,
   layoutTextEditorMixedOptionMarkup,
   layoutTextEditorOriginalColorMarkup,
@@ -87,6 +88,32 @@ test('layout text editor icon buttons use the workspace icon recipe and hover he
   assert.match(markup, /aria-label="Bold"/);
   assert.match(markup, /title="Bold \(Ctrl\+B\)"/);
   assert.match(markup, /aria-pressed="false"/);
+});
+
+test('layout text editor owns the arrangement popover composition', async () => {
+  const twoSelection = layoutTextEditorArrangePopoverMarkup({
+    includeViewportDistribution: true,
+    layoutLabel: 'Scene'
+  });
+  const threeSelection = layoutTextEditorArrangePopoverMarkup({
+    includeSelectionDistribution: true,
+    includeViewportDistribution: true,
+    layoutLabel: 'Screen'
+  });
+  const css = await readFile(new URL('../components/layout-text-editor.css', import.meta.url), 'utf8');
+
+  assert.match(twoSelection, /data-bb-layout-arrange-popover/);
+  assert.match(twoSelection, /data-bb-layout-arrange-alignment/);
+  assert.match(twoSelection, /data-bb-layout-arrange-viewport-distribution/);
+  assert.match(twoSelection, /Distribute within Scene/);
+  assert.doesNotMatch(twoSelection, /data-bb-layout-arrange-selection-distribution/);
+  assert.match(threeSelection, /data-bb-layout-arrange-selection-distribution/);
+  assert.match(threeSelection, /data-bb-layout-arrange-action="align-center-x"/);
+  assert.match(threeSelection, /data-bb-layout-arrange-action="distribute-selection-horizontal"/);
+  assert.match(threeSelection, /data-bb-layout-arrange-action="distribute-viewport-vertical"/);
+  assert.match(threeSelection, /data-bb-icon-role="align_selection_bottom"/);
+  assert.match(css, /\.bb-layout-arrange-popover \{/);
+  assert.match(css, /\.bb-layout-arrange-popover__actions \{/);
 });
 
 test('layout text editor owns checkbox markup', async () => {

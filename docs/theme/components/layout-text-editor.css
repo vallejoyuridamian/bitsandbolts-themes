@@ -189,6 +189,33 @@
   justify-content: flex-start;
 }
 
+.bb-layout-arrange-popover {
+  display: grid;
+  gap: var(--bb-spacing-3);
+  min-width: 220px;
+}
+
+.bb-layout-arrange-popover__group {
+  display: grid;
+  gap: var(--bb-spacing-1);
+  min-width: 0;
+}
+
+.bb-layout-arrange-popover__label {
+  color: var(--bb-v2-color-content-secondary);
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-xs);
+  font-weight: var(--bb-font-weight-semibold);
+  line-height: var(--bb-font-line-height-normal);
+}
+
+.bb-layout-arrange-popover__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--bb-spacing-2);
+}
+
 .bb-layout-text-editor :is(.row, .tools-row, .bb-layout-text-editor__actions) > * {
   min-width: 0;
 }

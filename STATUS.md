@@ -15,6 +15,8 @@ Last verified: 2026-08-30
   control states are accepted.
 - Semantic `group` and `ungroup` vector roles are owner-accepted for AppScreen
   V1 grouping, with source and generated web and documentation outputs aligned.
+- V1 arrangement recipes are owner-accepted after healthy paired AppScreen
+  interaction and runtime verification.
 
 ## Preserved Shared Editor Recipes
 
@@ -81,12 +83,18 @@ Last verified: 2026-08-30
   mixed numeric stepping, selected hulls, and Device minimum clamping.
 - AppScreen V1 grouping is owner-accepted. Focused grouping icon checks pass
   3/3 and the Themes production build passed.
+- The canonical Arrange trigger, popover composition, six alignment roles, and
+  two distribution roles are synchronized across source, dist, and docs.
+- Nineteen focused checks pass in the final source state and the Themes
+  production build passes.
+- The owner accepted the paired arrangement presentation after exercising
+  alignment, distribution, groups, undo and redo with healthy runtime logs.
 - No push, deployment, publication, or activation occurred.
 
 ## Next Boundary
 
 - Preserve accepted project-info, Background, placement, multi-selection,
-  project-resource, Image, Device, toolbar-focus, and fixed overlay recipes.
+  project-resource, Image, Device, toolbar-focus, arrangement, and fixed overlay recipes.
 - Preserve accepted compact and full Theme cards during owner-directed product use.
 - Further Themes work requires a concrete recipe gap. Do not add speculative UI
   recipes or perform external activation.

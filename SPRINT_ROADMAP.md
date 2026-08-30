@@ -14,43 +14,12 @@
   components, fonts, icons, assets, recipes, and generated platform output.
 - [x] Keep behavior in AppScreen while Themes owns shared editor presentation.
 
-## Completed Background Scope Recipe
+## Accepted Shared Recipes
 
-- [x] Share Project and selected-layout Background presentation across Screens
-  and Scenes without taking AppScreen mutation or persistence ownership.
-- [x] Reuse the semantic image action and synchronize every generated copy.
-- [x] Accept Themes `8d17e97` and AppScreen `8495618`.
-
-## Completed Workspace Project Info Recipe
-
-- [x] Share one `Project info` recipe, semantic settings action, fields, and
-  read-only resolution while AppScreen retains behavior and persistence.
-- [x] Accept Themes `a766904` and AppScreen `42f846a`.
-
-## Completed Fixed Screen-Space Overlay Recipe
-
-- [x] Keep overlays and text drawing feedback on one zoom-compensated contract
-  with 1px dashed lines, 8px square handles, and flat 16px rotation icons.
-- [x] Replace duplicated consumer styling and synchronize every generated copy.
-- [x] Accept Themes `bbb236c` and AppScreen `615c022`.
-- [x] Add one shared chrome plane so retained text, image, Device, generic, and
-  future hull hosts paint above consumer element content.
-- [x] Accept the paired AppScreen Phase 4 owner checkpoint and final healthy log.
-
-## Completed Stage 5 Through 8 Audits
-
-- [x] Audit every comparison consumer before UI edits and confirm its exact
-  Themes-owned recipe without adding speculative presentation.
-- [x] Keep renderer behavior, measurements, and evidence in AppScreen.
-
-## Completed Compact Theme Recipe
-
-- [x] Owner-validate the compact Theme card and picker now used by AppScreen New
-  Project and Background.
-- [x] Own the compact typography, identity swatches, Theme shape, hover depth,
-  semantic mode toggle, picker layout, and generated copies.
-- [x] Keep picker behavior, Theme state, inheritance, and persistence in AppScreen.
-- [x] Reuse the mode-toggle primitive without changing the full Theme card role.
+- [x] Background scope, workspace Project info, and exact semantic actions.
+- [x] Fixed Screen-space overlays with one chrome plane and no consumer styling.
+- [x] Compact Theme cards and pickers with shared portable theme ownership.
+- [x] AppScreen keeps behavior, mutation, persistence, and renderer ownership.
 
 ## Completed Viewport Centering Roles
 
@@ -76,8 +45,18 @@
 - [x] Synchronize source, generated web output, documentation output, and tests.
 - [x] Accept the paired AppScreen V1 grouping presentation.
 
+## Completed V1 Arrangement Recipe
+
+- [x] Own one semantic icon-only Arrange popover trigger.
+- [x] Own the arrangement popover sections, labels, controls, tooltips, and focus.
+- [x] Own six selection-alignment roles and two axis-distribution roles.
+- [x] Generate rotated top, bottom, and Y-center vectors from canonical source.
+- [x] Synchronize source, dist, docs, 19 final focused checks, and one build.
+- [x] Accept the paired AppScreen interaction, visual, and runtime result.
+
 ## Current Boundary
 
 - Preview, export, and owner interaction remain AppScreen boundaries.
+- Preserve the accepted arrangement recipe and semantic vector roles.
 - Further Themes work requires owner evidence or a concrete recipe gap.
 - Push, deployment, publication, and activation remain user-owned.

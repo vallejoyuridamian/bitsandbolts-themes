@@ -37,6 +37,22 @@ test('toolbar popover trigger can expose a semantic original-color indicator', (
   assert.match(markup, /data-bb-icon-role="close"/);
 });
 
+test('toolbar popover supports the canonical semantic icon trigger recipe', () => {
+  const markup = toolbarPopoverTriggerMarkup({
+    attributes: { 'data-layout-arrange-trigger': '' },
+    iconRole: 'arrange',
+    label: 'Arrange selection'
+  });
+
+  assert.match(markup, /bb-toolbar-popover__trigger/);
+  assert.match(markup, /bb-workspace-control-button/);
+  assert.match(markup, /data-bb-icon-role="arrange"/);
+  assert.match(markup, /data-bb-toolbar-popover-trigger=""/);
+  assert.match(markup, /data-layout-arrange-trigger=""/);
+  assert.match(markup, /aria-haspopup="dialog"/);
+  assert.doesNotMatch(markup, /bb-toolbar-popover__trigger-value/);
+});
+
 test('toolbar popover owns numeric fields and status text', async () => {
   const field = toolbarPopoverNumericFieldMarkup({
     attributes: {
