@@ -4,6 +4,8 @@ import { semanticIconMarkup } from './semantic-icons.js';
 const ROOT_CLASS = 'bb-layout-text-editor';
 const PRESENTATIONS = new Set(['sidebar', 'toolbar']);
 
+export const LAYOUT_TEXT_EDITOR_MIXED_VALUE = '__bb_layout_text_editor_mixed__';
+
 function escapeHtml(value = '') {
   return String(value ?? '')
     .replaceAll('&', '&amp;')
@@ -65,6 +67,50 @@ export function layoutTextEditorCheckboxMarkup({
   label = ''
 } = {}) {
   return `<div class="bb-checkbox-field"><label class="bb-checkbox-field__label bb-layout-text-editor__checkbox"><input class="bb-checkbox-field__control" type="checkbox"${checked ? ' checked' : ''}${attributesMarkup(attributes)}><span class="bb-checkbox-field__text">${escapeHtml(label)}</span></label></div>`;
+}
+
+export function layoutTextEditorMixedOptionMarkup({ label = 'Mixed' } = {}) {
+  return `<option value="${LAYOUT_TEXT_EDITOR_MIXED_VALUE}" data-bb-layout-text-editor-mixed-option hidden>${escapeHtml(label)}</option>`;
+}
+
+export function syncLayoutTextEditorMixedState(control, {
+  mixed = false,
+  placeholder = 'Mixed'
+} = {}) {
+  if (!control?.dataset) return false;
+  const isMixed = mixed === true;
+  if (isMixed) control.dataset.bbLayoutTextEditorMixed = '';
+  else delete control.dataset.bbLayoutTextEditorMixed;
+
+  const tagName = String(control.tagName || '').toLowerCase();
+  const inputType = String(control.type || '').toLowerCase();
+  const resolvedPlaceholder = placeholder === null || placeholder === undefined
+    ? 'Mixed'
+    : String(placeholder);
+  if (tagName === 'input' && inputType === 'checkbox') {
+    control.indeterminate = isMixed;
+    if (isMixed) control.setAttribute?.('aria-checked', 'mixed');
+    else control.removeAttribute?.('aria-checked');
+    return true;
+  }
+  if (tagName === 'button' && control.hasAttribute?.('aria-pressed')) {
+    control.setAttribute('aria-pressed', isMixed ? 'mixed' : 'false');
+    return true;
+  }
+  if (tagName === 'select') {
+    if (isMixed) control.value = LAYOUT_TEXT_EDITOR_MIXED_VALUE;
+    return true;
+  }
+  if (tagName === 'input' && ['number', 'text'].includes(inputType)) {
+    if (isMixed) {
+      control.value = '';
+      control.placeholder = resolvedPlaceholder;
+    } else if (control.placeholder === resolvedPlaceholder) {
+      control.removeAttribute?.('placeholder');
+    }
+    return true;
+  }
+  return true;
 }
 
 export function applyLayoutTextEditorRecipe({

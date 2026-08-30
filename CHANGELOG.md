@@ -4,6 +4,24 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-08-30) - V1 multi-selection states accepted
+
+### What changed
+- Added one shared layout-editor adapter for mixed Select, numeric, text, color,
+  toggle, and checkbox states.
+- Kept mixed numeric and text controls empty, used native checkbox indeterminate
+  state, and exposed `aria-pressed="mixed"` for actionable toolbar toggles.
+- Added shared mixed color and toggle presentation without product-local styling.
+- Synchronized source, generated web output, documentation output, and tests.
+
+### Acceptance and boundary
+- Focused Themes mixed-state checks pass 8/8 and the production build passed.
+- The owner accepted the paired AppScreen V1 multi-selection presentation,
+  including Text, Image, and Device capability intersections.
+- AppScreen retains selection, routing, mutation, history, semantic Size,
+  clipboard, and cross-owner settlement behavior.
+- Nothing was pushed, deployed, published, admitted, or activated.
+
 ## Session wrap-up (2026-08-28) - Master Stage Phase 6 snap guides accepted
 
 ### What changed

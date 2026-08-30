@@ -60,6 +60,16 @@
   Themes-owned rotation descriptor, with source, dist, docs, and tests synchronized.
 - [x] Accept the paired AppScreen centering controls and focused 2/2 icon checks.
 
+## Completed Multi-Selection States
+
+- [x] Own one shared adapter for mixed Select, numeric, text, color, toggle, and
+  checkbox presentation without taking AppScreen behavior ownership.
+- [x] Keep mixed numeric and text values empty, expose native checkbox
+  indeterminate state, and expose `aria-pressed="mixed"` for toolbar toggles.
+- [x] Synchronize source, generated web output, documentation output, and
+  focused 8/8 coverage.
+- [x] Accept the paired AppScreen V1 multi-selection presentation.
+
 ## Current Boundary
 
 - Preview, export, and owner interaction remain AppScreen boundaries.

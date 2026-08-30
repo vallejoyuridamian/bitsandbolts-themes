@@ -4,10 +4,13 @@ import test from 'node:test';
 
 import {
   applyLayoutTextEditorRecipe,
+  LAYOUT_TEXT_EDITOR_MIXED_VALUE,
   layoutTextEditorCheckboxMarkup,
   layoutTextEditorIconButtonMarkup,
+  layoutTextEditorMixedOptionMarkup,
   layoutTextEditorOriginalColorMarkup,
-  layoutTextEditorProjectColorAddMarkup
+  layoutTextEditorProjectColorAddMarkup,
+  syncLayoutTextEditorMixedState
 } from '../components/layout-text-editor.js';
 
 function classList() {
@@ -98,6 +101,63 @@ test('layout text editor owns checkbox markup', async () => {
   assert.match(checkbox, /data-device-debug="hide-screen"/);
   assert.match(checkbox, / checked/);
   assert.match(css, /\.bb-layout-text-editor \.bb-layout-text-editor__checkbox/);
+});
+
+test('layout text editor owns actionable mixed and indeterminate control states', async () => {
+  const attributes = new Map([['aria-pressed', 'false']]);
+  const toggle = {
+    dataset: {},
+    tagName: 'BUTTON',
+    hasAttribute: (name) => attributes.has(name),
+    setAttribute: (name, value) => attributes.set(name, value)
+  };
+  const checkboxAttributes = new Map();
+  const checkbox = {
+    dataset: {},
+    indeterminate: false,
+    tagName: 'INPUT',
+    type: 'checkbox',
+    setAttribute: (name, value) => checkboxAttributes.set(name, value),
+    removeAttribute: (name) => checkboxAttributes.delete(name)
+  };
+  const number = {
+    dataset: {},
+    placeholder: '',
+    tagName: 'INPUT',
+    type: 'number',
+    value: '24',
+    removeAttribute(name) {
+      if (name === 'placeholder') this.placeholder = '';
+    }
+  };
+
+  assert.match(
+    layoutTextEditorMixedOptionMarkup(),
+    new RegExp(`value="${LAYOUT_TEXT_EDITOR_MIXED_VALUE}"[^>]*data-bb-layout-text-editor-mixed-option[^>]*hidden`)
+  );
+  assert.equal(syncLayoutTextEditorMixedState(toggle, { mixed: true }), true);
+  assert.equal(attributes.get('aria-pressed'), 'mixed');
+  assert.equal(syncLayoutTextEditorMixedState(checkbox, { mixed: true }), true);
+  assert.equal(checkbox.indeterminate, true);
+  assert.equal(checkboxAttributes.get('aria-checked'), 'mixed');
+  assert.equal(syncLayoutTextEditorMixedState(number, { mixed: true }), true);
+  assert.equal(number.value, '');
+  assert.equal(number.placeholder, 'Mixed');
+  syncLayoutTextEditorMixedState(number, { mixed: true, placeholder: '' });
+  assert.equal(number.placeholder, '');
+
+  syncLayoutTextEditorMixedState(toggle, { mixed: false });
+  syncLayoutTextEditorMixedState(checkbox, { mixed: false });
+  syncLayoutTextEditorMixedState(number, { mixed: false });
+  assert.equal(attributes.get('aria-pressed'), 'false');
+  assert.equal(checkbox.indeterminate, false);
+  assert.equal(checkboxAttributes.has('aria-checked'), false);
+  assert.equal(number.placeholder, '');
+
+  const css = await readFile(new URL('../components/layout-text-editor.css', import.meta.url), 'utf8');
+  assert.match(css, /\[data-bb-layout-text-editor-mixed\]::placeholder/);
+  assert.match(css, /button\[aria-pressed="mixed"\]/);
+  assert.match(css, /data-bb-layout-text-editor-mixed[^\n]*\.bb-toolbar-popover__trigger-value/);
 });
 
 test('layout text editor project colors use the shared add-tile and semantic icon recipes', async () => {

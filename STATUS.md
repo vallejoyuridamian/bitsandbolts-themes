@@ -1,17 +1,18 @@
 # Bits and Bolts Themes: Status
 
-Last verified: 2026-08-29
+Last verified: 2026-08-30
 
 ## Current Truth
 
-- This repository owns product tokens, components, fonts, semantic icons, assets,
-  catalog data, committed generated outputs, and shared editor recipes.
+- This repository owns product tokens, components, fonts, semantic icons,
+  assets, catalog data, committed generated outputs, and shared editor recipes.
 - Nine v2 families ship in both modes, including all accepted first-party themes.
-- Themes owns canonical visual recipes. AppScreen owns user Theme behavior,
-  persistence, Guest state, interaction, rendering, and orchestration.
+- Themes owns canonical visual recipes. AppScreen owns behavior, persistence,
+  Guest state, interaction, rendering, and orchestration.
 - The accepted shared workspace project-info recipe is implementation `a766904`,
   paired with AppScreen implementation `42f846a`.
-- Compact Theme, Phase 4 hull, magnet, and viewport-centering roles are accepted.
+- Compact Theme, Phase 4 hull, magnet, viewport-centering, and actionable mixed
+  control states are accepted.
 
 ## Preserved Shared Editor Recipes
 
@@ -22,89 +23,66 @@ Last verified: 2026-08-29
   equivalent outer-canvas paint. AppScreen placement remains trace-free.
 - `layout-text-editor.css` and `layout-text-editor.js` own toolbar and sidebar
   presentation without owning AppScreen behavior.
-- The text-editor floating-window variant remains removed while generic floating
-  windows remain available to unrelated workflows.
-- The toolbar recipe retains compact geometry, semantic clipboard, text alignment,
-  viewport centering, hover help, color popovers, and canonical Select.
+- The toolbar recipe retains compact geometry, semantic clipboard, text
+  alignment, viewport centering, hover help, color popovers, and canonical Select.
 - Project color Add and image Original retain the shared cut-corner recipes and
   semantic vector roles.
-- Every ordinary repeated Select receives its own trigger. Only explicitly marked
-  native selects may bind an external trigger.
+- Every repeated Select receives its own trigger. Only explicitly marked native
+  selects may bind an external trigger.
+- Mixed Select, numeric, color, toggle, and checkbox presentation is owned by
+  one shared adapter. Numeric and text inputs use an empty mixed value, toggles
+  use `aria-pressed="mixed"`, and checkboxes use native indeterminate state.
 
-## Accepted Background Scope Recipe
+## Accepted Background and Project Info Recipes
 
-- The shared Background editor owns Project versus Screen or Scene scope
-  presentation plus reusable Theme, mode, and background controls.
-- The same markup and style contract serves Screens and Scenes. AppScreen owns
-  selected-layout and project mutation, persistence, and window orchestration.
-- AppScreen sidebars retain project and layout names while background and Theme
-  editing stays in the shared floating window.
-- The existing Themes semantic image action supplies the toolbar Background icon
-  and hover-help presentation without creating a parallel recipe.
-- Source, generated output, documentation, and focused coverage are synchronized.
-
-## Accepted Workspace Project Info Recipe
-
-- One reusable recipe supplies the `Project info` floating window for both
-  Screens and Scenes without owning AppScreen behavior or persistence.
-- The recipe exposes editable project and selected-layout name fields plus an
-  informative read-only resolution value.
-- The existing semantic settings icon, toolbar action, hover help, window shell,
-  form fields, and spacing recipes remain the only presentation owners.
-- AppScreen uses the same action and controller on both surfaces, removes the
-  complete Screens sidebar, and preserves the Scenes sidebar.
-- Background hover help is visibly `Background (B)` on both surfaces.
+- One Background recipe owns Project versus Screen or Scene scope presentation,
+  reusable Theme, mode, and background controls across Screens and Scenes.
+- One `Project info` recipe supplies both surfaces with project and selected
+  layout names plus informative read-only resolution.
+- AppScreen owns selected-layout and project mutation, persistence, window
+  orchestration, and the differing sidebar boundaries.
 - Source, generated web output, documentation output, and tests are synchronized.
 
-## Accepted Device Toolbar Recipes
+## Accepted Device and Overlay Recipes
 
 - Shared checkbox, numeric-field, status, popover, Original-color, semantic
-  rotate, and device-pose recipes retain their accepted presentation.
-- AppScreen owns rotation, media routing, visibility, integer geometry,
-  selection clearing, and toolbar orchestration.
-
-## Accepted Fixed Screen-Space Overlay Recipe
-
-- Programmatically focused workspace surfaces do not paint a white container
-  outline when the user clicks empty toolbar space.
-- One shared zoom-compensated recipe keeps dashed lines at 1px, square handles at 8px,
-  axes subdued, rotation icons flat at 16px, and text drawing feedback canonical.
-- AppScreen owns zoom and interaction. Themes owns presentation.
+  rotate, and Device-pose recipes retain their accepted presentation.
+- One shared zoom-compensated overlay recipe keeps dashed lines at 1px, square
+  handles at 8px, axes subdued, rotation icons flat at 16px, and text drawing
+  feedback canonical.
+- The hull recipe gives every shape one path, preserves the resize pointer, and
+  owns one chrome plane above consumer element content.
+- Themes owns both viewport-centering roles and the bounded vertical rotation
+  descriptor.
 
 ## Accepted Paired AppScreen Result
 
-- Text, image, and device selection use one shared toolbar-context boundary while
-  retaining distinct controls and behavior owners.
-- Device sidebar, Name, Source, Add from disk, Width, Height, Play, Reset, Hide
-  image, and Transparent body controls remain absent.
-- Screens opens the image picker directly. Scenes exposes image and video choices
-  through the shared popover before opening the existing picker.
-- Device Size preserves aspect ratio, writes real integer geometry, and remains
-  synchronized through field and handle resizing.
-- Visibility and rotation popovers retain accepted checkbox and Tilt, Turn, and
-  Roll presentation.
+- Text, Image, Device, and Stopwatch selection use one shared toolbar-context
+  boundary while retaining distinct behavior owners.
+- V1 multi-selection uses Themes mixed and indeterminate states for capability
+  intersection without adding product-local control styling.
+- Same-kind Text exposes typography; same-kind Device exposes rotation and
+  visibility; shared eligible kinds expose canonical Size and Color controls.
+- Device screen-media replacement remains excluded from bulk selection.
+- AppScreen owns ordered selection, Shift-click routing, group movement,
+  clipboard behavior, semantic Size, history, and cross-owner settlement.
 - Workspace-tab changes clear element and timeline selection, popovers, rendered
   overlays, and selection toolbar contexts together.
-- The preserved image toolbar still uses targeted color and mode replacement with
-  visible selection intact.
 
 ## Evidence and Acceptance Boundary
 
-- The owner accepted the complete paired editor baseline.
-- The compact Theme recipe owns flexible auto-fit columns with rendered-font
-  two-column sizing, full names, equal swatches, hover clearance, and each
-  card's own Theme-defined hover depth. Generic interface effects are excluded.
-- Background uses this mount while AppScreen retains behavior and inheritance.
-- Existing Theme summary cards reuse the shared mode-toggle primitive.
-- Themes source, generated copies, and docs are synchronized. The hull recipe gives
-  every shape one path, preserves the resize pointer, and owns one chrome plane.
-- Themes owns both viewport-centering roles and the bounded vertical rotation descriptor.
-- Viewport icon checks pass 2/2; paired AppScreen visual acceptance is complete.
+- The owner accepted the complete paired V1 multi-selection presentation after
+  Text, Image, and Device mixed-state verification.
+- Themes source, generated web output, documentation output, and tests are
+  synchronized. Focused mixed-state checks pass 8/8 and the production build passed.
+- Paired AppScreen owner verification is healthy, including equal Image Size,
+  mixed numeric stepping, selected hulls, and Device minimum clamping.
+- No push, deployment, publication, or activation occurred.
 
 ## Next Boundary
 
-- Preserve the accepted project-info, Background, placement, text,
-  project-resource, image, device, toolbar-focus, and fixed overlay recipes.
+- Preserve accepted project-info, Background, placement, multi-selection,
+  project-resource, Image, Device, toolbar-focus, and fixed overlay recipes.
 - Preserve accepted compact and full Theme cards during owner-directed product use.
-- Further Themes work requires a concrete recipe gap; preserve accepted editor recipes.
-- Do not add speculative UI recipes or perform external activation.
+- Further Themes work requires a concrete recipe gap. Do not add speculative UI
+  recipes or perform external activation.

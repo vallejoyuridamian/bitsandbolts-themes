@@ -144,6 +144,24 @@
   border-color: var(--bb-v2-identity-primary);
 }
 
+.bb-layout-text-editor :is(input[type="text"], input[type="number"])[data-bb-layout-text-editor-mixed]::placeholder {
+  color: var(--bb-interface-menu-muted-foreground);
+  opacity: 1;
+}
+
+.bb-layout-text-editor button[aria-pressed="mixed"] {
+  color: var(--bb-interface-control-foreground);
+  background: color-mix(in srgb, var(--bb-v2-identity-primary) 12%, transparent);
+  box-shadow: inset 0 -2px 0 color-mix(in srgb, var(--bb-v2-identity-primary) 72%, transparent);
+}
+
+.bb-layout-text-editor [data-bb-layout-text-editor-mixed] .bb-toolbar-popover__trigger-value,
+.bb-layout-text-editor .bb-toolbar-popover__trigger[data-bb-layout-text-editor-mixed] .bb-toolbar-popover__trigger-value {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--bb-interface-menu-muted-foreground);
+  opacity: 0.62;
+}
+
 .bb-layout-text-editor select {
   padding-inline-end: var(--bb-spacing-3);
   appearance: auto;
