@@ -70,6 +70,12 @@
   focused 8/8 coverage.
 - [x] Accept the paired AppScreen V1 multi-selection presentation.
 
+## Completed Grouping Roles
+
+- [x] Own semantic `group` and `ungroup` provider mappings and free solid vectors.
+- [x] Synchronize source, generated web output, documentation output, and tests.
+- [x] Accept the paired AppScreen V1 grouping presentation.
+
 ## Current Boundary
 
 - Preview, export, and owner interaction remain AppScreen boundaries.

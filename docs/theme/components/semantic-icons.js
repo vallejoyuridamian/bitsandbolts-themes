@@ -60,6 +60,8 @@ export const SEMANTIC_ICON_FAMILIES = Object.freeze({
       exportName: 'faArrowsLeftRightToLine',
       rotate: 90
     }),
+    group: 'faObjectGroup',
+    ungroup: 'faObjectUngroup',
     arrow_selector_tool: 'faArrowPointer',
     content_cut: 'faScissors',
     flag: 'faFlag',

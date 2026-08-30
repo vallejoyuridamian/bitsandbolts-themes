@@ -51,3 +51,15 @@ test('viewport centering controls use Themes-owned axis-specific semantic roles'
   assert.match(vertical, /viewBox="0 0 512 576"/);
   assert.match(vertical, /matrix\(0 1 -1 0 512 0\)/);
 });
+
+test('layout grouping controls use Themes-owned semantic roles', async () => {
+  const roles = SEMANTIC_ICON_FAMILIES['font-awesome-solid'];
+  assert.equal(roles.group, 'faObjectGroup');
+  assert.equal(roles.ungroup, 'faObjectUngroup');
+  assert.match(semanticIconMarkup('group'), /data-bb-icon-role="group"/);
+  assert.match(semanticIconMarkup('ungroup'), /data-bb-icon-role="ungroup"/);
+
+  const css = await readFile(new URL('../dist/web/components/semantic-icons.css', import.meta.url), 'utf8');
+  assert.match(css, /data-bb-icon-role="group"/);
+  assert.match(css, /data-bb-icon-role="ungroup"/);
+});

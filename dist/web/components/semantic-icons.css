@@ -215,6 +215,14 @@
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/align-viewport-vertical.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="group"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/object-group.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="ungroup"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/object-ungroup.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="arrow_selector_tool"] {
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/arrow-pointer.svg");
 }

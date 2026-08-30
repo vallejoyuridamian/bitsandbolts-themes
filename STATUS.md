@@ -13,6 +13,8 @@ Last verified: 2026-08-30
   paired with AppScreen implementation `42f846a`.
 - Compact Theme, Phase 4 hull, magnet, viewport-centering, and actionable mixed
   control states are accepted.
+- Semantic `group` and `ungroup` vector roles are owner-accepted for AppScreen
+  V1 grouping, with source and generated web and documentation outputs aligned.
 
 ## Preserved Shared Editor Recipes
 
@@ -77,6 +79,8 @@ Last verified: 2026-08-30
   synchronized. Focused mixed-state checks pass 8/8 and the production build passed.
 - Paired AppScreen owner verification is healthy, including equal Image Size,
   mixed numeric stepping, selected hulls, and Device minimum clamping.
+- AppScreen V1 grouping is owner-accepted. Focused grouping icon checks pass
+  3/3 and the Themes production build passed.
 - No push, deployment, publication, or activation occurred.
 
 ## Next Boundary
