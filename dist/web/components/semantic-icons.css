@@ -371,6 +371,14 @@
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/chart-line.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="bitsandbolts-theme"][data-bb-icon-role="mirror_horizontal"] {
+  --bb-semantic-icon-source: url("../icons/mirror-horizontal.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="bitsandbolts-theme"][data-bb-icon-role="mirror_vertical"] {
+  --bb-semantic-icon-source: url("../icons/mirror-vertical.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="bitsandbolts-theme"][data-bb-icon-role="dark_mode"] {
   --bb-semantic-icon-source: url("../icons/theme-dark.svg");
 }

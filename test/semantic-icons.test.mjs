@@ -64,6 +64,28 @@ test('layout grouping controls use Themes-owned semantic roles', async () => {
   assert.match(css, /data-bb-icon-role="ungroup"/);
 });
 
+test('layout transform controls use Themes-owned mirror semantic roles', async () => {
+  const roles = SEMANTIC_ICON_FAMILIES['bitsandbolts-theme'];
+  assert.equal(roles.mirror_horizontal, 'mirror-horizontal.svg');
+  assert.equal(roles.mirror_vertical, 'mirror-vertical.svg');
+  assert.match(
+    semanticIconMarkup('mirror_horizontal', '', { family: 'bitsandbolts-theme' }),
+    /data-bb-icon-family="bitsandbolts-theme"[^>]+data-bb-icon-role="mirror_horizontal"/
+  );
+  assert.match(
+    semanticIconMarkup('mirror_vertical', '', { family: 'bitsandbolts-theme' }),
+    /data-bb-icon-family="bitsandbolts-theme"[^>]+data-bb-icon-role="mirror_vertical"/
+  );
+
+  const css = await readFile(new URL('../dist/web/components/semantic-icons.css', import.meta.url), 'utf8');
+  assert.match(css, /data-bb-icon-family="bitsandbolts-theme"\]\[data-bb-icon-role="mirror_horizontal"\]/);
+  assert.match(css, /data-bb-icon-family="bitsandbolts-theme"\]\[data-bb-icon-role="mirror_vertical"\]/);
+  const horizontal = await readFile(new URL('../dist/web/icons/mirror-horizontal.svg', import.meta.url), 'utf8');
+  const vertical = await readFile(new URL('../dist/web/icons/mirror-vertical.svg', import.meta.url), 'utf8');
+  assert.match(horizontal, /data-bb-vector-role="mirror-horizontal"/);
+  assert.match(vertical, /data-bb-vector-role="mirror-vertical"/);
+});
+
 test('layout arrangement controls use axis-specific Themes-owned roles', async () => {
   const roles = SEMANTIC_ICON_FAMILIES['font-awesome-solid'];
   assert.equal(roles.arrange, 'faAlignCenter');

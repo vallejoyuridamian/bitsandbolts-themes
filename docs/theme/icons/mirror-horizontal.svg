@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-bb-vector-role="mirror-horizontal">
+  <path fill-rule="evenodd" d="M224 64 40 432h184V64Zm-32 136v200H92l100-200Zm96-136v368h184L288 64Zm32 136 100 200H320V200Z"/>
+  <path d="M248 24h16v64h-16zm0 96h16v64h-16zm0 96h16v64h-16zm0 96h16v64h-16zm0 96h16v80h-16z"/>
+</svg>

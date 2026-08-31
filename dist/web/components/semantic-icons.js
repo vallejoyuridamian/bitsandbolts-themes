@@ -110,6 +110,8 @@ export const SEMANTIC_ICON_FAMILIES = Object.freeze({
     growth: 'faChartLine'
   }),
   'bitsandbolts-theme': Object.freeze({
+    mirror_horizontal: 'mirror-horizontal.svg',
+    mirror_vertical: 'mirror-vertical.svg',
     dark_mode: 'theme-dark.svg',
     light_mode: 'theme-light.svg'
   })

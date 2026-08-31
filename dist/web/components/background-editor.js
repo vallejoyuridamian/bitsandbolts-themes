@@ -58,6 +58,7 @@ export function backgroundEditorMarkup({
       <label class="bb-field__label" for="${modeId}">Background</label>
       <select id="${modeId}" class="bb-field__input" data-bb-background-editor-role="mode">
         <option value="default">Default spotlight</option>
+        <option value="transparent">Transparent</option>
         <option value="solid">Single color</option>
         <option value="gradient">Gradient</option>
         <option value="image">Image</option>
@@ -72,13 +73,13 @@ export function backgroundEditorMarkup({
         <option value="horizontal">Horizontal</option>
       </select>
     </div>
-    <div class="bb-checkbox-field">
+    <div class="bb-checkbox-field" data-bb-background-editor-when="paint">
       <label class="bb-checkbox-field__label" for="${themeColorsId}">
         <input id="${themeColorsId}" class="bb-checkbox-field__control" type="checkbox" data-bb-background-editor-role="use-theme-colors" checked>
         <span class="bb-checkbox-field__text">Use theme colors</span>
       </label>
     </div>
-    <div class="bb-background-editor__color-row">
+    <div class="bb-background-editor__color-row" data-bb-background-editor-when="paint">
       <label class="bb-background-editor__color-target" for="${primaryId}" data-bb-background-editor-color-target="primary">
         <span class="bb-background-editor__color-label">Primary</span>
         <input id="${primaryId}" class="bb-background-editor__color-control" type="color" value="#71d2d7" data-bb-background-editor-role="primary-color">
@@ -91,7 +92,7 @@ export function backgroundEditorMarkup({
         <input id="${secondaryId}" class="bb-background-editor__color-control" type="color" value="#182122" data-bb-background-editor-role="secondary-color">
       </label>
     </div>
-    <div class="bb-background-editor__swatches" role="toolbar" aria-label="Theme colors" data-bb-background-editor-role="theme-palette"></div>
+    <div class="bb-background-editor__swatches" role="toolbar" aria-label="Theme colors" data-bb-background-editor-role="theme-palette" data-bb-background-editor-when="paint"></div>
     <div class="bb-field" data-bb-background-editor-when="image">
       <label class="bb-field__label" for="${imageId}">Image source</label>
       <select id="${imageId}" class="bb-field__input" data-bb-background-editor-role="image-path">

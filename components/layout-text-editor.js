@@ -46,6 +46,7 @@ export function layoutTextEditorOriginalColorMarkup({
 export function layoutTextEditorIconButtonMarkup({
   attributes = {},
   disabled = false,
+  iconFamily = '',
   iconRole = '',
   label = '',
   shortcut = ''
@@ -55,6 +56,7 @@ export function layoutTextEditorIconButtonMarkup({
     className: `${ROOT_CLASS}__icon-button`,
     disabled,
     help: shortcut ? `${label} (${shortcut})` : label,
+    iconFamily,
     iconRole,
     label,
     recipe: 'workspace'
