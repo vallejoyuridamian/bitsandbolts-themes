@@ -9,7 +9,9 @@ import {
   layoutEditorRotationIconMarkup,
   layoutEditorSelectionRecipe,
   layoutEditorSelectionRotationStyles,
-  layoutEditorSnapGuideStyles
+  layoutEditorSnapGuideStyles,
+  layoutEditorTextCaretRecipe,
+  layoutEditorTextCaretStyles
 } from '../components/layout-editor-selection.js';
 
 test('layout editor selection owns rotation controls and their semantic vector', () => {
@@ -102,6 +104,23 @@ test('layout editor zoom compensation has one shared presentation helper', () =>
     '4'
   ]]);
   assert.equal(applyLayoutEditorOverlayZoomCompensation(null, 0), 1);
+});
+
+test('layout editor Text caret uses the shared screen-space metric owner', () => {
+  const zoomProperty = layoutEditorSelectionRecipe.zoomCompensationProperty;
+
+  assert.equal(layoutEditorTextCaretRecipe.hostClass, 'bb-layout-editor-text-caret-host');
+  assert.equal(layoutEditorTextCaretRecipe.visibleAttribute, 'data-bb-layout-editor-text-caret-visible');
+  assert.match(layoutEditorTextCaretRecipe.width, /calc\(2px/);
+  assert.match(layoutEditorTextCaretRecipe.width, new RegExp(zoomProperty));
+  assert.doesNotMatch(layoutEditorTextCaretStyles, /caret-color:currentColor/);
+  assert.match(layoutEditorTextCaretStyles, /\[contenteditable="true"\] \*\{caret-color:transparent!important\}/);
+  assert.match(layoutEditorTextCaretStyles, new RegExp(layoutEditorTextCaretRecipe.colorProperty));
+  assert.match(layoutEditorTextCaretStyles, new RegExp(layoutEditorTextCaretRecipe.heightProperty));
+  assert.match(layoutEditorTextCaretStyles, new RegExp(layoutEditorTextCaretRecipe.slantProperty));
+  assert.match(layoutEditorTextCaretStyles, /skewX\(/);
+  assert.match(layoutEditorTextCaretStyles, /steps\(1,end\) infinite/);
+  assert.match(layoutEditorTextCaretStyles, /prefers-reduced-motion:reduce/);
 });
 
 test('programmatic workspace focus does not paint a surface overlay', async () => {

@@ -3,6 +3,19 @@ import { semanticIconMarkup } from './semantic-icons.js';
 const overlayZoomCompensationProperty = '--bb-layout-editor-overlay-zoom-compensation';
 const overlayMetric = (pixels) => `calc(${pixels}px * var(${overlayZoomCompensationProperty}, 1))`;
 
+export const layoutEditorTextCaretRecipe = Object.freeze({
+  hostClass: 'bb-layout-editor-text-caret-host',
+  visibleAttribute: 'data-bb-layout-editor-text-caret-visible',
+  colorProperty: '--bb-layout-editor-text-caret-color',
+  heightProperty: '--bb-layout-editor-text-caret-height',
+  leftProperty: '--bb-layout-editor-text-caret-left',
+  rotationProperty: '--bb-layout-editor-text-caret-rotation',
+  slantProperty: '--bb-layout-editor-text-caret-slant',
+  topProperty: '--bb-layout-editor-text-caret-top',
+  width: overlayMetric(2),
+  blinkDuration: '1s'
+});
+
 export const layoutEditorSelectionRecipe = Object.freeze({
   signalColor: '#ff5a5f',
   alternateSignalColor: '#12e6d5',
@@ -64,6 +77,14 @@ export const layoutEditorSnapGuideStyles = `
 .bb-layout-editor-snap-guide{position:absolute;z-index:${layoutEditorSelectionRecipe.guideZIndex};box-sizing:border-box;border:0;pointer-events:none;opacity:${layoutEditorSelectionRecipe.guideOpacity}}
 .bb-layout-editor-snap-guide--vertical{top:0;bottom:0;width:${layoutEditorSelectionRecipe.outlineWidth};transform:translateX(-50%);background:${layoutEditorDashedLineBackground('bottom')}}
 .bb-layout-editor-snap-guide--horizontal{left:0;right:0;height:${layoutEditorSelectionRecipe.outlineWidth};transform:translateY(-50%);background:${layoutEditorDashedLineBackground('right')}}
+`;
+
+export const layoutEditorTextCaretStyles = `
+@keyframes bb-layout-editor-text-caret-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+.${layoutEditorTextCaretRecipe.hostClass}[contenteditable="true"],.${layoutEditorTextCaretRecipe.hostClass}[contenteditable="true"] *{caret-color:transparent!important}
+.${layoutEditorTextCaretRecipe.hostClass}::after{content:"";position:absolute;z-index:1;display:none;box-sizing:border-box;left:var(${layoutEditorTextCaretRecipe.leftProperty},0);top:var(${layoutEditorTextCaretRecipe.topProperty},0);width:${layoutEditorTextCaretRecipe.width};height:var(${layoutEditorTextCaretRecipe.heightProperty},0);background:var(${layoutEditorTextCaretRecipe.colorProperty},currentColor);transform:translateX(-50%) rotate(var(${layoutEditorTextCaretRecipe.rotationProperty},0deg)) skewX(var(${layoutEditorTextCaretRecipe.slantProperty},0deg));transform-origin:50% 0;pointer-events:none}
+.${layoutEditorTextCaretRecipe.hostClass}[${layoutEditorTextCaretRecipe.visibleAttribute}="true"]::after{display:block;animation:bb-layout-editor-text-caret-blink ${layoutEditorTextCaretRecipe.blinkDuration} steps(1,end) infinite}
+@media (prefers-reduced-motion:reduce){.${layoutEditorTextCaretRecipe.hostClass}[${layoutEditorTextCaretRecipe.visibleAttribute}="true"]::after{animation:none}}
 `;
 
 export const layoutEditorSelectionRotationStyles = `
