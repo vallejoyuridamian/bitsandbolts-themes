@@ -46,6 +46,20 @@ export function floatingWindowRangeControlsMarkup({ fields = [] } = {}) {
   return `<div class="bb-floating-range-controls" data-bb-floating-range-controls>${controls}</div>`;
 }
 
+export function applyFloatingWindowFieldRowRecipe(node, { id = '' } = {}) {
+  if (!node || typeof node !== 'object') return false;
+  node.className = 'bb-floating-form__field-row';
+  node.dataset.floatingWindowFormFieldRow = String(id || 'fields');
+  return true;
+}
+
+export function applyFloatingWindowFieldRowErrorRecipe(node, { id = '' } = {}) {
+  if (!node || typeof node !== 'object') return false;
+  node.className = 'bb-floating-form__field-row-error';
+  node.dataset.floatingWindowFormFieldRowError = String(id || 'fields');
+  return true;
+}
+
 export function floatingWindowFormMarkup({
   backLabel = 'Back',
   cancelDanger = false,

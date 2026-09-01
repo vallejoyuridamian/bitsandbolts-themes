@@ -106,5 +106,5 @@ Last verified: 2026-09-01
 
 - Preserve accepted project-info, Background, placement, multi-selection,
   project-resource, Image, Device, toolbar-focus, arrangement, and fixed overlay recipes.
-- Identity documentation, card presentation, palette rows, and unified AppScreen
-  color input are closed. No next Themes implementation slice is active.
+- The canonical floating form owns the owner-accepted AppScreen custom-dimension row and its shared nonwrapping group error. Source, generated outputs, four focused
+  checks, and both paired builds pass with AppScreen implementation `d17e636`.

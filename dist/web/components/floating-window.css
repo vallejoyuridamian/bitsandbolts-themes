@@ -272,6 +272,32 @@
   margin: 0;
 }
 
+.bb-floating-form__field-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--bb-spacing-3);
+  row-gap: var(--bb-spacing-1);
+}
+
+.bb-floating-form__field-row > .bb-field {
+  min-width: 0;
+  margin: 0;
+}
+
+.bb-floating-form__field-row-error {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--bb-v2-color-status-danger-border);
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-xs);
+  line-height: var(--bb-font-line-height-normal);
+  white-space: pre;
+}
+
+.bb-floating-form__field-row-error[hidden] {
+  display: none;
+}
+
 .bb-floating-form__fields :is(input, textarea, select, [contenteditable="true"]) {
   -webkit-user-select: text;
   user-select: text;

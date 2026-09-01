@@ -4,6 +4,7 @@
 
 - Preserve Themes as the visual owner across every Bits and Bolts product.
 - Keep AppScreen behavior in AppScreen while sharing exact presentation recipes.
+- Custom dimensions use the owner-accepted floating-form field row and shared nonwrapping group error paired with AppScreen `d17e636`.
 - Preserve the owner-accepted Master Stage Phase 4 hull without a parallel recipe.
 - Preserve the owner-accepted free-only semantic magnet and crossed-magnet roles.
 - Preserve the owner-accepted horizontal and vertical viewport-centering roles.
@@ -60,9 +61,5 @@
 
 ## Current Boundary
 
-- Preview, export, and owner interaction remain AppScreen boundaries.
-- Preserve the accepted arrangement recipe and semantic vector roles.
-- Identity foreground and color-palette outputs are synchronized. The paired
-  AppScreen palette and unified color-input behavior are closed.
-- No next Themes implementation slice is active.
-- Push, deployment, publication, and activation remain user-owned.
+- Preview, export, and owner interaction remain AppScreen boundaries; preserve accepted recipes.
+- Preserve the accepted field row and group error; push and deployment remain user-owned.

@@ -2,9 +2,29 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import {
+  applyFloatingWindowFieldRowErrorRecipe,
+  applyFloatingWindowFieldRowRecipe,
   floatingWindowConfirmationMarkup,
   floatingWindowRangeControlsMarkup
 } from '../components/floating-window.js';
+
+test('floating form field rows own the exact two-column field composition', async () => {
+  const node = { className: '', dataset: {} };
+  assert.equal(applyFloatingWindowFieldRowRecipe(node, { id: 'dimensions' }), true);
+  assert.equal(node.className, 'bb-floating-form__field-row');
+  assert.equal(node.dataset.floatingWindowFormFieldRow, 'dimensions');
+
+  const error = { className: '', dataset: {} };
+  assert.equal(applyFloatingWindowFieldRowErrorRecipe(error, { id: 'dimensions' }), true);
+  assert.equal(error.className, 'bb-floating-form__field-row-error');
+  assert.equal(error.dataset.floatingWindowFormFieldRowError, 'dimensions');
+
+  const css = await import('node:fs/promises').then(({ readFile }) => (
+    readFile(new URL('../components/floating-window.css', import.meta.url), 'utf8')
+  ));
+  assert.match(css, /\.bb-floating-form__field-row\s*\{[^}]*display:\s*grid;[^}]*grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\);[^}]*gap:\s*var\(--bb-spacing-3\);[^}]*row-gap:\s*var\(--bb-spacing-1\);/s);
+  assert.match(css, /\.bb-floating-form__field-row-error\s*\{[^}]*grid-column:\s*1\s*\/\s*-1;[^}]*white-space:\s*pre;/s);
+});
 
 test('floating confirmation optionally owns Cancel, destructive secondary, and primary actions', () => {
   const markup = floatingWindowConfirmationMarkup({
