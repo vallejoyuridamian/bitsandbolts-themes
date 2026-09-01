@@ -5,8 +5,23 @@ import {
   isSelectMenuVerticalBoundary,
   resolveSelectMenuPreferredHeight,
   resolveSelectMenuPosition,
+  selectOptionLabel,
+  selectTriggerValue,
   selectUsesExplicitExternalTrigger
 } from '../components/select.js';
+
+test('canonical Select preserves the intentionally empty mixed font label', () => {
+  const mixed = {
+    label: '',
+    textContent: '',
+    value: '__bb_layout_text_editor_mixed__',
+    hasAttribute: (name) => name === 'data-bb-layout-text-editor-mixed-option'
+  };
+
+  assert.equal(selectOptionLabel(mixed), '__bb_layout_text_editor_mixed__');
+  assert.equal(selectTriggerValue(mixed, mixed.value), '');
+  assert.equal(selectTriggerValue({ label: '', textContent: '', value: 'fallback' }, 'fallback'), 'fallback');
+});
 
 test('canonical Select owns opt-in font preview presentation', async () => {
   const source = await import('node:fs/promises').then(({ readFile }) => (

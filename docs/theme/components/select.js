@@ -41,8 +41,17 @@ function escapeHtml(value = '') {
     .replaceAll("'", '&#39;');
 }
 
-function optionLabel(option) {
+export function selectOptionLabel(option) {
   return String(option?.label || option?.textContent || option?.value || '').trim();
+}
+
+function optionHasIntentionalEmptyLabel(option) {
+  return option?.hasAttribute?.('data-bb-layout-text-editor-mixed-option') === true;
+}
+
+export function selectTriggerValue(option, selectValue = '') {
+  if (optionHasIntentionalEmptyLabel(option)) return '';
+  return selectOptionLabel(option) || String(selectValue || '').trim() || 'Select';
 }
 
 function optionFontFamily(option) {
@@ -86,7 +95,7 @@ function projectPortalPresentation(source, target, view) {
 function optionsSignature(select) {
   return Array.from(select?.options ?? []).map((option) => [
     option.value,
-    optionLabel(option),
+    selectOptionLabel(option),
     optionFontFamily(option),
     option.disabled,
     option.hidden,
@@ -289,7 +298,7 @@ export function installSelectController(root = globalThis.document, {
     const { select, trigger, valueNode, wrapper } = record;
     if (!select?.isConnected || !wrapper?.isConnected) return false;
     const selected = selectedOption(record);
-    const value = optionLabel(selected) || String(select.value || '').trim() || 'Select';
+    const value = selectTriggerValue(selected, select.value);
     if (valueNode) valueNode.textContent = value;
     syncFontPreview(valueNode, selected);
     trigger.disabled = Boolean(select.disabled);
@@ -297,7 +306,11 @@ export function installSelectController(root = globalThis.document, {
     wrapper.classList.toggle('is-disabled', Boolean(select.disabled));
     const accessibleLabel = labelTextForSelect(select);
     if (valueNode && !trigger.hasAttribute('aria-labelledby')) {
-      trigger.setAttribute('aria-label', accessibleLabel ? `${accessibleLabel}: ${value}` : value);
+      const accessibleValue = value || 'Mixed';
+      trigger.setAttribute(
+        'aria-label',
+        accessibleLabel ? `${accessibleLabel}: ${accessibleValue}` : accessibleValue
+      );
     }
     if (valueNode || select.title) trigger.title = select.title || '';
     if (rebuild || record.optionsSignature !== optionsSignature(select)) {
@@ -386,7 +399,7 @@ export function installSelectController(root = globalThis.document, {
       item.tabIndex = isSelected ? 0 : -1;
       const label = rootDocument.createElement('span');
       label.className = 'bb-menu__label';
-      label.textContent = optionLabel(option);
+      label.textContent = selectOptionLabel(option);
       syncFontPreview(label, option);
       item.appendChild(label);
       nodes.push(item);
@@ -659,7 +672,7 @@ export function installSelectController(root = globalThis.document, {
       optionIndex,
       previousValue,
       selectedValue: record.select.value,
-      selectedLabel: optionLabel(option),
+      selectedLabel: selectOptionLabel(option),
       action: 'native-select-value-commit',
       downstreamOwner: 'native-select-input-change-events',
       presentationOutcome: 'trigger-value-synchronized',

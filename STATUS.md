@@ -1,6 +1,6 @@
 # Bits and Bolts Themes: Status
 
-Last verified: 2026-08-30
+Last verified: 2026-08-31
 
 ## Current Truth
 
@@ -17,6 +17,8 @@ Last verified: 2026-08-30
   V1 grouping, with source and generated web and documentation outputs aligned.
 - V1 arrangement recipes are owner-accepted after healthy paired AppScreen
   interaction and runtime verification.
+- Canonical Select preserves an intentionally blank mixed Text-font label. The
+  paired AppScreen behavior is owner-accepted.
 
 ## Preserved Shared Editor Recipes
 
@@ -87,6 +89,8 @@ Last verified: 2026-08-30
   two distribution roles are synchronized across source, dist, and docs.
 - Nineteen focused checks pass in the final source state and the Themes
   production build passes.
+- Fifteen focused Select and layout-text-editor checks pass, and generated web
+  and documentation outputs are synchronized by the production build.
 - The owner accepted the paired arrangement presentation after exercising
   alignment, distribution, groups, undo and redo with healthy runtime logs.
 - No push, deployment, publication, or activation occurred.

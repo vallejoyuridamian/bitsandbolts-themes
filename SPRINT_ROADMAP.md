@@ -7,6 +7,7 @@
 - Preserve the owner-accepted Master Stage Phase 4 hull without a parallel recipe.
 - Preserve the owner-accepted free-only semantic magnet and crossed-magnet roles.
 - Preserve the owner-accepted horizontal and vertical viewport-centering roles.
+- Preserve the owner-accepted blank mixed Text-font label in paired AppScreen use.
 
 ## Completed Foundation
 
