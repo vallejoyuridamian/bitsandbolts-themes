@@ -1,6 +1,6 @@
 # Bits and Bolts Themes: Status
 
-Last verified: 2026-08-31
+Last verified: 2026-09-01
 
 ## Current Truth
 
@@ -19,6 +19,12 @@ Last verified: 2026-08-31
   interaction and runtime verification.
 - Canonical Select preserves an intentionally blank mixed Text-font label. The
   paired AppScreen behavior is owner-accepted.
+- Identity foreground purpose, contrast, derivation, mode behavior, and consumer
+  rules are now explicit in README and the canonical color-system reference.
+- Theme identity swatches present exact foreground pairs; source and generated
+  outputs match, and the paired AppScreen result is owner-accepted.
+- The canonical palette owns aligned Theme, On top, Project, and optional Original
+  rows. Project Add previews native colors and returns to plus at input baseline.
 
 ## Preserved Shared Editor Recipes
 
@@ -30,7 +36,8 @@ Last verified: 2026-08-31
 - `layout-text-editor.css` and `layout-text-editor.js` own toolbar and sidebar
   presentation without owning AppScreen behavior.
 - The toolbar recipe retains compact geometry, semantic clipboard, text
-  alignment, viewport centering, hover help, color popovers, and canonical Select.
+  alignment, viewport centering, hover help, color popovers, explicit
+  consumer-owned portal retention, and canonical Select.
 - Project color Add and image Original retain the shared cut-corner recipes and
   semantic vector roles.
 - Every repeated Select receives its own trigger. Only explicitly marked native
@@ -89,8 +96,8 @@ Last verified: 2026-08-31
   two distribution roles are synchronized across source, dist, and docs.
 - Nineteen focused checks pass in the final source state and the Themes
   production build passes.
-- Fifteen focused Select and layout-text-editor checks pass, and generated web
-  and documentation outputs are synchronized by the production build.
+- Nineteen focused layout-text-editor and toolbar-popover checks pass, including
+  retained portals and Project add-tile cancellation; generated outputs match.
 - The owner accepted the paired arrangement presentation after exercising
   alignment, distribution, groups, undo and redo with healthy runtime logs.
 - No push, deployment, publication, or activation occurred.
@@ -99,6 +106,5 @@ Last verified: 2026-08-31
 
 - Preserve accepted project-info, Background, placement, multi-selection,
   project-resource, Image, Device, toolbar-focus, arrangement, and fixed overlay recipes.
-- Preserve accepted compact and full Theme cards during owner-directed product use.
-- Further Themes work requires a concrete recipe gap. Do not add speculative UI
-  recipes or perform external activation.
+- Identity documentation, card presentation, palette rows, and unified AppScreen
+  color input are closed. No next Themes implementation slice is active.

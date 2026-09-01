@@ -8,6 +8,9 @@
 - Preserve the owner-accepted free-only semantic magnet and crossed-magnet roles.
 - Preserve the owner-accepted horizontal and vertical viewport-centering roles.
 - Preserve the owner-accepted blank mixed Text-font label in paired AppScreen use.
+- Preserve the owner-accepted identity foreground documentation, exact-pair
+  swatches, labeled AppScreen palette, reversible Project add-tile preview, and
+  retained context-menu portal interaction.
 
 ## Completed Foundation
 
@@ -59,5 +62,7 @@
 
 - Preview, export, and owner interaction remain AppScreen boundaries.
 - Preserve the accepted arrangement recipe and semantic vector roles.
-- Further Themes work requires owner evidence or a concrete recipe gap.
+- Identity foreground and color-palette outputs are synchronized. The paired
+  AppScreen palette and unified color-input behavior are closed.
+- No next Themes implementation slice is active.
 - Push, deployment, publication, and activation remain user-owned.

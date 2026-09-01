@@ -5,12 +5,15 @@ import test from 'node:test';
 import {
   applyLayoutTextEditorRecipe,
   LAYOUT_TEXT_EDITOR_MIXED_VALUE,
+  layoutTextEditorColorPaletteMarkup,
+  layoutTextEditorColorSwatchMarkup,
   layoutTextEditorCheckboxMarkup,
   layoutTextEditorArrangePopoverMarkup,
   layoutTextEditorIconButtonMarkup,
   layoutTextEditorMixedOptionMarkup,
   layoutTextEditorOriginalColorMarkup,
   layoutTextEditorProjectColorAddMarkup,
+  syncLayoutTextEditorProjectColorPreview,
   syncLayoutTextEditorMixedState
 } from '../components/layout-text-editor.js';
 
@@ -200,7 +203,35 @@ test('layout text editor project colors use the shared add-tile and semantic ico
   assert.match(markup, /value="#12AB34"/);
   assert.match(interfaceCss, /\.bb-color-swatch-add \{/);
   assert.match(interfaceCss, /\.bb-color-swatch-add:is\(:hover, :focus-within\)/);
+  assert.match(interfaceCss, /\.bb-color-swatch-add\[data-bb-color-swatch-preview\]/);
   assert.match(interfaceCss, /\.bb-color-swatch-add__input \{/);
+});
+
+test('layout text editor project color preview paints and resets the add tile', () => {
+  const properties = new Map();
+  const tile = {
+    dataset: {},
+    matches: () => false,
+    style: {
+      removeProperty: (name) => properties.delete(name),
+      setProperty: (name, value) => properties.set(name, value)
+    }
+  };
+  const input = { closest: () => tile, defaultValue: '#EAEFFC' };
+
+  assert.equal(syncLayoutTextEditorProjectColorPreview(input, '#12E6D5'), true);
+  assert.equal(Object.hasOwn(tile.dataset, 'bbColorSwatchPreview'), true);
+  assert.equal(properties.get('--bb-color-swatch-add-preview'), '#12E6D5');
+
+  assert.equal(syncLayoutTextEditorProjectColorPreview(input, '#eaeffc'), true);
+  assert.equal(Object.hasOwn(tile.dataset, 'bbColorSwatchPreview'), false);
+  assert.equal(properties.has('--bb-color-swatch-add-preview'), false);
+
+  syncLayoutTextEditorProjectColorPreview(input, '#12E6D5');
+
+  assert.equal(syncLayoutTextEditorProjectColorPreview(input), true);
+  assert.equal(Object.hasOwn(tile.dataset, 'bbColorSwatchPreview'), false);
+  assert.equal(properties.has('--bb-color-swatch-add-preview'), false);
 });
 
 test('layout editor original image color uses the shared cut-corner and semantic icon recipes', async () => {
@@ -217,4 +248,36 @@ test('layout editor original image color uses the shared cut-corner and semantic
   assert.match(markup, /title="Original"/);
   assert.match(interfaceCss, /\.bb-color-swatch-original \{/);
   assert.match(interfaceCss, /\.bb-color-swatch-original \.bb-semantic-icon \{/);
+});
+
+test('layout editor color palette owns labeled rows, aligned swatches, and exact swatch help', async () => {
+  const swatch = layoutTextEditorColorSwatchMarkup({
+    attributes: { 'data-text-color-swatch': '#12E6D5' },
+    color: '#12E6D5',
+    help: 'Primary: #12E6D5',
+    selected: true
+  });
+  const markup = layoutTextEditorColorPaletteMarkup({
+    onTopMarkup: '<button data-on-top></button>',
+    originalMarkup: '<button data-original></button>',
+    projectMarkup: '<button data-project></button>',
+    themeMarkup: swatch
+  });
+  const interfaceCss = await readFile(new URL('../components/interface-primitives.css', import.meta.url), 'utf8');
+
+  assert.match(swatch, /class="theme-swatch bb-cut-corner-swatch"/);
+  assert.match(swatch, /aria-label="Use Primary: #12E6D5"/);
+  assert.match(swatch, /title="Primary: #12E6D5"/);
+  assert.match(swatch, /style="--swatch:#12E6D5"/);
+  assert.match(swatch, /aria-pressed="true"/);
+  assert.match(swatch, /data-text-color-swatch="#12E6D5"/);
+  assert.ok(markup.indexOf('>Original<') < markup.indexOf('>Theme<'));
+  assert.ok(markup.indexOf('>Theme<') < markup.indexOf('>On top<'));
+  assert.ok(markup.indexOf('>On top<') < markup.indexOf('>Project<'));
+  assert.match(markup, /role="group" aria-label="Theme colors"/);
+  assert.match(interfaceCss, /\.bb-color-palette \{/);
+  assert.match(interfaceCss, /\.bb-color-palette__row \{/);
+  assert.match(interfaceCss, /grid-template-columns: 48px minmax\(0, 1fr\);/);
+  assert.match(interfaceCss, /\.bb-color-palette__swatches \{/);
+  assert.match(interfaceCss, /grid-template-columns: repeat\(4, 30px\);/);
 });

@@ -33,6 +33,27 @@ All catalog families implement the current v2 contract.
 
 Each theme has light + dark variants. All tokens follow the Material 3 color system.
 
+## Color system at a glance
+
+Every Theme mode starts with four creator-facing identity colors: Primary,
+Secondary, Accent, and Neutral. Each identity color has one exact foreground
+paired to it for readable text, icons, and other content placed directly on
+that color. Light and dark modes resolve their four pairs independently.
+
+The build calculates the contrast ratio for all eight pairs in a family and
+rejects any pair below 4.5:1. It then exposes the exact pairs consistently to
+web, Android, React Native, the generated catalog, and shared components.
+
+Identity colors are not the complete application palette. Each mode also owns
+48 semantic roles covering surfaces, content, borders, interactions, and
+status. Consumers use semantic roles for ordinary product UI and use an
+identity foreground only when content sits directly on its matching identity
+background.
+
+Read [Color System](docs/COLOR_SYSTEM.md) for the authoritative role model,
+calculation boundary, light and dark behavior, generated names, and consumer
+rules.
+
 Friendly migration note for Universal Clipboard: the retired `slate` family is
 now Cloud. The released app is intentionally untouched. Before its next theme
 sync, change the configured theme ID from `slate` to `cloud`; the generated
@@ -187,6 +208,12 @@ Requires Node 18+.
 Edit the family contract and mode tokens under `families/<family>/v2/`. Each
 identity role declares both its background token and exact foreground token.
 The build rejects any identity pair below 4.5:1 contrast.
+
+The build resolves and validates canonical color source. It does not silently
+repair an invalid foreground. Theme creation may calculate a deterministic
+foreground before canonical source is written, while an intentional authored
+foreground is preserved when it passes the contract. See
+[Color System](docs/COLOR_SYSTEM.md).
 
 ---
 

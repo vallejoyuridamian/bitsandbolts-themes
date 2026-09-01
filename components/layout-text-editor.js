@@ -3,6 +3,7 @@ import { semanticIconMarkup } from './semantic-icons.js';
 
 const ROOT_CLASS = 'bb-layout-text-editor';
 const PRESENTATIONS = new Set(['sidebar', 'toolbar']);
+const HEX_COLOR_PATTERN = /^#[0-9a-f]{6}$/i;
 
 export const LAYOUT_TEXT_EDITOR_MIXED_VALUE = '__bb_layout_text_editor_mixed__';
 
@@ -36,11 +37,69 @@ export function layoutTextEditorProjectColorAddMarkup({
   return `<label class="bb-color-swatch-add bb-workspace-add-tile bb-cut-corner-swatch" aria-label="Add color to project" title="Add color to project"><input class="bb-color-swatch-add__input" type="color" value="${escapeHtml(value)}" aria-label="Add color to project"${attributesMarkup(attributes)}><span class="bb-workspace-control-icon" aria-hidden="true">${semanticIconMarkup('add')}</span></label>`;
 }
 
+export function syncLayoutTextEditorProjectColorPreview(control, color = '') {
+  const tile = control?.matches?.('.bb-color-swatch-add')
+    ? control
+    : control?.closest?.('.bb-color-swatch-add');
+  if (!tile?.dataset) return false;
+  const resolvedColor = String(color || '').trim();
+  const baselineColor = String(control?.defaultValue || '').trim();
+  if (
+    !HEX_COLOR_PATTERN.test(resolvedColor)
+    || resolvedColor.toLowerCase() === baselineColor.toLowerCase()
+  ) {
+    delete tile.dataset.bbColorSwatchPreview;
+    tile.style?.removeProperty?.('--bb-color-swatch-add-preview');
+    return true;
+  }
+  tile.dataset.bbColorSwatchPreview = '';
+  tile.style?.setProperty?.('--bb-color-swatch-add-preview', resolvedColor);
+  return true;
+}
+
 export function layoutTextEditorOriginalColorMarkup({
   attributes = {},
   selected = false
 } = {}) {
   return `<button type="button" class="theme-swatch bb-color-swatch-original bb-cut-corner-swatch" aria-label="Use original image colors" title="Original"${selected ? ' aria-pressed="true"' : ''}${attributesMarkup(attributes)}>${semanticIconMarkup('close')}</button>`;
+}
+
+export function layoutTextEditorColorSwatchMarkup({
+  attributes = {},
+  color = '',
+  help = '',
+  selected = false
+} = {}) {
+  const resolvedColor = String(color || '').trim();
+  if (!HEX_COLOR_PATTERN.test(resolvedColor)) {
+    throw new TypeError('Layout text editor color swatch requires a six-digit hex color.');
+  }
+  const resolvedHelp = String(help || '').trim() || resolvedColor;
+  return `<button type="button" class="theme-swatch bb-cut-corner-swatch" aria-label="Use ${escapeHtml(resolvedHelp)}" title="${escapeHtml(resolvedHelp)}" style="--swatch:${escapeHtml(resolvedColor)}"${selected ? ' aria-pressed="true"' : ''}${attributesMarkup(attributes)}></button>`;
+}
+
+function layoutTextEditorColorPaletteRowMarkup({
+  label = '',
+  markup = ''
+} = {}) {
+  const resolvedMarkup = String(markup || '').trim();
+  if (!resolvedMarkup) return '';
+  return `<div class="bb-color-palette__row" role="group" aria-label="${escapeHtml(label)} colors"><span class="bb-color-palette__label">${escapeHtml(label)}</span><div class="bb-color-palette__swatches">${resolvedMarkup}</div></div>`;
+}
+
+export function layoutTextEditorColorPaletteMarkup({
+  onTopMarkup = '',
+  originalMarkup = '',
+  projectMarkup = '',
+  themeMarkup = ''
+} = {}) {
+  const rows = [
+    layoutTextEditorColorPaletteRowMarkup({ label: 'Original', markup: originalMarkup }),
+    layoutTextEditorColorPaletteRowMarkup({ label: 'Theme', markup: themeMarkup }),
+    layoutTextEditorColorPaletteRowMarkup({ label: 'On top', markup: onTopMarkup }),
+    layoutTextEditorColorPaletteRowMarkup({ label: 'Project', markup: projectMarkup })
+  ].filter(Boolean);
+  return `<div class="bb-color-palette">${rows.join('')}</div>`;
 }
 
 export function layoutTextEditorIconButtonMarkup({

@@ -339,7 +339,7 @@ function nextThemeMode(mode = '') {
 function themeSummaryIdentityMarkup(mode) {
   return mode.identity.map((entry) => `
     <span class="bb-theme-summary-card__identity" data-theme-v2-identity="${escapeHtml(entry.id)}">
-      <span aria-hidden="true"></span>
+      <span aria-hidden="true"><span class="bb-theme-v2-identity__foreground-sample">Aa</span></span>
       <small>${escapeHtml(entry.label)}</small>
     </span>
   `).join('');
@@ -495,16 +495,24 @@ function v2IdentityMarkup(mode, { editable = false, identityColorOverrides = [] 
             data-theme-project-color="${escapeHtml(entry.id)}"
           >
           <span class="bb-theme-v2-identity__sample-visual" aria-hidden="true">
-            ${hasOverride ? '' : `<span class="bb-workspace-control-icon" data-theme-project-color-add>${semanticIconMarkup('add')}</span>`}
+            ${hasOverride
+              ? '<span class="bb-theme-v2-identity__foreground-sample">Aa</span>'
+              : `<span class="bb-workspace-control-icon" data-theme-project-color-add>${semanticIconMarkup('add')}</span>`}
           </span>
         </label>
       `
-      : '<span class="bb-theme-v2-identity__swatch bb-cut-corner-swatch" aria-hidden="true"></span>';
+      : `<span
+          class="bb-theme-v2-identity__swatch bb-cut-corner-swatch"
+          role="img"
+          aria-label="${escapeHtml(entry.label)} ${escapeHtml(entry.value)}, foreground ${escapeHtml(entry.foreground)}, contrast ${Number(entry.contrastRatio).toFixed(2)} to 1"
+        ><span class="bb-theme-v2-identity__foreground-sample" aria-hidden="true">Aa</span></span>`;
     return `
       <div class="bb-theme-v2-identity" data-theme-v2-identity="${escapeHtml(entry.id)}">
         ${sample}
         <span class="bb-theme-v2-identity__label">${escapeHtml(entry.label)}</span>
         <span class="bb-theme-v2-identity__value"${hasOverride ? '' : ' hidden'}>${escapeHtml(entry.value)}</span>
+        <span class="bb-theme-v2-identity__foreground-label"${hasOverride ? '' : ' hidden'}>Foreground</span>
+        <span class="bb-theme-v2-identity__foreground-value"${hasOverride ? '' : ' hidden'}>${escapeHtml(entry.foreground)} / ${Number(entry.contrastRatio).toFixed(2)}:1</span>
       </div>
     `;
   }).join('');

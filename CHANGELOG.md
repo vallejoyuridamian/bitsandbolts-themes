@@ -4,6 +4,27 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-09-01) - Theme foreground and shared color workflows accepted
+
+### What changed
+- Documented every generated identity and foreground color, its purpose,
+  derivation, light and dark behavior, and consumer contract.
+- Made Theme specimens show each identity color with its exact foreground pair.
+- Added one canonical palette recipe with aligned Theme, On top, Project, and
+  optional Original rows.
+- Added shared toolbar-trigger color synchronization and a reversible Project
+  add-tile preview that returns to its semantic plus state on native cancel.
+- Kept portal context menus above retained toolbar popovers and synchronized
+  source, generated web output, documentation output, and tests.
+
+### Acceptance and boundary
+- The owner accepted the paired AppScreen palette, Text selection retention,
+  single-flight preview, cancellation, palette settlement, and Project removal.
+- Nineteen focused Themes checks and the production build pass.
+- AppScreen retains color behavior, persistence, history, selection, rendering,
+  and project-resource ownership.
+- Nothing was pushed, deployed, published, admitted, or activated.
+
 ## Session wrap-up (2026-08-30) - V1 multi-selection states accepted
 
 ### What changed

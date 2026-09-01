@@ -56,6 +56,15 @@ export function toolbarPopoverTriggerMarkup({
   return `<button type="button" class="bb-toolbar-popover__trigger bb-workspace-control-button bb-workspace-control-button--icon"${attributesMarkup(resolvedAttributes)}><span class="bb-toolbar-popover__trigger-value bb-cut-corner-swatch" aria-hidden="true">${valueIcon}</span></button>`;
 }
 
+export function syncToolbarPopoverTriggerValue(trigger, value = 'transparent') {
+  if (!trigger) return false;
+  const resolvedValue = String(value || 'transparent');
+  trigger.style?.setProperty?.('--bb-toolbar-popover-trigger-value', resolvedValue);
+  trigger.querySelector?.('.bb-toolbar-popover__trigger-value')
+    ?.style?.setProperty?.('--bb-toolbar-popover-trigger-value', resolvedValue);
+  return true;
+}
+
 export function toolbarPopoverNumericFieldMarkup({
   attributes = {},
   label = ''
@@ -119,7 +128,8 @@ export function resolveToolbarPopoverPosition({
 let popoverSequence = 0;
 
 export function createToolbarPopoverController({
-  rootDocument = globalThis.document
+  rootDocument = globalThis.document,
+  shouldRetainPointerTarget = () => false
 } = {}) {
   const view = rootDocument?.defaultView ?? globalThis.window;
   let active = null;
@@ -176,6 +186,7 @@ export function createToolbarPopoverController({
   function handlePointerDown(event) {
     if (!active) return;
     if (active.anchor?.contains?.(event.target) || active.panel?.contains?.(event.target)) return;
+    if (shouldRetainPointerTarget?.(event.target) === true) return;
     close('outside-pointer');
   }
 
