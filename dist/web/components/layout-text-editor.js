@@ -244,8 +244,22 @@ function layoutGeometryFieldMarkup({
   });
 }
 
+function layoutGeometryReferenceSwitchMarkup({
+  axis = 'horizontal',
+  options = [],
+  value = ''
+} = {}) {
+  const resolvedAxis = axis === 'vertical' ? 'vertical' : 'horizontal';
+  const buttons = options.map((option) => {
+    const active = option.value === value;
+    return `<button class="bb-segmented-control__item${active ? ' active' : ''}" type="button" aria-pressed="${active ? 'true' : 'false'}" data-bb-layout-geometry-reference-axis="${resolvedAxis}" data-bb-layout-geometry-reference="${option.value}">${option.label}</button>`;
+  }).join('');
+  return `<div class="bb-layout-geometry-popover__reference bb-layout-geometry-popover__reference--${resolvedAxis} bb-segmented-control bb-segmented-control--popover" role="group" aria-label="${resolvedAxis === 'horizontal' ? 'Horizontal' : 'Vertical'} position reference">${buttons}</div>`;
+}
+
 export function layoutTextEditorGeometryPopoverMarkup({
   geometry = null,
+  reference = {},
   transform = null,
   unit = 'px'
 } = {}) {
@@ -255,11 +269,16 @@ export function layoutTextEditorGeometryPopoverMarkup({
     ));
   const resolvedUnit = unit === 'percent' ? 'percent' : 'px';
   const percent = resolvedUnit === 'percent';
+  const horizontalReference = reference?.horizontal === 'right' ? 'right' : 'left';
+  const verticalReference = reference?.vertical === 'bottom' ? 'bottom' : 'top';
   const unitSwitch = hasGeometry
     ? `<div class="bb-layout-geometry-popover__units bb-segmented-control bb-segmented-control--popover" role="group" aria-label="Geometry units"><button class="bb-segmented-control__item${percent ? '' : ' active'}" type="button" aria-pressed="${percent ? 'false' : 'true'}" data-bb-layout-geometry-unit="px">px</button><button class="bb-segmented-control__item${percent ? ' active' : ''}" type="button" aria-pressed="${percent ? 'true' : 'false'}" data-bb-layout-geometry-unit="percent">%</button></div>`
     : '';
+  const referenceSwitches = hasGeometry
+    ? `${layoutGeometryReferenceSwitchMarkup({ axis: 'horizontal', options: [{ label: 'Left', value: 'left' }, { label: 'Right', value: 'right' }], value: horizontalReference })}${layoutGeometryReferenceSwitchMarkup({ axis: 'vertical', options: [{ label: 'Top', value: 'top' }, { label: 'Bottom', value: 'bottom' }], value: verticalReference })}`
+    : '';
   const positionRow = hasGeometry
-    ? `<div class="bb-layout-geometry-popover__position"><div class="bb-layout-geometry-popover__fields">${layoutGeometryFieldMarkup({ field: 'x', label: 'X', step: percent ? 0.5 : 1, unit: resolvedUnit, value: geometry.x })}${layoutGeometryFieldMarkup({ field: 'y', label: 'Y', step: percent ? 0.5 : 1, unit: resolvedUnit, value: geometry.y })}</div>${unitSwitch}</div>`
+    ? `<div class="bb-layout-geometry-popover__position"><div class="bb-layout-geometry-popover__fields">${layoutGeometryFieldMarkup({ field: 'x', label: 'X', step: percent ? 0.5 : 1, unit: resolvedUnit, value: geometry.x })}${layoutGeometryFieldMarkup({ field: 'y', label: 'Y', step: percent ? 0.5 : 1, unit: resolvedUnit, value: geometry.y })}</div>${unitSwitch}${referenceSwitches}</div>`
     : '';
   const sizeRow = hasGeometry
     ? `<div class="bb-layout-geometry-popover__fields">${layoutGeometryFieldMarkup({ field: 'width', label: 'Width', min: percent ? undefined : 1, step: percent ? 0.5 : 1, unit: resolvedUnit, value: geometry.width })}${layoutGeometryFieldMarkup({ field: 'height', label: 'Height', min: percent ? undefined : 1, step: percent ? 0.5 : 1, unit: resolvedUnit, value: geometry.height })}</div>`

@@ -128,6 +128,7 @@ test('layout text editor owns the arrangement popover composition', async () => 
 test('layout text editor owns the compact geometry popover composition', async () => {
   const markup = layoutTextEditorGeometryPopoverMarkup({
     geometry: { x: 54, y: 96, width: 420, height: 180 },
+    reference: { horizontal: 'right', vertical: 'bottom' },
     transform: { available: true, mirrorX: false, mirrorY: true, rotation: 12 }
   });
   const [css, segmentedCss] = await Promise.all([
@@ -145,6 +146,10 @@ test('layout text editor owns the compact geometry popover composition', async (
   assert.match(markup, /bb-layout-geometry-popover__units bb-segmented-control bb-segmented-control--popover/);
   assert.match(markup, /data-bb-layout-geometry-unit="px">px<\/button>/);
   assert.match(markup, /data-bb-layout-geometry-unit="percent">%<\/button>/);
+  assert.match(markup, /bb-layout-geometry-popover__reference--horizontal bb-segmented-control bb-segmented-control--popover/);
+  assert.match(markup, /bb-layout-geometry-popover__reference--vertical bb-segmented-control bb-segmented-control--popover/);
+  assert.match(markup, /active" type="button" aria-pressed="true" data-bb-layout-geometry-reference-axis="horizontal" data-bb-layout-geometry-reference="right">Right<\/button>/);
+  assert.match(markup, /active" type="button" aria-pressed="true" data-bb-layout-geometry-reference-axis="vertical" data-bb-layout-geometry-reference="bottom">Bottom<\/button>/);
   assert.doesNotMatch(markup, /<select|<option/);
   assert.doesNotMatch(markup, /Position|Center in|Size|Transform|\(px\)|\(deg\)/);
   assert.doesNotMatch(markup, /data-bb-layout-geometry-center-action/);
@@ -158,6 +163,9 @@ test('layout text editor owns the compact geometry popover composition', async (
   assert.match(css, /\[data-bb-layout-geometry-rotation\][\s\S]*\{\s*grid-column:\s*2;/s);
   assert.match(css, /\[data-bb-layout-geometry-field="height"\][\s\S]*\{\s*grid-column:\s*4;/s);
   assert.match(css, /\.bb-layout-geometry-popover__units\s*\{[^}]*grid-column:\s*5;/s);
+  assert.match(css, /\.bb-layout-geometry-popover__reference\s*\{[^}]*grid-column:\s*5;/s);
+  assert.match(css, /\.bb-layout-geometry-popover__reference--horizontal\s*\{[^}]*grid-row:\s*2;/s);
+  assert.match(css, /\.bb-layout-geometry-popover__reference--vertical\s*\{[^}]*grid-row:\s*3;/s);
   assert.doesNotMatch(css, /\.bb-layout-geometry-popover__units\s*\{[^}]*border:/s);
   assert.doesNotMatch(css, /\.bb-layout-geometry-popover__units\s*\{[^}]*(?:inline-size|min-width|max-width|overflow):/s);
   assert.doesNotMatch(css, /\.bb-layout-geometry-popover__units \.bb-segmented-control__item\.active/);
@@ -169,6 +177,8 @@ test('layout text editor owns the compact geometry popover composition', async (
     unit: 'percent'
   });
   assert.match(percentMarkup, /bb-segmented-control__item active" type="button" aria-pressed="true" data-bb-layout-geometry-unit="percent"/);
+  assert.match(percentMarkup, /active" type="button" aria-pressed="true" data-bb-layout-geometry-reference-axis="horizontal" data-bb-layout-geometry-reference="left">Left<\/button>/);
+  assert.match(percentMarkup, /active" type="button" aria-pressed="true" data-bb-layout-geometry-reference-axis="vertical" data-bb-layout-geometry-reference="top">Top<\/button>/);
   assert.match(percentMarkup, /aria-label="X in percent"/);
   assert.match(percentMarkup, /data-bb-layout-geometry-field="width" step="0.5"/);
 });

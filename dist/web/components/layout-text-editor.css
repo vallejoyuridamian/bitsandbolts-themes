@@ -306,6 +306,18 @@
   grid-row: 1;
 }
 
+.bb-layout-geometry-popover__reference {
+  grid-column: 5;
+}
+
+.bb-layout-geometry-popover__reference--horizontal {
+  grid-row: 2;
+}
+
+.bb-layout-geometry-popover__reference--vertical {
+  grid-row: 3;
+}
+
 .bb-layout-gap-popover {
   display: grid;
   grid-template-columns: minmax(128px, 1fr) auto;
