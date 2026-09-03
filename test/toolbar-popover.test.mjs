@@ -151,9 +151,14 @@ test('toolbar popover stays in the viewport and flips above when needed', () => 
   }), { left: 132, placement: 'above', top: 116 });
 });
 
-test('toolbar popover can retain an explicitly owned portal interaction', () => {
+test('toolbar popover retains a shared floating portal or an explicitly owned interaction', () => {
   const listeners = new Map();
   const retainedTarget = {};
+  const portalTarget = {
+    closest: (selector) => selector === '[data-floating-window-portal="true"]'
+      ? { dataset: { floatingWindowPortal: 'true' } }
+      : null
+  };
   const rootDocument = {
     addEventListener(type, listener) { listeners.set(type, listener); },
     body: { appendChild(node) { node.isConnected = true; } },
@@ -179,6 +184,10 @@ test('toolbar popover can retain an explicitly owned portal interaction', () => 
   });
 
   listeners.get('pointerdown')({ target: retainedTarget });
+  assert.equal(controller.isOpenFor(anchor), true);
+  assert.deepEqual(closeReasons, []);
+
+  listeners.get('pointerdown')({ target: portalTarget });
   assert.equal(controller.isOpenFor(anchor), true);
   assert.deepEqual(closeReasons, []);
 

@@ -4,7 +4,14 @@
 
 - Preserve Themes as the visual owner across every Bits and Bolts product.
 - Keep AppScreen behavior in AppScreen while sharing exact presentation recipes.
-- Custom dimensions use the owner-accepted floating-form field row and shared nonwrapping group error paired with AppScreen `d17e636`.
+- Custom dimensions retain the field row paired with AppScreen `d17e636`; Text
+  Style Presets use the Research V2 width-height modular recipe and Select.
+- The shared ruler trigger and compact Geometry popover compose numeric position,
+  linked dimensions, Rotation, and the shared segmented px/% control in the X/Y row. Viewport centering
+  and Mirroring remain visible. AppScreen owns conversion behavior, action availability, and ordering.
+- Text Style Presets currently own the V2 default line-height ladder, pending a
+  typeface-specific safety decision. Gap owns the compact preset and axis actions,
+  with portaled Select interaction retained by the parent toolbar popover.
 - Preserve the owner-accepted Master Stage Phase 4 hull without a parallel recipe.
 - Preserve the owner-accepted free-only semantic magnet and crossed-magnet roles.
 - Preserve the owner-accepted horizontal and vertical viewport-centering roles.
@@ -61,5 +68,8 @@
 
 ## Current Boundary
 
-- Preview, export, and owner interaction remain AppScreen boundaries; preserve accepted recipes.
-- Preserve the accepted field row and group error; push and deployment remain user-owned.
+- Text Style Preset, Geometry, and Gap source plus generated outputs are current,
+  and the paired presentation is owner-accepted. Thirteen layout-editor checks,
+  15 Select/popover checks, and the build pass. Universal typeface safety remains
+  a separate discussion.
+- Preview, export, owner interaction, push, and deployment remain outside Themes ownership.

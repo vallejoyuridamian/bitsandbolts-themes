@@ -1,5 +1,7 @@
 import { semanticActionButtonMarkup } from './button.js';
+import { LAYOUT_GAP_PRESETS, normalizeLayoutGapPresetId } from './layout-spacing.js';
 import { semanticIconMarkup } from './semantic-icons.js';
+import { toolbarPopoverNumericFieldMarkup } from './toolbar-popover.js';
 
 const ROOT_CLASS = 'bb-layout-text-editor';
 const PRESENTATIONS = new Set(['sidebar', 'toolbar']);
@@ -219,6 +221,61 @@ export function layoutTextEditorArrangePopoverMarkup({
     }));
   }
   return `<div class="bb-layout-arrange-popover" data-bb-layout-arrange-popover>${groups.join('')}</div>`;
+}
+
+function layoutGeometryFieldMarkup({
+  field = '',
+  label = '',
+  min,
+  step = 1,
+  unit = 'px',
+  value = 0
+} = {}) {
+  const percent = unit === 'percent';
+  return toolbarPopoverNumericFieldMarkup({
+    attributes: {
+      'aria-label': `${label} in ${percent ? 'percent' : 'pixels'}`,
+      'data-bb-layout-geometry-field': field,
+      ...(Number.isFinite(Number(min)) ? { min: Number(min) } : {}),
+      step: Number(step) || 1,
+      value: Number.isFinite(Number(value)) ? Number(value) : 0
+    },
+    label
+  });
+}
+
+export function layoutTextEditorGeometryPopoverMarkup({
+  geometry = null,
+  transform = null,
+  unit = 'px'
+} = {}) {
+  const hasGeometry = geometry
+    && ['x', 'y', 'width', 'height'].every((property) => (
+      Number.isFinite(Number(geometry[property]))
+    ));
+  const resolvedUnit = unit === 'percent' ? 'percent' : 'px';
+  const percent = resolvedUnit === 'percent';
+  const unitSwitch = hasGeometry
+    ? `<div class="bb-layout-geometry-popover__units bb-segmented-control bb-segmented-control--popover" role="group" aria-label="Geometry units"><button class="bb-segmented-control__item${percent ? '' : ' active'}" type="button" aria-pressed="${percent ? 'false' : 'true'}" data-bb-layout-geometry-unit="px">px</button><button class="bb-segmented-control__item${percent ? ' active' : ''}" type="button" aria-pressed="${percent ? 'true' : 'false'}" data-bb-layout-geometry-unit="percent">%</button></div>`
+    : '';
+  const positionRow = hasGeometry
+    ? `<div class="bb-layout-geometry-popover__position"><div class="bb-layout-geometry-popover__fields">${layoutGeometryFieldMarkup({ field: 'x', label: 'X', step: percent ? 0.5 : 1, unit: resolvedUnit, value: geometry.x })}${layoutGeometryFieldMarkup({ field: 'y', label: 'Y', step: percent ? 0.5 : 1, unit: resolvedUnit, value: geometry.y })}</div>${unitSwitch}</div>`
+    : '';
+  const sizeRow = hasGeometry
+    ? `<div class="bb-layout-geometry-popover__fields">${layoutGeometryFieldMarkup({ field: 'width', label: 'Width', min: percent ? undefined : 1, step: percent ? 0.5 : 1, unit: resolvedUnit, value: geometry.width })}${layoutGeometryFieldMarkup({ field: 'height', label: 'Height', min: percent ? undefined : 1, step: percent ? 0.5 : 1, unit: resolvedUnit, value: geometry.height })}</div>`
+    : '';
+  const rotationRow = transform?.available
+    ? `<div class="bb-layout-geometry-popover__rotation">${toolbarPopoverNumericFieldMarkup({ attributes: { 'aria-label': 'Rotation in degrees', 'data-bb-layout-geometry-rotation': '', max: 180, min: -180, step: 1, value: Math.round(Number(transform.rotation) || 0) }, label: 'Rotation' })}</div>`
+    : '';
+  return `<div class="bb-layout-geometry-popover" data-bb-layout-geometry-popover>${positionRow}${sizeRow}${rotationRow}</div>`;
+}
+
+export function layoutTextEditorGapPopoverMarkup({ presetId = 'related' } = {}) {
+  const resolvedPresetId = normalizeLayoutGapPresetId(presetId) || LAYOUT_GAP_PRESETS[0].id;
+  const options = LAYOUT_GAP_PRESETS.map(({ id, label, multiplier }) => (
+    `<option value="${escapeHtml(id)}"${id === resolvedPresetId ? ' selected' : ''}>${escapeHtml(`${label} ${multiplier}u`)}</option>`
+  )).join('');
+  return `<div class="bb-layout-gap-popover" data-bb-layout-gap-popover><select class="bb-workspace-control-input bb-layout-gap-popover__preset" aria-label="Gap preset" data-bb-layout-gap-preset>${options}</select><div class="bb-layout-gap-popover__actions" role="group" aria-label="Apply gap">${layoutTextEditorIconButtonMarkup({ attributes: { 'data-bb-layout-gap-axis': 'horizontal' }, iconRole: 'distribute_horizontal', label: 'Apply horizontal gap' })}${layoutTextEditorIconButtonMarkup({ attributes: { 'data-bb-layout-gap-axis': 'vertical' }, iconRole: 'distribute_vertical', label: 'Apply vertical gap' })}</div></div>`;
 }
 
 export function layoutTextEditorCheckboxMarkup({

@@ -1,6 +1,6 @@
 # Bits and Bolts Themes: Status
 
-Last verified: 2026-09-01
+Last verified: 2026-09-02
 
 ## Current Truth
 
@@ -35,8 +35,8 @@ Last verified: 2026-09-01
   equivalent outer-canvas paint. AppScreen placement remains trace-free.
 - `layout-text-editor.css` and `layout-text-editor.js` own toolbar and sidebar
   presentation without owning AppScreen behavior.
-- The toolbar recipe retains compact geometry, semantic clipboard, text
-  alignment, viewport centering, hover help, color popovers, explicit
+- The toolbar recipe retains compact geometry, text alignment, viewport
+  centering, hover help, color popovers, explicit
   consumer-owned portal retention, and canonical Select.
 - Project color Add and image Original retain the shared cut-corner recipes and
   semantic vector roles.
@@ -104,7 +104,6 @@ Last verified: 2026-09-01
 
 ## Next Boundary
 
-- Preserve accepted project-info, Background, placement, multi-selection,
-  project-resource, Image, Device, toolbar-focus, arrangement, and fixed overlay recipes.
-- The canonical floating form owns the owner-accepted AppScreen custom-dimension row and its shared nonwrapping group error. Source, generated outputs, four focused
-  checks, and both paired builds pass with AppScreen implementation `d17e636`.
+- Preserve accepted project-info, Background, placement, multi-selection, custom-dimension, project-resource, Image, Device, toolbar-focus, arrangement, and fixed overlay recipes.
+- The typography owner computes the modular size ladder and publishes the V2 default line heights. The current presentation is owner-accepted. Local font metrics prove those values are not universal overlap guarantees, so typeface-specific safety remains discussion-pending.
+- Geometry is owner-locked and uses the shared popover Segmented Control recipe for px/% in the X/Y row. Its wrapper matches the popover surface exactly, has no border, and its centered options retain equal horizontal padding. Percent inputs show one decimal and step by 0.5 while saved geometry stays canonical pixels. A separate Gap trigger owns Related 1u through Major 4u plus both axis actions using `min(0.022W, 0.030H)`. Source, generated outputs, 13 layout-editor checks, five AppScreen geometry checks, syntax, and the build pass.

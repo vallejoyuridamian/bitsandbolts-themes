@@ -9,6 +9,8 @@ import {
   layoutTextEditorColorSwatchMarkup,
   layoutTextEditorCheckboxMarkup,
   layoutTextEditorArrangePopoverMarkup,
+  layoutTextEditorGapPopoverMarkup,
+  layoutTextEditorGeometryPopoverMarkup,
   layoutTextEditorIconButtonMarkup,
   layoutTextEditorMixedOptionMarkup,
   layoutTextEditorOriginalColorMarkup,
@@ -67,6 +69,9 @@ test('layout text editor CSS owns its text, segmented, animation, and range cont
   assert.match(css, /gap: 5px;/);
   assert.match(css, /input\[type="number"\]/);
   assert.match(css, /\.bb-semantic-icon/);
+  assert.match(css, /> \.bb-layout-text-editor__preset-control/);
+  assert.match(css, /> \.bb-layout-text-editor__preset-control > \.bb-select/);
+  assert.match(css, /\.bb-layout-text-editor__preset-control \{[\s\S]*?inline-size: 112px;/);
   assert.match(css, /> \.bb-layout-text-editor__font-control > \.bb-select/);
   assert.doesNotMatch(css, /bb-layout-text-editor--window/);
   assert.doesNotMatch(css, /\.bb-select__caret/);
@@ -117,6 +122,69 @@ test('layout text editor owns the arrangement popover composition', async () => 
   assert.match(threeSelection, /data-bb-icon-role="align_selection_bottom"/);
   assert.match(css, /\.bb-layout-arrange-popover \{/);
   assert.match(css, /\.bb-layout-arrange-popover__actions \{/);
+  assert.match(css, /\.bb-layout-text-editor\.bb-layout-text-editor--toolbar \.bb-layout-text-editor__size-control\s*\{[^}]*flex:\s*0 0 68px;[^}]*inline-size:\s*68px;/s);
+});
+
+test('layout text editor owns the compact geometry popover composition', async () => {
+  const markup = layoutTextEditorGeometryPopoverMarkup({
+    geometry: { x: 54, y: 96, width: 420, height: 180 },
+    transform: { available: true, mirrorX: false, mirrorY: true, rotation: 12 }
+  });
+  const [css, segmentedCss] = await Promise.all([
+    readFile(new URL('../components/layout-text-editor.css', import.meta.url), 'utf8'),
+    readFile(new URL('../components/segmented-control.css', import.meta.url), 'utf8')
+  ]);
+
+  assert.match(markup, /data-bb-layout-geometry-popover/);
+  assert.match(markup, /data-bb-layout-geometry-field="x"/);
+  assert.match(markup, /data-bb-layout-geometry-field="y"/);
+  assert.match(markup, /data-bb-layout-geometry-field="width"/);
+  assert.match(markup, /data-bb-layout-geometry-field="height"/);
+  assert.match(markup, /data-bb-layout-geometry-rotation/);
+  assert.match(markup, /data-bb-layout-geometry-unit/);
+  assert.match(markup, /bb-layout-geometry-popover__units bb-segmented-control bb-segmented-control--popover/);
+  assert.match(markup, /data-bb-layout-geometry-unit="px">px<\/button>/);
+  assert.match(markup, /data-bb-layout-geometry-unit="percent">%<\/button>/);
+  assert.doesNotMatch(markup, /<select|<option/);
+  assert.doesNotMatch(markup, /Position|Center in|Size|Transform|\(px\)|\(deg\)/);
+  assert.doesNotMatch(markup, /data-bb-layout-geometry-center-action/);
+  assert.doesNotMatch(markup, /data-bb-layout-geometry-transform-action/);
+  assert.match(css, /\.bb-toolbar-popover:has\(> \.bb-layout-geometry-popover\)\s*\{[^}]*width:\s*max-content;[^}]*max-width:\s*calc\(100vw - 16px\);/s);
+  assert.match(css, /\.bb-layout-geometry-popover \{/);
+  assert.match(css, /\.bb-layout-geometry-popover\s*\{[^}]*align-items:\s*center;/s);
+  assert.match(css, /\.bb-layout-geometry-popover\s*\{[^}]*grid-template-columns:\s*max-content 68px max-content 68px max-content;[^}]*width:\s*max-content;/s);
+  assert.match(css, /\.bb-layout-geometry-popover__position\s*\{\s*display:\s*contents;/s);
+  assert.match(css, /\.bb-layout-geometry-popover__fields,[\s\S]*\.bb-layout-geometry-popover \.bb-toolbar-popover__field\s*\{\s*display:\s*contents;/s);
+  assert.match(css, /\[data-bb-layout-geometry-rotation\][\s\S]*\{\s*grid-column:\s*2;/s);
+  assert.match(css, /\[data-bb-layout-geometry-field="height"\][\s\S]*\{\s*grid-column:\s*4;/s);
+  assert.match(css, /\.bb-layout-geometry-popover__units\s*\{[^}]*grid-column:\s*5;/s);
+  assert.doesNotMatch(css, /\.bb-layout-geometry-popover__units\s*\{[^}]*border:/s);
+  assert.doesNotMatch(css, /\.bb-layout-geometry-popover__units\s*\{[^}]*(?:inline-size|min-width|max-width|overflow):/s);
+  assert.doesNotMatch(css, /\.bb-layout-geometry-popover__units \.bb-segmented-control__item\.active/);
+  assert.match(segmentedCss, /\.bb-segmented-control\.bb-segmented-control--popover\s*\{[^}]*background:\s*var\(--bb-v2-color-surface-canvas\);/s);
+  assert.match(segmentedCss, /\.bb-segmented-control\.bb-segmented-control--popover > \.bb-segmented-control__item\s*\{[^}]*display:\s*inline-flex;[^}]*flex:\s*0 0 auto;[^}]*align-items:\s*center;[^}]*justify-content:\s*center;[^}]*padding:\s*4px 12px;/s);
+
+  const percentMarkup = layoutTextEditorGeometryPopoverMarkup({
+    geometry: { x: 7, y: 7, width: 86, height: 20 },
+    unit: 'percent'
+  });
+  assert.match(percentMarkup, /bb-segmented-control__item active" type="button" aria-pressed="true" data-bb-layout-geometry-unit="percent"/);
+  assert.match(percentMarkup, /aria-label="X in percent"/);
+  assert.match(percentMarkup, /data-bb-layout-geometry-field="width" step="0.5"/);
+});
+
+test('layout text editor owns the compact relational gap preset popover', async () => {
+  const markup = layoutTextEditorGapPopoverMarkup({ presetId: 'section' });
+  const css = await readFile(new URL('../components/layout-text-editor.css', import.meta.url), 'utf8');
+
+  assert.match(markup, /data-bb-layout-gap-popover/);
+  assert.match(markup, /data-bb-layout-gap-preset/);
+  assert.match(markup, /value="section" selected>Section 3u/);
+  assert.match(markup, /data-bb-layout-gap-axis="horizontal"/);
+  assert.match(markup, /data-bb-layout-gap-axis="vertical"/);
+  assert.doesNotMatch(markup, /<h\d|Gap preset<\/span>/);
+  assert.match(css, /\.bb-layout-gap-popover\s*\{/);
+  assert.match(css, /grid-template-columns:\s*minmax\(128px, 1fr\) auto/);
 });
 
 test('layout text editor owns checkbox markup', async () => {

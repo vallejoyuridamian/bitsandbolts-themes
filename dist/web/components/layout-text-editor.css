@@ -3,6 +3,8 @@
  * Consumers retain selection, mutation, persistence, and rendering behavior.
  */
 
+@import url("./segmented-control.css");
+
 .bb-layout-text-editor.bb-layout-text-editor {
   box-sizing: border-box;
   display: grid;
@@ -214,6 +216,129 @@
   align-items: center;
   flex-wrap: wrap;
   gap: var(--bb-spacing-2);
+}
+
+.bb-toolbar-popover:has(> .bb-layout-geometry-popover) {
+  width: max-content;
+  max-width: calc(100vw - 16px);
+}
+
+.bb-layout-geometry-popover {
+  display: grid;
+  grid-template-columns: max-content 68px max-content 68px max-content;
+  align-items: center;
+  gap: var(--bb-spacing-2);
+  min-width: 0;
+  width: max-content;
+}
+
+.bb-layout-geometry-popover__position {
+  display: contents;
+}
+
+.bb-layout-geometry-popover__fields,
+.bb-layout-geometry-popover__rotation,
+.bb-layout-geometry-popover .bb-toolbar-popover__field {
+  display: contents;
+}
+
+.bb-layout-geometry-popover .bb-toolbar-popover__field-label {
+  align-self: center;
+}
+
+.bb-layout-geometry-popover .bb-toolbar-popover__field:has(> [data-bb-layout-geometry-field="x"]) > .bb-toolbar-popover__field-label,
+.bb-layout-geometry-popover [data-bb-layout-geometry-field="x"] {
+  grid-row: 1;
+}
+
+.bb-layout-geometry-popover .bb-toolbar-popover__field:has(> [data-bb-layout-geometry-field="width"]) > .bb-toolbar-popover__field-label,
+.bb-layout-geometry-popover [data-bb-layout-geometry-field="width"] {
+  grid-row: 2;
+}
+
+.bb-layout-geometry-popover .bb-toolbar-popover__field:has(> [data-bb-layout-geometry-rotation]) > .bb-toolbar-popover__field-label,
+.bb-layout-geometry-popover [data-bb-layout-geometry-rotation] {
+  grid-row: 3;
+}
+
+.bb-layout-geometry-popover .bb-toolbar-popover__field:has(> :is(
+  [data-bb-layout-geometry-field="x"],
+  [data-bb-layout-geometry-field="width"],
+  [data-bb-layout-geometry-rotation]
+)) > .bb-toolbar-popover__field-label {
+  grid-column: 1;
+}
+
+.bb-layout-geometry-popover :is(
+  [data-bb-layout-geometry-field="x"],
+  [data-bb-layout-geometry-field="width"],
+  [data-bb-layout-geometry-rotation]
+) {
+  grid-column: 2;
+}
+
+.bb-layout-geometry-popover .bb-toolbar-popover__field:has(> [data-bb-layout-geometry-field="y"]) > .bb-toolbar-popover__field-label,
+.bb-layout-geometry-popover [data-bb-layout-geometry-field="y"] {
+  grid-row: 1;
+}
+
+.bb-layout-geometry-popover .bb-toolbar-popover__field:has(> [data-bb-layout-geometry-field="height"]) > .bb-toolbar-popover__field-label,
+.bb-layout-geometry-popover [data-bb-layout-geometry-field="height"] {
+  grid-row: 2;
+}
+
+.bb-layout-geometry-popover .bb-toolbar-popover__field:has(> :is(
+  [data-bb-layout-geometry-field="y"],
+  [data-bb-layout-geometry-field="height"]
+)) > .bb-toolbar-popover__field-label {
+  grid-column: 3;
+}
+
+.bb-layout-geometry-popover :is(
+  [data-bb-layout-geometry-field="y"],
+  [data-bb-layout-geometry-field="height"]
+) {
+  grid-column: 4;
+}
+
+.bb-layout-geometry-popover__units {
+  grid-column: 5;
+  grid-row: 1;
+}
+
+.bb-layout-gap-popover {
+  display: grid;
+  grid-template-columns: minmax(128px, 1fr) auto;
+  align-items: center;
+  gap: var(--bb-spacing-2);
+  min-width: 0;
+}
+
+.bb-layout-gap-popover__preset {
+  box-sizing: border-box;
+  min-width: 0;
+  inline-size: 128px;
+  block-size: 30px;
+  padding: 0 var(--bb-spacing-2);
+  border: 1px solid var(--bb-v2-color-border-subtle);
+  border-radius: var(--bb-radius-md);
+  color: var(--bb-interface-control-foreground);
+  background: var(--bb-v2-color-surface-canvas);
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-xs);
+  font-weight: var(--bb-font-weight-bold);
+  line-height: 1.2;
+}
+
+.bb-layout-gap-popover__preset:focus {
+  border-color: var(--bb-v2-identity-primary);
+  outline: none;
+}
+
+.bb-layout-gap-popover__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--bb-spacing-1);
 }
 
 .bb-layout-text-editor :is(.row, .tools-row, .bb-layout-text-editor__actions) > * {
@@ -502,23 +627,30 @@
   gap: 5px;
 }
 
+.bb-layout-text-editor.bb-layout-text-editor--toolbar > .bb-layout-text-editor__preset-control,
 .bb-layout-text-editor.bb-layout-text-editor--toolbar > .bb-layout-text-editor__font-control,
-.bb-layout-text-editor.bb-layout-text-editor--toolbar > .bb-layout-text-editor__size-control {
+.bb-layout-text-editor.bb-layout-text-editor--toolbar .bb-layout-text-editor__size-control {
   display: flex;
   align-items: center;
   gap: 0;
+}
+
+.bb-layout-text-editor.bb-layout-text-editor--toolbar > .bb-layout-text-editor__preset-control {
+  inline-size: 112px;
 }
 
 .bb-layout-text-editor.bb-layout-text-editor--toolbar > .bb-layout-text-editor__font-control {
   inline-size: 156px;
 }
 
+.bb-layout-text-editor.bb-layout-text-editor--toolbar > .bb-layout-text-editor__preset-control > .bb-select,
 .bb-layout-text-editor.bb-layout-text-editor--toolbar > .bb-layout-text-editor__font-control > .bb-select {
   flex: 1 1 auto;
   width: 100%;
 }
 
-.bb-layout-text-editor.bb-layout-text-editor--toolbar > .bb-layout-text-editor__size-control {
+.bb-layout-text-editor.bb-layout-text-editor--toolbar .bb-layout-text-editor__size-control {
+  flex: 0 0 68px;
   inline-size: 68px;
 }
 

@@ -36,6 +36,14 @@ test('canonical Select owns opt-in font preview presentation', async () => {
   assert.match(css, /\.bb-select__font-preview/);
 });
 
+test('canonical Select identifies its menu as a shared floating portal', async () => {
+  const source = await import('node:fs/promises').then(({ readFile }) => (
+    readFile(new URL('../components/select.js', import.meta.url), 'utf8')
+  ));
+
+  assert.match(source, /menu\.dataset\.floatingWindowPortal = 'true';/);
+});
+
 test('only explicitly hidden native selects can bind an external trigger', () => {
   const classList = (classes = []) => ({
     contains: (className) => classes.includes(className)

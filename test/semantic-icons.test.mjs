@@ -139,3 +139,29 @@ test('layout arrangement controls use axis-specific Themes-owned roles', async (
     assert.match(svg, /matrix\(0 1 -1 0 512 0\)/);
   }
 });
+
+test('layout geometry controls use Themes-owned measurement roles', async () => {
+  const roles = SEMANTIC_ICON_FAMILIES['font-awesome-solid'];
+  assert.equal(roles.geometry, 'faRulerCombined');
+  assert.match(semanticIconMarkup('geometry'), /data-bb-icon-role="geometry"/);
+  const css = await readFile(new URL('../dist/web/components/semantic-icons.css', import.meta.url), 'utf8');
+  assert.match(css, /data-bb-icon-role="geometry"/);
+  const geometry = await readFile(new URL(
+    '../dist/web/icons/font-awesome-solid/ruler-combined.svg',
+    import.meta.url
+  ), 'utf8');
+  assert.match(geometry, /<svg/);
+});
+
+test('layout gap controls use a Themes-owned spacing role', async () => {
+  const roles = SEMANTIC_ICON_FAMILIES['font-awesome-solid'];
+  assert.equal(roles.gap, 'faGripLines');
+  assert.match(semanticIconMarkup('gap'), /data-bb-icon-role="gap"/);
+  const css = await readFile(new URL('../dist/web/components/semantic-icons.css', import.meta.url), 'utf8');
+  assert.match(css, /data-bb-icon-role="gap"/);
+  const gap = await readFile(new URL(
+    '../dist/web/icons/font-awesome-solid/grip-lines.svg',
+    import.meta.url
+  ), 'utf8');
+  assert.match(gap, /<svg/);
+});

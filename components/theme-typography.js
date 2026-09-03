@@ -1,5 +1,75 @@
 export const THEME_TYPOGRAPHY_ROLES = Object.freeze(['signature', 'interface', 'technical']);
 export const THEME_TYPOGRAPHY_VARIANT_NAMES = Object.freeze(['bold', 'italic', 'underline']);
+export const THEME_TEXT_STYLE_PRESET_REFERENCE_WIDTH = 1080;
+export const THEME_TEXT_STYLE_PRESET_REFERENCE_HEIGHT = 1920;
+export const THEME_TEXT_STYLE_PRESET_WIDTH_FACTOR = 0.126;
+export const THEME_TEXT_STYLE_PRESET_HEIGHT_FACTOR = 0.180;
+export const THEME_TEXT_STYLE_PRESET_RATIO = 1.20;
+export const THEME_TEXT_STYLE_PRESETS = Object.freeze([
+  Object.freeze({ id: 'display', label: 'Display', fontRole: 'signature', lineHeight: 0.98, referenceSize: 136, step: 0 }),
+  Object.freeze({ id: 'title', label: 'Title', fontRole: 'signature', lineHeight: 1.02, referenceSize: 113, step: 1 }),
+  Object.freeze({ id: 'heading', label: 'Heading', fontRole: 'interface', lineHeight: 1.08, referenceSize: 94, step: 2 }),
+  Object.freeze({ id: 'body', label: 'Body', fontRole: 'interface', lineHeight: 1.20, referenceSize: 79, step: 3 }),
+  Object.freeze({ id: 'caption', label: 'Caption', fontRole: 'interface', lineHeight: 1.20, referenceSize: 66, step: 4 })
+]);
+
+const themeTextStylePresetIds = new Set(THEME_TEXT_STYLE_PRESETS.map(({ id }) => id));
+
+export function normalizeThemeTextStylePresetId(value = '') {
+  const id = String(value || '').trim().toLowerCase();
+  return themeTextStylePresetIds.has(id) ? id : '';
+}
+
+function themeTextStylePresetOverride(typography = {}, id = '') {
+  const candidate = typography?.textStylePresets?.[id];
+  return candidate && typeof candidate === 'object' && !Array.isArray(candidate)
+    ? candidate
+    : {};
+}
+
+export function resolveThemeTextStylePreset(presetId = '', {
+  width = THEME_TEXT_STYLE_PRESET_REFERENCE_WIDTH,
+  height = THEME_TEXT_STYLE_PRESET_REFERENCE_HEIGHT,
+  typography = {}
+} = {}) {
+  const id = normalizeThemeTextStylePresetId(presetId);
+  const definition = THEME_TEXT_STYLE_PRESETS.find((preset) => preset.id === id);
+  if (!definition) return null;
+  const override = themeTextStylePresetOverride(typography, id);
+  const fontRole = THEME_TYPOGRAPHY_ROLES.includes(override.fontRole)
+    ? override.fontRole
+    : definition.fontRole;
+  const overrideReferenceSize = Number(override.referenceSize);
+  const hasReferenceOverride = Number.isFinite(overrideReferenceSize) && overrideReferenceSize > 0;
+  const referenceSize = hasReferenceOverride ? overrideReferenceSize : definition.referenceSize;
+  const overrideLineHeight = Number(override.lineHeight);
+  const lineHeight = Number.isFinite(overrideLineHeight) && overrideLineHeight > 0
+    ? overrideLineHeight
+    : definition.lineHeight;
+  const resolvedWidth = Math.max(1, Number(width) || THEME_TEXT_STYLE_PRESET_REFERENCE_WIDTH);
+  const resolvedHeight = Math.max(1, Number(height) || THEME_TEXT_STYLE_PRESET_REFERENCE_HEIGHT);
+  const baseSize = Math.max(1, Math.round(Math.min(
+    THEME_TEXT_STYLE_PRESET_WIDTH_FACTOR * resolvedWidth,
+    THEME_TEXT_STYLE_PRESET_HEIGHT_FACTOR * resolvedHeight
+  )));
+  const normalizedSize = hasReferenceOverride
+    ? referenceSize * baseSize / THEME_TEXT_STYLE_PRESETS[0].referenceSize
+    : baseSize / (THEME_TEXT_STYLE_PRESET_RATIO ** definition.step);
+  return Object.freeze({
+    baseSize,
+    fontRole,
+    height: resolvedHeight,
+    id,
+    label: definition.label,
+    lineHeight,
+    normalizedSize,
+    referenceHeight: THEME_TEXT_STYLE_PRESET_REFERENCE_HEIGHT,
+    referenceSize,
+    referenceWidth: THEME_TEXT_STYLE_PRESET_REFERENCE_WIDTH,
+    size: Math.max(1, Math.round(normalizedSize)),
+    width: resolvedWidth
+  });
+}
 
 export function themeTypographyRole(specimen = {}) {
   const role = String(specimen?.label || '').trim().toLowerCase();

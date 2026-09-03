@@ -215,6 +215,14 @@
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/align-viewport-vertical.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="geometry"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/ruler-combined.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="gap"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/grip-lines.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="arrange"] {
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/align-center.svg");
 }

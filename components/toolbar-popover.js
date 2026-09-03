@@ -186,6 +186,7 @@ export function createToolbarPopoverController({
   function handlePointerDown(event) {
     if (!active) return;
     if (active.anchor?.contains?.(event.target) || active.panel?.contains?.(event.target)) return;
+    if (event.target?.closest?.('[data-floating-window-portal="true"]')) return;
     if (shouldRetainPointerTarget?.(event.target) === true) return;
     close('outside-pointer');
   }
