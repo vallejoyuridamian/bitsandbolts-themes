@@ -107,8 +107,8 @@ export const fontWeight = {
 } as const;
 
 export const fontFamily = {
-  display: 'Rokkitt',
-  body: 'Ubuntu',
+  display: 'Besley',
+  body: 'Roboto Slab',
   mono: 'Source Code Pro',
   terminal: 'Source Code Pro'
 } as const;

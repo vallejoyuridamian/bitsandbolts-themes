@@ -2,7 +2,10 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
-import { backgroundEditorMarkup } from '../components/background-editor.js';
+import {
+  backgroundEditorMarkup,
+  backgroundEditorSwatchesMarkup
+} from '../components/background-editor.js';
 
 test('Background editor owns scope, theme, and background presentation', async () => {
   const css = await readFile(new URL('../components/background-editor.css', import.meta.url), 'utf8');
@@ -21,4 +24,14 @@ test('Background editor owns scope, theme, and background presentation', async (
   assert.match(markup, /<option value="transparent">Transparent<\/option>/);
   assert.equal((markup.match(/data-bb-background-editor-when="paint"/g) ?? []).length, 3);
   assert.match(css, /\.bb-background-editor__color-row \{[\s\S]*?grid-template-columns: minmax\(66px, 1fr\) 36px minmax\(66px, 1fr\)/);
+});
+
+test('Background editor swatches expose their semantic Theme color token', () => {
+  const markup = backgroundEditorSwatchesMarkup([{
+    color: '#A5B4FC',
+    token: 'primary'
+  }]);
+
+  assert.match(markup, /data-bb-background-editor-swatch="#A5B4FC"/);
+  assert.match(markup, /data-bb-background-editor-color-token="primary"/);
 });

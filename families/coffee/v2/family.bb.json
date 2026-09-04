@@ -57,9 +57,9 @@
   },
   "typography": {
     "families": {
-      "primary": "Ubuntu",
+      "primary": "Roboto Slab",
       "mono": "Source Code Pro",
-      "accent": "Rokkitt"
+      "accent": "Besley"
     },
     "styles": {
       "display": {

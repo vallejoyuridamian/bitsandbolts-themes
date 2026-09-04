@@ -19,7 +19,7 @@ export function backgroundEditorSwatchesMarkup(colors = []) {
     if (!color) return '';
     const token = String(item?.token || 'Color').trim();
     const detail = `${token}: ${color}`;
-    return `<button class="bb-background-editor__swatch" type="button" aria-label="Use ${escapeHtml(detail)}" title="${escapeHtml(detail)}" data-bb-background-editor-swatch="${escapeHtml(color)}" style="--bb-background-editor-swatch:${escapeHtml(color)}"></button>`;
+    return `<button class="bb-background-editor__swatch" type="button" aria-label="Use ${escapeHtml(detail)}" title="${escapeHtml(detail)}" data-bb-background-editor-swatch="${escapeHtml(color)}" data-bb-background-editor-color-token="${escapeHtml(token)}" style="--bb-background-editor-swatch:${escapeHtml(color)}"></button>`;
   }).join('');
 }
 

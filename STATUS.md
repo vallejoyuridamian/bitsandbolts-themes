@@ -1,6 +1,6 @@
 # Bits and Bolts Themes: Status
 
-Last verified: 2026-09-02
+Last verified: 2026-09-04
 
 ## Current Truth
 
@@ -25,6 +25,7 @@ Last verified: 2026-09-02
   outputs match, and the paired AppScreen result is owner-accepted.
 - The canonical palette owns aligned Theme, On top, Project, and optional Original
   rows. Project Add previews native colors and returns to plus at input baseline.
+- Coffee uses Besley for signature typography and Roboto Slab for interface typography in both modes.
 
 ## Preserved Shared Editor Recipes
 
@@ -50,6 +51,7 @@ Last verified: 2026-09-02
 
 - One Background recipe owns Project versus Screen or Scene scope presentation,
   reusable Theme, mode, and background controls across Screens and Scenes.
+- Canonical Background Theme swatches expose their semantic identity role for consumer persistence.
 - One `Project info` recipe supplies both surfaces with project and selected
   layout names plus informative read-only resolution.
 - AppScreen owns selected-layout and project mutation, persistence, window
@@ -96,8 +98,6 @@ Last verified: 2026-09-02
   two distribution roles are synchronized across source, dist, and docs.
 - Nineteen focused checks pass in the final source state and the Themes
   production build passes.
-- Nineteen focused layout-text-editor and toolbar-popover checks pass, including
-  retained portals and Project add-tile cancellation; generated outputs match.
 - The owner accepted the paired arrangement presentation after exercising
   alignment, distribution, groups, undo and redo with healthy runtime logs.
 - No push, deployment, publication, or activation occurred.
@@ -107,3 +107,4 @@ Last verified: 2026-09-02
 - Preserve accepted project-info, Background, placement, multi-selection, custom-dimension, project-resource, Image, Device, toolbar-focus, arrangement, and fixed overlay recipes.
 - The typography owner computes the modular size ladder and publishes the V2 default line heights. The current presentation is owner-accepted. Local font metrics prove those values are not universal overlap guarantees, so typeface-specific safety remains discussion-pending.
 - Geometry is owner-locked and uses the shared popover Segmented Control recipe for px/% in the X/Y row. Its wrapper matches the popover surface exactly, has no border, and its centered options retain equal horizontal padding. Percent inputs show one decimal and step by 0.5 while saved geometry stays canonical pixels. A separate Gap trigger owns Related 1u through Major 4u plus both axis actions using `min(0.022W, 0.030H)`. Source, generated outputs, 13 layout-editor checks, five AppScreen geometry checks, syntax, and the build pass.
+- Coffee typography and semantic Background swatches are owner-accepted in paired AppScreen use. Eight focused Themes checks and the production build pass.

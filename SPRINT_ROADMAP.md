@@ -19,6 +19,9 @@
 - Preserve the owner-accepted identity foreground documentation, exact-pair
   swatches, labeled AppScreen palette, reversible Project add-tile preview, and
   retained context-menu portal interaction.
+- Preserve Coffee's accepted Besley signature and Roboto Slab interface pairing.
+- Preserve semantic Theme role metadata on canonical Background swatches while
+  leaving persistence and Theme rebasing in AppScreen.
 
 ## Completed Foundation
 
@@ -73,3 +76,5 @@
   15 Select/popover checks, and the build pass. Universal typeface safety remains
   a separate discussion.
 - Preview, export, owner interaction, push, and deployment remain outside Themes ownership.
+- Coffee typography and semantic Background swatches are synchronized across
+  source and generated outputs. Eight focused checks and the build pass.

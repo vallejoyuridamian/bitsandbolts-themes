@@ -59,14 +59,14 @@
     {
       "role": "primary",
       "declared": "DM Sans",
-      "bundled": "Ubuntu",
-      "reason": "Owner-selected typography trial."
+      "bundled": "Roboto Slab",
+      "reason": "Owner-selected Coffee interface typeface."
     },
     {
       "role": "accent",
       "declared": "Georgia",
-      "bundled": "Rokkitt",
-      "reason": "Georgia is proprietary and is not redistributable in this repository; the owner selected Rokkitt for this typography trial."
+      "bundled": "Besley",
+      "reason": "Georgia is proprietary and is not redistributable in this repository; the owner selected Besley as the Coffee signature typeface."
     },
     {
       "role": "mono",
@@ -340,9 +340,9 @@
     },
     "typographyStylesAndSpecimens": {
       "families": {
-        "primary": "Ubuntu",
+        "primary": "Roboto Slab",
         "mono": "Source Code Pro",
-        "accent": "Rokkitt"
+        "accent": "Besley"
       },
       "styles": {
         "display": {

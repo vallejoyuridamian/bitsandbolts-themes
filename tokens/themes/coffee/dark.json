@@ -7,10 +7,10 @@
   "font": {
     "family": {
       "display": {
-        "$value": "Rokkitt"
+        "$value": "Besley"
       },
       "body": {
-        "$value": "Ubuntu"
+        "$value": "Roboto Slab"
       },
       "mono": {
         "$value": "Source Code Pro"

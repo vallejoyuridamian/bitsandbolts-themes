@@ -4,6 +4,25 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-09-04) - Coffee typography and semantic color swatches accepted
+
+### What changed
+- Assigned Besley to Coffee signature typography and Roboto Slab to Coffee
+  interface typography in both modes, with the Besley font and license carried
+  through source and generated platform outputs.
+- Extended the canonical Background palette swatches to expose their semantic
+  Theme identity role alongside the rendered color value.
+- Synchronized source, generated web output, documentation output, Android font
+  output, React Native tokens, and catalog data.
+
+### Acceptance and boundary
+- The owner accepted the paired Coffee typography and AppScreen Theme-change
+  result.
+- Eight focused Themes checks and the production build pass.
+- AppScreen retains color-reference persistence, legacy migration, Theme
+  rebasing, Text geometry, interaction, history, and rendering ownership.
+- Nothing was pushed, deployed, published, admitted, or activated.
+
 ## Session wrap-up (2026-09-01) - Theme foreground and shared color workflows accepted
 
 ### What changed

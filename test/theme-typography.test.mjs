@@ -44,6 +44,31 @@ test('canonical Theme families declare complete font variants without utility la
   });
 });
 
+test('Coffee assigns Besley to signature text and Roboto Slab to interface text', async () => {
+  const [family, lightTokens, darkTokens, typographyCss, besleyFont] = await Promise.all([
+    readFile(new URL('../families/coffee/v2/family.bb.json', import.meta.url), 'utf8').then(JSON.parse),
+    readFile(new URL('../tokens/themes/coffee/light.json', import.meta.url), 'utf8').then(JSON.parse),
+    readFile(new URL('../tokens/themes/coffee/dark.json', import.meta.url), 'utf8').then(JSON.parse),
+    readFile(new URL('../components/typography.css', import.meta.url), 'utf8'),
+    readFile(new URL('../assets/shared-fonts/besley_variable.ttf', import.meta.url))
+  ]);
+
+  assert.deepEqual(family.typography.families, {
+    primary: 'Roboto Slab',
+    mono: 'Source Code Pro',
+    accent: 'Besley'
+  });
+  for (const tokens of [lightTokens, darkTokens]) {
+    assert.equal(tokens.font.family.display.$value, 'Besley');
+    assert.equal(tokens.font.family.body.$value, 'Roboto Slab');
+  }
+  assert.match(
+    typographyCss,
+    /@font-face\s*\{[^}]*font-family:\s*"Besley";[^}]*besley_variable\.ttf[^}]*font-weight:\s*400 900;/s
+  );
+  assert.ok(besleyFont.byteLength > 0);
+});
+
 test('Theme font variants normalize legacy values and publish presentation variables', () => {
   const variants = normalizeThemeTypographyVariants({}, [{
     label: 'Signature',
