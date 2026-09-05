@@ -22,6 +22,9 @@
 - Preserve Coffee's accepted Besley signature and Roboto Slab interface pairing.
 - Preserve semantic Theme role metadata on canonical Background swatches while
   leaving persistence and Theme rebasing in AppScreen.
+- Preserve the accepted Line endpoint popover and resize cursor recipe.
+- Preserve standalone Screen Icon V1 provider mappings, first-party brewer
+  vectors, licensing, picker cards, and generated outputs.
 
 ## Completed Foundation
 
@@ -69,6 +72,19 @@
 - [x] Synchronize source, dist, docs, 19 final focused checks, and one build.
 - [x] Accept the paired AppScreen interaction, visual, and runtime result.
 
+## Completed Line Endpoint Recipe
+
+- [x] Present X/Y and signed dX/dY without Line Size or direct rotation controls.
+- [x] Keep the canonical resize cursor during endpoint hover and drag.
+- [x] Synchronize source, dist, docs, focused checks, and production output.
+
+## Completed Standalone Screen Icon V1
+
+- [x] Map Home, Recipes, Timer, Profile, and Submenu through each Theme provider.
+- [x] Own first-party V60 and AeroPress vectors and Material Symbols licensing.
+- [x] Reuse the shared media-picker card recipe without inline Text or social icons.
+- [x] Synchronize source, dist, docs, focused checks, and production output.
+
 ## Current Boundary
 
 - Text Style Preset, Geometry, and Gap source plus generated outputs are current,
@@ -78,3 +94,6 @@
 - Preview, export, owner interaction, push, and deployment remain outside Themes ownership.
 - Coffee typography and semantic Background swatches are synchronized across
   source and generated outputs. Eight focused checks and the build pass.
+- Line and standalone Screen Icon V1 are owner-accepted. The next Winter Guest
+  compositions consume existing Themes ownership and do not activate new Theme
+  implementation. Universal typeface safety remains parked.

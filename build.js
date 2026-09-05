@@ -648,6 +648,10 @@ for (const file of readdirSync(ICONS_SRC)) {
 const SEMANTIC_ICON_CSS = join(COMPONENTS_DIST, 'semantic-icons.css');
 const FONT_AWESOME_FAMILY = 'font-awesome-solid';
 const LOCAL_VECTOR_ICON_FAMILIES = new Set(['bitsandbolts-theme']);
+const GENERATED_VECTOR_ICON_FAMILIES = new Set([
+  'material-symbols-outlined',
+  'material-symbols-filled'
+]);
 const FONT_AWESOME_DIST = join(ICONS_DIST, FONT_AWESOME_FAMILY);
 const FONT_AWESOME_PACKAGE = 'node_modules/@fortawesome/free-solid-svg-icons';
 const fontAwesomePackage = JSON.parse(readFileSync(join(FONT_AWESOME_PACKAGE, 'package.json'), 'utf8'));
@@ -672,6 +676,28 @@ mkdirSync(FONT_AWESOME_DIST, { recursive: true });
 for (const [family, roles] of Object.entries(SEMANTIC_ICON_FAMILIES)) {
   for (const [role, exportValue] of Object.entries(roles)) {
     if (LOCAL_VECTOR_ICON_FAMILIES.has(family)) {
+      if (exportValue?.fileName) {
+        const paths = exportValue.paths ?? [exportValue];
+        const content = paths.map((entry) => {
+          const attributes = [
+            `d="${entry.d}"`,
+            entry.fill ? `fill="${entry.fill}"` : '',
+            entry.stroke ? `stroke="${entry.stroke}"` : '',
+            entry.strokeWidth ? `stroke-width="${entry.strokeWidth}"` : '',
+            entry.strokeLinecap ? `stroke-linecap="${entry.strokeLinecap}"` : '',
+            entry.strokeLinejoin ? `stroke-linejoin="${entry.strokeLinejoin}"` : ''
+          ].filter(Boolean).join(' ');
+          return `<path ${attributes}/>`;
+        }).join('');
+        writeFileSync(join(ICONS_DIST, exportValue.fileName), `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${exportValue.viewBox}">${content}</svg>\n`);
+        semanticIconCss.push(
+          `.bb-semantic-icon[data-bb-icon-family="${family}"][data-bb-icon-role="${role}"] {`,
+          `  --bb-semantic-icon-source: url("../icons/${exportValue.fileName}");`,
+          '}',
+          ''
+        );
+        continue;
+      }
       const exportName = exportValue;
       if (!/^[a-z0-9-]+\.svg$/.test(exportName) || !existsSync(join(ICONS_SRC, exportName))) {
         throw new Error(`[semantic-icons] Missing Themes-owned vector ${exportName} for role ${role}.`);
@@ -679,6 +705,18 @@ for (const [family, roles] of Object.entries(SEMANTIC_ICON_FAMILIES)) {
       semanticIconCss.push(
         `.bb-semantic-icon[data-bb-icon-family="${family}"][data-bb-icon-role="${role}"] {`,
         `  --bb-semantic-icon-source: url("../icons/${exportName}");`,
+        '}',
+        ''
+      );
+      continue;
+    }
+    if (GENERATED_VECTOR_ICON_FAMILIES.has(family)) {
+      const pathEntries = exportValue.paths ?? [exportValue];
+      const content = pathEntries.map((entry) => `<path d="${entry.d ?? entry.path}"/>`).join('');
+      writeFileSync(join(ICONS_DIST, exportValue.fileName), `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${exportValue.viewBox}">${content}</svg>\n`);
+      semanticIconCss.push(
+        `.bb-semantic-icon[data-bb-icon-family="${family}"][data-bb-icon-role="${role}"] {`,
+        `  --bb-semantic-icon-source: url("../icons/${exportValue.fileName}");`,
         '}',
         ''
       );
@@ -736,9 +774,13 @@ for (const [family, roles] of Object.entries(SEMANTIC_ICON_FAMILIES)) {
 writeFileSync(SEMANTIC_ICON_CSS, semanticIconCss.join('\n'));
 mkdirSync('dist/web/licenses', { recursive: true });
 copyFileSync(join(FONT_AWESOME_PACKAGE, 'LICENSE.txt'), 'dist/web/licenses/font-awesome-free.txt');
+copyFileSync('assets/icon-licenses/material-symbols-NOTICE.txt', 'dist/web/licenses/material-symbols-NOTICE.txt');
+copyFileSync('assets/font-licenses/roboto_slab_APACHE.txt', 'dist/web/licenses/material-symbols-apache.txt');
 process.stdout.write('  [components/semantic-icons.css] done\n');
 process.stdout.write('  [icons/font-awesome-solid] done\n');
 process.stdout.write('  [licenses/font-awesome-free.txt] done\n');
+process.stdout.write('  [licenses/material-symbols-NOTICE.txt] done\n');
+process.stdout.write('  [licenses/material-symbols-apache.txt] done\n');
 
 copyDirRecursive('assets/brand', 'dist/web/brand', 'brand');
 
@@ -782,6 +824,7 @@ const FONTS_SRC  = 'fonts';
 const FONTS_DIST = 'dist/web/fonts';
 mkdirSync(FONTS_DIST, { recursive: true });
 for (const file of readdirSync(FONTS_SRC)) {
+  if (file.startsWith('.')) continue;
   copyFileSync(join(FONTS_SRC, file), join(FONTS_DIST, file));
   process.stdout.write(`  [fonts/${file}] done\n`);
 }

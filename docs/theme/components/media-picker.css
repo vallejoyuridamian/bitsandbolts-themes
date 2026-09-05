@@ -144,6 +144,12 @@
   height: 40px;
 }
 
+.bb-media-preview--icon .bb-media-preview__semantic-icon {
+  width: 56%;
+  height: 56%;
+  color: var(--bb-v2-color-content-primary);
+}
+
 :is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio) {
   width: 100%;
   height: auto;

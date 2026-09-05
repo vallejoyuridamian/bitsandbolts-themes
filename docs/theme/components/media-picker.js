@@ -25,13 +25,14 @@ function actionDataset(action = {}, escapeAttribute = escapeHtml) {
 }
 
 function normalizeMediaKind(kind = '') {
-  return ['image', 'audio', 'video', 'device', 'font'].includes(kind) ? kind : 'image';
+  return ['image', 'audio', 'video', 'device', 'font', 'icon'].includes(kind) ? kind : 'image';
 }
 
 const MEDIA_ICON_ROLES = Object.freeze({
   audio: 'media_audio',
   device: 'media_device',
   font: 'media_font',
+  icon: 'star',
   image: 'media_image',
   video: 'media_video'
 });
@@ -54,6 +55,7 @@ export function mediaAssetKindLabel(kind = '') {
   if (kind === 'video') return 'Video';
   if (kind === 'device') return 'Device';
   if (kind === 'font') return 'Font';
+  if (kind === 'icon') return 'Icon';
   return 'Asset';
 }
 
@@ -125,6 +127,9 @@ export class MediaPreviewElement {
     measured = false,
     className = '',
     fontFamily = '',
+    iconFamily = '',
+    iconRole = '',
+    iconStyle = '',
     videoPlayAffordance = true
   } = {}) {
     const mediaKind = normalizeMediaKind(kind);
@@ -145,6 +150,16 @@ export class MediaPreviewElement {
       className
     ].filter(Boolean).join(' ');
     const dataset = actionDataset(action, this.escapeAttribute);
+    if (mediaKind === 'icon' && iconRole) {
+      return `
+        <div class="${classes}" data-media-preview-kind="icon" data-media-preview-path="${safePath}"${actionAccessibility} ${dataset}>
+          ${semanticIconMarkup(iconRole, 'bb-media-preview__semantic-icon', {
+            family: iconFamily,
+            style: iconStyle
+          })}
+        </div>
+      `;
+    }
     if (mediaKind === 'device' && thumbnailPath) {
       return `
         <div class="${classes}" data-media-preview-kind="device" data-media-preview-path="${safePath}"${actionAccessibility} ${dataset}>
@@ -214,6 +229,9 @@ export class MediaPreviewCard extends MediaPreviewElement {
     actions = [],
     extraHtml = '',
     fontFamily = '',
+    iconFamily = '',
+    iconRole = '',
+    iconStyle = '',
     loading = false,
     presentation = mediaPreviewCardPresentations.full,
     selectable = false,
@@ -267,6 +285,9 @@ export class MediaPreviewCard extends MediaPreviewElement {
           measured,
           action: previewAction,
           fontFamily,
+          iconFamily,
+          iconRole,
+          iconStyle,
           videoPlayAffordance
         })}
         ${statusHtml}
@@ -315,6 +336,30 @@ export class MediaPreviewCard extends MediaPreviewElement {
       actions,
       loading,
       showBody: !reduced
+    });
+  }
+
+  renderIconCard({
+    item = {},
+    label = item.label || 'Icon',
+    className = '',
+    dataset = {},
+    presentation = mediaPreviewCardPresentations.full,
+    selectable = false,
+    selected = false
+  } = {}) {
+    return this.renderCard({
+      kind: 'icon',
+      path: item.path || '',
+      label,
+      iconFamily: item.iconFamily || '',
+      iconRole: item.iconRole || '',
+      iconStyle: item.iconStyle || '',
+      className,
+      dataset,
+      presentation,
+      selectable,
+      selected
     });
   }
 

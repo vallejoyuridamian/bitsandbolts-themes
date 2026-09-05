@@ -59,6 +59,8 @@ test('layout editor overlays use compact screen-space metrics across shared reci
   assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-hull-outline/);
   assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-hull-shape/);
   assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-region-handle/);
+  assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-region-handle\[data-bb-layout-line-endpoint\]\{cursor:nwse-resize\}/);
+  assert.match(layoutEditorRegionOverlayStyles, /:root\[data-bb-layout-line-endpoint-resize="true"\]/);
   assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-draw-box/);
   assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-draw-layer--text/);
   assert.match(layoutEditorRegionOverlayStyles, /\.bb-layout-editor-draw-box--text/);

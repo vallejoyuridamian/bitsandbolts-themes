@@ -80,6 +80,26 @@ test('media preview icons use Themes semantic roles without inline artwork', () 
   }
 });
 
+test('icon cards use the Themes-owned semantic provider recipe', () => {
+  const preview = new MediaPreviewCard();
+  const card = preview.renderIconCard({
+    item: {
+      path: 'theme-icon:material-symbols:outlined:home',
+      label: 'Home',
+      iconFamily: 'material-symbols',
+      iconRole: 'home',
+      iconStyle: 'outlined'
+    },
+    presentation: 'reduced',
+    selectable: true
+  });
+  assert.match(card, /data-media-card-kind="icon"/);
+  assert.match(card, /data-media-preview-kind="icon"/);
+  assert.match(card, /data-bb-icon-family="material-symbols-outlined"/);
+  assert.match(card, /data-bb-icon-role="home"/);
+  assert.doesNotMatch(card, /<svg|<path/);
+});
+
 test('font card grids share one column width derived from the widest rendered name', () => {
   const values = [new Map(), new Map()];
   const grids = [{

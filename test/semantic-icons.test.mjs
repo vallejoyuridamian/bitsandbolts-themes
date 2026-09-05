@@ -4,8 +4,43 @@ import test from 'node:test';
 
 import {
   SEMANTIC_ICON_FAMILIES,
+  semanticIconAssetPath,
   semanticIconMarkup
 } from '../components/semantic-icons.js';
+
+test('content icons resolve provider styles and first-party brewer vectors semantically', async () => {
+  assert.equal(
+    semanticIconAssetPath('home', { family: 'material-symbols', style: 'outlined' }),
+    'icons/material-symbols-outlined-home.svg'
+  );
+  assert.equal(
+    semanticIconAssetPath('home', { family: 'material-symbols', style: 'filled' }),
+    'icons/material-symbols-filled-home.svg'
+  );
+  assert.equal(
+    semanticIconAssetPath('recipes', { family: 'font-awesome-solid' }),
+    'icons/font-awesome-solid/book-open.svg'
+  );
+  assert.equal(
+    semanticIconAssetPath('brewer_v60', { family: 'bitsandbolts-theme' }),
+    'icons/brewer-v60.svg'
+  );
+  assert.match(
+    semanticIconMarkup('person', '', { family: 'material-symbols', style: 'outlined' }),
+    /data-bb-icon-family="material-symbols-outlined"[^>]+data-bb-icon-role="person"/
+  );
+
+  for (const asset of [
+    'material-symbols-outlined-home.svg',
+    'material-symbols-filled-home.svg',
+    'brewer-v60.svg',
+    'brewer-aeropress.svg'
+  ]) {
+    const svg = await readFile(new URL(`../dist/web/icons/${asset}`, import.meta.url), 'utf8');
+    assert.match(svg, /<svg/);
+    assert.match(svg, /<path/);
+  }
+});
 
 test('snap preferences use Themes-owned magnet and crossed-magnet semantic roles', async () => {
   const roles = SEMANTIC_ICON_FAMILIES['font-awesome-solid'];

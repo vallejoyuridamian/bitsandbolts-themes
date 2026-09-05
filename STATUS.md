@@ -26,6 +26,11 @@ Last verified: 2026-09-04
 - The canonical palette owns aligned Theme, On top, Project, and optional Original
   rows. Project Add previews native colors and returns to plus at input baseline.
 - Coffee uses Besley for signature typography and Roboto Slab for interface typography in both modes.
+- Line geometry uses the shared compact popover with endpoint labels and the
+  canonical resize cursor for handle hover and captured drag.
+- Standalone Screen icons resolve through Themes-owned provider mappings and
+  vectors. Home, Recipes, Timer, Profile, and Submenu follow the active Theme;
+  V60 and AeroPress are first-party semantic roles.
 
 ## Preserved Shared Editor Recipes
 
@@ -86,20 +91,11 @@ Last verified: 2026-09-04
 
 ## Evidence and Acceptance Boundary
 
-- The owner accepted the complete paired V1 multi-selection presentation after
-  Text, Image, and Device mixed-state verification.
-- Themes source, generated web output, documentation output, and tests are
-  synchronized. Focused mixed-state checks pass 8/8 and the production build passed.
-- Paired AppScreen owner verification is healthy, including equal Image Size,
-  mixed numeric stepping, selected hulls, and Device minimum clamping.
-- AppScreen V1 grouping is owner-accepted. Focused grouping icon checks pass
-  3/3 and the Themes production build passed.
-- The canonical Arrange trigger, popover composition, six alignment roles, and
-  two distribution roles are synchronized across source, dist, and docs.
-- Nineteen focused checks pass in the final source state and the Themes
-  production build passes.
-- The owner accepted the paired arrangement presentation after exercising
-  alignment, distribution, groups, undo and redo with healthy runtime logs.
+- Multi-selection, grouping, arrangement, Geometry, Gap, Coffee typography, and
+  semantic Background recipes are paired, tested, built, and owner-accepted.
+- The owner accepted the paired Line endpoint controls and standalone Screen
+  Icon V1. Source, generated web output, documentation output, licensing, and
+  focused recipe coverage are synchronized.
 - No push, deployment, publication, or activation occurred.
 
 ## Next Boundary
@@ -108,3 +104,7 @@ Last verified: 2026-09-04
 - The typography owner computes the modular size ladder and publishes the V2 default line heights. The current presentation is owner-accepted. Local font metrics prove those values are not universal overlap guarantees, so typeface-specific safety remains discussion-pending.
 - Geometry is owner-locked and uses the shared popover Segmented Control recipe for px/% in the X/Y row. Its wrapper matches the popover surface exactly, has no border, and its centered options retain equal horizontal padding. Percent inputs show one decimal and step by 0.5 while saved geometry stays canonical pixels. A separate Gap trigger owns Related 1u through Major 4u plus both axis actions using `min(0.022W, 0.030H)`. Source, generated outputs, 13 layout-editor checks, five AppScreen geometry checks, syntax, and the build pass.
 - Coffee typography and semantic Background swatches are owner-accepted in paired AppScreen use. Eight focused Themes checks and the production build pass.
+- Preserve accepted Line and Icon recipes. Inline Text icons, social icons, and
+  Scene icon workflows remain outside V1. The Winter iPhone and iPad Guest
+  projects are AppScreen composition work and do not activate another Themes
+  feature cluster. Universal typeface safety remains parked.

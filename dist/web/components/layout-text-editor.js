@@ -261,10 +261,13 @@ export function layoutTextEditorGeometryPopoverMarkup({
   geometry = null,
   reference = {},
   transform = null,
-  unit = 'px'
+  unit = 'px',
+  variant = 'rect'
 } = {}) {
+  const line = variant === 'line';
+  const geometryFields = line ? ['x', 'y', 'dx', 'dy'] : ['x', 'y', 'width', 'height'];
   const hasGeometry = geometry
-    && ['x', 'y', 'width', 'height'].every((property) => (
+    && geometryFields.every((property) => (
       Number.isFinite(Number(geometry[property]))
     ));
   const resolvedUnit = unit === 'percent' ? 'percent' : 'px';
@@ -281,12 +284,14 @@ export function layoutTextEditorGeometryPopoverMarkup({
     ? `<div class="bb-layout-geometry-popover__position"><div class="bb-layout-geometry-popover__fields">${layoutGeometryFieldMarkup({ field: 'x', label: 'X', step: percent ? 0.5 : 1, unit: resolvedUnit, value: geometry.x })}${layoutGeometryFieldMarkup({ field: 'y', label: 'Y', step: percent ? 0.5 : 1, unit: resolvedUnit, value: geometry.y })}</div>${unitSwitch}${referenceSwitches}</div>`
     : '';
   const sizeRow = hasGeometry
-    ? `<div class="bb-layout-geometry-popover__fields">${layoutGeometryFieldMarkup({ field: 'width', label: 'Width', min: percent ? undefined : 1, step: percent ? 0.5 : 1, unit: resolvedUnit, value: geometry.width })}${layoutGeometryFieldMarkup({ field: 'height', label: 'Height', min: percent ? undefined : 1, step: percent ? 0.5 : 1, unit: resolvedUnit, value: geometry.height })}</div>`
+    ? `<div class="bb-layout-geometry-popover__fields">${line
+      ? `${layoutGeometryFieldMarkup({ field: 'dx', label: 'dX', step: percent ? 0.5 : 1, unit: resolvedUnit, value: geometry.dx })}${layoutGeometryFieldMarkup({ field: 'dy', label: 'dY', step: percent ? 0.5 : 1, unit: resolvedUnit, value: geometry.dy })}`
+      : `${layoutGeometryFieldMarkup({ field: 'width', label: 'Width', min: percent ? undefined : 1, step: percent ? 0.5 : 1, unit: resolvedUnit, value: geometry.width })}${layoutGeometryFieldMarkup({ field: 'height', label: 'Height', min: percent ? undefined : 1, step: percent ? 0.5 : 1, unit: resolvedUnit, value: geometry.height })}`}</div>`
     : '';
-  const rotationRow = transform?.available
+  const rotationRow = transform?.available && !line
     ? `<div class="bb-layout-geometry-popover__rotation">${toolbarPopoverNumericFieldMarkup({ attributes: { 'aria-label': 'Rotation in degrees', 'data-bb-layout-geometry-rotation': '', max: 180, min: -180, step: 1, value: Math.round(Number(transform.rotation) || 0) }, label: 'Rotation' })}</div>`
     : '';
-  return `<div class="bb-layout-geometry-popover" data-bb-layout-geometry-popover>${positionRow}${sizeRow}${rotationRow}</div>`;
+  return `<div class="bb-layout-geometry-popover${line ? ' bb-layout-geometry-popover--line' : ''}" data-bb-layout-geometry-popover>${positionRow}${sizeRow}${rotationRow}</div>`;
 }
 
 export function layoutTextEditorGapPopoverMarkup({ presetId = 'related' } = {}) {

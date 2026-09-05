@@ -252,6 +252,8 @@
 }
 
 .bb-layout-geometry-popover .bb-toolbar-popover__field:has(> [data-bb-layout-geometry-field="width"]) > .bb-toolbar-popover__field-label,
+.bb-layout-geometry-popover .bb-toolbar-popover__field:has(> [data-bb-layout-geometry-field="dx"]) > .bb-toolbar-popover__field-label,
+.bb-layout-geometry-popover [data-bb-layout-geometry-field="dx"],
 .bb-layout-geometry-popover [data-bb-layout-geometry-field="width"] {
   grid-row: 2;
 }
@@ -264,6 +266,7 @@
 .bb-layout-geometry-popover .bb-toolbar-popover__field:has(> :is(
   [data-bb-layout-geometry-field="x"],
   [data-bb-layout-geometry-field="width"],
+  [data-bb-layout-geometry-field="dx"],
   [data-bb-layout-geometry-rotation]
 )) > .bb-toolbar-popover__field-label {
   grid-column: 1;
@@ -272,6 +275,7 @@
 .bb-layout-geometry-popover :is(
   [data-bb-layout-geometry-field="x"],
   [data-bb-layout-geometry-field="width"],
+  [data-bb-layout-geometry-field="dx"],
   [data-bb-layout-geometry-rotation]
 ) {
   grid-column: 2;
@@ -283,20 +287,24 @@
 }
 
 .bb-layout-geometry-popover .bb-toolbar-popover__field:has(> [data-bb-layout-geometry-field="height"]) > .bb-toolbar-popover__field-label,
+.bb-layout-geometry-popover .bb-toolbar-popover__field:has(> [data-bb-layout-geometry-field="dy"]) > .bb-toolbar-popover__field-label,
+.bb-layout-geometry-popover [data-bb-layout-geometry-field="dy"],
 .bb-layout-geometry-popover [data-bb-layout-geometry-field="height"] {
   grid-row: 2;
 }
 
 .bb-layout-geometry-popover .bb-toolbar-popover__field:has(> :is(
   [data-bb-layout-geometry-field="y"],
-  [data-bb-layout-geometry-field="height"]
+  [data-bb-layout-geometry-field="height"],
+  [data-bb-layout-geometry-field="dy"]
 )) > .bb-toolbar-popover__field-label {
   grid-column: 3;
 }
 
 .bb-layout-geometry-popover :is(
   [data-bb-layout-geometry-field="y"],
-  [data-bb-layout-geometry-field="height"]
+  [data-bb-layout-geometry-field="height"],
+  [data-bb-layout-geometry-field="dy"]
 ) {
   grid-column: 4;
 }

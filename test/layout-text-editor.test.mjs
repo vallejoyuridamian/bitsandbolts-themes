@@ -183,6 +183,29 @@ test('layout text editor owns the compact geometry popover composition', async (
   assert.match(percentMarkup, /data-bb-layout-geometry-field="width" step="0.5"/);
 });
 
+test('layout text editor owns the endpoint-vector Line geometry recipe', () => {
+  const markup = layoutTextEditorGeometryPopoverMarkup({
+    geometry: { x: 54, y: 96, dx: -240, dy: 180 },
+    reference: { horizontal: 'right', vertical: 'bottom' },
+    transform: { available: true, rotation: 143 },
+    variant: 'line'
+  });
+
+  assert.match(markup, /bb-layout-geometry-popover--line/);
+  assert.match(markup, /data-bb-layout-geometry-field="x"/);
+  assert.match(markup, /data-bb-layout-geometry-field="y"/);
+  assert.match(markup, /data-bb-layout-geometry-field="dx"/);
+  assert.match(markup, /data-bb-layout-geometry-field="dy"/);
+  assert.match(markup, />dX<\/span>/);
+  assert.match(markup, />dY<\/span>/);
+  assert.match(markup, /data-bb-layout-geometry-unit/);
+  assert.doesNotMatch(markup, /data-bb-layout-geometry-field="width"/);
+  assert.doesNotMatch(markup, /data-bb-layout-geometry-field="height"/);
+  assert.match(markup, /data-bb-layout-geometry-reference="left"/);
+  assert.match(markup, /data-bb-layout-geometry-reference="top"/);
+  assert.doesNotMatch(markup, /data-bb-layout-geometry-rotation/);
+});
+
 test('layout text editor owns the compact relational gap preset popover', async () => {
   const markup = layoutTextEditorGapPopoverMarkup({ presetId: 'section' });
   const css = await readFile(new URL('../components/layout-text-editor.css', import.meta.url), 'utf8');

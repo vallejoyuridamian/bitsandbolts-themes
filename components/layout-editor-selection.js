@@ -138,6 +138,8 @@ export const layoutEditorRegionOverlayStyles = `
 .bb-layout-editor-region-handle[data-corner="ne"]{top:${layoutEditorSelectionRecipe.resizeHandleOffset};right:${layoutEditorSelectionRecipe.resizeHandleOffset};cursor:nesw-resize}
 .bb-layout-editor-region-handle[data-corner="sw"]{bottom:${layoutEditorSelectionRecipe.resizeHandleOffset};left:${layoutEditorSelectionRecipe.resizeHandleOffset};cursor:nesw-resize}
 .bb-layout-editor-region-handle[data-corner="se"]{right:${layoutEditorSelectionRecipe.resizeHandleOffset};bottom:${layoutEditorSelectionRecipe.resizeHandleOffset};cursor:nwse-resize}
+.bb-layout-editor-region-handle[data-bb-layout-line-endpoint]{cursor:nwse-resize}
+:root[data-bb-layout-line-endpoint-resize="true"],:root[data-bb-layout-line-endpoint-resize="true"] *{cursor:nwse-resize!important}
 .bb-layout-editor-draw-layer{position:absolute;inset:0;z-index:180;cursor:crosshair;background:transparent;pointer-events:auto}
 .bb-layout-editor-draw-box{position:absolute;box-sizing:border-box;border:0;outline:${layoutEditorSelectionRecipe.outlineWidth} ${layoutEditorSelectionRecipe.outlineStyle} ${layoutEditorSelectionRecipe.alternateSignalColor};outline-offset:0;background:transparent;pointer-events:none}
 .bb-layout-editor-draw-box--tinted{background:rgb(18 230 213 / 8%);visibility:hidden}

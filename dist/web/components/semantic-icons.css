@@ -47,6 +47,14 @@
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/house.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="recipes"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/book-open.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="timer"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/stopwatch.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="search"] {
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/magnifying-glass.svg");
 }
@@ -379,6 +387,14 @@
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/chart-line.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="bitsandbolts-theme"][data-bb-icon-role="brewer_v60"] {
+  --bb-semantic-icon-source: url("../icons/brewer-v60.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="bitsandbolts-theme"][data-bb-icon-role="brewer_aeropress"] {
+  --bb-semantic-icon-source: url("../icons/brewer-aeropress.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="bitsandbolts-theme"][data-bb-icon-role="mirror_horizontal"] {
   --bb-semantic-icon-source: url("../icons/mirror-horizontal.svg");
 }
@@ -393,4 +409,44 @@
 
 .bb-semantic-icon[data-bb-icon-family="bitsandbolts-theme"][data-bb-icon-role="light_mode"] {
   --bb-semantic-icon-source: url("../icons/theme-light.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="home"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-home.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="recipes"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-recipes.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="timer"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-timer.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="person"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-person.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="submenu"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-submenu.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="home"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-home.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="recipes"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-recipes.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="timer"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-timer.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="person"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-person.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="submenu"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-submenu.svg");
 }
