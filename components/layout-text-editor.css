@@ -554,6 +554,26 @@
   font-weight: var(--bb-font-weight-bold);
 }
 
+.bb-layout-text-editor__range-field {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.bb-layout-text-editor__range-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 5px;
+  min-width: 0;
+}
+
+.bb-layout-text-editor__range-value {
+  color: var(--bb-interface-menu-muted-foreground);
+  font-size: var(--bb-font-size-xs);
+  font-variant-numeric: tabular-nums;
+}
+
 .bb-layout-text-editor .range-control {
   --range-control-progress: 0%;
   --range-control-thumb-size: 14px;
@@ -653,6 +673,11 @@
   display: flex;
   align-items: center;
   gap: 0;
+}
+
+.bb-layout-text-editor.bb-layout-text-editor--toolbar > .bb-layout-text-editor__range-field {
+  flex: 0 0 116px;
+  inline-size: 116px;
 }
 
 .bb-layout-text-editor.bb-layout-text-editor--toolbar > .bb-layout-text-editor__preset-control {

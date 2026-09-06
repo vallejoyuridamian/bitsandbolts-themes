@@ -38,6 +38,7 @@ export function backgroundEditorMarkup({
   const secondaryId = controlId(id, 'secondary');
   const imageId = controlId(id, 'image');
   const imageSizeId = controlId(id, 'image-size');
+  const opacityId = controlId(id, 'opacity');
   const presentationClass = presentation === 'window'
     ? ' bb-background-editor--window'
     : ' bb-background-editor--embedded';
@@ -93,6 +94,10 @@ export function backgroundEditorMarkup({
       </label>
     </div>
     <div class="bb-background-editor__swatches" role="toolbar" aria-label="Theme colors" data-bb-background-editor-role="theme-palette" data-bb-background-editor-when="paint"></div>
+    <div class="bb-field" data-bb-background-editor-when="opaque">
+      <label class="bb-background-editor__range-label" for="${opacityId}"><span>Opacity</span><output for="${opacityId}" data-bb-background-editor-role="opacity-output">100%</output></label>
+      <input id="${opacityId}" class="bb-background-editor__range" type="range" min="0" max="100" step="1" value="100" data-bb-background-editor-role="opacity">
+    </div>
     <div class="bb-field" data-bb-background-editor-when="image">
       <label class="bb-field__label" for="${imageId}">Image source</label>
       <select id="${imageId}" class="bb-field__input" data-bb-background-editor-role="image-path">

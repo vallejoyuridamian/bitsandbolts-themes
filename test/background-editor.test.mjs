@@ -22,6 +22,9 @@ test('Background editor owns scope, theme, and background presentation', async (
   assert.match(markup, /data-bb-background-editor-role="theme-control"/);
   assert.match(markup, />Background<\/label>/);
   assert.match(markup, /<option value="transparent">Transparent<\/option>/);
+  assert.match(markup, /data-bb-background-editor-role="opacity"/);
+  assert.match(markup, /data-bb-background-editor-role="opacity-output"/);
+  assert.match(markup, />Opacity<\/span>/);
   assert.equal((markup.match(/data-bb-background-editor-when="paint"/g) ?? []).length, 3);
   assert.match(css, /\.bb-background-editor__color-row \{[\s\S]*?grid-template-columns: minmax\(66px, 1fr\) 36px minmax\(66px, 1fr\)/);
 });

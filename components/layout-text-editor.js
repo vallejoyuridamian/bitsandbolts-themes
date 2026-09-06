@@ -8,6 +8,12 @@ const PRESENTATIONS = new Set(['sidebar', 'toolbar']);
 const HEX_COLOR_PATTERN = /^#[0-9a-f]{6}$/i;
 
 export const LAYOUT_TEXT_EDITOR_MIXED_VALUE = '__bb_layout_text_editor_mixed__';
+export const LAYOUT_ROUNDNESS_PRESETS = Object.freeze([
+  Object.freeze({ id: 'sharp', label: 'Sharp', value: 0 }),
+  Object.freeze({ id: 'soft', label: 'Soft', value: 25 }),
+  Object.freeze({ id: 'rounded', label: 'Rounded', value: 50 }),
+  Object.freeze({ id: 'pill', label: 'Pill', value: 100 })
+]);
 
 function escapeHtml(value = '') {
   return String(value ?? '')
@@ -66,6 +72,15 @@ export function layoutTextEditorOriginalColorMarkup({
   return `<button type="button" class="theme-swatch bb-color-swatch-original bb-cut-corner-swatch" aria-label="Use original image colors" title="Original"${selected ? ' aria-pressed="true"' : ''}${attributesMarkup(attributes)}>${semanticIconMarkup('close')}</button>`;
 }
 
+export function layoutTextEditorNoColorMarkup({
+  attributes = {},
+  label = 'Use no color',
+  selected = false
+} = {}) {
+  const resolvedLabel = String(label || 'Use no color');
+  return `<button type="button" class="theme-swatch bb-color-swatch-original bb-cut-corner-swatch" aria-label="${escapeHtml(resolvedLabel)}" title="None"${selected ? ' aria-pressed="true"' : ''}${attributesMarkup(attributes)}>${semanticIconMarkup('close')}</button>`;
+}
+
 export function layoutTextEditorColorSwatchMarkup({
   attributes = {},
   color = '',
@@ -92,11 +107,12 @@ function layoutTextEditorColorPaletteRowMarkup({
 export function layoutTextEditorColorPaletteMarkup({
   onTopMarkup = '',
   originalMarkup = '',
+  originalLabel = 'Original',
   projectMarkup = '',
   themeMarkup = ''
 } = {}) {
   const rows = [
-    layoutTextEditorColorPaletteRowMarkup({ label: 'Original', markup: originalMarkup }),
+    layoutTextEditorColorPaletteRowMarkup({ label: originalLabel, markup: originalMarkup }),
     layoutTextEditorColorPaletteRowMarkup({ label: 'Theme', markup: themeMarkup }),
     layoutTextEditorColorPaletteRowMarkup({ label: 'On top', markup: onTopMarkup }),
     layoutTextEditorColorPaletteRowMarkup({ label: 'Project', markup: projectMarkup })
@@ -122,6 +138,51 @@ export function layoutTextEditorIconButtonMarkup({
     label,
     recipe: 'workspace'
   });
+}
+
+export function layoutTextEditorNumericFieldMarkup({
+  attributes = {},
+  label = '',
+  max,
+  min,
+  step = 1,
+  value
+} = {}) {
+  return `<label class="bb-layout-text-editor__size-control"><span class="bb-layout-text-editor__field-label">${escapeHtml(label)}</span><input class="bb-workspace-control-input" type="number"${attributesMarkup({
+    'aria-label': attributes['aria-label'] ?? label,
+    ...attributes,
+    ...(Number.isFinite(Number(max)) ? { max: Number(max) } : {}),
+    ...(Number.isFinite(Number(min)) ? { min: Number(min) } : {}),
+    step: Number(step) || 1,
+    ...(Number.isFinite(Number(value)) ? { value: Number(value) } : {})
+  })}></label>`;
+}
+
+export function layoutTextEditorRangeFieldMarkup({
+  attributes = {},
+  label = '',
+  max = 100,
+  min = 0,
+  step = 1,
+  unit = '%',
+  value = 100
+} = {}) {
+  const resolvedMin = Number.isFinite(Number(min)) ? Number(min) : 0;
+  const resolvedMax = Number.isFinite(Number(max)) && Number(max) > resolvedMin
+    ? Number(max)
+    : resolvedMin + 100;
+  const resolvedValue = Math.min(
+    resolvedMax,
+    Math.max(resolvedMin, Number.isFinite(Number(value)) ? Number(value) : resolvedMin)
+  );
+  return `<label class="bb-layout-text-editor__range-field"><span class="bb-layout-text-editor__range-head"><span class="bb-layout-text-editor__field-label">${escapeHtml(label)}</span><output class="bb-layout-text-editor__range-value" data-bb-layout-range-output>${escapeHtml(`${resolvedValue}${unit}`)}</output></span><input class="range-control bb-layout-text-editor__range-control" type="range"${attributesMarkup({
+    'aria-label': attributes['aria-label'] ?? label,
+    ...attributes,
+    max: resolvedMax,
+    min: resolvedMin,
+    step: Number(step) || 1,
+    value: resolvedValue
+  })}></label>`;
 }
 
 function layoutArrangeActionMarkup({ action = '', iconRole = '', label = '' } = {}) {

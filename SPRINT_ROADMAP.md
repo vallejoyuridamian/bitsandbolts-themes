@@ -4,96 +4,41 @@
 
 - Preserve Themes as the visual owner across every Bits and Bolts product.
 - Keep AppScreen behavior in AppScreen while sharing exact presentation recipes.
-- Custom dimensions retain the field row paired with AppScreen `d17e636`; Text
-  Style Presets use the Research V2 width-height modular recipe and Select.
-- The shared ruler trigger and compact Geometry popover compose numeric position,
-  linked dimensions, Rotation, and the shared segmented px/% control in the X/Y row. Viewport centering
-  and Mirroring remain visible. AppScreen owns conversion behavior, action availability, and ordering.
-- Text Style Presets currently own the V2 default line-height ladder, pending a
-  typeface-specific safety decision. Gap owns the compact preset and axis actions,
-  with portaled Select interaction retained by the parent toolbar popover.
-- Preserve the owner-accepted Master Stage Phase 4 hull without a parallel recipe.
-- Preserve the owner-accepted free-only semantic magnet and crossed-magnet roles.
-- Preserve the owner-accepted horizontal and vertical viewport-centering roles.
-- Preserve the owner-accepted blank mixed Text-font label in paired AppScreen use.
-- Preserve the owner-accepted identity foreground documentation, exact-pair
-  swatches, labeled AppScreen palette, reversible Project add-tile preview, and
-  retained context-menu portal interaction.
-- Preserve Coffee's accepted Besley signature and Roboto Slab interface pairing.
-- Preserve semantic Theme role metadata on canonical Background swatches while
-  leaving persistence and Theme rebasing in AppScreen.
-- Preserve the accepted Line endpoint popover and resize cursor recipe.
-- Preserve standalone Screen Icon V1 provider mappings, first-party brewer
-  vectors, licensing, picker cards, and generated outputs.
+- Keep source components, generated web output, and documentation output aligned.
+- Universal typeface safety remains a separate parked discussion.
 
 ## Completed Foundation
 
-- [x] Ship nine complete light and dark v2 families with canonical tokens,
+- [x] Ship nine complete light and dark V2 families with canonical tokens,
   components, fonts, icons, assets, recipes, and generated platform output.
-- [x] Keep behavior in AppScreen while Themes owns shared editor presentation.
+- [x] Own shared Background, project information, palette, Select, mixed-state,
+  fixed-overlay, arrangement, Geometry, Gap, and Line endpoint recipes.
+- [x] Preserve Coffee's accepted Besley and Roboto Slab pairing.
+- [x] Keep behavior, mutation, persistence, Preview, and export in AppScreen.
 
-## Accepted Shared Recipes
+## Completed Geometry and Appearance
 
-- [x] Background scope, workspace Project info, and exact semantic actions.
-- [x] Fixed Screen-space overlays with one chrome plane and no consumer styling.
-- [x] Compact Theme cards and pickers with shared portable theme ownership.
-- [x] AppScreen keeps behavior, mutation, persistence, and renderer ownership.
+- [x] Own shared numeric and labeled range controls for layout editing.
+- [x] Own Shape Fill, Border, Width, None, and Roundness presentation.
+- [x] Publish Sharp through Pill Roundness stops without imposing one global
+  radius on Buttons, cards, and generic rectangles.
+- [x] Add Background Opacity to the canonical Background recipe.
+- [x] Synchronize source, dist, docs, focused tests, and production output.
 
-## Completed Viewport Centering Roles
+## Completed Semantic Content Icon Catalog
 
-- [x] Own `align_viewport_horizontal` and `align_viewport_vertical` provider
-  mappings for the AppScreen selected-element toolbar.
-- [x] Generate the vertical vector from the free solid provider through one
-  Themes-owned rotation descriptor, with source, dist, docs, and tests synchronized.
-- [x] Accept the paired AppScreen centering controls and focused 2/2 icon checks.
-
-## Completed Multi-Selection States
-
-- [x] Own one shared adapter for mixed Select, numeric, text, color, toggle, and
-  checkbox presentation without taking AppScreen behavior ownership.
-- [x] Keep mixed numeric and text values empty, expose native checkbox
-  indeterminate state, and expose `aria-pressed="mixed"` for toolbar toggles.
-- [x] Synchronize source, generated web output, documentation output, and
-  focused 8/8 coverage.
-- [x] Accept the paired AppScreen V1 multi-selection presentation.
-
-## Completed Grouping Roles
-
-- [x] Own semantic `group` and `ungroup` provider mappings and free solid vectors.
-- [x] Synchronize source, generated web output, documentation output, and tests.
-- [x] Accept the paired AppScreen V1 grouping presentation.
-
-## Completed V1 Arrangement Recipe
-
-- [x] Own one semantic icon-only Arrange popover trigger.
-- [x] Own the arrangement popover sections, labels, controls, tooltips, and focus.
-- [x] Own six selection-alignment roles and two axis-distribution roles.
-- [x] Generate rotated top, bottom, and Y-center vectors from canonical source.
-- [x] Synchronize source, dist, docs, 19 final focused checks, and one build.
-- [x] Accept the paired AppScreen interaction, visual, and runtime result.
-
-## Completed Line Endpoint Recipe
-
-- [x] Present X/Y and signed dX/dY without Line Size or direct rotation controls.
-- [x] Keep the canonical resize cursor during endpoint hover and drag.
-- [x] Synchronize source, dist, docs, focused checks, and production output.
-
-## Completed Standalone Screen Icon V1
-
-- [x] Map Home, Recipes, Timer, Profile, and Submenu through each Theme provider.
-- [x] Own first-party V60 and AeroPress vectors and Material Symbols licensing.
-- [x] Reuse the shared media-picker card recipe without inline Text or social icons.
-- [x] Synchronize source, dist, docs, focused checks, and production output.
+- [x] Replace the bounded seven-item AppScreen list with one Themes-owned
+  68-role catalog across Interface, Product, Outdoors, and Coffee.
+- [x] Map catalog roles through Material Outlined, Material Filled, and Font
+  Awesome Solid while retaining first-party Coffee vectors.
+- [x] Include Trophy and the outdoor family required by the Winter demo.
+- [x] Pin the Material Symbols SVG build dependency and ship its license.
+- [x] Preserve the original five accepted Material vectors exactly.
+- [x] Generate and verify every provider asset in web and documentation output.
 
 ## Current Boundary
 
-- Text Style Preset, Geometry, and Gap source plus generated outputs are current,
-  and the paired presentation is owner-accepted. Thirteen layout-editor checks,
-  15 Select/popover checks, and the build pass. Universal typeface safety remains
-  a separate discussion.
-- Preview, export, owner interaction, push, and deployment remain outside Themes ownership.
-- Coffee typography and semantic Background swatches are synchronized across
-  source and generated outputs. Eight focused checks and the build pass.
-- Line and standalone Screen Icon V1 are owner-accepted. The next Winter Guest
-  compositions consume existing Themes ownership and do not activate new Theme
-  implementation. Universal typeface safety remains parked.
+- Preserve all accepted editor recipes and generated assets.
+- The Winter iPhone and iPad projects consume existing Themes ownership.
+- Do not begin another Themes feature cluster until the owner directs it.
+- Push, deployment, publication, and browser acceptance remain user-owned.

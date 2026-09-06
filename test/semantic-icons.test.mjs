@@ -3,7 +3,9 @@ import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
 import {
+  SEMANTIC_CONTENT_ICON_CATEGORIES,
   SEMANTIC_ICON_FAMILIES,
+  semanticContentIconCatalog,
   semanticIconAssetPath,
   semanticIconMarkup
 } from '../components/semantic-icons.js';
@@ -39,6 +41,38 @@ test('content icons resolve provider styles and first-party brewer vectors seman
     const svg = await readFile(new URL(`../dist/web/icons/${asset}`, import.meta.url), 'utf8');
     assert.match(svg, /<svg/);
     assert.match(svg, /<path/);
+  }
+});
+
+test('content Icon catalog owns broad provider-portable interface, product, and outdoor roles', async () => {
+  assert.deepEqual(
+    SEMANTIC_CONTENT_ICON_CATEGORIES.map(({ id }) => id),
+    ['interface', 'product', 'outdoors', 'coffee']
+  );
+
+  for (const provider of [
+    { family: 'material-symbols', style: 'outlined' },
+    { family: 'material-symbols', style: 'filled' },
+    { family: 'font-awesome-solid', style: 'solid' }
+  ]) {
+    const catalog = semanticContentIconCatalog(provider);
+    const trophy = catalog.find(({ iconRole }) => iconRole === 'achievement');
+    assert.equal(catalog.length, 68);
+    assert.equal(catalog.filter(({ category }) => category === 'interface').length, 44);
+    assert.equal(catalog.filter(({ category }) => category === 'product').length, 14);
+    assert.equal(catalog.filter(({ category }) => category === 'outdoors').length, 8);
+    assert.equal(catalog.filter(({ category }) => category === 'coffee').length, 2);
+    assert.equal(trophy.label, 'Trophy');
+
+    for (const item of catalog) {
+      const assetPath = semanticIconAssetPath(item.iconRole, {
+        family: item.iconFamily,
+        style: item.iconStyle
+      });
+      const svg = await readFile(new URL(`../dist/web/${assetPath}`, import.meta.url), 'utf8');
+      assert.match(svg, /<svg/);
+      assert.match(svg, /<path/);
+    }
   }
 });
 

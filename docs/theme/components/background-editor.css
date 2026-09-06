@@ -175,6 +175,19 @@
   accent-color: var(--bb-v2-identity-primary);
 }
 
+.bb-background-editor__range-label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--bb-spacing-2);
+}
+
+.bb-background-editor__range-label output {
+  color: var(--bb-v2-color-content-secondary);
+  font-size: var(--bb-font-size-xs);
+  font-variant-numeric: tabular-nums;
+}
+
 .bb-background-editor [hidden] {
   display: none;
 }

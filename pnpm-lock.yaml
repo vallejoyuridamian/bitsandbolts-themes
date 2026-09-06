@@ -11,6 +11,9 @@ importers:
       '@fortawesome/free-solid-svg-icons':
         specifier: ^7.3.1
         version: 7.3.1
+      '@material-symbols/svg-400':
+        specifier: 0.47.1
+        version: 0.47.1
       style-dictionary:
         specifier: ^4.0.0
         version: 4.4.0(tslib@2.8.1)
@@ -157,6 +160,9 @@ packages:
     engines: {node: '>=10.0'}
     peerDependencies:
       tslib: '2'
+
+  '@material-symbols/svg-400@0.47.1':
+    resolution: {integrity: sha512-kpK/2tlHqNvEq6hcqkpJqxfYhZjd/eQGDOsIGA4Q6YrahV8XmAuJwUEFcQGX0+TaZwWuoFmtpKEihTcw9waOJg==}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -855,6 +861,8 @@ snapshots:
       '@jsonjoy.com/buffers': 17.67.0(tslib@2.8.1)
       '@jsonjoy.com/codegen': 17.67.0(tslib@2.8.1)
       tslib: 2.8.1
+
+  '@material-symbols/svg-400@0.47.1': {}
 
   '@pkgjs/parseargs@0.11.0':
     optional: true

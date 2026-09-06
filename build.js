@@ -655,8 +655,11 @@ const GENERATED_VECTOR_ICON_FAMILIES = new Set([
 const FONT_AWESOME_DIST = join(ICONS_DIST, FONT_AWESOME_FAMILY);
 const FONT_AWESOME_PACKAGE = 'node_modules/@fortawesome/free-solid-svg-icons';
 const fontAwesomePackage = JSON.parse(readFileSync(join(FONT_AWESOME_PACKAGE, 'package.json'), 'utf8'));
+const MATERIAL_SYMBOLS_PACKAGE = 'node_modules/@material-symbols/svg-400';
+const materialSymbolsPackage = JSON.parse(readFileSync(join(MATERIAL_SYMBOLS_PACKAGE, 'package.json'), 'utf8'));
 const semanticIconCss = [
   `/*! Font Awesome Free ${fontAwesomePackage.version} by @fontawesome. Icons: CC BY 4.0. https://fontawesome.com/license/free */`,
+  `/*! Material Symbols ${materialSymbolsPackage.version} by Google. Icons: Apache-2.0. */`,
   '.bb-semantic-icon {',
   '  display: inline-block;',
   '  width: 1em;',
@@ -711,9 +714,23 @@ for (const [family, roles] of Object.entries(SEMANTIC_ICON_FAMILIES)) {
       continue;
     }
     if (GENERATED_VECTOR_ICON_FAMILIES.has(family)) {
-      const pathEntries = exportValue.paths ?? [exportValue];
-      const content = pathEntries.map((entry) => `<path d="${entry.d ?? entry.path}"/>`).join('');
-      writeFileSync(join(ICONS_DIST, exportValue.fileName), `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${exportValue.viewBox}">${content}</svg>\n`);
+      const sourceVariant = String(exportValue?.sourceVariant || '');
+      const sourceName = String(exportValue?.sourceName || '');
+      if (sourceName && ['outlined', 'filled'].includes(sourceVariant)) {
+        const sourceFileName = `${sourceName}${sourceVariant === 'filled' ? '-fill' : ''}.svg`;
+        const sourcePath = join(MATERIAL_SYMBOLS_PACKAGE, 'outlined', sourceFileName);
+        if (!existsSync(sourcePath)) {
+          throw new Error(`[semantic-icons] Missing Material Symbols source ${sourceFileName} for role ${role}.`);
+        }
+        copyFileSync(sourcePath, join(ICONS_DIST, exportValue.fileName));
+      } else {
+        const pathEntries = exportValue?.paths ?? [exportValue];
+        if (!exportValue?.viewBox || pathEntries.some((entry) => !(entry?.d ?? entry?.path))) {
+          throw new Error(`[semantic-icons] Invalid accepted Material Symbols vector for role ${role}.`);
+        }
+        const content = pathEntries.map((entry) => `<path d="${entry.d ?? entry.path}"/>`).join('');
+        writeFileSync(join(ICONS_DIST, exportValue.fileName), `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${exportValue.viewBox}">${content}</svg>\n`);
+      }
       semanticIconCss.push(
         `.bb-semantic-icon[data-bb-icon-family="${family}"][data-bb-icon-role="${role}"] {`,
         `  --bb-semantic-icon-source: url("../icons/${exportValue.fileName}");`,
@@ -775,7 +792,7 @@ writeFileSync(SEMANTIC_ICON_CSS, semanticIconCss.join('\n'));
 mkdirSync('dist/web/licenses', { recursive: true });
 copyFileSync(join(FONT_AWESOME_PACKAGE, 'LICENSE.txt'), 'dist/web/licenses/font-awesome-free.txt');
 copyFileSync('assets/icon-licenses/material-symbols-NOTICE.txt', 'dist/web/licenses/material-symbols-NOTICE.txt');
-copyFileSync('assets/font-licenses/roboto_slab_APACHE.txt', 'dist/web/licenses/material-symbols-apache.txt');
+copyFileSync(join(MATERIAL_SYMBOLS_PACKAGE, 'LICENSE'), 'dist/web/licenses/material-symbols-apache.txt');
 process.stdout.write('  [components/semantic-icons.css] done\n');
 process.stdout.write('  [icons/font-awesome-solid] done\n');
 process.stdout.write('  [licenses/font-awesome-free.txt] done\n');

@@ -4,6 +4,7 @@ import test from 'node:test';
 
 import {
   applyLayoutTextEditorRecipe,
+  LAYOUT_ROUNDNESS_PRESETS,
   LAYOUT_TEXT_EDITOR_MIXED_VALUE,
   layoutTextEditorColorPaletteMarkup,
   layoutTextEditorColorSwatchMarkup,
@@ -13,11 +14,42 @@ import {
   layoutTextEditorGeometryPopoverMarkup,
   layoutTextEditorIconButtonMarkup,
   layoutTextEditorMixedOptionMarkup,
+  layoutTextEditorNoColorMarkup,
+  layoutTextEditorNumericFieldMarkup,
   layoutTextEditorOriginalColorMarkup,
   layoutTextEditorProjectColorAddMarkup,
+  layoutTextEditorRangeFieldMarkup,
   syncLayoutTextEditorProjectColorPreview,
   syncLayoutTextEditorMixedState
 } from '../components/layout-text-editor.js';
+
+test('layout text editor owns numeric and continuous appearance controls', () => {
+  const numeric = layoutTextEditorNumericFieldMarkup({
+    attributes: { 'data-shape-width': '' },
+    label: 'Width',
+    min: 0,
+    max: 200,
+    value: 8
+  });
+  const range = layoutTextEditorRangeFieldMarkup({
+    attributes: { 'data-layout-opacity': '' },
+    label: 'Opacity',
+    value: 65
+  });
+
+  assert.deepEqual(LAYOUT_ROUNDNESS_PRESETS.map(({ id, value }) => [id, value]), [
+    ['sharp', 0],
+    ['soft', 25],
+    ['rounded', 50],
+    ['pill', 100]
+  ]);
+  assert.match(numeric, /bb-layout-text-editor__size-control/);
+  assert.match(numeric, /data-shape-width=""/);
+  assert.match(numeric, /aria-label="Width"/);
+  assert.match(range, /bb-layout-text-editor__range-field/);
+  assert.match(range, /data-layout-opacity=""/);
+  assert.match(range, />65%<\/output>/);
+});
 
 function classList() {
   const values = new Set();
@@ -61,6 +93,7 @@ test('layout text editor CSS owns its text, segmented, animation, and range cont
   assert.match(css, /\.bb-layout-text-editor \.segmented/);
   assert.match(css, /\.bb-layout-text-editor \.animation-item/);
   assert.match(css, /\.bb-layout-text-editor \.range-control/);
+  assert.match(css, /\.bb-layout-text-editor__range-field/);
   assert.match(css, /\.bb-layout-text-editor input\[type="color"\]/);
   assert.match(css, /\.bb-layout-text-editor\.bb-layout-text-editor--toolbar/);
   assert.match(css, /\.bb-workspace-control-bar__leading:has\(> \.bb-layout-text-editor--toolbar\)/);
@@ -351,6 +384,21 @@ test('layout editor original image color uses the shared cut-corner and semantic
   assert.match(interfaceCss, /\.bb-color-swatch-original \.bb-semantic-icon \{/);
 });
 
+test('layout editor no-color action uses the shared palette action recipe with exact semantics', () => {
+  const markup = layoutTextEditorNoColorMarkup({
+    attributes: { 'data-shape-fill-none': '' },
+    label: 'Use no fill',
+    selected: true
+  });
+
+  assert.match(markup, /theme-swatch bb-color-swatch-original bb-cut-corner-swatch/);
+  assert.match(markup, /data-shape-fill-none=""/);
+  assert.match(markup, /data-bb-icon-role="close"/);
+  assert.match(markup, /aria-label="Use no fill"/);
+  assert.match(markup, /aria-pressed="true"/);
+  assert.match(markup, /title="None"/);
+});
+
 test('layout editor color palette owns labeled rows, aligned swatches, and exact swatch help', async () => {
   const swatch = layoutTextEditorColorSwatchMarkup({
     attributes: { 'data-text-color-swatch': '#12E6D5' },
@@ -361,6 +409,7 @@ test('layout editor color palette owns labeled rows, aligned swatches, and exact
   const markup = layoutTextEditorColorPaletteMarkup({
     onTopMarkup: '<button data-on-top></button>',
     originalMarkup: '<button data-original></button>',
+    originalLabel: 'None',
     projectMarkup: '<button data-project></button>',
     themeMarkup: swatch
   });
@@ -372,7 +421,7 @@ test('layout editor color palette owns labeled rows, aligned swatches, and exact
   assert.match(swatch, /style="--swatch:#12E6D5"/);
   assert.match(swatch, /aria-pressed="true"/);
   assert.match(swatch, /data-text-color-swatch="#12E6D5"/);
-  assert.ok(markup.indexOf('>Original<') < markup.indexOf('>Theme<'));
+  assert.ok(markup.indexOf('>None<') < markup.indexOf('>Theme<'));
   assert.ok(markup.indexOf('>Theme<') < markup.indexOf('>On top<'));
   assert.ok(markup.indexOf('>On top<') < markup.indexOf('>Project<'));
   assert.match(markup, /role="group" aria-label="Theme colors"/);

@@ -1,4 +1,5 @@
 /*! Font Awesome Free 7.3.1 by @fontawesome. Icons: CC BY 4.0. https://fontawesome.com/license/free */
+/*! Material Symbols 0.47.1 by Google. Icons: Apache-2.0. */
 .bb-semantic-icon {
   display: inline-block;
   width: 1em;
@@ -387,6 +388,34 @@
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/chart-line.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="achievement"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/trophy.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="hiking"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/person-hiking.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="mountain"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/mountain-sun.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="map"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/map.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="route"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/route.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="weather_snowy"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/snowflake.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="altitude"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/mountain.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="bitsandbolts-theme"][data-bb-icon-role="brewer_v60"] {
   --bb-semantic-icon-source: url("../icons/brewer-v60.svg");
 }
@@ -411,6 +440,34 @@
   --bb-semantic-icon-source: url("../icons/theme-light.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="save"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-save.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="undo"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-undo.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="redo"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-redo.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="settings"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-settings.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="arrow_back"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-arrow-back.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="share"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-share.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="logout"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-logout.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="home"] {
   --bb-semantic-icon-source: url("../icons/material-symbols-outlined-home.svg");
 }
@@ -423,12 +480,256 @@
   --bb-semantic-icon-source: url("../icons/material-symbols-outlined-timer.svg");
 }
 
-.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="person"] {
-  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-person.svg");
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="search"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-search.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="notifications"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-notifications.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="close"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-close.svg");
 }
 
 .bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="submenu"] {
   --bb-semantic-icon-source: url("../icons/material-symbols-outlined-submenu.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="add"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-add.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="folder_open"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-folder-open.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="check"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-check.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="person"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-person.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="star"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-star.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="favorite"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-favorite.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="delete"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-delete.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="edit"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-edit.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="save_as"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-save-as.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="content_copy"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-content-copy.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="content_paste"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-content-paste.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="cloud_upload"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-cloud-upload.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="cloud_download"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-cloud-download.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="menu"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-menu.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="more_vert"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-more-vert.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="info"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-info.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="warning"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-warning.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="lock"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-lock.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="visibility"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-visibility.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="visibility_off"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-visibility-off.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="download"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-download.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="media_audio"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-media-audio.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="media_video"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-media-video.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="media_image"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-media-image.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="play_arrow"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-play-arrow.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="pause"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-pause.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="stop"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-stop.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="zoom_out"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-zoom-out.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="fit_screen"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-fit-screen.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="zoom_in"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-zoom-in.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="idea"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-idea.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="call"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-call.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="agreement"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-agreement.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="analysis"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-analysis.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="design"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-design.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="build"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-build.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="firmware"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-firmware.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="mobile"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-mobile.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="launch"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-launch.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="global"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-global.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="delivery"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-delivery.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="support"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-support.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="data"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-data.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="growth"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-growth.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="achievement"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-achievement.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="hiking"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-hiking.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="mountain"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-mountain.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="map"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-map.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="route"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-route.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="weather_snowy"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-weather-snowy.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="altitude"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-altitude.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="flag"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-flag.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="save"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-save.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="undo"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-undo.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="redo"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-redo.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="settings"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-settings.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="arrow_back"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-arrow-back.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="share"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-share.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="logout"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-logout.svg");
 }
 
 .bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="home"] {
@@ -443,10 +744,226 @@
   --bb-semantic-icon-source: url("../icons/material-symbols-filled-timer.svg");
 }
 
-.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="person"] {
-  --bb-semantic-icon-source: url("../icons/material-symbols-filled-person.svg");
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="search"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-search.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="notifications"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-notifications.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="close"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-close.svg");
 }
 
 .bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="submenu"] {
   --bb-semantic-icon-source: url("../icons/material-symbols-filled-submenu.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="add"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-add.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="folder_open"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-folder-open.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="check"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-check.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="person"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-person.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="star"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-star.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="favorite"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-favorite.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="delete"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-delete.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="edit"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-edit.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="save_as"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-save-as.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="content_copy"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-content-copy.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="content_paste"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-content-paste.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="cloud_upload"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-cloud-upload.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="cloud_download"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-cloud-download.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="menu"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-menu.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="more_vert"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-more-vert.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="info"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-info.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="warning"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-warning.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="lock"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-lock.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="visibility"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-visibility.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="visibility_off"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-visibility-off.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="download"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-download.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="media_audio"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-media-audio.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="media_video"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-media-video.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="media_image"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-media-image.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="play_arrow"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-play-arrow.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="pause"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-pause.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="stop"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-stop.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="zoom_out"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-zoom-out.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="fit_screen"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-fit-screen.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="zoom_in"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-zoom-in.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="idea"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-idea.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="call"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-call.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="agreement"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-agreement.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="analysis"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-analysis.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="design"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-design.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="build"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-build.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="firmware"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-firmware.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="mobile"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-mobile.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="launch"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-launch.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="global"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-global.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="delivery"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-delivery.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="support"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-support.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="data"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-data.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="growth"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-growth.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="achievement"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-achievement.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="hiking"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-hiking.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="mountain"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-mountain.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="map"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-map.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="route"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-route.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="weather_snowy"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-weather-snowy.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="altitude"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-altitude.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="flag"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-flag.svg");
 }
