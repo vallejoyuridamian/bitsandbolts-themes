@@ -13,6 +13,8 @@
   components, fonts, icons, assets, recipes, and generated platform output.
 - [x] Own shared Background, project information, palette, Select, mixed-state,
   fixed-overlay, arrangement, Geometry, Gap, and Line endpoint recipes.
+- [x] Own one workspace control-bar section separator and the destructive
+  Project action presented inside project information.
 - [x] Preserve Coffee's accepted Besley and Roboto Slab pairing.
 - [x] Keep behavior, mutation, persistence, Preview, and export in AppScreen.
 

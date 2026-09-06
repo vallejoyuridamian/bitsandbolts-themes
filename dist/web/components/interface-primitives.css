@@ -562,6 +562,15 @@ input.bb-workspace-control-input.bb-workspace-control-input[type="number"]:focus
   padding: 4px 0;
 }
 
+.bb-workspace-control-bar__separator {
+  align-self: stretch;
+  flex: 0 0 1px;
+  width: 1px;
+  min-height: 22px;
+  margin: 4px 5px;
+  background: var(--bb-v2-color-border-subtle);
+}
+
 .bb-workspace-control-bar__actions {
   display: flex;
   flex: 1 1 auto;

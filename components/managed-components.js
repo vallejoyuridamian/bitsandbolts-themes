@@ -105,6 +105,7 @@ export const MANAGED_WEB_COMPONENTS = Object.freeze({
       stylesheets: Object.freeze([
         'components/form-field.css',
         'components/interface-primitives.css',
+        'components/semantic-icons.css',
         'components/workspace-item-info.css'
       ]),
       modules: Object.freeze(['components/workspace-item-info.js'])

@@ -1,3 +1,5 @@
+import { semanticActionButtonMarkup } from './button.js';
+
 function escapeHtml(value = '') {
   return String(value ?? '')
     .replaceAll('&', '&amp;')
@@ -12,6 +14,7 @@ function controlId(id = 'workspaceItemInfo', role = '') {
 }
 
 export function workspaceItemInfoMarkup({
+  deleteLabel = '',
   id = 'workspaceItemInfo',
   itemNameLabel = 'Item name',
   projectNameLabel = 'Project name',
@@ -20,6 +23,18 @@ export function workspaceItemInfoMarkup({
   const projectNameId = controlId(id, 'project-name');
   const resolutionId = controlId(id, 'resolution');
   const itemNameId = controlId(id, 'item-name');
+  const normalizedDeleteLabel = String(deleteLabel || '').trim();
+  const deleteMarkup = normalizedDeleteLabel
+    ? `<div class="bb-workspace-item-info__actions">${semanticActionButtonMarkup({
+        ariaLabel: normalizedDeleteLabel,
+        attributes: { 'data-bb-workspace-item-info-role': 'delete-project' },
+        danger: true,
+        iconOnly: false,
+        iconRole: 'delete',
+        label: normalizedDeleteLabel,
+        recipe: 'workspace'
+      })}</div>`
+    : '';
   return `<div class="bb-workspace-item-info bb-interface-controls" data-bb-workspace-item-info>
     <div class="bb-field">
       <label class="bb-field__label" for="${projectNameId}">${escapeHtml(projectNameLabel)}</label>
@@ -33,5 +48,6 @@ export function workspaceItemInfoMarkup({
       <label class="bb-field__label" for="${itemNameId}">${escapeHtml(itemNameLabel)}</label>
       <input id="${itemNameId}" class="bb-field__input" type="text" maxlength="160" autocomplete="off" data-bb-workspace-item-info-role="item-name">
     </div>
+    ${deleteMarkup}
   </div>`;
 }

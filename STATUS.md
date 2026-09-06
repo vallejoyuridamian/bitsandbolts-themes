@@ -14,6 +14,9 @@ Last verified: 2026-09-06
   Project color Add, Image Original, project information, Background, fixed
   overlays, arrangement, Geometry, Gap, Line endpoints, and Icon cards retain
   their accepted shared recipes.
+- The workspace control bar exposes one canonical section separator. Project
+  information composes the Themes-owned destructive action button, including
+  its semantic Delete icon, for project deletion inside the information window.
 - Coffee retains Besley for signature typography and Roboto Slab for interface
   typography in both modes.
 
@@ -57,6 +60,8 @@ Last verified: 2026-09-06
 
 ## Evidence
 
+- Focused workspace item information coverage proves the destructive Project
+  action and the shared control-bar separator recipe.
 - Focused Background, layout editor, and semantic Icon tests pass.
 - Every catalog role resolves and every generated SVG exists for Material
   Outlined, Material Filled, and Font Awesome Solid.
@@ -71,5 +76,7 @@ Last verified: 2026-09-06
 - Universal typeface safety remains parked.
 - The Winter iPhone draft and future iPad adaptation are AppScreen composition
   work. They do not activate another Themes implementation cluster.
+- Toolbar ordering, Duplicate Project behavior, and global element order remain
+  AppScreen-owned behavior built from these shared recipes.
 - Preview, export, owner browser interaction, and deployment remain outside
   Themes ownership.

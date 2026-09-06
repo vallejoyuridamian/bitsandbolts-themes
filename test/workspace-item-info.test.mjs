@@ -10,6 +10,7 @@ test('workspace item info uses canonical field and informative-value recipes', a
     'utf8'
   );
   const markup = workspaceItemInfoMarkup({
+    deleteLabel: 'Delete project',
     id: 'sceneInfo',
     itemNameLabel: 'Scene name'
   });
@@ -20,7 +21,18 @@ test('workspace item info uses canonical field and informative-value recipes', a
   assert.match(markup, /data-bb-workspace-item-info-role="project-name"/);
   assert.match(markup, /data-bb-workspace-item-info-role="resolution"/);
   assert.match(markup, /data-bb-workspace-item-info-role="item-name"/);
+  assert.match(markup, /bb-workspace-control-button--danger[^>]*data-bb-workspace-item-info-role="delete-project"/);
+  assert.match(markup, /<span class="bb-workspace-control-label">Delete project<\/span>/);
   assert.match(markup, />Scene name<\/label>/);
   assert.match(css, /\.bb-workspace-item-info \{[\s\S]*?gap: var\(--bb-spacing-3\)/);
   assert.match(css, /\.bb-workspace-item-info__value \{[\s\S]*?font-size: var\(--bb-font-size-sm\)/);
+  assert.match(css, /\.bb-workspace-item-info__actions \{[\s\S]*?justify-content: flex-start/);
+});
+
+test('workspace control bars expose one canonical section separator recipe', async () => {
+  const css = await readFile(
+    new URL('../components/interface-primitives.css', import.meta.url),
+    'utf8'
+  );
+  assert.match(css, /\.bb-workspace-control-bar__separator \{[\s\S]*?width: 1px[\s\S]*?background: var\(--bb-v2-color-border-subtle\)/);
 });

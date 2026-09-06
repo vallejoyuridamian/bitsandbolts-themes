@@ -36,3 +36,11 @@
   font-size: var(--bb-font-size-sm);
   line-height: var(--bb-font-line-height-normal);
 }
+
+.bb-workspace-item-info__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+  padding-top: var(--bb-spacing-2);
+}
