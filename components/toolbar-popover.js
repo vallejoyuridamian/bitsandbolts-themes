@@ -175,11 +175,16 @@ export function createToolbarPopoverController({
     const panel = rootDocument.createElement('div');
     panel.id = `bbToolbarPopover${popoverSequence += 1}`;
     applyToolbarPopoverRecipe({ ariaLabel, node: panel });
-    renderContent?.(panel);
     rootDocument.body.appendChild(panel);
     active = { anchor, onClose, panel };
     anchor.setAttribute?.('aria-controls', panel.id);
     anchor.setAttribute?.('aria-expanded', 'true');
+    try {
+      renderContent?.(panel);
+    } catch (error) {
+      close('content-render-failed');
+      throw error;
+    }
     return position();
   }
 

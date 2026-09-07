@@ -1,0 +1,130 @@
+/* Shared property fields for independent editor families. */
+.bb-property-editor {
+  display: grid;
+  gap: var(--bb-spacing-3);
+  min-width: 0;
+  font-family: var(--bb-font-family-body);
+}
+
+:is(.bb-layout-text-editor, .bb-property-editor) label {
+  display: grid;
+  gap: var(--bb-spacing-1);
+  margin: 0;
+  color: var(--bb-interface-menu-muted-foreground);
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-xs);
+  font-weight: var(--bb-font-weight-medium);
+  letter-spacing: 0.02em;
+  line-height: var(--bb-font-line-height-normal);
+}
+
+:is(.bb-layout-text-editor, .bb-property-editor) :is(input[type="text"], input[type="number"], select, textarea) {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 8px var(--bb-spacing-3);
+  border: 1px solid var(--bb-interface-menu-border);
+  border-radius: var(--bb-radius-md);
+  outline: none;
+  color: var(--bb-interface-control-foreground);
+  background: color-mix(in srgb, var(--bb-interface-control-foreground) 5%, var(--bb-interface-menu-background));
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-sm);
+  font-weight: var(--bb-font-weight-medium);
+}
+
+:is(.bb-layout-text-editor, .bb-property-editor) :is(input[type="text"], input[type="number"], select, textarea):focus {
+  border-color: var(--bb-v2-identity-primary);
+}
+
+:is(.bb-layout-text-editor, .bb-property-editor) select {
+  padding-inline-end: var(--bb-spacing-3);
+  appearance: auto;
+  background-image: none;
+}
+
+:is(.bb-layout-text-editor, .bb-property-editor) select :is(option, optgroup) {
+  color: var(--bb-interface-control-foreground);
+  background: var(--bb-interface-menu-background);
+  font-family: var(--bb-font-family-body);
+}
+
+:is(.bb-layout-text-editor, .bb-property-editor) .row,
+:is(.bb-layout-text-editor, .bb-property-editor) .tools-row,
+.bb-layout-text-editor__actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--bb-spacing-2);
+  min-width: 0;
+}
+
+:is(.bb-layout-text-editor, .bb-property-editor) :is(.row, .tools-row, .bb-layout-text-editor__actions) > * {
+  min-width: 0;
+}
+
+:is(.bb-layout-text-editor, .bb-property-editor) .range-control {
+  --range-control-progress: 0%;
+  --range-control-thumb-size: 14px;
+  --range-control-track-size: 4px;
+  width: 100%;
+  min-width: 0;
+  min-height: var(--range-control-thumb-size);
+  height: var(--range-control-thumb-size);
+  margin: 0;
+  padding: 0;
+  appearance: none;
+  border: 0;
+  border-radius: 0;
+  background:
+    linear-gradient(
+      90deg,
+      var(--bb-v2-identity-primary) 0 var(--range-control-progress),
+      color-mix(in srgb, var(--bb-v2-color-content-primary) 28%, transparent) var(--range-control-progress) 100%
+    )
+    center / calc(100% - var(--range-control-thumb-size)) var(--range-control-track-size) no-repeat;
+  cursor: pointer;
+  touch-action: none;
+}
+
+:is(.bb-layout-text-editor, .bb-property-editor) .range-control::-webkit-slider-runnable-track {
+  height: var(--range-control-thumb-size);
+  border: 0;
+  background: transparent;
+}
+
+:is(.bb-layout-text-editor, .bb-property-editor) .range-control::-webkit-slider-thumb {
+  width: var(--range-control-thumb-size);
+  height: var(--range-control-thumb-size);
+  margin: 0;
+  appearance: none;
+  border: 2px solid var(--bb-v2-identity-primary);
+  border-radius: 999px;
+  background: var(--bb-v2-identity-primary);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--bb-v2-identity-primary) 18%, transparent);
+}
+
+:is(.bb-layout-text-editor, .bb-property-editor) .range-control::-moz-range-track,
+:is(.bb-layout-text-editor, .bb-property-editor) .range-control::-moz-range-progress {
+  height: var(--range-control-thumb-size);
+  border: 0;
+  background: transparent;
+}
+
+:is(.bb-layout-text-editor, .bb-property-editor) .range-control::-moz-range-thumb {
+  width: var(--range-control-thumb-size);
+  height: var(--range-control-thumb-size);
+  border: 2px solid var(--bb-v2-identity-primary);
+  border-radius: 999px;
+  background: var(--bb-v2-identity-primary);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--bb-v2-identity-primary) 18%, transparent);
+}
+
+:is(.bb-layout-text-editor, .bb-property-editor) .range-control:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--bb-v2-identity-primary) 72%, transparent);
+  outline-offset: 4px;
+}
+
+:is(.bb-layout-text-editor, .bb-property-editor) .range-control:disabled {
+  cursor: default;
+  opacity: 0.42;
+}

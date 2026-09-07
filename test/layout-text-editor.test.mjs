@@ -87,12 +87,16 @@ test('layout text editor applies the canonical toolbar recipe', () => {
   assert.equal(node.classList.contains('bb-layout-text-editor--toolbar'), true);
 });
 
-test('layout text editor CSS owns its text, segmented, animation, and range controls', async () => {
+test('layout text editor composes shared animation and property recipes', async () => {
   const css = await readFile(new URL('../components/layout-text-editor.css', import.meta.url), 'utf8');
   const interfaceCss = await readFile(new URL('../components/interface-primitives.css', import.meta.url), 'utf8');
   assert.match(css, /\.bb-layout-text-editor \.segmented/);
-  assert.match(css, /\.bb-layout-text-editor \.animation-item/);
-  assert.match(css, /\.bb-layout-text-editor \.range-control/);
+  const animationCss = await readFile(new URL('../components/animation-editor.css', import.meta.url), 'utf8');
+  assert.match(css, /animation-editor\.css/);
+  assert.match(animationCss, /:is\(\.bb-layout-text-editor, \.bb-animation-editor\) \.animation-item/);
+  const propertyCss = await readFile(new URL('../components/property-editor.css', import.meta.url), 'utf8');
+  assert.match(css, /property-editor\.css/);
+  assert.match(propertyCss, /:is\(\.bb-layout-text-editor, \.bb-property-editor\) \.range-control/);
   assert.match(css, /\.bb-layout-text-editor__range-field/);
   assert.match(css, /\.bb-layout-text-editor input\[type="color"\]/);
   assert.match(css, /\.bb-layout-text-editor\.bb-layout-text-editor--toolbar/);

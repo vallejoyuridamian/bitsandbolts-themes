@@ -6,7 +6,11 @@
 - Keep AppScreen behavior in AppScreen while sharing exact presentation recipes.
 - Keep source components, generated web output, and documentation output aligned.
 - Universal typeface safety remains a separate parked discussion.
-- AppScreen static Safe areas recipe is accepted. Static is locked; Video waits.
+- AppScreen static Safe areas is accepted and locked.
+- Audio annotated-text and Select descriptions are owner-accepted.
+- Unified Scene/element animation recipes and Audio slot actions are in the accepted checkpoint.
+- Distinct semantic Animation icon and Select window/scroll reservation are accepted.
+- Cleanup is paused. Next chat loads Debug context only and waits for owner direction.
 
 ## Completed Foundation
 

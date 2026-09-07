@@ -1,0 +1,17 @@
+@import url("./property-editor.css");
+
+.bb-audio-settings {
+  grid-template-columns: auto minmax(120px, 1fr);
+  align-items: center;
+}
+.bb-audio-settings__label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--bb-spacing-3);
+}
+.bb-audio-settings__actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: var(--bb-spacing-2);
+}

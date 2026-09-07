@@ -45,6 +45,13 @@ export function selectOptionLabel(option) {
   return String(option?.label || option?.textContent || option?.value || '').trim();
 }
 
+export function selectDescriptionTitle(select, option, { trigger = false } = {}) {
+  if (select?.dataset?.bbSelectOptionDescriptions === 'true') {
+    return String(option?.title || (trigger ? select?.title : '') || '');
+  }
+  return trigger ? String(select?.title || '') : '';
+}
+
 function optionHasIntentionalEmptyLabel(option) {
   return option?.hasAttribute?.('data-bb-layout-text-editor-mixed-option') === true;
 }
@@ -97,6 +104,7 @@ function optionsSignature(select) {
     option.value,
     selectOptionLabel(option),
     optionFontFamily(option),
+    option.title,
     option.disabled,
     option.hidden,
     option.parentElement?.tagName === 'OPTGROUP' ? option.parentElement.label : ''
@@ -173,6 +181,64 @@ export function resolveSelectMenuPreferredHeight({
 
 export function isSelectMenuVerticalBoundary(style = {}) {
   return /^(auto|scroll|overlay)$/.test(String(style?.overflowY || '').trim());
+}
+
+export function createSelectWindowSpaceReservation({
+  container,
+  getViewportHeight,
+  menuHeight,
+  paddingBottom = 0,
+  trigger,
+  windowNode
+} = {}) {
+  const original = {
+    height: windowNode.style.height,
+    top: windowNode.style.top,
+    paddingBottom: container.style.paddingBottom,
+    scrollTop: container.scrollTop
+  };
+  const preferredHeight = Math.min(MAX_MENU_HEIGHT, Math.max(0, menuHeight));
+  let reservedPadding = 0;
+
+  function update() {
+    const viewportHeight = Math.max(0, getViewportHeight());
+    const windowRect = windowNode.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+    const triggerRect = trigger.getBoundingClientRect();
+    const visibleBottom = Math.min(containerRect.bottom, viewportHeight - VIEWPORT_GAP);
+    const shortfall = Math.max(0, preferredHeight + MENU_GAP + VIEWPORT_GAP - (visibleBottom - triggerRect.bottom));
+    const height = Math.min(viewportHeight - VIEWPORT_GAP * 2, Math.ceil(windowRect.height + shortfall));
+    if (height > windowRect.height && windowNode.style.height !== `${height}px`) {
+      windowNode.style.height = `${height}px`;
+    }
+    // Use the actual height: the shared shell's CSS may impose a stricter cap.
+    const actualHeight = windowNode.getBoundingClientRect().height;
+    const top = Math.round(Math.max(VIEWPORT_GAP, Math.min(windowRect.top, viewportHeight - actualHeight - VIEWPORT_GAP)));
+    if (top !== windowRect.top) windowNode.style.top = `${top}px`;
+
+    const body = container.getBoundingClientRect();
+    const anchor = trigger.getBoundingClientRect();
+    const contentBelow = container.scrollHeight - container.scrollTop - (anchor.bottom - body.top);
+    const missingContent = Math.max(0, preferredHeight + MENU_GAP + VIEWPORT_GAP - contentBelow);
+    if (missingContent > 0) {
+      reservedPadding += Math.ceil(missingContent);
+      container.style.paddingBottom = `${paddingBottom + reservedPadding}px`;
+    }
+    const visibleBelow = Math.min(body.bottom, viewportHeight - VIEWPORT_GAP) - anchor.bottom;
+    const scrollNeeded = Math.max(0, preferredHeight + MENU_GAP + VIEWPORT_GAP - visibleBelow);
+    // Keep the trigger visible even in a viewport too small for all five rows.
+    const scrollAvailable = Math.max(0, anchor.top - Math.max(body.top, VIEWPORT_GAP));
+    if (scrollNeeded > 0) container.scrollTop += Math.min(scrollNeeded, scrollAvailable);
+  }
+
+  function release() {
+    windowNode.style.height = original.height;
+    windowNode.style.top = original.top;
+    container.style.paddingBottom = original.paddingBottom;
+    container.scrollTop = original.scrollTop;
+  }
+
+  return { update, release };
 }
 
 export function selectUsesExplicitExternalTrigger(select) {
@@ -312,7 +378,7 @@ export function installSelectController(root = globalThis.document, {
         accessibleLabel ? `${accessibleLabel}: ${accessibleValue}` : accessibleValue
       );
     }
-    if (valueNode || select.title) trigger.title = select.title || '';
+    if (valueNode || select.title) trigger.title = selectDescriptionTitle(select, selected, { trigger: true });
     if (rebuild || record.optionsSignature !== optionsSignature(select)) {
       record.optionsSignature = optionsSignature(select);
       if (record.menu) renderOptions(record);
@@ -393,6 +459,7 @@ export function installSelectController(root = globalThis.document, {
       item.type = 'button';
       item.className = 'bb-menu__item bb-interface-action';
       item.disabled = Boolean(option.disabled || group?.disabled);
+      item.title = selectDescriptionTitle(select, option);
       item.dataset.bbSelectOptionIndex = String(optionIndex);
       item.setAttribute('role', 'option');
       item.setAttribute('aria-selected', String(isSelected));
@@ -459,10 +526,7 @@ export function installSelectController(root = globalThis.document, {
   function releaseFloatingWindowReservation(record) {
     const reservation = record?.floatingWindowReservation;
     if (!reservation) return;
-    if (reservation.node?.isConnected) {
-      reservation.node.style.height = reservation.height;
-      reservation.node.style.top = reservation.top;
-    }
+    reservation.release();
     record.floatingWindowReservation = null;
   }
 
@@ -478,26 +542,21 @@ export function installSelectController(root = globalThis.document, {
     });
   }
 
-  function reserveFloatingWindowMenuSpace(record, triggerRect, menuHeight) {
-    if (record.floatingWindowReservation || menuHeight <= 0) return;
-    const node = record.wrapper.closest?.('.bb-floating-window[data-floating-window-size="content"]');
-    if (!node) return;
-    const shortfall = Math.ceil(menuHeight - anchorContainerAvailableHeight(record, triggerRect));
-    if (shortfall <= 0) return;
-    const nodeRect = node.getBoundingClientRect();
-    const viewport = viewportRect();
-    const maximumHeight = Math.max(0, viewport.bottom - viewport.top - (VIEWPORT_GAP * 2));
-    const height = Math.min(maximumHeight, Math.ceil(nodeRect.height + shortfall));
-    if (height <= nodeRect.height) return;
-    const maximumTop = Math.max(VIEWPORT_GAP, viewport.bottom - height - VIEWPORT_GAP);
-    const top = Math.min(Math.max(VIEWPORT_GAP, nodeRect.top), maximumTop);
-    record.floatingWindowReservation = {
-      height: node.style.height,
-      node,
-      top: node.style.top
-    };
-    node.style.height = `${height}px`;
-    node.style.top = `${Math.round(top)}px`;
+  function reserveFloatingWindowMenuSpace(record, menuHeight) {
+    if (menuHeight <= 0 || !record.anchorContainer) return;
+    if (!record.floatingWindowReservation) {
+      const windowNode = record.wrapper.closest?.('.bb-floating-window');
+      if (!windowNode) return;
+      record.floatingWindowReservation = createSelectWindowSpaceReservation({
+        container: record.anchorContainer,
+        getViewportHeight: () => viewportRect().bottom,
+        menuHeight,
+        paddingBottom: Number.parseFloat(view?.getComputedStyle?.(record.anchorContainer)?.paddingBottom) || 0,
+        trigger: record.trigger,
+        windowNode
+      });
+    }
+    record.floatingWindowReservation.update();
   }
 
   function triggerIsVisible(record, triggerRect = record.trigger?.getBoundingClientRect?.()) {
@@ -537,11 +596,15 @@ export function installSelectController(root = globalThis.document, {
       record.menuNaturalHeight = Math.ceil(menu.getBoundingClientRect().height);
       record.menuPreferredHeight = preferredMenuHeight(menu, record.menuNaturalHeight);
     }
-    reserveFloatingWindowMenuSpace(record, triggerRect, record.menuPreferredHeight);
+    reserveFloatingWindowMenuSpace(record, record.menuPreferredHeight);
     const resolvedTriggerRect = trigger.getBoundingClientRect();
     const menuRect = menu.getBoundingClientRect();
+    const windowAvailableHeight = record.floatingWindowReservation
+      ? Math.max(0, Math.min(anchorContainerRect(record).bottom, viewportRect().bottom - VIEWPORT_GAP)
+        - resolvedTriggerRect.bottom - MENU_GAP - VIEWPORT_GAP)
+      : Number.POSITIVE_INFINITY;
     const position = resolveSelectMenuPosition({
-      containerAvailableHeight: anchorContainerAvailableHeight(record, resolvedTriggerRect),
+      containerAvailableHeight: Math.min(anchorContainerAvailableHeight(record, resolvedTriggerRect), windowAvailableHeight),
       menuHeight: record.menuPreferredHeight,
       menuWidth: menuRect.width,
       triggerRect: resolvedTriggerRect,
@@ -915,7 +978,7 @@ export function installSelectController(root = globalThis.document, {
   });
   rootObserver.observe(rootDocument.documentElement, {
     attributes: true,
-    attributeFilter: ['disabled', 'hidden', 'label', 'selected', 'title', 'value'],
+    attributeFilter: ['disabled', 'hidden', 'label', 'selected', 'title', 'value', 'data-bb-select-option-descriptions'],
     childList: true,
     characterData: true,
     subtree: true

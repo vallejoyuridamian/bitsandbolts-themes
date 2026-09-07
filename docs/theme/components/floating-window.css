@@ -318,3 +318,9 @@
   font-size: var(--bb-font-size-xs);
   line-height: var(--bb-font-line-height-normal);
 }
+
+
+/* Measure one list item at initial fit; the fixed shell then scrolls the full list. */
+.bb-floating-window[data-floating-window-measuring="true"] [data-floating-window-fit-first-item="true"] [data-floating-window-items] > :not(:first-child) {
+  display: none;
+}

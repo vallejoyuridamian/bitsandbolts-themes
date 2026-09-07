@@ -26,6 +26,32 @@ function fakeNode() {
   };
 }
 
+test('popover content hydrates after attachment and render failure closes its lease', () => {
+  let panel;
+  const anchor = fakeNode();
+  const reasons = [];
+  const rootDocument = {
+    body: { appendChild(node) { node.isConnected = true; } },
+    createElement: () => { panel = fakeNode(); panel.isConnected = false; return panel; },
+    defaultView: { innerWidth: 320, innerHeight: 240 }
+  };
+  const controller = createToolbarPopoverController({ rootDocument });
+  assert.throws(() => controller.open({ anchor,
+    onClose: ({ reason }) => reasons.push(reason),
+    renderContent(node) {
+      assert.equal(node.isConnected, true);
+      assert.equal(controller.isOpenFor(anchor), true);
+      throw new Error('Hydration failed');
+    }
+  }), /Hydration failed/);
+  assert.equal(panel.isConnected, false);
+  assert.equal(controller.isOpenFor(anchor), false);
+  assert.equal(anchor.attributes.get('aria-expanded'), 'false');
+  assert.equal(anchor.attributes.has('aria-controls'), false);
+  assert.deepEqual(reasons, ['content-render-failed']);
+  controller.destroy();
+});
+
 test('toolbar popover trigger uses the canonical workspace button recipe', () => {
   const markup = toolbarPopoverTriggerMarkup({
     attributes: { 'data-text-color-trigger': '' },

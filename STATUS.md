@@ -75,7 +75,30 @@ Last verified: 2026-09-07
 
 ## Current Boundary
 
-- Preserve all accepted shared recipes and both accepted AppScreen demos.
+- Select reserves space in every floating window: grow/reposition, then use its
+  existing scroll area at viewport limits. Five-option cap and close restoration
+  remain. Six focused checks and Themes build pass; the owner accepted the final result.
+- Animation has its own semantic vector (Material Animation, Font Awesome wand),
+  distinct from Edit Video. Generated providers and source/web/docs agree; build
+  and focused icon coverage pass. The owner accepted the accumulated cleanup checkpoint.
+
+- Scene and element animations now share the same Themes card/Add/Delete/region
+  recipes and Type dropdowns. Audio settings support optional slot Add/Replace/
+  Remove actions without changing ordinary Play/Volume controls. AppScreen owns
+  one project backing slot and first-card window growth within the viewport.
+  Fifteen focused AppScreen checks, syntax, and Themes generation pass; generated
+  web/docs sources match. This is included in the owner-accepted cleanup checkpoint.
+
+- Popover repair: attach before hydration so consumer listeners remain bound;
+  failures close the lease. Nine Themes and thirteen AppScreen checks pass, with
+  generated web/docs output synchronized. The owner has closed this cleanup checkpoint.
+
+- Audio follow-up: annotated-text now owns editable cue presentation, destructive
+  pill state, and semantic Close; opt-in Select descriptions use native titles.
+  Eight Select and nineteen AppScreen checks pass, including the annotation
+  consumer; generated web/docs output is synchronized. Owner accepted the Audio result.
+
+- Cleanup is accepted and paused. Next chat loads Debug context only and waits for owner direction.
 - Universal typeface safety remains parked.
 - The Winter iPhone draft and future iPad adaptation are AppScreen composition
   work. They do not activate another Themes implementation cluster.

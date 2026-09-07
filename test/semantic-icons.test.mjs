@@ -10,6 +10,17 @@ import {
   semanticIconMarkup
 } from '../components/semantic-icons.js';
 
+test('Animation has a generated semantic vector distinct from Edit Video', async () => {
+  const roles = SEMANTIC_ICON_FAMILIES['font-awesome-solid'];
+  assert.notEqual(roles.animation, roles.movie_edit);
+  for (const family of ['font-awesome-solid', 'material-symbols-outlined', 'material-symbols-filled']) {
+    const asset = semanticIconAssetPath('animation', { family });
+    assert.ok(asset);
+    assert.match(await readFile(new URL(`../dist/web/${asset}`, import.meta.url), 'utf8'), /<svg/);
+    assert.match(semanticIconMarkup('animation', '', { family }), /data-bb-icon-role="animation"/);
+  }
+});
+
 test('content icons resolve provider styles and first-party brewer vectors semantically', async () => {
   assert.equal(
     semanticIconAssetPath('home', { family: 'material-symbols', style: 'outlined' }),

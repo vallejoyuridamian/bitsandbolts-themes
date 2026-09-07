@@ -4,6 +4,36 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-09-07) - Shared Audio, Animation, and Select cleanup accepted
+
+- The owner accepted the final Select correction and directed closure of the
+  accumulated AppScreen Audio/Video cleanup. Work is paused for a Debug
+  context-only fresh chat; no further feature or browser task starts automatically.
+- Added abstract annotated-text, property-editor, Audio settings, and Animation
+  editor recipes. Cue fields share destructive validation and semantic Close.
+  Select descriptions expose voice information through the existing control.
+- Scene and element animations share card, Add/Delete, region, and Type dropdown
+  presentation. Audio composes Play/Stop and Volume with optional slot actions.
+  AppScreen retains selection, composition, backing-slot, and model ownership.
+- Shared popovers attach before consumer hydration, preserving Audio listeners;
+  hydration failure closes the lease. Shared windows fit the first animation card
+  within the viewport while later cards scroll and user resizing remains intact.
+- Added a distinct semantic Animation role mapped to Material Animation and
+  Font Awesome wand; Edit Video retains its existing semantic vector.
+- Select now reserves usable menu space in every floating window: grow and move
+  within the viewport, then reserve existing scroll space when growth is capped.
+  It retains the five-option policy, visible anchor, and existing event/tracking
+  lifecycle. Closing restores window geometry, padding, and scroll position.
+- Established focused component/consumer checks and Themes generation pass;
+  source, committed web output, documentation, and generated icons are synchronized.
+  The final Select correction has six focused passing checks. Closure adds no
+  fresh browser, export, performance, or runtime diagnostic evidence.
+- Static recipes, accepted viewport presentation, content icons, typography, and
+  owner-authored demos remain preserved. Universal typeface safety stays parked.
+  This is a local commit checkpoint; nothing is pushed or deployed.
+
+---
+
 ## Session wrap-up (2026-09-07) - Static Safe areas accepted and locked
 
 - Added one semantic `safe_area` toolbar role mapped to Material `select_all`

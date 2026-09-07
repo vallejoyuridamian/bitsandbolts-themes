@@ -296,6 +296,10 @@
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/clapperboard.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="animation"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/wand-magic-sparkles.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="dark_mode"] {
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/moon.svg");
 }
@@ -596,6 +600,10 @@
   --bb-semantic-icon-source: url("../icons/material-symbols-outlined-media-image.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="animation"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-animation.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="play_arrow"] {
   --bb-semantic-icon-source: url("../icons/material-symbols-outlined-play-arrow.svg");
 }
@@ -862,6 +870,10 @@
 
 .bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="media_image"] {
   --bb-semantic-icon-source: url("../icons/material-symbols-filled-media-image.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="animation"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-animation.svg");
 }
 
 .bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="play_arrow"] {
