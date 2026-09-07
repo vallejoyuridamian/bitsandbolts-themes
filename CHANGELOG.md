@@ -4,6 +4,22 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session wrap-up (2026-09-07) - Static Safe areas accepted and locked
+
+- Added one semantic `safe_area` toolbar role mapped to Material `select_all`
+  and Font Awesome `faBorderNone`, with generated assets for every provider.
+- Added the shared checkbox checklist composition and pointer-transparent SVG
+  shade/edge recipe, including an unshaded interior for outside-region guides.
+- Synchronized source, generated web output, and documentation output. The
+  existing 68-role content icon catalog and accepted typography are preserved.
+- Focused recipe/icon checks and Themes generation passed during implementation.
+  Closure does not repeat generation, tests, or browser validation.
+- The owner accepted the paired AppScreen result after its startup-order fix
+  and explicitly locked static. AppScreen owns guide geometry, static/video
+  eligibility, project preferences, stage lifecycle, and export exclusion.
+- Video is next on owner direction. Typeface safety remains parked. Paired
+  local commits are authorized; no push, deployment, or publication occurs.
+
 ## Session wrap-up (2026-09-04) - Coffee typography and semantic color swatches accepted
 
 ### What changed

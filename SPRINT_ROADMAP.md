@@ -6,6 +6,7 @@
 - Keep AppScreen behavior in AppScreen while sharing exact presentation recipes.
 - Keep source components, generated web output, and documentation output aligned.
 - Universal typeface safety remains a separate parked discussion.
+- AppScreen static Safe areas recipe is accepted. Static is locked; Video waits.
 
 ## Completed Foundation
 
@@ -17,6 +18,7 @@
   Project action presented inside project information.
 - [x] Preserve Coffee's accepted Besley and Roboto Slab pairing.
 - [x] Keep behavior, mutation, persistence, Preview, and export in AppScreen.
+- [x] Own semantic Safe areas icon, shared checkbox checklist, and SVG shade recipe.
 
 ## Completed Geometry and Appearance
 

@@ -1,6 +1,6 @@
 # Bits and Bolts Themes: Status
 
-Last verified: 2026-09-06
+Last verified: 2026-09-07
 
 ## Current Truth
 
@@ -19,6 +19,9 @@ Last verified: 2026-09-06
   its semantic Delete icon, for project deletion inside the information window.
 - Coffee retains Besley for signature typography and Roboto Slab for interface
   typography in both modes.
+- Safe areas now have a Themes-owned semantic vector, checkbox checklist, and
+  pointer-transparent SVG shade/edge recipe. Source, web, and docs are generated;
+  focused tests pass. The owner accepted the final AppScreen result and locked static.
 
 ## Closed Geometry and Appearance Recipes
 
@@ -78,5 +81,7 @@ Last verified: 2026-09-06
   work. They do not activate another Themes implementation cluster.
 - Toolbar ordering, Duplicate Project behavior, and global element order remain
   AppScreen-owned behavior built from these shared recipes.
+- Static/video guide eligibility, geometry, project preferences, and export
+  exclusion belong to AppScreen. Universal typeface safety remains parked.
 - Preview, export, owner browser interaction, and deployment remain outside
   Themes ownership.

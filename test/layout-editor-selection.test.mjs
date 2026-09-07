@@ -5,6 +5,8 @@ import test from 'node:test';
 import {
   applyLayoutEditorOverlayZoomCompensation,
   layoutEditorRegionOverlayStyles,
+  layoutEditorSafeAreaMarkup,
+  layoutEditorSafeAreaStyles,
   layoutEditorResizeHandleResetStyles,
   layoutEditorRotationIconMarkup,
   layoutEditorSelectionRecipe,
@@ -129,4 +131,19 @@ test('programmatic workspace focus does not paint a surface overlay', async () =
   const css = await readFile(new URL('../components/interface-primitives.css', import.meta.url), 'utf8');
 
   assert.match(css, /\.bb-workspace-surface\[tabindex="-1"\]:focus\s*\{[^}]*outline:\s*none;/s);
+});
+
+
+test('safe-area recipe leaves the profile circle clear and masks only its exterior', () => {
+  const markup = layoutEditorSafeAreaMarkup({ width: 1080, height: 1080,
+    regions: [{ shape: 'ellipse', outside: true, x: 0, y: 0, width: 1080, height: 1080 }] });
+  assert.match(markup, /viewBox="0 0 1080 1080"/);
+  assert.match(markup, /__shade" d="M0 0H1080V1080H0ZM0 540a540 540/);
+  assert.match(layoutEditorSafeAreaStyles, /fill-rule:evenodd/);
+  assert.doesNotMatch(markup, /<filter|<mask|foreignObject/);
+  const overlap = layoutEditorSafeAreaMarkup({ width: 1500, height: 500,
+    regions: [{ shape: 'ellipse', x: 82, y: 318, width: 265, height: 265 }] });
+  assert.doesNotMatch(overlap, /M0 0H1500/);
+  assert.throws(() => layoutEditorSafeAreaMarkup({ width: 100, height: 100,
+    regions: [{ shape: 'triangle', x: 0, y: 0, width: 10, height: 10 }] }), /Unknown/);
 });

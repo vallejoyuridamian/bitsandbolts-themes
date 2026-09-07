@@ -79,6 +79,36 @@ export const layoutEditorSnapGuideStyles = `
 .bb-layout-editor-snap-guide--horizontal{left:0;right:0;height:${layoutEditorSelectionRecipe.outlineWidth};transform:translateY(-50%);background:${layoutEditorDashedLineBackground('right')}}
 `;
 
+// Editor-only guides sit above authored content and below selection chrome.
+export const layoutEditorSafeAreaStyles = `
+.bb-layout-editor-safe-areas{position:absolute;inset:0;z-index:2147482997;overflow:hidden;pointer-events:none}
+.bb-layout-editor-safe-area{position:absolute;display:block;overflow:hidden;pointer-events:none}
+.bb-layout-editor-safe-area__shade{fill:rgba(150,156,160,.42);fill-rule:evenodd;stroke:none}
+.bb-layout-editor-safe-area__edge{fill:none;stroke:rgba(245,247,248,.82);stroke-width:1;vector-effect:non-scaling-stroke}
+@media print{.bb-layout-editor-safe-areas{display:none}}
+`;
+
+export function layoutEditorSafeAreaMarkup({ width, height, regions = [] } = {}) {
+  if (!(width > 0 && height > 0)) throw new TypeError('Safe areas require positive canvas dimensions.');
+  const outer = `M0 0H${width}V${height}H0Z`;
+  const shapes = regions.map((region) => {
+    const { x, y, width: w, height: h } = region;
+    if (![x, y, w, h].every(Number.isFinite) || w <= 0 || h <= 0) {
+      throw new TypeError('Safe areas require finite, positive region geometry.');
+    }
+    let edge;
+    if (region.shape === 'ellipse') {
+      edge = `M${x} ${y + h / 2}a${w / 2} ${h / 2} 0 1 0 ${w} 0a${w / 2} ${h / 2} 0 1 0 ${-w} 0Z`;
+    } else if (region.shape === 'rectangle') {
+      edge = `M${x} ${y}h${w}v${h}h${-w}Z`;
+    } else {
+      throw new TypeError('Unknown safe-area region shape.');
+    }
+    return `<path class="bb-layout-editor-safe-area__shade" d="${region.outside ? outer : ''}${edge}"></path><path class="bb-layout-editor-safe-area__edge" d="${edge}"></path>`;
+  }).join('');
+  return `<svg xmlns="http://www.w3.org/2000/svg" class="bb-layout-editor-safe-area" aria-hidden="true" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}">${shapes}</svg>`;
+}
+
 export const layoutEditorTextCaretStyles = `
 @keyframes bb-layout-editor-text-caret-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
 .${layoutEditorTextCaretRecipe.hostClass}[contenteditable="true"],.${layoutEditorTextCaretRecipe.hostClass}[contenteditable="true"] *{caret-color:transparent!important}

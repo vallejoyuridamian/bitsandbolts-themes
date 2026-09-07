@@ -160,6 +160,10 @@
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/magnet.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="safe_area"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/border-none.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="magnet_off"] {
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/magnet-off.svg");
 }
@@ -612,6 +616,10 @@
   --bb-semantic-icon-source: url("../icons/material-symbols-outlined-fit-screen.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="safe_area"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-safe-area.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="zoom_in"] {
   --bb-semantic-icon-source: url("../icons/material-symbols-outlined-zoom-in.svg");
 }
@@ -874,6 +882,10 @@
 
 .bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="fit_screen"] {
   --bb-semantic-icon-source: url("../icons/material-symbols-filled-fit-screen.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="safe_area"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-safe-area.svg");
 }
 
 .bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="zoom_in"] {

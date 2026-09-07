@@ -371,6 +371,10 @@ export function layoutTextEditorCheckboxMarkup({
   return `<div class="bb-checkbox-field"><label class="bb-checkbox-field__label bb-layout-text-editor__checkbox"><input class="bb-checkbox-field__control" type="checkbox"${checked ? ' checked' : ''}${attributesMarkup(attributes)}><span class="bb-checkbox-field__text">${escapeHtml(label)}</span></label></div>`;
 }
 
+export function layoutEditorChecklistMarkup(items = []) {
+  return `<div class="bb-toolbar-popover__fields">${items.map(layoutTextEditorCheckboxMarkup).join('')}</div>`;
+}
+
 export function layoutTextEditorMixedOptionMarkup({ label = 'Mixed' } = {}) {
   return `<option value="${LAYOUT_TEXT_EDITOR_MIXED_VALUE}" data-bb-layout-text-editor-mixed-option hidden>${escapeHtml(label)}</option>`;
 }
