@@ -9,7 +9,7 @@ Last verified: 2026-09-08
 - Nine V2 families ship in both modes. AppScreen owns behavior, persistence,
   Guest state, interaction, rendering, and orchestration.
 - Source components, `dist/web`, and `docs/theme` are generated together and remain synchronized.
-- Stopwatch and hull recipes are owner-approved. Audio settings now compose canonical numeric timing fields and icon-only removal; all Timeline Audio shares one waveform body without name/locked-opacity variants. The extracted scroll-surface recipe now serves the Devices/Pages sidebar and independent Audio/Vault workspaces. Source/web/docs and generation pass; AppScreen has 19 passing ownership checks. The owner accepted the complete final checkpoint on 2026-09-08 and requested paired local commits; no next implementation is active.
+- Stopwatch, hull, Audio and scroll-surface recipes remain owner-approved. The owner accepts the complete AppScreen voiceover, Scene-placement hull, Timeline/snapping and shared-toolbar checkpoint on 2026-09-08. Audio, Animation, Delete order and empty-section admission reuse existing neutral semantic buttons/icons and separators. Prior source generation/parity stands; no closure build is needed. Static remains locked; no implementation is active. Next chat loads Debug context and waits.
 - Identity foreground rules, canonical Select, mixed states, palette rows,
   Project color Add, Image Original, project information, Background, fixed
   overlays, arrangement, Geometry, Gap, Line endpoints, and Icon cards retain

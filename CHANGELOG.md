@@ -4,6 +4,22 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session closure (2026-09-08): Voiceover toolbar and normal placement hull
+
+- The owner accepts the final accumulated AppScreen/Themes state and authorizes
+  paired local commits, memory synchronization and a Debug context-only handoff.
+  No new implementation is active; historical review steps do not authorize work.
+- Animation toolbar composes semantic actions, including the voiceover visibility
+  toggle, with optional Add. Shared window/card behavior remains unchanged.
+- Scene animation placement uses the ordinary selection hull recipe with handles
+  and its existing alternate color; the separate tinted placement box is removed.
+- AppScreen's accepted Audio, Animation, Delete ordering, neutral icons, empty-group
+  separators and Timeline snapping consume existing Themes buttons, roles, checkboxes,
+  separator and guide recipes. Behavior and preferences remain AppScreen-owned.
+- Prior Themes generation and exact source/web/docs parity passed; no new closure
+  build or browser automation occurred. Static and Audio's brown/yellow identity stay
+  locked. Enabled diagnostics and owner content are preserved; no push or deployment.
+
 ## Session closure (2026-09-08): Shared Stopwatch, hull, Audio and scroll recipes
 
 - The owner accepted the final accumulated AppScreen/Themes state and requested

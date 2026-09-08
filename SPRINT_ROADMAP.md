@@ -6,7 +6,7 @@
 - Keep AppScreen behavior in AppScreen while sharing exact presentation recipes.
 - Keep source components, generated web output, and documentation output aligned.
 - Both Stopwatch slices are owner-approved. Shared hull input/cursor presentation is owner-approved.
-  Audio now adds shared numeric timing/removal controls and uniform unnamed waveform presentation. The shared scroll-surface recipe also serves retained sidebars and independent workspace content. Generation/parity, 34 Audio checks and 19 sidebar-ownership checks pass; the owner accepted final closure on 2026-09-08. Next chat loads Debug context only and waits for direction.
+  Audio timing/removal, waveform, scroll surface, voiceover toolbar, Scene-placement hull and Timeline snapping are owner-accepted. The owner also accepts shared toolbar ordering, neutral Delete and empty-section admission. Existing Themes generation/parity stands. No implementation is active; local closure commits and a Debug context-only handoff are authorized.
 - Animation cards are borderless. Audio retains brown/yellow selection/handles and
   one brown outline, without inner borders, center rules, or pills. Build passed; checkpoint accepted for now.
 - Window content owns padding/gap; compensating editor insets are removed. Build

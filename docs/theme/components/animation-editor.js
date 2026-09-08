@@ -19,9 +19,10 @@ export function animationCardMarkup({ summary = '', contentMarkup = '', attribut
     </div>${contentMarkup}</div>`;
 }
 
-export function animationEditorMarkup({ itemsMarkup = '', addAttributes = {}, headerMarkup = '', presentation = 'window' } = {}) {
+export function animationEditorMarkup({ itemsMarkup = '', addAttributes = {}, canAdd = true, toolbarActions = [], headerMarkup = '', presentation = 'window' } = {}) {
   const content = `${headerMarkup}<div class="animation-toolbar">
-    ${semanticActionButtonMarkup({ iconRole: 'add', label: 'Add animation', attributes: addAttributes })}
+    ${canAdd ? semanticActionButtonMarkup({ iconRole: 'add', label: 'Add animation', attributes: addAttributes }) : ''}
+    ${toolbarActions.map((action) => semanticActionButtonMarkup(action)).join('')}
     </div><div class="animation-list" data-floating-window-items>${itemsMarkup}</div>`;
   return presentation === 'sidebar'
     ? layoutTextEditorSectionMarkup({ label: 'Animation', attributes: { 'data-animation-editor-root': '' }, contentMarkup: `<div class="animation-tools bb-animation-editor">${content}</div>` })
