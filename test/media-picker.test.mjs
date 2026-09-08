@@ -154,6 +154,32 @@ test('every asset kind uses the same pill-free reduced picker-card sibling', () 
   });
 });
 
+test('picker cards keep a selection surface while Vault and voice samples retain playback cues', () => {
+  const preview = new MediaPreviewCard();
+  for (const kind of ['audio', 'video']) {
+    const path = kind === 'audio' ? 'effect.mp3' : 'clip.mp4';
+    const picker = preview.renderCard({ kind, path, presentation: 'reduced', selectable: true,
+      overlayActions: [{ iconRole: 'play_arrow', ariaLabel: 'Preview', dataset: { preview: 'true' } }] });
+    assert.match(picker, /bb-media-card--reduced/);
+    assert.match(picker, /is-selectable/);
+    assert.doesNotMatch(picker, /bb-media-preview--interactive|bb-media-preview__icon--play|bb-media-preview__icon--stop|bb-media-preview__video-play/);
+    assert.match(picker, /data-preview="true"/);
+    for (const presentation of ['full', 'reduced']) {
+      const playback = preview.renderCard({ kind, path, presentation, previewAction: { play: path } });
+      assert.match(playback, /bb-media-preview--interactive/);
+      assert.match(playback, kind === 'audio' ? /bb-media-preview__icon--play/ : /bb-media-preview__video-play/);
+      if (kind === 'audio') assert.match(playback, /bb-media-preview__icon--stop/);
+    }
+  }
+  const stateRules = [...mediaPickerCss.matchAll(/([^{}]+)\{[^{}]*display:\s*(?:none|grid);[^{}]*\}/g)]
+    .map((match) => match[1]).filter((selector) => selector.includes('.bb-media-preview--audio'));
+  assert.ok(stateRules.length > 0);
+  for (const selector of stateRules) {
+    assert.match(selector, /\.bb-media-preview--interactive/);
+    assert.doesNotMatch(selector, /\.vault-thumb-audio\)(?:\.is-playing|:is\(:hover)/);
+  }
+});
+
 test('media cards and reference images use the canonical shared recipes', () => {
   const preview = new MediaPreviewCard();
   const card = preview.renderCard({

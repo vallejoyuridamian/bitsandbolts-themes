@@ -35,7 +35,7 @@ test('popover content hydrates after attachment and render failure closes its le
     createElement: () => { panel = fakeNode(); panel.isConnected = false; return panel; },
     defaultView: { innerWidth: 320, innerHeight: 240 }
   };
-  const controller = createToolbarPopoverController({ rootDocument });
+  const controller = createToolbarPopoverController({ rootDocument, eventRouter: { bind() {}, destroy() {} } });
   assert.throws(() => controller.open({ anchor,
     onClose: ({ reason }) => reasons.push(reason),
     renderContent(node) {
@@ -177,8 +177,9 @@ test('toolbar popover stays in the viewport and flips above when needed', () => 
   }), { left: 132, placement: 'above', top: 116 });
 });
 
-test('toolbar popover retains a shared floating portal or an explicitly owned interaction', () => {
+test('toolbar popover routes its lifecycle events and retains owned interactions', () => {
   const listeners = new Map();
+  const routes = [];
   const retainedTarget = {};
   const portalTarget = {
     closest: (selector) => selector === '[data-floating-window-portal="true"]'
@@ -186,11 +187,11 @@ test('toolbar popover retains a shared floating portal or an explicitly owned in
       : null
   };
   const rootDocument = {
-    addEventListener(type, listener) { listeners.set(type, listener); },
+    addEventListener() { assert.fail('Popover bypassed its event router'); },
     body: { appendChild(node) { node.isConnected = true; } },
     createElement: () => fakeNode(),
     defaultView: {
-      addEventListener() {},
+      addEventListener() { assert.fail('Popover viewport binding bypassed its event router'); },
       innerHeight: 240,
       innerWidth: 320,
       removeEventListener() {}
@@ -201,9 +202,17 @@ test('toolbar popover retains a shared floating portal or an explicitly owned in
   const anchor = fakeNode();
   const closeReasons = [];
   const controller = createToolbarPopoverController({
+    eventRouter: {
+      bind(target, type, listener, options) { routes.push([target, type, options]); listeners.set(type, listener); },
+      destroy() { listeners.clear(); }
+    },
     rootDocument,
     shouldRetainPointerTarget: (target) => target === retainedTarget
   });
+  assert.deepEqual(routes, [
+    [rootDocument, 'pointerdown', true], [rootDocument, 'keydown', true],
+    [rootDocument, 'scroll', true], [rootDocument.defaultView, 'resize', undefined]
+  ]);
   controller.open({
     anchor,
     onClose: ({ reason }) => closeReasons.push(reason)
@@ -221,4 +230,9 @@ test('toolbar popover retains a shared floating portal or an explicitly owned in
   assert.equal(controller.isOpenFor(anchor), false);
   assert.deepEqual(closeReasons, ['outside-pointer']);
   controller.destroy();
+  assert.equal(listeners.size, 0);
+});
+
+test('toolbar popover refuses standalone event ownership', () => {
+  assert.throws(() => createToolbarPopoverController({}), /require an event router/);
 });

@@ -46,6 +46,7 @@ components, and generators for supported platforms.
   content typography across a shared component unless the source matches.
 - CSS parity validation must verify the effective final cascade when a selector
   or property appears more than once. A presence-only assertion is insufficient.
+- Timeline Audio retains its brown/yellow identity across ordinary, locked, selected, and resize states. Its recipe must outrank generic Timeline defaults without duplicating selection geometry.
 - Theme showcase and gallery specimens must use semantic role labels such as
   `Primary headline`, `Supporting copy`, and `Primary CTA`. Never paste live
   product or site marketing copy into a theme specimen; real copy stays in the
@@ -57,6 +58,14 @@ components, and generators for supported platforms.
   may compose abstract text layouts, fields, cards, carousels, and controls,
   but Themes must never know about a contact page, portfolio route, landing
   page, product workflow, or other consumer-specific composition.
+- Picker and Vault media cards specialize the shared MediaPreviewCard and
+  MediaPreviewElement owners. Picker card clicks select; Vault previews play.
+  Picker playback belongs only to its separate preview control. Derive playback
+  cues from that interaction contract, never from full/reduced card size alone.
+- Toolbar popovers require a consumer-supplied event router for every lifecycle
+  event. The controller owns that router's disposal and never binds standalone listeners.
+- The shared window content body owns outer padding and spacing for fields, labels,
+  controls, and cards. Subtype editors inherit it; never recreate or cancel that inset.
 - Before adding a component or presentation recipe, search Themes and accepted
   consumers for the same visual role. When that role exists only inside a
   legacy page-specific recipe, extract one abstract Themes recipe and migrate

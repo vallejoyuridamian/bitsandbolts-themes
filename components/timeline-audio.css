@@ -1,0 +1,109 @@
+/* Shared audio Timeline presentation. Consumers own range, trim, waveform data, and playback. */
+
+.timeline-track-element.video-timeline-audio-clip {
+  --timeline-handle-accent: #e6b75f;
+}
+
+.timeline-element-source-trace.video-timeline-audio-source {
+  position: absolute;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid rgba(201, 151, 64, 0.42);
+  background: #17191a;
+  pointer-events: none;
+}
+
+.video-timeline-audio-source.locked {
+  opacity: 0.82;
+}
+
+.layout-element-body.video-timeline-audio-body {
+  border-color: rgba(201, 151, 64, 0.42);
+  background: #17191a;
+}
+
+.video-timeline-audio-clip.locked .video-timeline-audio-body {
+  opacity: 0.92;
+}
+
+.video-timeline-scene-audio-name {
+  position: absolute;
+  inset: 4px 7px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  overflow: hidden;
+  color: #d9e3ff;
+  font-size: 10px;
+  font-weight: 800;
+  pointer-events: none;
+  text-overflow: ellipsis;
+}
+
+.video-timeline-audio-clip.is-swap-target .video-timeline-audio-body {
+  border-color: var(--timeline-handle-accent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--timeline-handle-accent) 42%, transparent);
+}
+
+.video-timeline-waveform {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: 0;
+  color: #8d9597;
+}
+
+.video-timeline-audio-active {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  background: #3a250e;
+  pointer-events: none;
+}
+
+.video-timeline-waveform.live {
+  z-index: 2;
+  color: #c99740;
+  pointer-events: none;
+}
+
+.video-timeline-waveform-definitions {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.video-timeline-waveform-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.video-timeline-waveform-path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+}
+
+.video-timeline-wave-sample {
+  position: absolute;
+  z-index: 2;
+  min-width: 1px;
+  border-radius: 1px;
+  background: currentColor;
+}
+
+.video-timeline-wave-status {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: rgba(246, 211, 144, 0.68);
+  font-size: 12px;
+}

@@ -102,7 +102,6 @@ test('account funnel styles own every custom flow role', async () => {
   assert.match(css, /\.bb-account-funnel__head \.bb-floating-window-content__title\s*\{[^}]*grid-column: 1;[^}]*justify-self: center;[^}]*width: auto;/s);
   assert.match(css, /\.bb-account-funnel__back\s*\{[^}]*position: absolute;[^}]*inset-inline-start: 16px;/s);
   assert.doesNotMatch(css, /\.bb-account-funnel__head::after/);
-  assert.match(css, /\.bb-account-funnel__head \+ \.bb-account-funnel__body\s*\{[^}]*padding-block-start: var\(--bb-spacing-3\);/s);
   assert.doesNotMatch(css, /bb-account-funnel__notice/);
   assert.doesNotMatch(css, /#[0-9a-f]{3,8}\b/i);
 });

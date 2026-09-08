@@ -15,3 +15,22 @@
   display: flex;
   gap: var(--bb-spacing-2);
 }
+
+.bb-audio-settings__actions--named {
+  grid-column: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  min-width: 0;
+}
+.bb-audio-settings__actions--named .bb-workspace-control-button--icon-label {
+  min-width: 0;
+  justify-content: flex-start;
+}
+.bb-audio-settings__actions--named .bb-workspace-control-label {
+  display: block;
+  min-width: 0;
+  height: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

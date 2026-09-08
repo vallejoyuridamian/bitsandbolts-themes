@@ -9,7 +9,7 @@ Last verified: 2026-09-07
 - Nine V2 families ship in both modes. AppScreen owns behavior, persistence,
   Guest state, interaction, rendering, and orchestration.
 - Source components, `dist/web`, and `docs/theme` are generated together and
-  must remain synchronized.
+  must remain synchronized. Owner accepts the current Animation/Audio checkpoint for local closure; further work waits for direction.
 - Identity foreground rules, canonical Select, mixed states, palette rows,
   Project color Add, Image Original, project information, Background, fixed
   overlays, arrangement, Geometry, Gap, Line endpoints, and Icon cards retain
@@ -89,17 +89,17 @@ Last verified: 2026-09-07
   Fifteen focused AppScreen checks, syntax, and Themes generation pass; generated
   web/docs sources match. This is included in the owner-accepted cleanup checkpoint.
 
-- Popover repair: attach before hydration so consumer listeners remain bound;
-  failures close the lease. Nine Themes and thirteen AppScreen checks pass, with
-  generated web/docs output synchronized. The owner has closed this cleanup checkpoint.
+- Popovers retain attachment-before-hydration and failure lease cleanup. Their
+  lifecycle now requires a consumer-supplied event router. Ten Themes checks and
+  generation pass; AppScreen supplies its router. Owner accepts the checkpoint for now.
 
 - Audio follow-up: annotated-text now owns editable cue presentation, destructive
   pill state, and semantic Close; opt-in Select descriptions use native titles.
   Eight Select and nineteen AppScreen checks pass, including the annotation
   consumer; generated web/docs output is synchronized. Owner accepted the Audio result.
 
-- Cleanup is accepted and paused. Next chat loads Debug context only and waits for owner direction.
-- Universal typeface safety remains parked.
+- Audio actions share Add/Replace/Remove. Picker card bodies select without playback cues; Vault/sample previews play through the common ancestor. Generation/checks pass; checkpoint accepted for now.
+- Window content owns padding/gap; Animation cards are borderless. Audio retains brown/yellow selection/handles and one brown outline, without blue/inner borders or center rules. Build/source/web/docs passed; owner accepts the checkpoint for now. AppScreen Add remains unresolved and parked.
 - The Winter iPhone draft and future iPad adaptation are AppScreen composition
   work. They do not activate another Themes implementation cluster.
 - Toolbar ordering, Duplicate Project behavior, and global element order remain

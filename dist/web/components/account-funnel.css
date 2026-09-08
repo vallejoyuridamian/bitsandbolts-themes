@@ -44,18 +44,6 @@
   padding-block: 8px 12px;
 }
 
-.bb-account-funnel__body {
-  display: grid;
-  align-content: start;
-  gap: var(--bb-spacing-3);
-  min-width: 0;
-  padding: 0 16px 14px;
-}
-
-.bb-account-funnel__head + .bb-account-funnel__body {
-  padding-block-start: var(--bb-spacing-3);
-}
-
 .bb-account-funnel__body .bb-form-fields {
   gap: var(--bb-spacing-3);
 }

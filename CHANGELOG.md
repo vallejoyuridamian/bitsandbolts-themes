@@ -4,6 +4,31 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session closure (2026-09-07): Animation windows and Audio Timeline checkpoint
+
+- Owner accepts the current state as good enough for now and authorizes paired
+  AppScreen/Themes local commits, memory updates, and a Debug context-only handoff.
+  This closes the rendered checkpoint; AppScreen's existing-animation Add failure
+  remains unresolved and parked. No further implementation starts automatically.
+- Window content owns outer padding/gap for fields, controls, and cards. Forms,
+  account windows, Background, Project Info, range controls, and pickers inherit it.
+  Animation cards are borderless; shared Audio slot actions use semantic icons.
+- Picker and Vault media cards retain shared ancestors with distinct selection
+  and playback behavior. Picker bodies omit misleading Play cues; separate Preview
+  remains playable. Vault and voice samples preserve their playback affordances.
+- Toolbar popovers require the consumer event router and own its disposal. The
+  existing draw-layer recipe places region placement above spatial hulls.
+- Timeline Audio now has one Themes-owned recipe. Its specialization outranks
+  generic Timeline defaults: brown/yellow selection and handles, one brown outline,
+  no locked blue override, inner edge borders, effect-name pill, or center rule.
+  Existing selection and resize geometry remain unchanged.
+- Source, dist/web, and docs/theme were generated together. Established focused
+  checks and generation passed; closure adds no browser, runtime, or test evidence.
+  Preserve static recipes, accepted icons/typography, and parked typeface safety.
+  Nothing is pushed, deployed, or published.
+
+---
+
 ## Session wrap-up (2026-09-07) - Shared Audio, Animation, and Select cleanup accepted
 
 - The owner accepted the final Select correction and directed closure of the

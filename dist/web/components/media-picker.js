@@ -129,8 +129,7 @@ export class MediaPreviewElement {
     fontFamily = '',
     iconFamily = '',
     iconRole = '',
-    iconStyle = '',
-    videoPlayAffordance = true
+    iconStyle = ''
   } = {}) {
     const mediaKind = normalizeMediaKind(kind);
     const safePath = this.escapeAttribute(path);
@@ -143,6 +142,7 @@ export class MediaPreviewElement {
     const classes = [
       'bb-media-preview',
       `bb-media-preview--${mediaKind}`,
+      interactive ? 'bb-media-preview--interactive' : '',
       'media-preview-element',
       `media-preview-element-${mediaKind}`,
       'vault-thumb',
@@ -179,8 +179,10 @@ export class MediaPreviewElement {
       return `
         <${tag} class="${classes}" ${interactive ? `type="button" aria-label="Preview ${safeLabel}"` : 'aria-hidden="true"'} ${dataset}>
           <span class="bb-media-preview__icon bb-media-preview__icon--default media-preview-icon media-preview-icon-default vault-thumb-icon vault-thumb-icon-default">${mediaPreviewIcon('audio')}</span>
+          ${interactive ? `
           <span class="bb-media-preview__icon bb-media-preview__icon--play media-preview-icon media-preview-icon-play vault-thumb-icon vault-thumb-icon-play">${mediaPreviewIcon('play')}</span>
           <span class="bb-media-preview__icon bb-media-preview__icon--stop media-preview-icon media-preview-icon-stop vault-thumb-icon vault-thumb-icon-stop">${mediaPreviewIcon('stop')}</span>
+          ` : ''}
         </${tag}>
       `;
     }
@@ -200,7 +202,7 @@ export class MediaPreviewElement {
           ${thumbnailUrl
             ? `<img src="${this.escapeAttribute(thumbnailUrl)}" alt="" loading="lazy" draggable="false"${measured ? ' data-media-preview-measured' : ''}>`
             : `<video src="${this.escapeAttribute(sourceUrl || this.assetFileUrl(path))}" preload="metadata" muted playsinline${measured ? ' data-media-preview-measured' : ''}></video>`}
-          ${videoPlayAffordance
+          ${interactive
             ? `<span class="bb-media-preview__video-play media-preview-video-play vault-video-play" aria-hidden="true">${mediaPreviewIcon('play')}</span>`
             : ''}
         </div>
@@ -239,12 +241,13 @@ export class MediaPreviewCard extends MediaPreviewElement {
     showBody = true,
     showBodyLabel = true,
     statusHtml = '',
-    unavailable = false,
-    videoPlayAffordance = true
+    unavailable = false
   } = {}) {
     const mediaKind = normalizeMediaKind(kind);
     const reduced = presentation === mediaPreviewCardPresentations.reduced;
     const hasPreviewAction = Object.values(previewAction).some((value) => value != null && value !== '');
+    // Picker cards select; Vault previews act directly. Size is an independent concern.
+    const previewInteractive = !selectable || hasPreviewAction;
     const safePath = this.escapeAttribute(path);
     const displayLabel = this.mediaAssetDisplayName(mediaKind, label || assetLabelFromPath(path), path);
     const displaySubtitle = this.mediaAssetDisplayName(mediaKind, subtitle, path);
@@ -281,14 +284,13 @@ export class MediaPreviewCard extends MediaPreviewElement {
           label: displayLabel,
           thumbnailPath,
           thumbnailRevision,
-          interactive: !selectable || hasPreviewAction,
+          interactive: previewInteractive,
           measured,
           action: previewAction,
           fontFamily,
           iconFamily,
           iconRole,
-          iconStyle,
-          videoPlayAffordance
+          iconStyle
         })}
         ${statusHtml}
         ${overlayActions.length ? `<div class="bb-media-card__overlay-actions vault-card-overlay-actions media-preview-card-overlay-actions">${overlayActions.map((action) => this.renderAction(action)).join('')}</div>` : ''}

@@ -128,9 +128,11 @@ export function resolveToolbarPopoverPosition({
 let popoverSequence = 0;
 
 export function createToolbarPopoverController({
+  eventRouter,
   rootDocument = globalThis.document,
   shouldRetainPointerTarget = () => false
 } = {}) {
+  if (!eventRouter?.bind || !eventRouter?.destroy) throw new TypeError('Toolbar popovers require an event router.');
   const view = rootDocument?.defaultView ?? globalThis.window;
   let active = null;
 
@@ -207,17 +209,14 @@ export function createToolbarPopoverController({
     position();
   }
 
-  rootDocument?.addEventListener?.('pointerdown', handlePointerDown, true);
-  rootDocument?.addEventListener?.('keydown', handleKeyDown, true);
-  rootDocument?.addEventListener?.('scroll', handleViewportChange, true);
-  view?.addEventListener?.('resize', handleViewportChange);
+  eventRouter.bind(rootDocument, 'pointerdown', handlePointerDown, true);
+  eventRouter.bind(rootDocument, 'keydown', handleKeyDown, true);
+  eventRouter.bind(rootDocument, 'scroll', handleViewportChange, true);
+  eventRouter.bind(view, 'resize', handleViewportChange);
 
   function destroy() {
     close('toolbar-popover-controller-destroyed');
-    rootDocument?.removeEventListener?.('pointerdown', handlePointerDown, true);
-    rootDocument?.removeEventListener?.('keydown', handleKeyDown, true);
-    rootDocument?.removeEventListener?.('scroll', handleViewportChange, true);
-    view?.removeEventListener?.('resize', handleViewportChange);
+    eventRouter.destroy();
   }
 
   return {

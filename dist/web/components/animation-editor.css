@@ -1,5 +1,6 @@
 /* Shared animation-card presentation; consumers own animation semantics. */
 @import url("./property-editor.css");
+@import url("./audio-settings.css");
 
 .bb-animation-editor {
   display: grid;
@@ -7,9 +8,6 @@
   min-width: 0;
 }
 
-.bb-animation-editor .animation-item[aria-current="true"] {
-  border-color: var(--bb-v2-identity-primary);
-}
 .bb-animation-editor__region {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
@@ -57,7 +55,7 @@
   display: grid;
   gap: var(--bb-spacing-2);
   padding: 12px;
-  border: 1px solid var(--bb-interface-menu-border);
+  border: 0;
   border-radius: var(--bb-radius-md);
   background: color-mix(in srgb, var(--bb-interface-control-foreground) 4%, var(--bb-interface-menu-background));
 }

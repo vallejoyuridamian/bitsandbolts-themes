@@ -8,7 +8,6 @@
   align-content: start;
   gap: var(--bb-spacing-3);
   min-width: 0;
-  padding: 0 var(--bb-spacing-3) var(--bb-spacing-3);
   color: var(--bb-interface-control-foreground);
   font-family: var(--bb-font-family-body);
   -webkit-user-select: none;

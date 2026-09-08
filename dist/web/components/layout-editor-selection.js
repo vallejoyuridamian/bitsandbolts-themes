@@ -21,6 +21,7 @@ export const layoutEditorSelectionRecipe = Object.freeze({
   alternateSignalColor: '#12e6d5',
   mutedSignalColor: 'rgba(255,90,95,.65)',
   chromeZIndex: '2147483000',
+  drawZIndex: '2147483001',
   hoverChromeZIndex: '2147482999',
   snapTargetChromeZIndex: '2147482998',
   guideZIndex: '19',
@@ -170,7 +171,7 @@ export const layoutEditorRegionOverlayStyles = `
 .bb-layout-editor-region-handle[data-corner="se"]{right:${layoutEditorSelectionRecipe.resizeHandleOffset};bottom:${layoutEditorSelectionRecipe.resizeHandleOffset};cursor:nwse-resize}
 .bb-layout-editor-region-handle[data-bb-layout-line-endpoint]{cursor:nwse-resize}
 :root[data-bb-layout-line-endpoint-resize="true"],:root[data-bb-layout-line-endpoint-resize="true"] *{cursor:nwse-resize!important}
-.bb-layout-editor-draw-layer{position:absolute;inset:0;z-index:180;cursor:crosshair;background:transparent;pointer-events:auto}
+.bb-layout-editor-draw-layer{position:absolute;inset:0;z-index:${layoutEditorSelectionRecipe.drawZIndex};cursor:crosshair;background:transparent;pointer-events:auto}
 .bb-layout-editor-draw-box{position:absolute;box-sizing:border-box;border:0;outline:${layoutEditorSelectionRecipe.outlineWidth} ${layoutEditorSelectionRecipe.outlineStyle} ${layoutEditorSelectionRecipe.alternateSignalColor};outline-offset:0;background:transparent;pointer-events:none}
 .bb-layout-editor-draw-box--tinted{background:rgb(18 230 213 / 8%);visibility:hidden}
 .bb-layout-editor-draw-layer--text{cursor:text}

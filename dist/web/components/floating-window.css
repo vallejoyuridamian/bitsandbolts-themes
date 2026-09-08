@@ -176,15 +176,19 @@
 }
 
 .bb-floating-window-content__body {
+  display: grid;
+  align-content: start;
+  gap: var(--bb-spacing-3);
+  box-sizing: border-box;
   min-width: 0;
   min-height: 0;
+  padding: var(--bb-spacing-3);
 }
 
 .bb-floating-range-controls {
   display: grid;
   align-content: start;
   gap: var(--bb-spacing-3);
-  padding: 0 12px 12px;
   -webkit-user-select: none;
   user-select: none;
 }
@@ -259,13 +263,6 @@
 
 .bb-floating-form__back {
   grid-column: 1;
-}
-
-.bb-floating-form__fields {
-  display: grid;
-  align-content: start;
-  gap: var(--bb-spacing-3);
-  padding: 0 12px 12px;
 }
 
 .bb-floating-form__fields > .bb-field {

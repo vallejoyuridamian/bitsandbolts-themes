@@ -5,12 +5,22 @@
 - Preserve Themes as the visual owner across every Bits and Bolts product.
 - Keep AppScreen behavior in AppScreen while sharing exact presentation recipes.
 - Keep source components, generated web output, and documentation output aligned.
+- Owner accepts the Animation/Audio checkpoint as good enough for now. Local closure
+  is authorized; new work waits for direction after Debug context loading.
+- Animation cards are borderless. Audio retains brown/yellow selection/handles and
+  one brown outline, without inner borders, center rules, or pills. Build passed; checkpoint accepted for now.
+- Window content owns padding/gap; compensating editor insets are removed. Build
+  and seven focused checks pass; fresh checkpoint is accepted for now.
 - Universal typeface safety remains a separate parked discussion.
 - AppScreen static Safe areas is accepted and locked.
 - Audio annotated-text and Select descriptions are owner-accepted.
 - Unified Scene/element animation recipes and Audio slot actions are in the accepted checkpoint.
 - Distinct semantic Animation icon and Select window/scroll reservation are accepted.
-- Cleanup is paused. Next chat loads Debug context only and waits for owner direction.
+- Animation audio actions now share the backing-slot recipe; generation passes, checkpoint is accepted for now.
+- Picker and Vault cards retain one ancestor with distinct selection/playback
+  interactions. Hover cues now follow those interactions; checkpoint is accepted for now.
+- Toolbar popovers require the consumer event router; all lifecycle subscriptions
+  and disposal share that owner. Ten checks and generation pass; checkpoint accepted for now.
 
 ## Completed Foundation
 

@@ -174,17 +174,17 @@
 }
 
 :is(.bb-media-preview__icon--play, .bb-media-preview__icon--stop, .media-preview-icon-play, .media-preview-icon-stop, .vault-thumb-icon-play, .vault-thumb-icon-stop),
-:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio):is(:hover, :focus-visible, .is-playing) :is(.bb-media-preview__icon--default, .media-preview-icon-default, .vault-thumb-icon-default),
-:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).is-playing :is(.bb-media-preview__icon--play, .media-preview-icon-play, .vault-thumb-icon-play) {
+:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).bb-media-preview--interactive:is(:hover, :focus-visible, .is-playing) :is(.bb-media-preview__icon--default, .media-preview-icon-default, .vault-thumb-icon-default),
+:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).bb-media-preview--interactive.is-playing :is(.bb-media-preview__icon--play, .media-preview-icon-play, .vault-thumb-icon-play) {
   display: none;
 }
 
-:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio):is(:hover, :focus-visible) :is(.bb-media-preview__icon--play, .media-preview-icon-play, .vault-thumb-icon-play),
-:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).is-playing :is(.bb-media-preview__icon--stop, .media-preview-icon-stop, .vault-thumb-icon-stop) {
+:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).bb-media-preview--interactive:is(:hover, :focus-visible) :is(.bb-media-preview__icon--play, .media-preview-icon-play, .vault-thumb-icon-play),
+:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).bb-media-preview--interactive.is-playing :is(.bb-media-preview__icon--stop, .media-preview-icon-stop, .vault-thumb-icon-stop) {
   display: grid;
 }
 
-:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).is-playing:is(:hover, :focus-visible) :is(.bb-media-preview__icon--play, .media-preview-icon-play, .vault-thumb-icon-play) {
+:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).bb-media-preview--interactive.is-playing:is(:hover, :focus-visible) :is(.bb-media-preview__icon--play, .media-preview-icon-play, .vault-thumb-icon-play) {
   display: none;
 }
 
@@ -446,7 +446,6 @@
   align-content: start;
   gap: 10px;
   min-height: 100%;
-  padding: 10px;
   color: var(--bb-v2-color-content-primary);
   -webkit-user-select: none;
   user-select: none;
