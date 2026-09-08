@@ -1,4 +1,5 @@
 @import url("./property-editor.css");
+@import url("./layout-text-editor.css");
 
 .bb-audio-settings {
   grid-template-columns: auto minmax(120px, 1fr);
@@ -34,3 +35,11 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.bb-audio-settings__timing {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--bb-spacing-3);
+}
+.bb-audio-settings__timing > :first-child:nth-last-child(odd) { grid-column: 1 / -1; }

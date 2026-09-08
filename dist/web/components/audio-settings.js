@@ -1,4 +1,5 @@
 import { semanticActionButtonMarkup } from './button.js';
+import { layoutTextEditorNumericFieldMarkup } from './layout-text-editor.js';
 
 export function audioAssetActionsMarkup({
   hasAsset = false, assetLabel = '', addLabel = 'Add audio',
@@ -16,7 +17,7 @@ export function audioAssetActionsMarkup({
   </div>`;
 }
 
-export function audioSettingsMarkup({ canChooseAsset = false, hasAsset = true } = {}) {
+export function audioSettingsMarkup({ canChooseAsset = false, canRemove = false, timingControls = [], hasAsset = true } = {}) {
   const assetActions = () => audioAssetActionsMarkup({
     hasAsset, addLabel: 'Add backing track', replaceLabel: 'Replace backing track', removeLabel: 'Remove backing track',
     chooseAttributes: { 'data-audio-setting': 'choose' }, removeAttributes: { 'data-audio-setting': 'remove' }
@@ -27,6 +28,11 @@ export function audioSettingsMarkup({ canChooseAsset = false, hasAsset = true } 
   return `<div class="bb-property-editor bb-audio-settings" data-audio-settings>
     ${semanticActionButtonMarkup({ iconRole: 'play_arrow', label: 'Play audio', recipe: 'workspace', attributes: { 'data-audio-setting': 'play' } })}
     <label><span class="bb-audio-settings__label">Volume <span data-audio-setting-value="volume">100%</span></span><input data-audio-setting="volume" class="range-control" type="range" min="0" max="1" step="0.01" aria-label="Audio volume"></label>
-    ${canChooseAsset ? assetActions() : ''}
+    ${timingControls.length ? `<div class="bb-audio-settings__timing">${timingControls.map(({ field, label, ...limits }) => layoutTextEditorNumericFieldMarkup({
+      ...limits, label, attributes: { 'data-audio-timing': field }
+    })).join('')}</div>` : ''}
+    ${canChooseAsset ? assetActions() : canRemove ? `<div class="bb-audio-settings__actions">${semanticActionButtonMarkup({
+      iconRole: 'delete', label: 'Remove audio', attributes: { 'data-audio-setting': 'remove' }
+    })}</div>` : ''}
   </div>`;
 }

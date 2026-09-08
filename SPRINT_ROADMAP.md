@@ -5,8 +5,8 @@
 - Preserve Themes as the visual owner across every Bits and Bolts product.
 - Keep AppScreen behavior in AppScreen while sharing exact presentation recipes.
 - Keep source components, generated web output, and documentation output aligned.
-- Owner accepts the Animation/Audio checkpoint as good enough for now. Local closure
-  is authorized; new work waits for direction after Debug context loading.
+- Both Stopwatch slices are owner-approved. Shared hull input/cursor presentation is owner-approved.
+  Audio now adds shared numeric timing/removal controls and uniform unnamed waveform presentation. The shared scroll-surface recipe also serves retained sidebars and independent workspace content. Generation/parity, 34 Audio checks and 19 sidebar-ownership checks pass; the owner accepted final closure on 2026-09-08. Next chat loads Debug context only and waits for direction.
 - Animation cards are borderless. Audio retains brown/yellow selection/handles and
   one brown outline, without inner borders, center rules, or pills. Build passed; checkpoint accepted for now.
 - Window content owns padding/gap; compensating editor insets are removed. Build

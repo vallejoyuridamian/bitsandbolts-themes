@@ -4,6 +4,28 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session closure (2026-09-08): Shared Stopwatch, hull, Audio and scroll recipes
+
+- The owner accepted the final accumulated AppScreen/Themes state and requested
+  paired local commits, memory synchronization and a fresh Debug context-only handoff.
+  No next implementation cluster is active; historical checklists do not authorize work.
+- Dynamic controls has one semantic sliders role across supported icon providers.
+  Shared property fields own Name validation, disclosures, checkbox/range/numeric
+  presentation, and the common window's spacing contract.
+- Shared selection presentation owns pointer-transparent rendering surfaces,
+  resolved cursor feedback and hull-admitted native editing. Consumers supply geometry.
+- Audio settings compose canonical timing fields and icon-only removal with existing
+  Play/Volume and slot actions. Timeline Audio retains brown/yellow presentation,
+  one waveform body and resize affordances without name or locked-opacity variants.
+- One extracted scroll-surface recipe serves the retained Devices/Pages sidebar and
+  independent Audio/Vault workspace roots, preserving their established presentation.
+- Focused generation and exact source/web/docs parity passed throughout the slices.
+  AppScreen's established focused checks include 24 Stopwatch, 36 hull plus two cursor,
+  34 Audio and 19 final sidebar-ownership checks. No broad closure rerun was performed.
+- Static remains locked; typeface safety remains parked. AppScreen Animation Add
+  is owner-confirmed resolved. Existing diagnostics, fixtures, assets and retained
+  audio remain intact. No push, deployment, provider call or browser automation.
+
 ## Session closure (2026-09-07): Animation windows and Audio Timeline checkpoint
 
 - Owner accepts the current state as good enough for now and authorizes paired

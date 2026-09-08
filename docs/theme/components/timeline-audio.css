@@ -13,32 +13,9 @@
   pointer-events: none;
 }
 
-.video-timeline-audio-source.locked {
-  opacity: 0.82;
-}
-
 .layout-element-body.video-timeline-audio-body {
   border-color: rgba(201, 151, 64, 0.42);
   background: #17191a;
-}
-
-.video-timeline-audio-clip.locked .video-timeline-audio-body {
-  opacity: 0.92;
-}
-
-.video-timeline-scene-audio-name {
-  position: absolute;
-  inset: 4px 7px;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  min-width: 0;
-  overflow: hidden;
-  color: #d9e3ff;
-  font-size: 10px;
-  font-weight: 800;
-  pointer-events: none;
-  text-overflow: ellipsis;
 }
 
 .video-timeline-audio-clip.is-swap-target .video-timeline-audio-body {

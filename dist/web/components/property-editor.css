@@ -6,6 +6,25 @@
   font-family: var(--bb-font-family-body);
 }
 
+.bb-property-editor > .bb-field {
+  margin: 0;
+}
+
+.bb-property-editor .bb-field--error .bb-field__input {
+  border-color: var(--bb-v2-color-status-danger-border);
+}
+
+:is(.bb-layout-text-editor, .bb-property-editor) .bb-checkbox-field__label {
+  display: flex;
+  align-items: center;
+  gap: var(--bb-spacing-2);
+}
+
+.bb-property-editor[hidden],
+.bb-property-editor [hidden] {
+  display: none;
+}
+
 :is(.bb-layout-text-editor, .bb-property-editor) label {
   display: grid;
   gap: var(--bb-spacing-1);

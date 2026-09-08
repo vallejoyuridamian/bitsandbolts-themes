@@ -1,6 +1,6 @@
 # Bits and Bolts Themes: Status
 
-Last verified: 2026-09-07
+Last verified: 2026-09-08
 
 ## Current Truth
 
@@ -8,8 +8,8 @@ Last verified: 2026-09-07
   catalog data, committed generated outputs, and shared editor recipes.
 - Nine V2 families ship in both modes. AppScreen owns behavior, persistence,
   Guest state, interaction, rendering, and orchestration.
-- Source components, `dist/web`, and `docs/theme` are generated together and
-  must remain synchronized. Owner accepts the current Animation/Audio checkpoint for local closure; further work waits for direction.
+- Source components, `dist/web`, and `docs/theme` are generated together and remain synchronized.
+- Stopwatch and hull recipes are owner-approved. Audio settings now compose canonical numeric timing fields and icon-only removal; all Timeline Audio shares one waveform body without name/locked-opacity variants. The extracted scroll-surface recipe now serves the Devices/Pages sidebar and independent Audio/Vault workspaces. Source/web/docs and generation pass; AppScreen has 19 passing ownership checks. The owner accepted the complete final checkpoint on 2026-09-08 and requested paired local commits; no next implementation is active.
 - Identity foreground rules, canonical Select, mixed states, palette rows,
   Project color Add, Image Original, project information, Background, fixed
   overlays, arrangement, Geometry, Gap, Line endpoints, and Icon cards retain
@@ -65,7 +65,7 @@ Last verified: 2026-09-07
 
 - Focused workspace item information coverage proves the destructive Project
   action and the shared control-bar separator recipe.
-- Focused Background, layout editor, and semantic Icon tests pass.
+- Slice 2: three Themes checks, generation and six source/web/docs component comparisons pass; owner-approved. Shared hull generation/parity passed; owner-approved. Audio migration: one Themes generation, exact parity for all three Audio components and 34 focused AppScreen checks pass; the owner accepted the final rendered state on 2026-09-08.
 - Every catalog role resolves and every generated SVG exists for Material
   Outlined, Material Filled, and Font Awesome Solid.
 - The Themes production build and repository diff check pass.
@@ -99,7 +99,7 @@ Last verified: 2026-09-07
   consumer; generated web/docs output is synchronized. Owner accepted the Audio result.
 
 - Audio actions share Add/Replace/Remove. Picker card bodies select without playback cues; Vault/sample previews play through the common ancestor. Generation/checks pass; checkpoint accepted for now.
-- Window content owns padding/gap; Animation cards are borderless. Audio retains brown/yellow selection/handles and one brown outline, without blue/inner borders or center rules. Build/source/web/docs passed; owner accepts the checkpoint for now. AppScreen Add remains unresolved and parked.
+- Window content owns padding/gap; Animation cards are borderless. Audio retains brown/yellow selection/handles and one brown outline, without blue/inner borders or center rules. Build/source/web/docs passed; owner accepts the checkpoint for now. AppScreen Add is owner-confirmed working and resolved on 2026-09-08.
 - The Winter iPhone draft and future iPad adaptation are AppScreen composition
   work. They do not activate another Themes implementation cluster.
 - Toolbar ordering, Duplicate Project behavior, and global element order remain

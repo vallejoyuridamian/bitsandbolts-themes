@@ -56,6 +56,10 @@
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/stopwatch.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="dynamic"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/sliders.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="search"] {
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/magnifying-glass.svg");
 }
@@ -488,6 +492,10 @@
   --bb-semantic-icon-source: url("../icons/material-symbols-outlined-timer.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="dynamic"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-dynamic.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="search"] {
   --bb-semantic-icon-source: url("../icons/material-symbols-outlined-search.svg");
 }
@@ -758,6 +766,10 @@
 
 .bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="timer"] {
   --bb-semantic-icon-source: url("../icons/material-symbols-filled-timer.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="dynamic"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-dynamic.svg");
 }
 
 .bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="search"] {

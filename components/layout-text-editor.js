@@ -2,6 +2,7 @@ import { semanticActionButtonMarkup } from './button.js';
 import { LAYOUT_GAP_PRESETS, normalizeLayoutGapPresetId } from './layout-spacing.js';
 import { semanticIconMarkup } from './semantic-icons.js';
 import { toolbarPopoverNumericFieldMarkup } from './toolbar-popover.js';
+import { workspaceSectionSummaryMarkup } from './workspace-section.js';
 
 const ROOT_CLASS = 'bb-layout-text-editor';
 const PRESENTATIONS = new Set(['sidebar', 'toolbar']);
@@ -37,6 +38,8 @@ function attributesMarkup(attributes = {}) {
       : ` ${name}="${escapeHtml(value)}"`)
     .join('');
 }
+
+export { formFieldMarkup } from './form-field.js';
 
 export function layoutTextEditorProjectColorAddMarkup({
   attributes = {},
@@ -165,7 +168,8 @@ export function layoutTextEditorRangeFieldMarkup({
   min = 0,
   step = 1,
   unit = '%',
-  value = 100
+  value = 100,
+  valueLabel = null
 } = {}) {
   const resolvedMin = Number.isFinite(Number(min)) ? Number(min) : 0;
   const resolvedMax = Number.isFinite(Number(max)) && Number(max) > resolvedMin
@@ -175,7 +179,7 @@ export function layoutTextEditorRangeFieldMarkup({
     resolvedMax,
     Math.max(resolvedMin, Number.isFinite(Number(value)) ? Number(value) : resolvedMin)
   );
-  return `<label class="bb-layout-text-editor__range-field"><span class="bb-layout-text-editor__range-head"><span class="bb-layout-text-editor__field-label">${escapeHtml(label)}</span><output class="bb-layout-text-editor__range-value" data-bb-layout-range-output>${escapeHtml(`${resolvedValue}${unit}`)}</output></span><input class="range-control bb-layout-text-editor__range-control" type="range"${attributesMarkup({
+  return `<label class="bb-layout-text-editor__range-field"><span class="bb-layout-text-editor__range-head"><span class="bb-layout-text-editor__field-label">${escapeHtml(label)}</span><output class="bb-layout-text-editor__range-value" data-bb-layout-range-output>${escapeHtml(valueLabel ?? `${resolvedValue}${unit}`)}</output></span><input class="range-control bb-layout-text-editor__range-control" type="range"${attributesMarkup({
     'aria-label': attributes['aria-label'] ?? label,
     ...attributes,
     max: resolvedMax,
@@ -379,6 +383,10 @@ export function layoutTextEditorMixedOptionMarkup({ label = 'Mixed' } = {}) {
   return `<option value="${LAYOUT_TEXT_EDITOR_MIXED_VALUE}" data-bb-layout-text-editor-mixed-option hidden>${escapeHtml(label)}</option>`;
 }
 
+export function layoutTextEditorSectionMarkup({ label = '', contentMarkup = '', attributes = {} } = {}) {
+  return `<details class="bb-layout-text-editor__section" open${attributesMarkup(attributes)}><summary class="bb-layout-text-editor__summary">${workspaceSectionSummaryMarkup({ label })}</summary>${contentMarkup}</details>`;
+}
+
 export function syncLayoutTextEditorMixedState(control, {
   mixed = false,
   placeholder = 'Mixed'
@@ -433,5 +441,10 @@ export function applyLayoutTextEditorRecipe({
   node.dataset.bbLayoutTextEditor = '';
   const summary = node.querySelector?.(':scope > summary') ?? null;
   summary?.classList?.add(`${ROOT_CLASS}__summary`);
+  if (summary) {
+    const label = summary.querySelector?.('.bb-workspace-section__label')?.textContent
+      ?? summary.textContent ?? '';
+    summary.innerHTML = workspaceSectionSummaryMarkup({ label });
+  }
   return true;
 }

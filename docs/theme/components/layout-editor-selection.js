@@ -149,6 +149,18 @@ export const layoutEditorSelectionRotationStyles = `
 .device-pose-overlay[data-device-pose-visibility="hover"].device-pose-active .body-rotation-handle{visibility:visible;opacity:1;pointer-events:auto}
 `;
 
+// Rendering boxes never own spatial input. The consumer's hull resolver admits
+// a native authoring surface only while the pointer belongs to that surface.
+export const layoutEditorInteractionStyles = `
+[data-bb-layout-interaction-surface]{cursor:var(--bb-layout-pointer-cursor,var(--bb-layout-idle-cursor,default))}
+[data-bb-layout-interaction-surface].pannable{--bb-layout-idle-cursor:grab}
+[data-bb-layout-interaction-surface].panning{cursor:grabbing}
+[data-bb-layout-interaction-surface] [data-edit-id],
+[data-bb-layout-interaction-surface] [data-edit-id] *{pointer-events:none;cursor:inherit}
+[data-bb-layout-interaction-surface] [data-bb-layout-native-pointer="true"],
+[data-bb-layout-interaction-surface] [data-bb-layout-native-pointer="true"] *{pointer-events:auto}
+`;
+
 export const layoutEditorRegionOverlayStyles = `
 .bb-layout-editor-chrome{z-index:${layoutEditorSelectionRecipe.hoverChromeZIndex}}
 .bb-layout-editor-hull.spatial-hovered{z-index:${layoutEditorSelectionRecipe.hoverChromeZIndex}}
@@ -160,9 +172,7 @@ export const layoutEditorRegionOverlayStyles = `
 .bb-layout-editor-hull:is(.spatial-hovered,.selected,.spatial-preview,.snap-target)>.bb-layout-editor-hull-outline{visibility:visible}
 .bb-layout-editor-hull-outline>.bb-layout-editor-hull-shape{fill:none;stroke:var(--bb-layout-editor-region-accent);stroke-width:${layoutEditorSelectionRecipe.outlineWidth};stroke-dasharray:${layoutEditorSelectionRecipe.outlineDashLength} ${layoutEditorSelectionRecipe.outlineDashGap};stroke-linecap:butt;vector-effect:non-scaling-stroke}
 .bb-layout-editor-hull.snap-target>.bb-layout-editor-hull-outline>.bb-layout-editor-hull-shape{stroke-width:${layoutEditorSelectionRecipe.outlineWidth};vector-effect:none}
-.bb-layout-editor-region-box{position:absolute;z-index:175;box-sizing:border-box;outline:0;background:transparent;cursor:default;pointer-events:none}
-.bb-layout-editor-region-box.spatial-interactive{cursor:move;pointer-events:auto}
-.bb-layout-editor-region-box[data-layout-region-interactive="false"]{pointer-events:none}
+.bb-layout-editor-region-box{position:absolute;z-index:175;box-sizing:border-box;outline:0;background:transparent;pointer-events:none}
 .bb-layout-editor-region-handle{${layoutEditorResizeHandleResetStyles};position:absolute;width:${layoutEditorSelectionRecipe.resizeHandleSize};height:${layoutEditorSelectionRecipe.resizeHandleSize};border:${layoutEditorSelectionRecipe.resizeHandleBorder};border-radius:${layoutEditorSelectionRecipe.resizeHandleBorderRadius};background:var(--bb-layout-editor-region-accent);visibility:hidden;pointer-events:none}
 .bb-layout-editor-hull.selected>.bb-layout-editor-region-handle{visibility:visible;pointer-events:auto}
 .bb-layout-editor-region-handle[data-corner="nw"]{top:${layoutEditorSelectionRecipe.resizeHandleOffset};left:${layoutEditorSelectionRecipe.resizeHandleOffset};cursor:nwse-resize}

@@ -1,4 +1,5 @@
 import { semanticActionButtonMarkup } from './button.js';
+import { layoutTextEditorSectionMarkup } from './layout-text-editor.js';
 
 function escapeHtml(value) {
   return String(value ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;')
@@ -23,7 +24,7 @@ export function animationEditorMarkup({ itemsMarkup = '', addAttributes = {}, he
     ${semanticActionButtonMarkup({ iconRole: 'add', label: 'Add animation', attributes: addAttributes })}
     </div><div class="animation-list" data-floating-window-items>${itemsMarkup}</div>`;
   return presentation === 'sidebar'
-    ? `<details class="panel section-panel animation-tools bb-animation-editor" data-animation-editor-root open><summary>Animation</summary>${content}</details>`
+    ? layoutTextEditorSectionMarkup({ label: 'Animation', attributes: { 'data-animation-editor-root': '' }, contentMarkup: `<div class="animation-tools bb-animation-editor">${content}</div>` })
     : `<div class="bb-animation-editor bb-property-editor bb-interface-controls" data-animation-editor-root>${content}</div>`;
 }
 

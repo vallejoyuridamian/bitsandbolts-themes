@@ -18,6 +18,30 @@
   outline: none;
 }
 
+/* Shared scrolling content, independent of sidebar or full-workspace placement. */
+.bb-workspace-scroll-surface {
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  background: var(--bb-v2-color-surface-canvas);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.bb-workspace-scroll-surface .panel {
+  border-color: rgba(113, 210, 215, 0.16);
+  background: transparent;
+}
+
+.bb-workspace-scroll-surface :is(input[type="text"], input[type="number"], textarea, [contenteditable="true"]) {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.bb-workspace-scroll-surface label > :is(select, .bb-select) {
+  width: 100%;
+}
+
 .bb-workspace-section {
   display: grid;
   align-content: start;

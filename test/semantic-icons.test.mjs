@@ -10,6 +10,18 @@ import {
   semanticIconMarkup
 } from '../components/semantic-icons.js';
 
+test('Dynamic controls have a distinct sliders vector for every UI provider', async () => {
+  const roles = SEMANTIC_ICON_FAMILIES['font-awesome-solid'];
+  assert.equal(roles.dynamic, 'faSliders');
+  for (const role of ['timer', 'settings', 'animation', 'geometry', 'media_audio']) assert.notEqual(roles.dynamic, roles[role]);
+  for (const family of ['font-awesome-solid', 'material-symbols-outlined', 'material-symbols-filled']) {
+    const asset = semanticIconAssetPath('dynamic', { family });
+    assert.ok(asset);
+    assert.match(await readFile(new URL(`../dist/web/${asset}`, import.meta.url), 'utf8'), /<svg/);
+    assert.match(semanticIconMarkup('dynamic', '', { family }), /data-bb-icon-role="dynamic"/);
+  }
+});
+
 test('Animation has a generated semantic vector distinct from Edit Video', async () => {
   const roles = SEMANTIC_ICON_FAMILIES['font-awesome-solid'];
   assert.notEqual(roles.animation, roles.movie_edit);

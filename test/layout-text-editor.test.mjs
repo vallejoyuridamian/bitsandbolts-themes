@@ -19,9 +19,25 @@ import {
   layoutTextEditorOriginalColorMarkup,
   layoutTextEditorProjectColorAddMarkup,
   layoutTextEditorRangeFieldMarkup,
+  layoutTextEditorSectionMarkup,
   syncLayoutTextEditorProjectColorPreview,
   syncLayoutTextEditorMixedState
 } from '../components/layout-text-editor.js';
+import { animationEditorMarkup } from '../components/animation-editor.js';
+
+test('layout text sections share semantic disclosure markup with sidebar animation', () => {
+  const section = layoutTextEditorSectionMarkup({ label: 'Timing', contentMarkup: '<input name="value">' });
+  const animation = animationEditorMarkup({ presentation: 'sidebar' });
+  for (const markup of [section, animation]) {
+    assert.match(markup, /class="bb-layout-text-editor__section"/);
+    assert.match(markup, /class="bb-layout-text-editor__summary"/);
+    assert.match(markup, /bb-workspace-section__label/);
+    assert.match(markup, /data-bb-icon-role="submenu"/);
+    assert.doesNotMatch(markup, /section-panel/);
+  }
+  assert.match(section, />Timing<\/span>/);
+  assert.match(animation, />Animation<\/span>/);
+});
 
 test('layout text editor owns numeric and continuous appearance controls', () => {
   const numeric = layoutTextEditorNumericFieldMarkup({
