@@ -1,4 +1,11 @@
 import { semanticIconMarkup } from './semantic-icons.js';
+import { progressMarkup } from './progress.js';
+export { updateProgressPresentation } from './progress.js';
+
+export function floatingWindowTaskMarkup({ id = 'task', title = 'Working' } = {}) {
+  const heading = floatingWindowHeadingMarkup({ id, title });
+  return `<div class="bb-floating-window-content bb-floating-task" data-floating-window-size="content" aria-labelledby="${heading.titleId}">${heading.headingMarkup}<div class="bb-floating-window-content__body">${progressMarkup({ id })}<p class="bb-progress__label" data-task-detail hidden></p></div><div class="bb-floating-window-content__actions" role="group" aria-label="Task actions"><button class="bb-workspace-control-button" type="button" data-task-close>Cancel</button><button class="bb-workspace-control-button" type="button" data-task-download hidden>Download</button></div></div>`;
+}
 
 function escapeHtml(value = '') {
   return String(value ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;')

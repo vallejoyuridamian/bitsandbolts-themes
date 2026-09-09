@@ -1,3 +1,6 @@
+@import url("./progress.css");
+@import url("./dialog.css");
+
 /*
  * Canonical handled floating-window shell and confirmation composition.
  * Consumers retain behavior, state, positioning, invocation, and product semantics.
@@ -5,6 +8,8 @@
 
 .bb-floating-window {
   position: fixed;
+  /* The shared window controller owns placement, including native dialogs. */
+  inset: auto;
   z-index: 1150;
   display: grid;
   grid-template-rows: 26px minmax(0, 1fr);
@@ -321,3 +326,11 @@
 .bb-floating-window[data-floating-window-measuring="true"] [data-floating-window-fit-first-item="true"] [data-floating-window-items] > :not(:first-child) {
   display: none;
 }
+dialog.bb-floating-window:not([open]) {
+  display: none;
+}
+
+
+dialog.bb-floating-window { margin: 0; padding: 0; }
+.bb-floating-task { grid-template-rows: auto auto auto; }
+.bb-floating-task [hidden] { display: none; }

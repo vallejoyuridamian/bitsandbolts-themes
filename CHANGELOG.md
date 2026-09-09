@@ -4,6 +4,27 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session closure (2026-09-09): Shared task progress and modal window recipes
+
+- The owner accepts the final accumulated AppScreen/Themes state and requests
+  paired local commits, memory synchronization and a Debug context-only handoff.
+  No next implementation is active; historical checklists do not authorize work.
+- One abstract progress recipe is extracted from the rendering comparison lab;
+  both the lab and shared floating-window task composition consume it. The common
+  window, button and semantic-icon recipes remain the presentation owners.
+- Native modal windows share the dialog backdrop and ordinary floating-window
+  content sizing. Clearing native inset anchors at the common shell fixes unwanted
+  full-height stretching without consumer-specific dimensions or measurements.
+- AppScreen owns export admission, save, progress, cancellation, optional download,
+  immediate Close and output cleanup. Execution formats specialize only their work.
+  Group animation and the grouped Video roster consume existing Themes controls.
+- Prior generation and exact source/web/docs parity passed, together with focused
+  AppScreen lifecycle checks and production builds. No new closure build or browser
+  automation occurred. All accepted editor recipes and Audio's brown/yellow identity
+  remain intact; static stays locked and typeface safety stays parked.
+- Preserve enabled AppScreen diagnostics and latest owner fixtures/audio. No push,
+  deployment, publication or provider call occurred during closure.
+
 ## Session closure (2026-09-08): Voiceover toolbar and normal placement hull
 
 - The owner accepts the final accumulated AppScreen/Themes state and authorizes

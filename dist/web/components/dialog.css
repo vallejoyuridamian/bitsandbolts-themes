@@ -17,7 +17,8 @@
   scrollbar-width: thin;
 }
 
-.bb-dialog::backdrop {
+.bb-dialog::backdrop,
+.bb-floating-window::backdrop {
   background: color-mix(in srgb, var(--bb-v2-color-surface-canvas) 78%, transparent);
   backdrop-filter: blur(7px);
 }

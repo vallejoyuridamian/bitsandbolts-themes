@@ -1,6 +1,6 @@
 # Bits and Bolts Themes: Status
 
-Last verified: 2026-09-08
+Last verified: 2026-09-09
 
 ## Current Truth
 
@@ -9,7 +9,7 @@ Last verified: 2026-09-08
 - Nine V2 families ship in both modes. AppScreen owns behavior, persistence,
   Guest state, interaction, rendering, and orchestration.
 - Source components, `dist/web`, and `docs/theme` are generated together and remain synchronized.
-- Stopwatch, hull, Audio and scroll-surface recipes remain owner-approved. The owner accepts the complete AppScreen voiceover, Scene-placement hull, Timeline/snapping and shared-toolbar checkpoint on 2026-09-08. Audio, Animation, Delete order and empty-section admission reuse existing neutral semantic buttons/icons and separators. Prior source generation/parity stands; no closure build is needed. Static remains locked; no implementation is active. Next chat loads Debug context and waits.
+- The owner accepted shared task/progress and modal-window presentation on 2026-09-09 and requested local closure commits. The rendering lab consumes the extracted progress recipe. Native dialog inset anchors are cleared at the shared shell so modal windows inherit content sizing. Prior Themes generation/source/web/docs parity and AppScreen checks/builds stand; no new closure build. Stopwatch, hull, Audio, scroll surfaces, voiceover and shared toolbar recipes remain accepted. Static stays locked; no next task is active.
 - Identity foreground rules, canonical Select, mixed states, palette rows,
   Project color Add, Image Original, project information, Background, fixed
   overlays, arrangement, Geometry, Gap, Line endpoints, and Icon cards retain

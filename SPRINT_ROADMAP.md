@@ -2,11 +2,12 @@
 
 ## Current Focus
 
+- Shared task/progress, modal backdrop and content-sized windows are owner-accepted on 2026-09-09. The rendering lab shares the progress recipe. Prior source/web/docs generation and AppScreen checks/builds stand. Closure records local commits; no next implementation is active.
 - Preserve Themes as the visual owner across every Bits and Bolts product.
 - Keep AppScreen behavior in AppScreen while sharing exact presentation recipes.
 - Keep source components, generated web output, and documentation output aligned.
 - Both Stopwatch slices are owner-approved. Shared hull input/cursor presentation is owner-approved.
-  Audio timing/removal, waveform, scroll surface, voiceover toolbar, Scene-placement hull and Timeline snapping are owner-accepted. The owner also accepts shared toolbar ordering, neutral Delete and empty-section admission. Existing Themes generation/parity stands. No implementation is active; local closure commits and a Debug context-only handoff are authorized.
+  Audio timing/removal, waveform, scroll surface, voiceover toolbar, Scene-placement hull and Timeline snapping are owner-accepted. The owner also accepts shared toolbar ordering, neutral Delete and empty-section admission. The accepted checkpoint remains preserved. No push, deployment or publication is authorized.
 - Animation cards are borderless. Audio retains brown/yellow selection/handles and
   one brown outline, without inner borders, center rules, or pills. Build passed; checkpoint accepted for now.
 - Window content owns padding/gap; compensating editor insets are removed. Build

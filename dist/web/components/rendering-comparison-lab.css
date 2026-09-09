@@ -1,3 +1,5 @@
+@import url("./progress.css");
+
 /*
  * Abstract interactive rendering comparison recipe.
  * Consumers own renderers, measurements, labels, and interaction behavior.
@@ -328,7 +330,6 @@
 }
 
 .bb-rendering-comparison__batch-heading,
-.bb-rendering-comparison__batch-progress-heading,
 .bb-rendering-comparison__aggregate-heading {
   display: flex;
   align-items: center;
@@ -337,7 +338,6 @@
 }
 
 .bb-rendering-comparison__batch-copy,
-.bb-rendering-comparison__batch-progress,
 .bb-rendering-comparison__batch-results,
 .bb-rendering-comparison__aggregate {
   display: grid;
@@ -346,9 +346,7 @@
 }
 
 .bb-rendering-comparison__batch-title,
-.bb-rendering-comparison__aggregate-title,
-.bb-rendering-comparison__batch-progress-label,
-.bb-rendering-comparison__batch-progress-value {
+.bb-rendering-comparison__aggregate-title {
   margin: 0;
 }
 
@@ -360,42 +358,6 @@
   font-weight: var(--bb-v2-type-title-font-weight);
   letter-spacing: var(--bb-v2-type-title-letter-spacing);
   line-height: var(--bb-v2-type-title-line-height);
-}
-
-.bb-rendering-comparison__batch-progress-label,
-.bb-rendering-comparison__batch-progress-value {
-  color: var(--bb-v2-color-content-secondary);
-  font-family: var(--bb-v2-type-label-family);
-  font-size: var(--bb-v2-type-label-font-size);
-  font-weight: var(--bb-v2-type-label-font-weight);
-  letter-spacing: var(--bb-v2-type-label-letter-spacing);
-  line-height: var(--bb-v2-type-label-line-height);
-}
-
-.bb-rendering-comparison__batch-progress-track {
-  display: block;
-  width: 100%;
-  height: var(--bb-spacing-2);
-  overflow: hidden;
-  border: 0;
-  border-radius: var(--bb-radius-full);
-  background: var(--bb-v2-color-surface-sunken);
-  appearance: none;
-}
-
-.bb-rendering-comparison__batch-progress-track::-webkit-progress-bar {
-  border-radius: var(--bb-radius-full);
-  background: var(--bb-v2-color-surface-sunken);
-}
-
-.bb-rendering-comparison__batch-progress-track::-webkit-progress-value {
-  border-radius: var(--bb-radius-full);
-  background: var(--bb-v2-color-content-brand);
-}
-
-.bb-rendering-comparison__batch-progress-track::-moz-progress-bar {
-  border-radius: var(--bb-radius-full);
-  background: var(--bb-v2-color-content-brand);
 }
 
 .bb-rendering-comparison__batch-results[hidden] {
