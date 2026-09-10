@@ -4,6 +4,30 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## Session closure (2026-09-10): Cluna marks and shared viewport/Timeline recipes
+
+- The owner accepts the accumulated rendered checkpoint and requests every dirty
+  file in paired local commits. All 37 existing Themes paths are included, with
+  this changelog added during closure. No implementation or browser task is active.
+- Shared brand markup separates inner SVG masking from outer glow. Cluna's mark,
+  outlined single-line Studio wordmark and favicon assets are generated together.
+  Expanded/collapsed chrome, navbar/footer and loading/auth share the recipe.
+  Existing Bits and Bolts assets and theme identity remain available.
+- Gallery gaps scale with zoom. Screen/Scene selection offset and glow scale and
+  stay within one third of the visible gap; the 2 px stroke remains readable.
+  Element hulls retain their existing zoom-independent recipe.
+- Timeline ruler and track presentation move into Themes-owned components without
+  consumer-local styling. Endpoint labels align inward and reserve space to avoid
+  duplicate, overlapping terminal ticks. Audio retains its brown/yellow identity.
+- Source, web and docs outputs remain synchronized. Prior generation/parity and
+  focused consumer checks pass; AppScreen transition correction has 24 focused
+  checks plus its production build, followed by owner acceptance.
+- Staging flags one extra EOF blank line in the source/web/docs Timeline CSS
+  copies. Preserve the accepted files and generated parity unchanged.
+- Closure uses existing evidence and documentation/cap/whitespace/staging checks.
+  No new build, browser automation, runtime audit, deployment or push. The next
+  chat loads Debug context only and waits; AppScreen HANDOFF.md records both heads.
+
 ## Session closure (2026-09-09): Shared task progress and modal window recipes
 
 - The owner accepts the final accumulated AppScreen/Themes state and requests

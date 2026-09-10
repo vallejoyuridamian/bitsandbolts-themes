@@ -1,0 +1,312 @@
+/* Shared Timeline tracks, range items, selection, and sequence content. */
+
+.timeline-track {
+  position: relative;
+  width: calc(100% - (2 * var(--timeline-content-gutter)));
+  margin-inline: var(--timeline-content-gutter);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.timeline-track-content {
+  position: absolute;
+  inset: 0 0 0 var(--timeline-content-gutter);
+}
+
+.timeline-track,
+.timeline-track-content {
+  overflow: visible;
+}
+
+.timeline-track {
+  min-height: var(--timeline-track-height);
+}
+
+.timeline-playhead-rail {
+  position: absolute;
+  z-index: 8;
+  pointer-events: none;
+}
+
+.timeline-playhead {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  bottom: 0;
+  left: var(--timeline-playhead-position, 0%);
+  width: 18px;
+  padding: 0;
+  border: 0;
+  translate: -9px 0;
+  background: transparent;
+  cursor: ew-resize;
+  pointer-events: auto;
+  touch-action: none;
+  user-select: none;
+}
+
+.timeline-playhead::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  width: 10px;
+  height: 14px;
+  translate: -50% 0;
+  border-radius: 3px 3px 2px 2px;
+  background: color-mix(in srgb, var(--accent) 78%, white);
+  clip-path: polygon(0 0, 100% 0, 100% 72%, 50% 100%, 0 72%);
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.4));
+}
+
+.timeline-playhead::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  translate: -50% 0;
+  background: color-mix(in srgb, var(--accent) 78%, white);
+}
+
+.timeline-playhead-time {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  z-index: 11;
+  padding: 4px 7px;
+  translate: -50% 0;
+  border: 1px solid color-mix(in srgb, var(--accent) 52%, rgba(255, 255, 255, 0.18));
+  border-radius: 5px;
+  background: #111719;
+  color: var(--text);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 90ms ease;
+  white-space: nowrap;
+}
+
+.timeline-track-element {
+  --timeline-handle-accent: var(--accent);
+  position: absolute;
+  top: var(--timeline-element-inset);
+  bottom: var(--timeline-element-inset);
+  min-height: 0;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  color: var(--text);
+  background: transparent;
+  font-size: 12px;
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.timeline-track-element::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: none;
+  border: 0;
+  border-radius: 0;
+  background: var(--timeline-handle-accent);
+  pointer-events: none;
+}
+
+.timeline-track-element.selected::before {
+  display: block;
+}
+
+.timeline-track-element[data-layout-draggable="true"] {
+  cursor: grab;
+}
+
+.timeline-track-element.is-dragging {
+  z-index: 6;
+  cursor: grabbing;
+  opacity: 0.86;
+  will-change: transform, opacity;
+}
+
+.timeline-track-element.is-insert-preview {
+  transition: transform 120ms ease;
+  will-change: transform;
+}
+
+.timeline-track-element.is-dragging .layout-element-body {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.22), 0 10px 24px rgba(0, 0, 0, 0.28);
+}
+
+.timeline-track-element.is-resizing {
+  z-index: 7;
+  cursor: ew-resize;
+}
+
+.timeline-track-element.is-swap-target .layout-element-body {
+  border-color: var(--timeline-handle-accent);
+  opacity: 0.72;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--timeline-handle-accent) 58%, transparent);
+}
+
+.timeline-track-element.selected .layout-element-body {
+  inset-block: var(--timeline-selection-rail);
+  inset-inline: var(--timeline-selection-rail);
+  border-color: transparent;
+  box-shadow: none;
+  z-index: 4;
+}
+
+.timeline-element-source-trace {
+  position: absolute;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.editable-media-retained-content {
+  position: absolute;
+  inset-block: 0;
+  left: var(--editable-media-retained-left, 0%);
+  width: var(--editable-media-retained-width, 100%);
+  min-width: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.layout-element-body {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 0;
+}
+
+.timeline-track-element.selected[data-layout-resize-start="true"]::before {
+  border-radius: 5px 0 0 5px;
+}
+
+.timeline-track-element.selected[data-layout-resize-end="true"]::before {
+  border-radius: 0 5px 5px 0;
+}
+
+.timeline-track-element.selected[data-layout-resize-start="true"][data-layout-resize-end="true"]::before {
+  border-radius: 5px;
+}
+
+.timeline-track-element.selected:not([data-layout-resize-start="true"]):not([data-layout-resize-end="true"])::before {
+  border-radius: 4px;
+}
+
+.timeline-track-element.selected[data-layout-resize-start="true"] .layout-element-body {
+  left: 0;
+}
+
+.timeline-track-element.selected[data-layout-resize-end="true"] .layout-element-body {
+  right: 0;
+}
+
+.layout-resize-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 5;
+  display: none;
+  width: min(var(--timeline-resize-handle-width), 50%);
+  border: 0;
+  cursor: ew-resize;
+  background: var(--timeline-handle-accent);
+  box-shadow: none;
+}
+
+.timeline-track-element.selected .layout-resize-handle {
+  display: block;
+}
+
+.layout-resize-handle.start {
+  left: 0;
+  translate: -50% 0;
+  border-radius: 5px 0 0 5px;
+}
+
+.layout-resize-handle.end {
+  right: 0;
+  translate: 50% 0;
+  border-radius: 0 5px 5px 0;
+}
+
+.layout-resize-handle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 42%;
+  min-height: 14px;
+  max-height: 28px;
+  translate: -50% -50%;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--timeline-handle-accent) 38%, #111719);
+}
+
+.bb-timeline-scene-body {
+  background: color-mix(in srgb, var(--accent) 24%, #172325);
+}
+
+.bb-timeline-scene-content {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 54px;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 0 14px;
+}
+
+.bb-timeline-scene-content > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bb-timeline-scene-content input {
+  width: 54px;
+  min-width: 0;
+  padding: 4px 5px;
+  font-size: 11px;
+  text-align: center;
+}
+
+.bb-timeline-animation-body {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 0 8px;
+  background: color-mix(in srgb, #c6db7e 16%, #17191a);
+}
+
+.bb-timeline-animation-clip {
+  --timeline-handle-accent: #c6db7e;
+}
+
+.bb-timeline-animation-clip.voiceover {
+  background: rgba(126, 165, 255, 0.2);
+}
+
+.bb-timeline-animation-clip.scene-scoped {
+  --timeline-handle-accent: #12e6d5;
+}
+
+.bb-timeline-animation-clip.scene-scoped .bb-timeline-animation-body {
+  background: color-mix(in srgb, #12e6d5 16%, #17191a);
+}
+

@@ -17,8 +17,8 @@ function cssUrl(value = '') {
 }
 
 export function brandMarkMarkup(brand = {}, {
-  className,
-  imageProperty
+  className = 'bb-brand-mark',
+  imageProperty = '--bb-brand-mark-image'
 } = {}) {
   const treatment = String(brand.logoTreatment || 'original');
   if (!LOGO_TREATMENTS.has(treatment)) {
@@ -26,7 +26,8 @@ export function brandMarkMarkup(brand = {}, {
   }
   if (brand.logo && treatment === 'monochrome') {
     const style = `${imageProperty}:url("${cssUrl(brand.logo)}")`;
-    return `<span class="${className} ${className}--monochrome" style="${escapeHtml(style)}" aria-hidden="true"></span>`;
+    const classes = [...new Set([className, `${className}--monochrome`, 'bb-brand-mark--monochrome'])].join(' ');
+    return `<span class="${classes}" style="${escapeHtml(style)}" aria-hidden="true"><span class="bb-brand-mark__artwork"></span></span>`;
   }
   if (brand.logo) return `<img src="${escapeHtml(brand.logo)}" alt="" />`;
   return `<svg class="${className}" viewBox="0 0 32 32" aria-hidden="true" focusable="false">

@@ -147,6 +147,9 @@ const SHARED_WEB_ASSETS = Object.freeze([
   Object.freeze({ id: 'store-google-play', mediaType: 'image/png', path: 'brand/store/google-play-badge.png', sourcePath: 'assets/brand/store/google-play-badge.png' }),
   Object.freeze({ id: 'store-app-store', mediaType: 'image/svg+xml', path: 'brand/store/app-store-badge.svg', sourcePath: 'assets/brand/store/app-store-badge.svg' }),
   Object.freeze({ id: 'brand-cloud-clipboard-icon', mediaType: 'image/svg+xml', path: 'brand/cloud-clipboard/icon.svg', sourcePath: 'assets/brand/cloud-clipboard/icon.svg' }),
+  Object.freeze({ id: 'brand-cluna-mark', mediaType: 'image/svg+xml', path: 'brand/cluna/mark.svg', sourcePath: 'assets/brand/cluna/mark.svg' }),
+  Object.freeze({ id: 'brand-cluna-studio-wordmark', mediaType: 'image/svg+xml', path: 'brand/cluna/studio-wordmark.svg', sourcePath: 'assets/brand/cluna/studio-wordmark.svg' }),
+  Object.freeze({ id: 'brand-cluna-favicon', mediaType: 'image/svg+xml', path: 'brand/cluna/favicon.svg', sourcePath: 'assets/brand/cluna/mark.svg', tint: Object.freeze({ theme: 'bitsandbolts', mode: 'dark', variable: '--bb-v2-identity-primary' }) }),
 ]);
 const V2_CONTRACT_FILE = 'theme-contract/v2/contract.bb.json';
 const V2_FAMILY_ROOTS = Object.freeze({
@@ -1289,10 +1292,22 @@ for (const theme of THEMES) {
   writeFileSync(scopedFile, scoped);
 }
 
+// Standalone monochrome assets inherit the selected canonical identity color.
+for (const asset of SHARED_WEB_ASSETS.filter((entry) => entry.tint)) {
+  const { theme, mode, variable } = asset.tint;
+  const color = v2CatalogPayloads[theme]?.modes[mode]?.variables[variable];
+  const source = readFileSync(asset.sourcePath, 'utf8');
+  if (!/^#[a-f0-9]{6}$/i.test(color || '') || !source.includes('fill:#000000')) {
+    throw new Error(`[shared-assets] Invalid monochrome source or identity color: ${asset.id}.`);
+  }
+  const tinted = source.replaceAll('fill:#000000', `fill:${color}`);
+  writeFileSync(join('dist/web', asset.path), tinted);
+}
+
 const catalog = {
   schemaVersion: 2,
   packageVersion: packageManifest.version,
-  sharedAssets: SHARED_WEB_ASSETS.map(({ sourcePath: _sourcePath, ...asset }) => asset),
+  sharedAssets: SHARED_WEB_ASSETS.map(({ sourcePath: _sourcePath, tint: _tint, ...asset }) => asset),
   themes: THEMES.map((theme) => {
     const configuredIcons = iconConfigForTheme(theme);
     const previewFamily = WEB_ICON_PREVIEW_FAMILIES.has(configuredIcons.family)

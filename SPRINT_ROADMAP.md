@@ -2,7 +2,10 @@
 
 ## Current Focus
 
-- Shared task/progress, modal backdrop and content-sized windows are owner-accepted on 2026-09-09. The rendering lab shares the progress recipe. Prior source/web/docs generation and AppScreen checks/builds stand. Closure records local commits; no next implementation is active.
+- Accepted closure on 2026-09-10. No active implementation; the next chat loads Debug context and waits for owner direction.
+- Device continuation/gap correction is owner-accepted. Screen/Scene selection spacing follow-up is implemented: outward offset and glow scale, offset stays within one third of the gap, and stroke remains 2 px. Element hulls are unchanged. Themes generation/parity pass; included in the owner-accepted 2026-09-10 checkpoint. Timeline ruler/track recipes are extracted into shared components; endpoint labels align inward and off-grid endpoints reserve an interval. Generation passes; the consumer transition correction now passes 24 focused checks and Studio build and is owner-accepted on 2026-09-10.
+
+- Cluna app mark slice is included in the owner-accepted checkpoint. Shared brand-mark markup separates inner masking from the existing outer glow across navbar/footer, workspace and loading/auth. The original mark, latest single-line outlined Studio wordmark with increased luna/Studio spacing and primary-color favicon are generated. Expanded chrome uses the contained 188 x 36 Studio SVG; collapsed chrome only the mark, without separate text. Prior assets remain. Themes/Studio builds and focused checks pass; no new theme; paired local closure is authorized and push remains user-owned. AppScreen-facing copy now uses Cluna Studio; domain and landing remain owner-owned.
 - Preserve Themes as the visual owner across every Bits and Bolts product.
 - Keep AppScreen behavior in AppScreen while sharing exact presentation recipes.
 - Keep source components, generated web output, and documentation output aligned.

@@ -5,6 +5,8 @@
  * footer content and routes; this recipe owns presentation and responsive layout.
  */
 
+@import url("./brand-mark.css");
+
 .bb-footer,
 .bb-footer *,
 .bb-footer *::before,
@@ -62,16 +64,8 @@
 }
 
 .bb-footer__brand-mark--monochrome {
+  --bb-brand-mark-image: var(--bb-footer-brand-mark-image);
   height: 40px;
-  background: currentColor;
-  -webkit-mask-image: var(--bb-footer-brand-mark-image);
-  mask-image: var(--bb-footer-brand-mark-image);
-  -webkit-mask-position: center;
-  mask-position: center;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: contain;
-  mask-size: contain;
 }
 
 .bb-footer__brand > span {

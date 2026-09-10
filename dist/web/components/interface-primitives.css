@@ -3,6 +3,8 @@
  * Products retain behavior, state, positioning, invocation, and product semantics.
  */
 
+@import url("./brand-mark.css");
+
 :root {
   --bb-resizable-toolbar-handle-thickness: 9px;
   --bb-resizable-toolbar-grip-length: 96px;
@@ -17,6 +19,27 @@
 .bb-workspace-surface[tabindex="-1"]:focus {
   outline: none;
 }
+
+/* Adjacent authored viewports share one zoom-scaled separation. */
+.bb-layout-viewport-gallery {
+  --bb-layout-viewport-gap: 24px;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: calc(var(--bb-layout-viewport-gap) * var(--bb-layout-viewport-scale, 1));
+  width: max-content;
+  min-width: 100%;
+  min-height: 100%;
+  padding: 0;
+}
+
+.bb-layout-render-surface { position: absolute; inset: 0 auto auto 0; display: block; margin: 0; filter: drop-shadow(0 34px 90px rgba(0,0,0,.38)); }
+.bb-layout-render-source { visibility: hidden; filter: none; }
+.bb-layout-render-output { width: 100%; height: 100%; }
+.bb-layout-render-element { position: absolute; display: block; box-sizing: border-box; margin: 0; padding: 0; border: 0; background: transparent; box-shadow: none; outline: 0; overflow: visible; -webkit-user-select: none; user-select: none; }
+.bb-layout-render-projection { position: absolute; display: block; }
+.bb-layout-render-media { position: absolute; inset: 0; display: block; visibility: hidden !important; opacity: 0 !important; }
+.bb-layout-render-media > :is(img, video) { display: block; width: 100%; height: 100%; object-fit: contain; }
 
 /* Shared scrolling content, independent of sidebar or full-workspace placement. */
 .bb-workspace-scroll-surface {
@@ -208,12 +231,19 @@
   min-width: 188px;
 }
 
-.bb-workspace-brand__mark {
+.bb-workspace-brand__mark,
+.bb-workspace-brand__wordmark {
   display: block;
   width: 36px;
   height: 36px;
+  color: var(--bb-v2-identity-primary);
   object-fit: contain;
   filter: drop-shadow(0 0 8px color-mix(in srgb, var(--bb-v2-identity-primary) 38%, transparent));
+}
+
+.bb-workspace-brand__wordmark {
+  width: 188px;
+  height: 36px;
 }
 
 .bb-workspace-brand__copy {
@@ -267,6 +297,7 @@
   display: block;
   width: 30px;
   height: 30px;
+  color: var(--bb-v2-identity-primary);
   object-fit: contain;
   filter: drop-shadow(0 0 8px color-mix(in srgb, var(--bb-v2-identity-primary) 45%, transparent));
 }
@@ -683,9 +714,14 @@ input.bb-workspace-control-input.bb-workspace-control-input[type="number"]:focus
 }
 
 .bb-workspace-preview-frame[data-selected="true"]::after {
+  --bb-workspace-preview-selection-outset: min(
+    calc(7px * var(--bb-layout-viewport-scale, 1)),
+    calc(var(--bb-layout-viewport-gap, 24px) * var(--bb-layout-viewport-scale, 1) / 3)
+  );
   content: "";
   position: absolute;
-  inset: -7px;
+  /* The 2 px stroke paints inward from this zoom-scaled outer edge. */
+  inset: calc(-1 * var(--bb-workspace-preview-selection-outset));
   z-index: 1;
   border-radius: 3px;
   background:
@@ -693,7 +729,7 @@ input.bb-workspace-control-input.bb-workspace-control-input[type="number"]:focus
     linear-gradient(90deg, color-mix(in srgb, var(--bb-interface-workspace-selection-signal) 28%, transparent), var(--bb-interface-workspace-selection-signal), color-mix(in srgb, var(--bb-interface-workspace-selection-signal) 28%, transparent)) bottom / 100% 2px no-repeat,
     linear-gradient(180deg, color-mix(in srgb, var(--bb-interface-workspace-selection-signal) 28%, transparent), var(--bb-interface-workspace-selection-signal), color-mix(in srgb, var(--bb-interface-workspace-selection-signal) 28%, transparent)) 0 2px / 2px calc(100% - 4px) no-repeat,
     linear-gradient(180deg, color-mix(in srgb, var(--bb-interface-workspace-selection-signal) 28%, transparent), var(--bb-interface-workspace-selection-signal), color-mix(in srgb, var(--bb-interface-workspace-selection-signal) 28%, transparent)) 100% 2px / 2px calc(100% - 4px) no-repeat;
-  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--bb-interface-workspace-selection-signal) 28%, transparent));
+  filter: drop-shadow(0 0 calc(5px * var(--bb-layout-viewport-scale, 1)) color-mix(in srgb, var(--bb-interface-workspace-selection-signal) 28%, transparent));
   pointer-events: none;
 }
 

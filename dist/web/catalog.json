@@ -31,6 +31,21 @@
       "id": "brand-cloud-clipboard-icon",
       "mediaType": "image/svg+xml",
       "path": "brand/cloud-clipboard/icon.svg"
+    },
+    {
+      "id": "brand-cluna-mark",
+      "mediaType": "image/svg+xml",
+      "path": "brand/cluna/mark.svg"
+    },
+    {
+      "id": "brand-cluna-studio-wordmark",
+      "mediaType": "image/svg+xml",
+      "path": "brand/cluna/studio-wordmark.svg"
+    },
+    {
+      "id": "brand-cluna-favicon",
+      "mediaType": "image/svg+xml",
+      "path": "brand/cluna/favicon.svg"
     }
   ],
   "themes": [

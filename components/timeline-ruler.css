@@ -1,0 +1,49 @@
+/* Shared time ruler. Tick geometry and endpoint labels use one markup owner. */
+
+.bb-timeline-ruler {
+  position: relative;
+  width: calc(100% - (2 * var(--timeline-content-gutter)));
+  margin-inline: var(--timeline-content-gutter);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  min-height: 30px;
+  background:
+    linear-gradient(180deg, transparent calc(100% - 1px), rgba(255, 255, 255, 0.08) calc(100% - 1px)),
+    rgba(255, 255, 255, 0.025);
+  cursor: default;
+  user-select: none;
+}
+
+.bb-timeline-ruler-content {
+  position: absolute;
+  inset: 0 0 0 var(--timeline-content-gutter);
+}
+
+.bb-timeline-ruler-tick {
+  position: absolute;
+  top: 0;
+  translate: -50% 0;
+  padding-top: 13px;
+  color: var(--muted);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  cursor: default;
+  user-select: none;
+}
+
+.bb-timeline-ruler-tick::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 7px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.bb-timeline-ruler-tick[data-ruler-edge="start"] { translate: 0 0; }
+.bb-timeline-ruler-tick[data-ruler-edge="start"]::before { left: 0; }
+.bb-timeline-ruler-tick[data-ruler-edge="end"] { translate: -100% 0; }
+.bb-timeline-ruler-tick[data-ruler-edge="end"]::before { left: auto; right: 0; }

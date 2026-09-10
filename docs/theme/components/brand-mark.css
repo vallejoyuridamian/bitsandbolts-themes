@@ -1,0 +1,29 @@
+/* One monochrome treatment shared by every brand-mark placement. */
+.bb-brand-mark--monochrome {
+  position: relative;
+}
+
+/* Mask only the artwork so placement shadows can extend beyond its silhouette. */
+.bb-brand-mark--monochrome > .bb-brand-mark__artwork {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: currentColor;
+  -webkit-mask-image: var(--bb-brand-mark-image);
+  mask-image: var(--bb-brand-mark-image);
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.bb-product-brand-mark {
+  display: block;
+  width: 62px;
+  height: 62px;
+  color: var(--bb-v2-identity-primary);
+  object-fit: contain;
+  filter: drop-shadow(0 0 14px color-mix(in srgb, var(--bb-v2-identity-primary) 42%, transparent));
+}

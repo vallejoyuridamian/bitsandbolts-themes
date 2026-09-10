@@ -1,15 +1,15 @@
 # Bits and Bolts Themes: Status
 
-Last verified: 2026-09-09
+Last verified: 2026-09-10
 
 ## Current Truth
 
-- Themes owns product tokens, components, fonts, semantic icons, assets,
-  catalog data, committed generated outputs, and shared editor recipes.
-- Nine V2 families ship in both modes. AppScreen owns behavior, persistence,
-  Guest state, interaction, rendering, and orchestration.
+- Shared viewport gallery gaps and Device continuation are owner-accepted. Screen/Scene selection now scales its 7 px outward edge with zoom, capped at one third of the visible gap; its 2 px stroke stays fixed and glow spread scales. Element hull recipes are untouched. Themes generation, consumer recipe checks and exact source/web/docs parity pass; the selection follow-up is included in the owner-accepted 2026-09-10 checkpoint. Timeline ruler/track recipes are extracted into shared components; endpoint labels align inward and off-grid endpoints reserve an interval. Generation passes; the consumer transition correction now passes 24 focused checks and Studio build and is owner-accepted on 2026-09-10.
+
+- Themes owns product tokens, components, fonts, semantic icons, assets, catalog data, committed generated outputs, and shared editor recipes.
+- Nine V2 families ship in both modes. AppScreen owns behavior, persistence, Guest state, interaction, rendering, and orchestration.
 - Source components, `dist/web`, and `docs/theme` are generated together and remain synchronized.
-- The owner accepted shared task/progress and modal-window presentation on 2026-09-09 and requested local closure commits. The rendering lab consumes the extracted progress recipe. Native dialog inset anchors are cleared at the shared shell so modal windows inherit content sizing. Prior Themes generation/source/web/docs parity and AppScreen checks/builds stand; no new closure build. Stopwatch, hull, Audio, scroll surfaces, voiceover and shared toolbar recipes remain accepted. Static stays locked; no next task is active.
+- Cluna monochrome app marks are included in the owner-accepted AppScreen checkpoint. One brand-mark recipe serves navbar/footer, workspace and loading/auth. Inner artwork owns masking so the existing outer shadow is no longer clipped. The original mark, latest single-line owner-outlined Studio wordmark with increased luna/Studio spacing and primary-color favicon are generated together. Expanded chrome uses the contained 188 x 36 wordmark; collapsed chrome only the mark, without separate text. Old assets remain. Themes/Studio builds, asset/markup checks and generated parity pass. AppScreen-facing copy now uses Cluna Studio; domain and landing remain owner-directed. Earlier accepted recipes and static behavior remain intact.
 - Identity foreground rules, canonical Select, mixed states, palette rows,
   Project color Add, Image Original, project information, Background, fixed
   overlays, arrangement, Geometry, Gap, Line endpoints, and Icon cards retain
