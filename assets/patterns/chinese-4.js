@@ -1,7 +1,7 @@
 // Imported vector geometry. See provenance.notice for the retained MIT license.
 export default {
   "id": "chinese-4",
-  "name": "Chinese Pattern 4",
+  "name": "Chinese",
   "width": 80,
   "height": 80,
   "backgroundColor": "primary",

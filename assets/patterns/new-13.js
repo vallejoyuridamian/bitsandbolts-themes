@@ -1,7 +1,7 @@
 // Imported vector geometry. See provenance.notice for the retained MIT license.
 export default {
   "id": "new-13",
-  "name": "New Pattern 13",
+  "name": "Tilted squares",
   "width": 50,
   "height": 50,
   "backgroundColor": "primary",

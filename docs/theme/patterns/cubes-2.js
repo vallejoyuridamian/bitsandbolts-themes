@@ -1,7 +1,7 @@
 // Imported vector geometry. See provenance.notice for the retained MIT license.
 export default {
   "id": "cubes-2",
-  "name": "Cubes 2",
+  "name": "Cubes",
   "width": 60,
   "height": 60,
   "backgroundColor": "primary",

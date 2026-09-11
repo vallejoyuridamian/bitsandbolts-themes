@@ -7,10 +7,13 @@ import { layoutTextEditorRangeFieldMarkup } from '../components/layout-text-edit
 import { backgroundPatternAssets } from '../assets/patterns/catalog.js';
 
 test('Pattern choices compose the canonical Select and labeled sliders', () => {
-  const field = { key: 'scale', label: 'Scale', min: 0, max: 1000, step: 1, initial: 375, unit: '%', valueLabel: '200%' };
+  const field = { key: 'scale', label: 'Scale', min: 0, max: 1, step: 0.001, initial: 0.167, unit: '', valueLabel: '0.17' };
   const markup = backgroundEditorMarkup({ patterns: backgroundPatternAssets, patternFields: [field] });
   assert.match(markup, /<option value="pattern">Pattern<\/option>/);
   assert.match(markup, /<option value="squiggle">Squiggle<\/option>/);
+  assert.deepEqual(backgroundPatternAssets.map(({ name }) => name), [
+    'Squiggle', 'Plus', 'Chinese', 'Tilted squares', 'Cubes', 'Barbed', 'Diamonds'
+  ]);
   for (const asset of backgroundPatternAssets) {
     assert.ok(markup.includes(`<option value="${asset.id}">${asset.name}</option>`));
   }

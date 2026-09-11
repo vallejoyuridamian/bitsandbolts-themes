@@ -4,6 +4,22 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## 2026-09-10: Accepted pattern names and unitless Scale presentation
+
+- The owner accepts Squiggle, Plus, Chinese, Tilted squares, Cubes, Barbed and
+  Diamonds. Six display names change at their asset owner; stable IDs, vector
+  geometry and provenance remain exact. Source/web/docs outputs match.
+- AppScreen consumes the existing Themes slider/Select recipe with unitless
+  logarithmic Scale 0-1 over the former 100-6400 percent sizes. Saved geometry,
+  live preview, cancellation and one-step Undo remain unchanged.
+- Fourteen AppScreen and two Themes checks plus both builds pass. The owner
+  accepts the rendered controls and requests paired local closure. AppScreen
+  Video edge fills are independently accepted in Preview and export.
+- Preserve earlier accepted recipes, assets, diagnostics/selectors and owner
+  content. Closure reuses established evidence and performs documentation,
+  cap/whitespace/staging/worktree checks only. Nothing is pushed; the next chat
+  follows AppScreen HANDOFF.md for context-only Debug loading and then stops.
+
 ## 2026-09-10: Accepted Background controls and seven vector patterns
 
 - The owner accepts the Background cleanup, logarithmic scale and parameter

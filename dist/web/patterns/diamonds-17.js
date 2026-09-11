@@ -1,7 +1,7 @@
 // Imported vector geometry. See provenance.notice for the retained MIT license.
 export default {
   "id": "diamonds-17",
-  "name": "Diamonds 17",
+  "name": "Diamonds",
   "width": 60,
   "height": 60,
   "backgroundColor": "primary",

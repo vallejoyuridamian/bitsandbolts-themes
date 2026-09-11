@@ -1,7 +1,7 @@
 // Imported vector geometry. See provenance.notice for the retained MIT license.
 export default {
   "id": "new-2",
-  "name": "New Pattern 2",
+  "name": "Barbed",
   "width": 40,
   "height": 40,
   "backgroundColor": "primary",

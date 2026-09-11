@@ -1,7 +1,7 @@
 // Imported vector geometry. See provenance.notice for the retained MIT license.
 export default {
   "id": "plus-2",
-  "name": "Plus 2",
+  "name": "Plus",
   "width": 20,
   "height": 20,
   "backgroundColor": "primary",
