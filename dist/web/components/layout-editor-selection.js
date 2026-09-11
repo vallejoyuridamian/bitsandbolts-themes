@@ -1,5 +1,17 @@
 import { semanticIconMarkup } from './semantic-icons.js';
 
+// Rectangular media shares one fragment recipe for still and moving sources.
+export const layoutEditorMediaRecipe = Object.freeze({
+  hostClass: 'bb-layout-media',
+  fragmentClass: 'bb-layout-media__fragment',
+  surfaceClass: 'bb-layout-media__surface'
+});
+export const layoutEditorMediaStyles = `
+.bb-layout-media{position:absolute;display:block;box-sizing:border-box;margin:0;overflow:visible;transform-origin:center center;outline:0;-webkit-user-select:none;user-select:none}
+.bb-layout-media__fragment{position:absolute;display:block;overflow:hidden;}
+.bb-layout-media__surface{position:absolute;display:block;max-width:none;max-height:none;margin:0;object-fit:contain;transform-origin:center center;-webkit-user-select:none;user-select:none}
+`;
+
 const overlayZoomCompensationProperty = '--bb-layout-editor-overlay-zoom-compensation';
 const overlayMetric = (pixels) => `calc(${pixels}px * var(${overlayZoomCompensationProperty}, 1))`;
 

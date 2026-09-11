@@ -4,6 +4,25 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## 2026-09-11: Accepted shared media presentation and editor recipes
+
+- Extracted the rectangular media presentation recipe and media-editor CSS into
+  Themes so Image/Video and existing editor consumers share one visual owner.
+  Retained canvas posters use the same recipe and accepted spatial presentation.
+- Mixed toolbar-popover checkbox rows span both numeric columns, stacking the
+  visibility checkboxes above the delay field with canonical spacing/alignment.
+- Source components, generated web and documentation outputs are synchronized;
+  earlier generation/parity evidence stands. The owner accepts the final
+  Standalone Video result, including gallery, placement, resize and editing.
+- AppScreen owns the prepared flat video, retained poster lifecycle, existing
+  Video Editor and the corrected source-start boundary. Its final acceptance
+  capture has 161 records with no warnings/errors and successful placement of
+  both previously failing recordings. Focused checks and Studio build pass.
+- Paired local closure preserves prior recipes, accepted Cluna branding/assets,
+  owner projects, static locks and all enabled diagnostics. No new generation,
+  consumer behavior change, browser action or push occurs during closure.
+  The next chat loads AppScreen HANDOFF.md in Debug and waits for direction.
+
 ## 2026-09-10: Accepted pattern names and unitless Scale presentation
 
 - The owner accepts Squiggle, Plus, Chinese, Tilted squares, Cubes, Barbed and
