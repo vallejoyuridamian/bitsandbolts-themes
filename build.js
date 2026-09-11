@@ -803,6 +803,7 @@ process.stdout.write('  [licenses/material-symbols-NOTICE.txt] done\n');
 process.stdout.write('  [licenses/material-symbols-apache.txt] done\n');
 
 copyDirRecursive('assets/brand', 'dist/web/brand', 'brand');
+copyDirRecursive('assets/patterns', 'dist/web/patterns', 'patterns');
 
 // Copy static Android Kotlin sources to dist/android/
 // These use REPLACE_ME as a package placeholder; dev.sh substitutes the real package.

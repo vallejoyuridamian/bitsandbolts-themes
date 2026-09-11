@@ -4,6 +4,23 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## 2026-09-10: Accepted Background controls and seven vector patterns
+
+- The owner accepts the Background cleanup, logarithmic scale and parameter
+  sliders, Squiggle and six requested patterns, then requests every current
+  change committed before AppScreen investigates delayed Video edge fills.
+- Background composes canonical cut-corner swatches and shared palette styling;
+  obsolete Default spotlight and Gradient + image choices are removed.
+- One catalog owns Squiggle, Plus 2, Chinese Pattern 4, New Pattern 13, Cubes 2,
+  New Pattern 2 and Diamonds 17, including source geometry and MIT notices.
+  Stroke geometry declares its source-default width, caps and joins.
+- Existing labeled ranges serve scale, rotation and both position parameters.
+  AppScreen owns mapping, preview/history, theme references and shared rendering.
+- Source, generated web and documentation assets agree. Two focused Themes
+  checks, seven latest AppScreen pattern checks and both builds pass. Earlier
+  color/slider checks stand. No new test or build is run during closure.
+- All accepted assets/recipes remain. This checkpoint is local only; no push.
+
 ## Session closure (2026-09-10): Cluna marks and shared viewport/Timeline recipes
 
 - The owner accepts the accumulated rendered checkpoint and requests every dirty

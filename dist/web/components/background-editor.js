@@ -1,4 +1,5 @@
 import { semanticIconMarkup } from './semantic-icons.js';
+import { layoutTextEditorRangeFieldMarkup } from './layout-text-editor.js';
 
 function escapeHtml(value = '') {
   return String(value ?? '')
@@ -13,20 +14,12 @@ function controlId(id = 'backgroundEditor', role = '') {
   return `${String(id || 'backgroundEditor').replace(/[^A-Za-z0-9_-]/g, '')}-${role}`;
 }
 
-export function backgroundEditorSwatchesMarkup(colors = []) {
-  return (Array.isArray(colors) ? colors : []).map((item) => {
-    const color = String(item?.color || '').trim();
-    if (!color) return '';
-    const token = String(item?.token || 'Color').trim();
-    const detail = `${token}: ${color}`;
-    return `<button class="bb-background-editor__swatch" type="button" aria-label="Use ${escapeHtml(detail)}" title="${escapeHtml(detail)}" data-bb-background-editor-swatch="${escapeHtml(color)}" data-bb-background-editor-color-token="${escapeHtml(token)}" style="--bb-background-editor-swatch:${escapeHtml(color)}"></button>`;
-  }).join('');
-}
-
 export function backgroundEditorMarkup({
   id = 'backgroundEditor',
   inheritLabel = 'Use project background',
   itemScopeLabel = 'Screen',
+  patterns = [],
+  patternFields = [],
   presentation = 'embedded',
   showScope = false,
   showInherit = true
@@ -58,14 +51,25 @@ export function backgroundEditorMarkup({
     <div class="bb-field">
       <label class="bb-field__label" for="${modeId}">Background</label>
       <select id="${modeId}" class="bb-field__input" data-bb-background-editor-role="mode">
-        <option value="default">Default spotlight</option>
         <option value="transparent">Transparent</option>
         <option value="solid">Single color</option>
         <option value="gradient">Gradient</option>
         <option value="image">Image</option>
-        <option value="gradient-image">Gradient + image</option>
+        ${patterns.length ? '<option value="pattern">Pattern</option>' : ''}
       </select>
     </div>
+    ${patterns.length ? `<div class="bb-field" data-bb-background-editor-when="pattern">
+      <label class="bb-field__label" for="${controlId(id, 'pattern')}">Pattern</label>
+      <select id="${controlId(id, 'pattern')}" class="bb-field__input" data-bb-background-editor-role="pattern">
+        ${patterns.map((pattern) => `<option value="${escapeHtml(pattern.id)}">${escapeHtml(pattern.name)}</option>`).join('')}
+      </select>
+    </div>
+    <div class="bb-toolbar-popover__fields" data-bb-background-editor-when="pattern">
+      ${patternFields.map(({ key, label, min, max, step, initial, unit, valueLabel }) => layoutTextEditorRangeFieldMarkup({
+        label, min, max, step, value: initial, unit, valueLabel,
+        attributes: { 'aria-label': label, 'aria-valuetext': valueLabel, 'data-bb-background-pattern-field': key }
+      })).join('')}
+    </div>` : ''}
     <div class="bb-field" data-bb-background-editor-when="gradient">
       <label class="bb-field__label" for="${orientationId}">Gradient flow</label>
       <select id="${orientationId}" class="bb-field__input" data-bb-background-editor-role="orientation">
@@ -83,17 +87,17 @@ export function backgroundEditorMarkup({
     <div class="bb-background-editor__color-row" data-bb-background-editor-when="paint">
       <label class="bb-background-editor__color-target" for="${primaryId}" data-bb-background-editor-color-target="primary">
         <span class="bb-background-editor__color-label">Primary</span>
-        <input id="${primaryId}" class="bb-background-editor__color-control" type="color" value="#71d2d7" data-bb-background-editor-role="primary-color">
+        <input id="${primaryId}" class="bb-toolbar-popover__color-input bb-cut-corner-swatch" type="color" value="#71d2d7" data-bb-background-editor-role="primary-color">
       </label>
       <button class="bb-background-editor__swap bb-workspace-control-button bb-workspace-control-button--icon" type="button" aria-label="Swap background colors" title="Swap background colors" data-bb-background-editor-role="swap" data-bb-background-editor-when="secondary-color">
         <span class="bb-workspace-control-icon" aria-hidden="true">${semanticIconMarkup('swap_horiz')}</span>
       </button>
       <label class="bb-background-editor__color-target" for="${secondaryId}" data-bb-background-editor-color-target="secondary" data-bb-background-editor-when="secondary-color">
         <span class="bb-background-editor__color-label">Secondary</span>
-        <input id="${secondaryId}" class="bb-background-editor__color-control" type="color" value="#182122" data-bb-background-editor-role="secondary-color">
+        <input id="${secondaryId}" class="bb-toolbar-popover__color-input bb-cut-corner-swatch" type="color" value="#182122" data-bb-background-editor-role="secondary-color">
       </label>
     </div>
-    <div class="bb-background-editor__swatches" role="toolbar" aria-label="Theme colors" data-bb-background-editor-role="theme-palette" data-bb-background-editor-when="paint"></div>
+    <div data-bb-background-editor-role="theme-palette" data-bb-background-editor-when="paint"></div>
     <div class="bb-field" data-bb-background-editor-when="opaque">
       <label class="bb-background-editor__range-label" for="${opacityId}"><span>Opacity</span><output for="${opacityId}" data-bb-background-editor-role="opacity-output">100%</output></label>
       <input id="${opacityId}" class="bb-background-editor__range" type="range" min="0" max="100" step="1" value="100" data-bb-background-editor-role="opacity">

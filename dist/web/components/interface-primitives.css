@@ -1059,7 +1059,7 @@ input.bb-workspace-control-input.bb-workspace-control-input[type="number"]:focus
 }
 
 .bb-toolbar-popover__color-input,
-.bb-toolbar-popover .theme-swatch {
+:is(.bb-toolbar-popover, .bb-color-palette) .theme-swatch {
   box-sizing: border-box;
   width: 30px;
   min-width: 30px;
@@ -1088,8 +1088,8 @@ input.bb-workspace-control-input.bb-workspace-control-input[type="number"]:focus
   border-radius: 0;
 }
 
-.bb-toolbar-popover :is(.bb-toolbar-popover__color-input, .theme-swatch):is(:hover, :focus-visible),
-.bb-toolbar-popover .theme-swatch[aria-pressed="true"] {
+.bb-toolbar-popover__color-input:is(:hover, :focus-visible),
+:is(.bb-toolbar-popover, .bb-color-palette) .theme-swatch:is(:hover, :focus-visible, [aria-pressed="true"]) {
   border-color: var(--bb-v2-identity-primary);
 }
 
