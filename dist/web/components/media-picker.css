@@ -1,3 +1,5 @@
+@import './picker-search.css';
+
 /**
  * Canonical media picker, media preview card, and reference image recipes.
  * Consumers own media data and selection behavior. Themes owns presentation.
@@ -10,10 +12,19 @@
   gap: 12px;
 }
 
+/* Empirical settled roster width. Browsing never refits cards after fonts load. */
+.bb-font-preview-card-grid,
+.bb-picker-search:has(.bb-font-preview-card-grid) {
+  --bb-font-media-card-width: 350px;
+}
+
+.bb-picker-search:has(.bb-font-preview-card-grid) {
+  --bb-picker-search-field-width: var(--bb-font-media-card-width);
+}
+
 .bb-font-preview-card-grid {
-  --bb-font-media-card-width: 216px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, var(--bb-font-media-card-width));
+  grid-template-columns: repeat(auto-fill, min(100%, var(--bb-font-media-card-width)));
   align-items: start;
   justify-content: start;
   gap: 12px;
@@ -22,6 +33,7 @@
 .bb-media-card,
 .vault-card {
   position: relative;
+  isolation: isolate;
   display: grid;
   min-width: 0;
   overflow: visible;
@@ -48,6 +60,16 @@
 
 .bb-font-preview-card.bb-media-card--reduced {
   --bb-font-preview-min-height: 56px;
+}
+
+.bb-font-preview-card {
+  --bb-font-preview-inline-padding: 16px;
+  --bb-font-preview-action-size: 32px;
+  container-type: inline-size;
+}
+
+.bb-font-preview-card.bb-media-card--reduced:has(.bb-media-card__overlay-actions) {
+  --bb-font-preview-inline-padding: calc(8px + var(--bb-font-preview-action-size) + var(--bb-spacing-2));
 }
 
 .bb-media-card.is-selectable,
@@ -109,9 +131,11 @@
 }
 
 .bb-media-preview--font {
+  --bb-font-preview-font-size: 18px;
   min-height: var(--bb-font-preview-min-height, 120px);
   aspect-ratio: auto;
   padding: 16px;
+  padding-inline: var(--bb-font-preview-inline-padding);
   color: var(--bb-v2-color-content-primary);
 }
 
@@ -122,12 +146,26 @@
 .bb-font-preview-card__name {
   width: 100%;
   font-family: var(--bb-font-preview-family);
-  font-size: 18px;
-  font-weight: 500;
+  font-size: min(var(--bb-font-preview-font-size), max(1px, calc((100cqi - 2 * var(--bb-font-preview-inline-padding)) / 14)));
+  font-weight: 400;
+  font-style: normal;
+  text-decoration: none;
+  font-synthesis: none;
   line-height: 1.1;
   overflow-wrap: normal;
   text-align: center;
   white-space: nowrap;
+}
+
+.bb-font-preview-card__specimen {
+  display: block;
+  width: min(100%, calc(var(--bb-font-specimen-width) * var(--bb-font-preview-font-size)));
+  aspect-ratio: var(--bb-font-specimen-width) / var(--bb-font-specimen-height);
+  background: currentColor;
+  mask-image: var(--bb-font-specimen-image);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
 }
 
 :is(.bb-media-preview, .media-preview-element, .vault-thumb) :is(img, video) {
@@ -344,11 +382,13 @@
 }
 
 .bb-media-action__icon--active,
-.bb-media-action.is-playing .bb-media-action__icon--default {
+.bb-media-action.is-playing .bb-media-action__icon--default,
+.bb-media-action.is-favorite .bb-media-action__icon--default {
   display: none;
 }
 
-.bb-media-action.is-playing .bb-media-action__icon--active {
+.bb-media-action.is-playing .bb-media-action__icon--active,
+.bb-media-action.is-favorite .bb-media-action__icon--active {
   display: grid;
 }
 
@@ -365,6 +405,20 @@
   top: 8px;
   right: 8px;
   display: flex;
+}
+
+.bb-font-preview-card.bb-media-card--reduced .bb-media-card__overlay-actions {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.bb-font-preview-card.bb-media-card--reduced .bb-media-action--favorite {
+  width: var(--bb-font-preview-action-size);
+  height: var(--bb-font-preview-action-size);
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 18px;
+  line-height: 0;
 }
 
 .bb-media-add-card,
@@ -459,7 +513,7 @@
 }
 
 :is(.bb-media-picker, .floating-media-picker) .bb-font-preview-card-grid {
-  grid-template-columns: repeat(auto-fill, var(--bb-font-media-card-width));
+  grid-template-columns: repeat(auto-fill, min(100%, var(--bb-font-media-card-width)));
 }
 
 .bb-media-picker__section,
@@ -511,6 +565,44 @@
 
 .bb-media-reference-picker__choose {
   min-width: min(100%, 240px);
+}
+
+.bb-media-reference-picker__content {
+  width: min(100%, 720px);
+  margin: 0;
+}
+
+.bb-media-reference-picker__content[hidden] {
+  display: none;
+}
+
+.bb-media-drop-target.bb-media-card--reduced {
+  width: 100%;
+  min-height: 104px;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto;
+  align-items: center;
+  padding: var(--bb-spacing-3);
+  border-style: dashed;
+  text-align: left;
+}
+
+.bb-media-drop-target.bb-media-card--reduced .bb-media-add-card__preview {
+  width: 56px;
+  min-height: 56px;
+}
+
+.bb-media-reference-picker__content.is-dragging {
+  outline: 2px solid var(--bb-v2-color-border-focus-ring);
+  outline-offset: 2px;
+}
+
+.bb-media-picker__category.is-flat {
+  display: contents;
+}
+
+.bb-media-picker__category.is-flat > summary {
+  display: none;
 }
 
 .bb-media-reference-picker__preview {

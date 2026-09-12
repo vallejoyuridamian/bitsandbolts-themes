@@ -25,7 +25,8 @@ const MATERIAL_SYMBOL_ROLE_NAMES = Object.freeze({
   check: 'check',
   person: 'person',
   star: 'star',
-  favorite: 'favorite',
+  favorite: 'star',
+  favorite_outline: 'star',
   delete: 'delete',
   edit: 'edit',
   save_as: 'save_as',
@@ -100,7 +101,7 @@ function materialSymbolFamily(style) {
       Object.freeze({
         fileName: `material-symbols-${style}-${role.replaceAll('_', '-')}.svg`,
         sourceName,
-        sourceVariant: style
+        sourceVariant: role === 'favorite' ? 'filled' : role === 'favorite_outline' ? 'outlined' : style
       })
     ])
   );
@@ -134,7 +135,8 @@ export const SEMANTIC_ICON_FAMILIES = Object.freeze({
     check: 'faCheck',
     person: 'faUser',
     star: 'faStar',
-    favorite: 'faHeart',
+    favorite: 'faStar',
+    favorite_outline: Object.freeze({ exportName: 'faStar', style: 'regular' }),
     delete: 'faTrashCan',
     edit: 'faPen',
     save_as: 'faFilePen',
@@ -396,7 +398,7 @@ export function semanticIconAssetPath(
   const exportNames = Array.isArray(definition)
     ? definition
     : [descriptor?.exportName ?? definition];
-  const fileName = exportNames.length === 1 && !descriptor?.rotate
+  const fileName = exportNames.length === 1 && !descriptor?.rotate && !descriptor?.style
     ? `${kebabCase(exportNames[0])}.svg`
     : `${kebabCase(role)}.svg`;
   return `icons/${normalizedFamily}/${fileName}`;

@@ -30,13 +30,17 @@ export function floatingWindowPanelMarkup({
   contentMarkup = '',
   description = '',
   fitFirstItem = false,
+  preferredColumns = 0,
+  fillHeight = false,
   id = 'bbFloatingPanel',
   size = 'default',
   title = 'Window'
 } = {}) {
   const heading = floatingWindowHeadingMarkup({ description, id, title });
   const sizeAttribute = size === 'content' ? ' data-floating-window-size="content"' : '';
-  return `<div class="bb-floating-window-content bb-floating-panel"${fitFirstItem ? ' data-floating-window-fit-first-item="true"' : ''}${sizeAttribute} aria-labelledby="${heading.titleId}"${heading.describedBy}>${heading.headingMarkup}${heading.descriptionMarkup}<div class="bb-floating-window-content__body" data-bb-floating-window-content-body>${contentMarkup}</div></div>`;
+  const gridAttribute = preferredColumns > 0 ? ` data-floating-window-preferred-columns="${Math.floor(preferredColumns)}"` : '';
+  const heightAttribute = fillHeight ? ' data-floating-window-fill-height="true"' : '';
+  return `<div class="bb-floating-window-content bb-floating-panel"${fitFirstItem ? ' data-floating-window-fit-first-item="true"' : ''}${sizeAttribute}${gridAttribute}${heightAttribute} aria-labelledby="${heading.titleId}"${heading.describedBy}>${heading.headingMarkup}${heading.descriptionMarkup}<div class="bb-floating-window-content__body" data-bb-floating-window-content-body>${contentMarkup}</div></div>`;
 }
 
 export function floatingWindowRangeControlsMarkup({ fields = [] } = {}) {

@@ -1,4 +1,5 @@
 import { semanticIconMarkup } from './semantic-icons.js';
+import { pickerSearchMarkup } from './picker-search.js';
 
 const THEME_MODES = Object.freeze(['light', 'dark']);
 
@@ -79,7 +80,7 @@ export function themeModeToggleMarkup({
   </button>`;
 }
 
-function compactThemeCardMarkup(themeInput, modeInput, {
+export function compactThemeCardMarkup(themeInput, modeInput, {
   action = 'select',
   modeToggle = true,
   selected = false
@@ -171,6 +172,7 @@ export function compactThemePickerMarkup(catalog = {}, {
       <h2 class="bb-floating-window-content__title">${escapeHtml(title)}</h2>
     </header>
     <div class="bb-compact-theme-picker__body">
+      ${pickerSearchMarkup({ id: 'compactThemeSearch', browseMarkup: `
       <div
         class="bb-compact-theme-picker__grid"
         role="listbox"
@@ -179,6 +181,7 @@ export function compactThemePickerMarkup(catalog = {}, {
       >
         ${cards}
       </div>
+      ` })}
     </div>
   </div>`;
 }

@@ -17,6 +17,7 @@
 
 import StyleDictionary from 'style-dictionary';
 import * as fontAwesomeSolidIcons from '@fortawesome/free-solid-svg-icons';
+import * as fontAwesomeRegularIcons from '@fortawesome/free-regular-svg-icons';
 import { SEMANTIC_ICON_FAMILIES } from './components/semantic-icons.js';
 import {
   readdirSync,
@@ -767,9 +768,10 @@ for (const [family, roles] of Object.entries(SEMANTIC_ICON_FAMILIES)) {
       throw new Error(`[semantic-icons] Unsupported rotation ${rotation} for role ${role}.`);
     }
     const definitions = exportNames.map((providerExportName) => {
-      const definition = fontAwesomeSolidIcons[providerExportName];
-      if (!definition?.icon || definition.prefix !== 'fas') {
-        throw new Error(`[semantic-icons] Missing Font Awesome Solid export ${providerExportName} for role ${role}.`);
+      const regular = descriptor?.style === 'regular';
+      const definition = (regular ? fontAwesomeRegularIcons : fontAwesomeSolidIcons)[providerExportName];
+      if (!definition?.icon || definition.prefix !== (regular ? 'far' : 'fas')) {
+        throw new Error(`[semantic-icons] Missing Font Awesome export ${providerExportName} for role ${role}.`);
       }
       return definition;
     });
@@ -791,7 +793,7 @@ for (const [family, roles] of Object.entries(SEMANTIC_ICON_FAMILIES)) {
     const renderedPaths = rotation === 90
       ? `<g transform="matrix(0 1 -1 0 ${height} 0)">${paths}</g>`
       : paths;
-    const fileName = definitions.length === 1 && rotation === 0
+    const fileName = definitions.length === 1 && rotation === 0 && !descriptor?.style
       ? `${definitions[0].iconName}.svg`
       : `${role.replaceAll('_', '-')}.svg`;
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${renderedWidth} ${renderedHeight}">${renderedPaths}</svg>\n`;

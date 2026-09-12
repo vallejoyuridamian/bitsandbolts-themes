@@ -100,33 +100,36 @@ test('icon cards use the Themes-owned semantic provider recipe', () => {
   assert.doesNotMatch(card, /<svg|<path/);
 });
 
-test('font card grids share one column width derived from the widest rendered name', () => {
-  const values = [new Map(), new Map()];
-  const grids = [{
-    ownerDocument: {},
-    querySelectorAll() {
-      return [{ scrollWidth: 112 }, { scrollWidth: 241 }];
-    },
-    style: {
-      removeProperty(name) { values[0].delete(name); },
-      setProperty(name, value) { values[0].set(name, value); }
+test('font card width uses the fixed recipe without reading labels or font readiness', async () => {
+  const reports = [];
+  const grid = {
+    dataset: {}, hasAttribute: () => true,
+    querySelectorAll() { throw new Error('font labels must never be measured'); },
+    ownerDocument: {
+      get fonts() { throw new Error('font readiness must not change card geometry'); },
+      defaultView: { getComputedStyle: () => ({ getPropertyValue: () => '350px' }) }
     }
-  }, {
-    ownerDocument: {},
-    querySelectorAll() {
-      return [{ scrollWidth: 300 }];
-    },
-    style: {
-      removeProperty(name) { values[1].delete(name); },
-      setProperty(name, value) { values[1].set(name, value); }
-    }
-  }];
-  const root = { querySelectorAll: () => grids };
+  };
+  const root = { querySelectorAll: () => [grid] };
   const preview = new MediaPreviewCard();
+  preview.syncFontCardGridWidths(root, { onMeasured: (value) => reports.push(value) });
+  await Promise.resolve();
+  assert.equal(grid.dataset.floatingWindowGridItemWidth, '350');
+  assert.equal(reports.length, 1);
+  assert.equal(reports[0].measuredCount, 0);
+  assert.equal(reports[0].mode, 'fixed-recipe');
+});
 
-  assert.equal(preview.syncFontCardGridWidths(root), 2);
-  assert.equal(values[0].get('--bb-font-media-card-width'), '340px');
-  assert.equal(values[1].get('--bb-font-media-card-width'), '340px');
+test('prepared font specimens use Theme-colored SVG outlines without a live font dependency', () => {
+  const svgBase64 = Buffer.from('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M0 0L10 10"/></svg>').toString('base64');
+  const card = new MediaPreviewCard().renderFontCard({
+    familyName: 'Prepared Family', fontSpecimen: { svgBase64, widthEm: 10, heightEm: 1 },
+    presentation: 'reduced'
+  });
+  assert.match(card, /bb-font-preview-card__specimen/);
+  assert.match(card, /data:image\/svg\+xml;base64,/);
+  assert.doesNotMatch(card, /--bb-font-preview-family:|bb-font-preview-card__name/);
+  assert.match(mediaPickerCss, /\.bb-font-preview-card__specimen\s*\{[^}]*background: currentColor;[^}]*mask-image: var\(--bb-font-specimen-image\)/s);
 });
 
 test('every asset kind uses the same pill-free reduced picker-card sibling', () => {
@@ -266,7 +269,7 @@ test('media cards and reference images use the canonical shared recipes', () => 
   assert.match(mediaPickerCss, /bb-media-reference-picker__controls\s*\{[^}]*right:\s*16px;/s);
   assert.match(mediaPickerCss, /bb-media-reference-picker__preview:is\(:hover, :focus-within\)[\s\S]*opacity:\s*1/);
   assert.match(mediaPickerCss, /bb-media-reference-picker__viewport\.is-pannable[\s\S]*cursor:\s*grab/);
-  assert.match(mediaPickerCss, /\.bb-font-preview-card-grid\s*\{[^}]*--bb-font-media-card-width:\s*216px;[^}]*repeat\(auto-fill, var\(--bb-font-media-card-width\)\)/s);
+  assert.match(mediaPickerCss, /\.bb-font-preview-card-grid\s*\{[^}]*--bb-font-media-card-width:\s*216px;[^}]*repeat\(auto-fill, min\(100%, var\(--bb-font-media-card-width\)\)\)/s);
   assert.match(mediaPickerCss, /\.bb-media-card--full\s*\{[^}]*--bb-media-card-body-min-height:\s*88px;[^}]*minmax\(var\(--bb-media-card-body-min-height\), auto\)/s);
   assert.match(mediaPickerCss, /\.bb-media-card--reduced\s*\{[^}]*--bb-media-card-body-min-height:\s*0px;[^}]*grid-template-rows:\s*auto auto;/s);
   assert.match(mediaPickerCss, /\.bb-font-preview-card\.bb-media-card--full\s*\{[^}]*--bb-media-card-body-min-height:\s*0px;/s);

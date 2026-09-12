@@ -495,30 +495,33 @@ function v2IdentityMarkup(mode, { editable = false, identityColorOverrides = [] 
             data-theme-project-color="${escapeHtml(entry.id)}"
           >
           <span class="bb-theme-v2-identity__sample-visual" aria-hidden="true">
-            ${hasOverride
-              ? '<span class="bb-theme-v2-identity__foreground-sample">Aa</span>'
-              : `<span class="bb-workspace-control-icon" data-theme-project-color-add>${semanticIconMarkup('add')}</span>`}
+            <span class="bb-theme-v2-identity__foreground-sample"${hasOverride ? '' : ' hidden'}>Aa</span>
+            <span class="bb-workspace-control-icon" data-theme-project-color-add${hasOverride ? ' hidden' : ''}>${semanticIconMarkup('add')}</span>
           </span>
         </label>
       `
       : `<span
           class="bb-theme-v2-identity__swatch bb-cut-corner-swatch"
           role="img"
-          aria-label="${escapeHtml(entry.label)} ${escapeHtml(entry.value)}, foreground ${escapeHtml(entry.foreground)}, contrast ${Number(entry.contrastRatio).toFixed(2)} to 1"
+          aria-label="${escapeHtml(entry.label)} ${escapeHtml(entry.value)}, foreground ${escapeHtml(entry.foreground)}"
         ><span class="bb-theme-v2-identity__foreground-sample" aria-hidden="true">Aa</span></span>`;
     return `
       <div class="bb-theme-v2-identity" data-theme-v2-identity="${escapeHtml(entry.id)}">
         ${sample}
-        <span class="bb-theme-v2-identity__label">${escapeHtml(entry.label)}</span>
-        <span class="bb-theme-v2-identity__value"${hasOverride ? '' : ' hidden'}>${escapeHtml(entry.value)}</span>
-        <span class="bb-theme-v2-identity__foreground-label"${hasOverride ? '' : ' hidden'}>Foreground</span>
-        <span class="bb-theme-v2-identity__foreground-value"${hasOverride ? '' : ' hidden'}>${escapeHtml(entry.foreground)} / ${Number(entry.contrastRatio).toFixed(2)}:1</span>
+        <div class="bb-theme-v2-identity__row">
+          <span class="bb-theme-v2-identity__label">${escapeHtml(entry.label)}</span>
+          <span class="bb-theme-v2-identity__value"${hasOverride ? '' : ' hidden'}>${escapeHtml(entry.value)}</span>
+        </div>
+        <div class="bb-theme-v2-identity__row bb-theme-v2-identity__foreground-row${hasOverride ? '' : ' is-empty'}">
+          <span class="bb-theme-v2-identity__foreground-label">Foreground</span>
+          <span class="bb-theme-v2-identity__foreground-value">${escapeHtml(entry.foreground)}</span>
+        </div>
       </div>
     `;
   }).join('');
 }
 
-function fontSpecimenStyleControlsMarkup(specimen, variant) {
+function fontSpecimenStyleControlsMarkup(specimen, variant, capabilities = {}) {
   const controls = [
     { id: 'bold', iconRole: 'format_bold', label: 'Bold', selected: variant.bold },
     { id: 'italic', iconRole: 'format_italic', label: 'Italic', selected: variant.italic },
@@ -533,6 +536,7 @@ function fontSpecimenStyleControlsMarkup(specimen, variant) {
           'data-theme-font-preview-style': control.id
         },
         help: `${control.label} preview`,
+        disabled: control.id === 'bold' && capabilities.bold !== true,
         iconRole: control.iconRole,
         label: control.label,
         recipe: 'workspace'
@@ -587,7 +591,7 @@ function v2TypographyMarkup(v2, { editable = false, fontAssignments = null } = {
           <strong>${escapeHtml(specimen.label)}</strong>
         </span>
         ${sample}
-        ${editable && (!assignmentContext || assignment) ? fontSpecimenStyleControlsMarkup(specimen, variants[role]) : ''}
+        ${editable && (!assignmentContext || assignment) ? fontSpecimenStyleControlsMarkup(specimen, variants[role], assignment?.capabilities) : ''}
       </div>
     `;
   }).join('');
@@ -1295,7 +1299,8 @@ function v2ModeMarkup(theme, mode, {
   paletteCompletion = null,
   paletteDetailsExpanded = false,
   paletteDetailsMarkup = '',
-  referenceImage = null
+  referenceImage = null,
+  referenceImageExpanded = false
 } = {}) {
   const v2 = theme.v2;
   const resolvedMode = v2.modes[mode];
@@ -1313,7 +1318,8 @@ function v2ModeMarkup(theme, mode, {
     }]
   }) : '';
   const paletteReferenceMarkup = editable ? referenceImagePickerMarkup({
-    image: referenceImage
+    image: referenceImage,
+    expanded: referenceImageExpanded
   }) : '';
   const inspectionMarkup = inspectionControls ? themeInspectionControlsMarkup({
     paletteDetailsExpanded,
@@ -1428,7 +1434,8 @@ export function themeDetailMarkup(theme, mode = 'dark', {
   paletteCompletion = null,
   paletteDetailsExpanded = false,
   paletteDetailsMarkup = '',
-  referenceImage = null
+  referenceImage = null,
+  referenceImageExpanded = false
 } = {}) {
   const selected = selectedMode(mode);
   return `
@@ -1443,7 +1450,8 @@ export function themeDetailMarkup(theme, mode = 'dark', {
           paletteCompletion,
           paletteDetailsExpanded,
           paletteDetailsMarkup,
-          referenceImage
+          referenceImage,
+          referenceImageExpanded
         })}
       </div>
     </div>
@@ -1463,6 +1471,38 @@ export function themeGalleryMarkup(catalog, selection = {}) {
     inspectionControls: selection.inspectionControls,
     paletteDetailsExpanded: selection.paletteDetailsExpanded,
     paletteDetailsMarkup: selection.paletteDetailsMarkup
+  });
+}
+
+// All color-session phases present this same recipe without replacing native inputs.
+export function applyThemeIdentityColorPresentation(swatch, identity, { selected = true } = {}) {
+  swatch.style.setProperty('--bb-theme-v2-swatch', identity.value);
+  swatch.style.setProperty('--bb-theme-v2-swatch-foreground', identity.foreground);
+  const sample = swatch.querySelector?.('.bb-theme-v2-identity__sample');
+  if (!sample) return;
+  sample.classList.toggle('is-selected', selected);
+  sample.classList.toggle('bb-workspace-add-tile', !selected);
+  const input = sample.querySelector('input');
+  if (input && input.value.toUpperCase() !== identity.value.toUpperCase()) input.value = identity.value;
+  const add = sample.querySelector('[data-theme-project-color-add]');
+  const foregroundSample = sample.querySelector('.bb-theme-v2-identity__foreground-sample');
+  if (add) add.hidden = selected;
+  if (foregroundSample) foregroundSample.hidden = !selected;
+  const value = swatch.querySelector('.bb-theme-v2-identity__value');
+  if (value) {
+    value.textContent = identity.value;
+    value.hidden = !selected;
+  }
+  const foreground = swatch.querySelector('.bb-theme-v2-identity__foreground-value');
+  if (foreground) foreground.textContent = identity.foreground;
+  swatch.querySelector('.bb-theme-v2-identity__foreground-row')?.classList.toggle('is-empty', !selected);
+}
+
+export function applyThemeFontCapabilities(host, assignments = {}) {
+  host?.querySelectorAll?.('[data-theme-typography-role]').forEach((row) => {
+    const button = row.querySelector('[data-theme-font-preview-style="bold"]');
+    const disabled = assignments[row.dataset.themeTypographyRole]?.capabilities?.bold !== true;
+    if (button && button.disabled !== disabled) button.disabled = disabled;
   });
 }
 
@@ -1508,8 +1548,9 @@ export function applyThemeGalleryVariables(host, catalog, selection = {}) {
       preview.querySelectorAll('[data-theme-v2-identity]').forEach((swatch) => {
         const identity = v2Mode.identity.find((entry) => entry.id === swatch.dataset.themeV2Identity);
         if (identity) {
-          swatch.style.setProperty('--bb-theme-v2-swatch', identity.value);
-          swatch.style.setProperty('--bb-theme-v2-swatch-foreground', identity.foreground);
+          applyThemeIdentityColorPresentation(swatch, identity, {
+            selected: identityColorOverrides.has(identity.id)
+          });
         }
       });
       preview.querySelectorAll('[data-theme-v2-color-role]').forEach((swatch) => {

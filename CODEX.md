@@ -71,6 +71,10 @@ components, and generators for supported platforms.
   legacy page-specific recipe, extract one abstract Themes recipe and migrate
   both callers in the same bounded change. Equivalent parallel UI recipes are
   prohibited, including temporary copies.
+- Color preview, cancellation and commit present the same retained Themes recipe; consumers supply resolved color/state and share their abstract session owner. Never replace the native color input or maintain phase-specific swatch markup.
+- Media favorite states share semantic favorite_outline/favorite provider roles: hollow star off, filled warning-color star on. All font pickers share the empirical 350 px recipe and window preferred-column contract, with no runtime label measurement or font-readiness refit. Prepared Regular SVG outlines use the shared currentColor mask and scale within action gutters.
+- Font weight capabilities have one context-agnostic owner, font-capabilities.js, using all registered family faces and variable ranges. Resource aliases retain their family membership; a regular preview face does not prove that the whole family lacks Bold. Availability and selected state are independent. Shared formatting controls consume that decision; never use font-name exceptions or treat selection acceptance as a requirement to mutate the document.
+- Catalog pickers share picker-search.js/css for the field, clear action and browse/results slots. Media and Theme presenters reuse their existing card recipes; consumers supply data and one shared search lifecycle, never a picker-specific search field or competing control styling.
 - The long-term delivery mechanism must prevent copied consumer assets from
   becoming a second source of truth; that mechanism is not yet ratified.
 - A theme must eventually be switchable as a complete visual system, not only a

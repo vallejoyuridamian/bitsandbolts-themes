@@ -1,5 +1,6 @@
 import { semanticActionButtonMarkup } from './button.js';
 import { semanticIconMarkup } from './semantic-icons.js';
+export { pickerSearchMarkup } from './picker-search.js';
 
 function escapeHtml(value) {
   return String(value ?? '')
@@ -127,6 +128,7 @@ export class MediaPreviewElement {
     measured = false,
     className = '',
     fontFamily = '',
+    fontSpecimen = null,
     iconFamily = '',
     iconRole = '',
     iconStyle = ''
@@ -189,9 +191,14 @@ export class MediaPreviewElement {
     if (mediaKind === 'font' && (label || fontFamily)) {
       const displayName = String(label || fontFamily).trim() || 'Font';
       const previewFamily = cssFontFamily(fontFamily || displayName);
+      const specimen = /^[A-Za-z0-9+/]+=*$/.test(fontSpecimen?.svgBase64 || '')
+        && Number.isFinite(fontSpecimen?.widthEm) && fontSpecimen.widthEm > 0
+        && Number.isFinite(fontSpecimen?.heightEm) && fontSpecimen.heightEm > 0
+        ? `<span class="bb-font-preview-card__specimen" role="img" aria-label="${this.escapeAttribute(displayName)}" style="--bb-font-specimen-image: url('data:image/svg+xml;base64,${fontSpecimen.svgBase64}'); --bb-font-specimen-width: ${Number(fontSpecimen.widthEm)}; --bb-font-specimen-height: ${Number(fontSpecimen.heightEm)}"></span>`
+        : `<span class="bb-font-preview-card__name" style="--bb-font-preview-family: ${this.escapeAttribute(previewFamily)}">${this.escapeHtml(displayName)}</span>`;
       return `
         <div class="${classes}" data-media-preview-kind="font" data-media-preview-path="${safePath}"${actionAccessibility} ${dataset}>
-          <span class="bb-font-preview-card__name" style="--bb-font-preview-family: ${this.escapeAttribute(previewFamily)}">${this.escapeHtml(displayName)}</span>
+          ${specimen}
         </div>
       `;
     }
@@ -231,6 +238,7 @@ export class MediaPreviewCard extends MediaPreviewElement {
     actions = [],
     extraHtml = '',
     fontFamily = '',
+    fontSpecimen = null,
     iconFamily = '',
     iconRole = '',
     iconStyle = '',
@@ -288,6 +296,7 @@ export class MediaPreviewCard extends MediaPreviewElement {
           measured,
           action: previewAction,
           fontFamily,
+          fontSpecimen,
           iconFamily,
           iconRole,
           iconStyle
@@ -310,6 +319,7 @@ export class MediaPreviewCard extends MediaPreviewElement {
   renderFontCard({
     familyName = '',
     fontFamily = familyName,
+    fontSpecimen = null,
     path = '',
     className = '',
     dataset = {},
@@ -328,6 +338,7 @@ export class MediaPreviewCard extends MediaPreviewElement {
       path,
       label: name,
       fontFamily,
+      fontSpecimen,
       className: ['bb-font-preview-card', className].filter(Boolean).join(' '),
       dataset,
       presentation,
@@ -365,27 +376,24 @@ export class MediaPreviewCard extends MediaPreviewElement {
     });
   }
 
-  syncFontCardGridWidths(root = globalThis.document) {
+  syncFontCardGridWidths(root = globalThis.document, { onMeasured = null } = {}) {
+    const startedAt = performance.now();
     const grids = root?.matches?.('.bb-font-preview-card-grid')
       ? [root]
       : [...(root?.querySelectorAll?.('.bb-font-preview-card-grid') ?? [])];
-    const measure = () => {
-      grids.forEach((grid) => grid.style?.removeProperty?.('--bb-font-media-card-width'));
-      const textWidths = grids.flatMap((grid) => [...grid.querySelectorAll(
-        '.bb-font-preview-card__name, .bb-font-preview-card .bb-media-card__body > strong'
-      )].map((element) => Number(element.scrollWidth) || 0));
-      const width = Math.max(216, ...textWidths.map((value) => Math.ceil(value + 40)));
-      grids.forEach((grid) => grid.style?.setProperty?.('--bb-font-media-card-width', `${width}px`));
-      return width;
-    };
-    measure();
-    const fontReadiness = grids[0]?.ownerDocument?.fonts?.ready;
-    if (fontReadiness?.then) {
-      Promise.resolve(fontReadiness).then(() => {
-        const schedule = globalThis.requestAnimationFrame || ((callback) => callback());
-        schedule(measure);
-      });
-    }
+    if (!grids.length) return 0;
+    const view = grids[0].ownerDocument?.defaultView;
+    const width = Number.parseFloat(view?.getComputedStyle?.(grids[0])?.getPropertyValue('--bb-font-media-card-width'));
+    if (!(width > 0)) throw new Error('Font cards require the shared Themes width recipe.');
+    grids.forEach((grid) => {
+      if (grid.hasAttribute?.('data-floating-window-responsive-grid')) {
+        grid.dataset.floatingWindowGridItemWidth = String(width);
+      }
+    });
+    onMeasured?.({
+      phase: 'sync', mode: 'fixed-recipe', gridCount: grids.length,
+      measuredCount: 0, width, durationMs: Math.round((performance.now() - startedAt) * 10) / 10
+    });
     return grids.length;
   }
 
@@ -477,6 +485,10 @@ export class MediaPreviewCard extends MediaPreviewElement {
     ariaLabel = ''
   } = {}) {
     const attrs = actionDataset(dataset, this.escapeAttribute);
+    if (iconRole === 'favorite') {
+      iconRole = 'favorite_outline';
+      activeIconRole = 'favorite';
+    }
     const icon = iconRole
       ? `<span class="bb-media-action__icon bb-media-action__icon--default">${semanticIconMarkup(iconRole)}</span>${activeIconRole ? `<span class="bb-media-action__icon bb-media-action__icon--active">${semanticIconMarkup(activeIconRole)}</span>` : ''}`
       : '';
@@ -499,18 +511,22 @@ export class MediaPreviewCard extends MediaPreviewElement {
 
 export function referenceImagePickerMarkup({
   image = null,
+  expanded = Boolean(image?.src),
   buttonLabel = image?.src ? 'Change reference image' : 'Choose reference image'
 } = {}) {
   const source = String(image?.src || '');
   const label = String(image?.label || image?.alt || 'Reference image');
-  const choose = source ? '' : semanticActionButtonMarkup({
+  const choose = semanticActionButtonMarkup({
     label: buttonLabel,
     ariaLabel: buttonLabel,
     help: 'Choose an optional image to sample palette colors from',
     iconRole: 'add_photo_alternate',
     iconOnly: false,
     className: 'bb-media-reference-picker__choose',
-    attributes: { 'data-theme-reference-image-action': 'choose' }
+    attributes: {
+      'data-theme-reference-image-action': 'toggle',
+      'aria-expanded': String(expanded)
+    }
   });
   const controls = source ? `
     <div class="bb-media-reference-picker__controls bb-interface-controls" role="toolbar" aria-label="Reference image controls">
@@ -556,7 +572,7 @@ export function referenceImagePickerMarkup({
     </div>
   ` : '';
   const preview = source ? `
-    <figure class="bb-media-reference-picker__preview" data-theme-reference-image-preview>
+    <figure class="bb-media-reference-picker__preview bb-field__control" data-theme-reference-image-preview>
       <div class="bb-media-reference-picker__viewport bb-scrollbar" data-theme-reference-image-viewport data-theme-reference-image-zoom-mode="fit">
         <div class="bb-media-reference-picker__stage">
           <img src="${escapeHtml(source)}" alt="${escapeHtml(label)}" draggable="false" data-theme-reference-image>
@@ -565,5 +581,14 @@ export function referenceImagePickerMarkup({
       ${controls}
     </figure>
   ` : '';
-  return `<div class="bb-media-reference-picker" data-theme-reference-image-picker>${choose}${preview}</div>`;
+  const dropTarget = source ? preview : new MediaPreviewCard().renderAddCard({
+    kind: 'image',
+    label: 'Drop an image here',
+    subtitle: 'or click to choose',
+    title: 'Drop an image here or choose from the media picker',
+    className: 'bb-media-drop-target bb-field__control',
+    dataset: { themeReferenceImageAction: 'choose' },
+    presentation: mediaPreviewCardPresentations.reduced
+  });
+  return `<div class="bb-media-reference-picker" data-theme-reference-image-picker>${choose}<div class="bb-media-reference-picker__content bb-field" data-theme-reference-image-drop${expanded ? '' : ' hidden'}>${dropTarget}<p class="bb-field__error" role="alert" data-theme-reference-image-error hidden></p></div></div>`;
 }

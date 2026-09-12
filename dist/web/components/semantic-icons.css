@@ -101,7 +101,11 @@
 }
 
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="favorite"] {
-  --bb-semantic-icon-source: url("../icons/font-awesome-solid/heart.svg");
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/star.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="favorite_outline"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/favorite-outline.svg");
 }
 
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="delete"] {
@@ -536,6 +540,10 @@
   --bb-semantic-icon-source: url("../icons/material-symbols-outlined-favorite.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="favorite_outline"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-favorite-outline.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="delete"] {
   --bb-semantic-icon-source: url("../icons/material-symbols-outlined-delete.svg");
 }
@@ -810,6 +818,10 @@
 
 .bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="favorite"] {
   --bb-semantic-icon-source: url("../icons/material-symbols-filled-favorite.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="favorite_outline"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-favorite-outline.svg");
 }
 
 .bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="delete"] {

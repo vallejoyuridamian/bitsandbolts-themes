@@ -1370,9 +1370,26 @@ article.bb-workspace-specimen__preview--secondary {
 
 .bb-theme-v2-identity {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr);
   gap: 10px 16px;
   min-width: 0;
+}
+
+.bb-theme-v2-identity__row {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px;
+  min-height: 1.4em;
+}
+
+.bb-theme-v2-identity__foreground-row.is-empty {
+  visibility: hidden;
+}
+
+.bb-theme-v2-identity__sample-visual [hidden] {
+  display: none;
 }
 
 .bb-theme-v2-identity__swatch {
@@ -1437,9 +1454,8 @@ article.bb-workspace-specimen__preview--secondary {
 }
 
 .bb-theme-v2-identity__label {
-  overflow: hidden;
   color: var(--bb-v2-color-content-primary);
-  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .bb-theme-v2-identity__value,
@@ -1451,14 +1467,13 @@ article.bb-workspace-specimen__preview--secondary {
 }
 
 .bb-theme-v2-identity__foreground-label {
-  overflow: hidden;
   color: var(--bb-v2-color-content-secondary);
   font-family: var(--bb-v2-font-family-primary);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.06em;
   line-height: 1.3;
-  text-overflow: ellipsis;
+  white-space: nowrap;
   text-transform: uppercase;
 }
 
@@ -1480,7 +1495,7 @@ article.bb-workspace-specimen__preview--secondary {
 }
 
 .bb-theme-detail[data-theme-detail-mode="edit"] .bb-theme-v2-identities {
-  grid-template-columns: repeat(4, minmax(112px, 172px));
+  grid-template-columns: repeat(4, minmax(152px, 172px));
   gap: clamp(12px, 1.5vw, 20px);
 }
 
@@ -1661,9 +1676,7 @@ article.bb-workspace-specimen__preview--secondary {
   white-space: nowrap;
 }
 
-@media (max-width: 640px) {
-  .bb-theme-v2-hero::after { opacity: 0.28; }
-
+@media (max-width: 760px) {
   .bb-theme-v2-identities {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1671,6 +1684,10 @@ article.bb-workspace-specimen__preview--secondary {
   .bb-theme-detail[data-theme-detail-mode="edit"] .bb-theme-v2-identities {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+@media (max-width: 640px) {
+  .bb-theme-v2-hero::after { opacity: 0.28; }
 
   .bb-theme-v2-type {
     grid-template-columns: minmax(0, 1fr);
