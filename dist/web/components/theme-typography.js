@@ -1,6 +1,7 @@
 export { fontCapabilities, fontFaceSupportsWeight, fontFamilyKey } from './font-capabilities.js';
 
-export const THEME_TYPOGRAPHY_ROLES = Object.freeze(['signature', 'interface', 'technical']);
+import { THEME_FONT_ROLES } from './theme-roles.js';
+export const THEME_TYPOGRAPHY_ROLES = THEME_FONT_ROLES;
 export const THEME_TYPOGRAPHY_VARIANT_NAMES = Object.freeze(['bold', 'italic', 'underline']);
 export const THEME_TEXT_STYLE_PRESET_REFERENCE_WIDTH = 1080;
 export const THEME_TEXT_STYLE_PRESET_REFERENCE_HEIGHT = 1920;

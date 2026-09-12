@@ -1,0 +1,9 @@
+/* A catalog supplies one content width; filtering never stretches its cards. */
+.bb-preview-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, min(100%, var(--bb-preview-card-width)));
+  align-items: start;
+  justify-content: start;
+  gap: 12px;
+  min-width: 0;
+}

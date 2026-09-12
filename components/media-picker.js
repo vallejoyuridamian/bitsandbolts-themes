@@ -1,5 +1,6 @@
 import { semanticActionButtonMarkup } from './button.js';
 import { semanticIconMarkup } from './semantic-icons.js';
+import { syncPreviewCardGridWidths } from './preview-card-grid.js';
 export { pickerSearchMarkup } from './picker-search.js';
 
 function escapeHtml(value) {
@@ -377,24 +378,7 @@ export class MediaPreviewCard extends MediaPreviewElement {
   }
 
   syncFontCardGridWidths(root = globalThis.document, { onMeasured = null } = {}) {
-    const startedAt = performance.now();
-    const grids = root?.matches?.('.bb-font-preview-card-grid')
-      ? [root]
-      : [...(root?.querySelectorAll?.('.bb-font-preview-card-grid') ?? [])];
-    if (!grids.length) return 0;
-    const view = grids[0].ownerDocument?.defaultView;
-    const width = Number.parseFloat(view?.getComputedStyle?.(grids[0])?.getPropertyValue('--bb-font-media-card-width'));
-    if (!(width > 0)) throw new Error('Font cards require the shared Themes width recipe.');
-    grids.forEach((grid) => {
-      if (grid.hasAttribute?.('data-floating-window-responsive-grid')) {
-        grid.dataset.floatingWindowGridItemWidth = String(width);
-      }
-    });
-    onMeasured?.({
-      phase: 'sync', mode: 'fixed-recipe', gridCount: grids.length,
-      measuredCount: 0, width, durationMs: Math.round((performance.now() - startedAt) * 10) / 10
-    });
-    return grids.length;
+    return syncPreviewCardGridWidths(root, { selector: '.bb-font-preview-card-grid', onMeasured });
   }
 
   renderDeviceCard({

@@ -1,12 +1,13 @@
 @import './picker-search.css';
+@import './preview-card-grid.css';
 
 /**
  * Canonical media picker, media preview card, and reference image recipes.
  * Consumers own media data and selection behavior. Themes owns presentation.
  */
 
-.bb-media-card-grid,
-.media-preview-card-grid {
+.bb-media-card-grid:not(.bb-preview-card-grid),
+.media-preview-card-grid:not(.bb-preview-card-grid) {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(164px, 1fr));
   gap: 12px;
@@ -15,19 +16,11 @@
 /* Empirical settled roster width. Browsing never refits cards after fonts load. */
 .bb-font-preview-card-grid,
 .bb-picker-search:has(.bb-font-preview-card-grid) {
-  --bb-font-media-card-width: 350px;
+  --bb-preview-card-width: 350px;
 }
 
 .bb-picker-search:has(.bb-font-preview-card-grid) {
-  --bb-picker-search-field-width: var(--bb-font-media-card-width);
-}
-
-.bb-font-preview-card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, min(100%, var(--bb-font-media-card-width)));
-  align-items: start;
-  justify-content: start;
-  gap: 12px;
+  --bb-picker-search-field-width: var(--bb-preview-card-width);
 }
 
 .bb-media-card,
@@ -505,7 +498,7 @@
   user-select: none;
 }
 
-:is(.bb-media-picker, .floating-media-picker) :is(.bb-media-card-grid, .floating-media-picker-grid) {
+:is(.bb-media-picker, .floating-media-picker) :is(.bb-media-card-grid, .floating-media-picker-grid):not(.bb-preview-card-grid) {
   grid-template-columns: repeat(auto-fill, 116px);
   align-content: start;
   justify-content: start;
@@ -513,7 +506,7 @@
 }
 
 :is(.bb-media-picker, .floating-media-picker) .bb-font-preview-card-grid {
-  grid-template-columns: repeat(auto-fill, min(100%, var(--bb-font-media-card-width)));
+  gap: 9px;
 }
 
 .bb-media-picker__section,

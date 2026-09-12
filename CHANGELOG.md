@@ -1,5 +1,23 @@
 # Bits and Bolts Themes - Changelog
 
+## 2026-09-12: Accepted Theme roles, picker and semantic-reference closure
+
+- Owner LGTM and the healthy 602-record capture authorize paired local closure:
+  47 AppScreen and 40 Themes files. Zero captured warnings/errors or failed/stale
+  outcomes; the owner explicitly did not run the complete manual checklist.
+- Require one authored color and font, retain sparse assignments, and resolve
+  missing roles transiently through the shared hierarchy. Pickers deduplicate
+  authored values. Shared card sizing preserves Global/User browse categories
+  and flat search; fonts retain prepared 350 px cards.
+- Saved user Themes use stable identities and current semantic color/font
+  resources in Screens/Video. Custom project resources remain literal. Shared
+  font-label aliases keep internal browser/renderer names out of the dropdown.
+- Prior focused checks, builds, syntax/import checks and generated parity stand.
+  Closure adds no browser action, new suite/build, source or diagnostic change.
+  Owner data, ignored saves, assets, locks and every accepted checkpoint remain.
+- Evidence, measured costs and unobserved paths: ../appscreen-studio/docs/THEME_DEMO_PREPARATION_PLAN.md,
+  Accepted 87-file closure audit. No push; next chat loads Debug context and waits.
+
 Keep new changes easy to scan at the top.
 
 ---

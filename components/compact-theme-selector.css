@@ -1,4 +1,5 @@
 @import './picker-search.css';
+@import './preview-card-grid.css';
 
 /*
  * Canonical compact Theme selection and picker presentation.
@@ -169,7 +170,7 @@
 }
 
 .bb-compact-theme-picker {
-  --bb-compact-theme-card-min-inline-size: var(--bb-floating-window-grid-item-min-inline-size, 280px);
+  --bb-preview-card-width: var(--bb-floating-window-grid-item-min-inline-size, 280px);
   grid-template-rows: auto minmax(0, 1fr);
   min-width: 0;
   min-height: 100%;
@@ -202,14 +203,7 @@
 }
 
 .bb-compact-theme-picker__grid {
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(min(100%, var(--bb-compact-theme-card-min-inline-size)), 1fr)
-  );
-  align-items: start;
   gap: var(--bb-spacing-3);
-  min-width: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {

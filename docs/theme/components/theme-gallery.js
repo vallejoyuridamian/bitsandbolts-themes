@@ -1,4 +1,5 @@
 import { contentCardsMarkup } from './content-card.js';
+import { themeIdentityOptions } from './theme-roles.js';
 import { themeModeToggleMarkup } from './compact-theme-selector.js';
 import { spotlightMediaMarkup, storeBadgesMarkup } from './content-media.js';
 import { semanticActionButtonMarkup } from './button.js';
@@ -34,6 +35,7 @@ import {
   themeTypographyVariantVariables
 } from './theme-typography.js';
 import { workspaceSectionMarkup } from './workspace-section.js';
+import { themeCatalogGroups } from './theme-catalog-groups.js';
 
 const ICON_FAMILY_LABELS = Object.freeze({
   'font-awesome-solid': 'Font Awesome Solid',
@@ -183,6 +185,7 @@ function normalizeV2Mode(value = {}, mode = '') {
     ) throw new TypeError('Theme catalog v2 identity role is invalid.');
     return Object.freeze({
       contrastRatio,
+      ...(typeof entry.assigned === 'boolean' ? { assigned: entry.assigned } : {}),
       foreground: safeCssVariableValue(entry.foreground),
       foregroundToken: String(entry.foregroundToken),
       id,
@@ -269,6 +272,8 @@ function normalizeV2(value) {
     themeVersion: String(value.themeVersion || ''),
     typography: Object.freeze({
       families: Object.freeze(families),
+      ...(Array.isArray(value.typography?.assignedRoles)
+        ? { assignedRoles: Object.freeze([...value.typography.assignedRoles]) } : {}),
       specimens: Object.freeze(specimens),
       styles: Object.freeze(styles),
       variants: Object.freeze(Object.fromEntries(Object.entries(variants).map(([role, variant]) => [
@@ -337,7 +342,7 @@ function nextThemeMode(mode = '') {
 }
 
 function themeSummaryIdentityMarkup(mode) {
-  return mode.identity.map((entry) => `
+  return themeIdentityOptions(mode.identity).map((entry) => `
     <span class="bb-theme-summary-card__identity" data-theme-v2-identity="${escapeHtml(entry.id)}">
       <span aria-hidden="true"><span class="bb-theme-v2-identity__foreground-sample">Aa</span></span>
       <small>${escapeHtml(entry.label)}</small>
@@ -1086,7 +1091,7 @@ function mediaPickerRecipeSpecimenMarkup() {
 function fontPickerRecipeSpecimenMarkup() {
   const preview = new MediaPreviewCard();
   return `
-    <div class="bb-media-card-grid bb-font-preview-card-grid" inert>
+    <div class="bb-media-card-grid bb-preview-card-grid bb-font-preview-card-grid" inert>
       ${preview.renderFontCard({
         familyName: 'Montserrat',
         fontFamily: 'Montserrat',
@@ -1515,7 +1520,6 @@ export function applyThemeGalleryVariables(host, catalog, selection = {}) {
     (Array.isArray(selection.identityColorOverrides) ? selection.identityColorOverrides : [])
       .map((value) => String(value || ''))
   );
-  const neutralFallback = String(selection.neutralFallback || '').trim();
   const scrollbarValues = {
     '--bb-interface-scrollbar-thumb': primaryIdentity.value,
     '--bb-interface-scrollbar-track': selectedVariables['--bb-v2-color-surface-canvas'],
@@ -1539,10 +1543,7 @@ export function applyThemeGalleryVariables(host, catalog, selection = {}) {
         preview.style.setProperty('--bb-theme-summary-card-on-accent', identityAccent.foreground);
       }
       if (identityNeutral) {
-        const neutral = neutralFallback && !identityColorOverrides.has('neutral')
-          ? neutralFallback
-          : identityNeutral.value;
-        preview.style.setProperty('--bb-theme-v2-neutral', neutral);
+        preview.style.setProperty('--bb-theme-v2-neutral', identityNeutral.value);
         preview.style.setProperty('--bb-theme-v2-neutral-foreground', identityNeutral.foreground);
       }
       preview.querySelectorAll('[data-theme-v2-identity]').forEach((swatch) => {
@@ -1621,18 +1622,9 @@ export function createThemeGalleryController({
 
   function galleryGroups(catalog) {
     if (!userThemeItems.length) return null;
-    return Object.freeze([
-      Object.freeze({
-        id: 'global-themes',
-        label: 'Global Themes',
-        themeIds: Object.freeze(catalog.themes.map((theme) => theme.id))
-      }),
-      Object.freeze({
-        id: 'user-themes',
-        label: 'User Themes',
-        themeIds: Object.freeze(userThemeItems.map((item) => item.theme.id))
-      })
-    ]);
+    return themeCatalogGroups(presentationCatalog(catalog).themes).map(({ id, label, themes }) => ({
+      id, label, themeIds: themes.map((theme) => theme.id)
+    }));
   }
 
   function normalizeUserThemeItems(items = []) {
@@ -1641,7 +1633,7 @@ export function createThemeGalleryController({
     const userCatalog = normalizeThemeCatalog({
       packageVersion: 'user-authored',
       schemaVersion: CATALOG_SCHEMA_VERSION,
-      themes: items.map((item) => item?.theme)
+      themes: items.map((item) => ({ ...item?.theme, source: 'user-authored' }))
     });
     return Object.freeze(items.map((item, index) => {
       const projectPath = String(item?.projectPath || '').trim();

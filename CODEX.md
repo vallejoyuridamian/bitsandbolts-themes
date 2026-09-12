@@ -26,6 +26,7 @@ components, and generators for supported platforms.
 - Shared public web fonts, platform icons, store badges, and brand assets
 
 ## Working Boundary
+- theme-roles.js owns color/font role definitions, transient resolution and deduplicated authored options. Empty roles never become assignments. Typography, catalog pickers and summary cards consume that contract; Neutral has a Bits and Bolts default, and font fallback substitutes family only. theme-css.js derives transient mode CSS from that same resolved Theme contract; consumers never persist these computed resources.
 
 - `pnpm build` is the focused generation check.
 - For a focused owner correction to an existing Themes specimen, go directly to
@@ -72,7 +73,7 @@ components, and generators for supported platforms.
   both callers in the same bounded change. Equivalent parallel UI recipes are
   prohibited, including temporary copies.
 - Color preview, cancellation and commit present the same retained Themes recipe; consumers supply resolved color/state and share their abstract session owner. Never replace the native color input or maintain phase-specific swatch markup.
-- Media favorite states share semantic favorite_outline/favorite provider roles: hollow star off, filled warning-color star on. All font pickers share the empirical 350 px recipe and window preferred-column contract, with no runtime label measurement or font-readiness refit. Prepared Regular SVG outlines use the shared currentColor mask and scale within action gutters.
+- Media favorite states share semantic favorite_outline/favorite provider roles: hollow star off, filled warning-color star on. Preview-card-grid owns stable columns and complete-category content measurement for compact Theme and font grids. All font pickers share the empirical 350 px recipe and window preferred-column contract, with no runtime label measurement or font-readiness refit. Prepared Regular SVG outlines use the shared currentColor mask and scale within action gutters.
 - Font weight capabilities have one context-agnostic owner, font-capabilities.js, using all registered family faces and variable ranges. Resource aliases retain their family membership; a regular preview face does not prove that the whole family lacks Bold. Availability and selected state are independent. Shared formatting controls consume that decision; never use font-name exceptions or treat selection acceptance as a requirement to mutate the document.
 - Catalog pickers share picker-search.js/css for the field, clear action and browse/results slots. Media and Theme presenters reuse their existing card recipes; consumers supply data and one shared search lifecycle, never a picker-specific search field or competing control styling.
 - The long-term delivery mechanism must prevent copied consumer assets from

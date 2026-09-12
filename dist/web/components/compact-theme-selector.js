@@ -1,5 +1,8 @@
 import { semanticIconMarkup } from './semantic-icons.js';
 import { pickerSearchMarkup } from './picker-search.js';
+import { themeIdentityOptions } from './theme-roles.js';
+import { themeCatalogGroups } from './theme-catalog-groups.js';
+import { workspaceSectionMarkup } from './workspace-section.js';
 
 const THEME_MODES = Object.freeze(['light', 'dark']);
 
@@ -39,13 +42,19 @@ function requiredTheme(theme = null) {
 }
 
 function identityMarkup(theme, mode) {
-  return theme.v2.modes[compactThemeMode(mode)].identity.map((identity) => `
+  return themeIdentityOptions(theme.v2.modes[compactThemeMode(mode)].identity).map((identity) => `
     <span
       class="bb-compact-theme-card__swatch"
       data-bb-compact-theme-identity="${escapeHtml(identity.id)}"
       aria-hidden="true"
     ></span>
   `).join('');
+}
+
+export function setCompactThemePreviewMode(preview, theme, mode) {
+  preview.dataset.bbCompactThemeMode = compactThemeMode(mode);
+  const swatches = preview.querySelector('[data-bb-compact-theme-swatches]');
+  if (swatches) swatches.innerHTML = identityMarkup(theme, mode);
 }
 
 export function themeModeToggleMarkup({
@@ -121,7 +130,7 @@ export function compactThemeCardMarkup(themeInput, modeInput, {
       ${action === 'select' ? `role="option" aria-selected="${selected ? 'true' : 'false'}"` : ''}
     >
       <span class="bb-compact-theme-card__name">${escapeHtml(theme.label)}</span>
-      <span class="bb-compact-theme-card__swatches">${identityMarkup(theme, mode)}</span>
+      <span class="bb-compact-theme-card__swatches" data-bb-compact-theme-swatches>${identityMarkup(theme, mode)}</span>
     </button>
     ${toggle}
   </article>`;
@@ -140,14 +149,12 @@ export function compactThemeSelectionMarkup(theme, mode = 'dark', {
   </div>`;
 }
 
-export function compactThemePickerMarkup(catalog = {}, {
+export function compactThemeGridMarkup(themes = [], {
   cardModes = {},
   mode = 'dark',
   selectedThemeId = '',
-  title = 'Choose Theme'
+  browse = false
 } = {}) {
-  const themes = Array.isArray(catalog?.themes) ? catalog.themes.map(requiredTheme) : [];
-  if (!themes.length) throw new TypeError('Compact Theme picker requires a complete v2 catalog.');
   const cards = themes.map((theme) => compactThemeCardMarkup(
     theme,
     cardModes[theme.id] || mode,
@@ -156,6 +163,30 @@ export function compactThemePickerMarkup(catalog = {}, {
       selected: selectedThemeId === theme.id
     }
   )).join('');
+  return `<div class="bb-preview-card-grid bb-compact-theme-picker__grid"
+    role="listbox" aria-label="Themes"${browse ? ' data-floating-window-responsive-grid' : ''}>${cards}</div>`;
+}
+
+export function compactThemePickerMarkup(catalog = {}, {
+  cardModes = {},
+  mode = 'dark',
+  selectedThemeId = '',
+  title = 'Choose Theme'
+} = {}) {
+  const themes = Array.isArray(catalog?.themes) ? catalog.themes.map(requiredTheme) : [];
+  if (!themes.length) throw new TypeError('Compact Theme picker requires a complete v2 catalog.');
+  const gridOptions = { cardModes, mode, selectedThemeId, browse: true };
+  const groups = themeCatalogGroups(themes);
+  const browseMarkup = groups.length
+    ? groups.map((group) => workspaceSectionMarkup({
+        id: `compact-theme-${group.id}`,
+        label: group.label,
+        count: group.themes.length,
+        compact: true,
+        open: true,
+        content: compactThemeGridMarkup(group.themes, gridOptions)
+      })).join('')
+    : compactThemeGridMarkup(themes, gridOptions);
   return `<div
     class="bb-floating-window-content bb-compact-theme-picker"
     data-bb-compact-theme-picker
@@ -172,16 +203,7 @@ export function compactThemePickerMarkup(catalog = {}, {
       <h2 class="bb-floating-window-content__title">${escapeHtml(title)}</h2>
     </header>
     <div class="bb-compact-theme-picker__body">
-      ${pickerSearchMarkup({ id: 'compactThemeSearch', browseMarkup: `
-      <div
-        class="bb-compact-theme-picker__grid"
-        role="listbox"
-        aria-label="Themes"
-        data-floating-window-responsive-grid
-      >
-        ${cards}
-      </div>
-      ` })}
+      ${pickerSearchMarkup({ id: 'compactThemeSearch', browseMarkup })}
     </div>
   </div>`;
 }

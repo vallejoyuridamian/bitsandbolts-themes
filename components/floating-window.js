@@ -1,5 +1,6 @@
 import { semanticIconMarkup } from './semantic-icons.js';
 import { progressMarkup } from './progress.js';
+export { measurePreviewCardGridWidth } from './preview-card-grid.js';
 export { updateProgressPresentation } from './progress.js';
 
 export function floatingWindowTaskMarkup({ id = 'task', title = 'Working' } = {}) {
