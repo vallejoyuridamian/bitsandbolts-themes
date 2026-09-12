@@ -4,6 +4,43 @@ Keep new changes easy to scan at the top.
 
 ---
 
+## 2026-09-11: Accepted 224-file paired closure
+
+- The owner accepts the final AppScreen repairs and explicitly requests every
+  dirty file: 146 Themes and 78 AppScreen. The fresh 100-record AppScreen capture
+  has zero warnings/errors, matching wide/narrow Screen geometry and completed
+  Video Device renders. The previously held runtime gate now passes.
+- Include all accepted glyph/dropdown feedback, Paper backgrounds, transition
+  catalogs/shaders, shared controls, source tokens and generated web/docs outputs.
+  Earlier generation, parity and feature evidence stand. No source, token or
+  generated output changes occur during this closure.
+- AppScreen owns navigation cleanup, strict project geometry admission and the
+  one-time LinkedIn source repair; its newer owner save remains preserved locally.
+  Retain all assets, diagnostics, static locks, prior checkpoints and parked work.
+- Both project memories and plans are synchronized for paired local commits.
+  No new build, browser action or push. Next chat follows AppScreen HANDOFF.md,
+  loads Debug context and waits for owner direction.
+
+## 2026-09-11: Accepted shared effects and feedback, closure held
+
+- The owner accepts the accumulated rendered checkpoint, including the exact
+  primary glyph glow, shared dropdown feedback, Paper background definitions,
+  field-sampling policy and first portable transition catalog/shaders.
+- Burn and Page back share the existing palette/custom-color recipe. Page Curl
+  retains shaded tint/coverage; Burn samples its prepared field without aspect
+  distortion. Shared Scene/element controls and generated copies remain aligned.
+- Established generation/parity, AppScreen focused checks and native shader
+  evidence stand. No source or generated assets changed during closure.
+- The requested 210-file paired commit is held: AppScreen's 7168-record capture
+  contains eight startup errors after a Video-to-Account view change. All 1361
+  logged transition frames present; median Preview summary cadence is 59 FPS,
+  with zero queue misses but recorded stalls. No export acceptance is inferred.
+  See ../appscreen-studio/docs/SEPTEMBER_11_CLOSURE_AUDIT.md.
+- Preserve all 145 original Themes dirty files and all earlier recipes/assets;
+  AppScreen preserves its 65 original files, owner saves, diagnostics and locks.
+  Both changelogs and the audit add closure records. No commit, push, new build,
+  runtime correction or browser action occurred. Next chat loads Debug and waits.
+
 ## 2026-09-11: Accepted shared media presentation and editor recipes
 
 - Extracted the rectangular media presentation recipe and media-editor CSS into

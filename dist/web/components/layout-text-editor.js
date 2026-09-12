@@ -45,7 +45,7 @@ export function layoutTextEditorProjectColorAddMarkup({
   attributes = {},
   value = '#000000'
 } = {}) {
-  return `<label class="bb-color-swatch-add bb-workspace-add-tile bb-cut-corner-swatch" aria-label="Add color to project" title="Add color to project"><input class="bb-color-swatch-add__input" type="color" value="${escapeHtml(value)}" aria-label="Add color to project"${attributesMarkup(attributes)}><span class="bb-workspace-control-icon" aria-hidden="true">${semanticIconMarkup('add')}</span></label>`;
+  return `<label class="bb-color-swatch-add bb-workspace-add-tile bb-cut-corner-swatch" aria-label="Add color to project" title="Add color to project"><input class="bb-color-swatch-add__input" type="color" value="${escapeHtml(value)}" aria-label="Add color to project"${attributesMarkup({ ...attributes, name: attributes.name ?? 'project-color' })}><span class="bb-workspace-control-icon" aria-hidden="true">${semanticIconMarkup('add')}</span></label>`;
 }
 
 export function syncLayoutTextEditorProjectColorPreview(control, color = '') {
@@ -121,6 +121,10 @@ export function layoutTextEditorColorPaletteMarkup({
     layoutTextEditorColorPaletteRowMarkup({ label: 'Project', markup: projectMarkup })
   ].filter(Boolean);
   return `<div class="bb-color-palette">${rows.join('')}</div>`;
+}
+
+export function colorPaletteSectionMarkup({ label = '', paletteMarkup = '', attributes = {} } = {}) {
+  return `<div class="bb-color-palette" role="group" aria-label="${escapeHtml(label)}"${attributesMarkup(attributes)}><span class="bb-color-palette__label">${escapeHtml(label)}</span><div data-color-palette-content>${paletteMarkup}</div></div>`;
 }
 
 export function layoutTextEditorIconButtonMarkup({

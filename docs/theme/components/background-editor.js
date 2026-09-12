@@ -20,6 +20,7 @@ export function backgroundEditorMarkup({
   itemScopeLabel = 'Screen',
   patterns = [],
   patternFields = [],
+  animatedEffects = [],
   presentation = 'embedded',
   showScope = false,
   showInherit = true
@@ -56,6 +57,7 @@ export function backgroundEditorMarkup({
         <option value="gradient">Gradient</option>
         <option value="image">Image</option>
         ${patterns.length ? '<option value="pattern">Pattern</option>' : ''}
+        ${animatedEffects.length ? '<option value="animated">Animated</option>' : ''}
       </select>
     </div>
     ${patterns.length ? `<div class="bb-field" data-bb-background-editor-when="pattern">
@@ -68,6 +70,18 @@ export function backgroundEditorMarkup({
       ${patternFields.map(({ key, label, min, max, step, initial, unit, valueLabel }) => layoutTextEditorRangeFieldMarkup({
         label, min, max, step, value: initial, unit, valueLabel,
         attributes: { 'aria-label': label, 'aria-valuetext': valueLabel, 'data-bb-background-pattern-field': key }
+      })).join('')}
+    </div>` : ''}
+    ${animatedEffects.length ? `<div class="bb-field" data-bb-background-editor-when="animated">
+      <label class="bb-field__label" for="${controlId(id, 'animation')}">Effect</label>
+      <select id="${controlId(id, 'animation')}" class="bb-field__input" data-bb-background-editor-role="animation">
+        ${animatedEffects.map((effect) => `<option value="${escapeHtml(effect.id)}">${escapeHtml(effect.name)}</option>`).join('')}
+      </select>
+    </div>
+    <div class="bb-toolbar-popover__fields" data-bb-background-editor-when="animated">
+      ${[...new Map(animatedEffects.flatMap((effect) => effect.fields).map((field) => [field.key, field])).values()].map(({ key, label, min, max, step, initial }) => layoutTextEditorRangeFieldMarkup({
+        label, min, max, step, value: initial, unit: '', valueLabel: String(initial),
+        attributes: { 'aria-label': label, 'data-bb-background-animation-field': key }
       })).join('')}
     </div>` : ''}
     <div class="bb-field" data-bb-background-editor-when="gradient">

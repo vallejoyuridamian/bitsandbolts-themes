@@ -13,6 +13,21 @@
       "disabledForeground": { "$value": "{color.content.secondary}" },
       "focusRing": { "$value": "{color.interaction.action}" }
     },
+    "button": {
+      "hoverBackground": { "$value": "{interface.interaction.hoverBackground}" },
+      "hoverShadow": { "$value": "{interface.interaction.hoverShadow}" },
+      "hoverTextShadow": { "$value": "{interface.interaction.hoverTextShadow}" },
+      "hoverForeground": { "$value": "{interface.control.hoverForeground}" },
+      "hoverFilter": { "$value": "none" },
+      "pressedBackground": { "$value": "{interface.interaction.pressedBackground}" },
+      "pressedShadow": { "$value": "{interface.interaction.pressedShadow}" },
+      "pressedTextShadow": { "$value": "{interface.interaction.pressedTextShadow}" },
+      "pressedForeground": { "$value": "{interface.control.hoverForeground}" },
+      "pressedFilter": { "$value": "none" },
+      "plainIconRestFilter": { "$value": "drop-shadow(0 0 2px color-mix(in srgb, var(--bb-v2-identity-primary) 18%, transparent))" },
+      "plainIconHoverFilter": { "$value": "drop-shadow(0 0 5px color-mix(in srgb, var(--bb-v2-identity-primary) 62%, transparent))" },
+      "plainIconHoverForeground": { "$value": "var(--bb-v2-identity-primary)" }
+    },
     "interaction": {
       "hoverBackground": { "$value": "color-mix(in srgb, {color.interaction.action} 10%, transparent)" },
       "hoverShadow": { "$value": "0 3px 9px color-mix(in srgb, {color.surface.scrim} 14%, transparent)" },

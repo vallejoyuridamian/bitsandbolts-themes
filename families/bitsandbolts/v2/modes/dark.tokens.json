@@ -1,4 +1,21 @@
 {
+  "interface": {
+    "button": {
+      "hoverBackground": { "$value": "transparent" },
+      "hoverShadow": { "$value": "none" },
+      "hoverTextShadow": { "$value": "none" },
+      "hoverForeground": { "$value": "{interface.control.foreground}" },
+      "hoverFilter": { "$value": "drop-shadow(0 0 2.5px color-mix(in srgb, var(--bb-v2-identity-primary) 62%, transparent)) drop-shadow(0 0 5px color-mix(in srgb, var(--bb-v2-identity-primary) 24%, transparent))" },
+      "pressedBackground": { "$value": "transparent" },
+      "pressedShadow": { "$value": "none" },
+      "pressedTextShadow": { "$value": "none" },
+      "pressedForeground": { "$value": "color-mix(in srgb, var(--bb-v2-identity-primary) 14%, {interface.control.foreground})" },
+      "pressedFilter": { "$value": "drop-shadow(0 0 3px color-mix(in srgb, var(--bb-v2-identity-primary) 57%, transparent)) drop-shadow(0 0 6px color-mix(in srgb, var(--bb-v2-identity-primary) 49%, transparent))" },
+      "plainIconRestFilter": { "$value": "none" },
+      "plainIconHoverFilter": { "$value": "{interface.button.hoverFilter}" },
+      "plainIconHoverForeground": { "$value": "{interface.button.hoverForeground}" }
+    }
+  },
   "palette": {
     "$type": "color",
     "identityAccentForeground": { "$value": { "colorSpace": "srgb", "components": [0.113725, 0.043137, 0.301961], "alpha": 1, "hex": "#1D0B4D" } },

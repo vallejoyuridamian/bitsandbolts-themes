@@ -1,5 +1,5 @@
 import { semanticActionButtonMarkup } from './button.js';
-import { layoutTextEditorSectionMarkup } from './layout-text-editor.js';
+import { colorPaletteSectionMarkup, layoutTextEditorSectionMarkup } from './layout-text-editor.js';
 
 function escapeHtml(value) {
   return String(value ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;')
@@ -33,4 +33,14 @@ export function animationRegionControlMarkup({ label = '', attributes = {} } = {
   return `<div class="bb-animation-editor__region">
     ${semanticActionButtonMarkup({ iconRole: 'safe_area', label: 'Draw zone', iconOnly: false, attributes })}
     <span>${escapeHtml(label)}</span></div>`;
+}
+
+export function animationEffectParametersMarkup({ parameters = [], values = {}, attributes = {}, toolAttribute = '', namePrefix = 'effect', renderColorPalette } = {}) {
+  return parameters.map((parameter) => parameter.type === 'color'
+    ? colorPaletteSectionMarkup({ label: parameter.label, attributes: { ...attributes, 'data-animation-effect-color': parameter.name },
+      paletteMarkup: renderColorPalette(parameter, values[parameter.name] ?? parameter.default) })
+    : `<label>${escapeHtml(parameter.label)}
+    <select name="${escapeHtml(`${namePrefix}-${parameter.name}`)}"${attributesMarkup({ ...attributes, [toolAttribute]: `effect:${parameter.name}` })}>
+      ${parameter.options.map(([value, label]) => `<option value="${escapeHtml(value)}"${String(values[parameter.name] ?? parameter.default) === value ? ' selected' : ''}>${escapeHtml(label)}</option>`).join('')}
+    </select></label>`).join('');
 }

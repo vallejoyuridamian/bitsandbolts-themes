@@ -173,6 +173,19 @@ const REQUIRED_INTERFACE_TOKEN_PATHS = Object.freeze([
   'interface.control.hoverForeground',
   'interface.control.disabledForeground',
   'interface.control.focusRing',
+  'interface.button.hoverBackground',
+  'interface.button.hoverShadow',
+  'interface.button.hoverTextShadow',
+  'interface.button.hoverForeground',
+  'interface.button.hoverFilter',
+  'interface.button.pressedBackground',
+  'interface.button.pressedShadow',
+  'interface.button.pressedTextShadow',
+  'interface.button.pressedForeground',
+  'interface.button.pressedFilter',
+  'interface.button.plainIconRestFilter',
+  'interface.button.plainIconHoverFilter',
+  'interface.button.plainIconHoverForeground',
   'interface.interaction.hoverBackground',
   'interface.interaction.hoverShadow',
   'interface.interaction.hoverTextShadow',
@@ -804,6 +817,8 @@ process.stdout.write('  [licenses/material-symbols-apache.txt] done\n');
 
 copyDirRecursive('assets/brand', 'dist/web/brand', 'brand');
 copyDirRecursive('assets/patterns', 'dist/web/patterns', 'patterns');
+copyDirRecursive('assets/animated-backgrounds', 'dist/web/animated-backgrounds', 'animated-backgrounds');
+copyDirRecursive('assets/transition-effects', 'dist/web/transition-effects', 'transition-effects');
 
 // Copy static Android Kotlin sources to dist/android/
 // These use REPLACE_ME as a package placeholder; dev.sh substitutes the real package.

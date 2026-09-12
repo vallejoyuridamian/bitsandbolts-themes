@@ -1,0 +1,103 @@
+/* Adjustable specimen of the shared button feedback role. */
+.bb-feedback-playground {
+  margin: 0;
+  padding: var(--bb-spacing-6);
+  color: var(--bb-v2-color-content-primary);
+  background: var(--bb-interface-workspace-background);
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-sm);
+  line-height: var(--bb-font-line-height-normal);
+  user-select: none;
+}
+.bb-feedback-playground[hidden] { display: none; }
+.bb-feedback-playground * { box-sizing: border-box; }
+.bb-feedback-playground :is(h1, h2, h3, p) { margin: 0; }
+.bb-feedback-playground h1 { font-size: var(--bb-font-size-xl); }
+.bb-feedback-playground h2 { font-size: var(--bb-font-size-sm); font-weight: var(--bb-font-weight-bold); }
+.bb-feedback-playground h3 { font-size: var(--bb-font-size-xs); font-weight: var(--bb-font-weight-medium); color: var(--bb-v2-color-content-secondary); }
+.bb-feedback-playground p { color: var(--bb-v2-color-content-secondary); font-size: var(--bb-font-size-xs); }
+.bb-feedback-playground__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--bb-spacing-4);
+  max-width: 1200px;
+  margin: 0 auto var(--bb-spacing-6);
+  padding-bottom: var(--bb-spacing-4);
+  border-bottom: 1px solid var(--bb-v2-color-border-subtle);
+}
+.bb-feedback-playground__header > div:first-child { display: grid; gap: var(--bb-spacing-2); }
+.bb-feedback-playground__layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: var(--bb-spacing-8); max-width: 1200px; margin: auto; }
+.bb-feedback-playground__preview { display: flex; flex-direction: column; gap: var(--bb-spacing-8); min-width: 0; }
+.bb-feedback-playground__preview > section { display: grid; gap: var(--bb-spacing-4); }
+.bb-feedback-playground__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bb-spacing-2); }
+.bb-feedback-playground__live { display: grid; gap: var(--bb-spacing-5); padding-block: var(--bb-spacing-4); }
+.bb-feedback-playground__live .bb-workspace-control-button:not(.bb-workspace-control-button--icon) { min-height: 38px; padding-inline: 16px; font-size: var(--bb-font-size-sm); }
+.bb-feedback-playground__states { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--bb-spacing-4); padding-block: var(--bb-spacing-4); }
+.bb-feedback-playground__reference { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--bb-spacing-4); padding-block: var(--bb-spacing-4); }
+.bb-feedback-playground__samples { display: flex; flex-direction: column; align-items: flex-start; gap: var(--bb-spacing-5); margin-top: var(--bb-spacing-5); }
+.bb-feedback-playground__controls { align-self: start; gap: var(--bb-spacing-5); padding-left: var(--bb-spacing-6); border-left: 1px solid var(--bb-v2-color-border-subtle); }
+.bb-feedback-playground__controls > section { display: grid; gap: var(--bb-spacing-3); }
+.bb-feedback-playground__status:empty { display: none; }
+.bb-feedback-playground__controls textarea { resize: vertical; user-select: text; }
+.bb-feedback-playground .bb-workspace-control-icon { display: inline-grid; place-items: center; width: 18px; height: 18px; }
+.bb-feedback-playground .bb-semantic-icon { width: 18px; height: 18px; }
+
+.bb-feedback-playground .bb-feedback-button {
+  --bb-interface-button-hover-background: transparent;
+  --bb-interface-button-pressed-background: transparent;
+  --bb-interface-button-hover-shadow: none;
+  --bb-interface-button-pressed-shadow: none;
+  --bb-interface-button-hover-text-shadow: none;
+  --bb-interface-button-pressed-text-shadow: none;
+  --bb-interface-button-hover-filter: none;
+  --bb-interface-button-pressed-filter: none;
+  --bb-interface-button-hover-foreground: var(--bb-interface-control-foreground);
+  --bb-interface-button-pressed-foreground: var(--bb-interface-control-foreground);
+  --bb-feedback-blur: 0px;
+  --bb-feedback-strength: 0%;
+  --bb-feedback-halo: 0%;
+  --bb-feedback-tint: 0%;
+  --bb-feedback-effect: none;
+  --bb-feedback-active-effect:
+    drop-shadow(0 0 var(--bb-feedback-blur) color-mix(in srgb, var(--bb-feedback-color) var(--bb-feedback-strength), transparent))
+    drop-shadow(0 0 calc(var(--bb-feedback-blur) * 2) color-mix(in srgb, var(--bb-feedback-color) var(--bb-feedback-halo), transparent));
+  overflow: visible;
+}
+.bb-feedback-playground .bb-feedback-button__content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--bb-spacing-2);
+  color: color-mix(in srgb, var(--bb-feedback-color) var(--bb-feedback-tint), var(--bb-interface-control-foreground));
+  filter: var(--bb-feedback-effect);
+  transition: filter var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing), color var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing);
+}
+.bb-feedback-playground .bb-feedback-button:where(:not([data-feedback-state])):is(:hover, :focus-visible):not(:disabled):not([aria-pressed="true"]),
+.bb-feedback-playground .bb-feedback-button[data-feedback-state="hover"] {
+  --bb-feedback-effect: var(--bb-feedback-active-effect);
+  --bb-feedback-blur: var(--bb-feedback-hover-blur);
+  --bb-feedback-strength: var(--bb-feedback-hover-strength);
+  --bb-feedback-halo: var(--bb-feedback-hover-halo);
+  --bb-feedback-tint: var(--bb-feedback-hover-tint);
+}
+.bb-feedback-playground .bb-feedback-button[aria-pressed="true"] {
+  --bb-feedback-effect: var(--bb-feedback-active-effect);
+  --bb-feedback-blur: var(--bb-feedback-selected-blur);
+  --bb-feedback-strength: var(--bb-feedback-selected-strength);
+  --bb-feedback-halo: var(--bb-feedback-selected-halo);
+  --bb-feedback-tint: var(--bb-feedback-selected-tint);
+}
+.bb-feedback-playground .bb-feedback-button.bb-workspace-control-button:focus-visible { outline: 2px solid var(--bb-v2-color-border-focus-ring); outline-offset: 3px; }
+.bb-feedback-playground .bb-feedback-button:disabled .bb-feedback-button__content { color: inherit; filter: none; }
+@media (max-width: 850px) {
+  .bb-feedback-playground__layout { grid-template-columns: minmax(0, 1fr); }
+  .bb-feedback-playground__controls { border-left: 0; padding-left: 0; border-top: 1px solid var(--bb-v2-color-border-subtle); padding-top: var(--bb-spacing-5); }
+}
+@media (max-width: 480px) {
+  .bb-feedback-playground { padding: var(--bb-spacing-4); }
+  .bb-feedback-playground__states { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--bb-spacing-6); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bb-feedback-playground .bb-feedback-button__content { transition: none; }
+}
