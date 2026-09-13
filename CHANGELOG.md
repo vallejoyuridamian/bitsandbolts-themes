@@ -1,5 +1,23 @@
 # Bits and Bolts Themes - Changelog
 
+## 2026-09-12: Restore point before removing editing copies
+
+- Owner explicitly requests this local checkpoint before complete editing-copy
+  removal. Existing conversion behavior is intentionally still present here.
+- Retain shared quiet/depth-one color preview, lightweight Theme presentation,
+  native-input handoff repair, thumbnail error classification and usage-based
+  deletion. Keep the owner-accepted animation drafts, 1-second attention pulse,
+  selected-card focus, chronological ordering and Scene-local Zoom indexes.
+- Preserve shared Preview hover controls, generated Themes outputs and the
+  owner's tracked catalog and YouTube saves without content changes.
+- Prior focused checks and owner acceptance remain scoped to their recorded
+  evidence. Native color handoff retry is pending. First MP4 Preview is rejected:
+  8084 ms first versus 953 ms reopened; media open 6736.5 versus 32 ms, correlated
+  with whole-file editing-copy generation. No new suite, build or browser audit.
+- Preserve ignored LinkedIn save and local assets/caches, every enabled flag and
+  selector, all locked composition and earlier accepted checkpoints. No push.
+- Removal scope and recovery boundary: ../appscreen-studio/docs/STANDALONE_VIDEO_PLAN.md.
+
 ## 2026-09-12: Accepted Theme roles, picker and semantic-reference closure
 
 - Owner LGTM and the healthy 602-record capture authorize paired local closure:

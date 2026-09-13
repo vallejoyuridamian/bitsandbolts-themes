@@ -1,0 +1,129 @@
+/* Shared media overlay controls. The reveal zone remains reachable while its
+   content is hidden; keyboard focus, an open Select and touch keep it visible. */
+.bb-media-controls-zone {
+  --bb-media-controls-opacity: 0;
+  --bb-media-controls-pointer-events: none;
+  --bb-media-controls-offset: 10px;
+}
+
+.bb-media-controls-zone:is(:hover, :focus-within, :has(.bb-select.is-open)) {
+  --bb-media-controls-opacity: 1;
+  --bb-media-controls-pointer-events: auto;
+  --bb-media-controls-offset: 0px;
+}
+
+.bb-media-controls-zone .bb-media-controls-reveal {
+  opacity: var(--bb-media-controls-opacity);
+  pointer-events: var(--bb-media-controls-pointer-events);
+  transform: translateY(var(--bb-media-controls-offset));
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.bb-media-view-controls.bb-workspace-control-bar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  width: auto;
+  min-height: 46px;
+  padding-inline: 8px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  isolation: isolate;
+}
+
+.bb-media-view-controls::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--bb-v2-color-surface-canvas);
+  box-shadow: var(--bb-interface-menu-shadow);
+  backdrop-filter: blur(10px);
+  opacity: var(--bb-media-controls-opacity);
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.bb-media-view-controls__actions.bb-workspace-control-bar__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  gap: 6px;
+  flex: 0 1 auto;
+  overflow: visible;
+  padding-block: 0;
+}
+
+.bb-media-view-controls button { flex: 0 0 auto; }
+.bb-media-view-controls__actions :is(select, .bb-select) {
+  flex: 0 1 180px;
+  min-width: 140px;
+}
+.bb-media-view-controls__actions .bb-select__trigger { padding-right: 38px; }
+
+.bb-media-transport-zone {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+  width: min(884px, calc(100% - 24px));
+  height: clamp(72px, 9vh, 92px);
+  padding-bottom: clamp(8px, 1.5vh, 18px);
+  transform: translateX(-50%);
+}
+
+.bb-media-transport.bb-workspace-control-bar {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+  padding: 9px 12px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--bb-v2-color-surface-canvas);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(12px);
+  justify-content: stretch;
+}
+
+.bb-media-transport__buttons { display: flex; gap: 6px; }
+.bb-media-transport__progress {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+.bb-media-transport__time {
+  color: var(--bb-v2-color-content-secondary);
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  min-width: 54px;
+}
+.bb-media-transport__range {
+  --range-control-thumb-size: 16px;
+  --range-control-track-size: 6px;
+  width: 100%;
+}
+
+@media (hover: none) {
+  .bb-media-controls-zone {
+    --bb-media-controls-opacity: 1;
+    --bb-media-controls-pointer-events: auto;
+    --bb-media-controls-offset: 0px;
+  }
+}

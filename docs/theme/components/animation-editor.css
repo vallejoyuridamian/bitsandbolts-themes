@@ -67,6 +67,21 @@
   gap: var(--bb-spacing-2);
 }
 
+:is(.bb-layout-text-editor, .bb-animation-editor) .animation-item:focus {
+  outline: none;
+}
+
+:is(.bb-layout-text-editor, .bb-animation-editor) .animation-item.bb-animation-card-added {
+  animation: bb-animation-card-added 1000ms ease-in-out;
+}
+
+@keyframes bb-animation-card-added {
+  0%, 100% { box-shadow: 0 0 12px 2px transparent; }
+  50% {
+    box-shadow: 0 0 12px 2px color-mix(in srgb, var(--bb-interface-control-focus-ring) 65%, transparent);
+  }
+}
+
 :is(.bb-layout-text-editor, .bb-animation-editor) .animation-item-header strong {
   color: var(--bb-interface-control-foreground);
   font-size: var(--bb-font-size-sm);

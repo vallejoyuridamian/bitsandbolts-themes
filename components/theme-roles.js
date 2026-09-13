@@ -51,6 +51,41 @@ export function themeColorAssignmentVariable(role) {
   return `--bb-v2-identity-${role}-assigned`;
 }
 
+const directIdentitySemantics = Object.freeze({
+  primary: ['color.interaction.action', 'color.interaction.onAction'],
+  secondary: ['color.interaction.selected', 'color.interaction.onSelected'],
+  neutral: ['color.surface.surface', 'color.content.primary']
+});
+
+export function themeSemanticColorVariable(role) {
+  return `--bb-v2-${String(role)
+    .replaceAll('.', '-')
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .toLowerCase()}`;
+}
+
+export function themeIdentityForegroundToken(role) {
+  return role === 'accent' ? 'palette.identityAccentForeground'
+    : directIdentitySemantics[role]?.[1] ?? '';
+}
+
+// Identity variables and their direct semantic pairs do not require palette generation.
+export function themeIdentityColorVariables(identity = [], { directSemantics = false } = {}) {
+  const variables = {};
+  for (const entry of identity) {
+    const assignmentVariable = themeColorAssignmentVariable(entry.id);
+    variables[`--bb-v2-identity-${entry.id}`] = entry.value;
+    variables[`--bb-v2-identity-${entry.id}-foreground`] = entry.foreground;
+    variables[assignmentVariable] = entry.assigned === false ? '0' : '1';
+    if (directSemantics && directIdentitySemantics[entry.id]) {
+      directIdentitySemantics[entry.id].forEach((role, index) => {
+        variables[themeSemanticColorVariable(role)] = index === 0 ? entry.value : entry.foreground;
+      });
+    }
+  }
+  return variables;
+}
+
 export function themeIdentityOptions(identity = []) {
   const authored = Object.fromEntries(identity.map((entry) => [entry.id, entry.assigned === false ? null : entry]));
   return themeRoleOptions('color', authored, (entry) => String(entry.value || '').trim().toLowerCase())

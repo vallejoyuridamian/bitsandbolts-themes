@@ -1511,6 +1511,49 @@ export function applyThemeFontCapabilities(host, assignments = {}) {
   });
 }
 
+function applyThemeModeColors(preview, presentation, identityColorOverrides) {
+  for (const [name, value] of Object.entries(presentation.variables ?? {})) {
+    preview.style.setProperty(name, value);
+  }
+  const identities = presentation.identity ?? [];
+  const identityAccent = identities.find((entry) => entry.id === 'accent');
+  const identityNeutral = identities.find((entry) => entry.id === 'neutral');
+  if (identityAccent) {
+    preview.style.setProperty('--bb-theme-summary-card-accent', identityAccent.value);
+    preview.style.setProperty('--bb-theme-summary-card-on-accent', identityAccent.foreground);
+  }
+  if (identityNeutral) {
+    preview.style.setProperty('--bb-theme-v2-neutral', identityNeutral.value);
+    preview.style.setProperty('--bb-theme-v2-neutral-foreground', identityNeutral.foreground);
+  }
+  if (identities.length) {
+    preview.querySelectorAll('[data-theme-v2-identity]').forEach((swatch) => {
+      const identity = identities.find((entry) => entry.id === swatch.dataset.themeV2Identity);
+      if (identity) {
+        applyThemeIdentityColorPresentation(swatch, identity, {
+          selected: identityColorOverrides.has(identity.id)
+        });
+      }
+    });
+  }
+  if (presentation.semanticColors?.length) {
+    preview.querySelectorAll('[data-theme-v2-color-role]').forEach((swatch) => {
+      const color = presentation.semanticColors.find((entry) => entry.role === swatch.dataset.themeV2ColorRole);
+      if (color) swatch.style.setProperty('--bb-theme-v2-swatch', color.value);
+    });
+  }
+}
+
+// Color-only work composes the same retained presentation used by full settlement.
+export function applyThemeGalleryColorPresentation(host, presentation) {
+  const overrides = new Set(presentation.identityColorOverrides ?? []);
+  host?.querySelectorAll?.('[data-theme-preview-id][data-theme-preview-mode]').forEach((preview) => {
+    if (preview.dataset.themePreviewId !== presentation.themeId
+      || preview.dataset.themePreviewMode !== presentation.mode) return;
+    applyThemeModeColors(preview, presentation, overrides);
+  });
+}
+
 export function applyThemeGalleryVariables(host, catalog, selection = {}) {
   const selected = selectedTheme(catalog, selection.themeId);
   const resolvedMode = selected.v2.modes[selectedMode(selection.cardModes?.[selected.id] ?? selection.mode)];
@@ -1535,29 +1578,7 @@ export function applyThemeGalleryVariables(host, catalog, selection = {}) {
     if (!theme) return;
     const v2Mode = theme.v2?.modes?.[preview.dataset.themePreviewMode];
     if (v2Mode) {
-      for (const [name, value] of Object.entries(v2Mode.variables)) preview.style.setProperty(name, value);
-      const identityAccent = v2Mode.identity.find((entry) => entry.id === 'accent');
-      const identityNeutral = v2Mode.identity.find((entry) => entry.id === 'neutral');
-      if (identityAccent) {
-        preview.style.setProperty('--bb-theme-summary-card-accent', identityAccent.value);
-        preview.style.setProperty('--bb-theme-summary-card-on-accent', identityAccent.foreground);
-      }
-      if (identityNeutral) {
-        preview.style.setProperty('--bb-theme-v2-neutral', identityNeutral.value);
-        preview.style.setProperty('--bb-theme-v2-neutral-foreground', identityNeutral.foreground);
-      }
-      preview.querySelectorAll('[data-theme-v2-identity]').forEach((swatch) => {
-        const identity = v2Mode.identity.find((entry) => entry.id === swatch.dataset.themeV2Identity);
-        if (identity) {
-          applyThemeIdentityColorPresentation(swatch, identity, {
-            selected: identityColorOverrides.has(identity.id)
-          });
-        }
-      });
-      preview.querySelectorAll('[data-theme-v2-color-role]').forEach((swatch) => {
-        const color = v2Mode.semanticColors.find((entry) => entry.role === swatch.dataset.themeV2ColorRole);
-        if (color) swatch.style.setProperty('--bb-theme-v2-swatch', color.value);
-      });
+      applyThemeModeColors(preview, v2Mode, identityColorOverrides);
       preview.querySelectorAll('[data-theme-v2-font-specimen]').forEach((sample) => {
         const specimen = theme.v2.typography.specimens.find((entry) => entry.id === sample.dataset.themeV2FontSpecimen);
         if (!specimen) return;
