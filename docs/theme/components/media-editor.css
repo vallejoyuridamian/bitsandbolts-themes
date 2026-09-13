@@ -140,12 +140,6 @@
   pointer-events: auto;
 }
 
-.media-editor-floating-controls .control-bar-icon-button {
-  border-color: rgba(255, 255, 255, 0.18);
-  background: rgba(15, 20, 21, 0.72);
-  backdrop-filter: blur(8px);
-}
-
 .media-editor-preparing {
   position: absolute;
   z-index: 4;

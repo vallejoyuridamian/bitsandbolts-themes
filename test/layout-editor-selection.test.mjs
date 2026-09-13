@@ -33,7 +33,8 @@ test('layout editor overlays use compact screen-space metrics across shared reci
   assert.equal(layoutEditorSelectionRecipe.chromeZIndex, '2147483000');
   assert.equal(layoutEditorSelectionRecipe.hoverChromeZIndex, '2147482999');
   assert.equal(layoutEditorSelectionRecipe.snapTargetChromeZIndex, '2147482998');
-  assert.equal(layoutEditorSelectionRecipe.guideZIndex, '19');
+  assert.ok(Number(layoutEditorSelectionRecipe.guideZIndex) > 20);
+  assert.ok(Number(layoutEditorSelectionRecipe.guideZIndex) < Number(layoutEditorSelectionRecipe.snapTargetChromeZIndex));
   assert.match(layoutEditorSelectionRecipe.outlineWidth, /calc\(1px/);
   assert.match(layoutEditorSelectionRecipe.resizeHandleSize, /calc\(8px/);
   assert.equal(layoutEditorSelectionRecipe.resizeHandleBorder, '0');

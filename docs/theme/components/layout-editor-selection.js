@@ -36,7 +36,7 @@ export const layoutEditorSelectionRecipe = Object.freeze({
   drawZIndex: '2147483001',
   hoverChromeZIndex: '2147482999',
   snapTargetChromeZIndex: '2147482998',
-  guideZIndex: '19',
+  guideZIndex: '2147482996',
   zoomCompensationProperty: overlayZoomCompensationProperty,
   outlineWidth: overlayMetric(1),
   outlineStyle: 'dashed',

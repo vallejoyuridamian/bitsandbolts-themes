@@ -1,5 +1,35 @@
 # Bits and Bolts Themes - Changelog
 
+## 2026-09-13: Accepted 125-file paired checkpoint
+
+- Owner authorizes all 14 Themes files and the original 110 AppScreen files.
+  One later tracked Guest save brings AppScreen to 111 and the total to 125.
+  Include shared typed animation drafts, the existing one-second attention and
+  ordering contract, selection guide layering, icon-only media-editor controls,
+  generated web/docs copies, tests and project rules/memory.
+- Earlier focused checks, syntax, generation and parity stand within recorded
+  scope; no new build, browser action or source/generated change during closure.
+  Unrun individual checklists are not newly claimed as executed.
+- AppScreen vertical cadence exploration is parked until after launch. Next
+  priority is owner-directed Video Demo 2, with no new Themes implementation
+  cluster. Preserve all recipes, assets, saved content, diagnostics and locks.
+- Closure audit: ../appscreen-studio/docs/STANDALONE_VIDEO_PLAN.md, Accepted
+  125-file closure. Paired HEADs and context-only Debug startup are recorded in
+  ../appscreen-studio/HANDOFF.md. No push.
+
+## 2026-09-13: Shared typed animation placement drafts
+
+- Animation-editor accepts typed pending creation through injected completion,
+  cancellation and domain edge placement. Close/retarget cleanup, stable card
+  focus, one-second pulse and ordering remain shared. AppScreen uses it for Z
+  Zoom placement on the next click, without model/history changes before commit.
+- Fifty-five focused AppScreen checks, 17 changed-source syntax checks, Themes
+  generation and four source/web/docs comparisons pass. Existing 39 token
+  collisions and a baseline AppScreen audio-toolbar assertion remain separate.
+  Owner browser review is next; existing media-editor Back/zoom review stays
+  pending. Preserve owner data/assets/diagnostics and restore points. No push
+  or commit. Plan: ../appscreen-studio/docs/LAYOUT_ADD_AND_ZOOM_SHORTCUT_PLAN.md.
+
 ## 2026-09-12: Restore point before removing editing copies
 
 - Owner explicitly requests this local checkpoint before complete editing-copy

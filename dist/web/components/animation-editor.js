@@ -45,12 +45,14 @@ export function syncAnimationCardOrder(root, orderedIds = []) {
     focusRestored: focusDisplaced && list.ownerDocument.activeElement === activeElement };
 }
 
-export function createAnimationEditorController({ root, eventRouter, reveal, getTypes = () => [], selectType, enhanceSelect, onItemsChanged = () => {} } = {}) {
+export function createAnimationEditorController({ root, eventRouter, reveal, getTypes = () => [], getDraftBeforeId = () => '', selectType, enhanceSelect, onItemsChanged = () => {}, onError } = {}) {
   let cardIds = null;
   let highlighted = null;
   let nextDraftId = 0;
   let selectingDraft = '';
   const drafts = new Map();
+  const pendingDrafts = new Map();
+  const presetDrafts = new Set();
   const draftOptions = new WeakMap();
   const clearHighlight = () => {
     highlighted?.classList.remove('bb-animation-card-added');
@@ -74,40 +76,51 @@ export function createAnimationEditorController({ root, eventRouter, reveal, get
   }
   function renderDrafts({ reset = false } = {}) {
     if (reset) {
-      drafts.forEach((card) => card.remove());
-      drafts.clear();
+      [...drafts.keys()].forEach((id) => removeDraft(id, { notify: false }));
     }
     if (!drafts.size) return;
     const list = root.querySelector('.animation-list');
     drafts.forEach((card, id) => {
       if (id === selectingDraft) return;
-      if (card.parentElement !== list) list.append(card);
+      const beforeId = presetDrafts.has(id) ? getDraftBeforeId() : '';
+      const before = beforeId ? [...list.children].find((node) => node.dataset?.animationCardId === beforeId) : null;
+      if (before) list.insertBefore(card, before);
+      else if (card.parentElement !== list) list.append(card);
       const select = card.querySelector('[data-animation-draft-type]');
       const options = animationTypeOptionsMarkup(getTypes(), { placeholder: true });
       if (draftOptions.get(select) !== options) {
         select.innerHTML = options;
         draftOptions.set(select, options);
       }
+      const pending = pendingDrafts.get(id);
+      if (pending) { select.value = pending.type; select.disabled = true; }
       enhanceSelect?.(select);
     });
   }
-  function addDraft() {
+  function addDraft({ type = '', options = {} } = {}) {
     const list = root.querySelector('.animation-list');
     if (!list || !getTypes().length) return false;
+    const preset = type ? getTypes().find((entry) => entry.value === type && !entry.disabled) : null;
+    if (type && !preset) return false;
     const id = `animation-draft-${++nextDraftId}`;
     const template = root.ownerDocument.createElement('template');
-    template.innerHTML = animationCardMarkup({ id, attributes: { 'data-animation-draft': id },
+    template.innerHTML = animationCardMarkup({ id, summary: preset?.label || '', attributes: { 'data-animation-draft': id },
       removeAttributes: { 'data-animation-draft-remove': id },
       contentMarkup: `<label>Type<select data-animation-draft-type="${id}">${animationTypeOptionsMarkup(getTypes(), { placeholder: true })}</select></label>` });
     drafts.set(id, template.content.firstElementChild);
+    if (preset) presetDrafts.add(id);
     renderDrafts();
     onItemsChanged();
-    return true;
+    return preset ? chooseType(id, preset.value, options) : true;
   }
   function removeDraft(id, { notify = true } = {}) {
     const card = drafts.get(id);
     if (!card) return false;
     drafts.delete(id);
+    presetDrafts.delete(id);
+    const pending = pendingDrafts.get(id);
+    pendingDrafts.delete(id);
+    pending?.cancel?.();
     card.remove();
     if (notify) onItemsChanged();
     return true;
@@ -118,21 +131,38 @@ export function createAnimationEditorController({ root, eventRouter, reveal, get
     const remove = event.target?.closest?.('[data-animation-draft-remove]');
     if (remove && root.contains(remove)) removeDraft(remove.dataset.animationDraftRemove);
   });
-  eventRouter.bind(root, 'change', (event) => {
-    const select = event.target;
-    const id = select?.dataset?.animationDraftType;
-    if (!drafts.has(id)) return;
-    const type = getTypes().find(({ value, disabled }) => value === select.value && !disabled);
-    if (!type) { select.value = ''; return; }
+  function chooseType(id, value, options = {}) {
+    const card = drafts.get(id);
+    if (!card || pendingDrafts.has(id)) return false;
+    const select = card.querySelector('[data-animation-draft-type]');
+    const type = getTypes().find((entry) => entry.value === value && !entry.disabled);
+    if (!type) { select.value = ''; return false; }
     selectingDraft = id;
     try {
-      if (selectType?.(type.value) === true) removeDraft(id, { notify: false });
+      const result = selectType?.(type.value, options);
+      if (result?.completion && typeof result.cancel === 'function') {
+        const pending = { ...result, type: type.value };
+        pendingDrafts.set(id, pending);
+        const finish = () => {
+          if (pendingDrafts.get(id) !== pending) return;
+          pendingDrafts.delete(id);
+          removeDraft(id);
+        };
+        Promise.resolve(result.completion).then(finish, (error) => { finish(); onError?.(error); });
+        return true;
+      }
+      if (result === true) removeDraft(id, { notify: false });
+      else if (presetDrafts.has(id)) removeDraft(id, { notify: false });
       else select.value = '';
+      return result === true;
     } finally {
       selectingDraft = '';
       renderDrafts();
       onItemsChanged();
     }
+  }
+  eventRouter.bind(root, 'change', (event) => {
+    chooseType(event.target?.dataset?.animationDraftType, event.target?.value);
   });
   function sync({ reset = false } = {}) {
     const cards = [...root.querySelectorAll('.animation-list > [data-animation-card-id]')];

@@ -67,7 +67,7 @@ components, and generators for supported platforms.
   event. The controller owns that router's disposal and never binds standalone listeners.
 - The shared window content body owns outer padding and spacing for fields, labels,
   controls, and cards. Subtype editors inherit it; never recreate or cancel that inset.
-- Animation-editor owns empty drafts, close/retarget cleanup, stable-ID focus/scroll with a 1-second pulse on Add/selected-card opening, and in-place card order with focus preservation. Animation-order owns chronology and indexed labels. Consumers project domain edge priorities/label cohorts and supply types/creation, Select enhancement, scroll owner and event router; no subtype-local attention policy.
+- Animation-editor owns empty drafts, close/retarget cleanup, stable-ID focus/scroll with a 1-second pulse on Add/selected-card opening, and in-place card order with focus preservation. Typed shortcut drafts share this owner with injected completion/cancellation and domain edge placement; pending creation never owns model mutation. Animation-order owns chronology and indexed labels. Consumers project domain edge priorities/label cohorts and supply types/creation, Select enhancement, scroll owner and event router; no subtype-local attention policy.
 - Before adding a component or presentation recipe, search Themes and accepted
   consumers for the same visual role. When that role exists only inside a
   legacy page-specific recipe, extract one abstract Themes recipe and migrate
