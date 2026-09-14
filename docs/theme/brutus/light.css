@@ -51,6 +51,7 @@
   --bb-v2-color-status-danger-surface: #000000;
   --bb-v2-color-status-danger-content: #FFFFFF;
   --bb-v2-color-status-danger-border: #000000;
+  --bb-v2-button-current-color-hover-filter: drop-shadow(0 0 5px color-mix(in srgb, currentColor 62%, transparent));
   --bb-v2-identity-primary: #FF3333;
   --bb-v2-identity-primary-foreground: #000000;
   --bb-v2-identity-secondary: #FFFF00;

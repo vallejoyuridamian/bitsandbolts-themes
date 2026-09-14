@@ -29,26 +29,38 @@ function attributesMarkup(attributes = {}) {
 const SEMANTIC_ACTION_RECIPES = Object.freeze({
   text: Object.freeze(['bb-btn', 'bb-btn-text']),
   workspace: Object.freeze(['bb-workspace-control-button']),
+  card: Object.freeze(['bb-workspace-control-button', 'bb-workspace-control-button--plain-icon', 'bb-card-action']),
   workspaceAdd: Object.freeze(['bb-workspace-add-tile'])
 });
+
+export function actionDataAttributes(dataset = {}) {
+  return Object.fromEntries(Object.entries(dataset)
+    .filter(([, value]) => value != null && value !== '')
+    .map(([key, value]) => [
+      `data-${key.replace(/([a-z0-9])([A-Z])/g, '$1-$2').replaceAll('_', '-').toLowerCase()}`, value
+    ]));
+}
 
 export function semanticActionButtonMarkup(model = {}) {
   const label = String(model.label || '').trim();
   const iconRole = String(model.iconRole || '').trim();
   const recipe = String(model.recipe || 'workspace');
   const recipeClasses = SEMANTIC_ACTION_RECIPES[recipe];
-  if (!label || !iconRole || !recipeClasses) {
-    throw new TypeError('A semantic action button requires a label, icon role, and supported recipe.');
-  }
   const iconOnly = model.iconOnly !== false;
+  if (!label || (iconOnly && !iconRole) || !recipeClasses) {
+    throw new TypeError('A semantic action button requires a label, a supported recipe, and an icon role for icon-only actions.');
+  }
   const classes = [
     ...recipeClasses,
     ...(recipe === 'workspace' && iconOnly ? ['bb-workspace-control-button--icon'] : []),
-    ...(recipe === 'workspace' && !iconOnly ? ['bb-workspace-control-button--icon-label'] : []),
+    ...(recipe === 'workspace' && !iconOnly && iconRole ? ['bb-workspace-control-button--icon-label'] : []),
     ...(recipe === 'workspace' && model.danger ? ['bb-workspace-control-button--danger'] : []),
     ...String(model.className || '').split(/\s+/).filter(Boolean)
   ];
   const attributes = {
+    ...actionDataAttributes(model.dataset),
+    // The shared recipe owns these controls, including inside generic panels.
+    ...(recipe === 'card' ? { 'data-bb-theme-control': true } : {}),
     ...(model.id ? { id: model.id } : {}),
     'aria-label': model.ariaLabel || label,
     title: model.help || model.ariaLabel || label,
@@ -57,10 +69,10 @@ export function semanticActionButtonMarkup(model = {}) {
     ...(model.tabIndex !== undefined ? { tabindex: model.tabIndex } : {}),
     ...(model.attributes ?? {})
   };
-  const icon = model.iconMarkup || semanticIconMarkup(iconRole, '', {
+  const icon = model.iconMarkup || (iconRole ? semanticIconMarkup(iconRole, '', {
     family: model.iconFamily || DEFAULT_SEMANTIC_ICON_FAMILY
-  });
-  const iconWrapper = `<span class="bb-workspace-control-icon" aria-hidden="true">${icon}</span>`;
+  }) : '');
+  const iconWrapper = icon ? `<span class="bb-workspace-control-icon" aria-hidden="true">${icon}</span>` : '';
   const labelClass = recipe === 'workspace' ? ' class="bb-workspace-control-label"' : '';
   const body = `${iconWrapper}${iconOnly ? '' : `<span${labelClass}>${escapeHtml(label)}</span>`}`;
   return `<button type="${escapeHtml(model.type || 'button')}" class="${classes.map(escapeHtml).join(' ')}"${attributesMarkup(attributes)}>${body}</button>`;
@@ -80,4 +92,36 @@ export function buttonMarkup(model = {}) {
   const form = model.form ? ` form="${escapeHtml(model.form)}"` : '';
   const disabled = model.disabled ? ' disabled' : '';
   return `<button type="${escapeHtml(model.type ?? 'button')}"${form} class="bb-btn${appearance}${size}"${disabled}>${escapeHtml(model.label)}</button>`;
+}
+
+// Card contents and action placement vary; icon presentation and state do not.
+export function cardActionButtonMarkup({
+  iconRole = '', activeIconRole = '', active = false, className = '',
+  label = '', title = '', ariaLabel = '', dataset = {}, disabled = false
+} = {}) {
+  const favorite = iconRole === 'favorite';
+  const offRole = favorite ? 'favorite_outline' : iconRole;
+  const onRole = favorite ? 'favorite' : activeIconRole;
+  const actionLabel = favorite ? favoriteActionLabel(active) : ariaLabel || title || label;
+  const iconMarkup = `<span class="bb-card-action__icon bb-card-action__icon--default">${semanticIconMarkup(offRole)}</span>${onRole ? `<span class="bb-card-action__icon bb-card-action__icon--active">${semanticIconMarkup(onRole)}</span>` : ''}`;
+  return semanticActionButtonMarkup({
+    recipe: 'card', iconRole: offRole, iconMarkup, label: actionLabel, disabled, dataset,
+    help: favorite ? actionLabel : title || actionLabel,
+    className: [className, favorite ? 'bb-card-action--favorite bb-workspace-control-button--hover-feedback' : '', favorite && active ? 'is-favorite' : ''].filter(Boolean).join(' '),
+    attributes: {
+      ...(favorite ? { 'aria-pressed': String(active) } : {})
+    }
+  });
+}
+
+function favoriteActionLabel(active) {
+  return active ? 'Remove from Favorites' : 'Add to Favorites';
+}
+
+export function setCardActionFavorite(button, active) {
+  if (!button) return;
+  button.classList.toggle('is-favorite', Boolean(active));
+  button.setAttribute('aria-pressed', String(Boolean(active)));
+  button.title = favoriteActionLabel(active);
+  button.setAttribute('aria-label', button.title);
 }

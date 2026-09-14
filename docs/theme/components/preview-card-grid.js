@@ -1,3 +1,5 @@
+export const PREVIEW_CARD_PREFERRED_COLUMNS = 5;
+
 function positiveWidth(value) {
   const width = Number.parseFloat(value);
   return Number.isFinite(width) && width > 0 ? width : 0;
@@ -10,17 +12,20 @@ export function syncPreviewCardGridWidths(root, { selector, onMeasured = null } 
     ? [root]
     : [...(root?.querySelectorAll?.(selector) ?? [])];
   if (!grids.length) return 0;
-  const view = grids[0].ownerDocument?.defaultView;
-  const width = positiveWidth(view?.getComputedStyle?.(grids[0])?.getPropertyValue('--bb-preview-card-width'));
-  if (!width) throw new Error('Preview cards require the shared Themes width recipe.');
-  grids.forEach((grid) => {
+  const widths = grids.map((grid) => {
+    const view = grid.ownerDocument?.defaultView;
+    const width = positiveWidth(view?.getComputedStyle?.(grid)?.getPropertyValue('--bb-preview-card-width'));
+    if (!width) throw new Error('Preview cards require the shared Themes width recipe.');
+    return width;
+  });
+  grids.forEach((grid, index) => {
     if (grid.hasAttribute?.('data-floating-window-responsive-grid')) {
-      grid.dataset.floatingWindowGridItemWidth = String(width);
+      grid.dataset.floatingWindowGridItemWidth = String(widths[index]);
     }
   });
   onMeasured?.({
     phase: 'sync', mode: 'fixed-recipe', gridCount: grids.length,
-    measuredCount: 0, width, durationMs: Math.round((performance.now() - startedAt) * 10) / 10
+    measuredCount: 0, width: Math.max(...widths), durationMs: Math.round((performance.now() - startedAt) * 10) / 10
   });
   return grids.length;
 }

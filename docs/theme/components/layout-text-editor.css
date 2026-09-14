@@ -44,7 +44,7 @@
   scrollbar-width: thin;
 }
 
-.bb-layout-text-editor--toolbar .bb-layout-text-editor__field-label {
+.bb-layout-text-editor--toolbar .bb-layout-text-editor__field-label:not(.bb-layout-text-editor__range-head > *) {
   display: none;
 }
 

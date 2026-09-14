@@ -1,0 +1,70 @@
+/* Shared light, edge and depth for handles, ranges, progress and scrolling.
+   Geometry remains with each control; these values reproduce the window grip. */
+:where(.bb-linear-control, .bb-linear-splitter, .bb-floating-window__grip, .bb-scrollbar__thumb,
+  .bb-scrollbars, .bb-scrollbar, .bb-theme-gallery, .bb-progress__track,
+  .bb-progress__fill, .bb-range-control, .range-control, .bb-range-controls input[type="range"]) {
+  --bb-linear-direction-horizontal: 90deg;
+  --bb-linear-direction-vertical: 180deg;
+  --bb-linear-direction: var(--bb-linear-direction-horizontal);
+  --bb-linear-border: 1px solid color-mix(in srgb, var(--bb-v2-identity-primary) 20%, transparent);
+  --bb-linear-border-active: 2px solid color-mix(in srgb, var(--bb-v2-identity-primary) 78%, transparent);
+  --bb-linear-stops:
+    color-mix(in srgb, var(--bb-v2-identity-primary) 4%, transparent),
+    color-mix(in srgb, var(--bb-v2-identity-primary) 30%, transparent),
+    color-mix(in srgb, var(--bb-v2-identity-primary) 4%, transparent);
+  --bb-linear-stops-active:
+    color-mix(in srgb, var(--bb-v2-identity-primary) 28%, transparent),
+    var(--bb-v2-identity-primary),
+    color-mix(in srgb, var(--bb-v2-identity-primary) 28%, transparent);
+  --bb-linear-shadow: inset 0 0 4px color-mix(in srgb, var(--bb-interface-control-hover-foreground) 5%, transparent),
+    0 0 6px color-mix(in srgb, var(--bb-v2-identity-primary) 7%, transparent);
+  --bb-linear-shadow-active: inset 0 0 6px color-mix(in srgb, var(--bb-interface-control-hover-foreground) 22%, transparent),
+    0 0 10px color-mix(in srgb, var(--bb-v2-identity-primary) 32%, transparent);
+  --bb-linear-edge-width: 1px;
+  --bb-linear-edge: var(--bb-linear-border);
+  --bb-linear-fill: var(--bb-linear-stops);
+  --bb-linear-depth: var(--bb-linear-shadow);
+}
+
+.bb-linear-control--vertical,
+.bb-scrollbar__thumb[data-scrollbar-thumb="y"] { --bb-linear-direction: var(--bb-linear-direction-vertical); }
+
+:is(.bb-linear-control, .bb-linear-splitter, .bb-floating-window__grip, .bb-scrollbar__thumb,
+  .bb-progress__track, .bb-progress__fill, .bb-range-control, .range-control,
+  .bb-range-controls input[type="range"]):is(:hover, :focus-visible, :active, .is-active),
+.bb-scrollbar__target.is-scrolling ~ .bb-scrollbar__track .bb-scrollbar__thumb,
+.bb-progress__track:is(:hover, :focus-visible, :active) > .bb-progress__fill,
+.bb-range-control:has(> input:is(:focus-visible, :active, .is-active)),
+.bb-linear-splitter:is(:hover, .is-dragging) {
+  --bb-linear-edge-width: 2px;
+  --bb-linear-edge: var(--bb-linear-border-active);
+  --bb-linear-fill: var(--bb-linear-stops-active);
+  --bb-linear-depth: var(--bb-linear-shadow-active);
+}
+
+:is(.bb-linear-control, .bb-floating-window__grip, .bb-scrollbar__thumb, .bb-progress__fill),
+.bb-range-control__rail::before,
+.bb-linear-splitter::before {
+  box-sizing: border-box;
+  border: var(--bb-linear-edge);
+  border-radius: var(--bb-radius-full);
+  background: linear-gradient(var(--bb-linear-direction), var(--bb-linear-fill));
+  box-shadow: var(--bb-linear-depth);
+}
+
+.bb-linear-splitter {
+  position: relative;
+  min-height: 8px;
+  cursor: row-resize;
+  background: transparent;
+}
+.bb-linear-splitter::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 74px;
+  height: 3px;
+  translate: -50% -50%;
+  pointer-events: none;
+}

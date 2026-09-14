@@ -51,6 +51,7 @@
   --bb-v2-color-status-danger-surface: oklch(0.5624 0.1743 26.1433);
   --bb-v2-color-status-danger-content: oklch(1 0 0);
   --bb-v2-color-status-danger-border: oklch(0.5624 0.1743 26.1433);
+  --bb-v2-button-current-color-hover-filter: drop-shadow(0 0 5px color-mix(in srgb, currentColor 62%, transparent));
   --bb-v2-identity-primary: oklch(0.6333 0.0309 154.9039);
   --bb-v2-identity-primary-foreground: oklch(0.2417 0.0298 269.8827);
   --bb-v2-identity-secondary: oklch(0.8242 0.0221 136.6092);
@@ -347,6 +348,7 @@
   --bb-v2-color-status-danger-surface: oklch(0.6368 0.2078 25.3313);
   --bb-v2-color-status-danger-content: oklch(1 0 0);
   --bb-v2-color-status-danger-border: oklch(0.6368 0.2078 25.3313);
+  --bb-v2-button-current-color-hover-filter: drop-shadow(0 0 5px color-mix(in srgb, currentColor 62%, transparent));
   --bb-v2-identity-primary: oklch(0.6333 0.0309 154.9039);
   --bb-v2-identity-primary-foreground: oklch(0 0 0);
   --bb-v2-identity-secondary: oklch(0.3709 0.0248 153.9823);

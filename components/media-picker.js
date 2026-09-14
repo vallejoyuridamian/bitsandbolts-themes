@@ -1,7 +1,9 @@
-import { semanticActionButtonMarkup } from './button.js';
+import { actionDataAttributes, cardActionButtonMarkup, semanticActionButtonMarkup } from './button.js';
+export { setCardActionFavorite } from './button.js';
 import { semanticIconMarkup } from './semantic-icons.js';
 import { syncPreviewCardGridWidths } from './preview-card-grid.js';
 export { pickerSearchMarkup } from './picker-search.js';
+export { PREVIEW_CARD_PREFERRED_COLUMNS } from './preview-card-grid.js';
 
 function escapeHtml(value) {
   return String(value ?? '')
@@ -12,17 +14,9 @@ function escapeHtml(value) {
     .replaceAll("'", '&#39;');
 }
 
-function dashCase(value = '') {
-  return String(value)
-    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
-    .replaceAll('_', '-')
-    .toLowerCase();
-}
-
 function actionDataset(action = {}, escapeAttribute = escapeHtml) {
-  return Object.entries(action)
-    .filter(([, value]) => value != null && value !== '')
-    .map(([key, value]) => `data-${dashCase(key)}="${escapeAttribute(value)}"`)
+  return Object.entries(actionDataAttributes(action))
+    .map(([key, value]) => `${key}="${escapeAttribute(value)}"`)
     .join(' ');
 }
 
@@ -63,6 +57,58 @@ export function mediaAssetKindLabel(kind = '') {
 
 export function mediaAssetAddLabel(kind = '') {
   return `Add ${mediaAssetKindLabel(kind)}`;
+}
+
+export function mediaAssetUploadLabel(kind = '') {
+  return `Upload ${mediaAssetKindLabel(kind)}`;
+}
+
+// Source pixels supply only the aspect ratio. Available space owns display size.
+export function fitMediaGeometry(source = {}, bounds = {}) {
+  const width = Number(source.width), height = Number(source.height);
+  const maxWidth = Number(bounds.width), maxHeight = Number(bounds.height);
+  if (![width, height, maxWidth, maxHeight].every((value) => Number.isFinite(value) && value > 0)) return null;
+  const scale = Math.min(maxWidth / width, maxHeight / height);
+  return { width: width * scale, height: height * scale };
+}
+
+export function applyMediaPreviewOverlayGeometry(overlay, source, viewport) {
+  const geometry = fitMediaGeometry(source, {
+    width: Math.min(viewport.width * 0.8, 1080, (viewport.width - 72) / 1.1),
+    height: Math.min(viewport.height * 0.8, 760, (viewport.height - 72) / 1.1)
+  });
+  if (!geometry) throw new TypeError('Media preview requires positive source and viewport dimensions.');
+  // Magnification must enlarge even an SVG whose authored viewport is tiny.
+  const zoomScale = Math.max(1, geometry.width * 2 / source.width);
+  for (const [name, size] of Object.entries(geometry)) {
+    overlay.style.setProperty(`--bb-media-preview-fit-${name}`, `${size}px`);
+    overlay.style.setProperty(`--bb-media-preview-zoom-${name}`, `${source[name] * zoomScale}px`);
+  }
+  return geometry;
+}
+
+export function mediaPreviewOverlayMarkup({ kind = 'image', sourceUrl = '' } = {}) {
+  const isVideo = kind === 'video';
+  const media = isVideo
+    ? `<video class="bb-media-preview-overlay__media" src="${escapeHtml(sourceUrl)}" autoplay muted playsinline loop data-media-preview-overlay-media></video>`
+    : `<img class="bb-media-preview-overlay__media" src="${escapeHtml(sourceUrl)}" alt="" draggable="false" data-media-preview-overlay-media>`;
+  const backgroundToggle = isVideo ? '' : semanticActionButtonMarkup({
+    label: 'White background', iconOnly: false, help: 'Use white preview background',
+    dataset: { mediaPreviewOverlayBackgroundToggle: 'true' },
+    attributes: { 'aria-pressed': 'false' }
+  });
+  return `
+    <div class="bb-workspace-control-bar bb-media-view-controls bb-media-controls-zone" data-media-preview-overlay-toolbar>
+      <div class="bb-workspace-control-bar__actions bb-media-view-controls__actions bb-media-controls-reveal">${backgroundToggle}</div>
+      ${semanticActionButtonMarkup({
+        label: 'Close preview', iconRole: 'close', help: 'Close (Escape)',
+        dataset: { mediaPreviewOverlayClose: 'true' }
+      })}
+    </div>
+    <div class="bb-media-preview-overlay__stage" data-media-preview-overlay-stage>
+      <div class="bb-media-preview-overlay__frame">${media}</div>
+    </div>
+  `;
 }
 
 export function mediaAssetFormatLabel(kind = '') {
@@ -303,7 +349,7 @@ export class MediaPreviewCard extends MediaPreviewElement {
           iconStyle
         })}
         ${statusHtml}
-        ${overlayActions.length ? `<div class="bb-media-card__overlay-actions vault-card-overlay-actions media-preview-card-overlay-actions">${overlayActions.map((action) => this.renderAction(action)).join('')}</div>` : ''}
+        ${overlayActions.length ? `<div class="bb-media-card__overlay-actions vault-card-overlay-actions media-preview-card-overlay-actions">${overlayActions.map(cardActionButtonMarkup).join('')}</div>` : ''}
         ${showBody
           ? `<div class="bb-media-card__body vault-card-body media-preview-card-body">
             ${showBodyLabel ? `<strong title="${safeLabel}">${this.escapeHtml(displayLabel)}</strong>` : ''}
@@ -356,29 +402,21 @@ export class MediaPreviewCard extends MediaPreviewElement {
   renderIconCard({
     item = {},
     label = item.label || 'Icon',
-    className = '',
-    dataset = {},
-    presentation = mediaPreviewCardPresentations.full,
-    selectable = false,
-    selected = false
+    ...options
   } = {}) {
     return this.renderCard({
+      ...options,
       kind: 'icon',
       path: item.path || '',
       label,
       iconFamily: item.iconFamily || '',
       iconRole: item.iconRole || '',
-      iconStyle: item.iconStyle || '',
-      className,
-      dataset,
-      presentation,
-      selectable,
-      selected
+      iconStyle: item.iconStyle || ''
     });
   }
 
-  syncFontCardGridWidths(root = globalThis.document, { onMeasured = null } = {}) {
-    return syncPreviewCardGridWidths(root, { selector: '.bb-font-preview-card-grid', onMeasured });
+  syncCardGridWidths(root = globalThis.document, { onMeasured = null } = {}) {
+    return syncPreviewCardGridWidths(root, { selector: '.bb-media-card-grid.bb-preview-card-grid', onMeasured });
   }
 
   renderDeviceCard({
@@ -419,9 +457,7 @@ export class MediaPreviewCard extends MediaPreviewElement {
 
   renderAddCard({
     kind = '',
-    label = mediaAssetAddLabel(kind),
-    subtitle = 'Media library',
-    formats = mediaAssetFormatLabel(kind),
+    label = mediaAssetUploadLabel(kind),
     className = '',
     dataset = {},
     presentation = mediaPreviewCardPresentations.full,
@@ -433,18 +469,15 @@ export class MediaPreviewCard extends MediaPreviewElement {
       'bb-media-add-card',
       reduced ? 'bb-media-card--reduced' : 'bb-media-card--full',
       'vault-card',
-      'vault-add-card',
-      'media-preview-add-card',
+      kind === 'font' ? 'bb-font-preview-card' : '',
       className
     ].filter(Boolean).join(' ');
     const attrs = actionDataset(dataset, this.escapeAttribute);
     return `
-      <button type="button" class="${this.escapeAttribute(cardClass)}" ${attrs} title="${this.escapeAttribute(title)}">
-        <span class="bb-media-add-card__preview vault-add-card-thumb" aria-hidden="true">${semanticIconMarkup('add')}</span>
-        <span class="bb-media-card__body bb-media-add-card__body vault-card-body vault-add-card-body">
+      <button type="button" class="${this.escapeAttribute(cardClass)}" data-bb-theme-control ${attrs} title="${this.escapeAttribute(title)}">
+        <span class="bb-media-add-card__preview" aria-hidden="true">${semanticIconMarkup('add')}</span>
+        <span class="bb-media-card__body bb-media-add-card__body">
           <strong>${this.escapeHtml(label)}</strong>
-          <span>${this.escapeHtml(subtitle)}</span>
-          ${!reduced && formats ? `<span class="bb-media-add-card__formats vault-add-card-formats">${this.escapeHtml(formats)}</span>` : ''}
         </span>
       </button>
     `;
@@ -459,8 +492,6 @@ export class MediaPreviewCard extends MediaPreviewElement {
 
   renderAction({
     label = '',
-    iconRole = '',
-    activeIconRole = '',
     dataset = {},
     className = '',
     disabled = false,
@@ -469,17 +500,10 @@ export class MediaPreviewCard extends MediaPreviewElement {
     ariaLabel = ''
   } = {}) {
     const attrs = actionDataset(dataset, this.escapeAttribute);
-    if (iconRole === 'favorite') {
-      iconRole = 'favorite_outline';
-      activeIconRole = 'favorite';
-    }
-    const icon = iconRole
-      ? `<span class="bb-media-action__icon bb-media-action__icon--default">${semanticIconMarkup(iconRole)}</span>${activeIconRole ? `<span class="bb-media-action__icon bb-media-action__icon--active">${semanticIconMarkup(activeIconRole)}</span>` : ''}`
-      : '';
     const progress = busy
       ? `<span class="bb-media-action__progress">${semanticIconMarkup('progress')}</span>`
       : '';
-    const body = `${progress}${icon}${label ? `<span>${this.escapeHtml(label)}</span>` : ''}`;
+    const body = `${progress}${label ? `<span>${this.escapeHtml(label)}</span>` : ''}`;
     return `<button type="button" class="bb-media-action ${this.escapeAttribute(className)}" ${attrs}${disabled ? ' disabled' : ''}${busy ? ' aria-busy="true"' : ''}${title ? ` title="${this.escapeAttribute(title)}"` : ''}${ariaLabel ? ` aria-label="${this.escapeAttribute(ariaLabel)}"` : ''}>${body}</button>`;
   }
 
@@ -568,7 +592,6 @@ export function referenceImagePickerMarkup({
   const dropTarget = source ? preview : new MediaPreviewCard().renderAddCard({
     kind: 'image',
     label: 'Drop an image here',
-    subtitle: 'or click to choose',
     title: 'Drop an image here or choose from the media picker',
     className: 'bb-media-drop-target bb-field__control',
     dataset: { themeReferenceImageAction: 'choose' },

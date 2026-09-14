@@ -19,6 +19,7 @@ import StyleDictionary from 'style-dictionary';
 import * as fontAwesomeSolidIcons from '@fortawesome/free-solid-svg-icons';
 import * as fontAwesomeRegularIcons from '@fortawesome/free-regular-svg-icons';
 import { SEMANTIC_ICON_FAMILIES } from './components/semantic-icons.js';
+import { normalizeThemeCatalog } from './components/theme-gallery.js';
 import {
   readdirSync,
   copyFileSync,
@@ -1236,6 +1237,10 @@ function buildV2CatalogPayload(theme) {
       `--bb-v2-${kebabCase(path)}`,
       value,
     ]));
+    // A colored action reuses the Theme's exact glyph effect with its own ink.
+    const interfaceVariables = cssVariablesFromGeneratedFile(`dist/web/${theme}/${mode}.css`);
+    variables['--bb-v2-button-current-color-hover-filter'] = interfaceVariables['--bb-interface-button-plain-icon-hover-filter']
+      .replaceAll('var(--bb-v2-identity-primary)', 'currentColor');
     for (const entry of identity) {
       variables[`--bb-v2-identity-${kebabCase(entry.id)}`] = entry.value;
       variables[`--bb-v2-identity-${kebabCase(entry.id)}-foreground`] = entry.foreground;
@@ -1348,6 +1353,8 @@ const catalog = {
   }),
 };
 
+// Generated catalogs must satisfy the same admission contract as their consumers.
+normalizeThemeCatalog(catalog);
 writeFileSync('dist/web/catalog.json', `${JSON.stringify(catalog, null, 2)}\n`);
 process.stdout.write('  [web/catalog.json] done\n');
 

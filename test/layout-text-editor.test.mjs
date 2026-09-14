@@ -64,7 +64,7 @@ test('layout text editor owns numeric and continuous appearance controls', () =>
   assert.match(numeric, /aria-label="Width"/);
   assert.match(range, /bb-layout-text-editor__range-field/);
   assert.match(range, /data-layout-opacity=""/);
-  assert.match(range, />65%<\/output>/);
+  assert.match(range, />65 %<\/output>/);
 });
 
 function classList() {
@@ -112,7 +112,7 @@ test('layout text editor composes shared animation and property recipes', async 
   assert.match(animationCss, /:is\(\.bb-layout-text-editor, \.bb-animation-editor\) \.animation-item/);
   const propertyCss = await readFile(new URL('../components/property-editor.css', import.meta.url), 'utf8');
   assert.match(css, /property-editor\.css/);
-  assert.match(propertyCss, /:is\(\.bb-layout-text-editor, \.bb-property-editor\) \.range-control/);
+  assert.match(propertyCss, /@import url\("\.\/range-control\.css"\)/);
   assert.match(css, /\.bb-layout-text-editor__range-field/);
   assert.match(css, /\.bb-layout-text-editor input\[type="color"\]/);
   assert.match(css, /\.bb-layout-text-editor\.bb-layout-text-editor--toolbar/);

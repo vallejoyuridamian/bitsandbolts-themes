@@ -1,3 +1,5 @@
+@import url("./linear-control.css");
+
 .bb-progress { display: grid; min-width: 0; gap: var(--bb-spacing-2); }
 .bb-progress__heading { display: flex; align-items: center; justify-content: space-between; gap: var(--bb-spacing-3); }
 .bb-progress__label, .bb-progress__value { margin: 0; }
@@ -14,26 +16,37 @@
 .bb-progress__track {
   display: block;
   width: 100%;
-  height: var(--bb-spacing-2);
-  overflow: hidden;
-  border: 0;
+  box-sizing: border-box;
+  height: var(--bb-progress-height, var(--bb-spacing-2));
+  overflow: visible;
+  border: var(--bb-linear-edge);
   border-radius: var(--bb-radius-full);
-  background: var(--bb-v2-color-surface-sunken);
+  background: transparent;
+  box-shadow: var(--bb-linear-depth);
   appearance: none;
 }
 
 .bb-progress__track::-webkit-progress-bar {
   border-radius: var(--bb-radius-full);
-  background: var(--bb-v2-color-surface-sunken);
+  background: transparent;
 }
 
 .bb-progress__track::-webkit-progress-value {
   border-radius: var(--bb-radius-full);
-  background: var(--bb-v2-color-content-brand);
+  background: linear-gradient(var(--bb-linear-direction), var(--bb-linear-fill));
+  box-shadow: var(--bb-linear-depth);
 }
 
 .bb-progress__track::-moz-progress-bar {
   border-radius: var(--bb-radius-full);
-  background: var(--bb-v2-color-content-brand);
+  background: linear-gradient(var(--bb-linear-direction), var(--bb-linear-fill));
+  box-shadow: var(--bb-linear-depth);
 }
 
+.bb-progress__fill {
+  display: block;
+  width: var(--bb-progress-value, 0%);
+  height: 100%;
+  min-width: 0;
+  transition: width 140ms ease;
+}

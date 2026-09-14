@@ -1,3 +1,4 @@
+import { rangeControlMarkup } from './range-control.js';
 import { semanticIconMarkup } from './semantic-icons.js';
 import { progressMarkup } from './progress.js';
 export { measurePreviewCardGridWidth } from './preview-card-grid.js';
@@ -54,7 +55,7 @@ export function floatingWindowRangeControlsMarkup({ fields = [] } = {}) {
     const step = escapeHtml(field?.step ?? 1);
     const unit = escapeHtml(field?.unit || '');
     const value = escapeHtml(field?.value ?? 0);
-    return `<label class="bb-floating-range-field" for="${id}"><span class="bb-floating-range-field__head"><span class="bb-floating-range-field__label">${label}</span><output class="bb-floating-range-field__value" for="${id}" data-bb-floating-range-output>${value}${unit}</output></span><input id="${id}" class="bb-floating-range-field__input" name="${name}" type="range" min="${min}" max="${max}" step="${step}" value="${value}" data-bb-floating-range-input></label>`;
+    return `<label class="bb-floating-range-field" for="${id}"><span class="bb-floating-range-field__head"><span class="bb-floating-range-field__label">${label}</span><output class="bb-floating-range-field__value" for="${id}" data-bb-floating-range-output>${value}${unit}</output></span>${rangeControlMarkup(`<input id="${id}" class="range-control bb-floating-range-field__input" name="${name}" type="range" min="${min}" max="${max}" step="${step}" value="${value}" data-bb-floating-range-input>`)}</label>`;
   }).join('');
   return `<div class="bb-floating-range-controls" data-bb-floating-range-controls>${controls}</div>`;
 }

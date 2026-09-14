@@ -190,7 +190,7 @@ export function compactThemePickerMarkup(catalog = {}, {
   return `<div
     class="bb-floating-window-content bb-compact-theme-picker"
     data-bb-compact-theme-picker
-    data-floating-window-preferred-columns="2"
+    data-floating-window-preferred-columns="3"
   >
     <header class="bb-floating-window-content__head bb-compact-theme-picker__head">
       <button

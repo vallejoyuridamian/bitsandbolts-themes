@@ -1,3 +1,4 @@
+import { rangeControlMarkup } from './range-control.js';
 import { semanticIconMarkup } from './semantic-icons.js';
 import { layoutTextEditorRangeFieldMarkup } from './layout-text-editor.js';
 
@@ -114,7 +115,7 @@ export function backgroundEditorMarkup({
     <div data-bb-background-editor-role="theme-palette" data-bb-background-editor-when="paint"></div>
     <div class="bb-field" data-bb-background-editor-when="opaque">
       <label class="bb-background-editor__range-label" for="${opacityId}"><span>Opacity</span><output for="${opacityId}" data-bb-background-editor-role="opacity-output">100%</output></label>
-      <input id="${opacityId}" class="bb-background-editor__range" type="range" min="0" max="100" step="1" value="100" data-bb-background-editor-role="opacity">
+      ${rangeControlMarkup(`<input id="${opacityId}" class="range-control bb-background-editor__range" type="range" min="0" max="100" step="1" value="100" data-bb-background-editor-role="opacity">`)}
     </div>
     <div class="bb-field" data-bb-background-editor-when="image">
       <label class="bb-field__label" for="${imageId}">Image source</label>
@@ -128,7 +129,7 @@ export function backgroundEditorMarkup({
     </div>
     <div class="bb-field" data-bb-background-editor-when="image">
       <label class="bb-field__label" for="${imageSizeId}">Tile size</label>
-      <input id="${imageSizeId}" class="bb-background-editor__range" type="range" min="48" max="1200" step="8" value="320" data-bb-background-editor-role="image-size">
+      ${rangeControlMarkup(`<input id="${imageSizeId}" class="range-control bb-background-editor__range" type="range" min="48" max="1200" step="8" value="320" data-bb-background-editor-role="image-size">`)}
     </div>
     <input type="file" accept=".png,.jpg,.jpeg,.svg,.webp,image/png,image/jpeg,image/svg+xml,image/webp" data-bb-background-editor-role="image-file" hidden>
   </div>`;

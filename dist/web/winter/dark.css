@@ -51,6 +51,7 @@
   --bb-v2-color-status-danger-surface: oklch(0.6368 0.2078 25.3313);
   --bb-v2-color-status-danger-content: oklch(0.2077 0.0398 265.7549);
   --bb-v2-color-status-danger-border: oklch(0.6368 0.2078 25.3313);
+  --bb-v2-button-current-color-hover-filter: drop-shadow(0 0 5px color-mix(in srgb, currentColor 62%, transparent));
   --bb-v2-identity-primary: oklch(0.7729 0.1535 163.2231);
   --bb-v2-identity-primary-foreground: oklch(0.2077 0.0398 265.7549);
   --bb-v2-identity-secondary: oklch(0.3729 0.0306 259.7328);

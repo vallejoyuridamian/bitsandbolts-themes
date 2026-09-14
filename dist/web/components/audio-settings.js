@@ -1,3 +1,4 @@
+import { rangeControlMarkup } from './range-control.js';
 import { semanticActionButtonMarkup } from './button.js';
 import { layoutTextEditorNumericFieldMarkup } from './layout-text-editor.js';
 
@@ -27,7 +28,7 @@ export function audioSettingsMarkup({ canChooseAsset = false, canRemove = false,
   </div>`;
   return `<div class="bb-property-editor bb-audio-settings" data-audio-settings>
     ${semanticActionButtonMarkup({ iconRole: 'play_arrow', label: 'Play audio', recipe: 'workspace', attributes: { 'data-audio-setting': 'play' } })}
-    <label><span class="bb-audio-settings__label">Volume <span data-audio-setting-value="volume">100%</span></span><input data-audio-setting="volume" class="range-control" type="range" min="0" max="1" step="0.01" aria-label="Audio volume"></label>
+    <label><span class="bb-audio-settings__label">Volume <span data-audio-setting-value="volume">100%</span></span>${rangeControlMarkup(`<input data-audio-setting="volume" class="range-control" type="range" min="0" max="1" step="0.01" aria-label="Audio volume">`)}</label>
     ${timingControls.length ? `<div class="bb-audio-settings__timing">${timingControls.map(({ field, label, ...limits }) => layoutTextEditorNumericFieldMarkup({
       ...limits, label, attributes: { 'data-audio-timing': field }
     })).join('')}</div>` : ''}

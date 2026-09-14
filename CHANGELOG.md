@@ -1,5 +1,29 @@
 # Bits and Bolts Themes - Changelog
 
+## 2026-09-13: Accepted media and shared-control checkpoint
+
+- Owner accepts all 172 original dirty paths across the paired repositories.
+  Include the 124 Themes and 48 AppScreen paths plus both changelogs: 174 files,
+  with 125 in Themes and 49 in AppScreen.
+- Shared media card actions, hover-only yellow favorites, Upload/preview/grid
+  recipes and role-based destructive controls remain with generated copies.
+  One shared neon recipe supplies ranges, progress, grips and scrollbars;
+  native/gallery directions match and slider rails are masked below their
+  translucent native thumbs. Labels retain spaced percentage values.
+- The favorite filter uses the V2 namespace. Catalog generation reuses the
+  consumer admission owner, fixing the Themes-tab exception. The exact failing
+  catalog test passes after correction; all nine Themes and 18 modes validate.
+- Earlier focused tests, syntax, generation and source/web/docs parity stand.
+  The existing 39 token-collision warning remains separate. Owner checkpoint
+  acceptance does not claim every unrun historical manual check was executed.
+- Closure updates memory only, with no new source/UI change, build, runtime
+  audit, tests, browser action, composition or diagnostic narrowing. Preserve
+  all assets, owner content, ignored data, locks and previous checkpoints.
+- Audit: ../appscreen-studio/docs/MEDIA_CARD_STANDARDIZATION_PLAN.md, Accepted
+  174-file closure. Next: owner-directed Video Demo 2 and launch; parked cadence
+  work stays parked. Follow AppScreen HANDOFF.md for context-only Debug startup.
+  No push.
+
 ## 2026-09-13: Accepted 125-file paired checkpoint
 
 - Owner authorizes all 14 Themes files and the original 110 AppScreen files.

@@ -1,3 +1,4 @@
+import { rangeControlMarkup } from './range-control.js';
 import { semanticActionButtonMarkup } from './button.js';
 import { LAYOUT_GAP_PRESETS, normalizeLayoutGapPresetId } from './layout-spacing.js';
 import { semanticIconMarkup } from './semantic-icons.js';
@@ -165,6 +166,10 @@ export function layoutTextEditorNumericFieldMarkup({
   })}></label>`;
 }
 
+export function layoutTextEditorRangeValueLabel(value, unit = '%') {
+  return `${value}${unit ? ` ${unit}` : ''}`;
+}
+
 export function layoutTextEditorRangeFieldMarkup({
   attributes = {},
   label = '',
@@ -183,14 +188,14 @@ export function layoutTextEditorRangeFieldMarkup({
     resolvedMax,
     Math.max(resolvedMin, Number.isFinite(Number(value)) ? Number(value) : resolvedMin)
   );
-  return `<label class="bb-layout-text-editor__range-field"><span class="bb-layout-text-editor__range-head"><span class="bb-layout-text-editor__field-label">${escapeHtml(label)}</span><output class="bb-layout-text-editor__range-value" data-bb-layout-range-output>${escapeHtml(valueLabel ?? `${resolvedValue}${unit}`)}</output></span><input class="range-control bb-layout-text-editor__range-control" type="range"${attributesMarkup({
+  return `<label class="bb-layout-text-editor__range-field"><span class="bb-layout-text-editor__range-head"><span class="bb-layout-text-editor__field-label">${escapeHtml(label)}</span><output class="bb-layout-text-editor__range-value" data-bb-layout-range-output>${escapeHtml(valueLabel ?? layoutTextEditorRangeValueLabel(resolvedValue, unit))}</output></span>${rangeControlMarkup(`<input class="range-control bb-layout-text-editor__range-control" type="range"${attributesMarkup({
     'aria-label': attributes['aria-label'] ?? label,
     ...attributes,
     max: resolvedMax,
     min: resolvedMin,
     step: Number(step) || 1,
     value: resolvedValue
-  })}></label>`;
+  })}>`)}</label>`;
 }
 
 function layoutArrangeActionMarkup({ action = '', iconRole = '', label = '' } = {}) {

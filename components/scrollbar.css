@@ -1,73 +1,69 @@
-/**
- * Canonical native scrollbar recipe.
- *
- * The geometry and depth follow AppScreen Studio's accepted scrollbar while
- * every color resolves from the active theme's interface roles.
- */
+@import url("./linear-control.css");
 
-:where(.bb-scrollbar, .bb-theme-gallery) {
-  scrollbar-color: var(--bb-interface-scrollbar-thumb) var(--bb-interface-scrollbar-track);
+/* Native page scrolling and retained custom scrolling share the handle light.
+   Engines with native color-only scrollbars retain the theme and clear track. */
+:is(:root.bb-scrollbars, :root.bb-scrollbars *, .bb-scrollbar, .bb-theme-gallery) {
+  scrollbar-color: var(--bb-v2-identity-primary) transparent;
   scrollbar-width: thin;
 }
-
-:where(.bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar {
+@supports selector(::-webkit-scrollbar) {
+  :is(:root.bb-scrollbars, :root.bb-scrollbars *, .bb-scrollbar, .bb-theme-gallery) {
+    scrollbar-color: auto;
+    scrollbar-width: auto;
+  }
+}
+:is(:root.bb-scrollbars, :root.bb-scrollbars *, .bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
-
-:where(.bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar-track {
-  border-radius: var(--bb-radius-full);
-  background: var(--bb-interface-scrollbar-track);
-}
-
-:where(.bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar-thumb {
-  border: 2px solid var(--bb-interface-scrollbar-border);
-  border-radius: var(--bb-radius-full);
-  background: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 5%, transparent),
-    color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 37%, transparent),
-    color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 5%, transparent)
-  );
-  background-clip: padding-box;
-  box-shadow:
-    inset 0 0 4px color-mix(in srgb, var(--bb-interface-scrollbar-highlight) 23%, transparent),
-    0 0 6px color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 9%, transparent);
-}
-
-:where(.bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar-thumb:horizontal {
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 5%, transparent),
-    color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 37%, transparent),
-    color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 5%, transparent)
-  );
-  background-clip: padding-box;
-}
-
-:where(.bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 34%, transparent),
-    var(--bb-interface-scrollbar-thumb),
-    color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 34%, transparent)
-  );
-  background-clip: padding-box;
-  box-shadow:
-    inset 0 0 6px var(--bb-interface-scrollbar-highlight),
-    0 0 10px color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 39%, transparent);
-}
-
-:where(.bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar-thumb:horizontal:hover {
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 34%, transparent),
-    var(--bb-interface-scrollbar-thumb),
-    color-mix(in srgb, var(--bb-interface-scrollbar-thumb) 34%, transparent)
-  );
-  background-clip: padding-box;
-}
-
-:where(.bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar-corner {
+:is(:root.bb-scrollbars, :root.bb-scrollbars *, .bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar-track,
+:is(:root.bb-scrollbars, :root.bb-scrollbars *, .bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar-corner {
   background: transparent;
+  border-radius: var(--bb-radius-full);
 }
+:is(:root.bb-scrollbars, :root.bb-scrollbars *, .bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar-thumb {
+  --bb-linear-direction: var(--bb-linear-direction-vertical);
+  border: var(--bb-linear-border);
+  border-radius: var(--bb-radius-full);
+  background: linear-gradient(var(--bb-linear-direction), var(--bb-linear-stops));
+  box-shadow: var(--bb-linear-shadow);
+}
+:is(:root.bb-scrollbars, :root.bb-scrollbars *, .bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar-thumb:horizontal {
+  --bb-linear-direction: var(--bb-linear-direction-horizontal);
+}
+:is(:root.bb-scrollbars, :root.bb-scrollbars *, .bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar-thumb:hover,
+:is(:root.bb-scrollbars, :root.bb-scrollbars *, .bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar-thumb:active {
+  border: var(--bb-linear-border-active);
+  background: linear-gradient(var(--bb-linear-direction), var(--bb-linear-stops-active));
+  box-shadow: var(--bb-linear-shadow-active);
+}
+
+:where(.bb-scrollbar__host) { position: relative; }
+.bb-scrollbar__target { scrollbar-width: none !important; }
+.bb-scrollbar__target::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.bb-scrollbar__track {
+  position: absolute;
+  z-index: 120;
+  overflow: visible;
+  border-radius: var(--bb-radius-full);
+  background: transparent;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 140ms ease;
+}
+.bb-scrollbar__track[hidden] { display: none; }
+.bb-scrollbar__target:hover ~ .bb-scrollbar__track,
+.bb-scrollbar__target:focus-within ~ .bb-scrollbar__track,
+.bb-scrollbar__target.is-scrolling ~ .bb-scrollbar__track,
+.bb-scrollbar__track:hover {
+  opacity: 1;
+  pointer-events: auto;
+}
+.bb-scrollbar__thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: grab;
+  touch-action: none;
+}
+.bb-scrollbar__thumb:active { cursor: grabbing; }

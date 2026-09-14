@@ -1,3 +1,85 @@
+@import url("./range-control.css");
+/* Shared asset preview stage. The backing follows the media's actual box,
+   with five percent added on each side, including while zoomed. */
+.bb-media-preview-overlay {
+  position: fixed;
+  z-index: 1700;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 36px;
+  box-sizing: border-box;
+  background: color-mix(in srgb, var(--bb-v2-color-surface-scrim) 78%, transparent);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.bb-media-preview-overlay__stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 1280px);
+  height: min(100%, 860px);
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.bb-media-preview-overlay__frame {
+  position: relative;
+  isolation: isolate;
+  flex: 0 0 auto;
+  width: var(--bb-media-preview-fit-width, 0px);
+  height: var(--bb-media-preview-fit-height, 0px);
+}
+
+.bb-media-preview-overlay.has-white-background .bb-media-preview-overlay__frame::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -5%;
+  background: white;
+  pointer-events: none;
+}
+
+.bb-media-preview-overlay__media {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  cursor: zoom-in;
+}
+
+.bb-media-preview-overlay.is-zoomed {
+  place-items: stretch;
+}
+
+.bb-media-preview-overlay.is-zoomed .bb-media-preview-overlay__stage {
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: 36px;
+  box-sizing: border-box;
+}
+
+.bb-media-preview-overlay.is-zoomed .bb-media-preview-overlay__frame {
+  margin: auto;
+  width: var(--bb-media-preview-zoom-width);
+  height: var(--bb-media-preview-zoom-height);
+}
+
+.bb-media-preview-overlay.is-zoomed .bb-media-preview-overlay__media {
+  cursor: zoom-out;
+}
+
 /* Shared media overlay controls. The reveal zone remains reachable while its
    content is hidden; keyboard focus, an open Select and touch keep it visible. */
 .bb-media-controls-zone {
@@ -114,7 +196,8 @@
   font-variant-numeric: tabular-nums;
   min-width: 54px;
 }
-.bb-media-transport__range {
+.bb-media-transport__range,
+.bb-range-control:has(> .bb-media-transport__range) {
   --range-control-thumb-size: 16px;
   --range-control-track-size: 6px;
   width: 100%;

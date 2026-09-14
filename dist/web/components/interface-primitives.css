@@ -506,6 +506,7 @@
 }
 
 .bb-workspace-control-button.bb-workspace-control-button--plain-icon:is(:hover, :focus-visible):where(:not(:disabled):not([aria-pressed="true"]):not(.active)),
+.bb-workspace-control-button.bb-workspace-control-button--hover-feedback:is(:hover, :focus-visible):not(:disabled),
 .bb-workspace-control-button.bb-workspace-control-button--plain-icon[data-specimen-state="hover"] {
   border-color: transparent;
   color: var(--bb-interface-button-plain-icon-hover-foreground);
@@ -525,7 +526,59 @@
   font-size: 13px;
 }
 
+:root {
+  --bb-card-action-size: 32px;
+  --bb-card-action-icon-size: 18px;
+  --bb-card-action-inset: 8px;
+}
+
+.bb-card-action {
+  --bb-interface-button-pressed-background: transparent;
+  --bb-interface-button-pressed-shadow: none;
+  --bb-interface-button-pressed-text-shadow: none;
+  width: var(--bb-card-action-size);
+  min-width: var(--bb-card-action-size);
+  height: var(--bb-card-action-size);
+  min-height: var(--bb-card-action-size);
+  box-sizing: border-box;
+  line-height: 0;
+}
+
+.bb-card-action.bb-workspace-control-button--plain-icon .bb-workspace-control-icon {
+  width: var(--bb-card-action-icon-size);
+  height: var(--bb-card-action-icon-size);
+  font-size: var(--bb-card-action-icon-size);
+}
+
+.bb-card-action--favorite {
+  --bb-interface-button-plain-icon-rest-filter: none;
+  --bb-interface-button-plain-icon-hover-filter: var(--bb-v2-button-current-color-hover-filter);
+  --bb-interface-button-pressed-filter: none;
+  --bb-interface-control-foreground: var(--bb-v2-color-content-secondary);
+  --bb-interface-button-plain-icon-hover-foreground: var(--bb-v2-color-status-warning-border);
+  --bb-interface-button-pressed-foreground: var(--bb-v2-color-status-warning-border);
+}
+
+.bb-card-action--favorite.is-favorite {
+  --bb-interface-control-foreground: var(--bb-v2-color-status-warning-border);
+}
+
+.bb-card-action__icon {
+  display: grid;
+  place-items: center;
+}
+
+.bb-card-action__icon--active,
+.bb-card-action:is(.is-playing, .is-favorite) .bb-card-action__icon--default {
+  display: none;
+}
+
+.bb-card-action:is(.is-playing, .is-favorite) .bb-card-action__icon--active {
+  display: grid;
+}
+
 .bb-workspace-control-button--danger {
+  --bb-interface-control-foreground: var(--bb-v2-color-status-danger-border);
   --bb-interface-button-hover-foreground: var(--bb-v2-color-status-danger-border);
   --bb-interface-button-pressed-foreground: var(--bb-v2-color-status-danger-border);
   --bb-interface-button-plain-icon-hover-foreground: var(--bb-v2-color-status-danger-border);

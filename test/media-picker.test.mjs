@@ -112,7 +112,7 @@ test('font card width uses the fixed recipe without reading labels or font readi
   };
   const root = { querySelectorAll: () => [grid] };
   const preview = new MediaPreviewCard();
-  preview.syncFontCardGridWidths(root, { onMeasured: (value) => reports.push(value) });
+  preview.syncCardGridWidths(root, { onMeasured: (value) => reports.push(value) });
   await Promise.resolve();
   assert.equal(grid.dataset.floatingWindowGridItemWidth, '350');
   assert.equal(reports.length, 1);
@@ -232,7 +232,7 @@ test('media cards and reference images use the canonical shared recipes', () => 
   assert.match(fontCard, /data-bb-icon-role="favorite"/);
   assert.match(reducedFontCard, /bb-media-card--reduced/);
   assert.doesNotMatch(reducedFontCard, /bb-media-card__body|bb-media-card__badge|>ttf</);
-  assert.match(addFontCard, />Add Font</);
+  assert.match(addFontCard, />Upload Font</);
   assert.match(addFontCard, /class="bb-media-card bb-media-add-card/);
   assert.match(addFontCard, /bb-media-card--reduced/);
   assert.doesNotMatch(addFontCard, /bb-media-add-card__formats/);

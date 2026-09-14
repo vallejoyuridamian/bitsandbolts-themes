@@ -51,6 +51,7 @@
   --bb-v2-color-status-danger-surface: #F9DEDC;
   --bb-v2-color-status-danger-content: #410E0B;
   --bb-v2-color-status-danger-border: #B3261E;
+  --bb-v2-button-current-color-hover-filter: drop-shadow(0 0 5px color-mix(in srgb, currentColor 62%, transparent));
   --bb-v2-identity-primary: #4F46E5;
   --bb-v2-identity-primary-foreground: #FFFFFF;
   --bb-v2-identity-secondary: #E0E7FF;
@@ -337,6 +338,7 @@
   --bb-v2-color-status-danger-surface: #8C1D18;
   --bb-v2-color-status-danger-content: #F9DEDC;
   --bb-v2-color-status-danger-border: #F2B8B5;
+  --bb-v2-button-current-color-hover-filter: drop-shadow(0 0 5px color-mix(in srgb, currentColor 62%, transparent));
   --bb-v2-identity-primary: #A5B4FC;
   --bb-v2-identity-primary-foreground: #1E1B4B;
   --bb-v2-identity-secondary: #312E81;
