@@ -88,7 +88,7 @@
   height: var(--range-control-thumb-size);
   border: var(--bb-linear-edge);
   border-radius: var(--bb-radius-full);
-  background: linear-gradient(var(--bb-linear-direction), var(--bb-linear-fill));
+  background: radial-gradient(circle at center, var(--bb-radial-fill));
   box-shadow: var(--bb-linear-depth);
   appearance: none;
   -webkit-appearance: none;
@@ -101,7 +101,7 @@
   height: var(--range-control-thumb-size);
   border: var(--bb-linear-edge);
   border-radius: var(--bb-radius-full);
-  background: linear-gradient(var(--bb-linear-direction), var(--bb-linear-fill));
+  background: radial-gradient(circle at center, var(--bb-radial-fill));
   box-shadow: var(--bb-linear-depth);
 }
 

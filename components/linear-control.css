@@ -16,6 +16,12 @@
     color-mix(in srgb, var(--bb-v2-identity-primary) 28%, transparent),
     var(--bb-v2-identity-primary),
     color-mix(in srgb, var(--bb-v2-identity-primary) 28%, transparent);
+  --bb-radial-stops:
+    color-mix(in srgb, var(--bb-v2-identity-primary) 30%, transparent),
+    color-mix(in srgb, var(--bb-v2-identity-primary) 4%, transparent);
+  --bb-radial-stops-active:
+    var(--bb-v2-identity-primary),
+    color-mix(in srgb, var(--bb-v2-identity-primary) 28%, transparent);
   --bb-linear-shadow: inset 0 0 4px color-mix(in srgb, var(--bb-interface-control-hover-foreground) 5%, transparent),
     0 0 6px color-mix(in srgb, var(--bb-v2-identity-primary) 7%, transparent);
   --bb-linear-shadow-active: inset 0 0 6px color-mix(in srgb, var(--bb-interface-control-hover-foreground) 22%, transparent),
@@ -23,6 +29,7 @@
   --bb-linear-edge-width: 1px;
   --bb-linear-edge: var(--bb-linear-border);
   --bb-linear-fill: var(--bb-linear-stops);
+  --bb-radial-fill: var(--bb-radial-stops);
   --bb-linear-depth: var(--bb-linear-shadow);
 }
 
@@ -39,6 +46,7 @@
   --bb-linear-edge-width: 2px;
   --bb-linear-edge: var(--bb-linear-border-active);
   --bb-linear-fill: var(--bb-linear-stops-active);
+  --bb-radial-fill: var(--bb-radial-stops-active);
   --bb-linear-depth: var(--bb-linear-shadow-active);
 }
 
