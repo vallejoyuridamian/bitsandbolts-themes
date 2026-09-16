@@ -1122,3 +1122,9 @@ Keep new changes easy to scan at the top.
 - Both production builds passed, and generated recipe copies match source.
 - Accepted implementation checkpoints are Themes `69b260b` and AppScreen
   `78e88e7`. Nothing was pushed, deployed, published, or activated.
+
+## Session wrap-up (2026-09-16) - Animation card reorder attention checkpoint
+
+- Kept deferred Transition phase selection in AppScreen and made the Themes animation card own destination reveal, focus, and a one-second glow only when a type, phase, or timing edit changes its list position. Unchanged positions receive no attention.
+- Synchronized the source, web distribution, and docs animation-editor copies. Themes generation passed with the existing 39 token-collision warnings, and the 19 focused AppScreen animation checks passed.
+- Captured the paired local checkpoint with browser acceptance still pending. No push was performed.
