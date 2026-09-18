@@ -1,5 +1,36 @@
 /* Shared Timeline tracks, range items, selection, and sequence content. */
 
+/* Every time-based ruler and track system reserves one handle width inside
+   both ends of its visible frame. Rulers, tracks, and playheads consume the
+   same content plane, independent of the surface that composes them. */
+.bb-time-track-system {
+  --timeline-edge-clearance: var(--timeline-resize-handle-width, 0px);
+}
+
+.video-timeline-empty {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-inline: 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* A compact single-media Timeline composes the same ruler and range recipes. */
+.bb-media-playback {
+  --timeline-track-height: 40px;
+  --timeline-element-inset: 5px;
+  --timeline-content-gutter: 0px;
+  display: grid;
+  grid-template-rows: 30px 40px;
+  min-width: 240px;
+  margin-bottom: 12px;
+}
+
+.bb-media-playback .timeline-track {
+  overflow: hidden;
+}
+
 .timeline-track {
   position: relative;
   width: calc(100% - (2 * var(--timeline-content-gutter)));
@@ -12,7 +43,22 @@
 
 .timeline-track-content {
   position: absolute;
-  inset: 0 0 0 var(--timeline-content-gutter);
+  inset: 0 var(--timeline-edge-clearance, 0px);
+}
+
+.timeline-track-backdrop,
+.timeline-track-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.timeline-track-layer {
+  min-width: 0;
+  overflow: visible;
+}
+
+.timeline-track-layer > .timeline-track-element {
+  inset-block: 0;
 }
 
 .timeline-track,
@@ -165,8 +211,25 @@
 }
 
 .timeline-element-source-trace {
-  position: absolute;
   overflow: hidden;
+  pointer-events: none;
+}
+
+.timeline-track-element::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(-1 * var(--timeline-resize-handle-width));
+  z-index: 12;
+  display: var(--layout-collapsed-handle-display, none);
+  width: calc(var(--timeline-resize-handle-width) + var(--timeline-resize-handle-width));
+  border-radius: 5px;
+  background:
+    linear-gradient(color-mix(in srgb, var(--timeline-handle-accent) 38%, #111719), color-mix(in srgb, var(--timeline-handle-accent) 38%, #111719)) left 5px center / 2px var(--timeline-resize-handle-grip-height, 14px) no-repeat,
+    linear-gradient(color-mix(in srgb, var(--timeline-handle-accent) 38%, #111719), color-mix(in srgb, var(--timeline-handle-accent) 38%, #111719)) right 5px center / 2px var(--timeline-resize-handle-grip-height, 14px) no-repeat,
+    var(--timeline-handle-accent);
+  box-shadow: none;
   pointer-events: none;
 }
 
@@ -181,6 +244,7 @@
 }
 
 .layout-element-body {
+  visibility: var(--layout-range-body-visibility, inherit);
   position: absolute;
   inset: 0;
   overflow: hidden;
@@ -189,15 +253,15 @@
 }
 
 .timeline-track-element.selected[data-layout-resize-start="true"]::before {
-  border-radius: 5px 0 0 5px;
-}
-
-.timeline-track-element.selected[data-layout-resize-end="true"]::before {
   border-radius: 0 5px 5px 0;
 }
 
+.timeline-track-element.selected[data-layout-resize-end="true"]::before {
+  border-radius: 5px 0 0 5px;
+}
+
 .timeline-track-element.selected[data-layout-resize-start="true"][data-layout-resize-end="true"]::before {
-  border-radius: 5px;
+  border-radius: 0;
 }
 
 .timeline-track-element.selected:not([data-layout-resize-start="true"]):not([data-layout-resize-end="true"])::before {
@@ -205,23 +269,25 @@
 }
 
 .timeline-track-element.selected[data-layout-resize-start="true"] .layout-element-body {
-  left: 0;
+  inset-inline-start: 0;
+  border-inline-start-width: 0;
 }
 
 .timeline-track-element.selected[data-layout-resize-end="true"] .layout-element-body {
-  right: 0;
+  inset-inline-end: 0;
+  border-inline-end-width: 0;
 }
 
 .layout-resize-handle {
   position: absolute;
   top: 0;
   bottom: 0;
-  z-index: 5;
-  display: none;
-  width: min(var(--timeline-resize-handle-width), 50%);
+  z-index: 12;
+  display: var(--layout-resize-handle-display, none);
+  width: var(--timeline-resize-handle-width);
   border: 0;
   cursor: ew-resize;
-  background: var(--timeline-handle-accent);
+  background: var(--layout-resize-handle-background, var(--timeline-handle-accent));
   box-shadow: none;
 }
 
@@ -230,14 +296,16 @@
 }
 
 .layout-resize-handle.start {
-  left: 0;
-  translate: -50% 0;
+  right: 100%;
+  left: auto;
+  translate: none;
   border-radius: 5px 0 0 5px;
 }
 
 .layout-resize-handle.end {
-  right: 0;
-  translate: 50% 0;
+  right: auto;
+  left: 100%;
+  translate: none;
   border-radius: 0 5px 5px 0;
 }
 
@@ -246,10 +314,9 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  display: var(--layout-resize-handle-grip-display, block);
   width: 2px;
-  height: 42%;
-  min-height: 14px;
-  max-height: 28px;
+  height: var(--timeline-resize-handle-grip-height, 14px);
   translate: -50% -50%;
   border-radius: 999px;
   background: color-mix(in srgb, var(--timeline-handle-accent) 38%, #111719);
@@ -310,3 +377,10 @@
   background: color-mix(in srgb, #12e6d5 16%, #17191a);
 }
 
+/* A multitrack lane uses one shared content plane with stacked range items. */
+.timeline-track.animations {
+  min-height: var(--timeline-animation-track-height, var(--timeline-track-height));
+}
+.timeline-track.audio {
+  min-height: var(--timeline-audio-track-height, var(--timeline-track-height));
+}

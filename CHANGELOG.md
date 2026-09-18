@@ -1,5 +1,19 @@
 # Bits and Bolts Themes - Changelog
 
+## 2026-09-17: Accepted shared time-track and Audio presentation closure
+
+- Main Timeline and Video Editor consume one Themes-owned time-track content
+  plane for backdrops, elements, overlays and playheads, with symmetric endpoint
+  clearance and neutral grouping layers that add no second time origin.
+- One fixed collapsed-range shell and symmetric grips serve plain ranges,
+  editable media and every Audio subtype. Separate transparent edge targets retain
+  start/end routing and expansion at exact zero.
+- Audio lanes, waveforms, source traces, selection and handles retain the accepted
+  brown/yellow recipe. Generated web and documentation copies match source.
+- The owner passed AppScreen's complete 19-step combined browser gate and clean
+  closing log. The complete paired local checkpoint is authorized for commit.
+  No push, deployment or publication occurs.
+
 ## 2026-09-13: Accepted media and shared-control checkpoint
 
 - Owner accepts all 172 original dirty paths across the paired repositories.

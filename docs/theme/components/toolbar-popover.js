@@ -130,6 +130,7 @@ let popoverSequence = 0;
 export function createToolbarPopoverController({
   eventRouter,
   rootDocument = globalThis.document,
+  shouldContinuePointerTarget = () => false,
   shouldRetainPointerTarget = () => false
 } = {}) {
   if (!eventRouter?.bind || !eventRouter?.destroy) throw new TypeError('Toolbar popovers require an event router.');
@@ -158,6 +159,7 @@ export function createToolbarPopoverController({
     if (!active) return false;
     const record = active;
     active = null;
+    record.focus?.release(reason);
     record.anchor?.setAttribute?.('aria-expanded', 'false');
     record.anchor?.removeAttribute?.('aria-controls');
     record.panel?.remove?.();
@@ -187,6 +189,14 @@ export function createToolbarPopoverController({
       close('content-render-failed');
       throw error;
     }
+    active.focus = eventRouter.focus?.({ id: panel.id, root: panel,
+      dismiss: (reason) => close(reason),
+      outsidePointerDisposition: (event) => anchor.contains?.(event.target)
+        || shouldRetainPointerTarget?.(event.target) === true
+        ? 'continue'
+        : shouldContinuePointerTarget?.(event.target) === true
+          ? 'dismiss-and-continue'
+          : 'dismiss-and-consume' });
     return position();
   }
 
@@ -209,8 +219,10 @@ export function createToolbarPopoverController({
     position();
   }
 
-  eventRouter.bind(rootDocument, 'pointerdown', handlePointerDown, true);
-  eventRouter.bind(rootDocument, 'keydown', handleKeyDown, true);
+  if (!eventRouter.focus) {
+    eventRouter.bind(rootDocument, 'pointerdown', handlePointerDown, true);
+    eventRouter.bind(rootDocument, 'keydown', handleKeyDown, true);
+  }
   eventRouter.bind(rootDocument, 'scroll', handleViewportChange, true);
   eventRouter.bind(view, 'resize', handleViewportChange);
 

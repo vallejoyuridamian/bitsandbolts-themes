@@ -655,6 +655,7 @@ export function installSelectController(root = globalThis.document, {
     const record = activeRecord;
     if (!record) return false;
     activeRecord = null;
+    record.focus?.release(reason); record.focus = null;
     stopAnchorTracking();
     releaseFloatingWindowReservation(record);
     record.wrapper.classList.remove('is-open');
@@ -702,6 +703,10 @@ export function installSelectController(root = globalThis.document, {
     record.trigger.setAttribute('aria-expanded', 'true');
     const position = positionMenu(record);
     if (!position || activeRecord !== record) return false;
+    record.focus = eventRouter?.focus?.({ id: menu.id, root: menu,
+      contains: (target) => record.wrapper.contains(target),
+      dismiss: (reason) => close(reason),
+      outsidePointerDisposition: () => 'dismiss-and-consume' });
     const enabled = enabledMenuItems(menu);
     const selectedItem = menu.querySelector('[aria-selected="true"]:not(:disabled)');
     const focusTarget = focus === 'last' ? enabled.at(-1) : selectedItem ?? enabled[0];
@@ -906,7 +911,7 @@ export function installSelectController(root = globalThis.document, {
     else open(record, event);
   });
   listen(root, 'pointerdown', (event) => {
-    if (!activeRecord) return;
+    if (!activeRecord || eventRouter?.focus) return;
     if (activeRecord.wrapper.contains(event.target) || activeRecord.menu?.contains(event.target)) return;
     close('outside-pointerdown', event);
   }, true);

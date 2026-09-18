@@ -17,7 +17,7 @@
 
 .bb-timeline-ruler-content {
   position: absolute;
-  inset: 0 0 0 var(--timeline-content-gutter);
+  inset: 0 var(--timeline-edge-clearance, 0px);
 }
 
 .bb-timeline-ruler-tick {

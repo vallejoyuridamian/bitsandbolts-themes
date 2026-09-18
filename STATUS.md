@@ -1,5 +1,5 @@
 # Bits and Bolts Themes: Status
-Active: Paired animation correction checkpoint, 2026-09-16. The animation editor owns required draft-choice presentation and destination reveal, focus, and one-second glow only when an edited card changes position; unchanged position causes no attention. AppScreen owns Transition admission and Scene or element ordering. The final 19 focused AppScreen checks pass. Themes generation passes with the existing 39 token-collision warnings, and source, web, and docs copies match. Browser acceptance remains pending. This is the current local closure; no push. Fresh work follows AppScreen HANDOFF.md in Debug mode.
+Active: The owner accepts the completed shared time-track checkpoint. One content plane aligns backdrops, elements, overlays and playheads in Main Timeline and Video Editor. Symmetric endpoint clearance and one fixed collapsed shell serve plain ranges, editable media and every Audio subtype while distinct transparent edge targets retain routing. AppScreen passed all 19 combined browser checks and its clean closing log. Themes generation and exact source/web/docs parity stand. No active Themes feature cluster remains; no push.
 ## Current Truth
 - Theme role/save, picker and live-reference closure accepted, 2026-09-12: owner says LGTM and authorizes local closure after a healthy capture, explicitly without running the full manual checklist. The 602-record, 404251-byte capture has zero warnings/errors or recorded failure/stale indicators. Six reconciliation starts finish, five placements settle, and four Screen Theme changes synchronize the affected viewport. Ten Theme grid measurements retain 293 px cards; the font card remains 350 px with zero label measurements, 3.6 ms geometry, one 578 ms opening and accepted selection/close. Health applies to this captured scope; Video/export, all fallback combinations, search and persistence paths are not individually established by this capture. Earlier focused checks, builds, syntax and generated parity stand, including the four font-label checks and final Studio build. Save requires one authored color AND font; sparse assignments, transient ordered fallbacks, authored-only deduplicated choices, stable Global/User card sizing and semantic project references remain. User Theme edits and rename retain stable identity; project-owned colors/fonts stay literal. The readable font-label correction shares catalog aliases between browser and renderer. Closure includes all 47 AppScreen and 40 Themes files. No owner data, diagnostics, locked composition or parked work changes. Durable scope, evidence and limits: ../appscreen-studio/docs/THEME_DEMO_PREPARATION_PLAN.md, Accepted 87-file closure audit. No push. Next chat loads Debug context, confirms paired HEADs and clean worktrees, then waits.
 - Theme/search/font closure accepted, 2026-09-12: owner says LGTM and authorizes all 212 dirty files, 152 AppScreen plus 60 Themes. The reviewed 140-record capture has zero warnings/errors, seven stable 350 px geometry passes taking 2.7-3.2 ms, seven picker openings at 253.3-605.9 ms and six accepted selections with closed pickers. No delayed font-resource geometry pass appears. Paired category events are separate Global/User details, not duplicate interaction owners. Favorite/search/hover actions are not individually evidenced by this capture; their earlier checks and owner checkpoint acceptance stand. All 119 prepared SVG family previews, automatic local upload/global import, selection-only font loading, 150 ms shared search and 400 ms chrome dwell are retained. Twenty-one focused checks, eleven syntax checks, both builds and generated parity stand; the 39 existing token collisions remain separate. Original fonts, owner data, locks and diagnostic flags/selectors remain. Hosted font admission, commercial fonts and future suggestions stay separate. Current closure audit: ../appscreen-studio/docs/FONT_ROSTER_ACQUISITION.md. Paired local closure includes the complete original file set; no push. Next chat loads Debug context and waits.
@@ -74,21 +74,21 @@ Active: Paired animation correction checkpoint, 2026-09-16. The animation editor
   before Cloudflare packaging can complete.
 - No push, deployment, publication, or activation occurred.
 ## Current Boundary
-
+- `bb-time-track-system` owns one content plane for track backdrops, elements,
+  overlays and playheads, reserving one shared handle width at both ends. Neutral
+  row layers add no time origin. Main Timeline and Video Editor share the owner-accepted recipe.
 - Select reserves space in every floating window: grow/reposition, then use its
   existing scroll area at viewport limits. Five-option cap and close restoration
   remain. Six focused checks and Themes build pass; the owner accepted the final result.
 - Animation has its own semantic vector (Material Animation, Font Awesome wand),
   distinct from Edit Video. Generated providers and source/web/docs agree; build
   and focused icon coverage pass. The owner accepted the accumulated cleanup checkpoint.
-
 - Scene and element animations now share the same Themes card/Add/Delete/region
   recipes and Type dropdowns. Audio settings support optional slot Add/Replace/
   Remove actions without changing ordinary Play/Volume controls. AppScreen owns
   one project backing slot and first-card window growth within the viewport.
   Fifteen focused AppScreen checks, syntax, and Themes generation pass; generated
   web/docs sources match. This is included in the owner-accepted cleanup checkpoint.
-
 - Popovers retain attachment-before-hydration and failure lease cleanup. Their
   lifecycle now requires a consumer-supplied event router. Ten Themes checks and
   generation pass; AppScreen supplies its router. Owner accepts the checkpoint for now.

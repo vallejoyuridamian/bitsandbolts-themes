@@ -236,3 +236,42 @@ test('toolbar popover routes its lifecycle events and retains owned interactions
 test('toolbar popover refuses standalone event ownership', () => {
   assert.throws(() => createToolbarPopoverController({}), /require an event router/);
 });
+
+test('toolbar popover declares ordered outside-pointer routing through its event router', () => {
+  const retainedTarget = {};
+  const continuedTarget = {};
+  const anchorTarget = {};
+  const anchor = fakeNode();
+  anchor.contains = (target) => target === anchorTarget;
+  let focusOptions = null;
+  let releases = 0;
+  const rootDocument = {
+    body: { appendChild(node) { node.isConnected = true; } },
+    createElement: () => {
+      const panel = fakeNode();
+      panel.isConnected = false;
+      return panel;
+    },
+    defaultView: { innerHeight: 240, innerWidth: 320 }
+  };
+  const controller = createToolbarPopoverController({
+    eventRouter: {
+      bind() {},
+      destroy() {},
+      focus(options) {
+        focusOptions = options;
+        return { release() { releases += 1; } };
+      }
+    },
+    rootDocument,
+    shouldContinuePointerTarget: (target) => target === continuedTarget,
+    shouldRetainPointerTarget: (target) => target === retainedTarget
+  });
+  controller.open({ anchor });
+  assert.equal(focusOptions.outsidePointerDisposition({ target: anchorTarget }), 'continue');
+  assert.equal(focusOptions.outsidePointerDisposition({ target: retainedTarget }), 'continue');
+  assert.equal(focusOptions.outsidePointerDisposition({ target: continuedTarget }), 'dismiss-and-continue');
+  assert.equal(focusOptions.outsidePointerDisposition({ target: {} }), 'dismiss-and-consume');
+  controller.destroy();
+  assert.equal(releases, 1);
+});

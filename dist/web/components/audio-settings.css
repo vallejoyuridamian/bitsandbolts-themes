@@ -12,6 +12,9 @@
   justify-content: space-between;
   gap: var(--bb-spacing-3);
 }
+.bb-audio-settings__volume {
+  min-width: 120px;
+}
 .bb-audio-settings__actions {
   grid-column: 1 / -1;
   display: flex;

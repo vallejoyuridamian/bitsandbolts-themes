@@ -1152,6 +1152,8 @@ input.bb-workspace-control-input.bb-workspace-control-input[type="number"]:focus
   padding: 5px;
   border: 1px solid var(--bb-interface-menu-border);
   border-radius: var(--bb-radius-md);
+  /* The shell receives routed focus; menu items own visible focus feedback. */
+  outline: none;
   color: var(--bb-interface-control-foreground);
   background: var(--bb-interface-menu-background);
   box-shadow: var(--bb-interface-menu-shadow);

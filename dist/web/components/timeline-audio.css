@@ -1,7 +1,13 @@
 /* Shared audio Timeline presentation. Consumers own range, trim, waveform data, and playback. */
 
+.timeline-track.audio,
 .timeline-track-element.video-timeline-audio-clip {
   --timeline-handle-accent: #e6b75f;
+}
+
+.timeline-track.audio .media-editor-selection-overlay {
+  border-color: var(--timeline-handle-accent);
+  background: color-mix(in srgb, var(--timeline-handle-accent) 30%, transparent);
 }
 
 .timeline-element-source-trace.video-timeline-audio-source {

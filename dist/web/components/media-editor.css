@@ -12,7 +12,7 @@
   --timeline-element-inset: 0px;
   --timeline-handle-accent: var(--accent);
   display: grid;
-  grid-template-rows: minmax(220px, 1fr) 8px var(--media-editor-timeline-height, 150px);
+  grid-template-rows: minmax(0, 1fr) 8px minmax(0, var(--media-editor-timeline-height, 150px));
   gap: 0;
   min-width: 0;
   height: 100%;
@@ -34,8 +34,9 @@
 
 .media-editor-timeline-section {
   display: grid;
-  grid-template-rows: var(--control-bar-height) auto;
+  grid-template-rows: var(--control-bar-height) minmax(0, 1fr);
   min-width: 0;
+  min-height: 0;
   overflow: hidden;
   border-top: 1px solid var(--line);
   background: #0b0f10;
@@ -51,15 +52,17 @@
 
 .media-editor-timeline-scroll {
   min-width: 0;
-  overflow-x: auto;
-  overflow-y: hidden;
+  min-height: 0;
+  overflow: auto;
+  scrollbar-color: var(--bb-interface-scrollbar-thumb) var(--bb-interface-scrollbar-track);
+  scrollbar-width: thin;
   background: #0b0f10;
 }
 
 .media-editor-timeline {
   position: relative;
   display: grid;
-  grid-template-rows: 30px var(--timeline-track-height);
+  grid-template-rows: 30px var(--timeline-track-height) auto;
   gap: 8px;
   min-width: 0;
   overflow: visible;
@@ -172,8 +175,6 @@
 }
 
 .media-editor-source-filmstrip {
-  position: absolute;
-  inset: 0;
   display: flex;
   overflow: hidden;
   border-radius: 7px;
@@ -324,7 +325,7 @@
 }
 
 .media-editor-playhead-rail {
-  inset: 0 12px;
+  inset: 0 var(--timeline-edge-clearance, 0px);
   overflow-x: clip;
 }
 
@@ -334,8 +335,9 @@
   margin-inline: 0;
 }
 
-.media-editor-track {
-  background: #070a0b;
+/* One video lane and one multitrack Audio lane share the ruler and playhead. */
+.embedded-video-editor.has-audio-timeline {
+  --media-editor-timeline-height: 320px;
 }
 .video-timeline.is-layout-resizing,
 .video-timeline.is-layout-resizing *,

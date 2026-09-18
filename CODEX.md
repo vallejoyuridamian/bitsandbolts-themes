@@ -47,7 +47,7 @@ components, and generators for supported platforms.
   content typography across a shared component unless the source matches.
 - CSS parity validation must verify the effective final cascade when a selector
   or property appears more than once. A presence-only assertion is insufficient.
-- Timeline Audio retains its brown/yellow identity across ordinary, locked, selected, and resize states. Its recipe must outrank generic Timeline defaults without duplicating selection geometry.
+- Timeline Audio retains its brown/yellow identity across ordinary, locked, selected, and resize states. Its recipe must outrank generic Timeline defaults without duplicating selection geometry. Every collapsible range uses one shared handle recipe. At zero, both edge targets meet inner edge to inner edge without overlap; the shared geometry supplies state, with no subtype-specific collapsed selector.
 - Theme showcase and gallery specimens must use semantic role labels such as
   `Primary headline`, `Supporting copy`, and `Primary CTA`. Never paste live
   product or site marketing copy into a theme specimen; real copy stays in the
