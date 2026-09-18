@@ -12,8 +12,13 @@
   justify-content: space-between;
   gap: var(--bb-spacing-3);
 }
-.bb-audio-settings__volume {
+.bb-toolbar-popover__field.bb-audio-settings__volume {
   min-width: 120px;
+  grid-template-columns: minmax(120px, 1fr);
+}
+.bb-audio-settings__volume.bb-audio-settings__volume--inline {
+  flex: 0 0 auto;
+  grid-template-columns: max-content 120px;
 }
 .bb-audio-settings__actions {
   grid-column: 1 / -1;
@@ -43,7 +48,11 @@
 .bb-audio-settings__timing {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--bb-spacing-3);
+  flex: 0 0 auto;
+  grid-template-columns: repeat(2, max-content);
+  gap: var(--bb-spacing-2);
+}
+.bb-audio-settings__timing > .bb-toolbar-popover__field {
+  white-space: nowrap;
 }
 .bb-audio-settings__timing > :first-child:nth-last-child(odd) { grid-column: 1 / -1; }

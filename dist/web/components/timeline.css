@@ -5,6 +5,8 @@
    same content plane, independent of the surface that composes them. */
 .bb-time-track-system {
   --timeline-edge-clearance: var(--timeline-resize-handle-width, 0px);
+  --timeline-frame-border-width: 1px;
+  --timeline-content-inset: calc(var(--timeline-content-gutter, 0px) + var(--timeline-frame-border-width) + var(--timeline-edge-clearance));
 }
 
 .video-timeline-empty {
@@ -36,7 +38,7 @@
   width: calc(100% - (2 * var(--timeline-content-gutter)));
   margin-inline: var(--timeline-content-gutter);
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: var(--timeline-frame-border-width, 1px) solid var(--line);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.04);
 }

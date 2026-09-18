@@ -1,66 +1,31 @@
 # Bits and Bolts Themes: Sprint Roadmap
+
 ## Current Focus
-- The shared time-track and collapsed-range checkpoint is closed and owner-accepted. Main Timeline and Video Editor use one content plane, symmetric endpoint clearance, one fixed collapsed shell and distinct transparent edge targets. No active Themes feature cluster remains; preserve the accepted recipes and generated parity until the owner selects new work. No push.
-- Theme role/save, picker and live-reference closure accepted, 2026-09-12: owner says LGTM and authorizes local closure after a healthy capture, explicitly without running the full manual checklist. The 602-record, 404251-byte capture has zero warnings/errors or recorded failure/stale indicators. Six reconciliation starts finish, five placements settle, and four Screen Theme changes synchronize the affected viewport. Ten Theme grid measurements retain 293 px cards; the font card remains 350 px with zero label measurements, 3.6 ms geometry, one 578 ms opening and accepted selection/close. Health applies to this captured scope; Video/export, all fallback combinations, search and persistence paths are not individually established by this capture. Earlier focused checks, builds, syntax and generated parity stand, including the four font-label checks and final Studio build. Save requires one authored color AND font; sparse assignments, transient ordered fallbacks, authored-only deduplicated choices, stable Global/User card sizing and semantic project references remain. User Theme edits and rename retain stable identity; project-owned colors/fonts stay literal. The readable font-label correction shares catalog aliases between browser and renderer. Closure includes all 47 AppScreen and 40 Themes files. No owner data, diagnostics, locked composition or parked work changes. Durable scope, evidence and limits: ../appscreen-studio/docs/THEME_DEMO_PREPARATION_PLAN.md, Accepted 87-file closure audit. No push. Next chat loads Debug context, confirms paired HEADs and clean worktrees, then waits.
-- Theme/search/font closure accepted, 2026-09-12: owner says LGTM and authorizes all 212 dirty files, 152 AppScreen plus 60 Themes. The reviewed 140-record capture has zero warnings/errors, seven stable 350 px geometry passes taking 2.7-3.2 ms, seven picker openings at 253.3-605.9 ms and six accepted selections with closed pickers. No delayed font-resource geometry pass appears. Paired category events are separate Global/User details, not duplicate interaction owners. Favorite/search/hover actions are not individually evidenced by this capture; their earlier checks and owner checkpoint acceptance stand. All 119 prepared SVG family previews, automatic local upload/global import, selection-only font loading, 150 ms shared search and 400 ms chrome dwell are retained. Twenty-one focused checks, eleven syntax checks, both builds and generated parity stand; the 39 existing token collisions remain separate. Original fonts, owner data, locks and diagnostic flags/selectors remain. Hosted font admission, commercial fonts and future suggestions stay separate. Current closure audit: ../appscreen-studio/docs/FONT_ROSTER_ACQUISITION.md. Paired local closure includes the complete original file set; no push. Next chat loads Debug context and waits.
-- Picker search and chrome hover, 2026-09-12: shared picker-search.js/css now supplies the field, semantic Clear action and retained browse/results slots to media and compact Theme pickers. AppScreen owns one metadata index/input lifecycle with 150 ms debounce, 32-query cache and no search database requests, plus 400 ms top-toolbar hover dwell. Audio selection reuses the existing checkbox recipe. Nine focused AppScreen checks, eleven syntax checks, Themes generation, six component source/web/docs comparisons, four development resource paths and Studio build pass. The same 39 unchanged-token collisions remain separate. Owner accepts the current rendered checkpoint and authorizes paired local closure; no push. The returned font research and family-bundle intake are recorded in the font acquisition plan; no pairing feature is active. Controlling plan: ../appscreen-studio/docs/PICKER_SEARCH_AND_CHROME_HOVER_PLAN.md.
-- Earlier Theme demo slice: owner accepts the Montserrat follow-up; family capability and default-off selection stay independent. Preserve all prior reference, palette, picker, favorite, font and shared recipe corrections. Exact scope and per-phase evidence: ../appscreen-studio/docs/THEME_DEMO_PREPARATION_PLAN.md. Accepted parent HEADs are AppScreen 68ab4b9 / Themes 5ccb26e. Earlier recipes, owner assets, static locks and diagnostics remain; prior closure: ../appscreen-studio/docs/SEPTEMBER_11_CLOSURE_AUDIT.md.
-- Paper backgrounds and button feedback remain in the owner-accepted accumulated checkpoint. Smoke Ring, Mesh Gradient and Swirl share the 15-Hz, 960-long-edge field policy and bounded interpolation lifecycle; clone preparation inherits Theme/assets in the shared Screen/Scene transaction. Earlier native Mesh/Swirl means are 3.752/3.526 ms, with peaks above 5 ms; the current capture does not establish a strict cost ceiling or independently verify duplication. Preserve Smoke appearance and the documented sibling evidence. Bits and Bolts dark glyph glow is hover blur 2.5, strength 62, halo 24, tint 0 and selected blur 3, strength 57, halo 49, tint 14; dropdowns inherit the same recipe and the playground remains. Earlier focused tests/builds/parity stand. Details: ../appscreen-studio/docs/PAPER_ANIMATED_BACKGROUNDS_PLAN.md and ../appscreen-studio/docs/BUTTON_FEEDBACK_PLAYGROUND.md. Historical review checklists do not authorize execution.
-- 2026-09-11: The owner accepts Standalone Video and its final corrections. Rectangular media, media-editor CSS and mixed toolbar-popover checkbox rows use Themes-owned recipes; checkbox rows span the shared numeric grid vertically without changing spacing. Source/web/docs generation and parity stand. AppScreen final acceptance capture has 161 records with zero warnings/errors; both nonzero-start recordings prepare and settle successfully. Prior atomic/treatment/GPU checks, final eight worker/poster checks and Studio build stand. Paired local closure is authorized; all earlier recipes/assets, static locks and diagnostics remain. Adjustable per-video bars with defaults per device stay V2. Next chat follows AppScreen HANDOFF.md for context-only Debug loading and a stop. No push.
-- Background Scale and pattern names are owner-accepted on 2026-09-10. Scale shows unitless 0-1 and maps logarithmically to the former 100-6400 percent sizes; existing saved geometry remains unchanged. The catalog shows Squiggle, Plus, Chinese, Tilted squares, Cubes, Barbed and Diamonds. Stable IDs, vectors, provenance, shared Themes recipes, live preview and Undo remain. Fourteen AppScreen and two Themes checks, both builds, name-only asset comparisons and exact source/web/docs parity pass. The owner requests paired local closure including the latest saved Video, then context-only Debug startup and a stop for direction. Preserve every earlier checkpoint, static/content lock, retained asset and diagnostic selector; no new work or push.
-- Device continuation/gap correction is owner-accepted. Screen/Scene selection spacing follow-up is implemented: outward offset and glow scale, offset stays within one third of the gap, and stroke remains 2 px. Element hulls are unchanged. Themes generation/parity pass; included in the owner-accepted 2026-09-10 checkpoint. Timeline ruler/track recipes are extracted into shared components; endpoint labels align inward and off-grid endpoints reserve an interval. Generation passes; the consumer transition correction now passes 24 focused checks and Studio build and is owner-accepted on 2026-09-10.
-- Cluna app mark slice is included in the owner-accepted checkpoint. Shared brand-mark markup separates inner masking from the existing outer glow across navbar/footer, workspace and loading/auth. The original mark, latest single-line outlined Studio wordmark with increased luna/Studio spacing and primary-color favicon are generated. Expanded chrome uses the contained 188 x 36 Studio SVG; collapsed chrome only the mark, without separate text. Prior assets remain. Themes/Studio builds and focused checks pass; no new theme; paired local closure is authorized and push remains user-owned. AppScreen-facing copy now uses Cluna Studio; domain and landing remain owner-owned.
-- Preserve Themes as the visual owner across every Bits and Bolts product.
-- Keep AppScreen behavior in AppScreen while sharing exact presentation recipes.
-- Keep source components, generated web output, and documentation output aligned.
-- Both Stopwatch slices are owner-approved. Shared hull input/cursor presentation is owner-approved.
-  Audio timing/removal, waveform, scroll surface, voiceover toolbar, Scene-placement hull and Timeline snapping are owner-accepted. The owner also accepts shared toolbar ordering, neutral Delete and empty-section admission. The accepted checkpoint remains preserved. No push, deployment or publication is authorized.
-- Animation cards are borderless. Audio retains brown/yellow selection/handles and
-  one brown outline, without inner borders, center rules, or pills. Build passed; checkpoint accepted for now.
-- Window content owns padding/gap; compensating editor insets are removed. Build
-  and seven focused checks pass; fresh checkpoint is accepted for now.
-- Universal typeface safety remains a separate parked discussion.
-- AppScreen static Safe areas is accepted and locked.
-- Audio annotated-text and Select descriptions are owner-accepted.
-- Unified Scene/element animation recipes and Audio slot actions are in the accepted checkpoint.
-- Distinct semantic Animation icon and Select window/scroll reservation are accepted.
-- Animation audio actions now share the backing-slot recipe; generation passes, checkpoint is accepted for now.
-- Picker and Vault cards retain one ancestor with distinct selection/playback
-  interactions. Hover cues now follow those interactions; checkpoint is accepted for now.
-- Toolbar popovers require the consumer event router; all lifecycle subscriptions
-  and disposal share that owner. Ten checks and generation pass; checkpoint accepted for now.
-## Completed Foundation
-- [x] Ship nine complete light and dark V2 families with canonical tokens,
-  components, fonts, icons, assets, recipes, and generated platform output.
-- [x] Own shared Background, project information, palette, Select, mixed-state,
-  fixed-overlay, arrangement, Geometry, Gap, and Line endpoint recipes.
-- [x] Own one workspace control-bar section separator and the destructive
-  Project action presented inside project information.
-- [x] Preserve Coffee's accepted Besley and Roboto Slab pairing.
-- [x] Keep behavior, mutation, persistence, Preview, and export in AppScreen.
-- [x] Own semantic Safe areas icon, shared checkbox checklist, and SVG shade recipe.
-## Completed Geometry and Appearance
 
-- [x] Own shared numeric and labeled range controls for layout editing.
-- [x] Own Shape Fill, Border, Width, None, and Roundness presentation.
-- [x] Publish Sharp through Pill Roundness stops without imposing one global
-  radius on Buttons, cards, and generic rectangles.
-- [x] Add Background Opacity to the canonical Background recipe.
-- [x] Synchronize source, dist, docs, focused tests, and production output.
+- The shared Timeline origin correction is owner-confirmed: playhead, ruler and clips include the same gutter, frame border and handle clearance. Both Timeline surfaces consume the shared inset, and duplicate embedded spacing is removed. Nine focused consumer checks and generation/parity pass.
+- The shared time-track and collapsed-range checkpoint is closed and owner-accepted, including AppScreen's 19 combined Phase 3/4/5 browser checks and clean closing log.
+- Wide Video Demo 2 is locked at 99.78 s after complete local visual review, successful media decode and a clean focused export log. This complete paired checkpoint is authorized for local commit. After closure there is no active Themes implementation slice; wait for owner direction.
+- The compact audio-control correction awaits owner visual acceptance: one trim row and canonical 68 px inline numeric fields in both toolbar and popover, with one-line Volume/Hold toolbar controls. Focused checks and generated source/web/docs parity pass. No other Themes feature cluster is active.
+- Current contracts and evidence links live in `STATUS.md`; completed slice reports belong in `CHANGELOG.md` and their cold task documents.
 
-## Completed Semantic Content Icon Catalog
+## Pending Owner Acceptance
 
-- [x] Replace the bounded seven-item AppScreen list with one Themes-owned
-  68-role catalog across Interface, Product, Outdoors, and Coffee.
-- [x] Map catalog roles through Material Outlined, Material Filled, and Font
-  Awesome Solid while retaining first-party Coffee vectors.
-- [x] Include Trophy and the outdoor family required by the Winter demo.
-- [x] Pin the Material Symbols SVG build dependency and ship its license.
-- [x] Preserve the original five accepted Material vectors exactly.
-- [x] Generate and verify every provider asset in web and documentation output.
-## Current Boundary
+- AppScreen owns the remaining consumer checks in its current status and roadmap, including animation defaults/order and removal of the Preview preparation popup.
+- The corrected circular range/progress thumb still needs separate owner visual approval. Do not infer it from acceptance of the time-track checkpoint.
+- These pending checks do not authorize a new implementation slice or agent-owned browser work.
 
-- Preserve all accepted editor recipes and generated assets.
-- The Winter iPhone and iPad projects consume existing Themes ownership.
-- Do not begin another Themes feature cluster until the owner directs it.
-- Push, deployment, publication, and browser acceptance remain user-owned.
+## Parked
+
+- Universal typeface safety.
+- Hosted font admission, commercial fonts and pairing suggestions.
+- Adjustable per-video bars with per-device defaults.
+- Historical Preview performance and the Video Editor hiccup remain AppScreen-owned and parked.
+
+## Boundaries
+
+- Themes owns exact shared presentation; AppScreen owns behavior, mutation, persistence, rendering, Preview, export and composition.
+- Keep source components, generated web output and documentation output aligned.
+- Preserve every accepted recipe, owner project, asset, original font, SVG/audio file, diagnostic selector, ignored evidence and static lock.
+- The existing token-collision gate stays separate from any newly selected work.
+- Embedded audio remains closed. Do not reopen accepted slices or activate parked work without owner direction.
+- Commits need explicit authorization. Browser actions, live/visual acceptance, pushes, deployment and publication remain user-owned.

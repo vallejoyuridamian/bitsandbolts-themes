@@ -18,8 +18,14 @@ export function audioAssetActionsMarkup({
   </div>`;
 }
 
-export function audioVolumeMarkup() {
-  return `<label class="bb-audio-settings__volume"><span class="bb-audio-settings__label">Volume <span data-audio-setting-value="volume">100%</span></span>${rangeControlMarkup(`<input data-audio-setting="volume" class="range-control" type="range" min="0" max="1" step="0.01" aria-label="Audio volume">`)}</label>`;
+export function audioVolumeMarkup({ inline = false } = {}) {
+  return `<label class="bb-toolbar-popover__field bb-audio-settings__volume${inline ? ' bb-audio-settings__volume--inline' : ''}"><span class="bb-toolbar-popover__field-label bb-audio-settings__label">Volume <span data-audio-setting-value="volume">100%</span></span>${rangeControlMarkup(`<input data-audio-setting="volume" class="range-control" type="range" min="0" max="1" step="0.01" aria-label="Audio volume">`)}</label>`;
+}
+
+export function audioTimingMarkup(timingControls = []) {
+  return timingControls.length ? `<div class="bb-property-editor bb-audio-settings__timing" data-audio-timing-controls>${timingControls.map(({ field, label, ...limits }) => layoutTextEditorNumericFieldMarkup({
+    ...limits, inline: true, label, attributes: { 'data-audio-timing': field }
+  })).join('')}</div>` : '';
 }
 
 export function audioSettingsMarkup({ canChooseAsset = false, canRemove = false, timingControls = [], hasAsset = true } = {}) {
@@ -33,9 +39,7 @@ export function audioSettingsMarkup({ canChooseAsset = false, canRemove = false,
   return `<div class="bb-property-editor bb-audio-settings" data-audio-settings>
     ${semanticActionButtonMarkup({ iconRole: 'play_arrow', label: 'Play audio', recipe: 'workspace', attributes: { 'data-audio-setting': 'play' } })}
     ${audioVolumeMarkup()}
-    ${timingControls.length ? `<div class="bb-audio-settings__timing">${timingControls.map(({ field, label, ...limits }) => layoutTextEditorNumericFieldMarkup({
-      ...limits, label, attributes: { 'data-audio-timing': field }
-    })).join('')}</div>` : ''}
+    ${audioTimingMarkup(timingControls)}
     ${canChooseAsset ? assetActions() : canRemove ? `<div class="bb-audio-settings__actions">${semanticActionButtonMarkup({
       iconRole: 'delete', label: 'Remove audio', attributes: { 'data-audio-setting': 'remove' }
     })}</div>` : ''}

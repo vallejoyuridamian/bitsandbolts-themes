@@ -1,5 +1,22 @@
 # Bits and Bolts Themes - Changelog
 
+## 2026-09-18: Wide-video checkpoint and compact audio controls
+
+- One shared audio timing recipe now supplies matching inline trim labels and
+  canonical 68 px numeric fields to the embedded toolbar and Audio popovers.
+  Toolbar Volume and Hold controls remain on one line.
+- The Timeline content inset now includes the canonical gutter, frame border and
+  handle clearance. Embedded and main Timeline surfaces consume the same origin;
+  the owner confirmed the resulting playhead alignment.
+- Source components, generated web output and documentation output stay exact.
+  Focused AppScreen checks, Themes generation and recorded parity checks pass.
+- AppScreen's 99.78 s wide Video Demo 2 is locked after complete local visual
+  review, successful full media decode and a clean 226-record export window.
+  Separately listed visual rechecks remain pending rather than inferred.
+- The owner authorizes the complete paired local checkpoint. Preserve all owner
+  projects, assets, diagnostics and ignored evidence. No push, deployment,
+  publication or browser action occurs.
+
 ## 2026-09-17: Accepted shared time-track and Audio presentation closure
 
 - Main Timeline and Video Editor consume one Themes-owned time-track content

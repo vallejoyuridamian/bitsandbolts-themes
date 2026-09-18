@@ -8,7 +8,6 @@
 }
 
 .embedded-video-editor {
-  --timeline-content-gutter: 0px;
   --timeline-element-inset: 0px;
   --timeline-handle-accent: var(--accent);
   display: grid;
@@ -66,7 +65,6 @@
   gap: 8px;
   min-width: 0;
   overflow: visible;
-  padding-inline: 12px;
   touch-action: none;
   width: max(760px, var(--media-editor-timeline-zoom-width, 100%));
 }
@@ -325,14 +323,8 @@
 }
 
 .media-editor-playhead-rail {
-  inset: 0 var(--timeline-edge-clearance, 0px);
+  inset: 0 var(--timeline-content-inset);
   overflow-x: clip;
-}
-
-.media-editor-timeline > .timeline-ruler,
-.media-editor-track {
-  width: 100%;
-  margin-inline: 0;
 }
 
 /* One video lane and one multitrack Audio lane share the ruler and playhead. */

@@ -150,20 +150,23 @@ export function layoutTextEditorIconButtonMarkup({
 
 export function layoutTextEditorNumericFieldMarkup({
   attributes = {},
+  inline = false,
   label = '',
   max,
   min,
   step = 1,
   value
 } = {}) {
-  return `<label class="bb-layout-text-editor__size-control"><span class="bb-layout-text-editor__field-label">${escapeHtml(label)}</span><input class="bb-workspace-control-input" type="number"${attributesMarkup({
+  const inputAttributes = {
     'aria-label': attributes['aria-label'] ?? label,
     ...attributes,
     ...(Number.isFinite(Number(max)) ? { max: Number(max) } : {}),
     ...(Number.isFinite(Number(min)) ? { min: Number(min) } : {}),
     step: Number(step) || 1,
     ...(Number.isFinite(Number(value)) ? { value: Number(value) } : {})
-  })}></label>`;
+  };
+  if (inline) return toolbarPopoverNumericFieldMarkup({ label, attributes: inputAttributes });
+  return `<label class="bb-layout-text-editor__size-control"><span class="bb-layout-text-editor__field-label">${escapeHtml(label)}</span><input class="bb-workspace-control-input" type="number"${attributesMarkup(inputAttributes)}></label>`;
 }
 
 export function layoutTextEditorRangeValueLabel(value, unit = '%') {

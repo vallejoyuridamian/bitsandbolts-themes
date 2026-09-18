@@ -79,9 +79,9 @@ components, and generators for supported platforms.
 - Catalog pickers share picker-search.js/css for the field, clear action and browse/results slots. Media and Theme presenters reuse their existing card recipes; consumers supply data and one shared search lifecycle, never a picker-specific search field or competing control styling.
 - The long-term delivery mechanism must prevent copied consumer assets from
   becoming a second source of truth; that mechanism is not yet ratified.
-- A theme must eventually be switchable as a complete visual system, not only a
+- Theme switching must apply the complete visual system, not only a
   color palette.
-- The future AppScreen Studio Themes tab and user-authored themes must consume
+- The AppScreen Studio Themes tab and user-authored themes must consume
   the same portable schema as first-party themes.
 
 ## Context
