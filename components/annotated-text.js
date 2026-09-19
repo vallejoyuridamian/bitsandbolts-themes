@@ -1,5 +1,11 @@
 import { semanticIconMarkup } from './semantic-icons.js';
 
+export {
+  ATTENTION_PULSE_ANIMATION,
+  clearAttentionPulse,
+  presentAttentionPulse
+} from './attention-feedback.js';
+
 export function annotationHue(value = '') {
   let hash = 0;
   for (const character of String(value || '')) hash = ((hash * 31) + character.charCodeAt(0)) % 360;

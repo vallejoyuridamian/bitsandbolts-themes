@@ -1,5 +1,10 @@
 import { semanticActionButtonMarkup } from './button.js';
 import { colorPaletteSectionMarkup, layoutTextEditorSectionMarkup } from './layout-text-editor.js';
+import {
+  ATTENTION_PULSE_ANIMATION,
+  clearAttentionPulse,
+  presentAttentionPulse
+} from './attention-feedback.js';
 export { orderedAnimationEntries, indexedAnimationLabel } from './animation-order.js';
 
 const orderSyncByRoot = new WeakMap();
@@ -60,11 +65,11 @@ export function createAnimationEditorController({ root, eventRouter, reveal, get
   const presetDrafts = new Set();
   const draftOptions = new WeakMap();
   const clearHighlight = () => {
-    highlighted?.classList.remove('bb-animation-card-added');
+    clearAttentionPulse(highlighted);
     highlighted = null;
   };
   const onAnimationFinished = (event) => {
-    if (event.target === highlighted && event.animationName === 'bb-animation-card-added') clearHighlight();
+    if (event.target === highlighted && event.animationName === ATTENTION_PULSE_ANIMATION) clearHighlight();
   };
   eventRouter.bind(root, 'animationend', onAnimationFinished);
   eventRouter.bind(root, 'animationcancel', onAnimationFinished);
@@ -77,9 +82,7 @@ export function createAnimationEditorController({ root, eventRouter, reveal, get
     reveal(card);
     card.focus({ preventScroll: true });
     highlighted = card;
-    card.classList.add('bb-animation-card-added');
-    const pulse = card.getAnimations?.().find((animation) => animation.animationName === 'bb-animation-card-added');
-    if (pulse) pulse.currentTime = 0;
+    presentAttentionPulse(card);
     return true;
   }
   function renderDrafts({ reset = false } = {}) {

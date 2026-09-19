@@ -2,6 +2,8 @@
 
 ## Current Focus
 
+- The shared attention pulse preserves the accepted Animation-card feedback and now serves Cluna Studio's annotated voiceover editor after cue insertion. Generation, exact source/web/docs parity and the focused consumer checks pass. The exact Guest consumer presentation is owner-accepted for Phase 2.
+- The shared floating-window content-change event lets content request one post-mutation fit without observing the window itself. AppScreen coalesces the request, retains grow-only fitting for card changes, and resets height only after whole-card deletion. Generation, exact source/web/docs parity and 37 focused consumer checks pass. The exact Guest consumer presentation is owner-accepted for Phase 2.
 - The shared Timeline origin correction is owner-confirmed: playhead, ruler and clips include the same gutter, frame border and handle clearance. Both Timeline surfaces consume the shared inset, and duplicate embedded spacing is removed. Nine focused consumer checks and generation/parity pass.
 - The shared time-track and collapsed-range checkpoint is closed and owner-accepted, including AppScreen's 19 combined Phase 3/4/5 browser checks and clean closing log.
 - Wide Video Demo 2 is locked at 99.78 s after complete local visual review, successful media decode and a clean focused export log. This complete paired checkpoint is authorized for local commit. After closure there is no active Themes implementation slice; wait for owner direction.

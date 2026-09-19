@@ -1159,3 +1159,16 @@ Keep new changes easy to scan at the top.
 - Kept deferred Transition phase selection in AppScreen and made the Themes animation card own destination reveal, focus, and a one-second glow only when a type, phase, or timing edit changes its list position. Unchanged positions receive no attention.
 - Synchronized the source, web distribution, and docs animation-editor copies. Themes generation passed with the existing 39 token-collision warnings, and the 19 focused AppScreen animation checks passed.
 - Captured the paired local checkpoint with browser acceptance still pending. No push was performed.
+
+## Session wrap-up (2026-09-18) - Cluna Studio Guest presentation accepted
+
+- Added one shared one-second attention pulse for Animation cards and the
+  annotated voiceover editor after Emotion or Expression insertion.
+- Added one explicit floating-window content-change event so a consumer can
+  request a coalesced fit after its own DOM mutation without observing window
+  size or creating a resize feedback loop.
+- Kept source components, generated web output, and documentation output exact.
+  The Themes build, parity checks, and focused AppScreen consumer checks pass.
+- The owner accepted both presentations in the exact Cluna Studio Guest Phase 2
+  candidate. No package publication, deployment, push, or external mutation
+  occurred.

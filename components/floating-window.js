@@ -4,6 +4,23 @@ import { progressMarkup } from './progress.js';
 export { measurePreviewCardGridWidth } from './preview-card-grid.js';
 export { updateProgressPresentation } from './progress.js';
 
+export const FLOATING_WINDOW_CONTENT_CHANGE_EVENT = 'bb:floating-window-content-change';
+
+export function notifyFloatingWindowContentChange(target, { resetHeight = false } = {}) {
+  if (typeof target?.dispatchEvent !== 'function') return false;
+  const EventConstructor = target.ownerDocument?.defaultView?.CustomEvent ?? globalThis.CustomEvent;
+  const event = typeof EventConstructor === 'function'
+    ? new EventConstructor(FLOATING_WINDOW_CONTENT_CHANGE_EVENT, {
+        bubbles: true,
+        detail: { resetHeight: Boolean(resetHeight) }
+      })
+    : Object.assign(new Event(FLOATING_WINDOW_CONTENT_CHANGE_EVENT, { bubbles: true }), {
+        detail: { resetHeight: Boolean(resetHeight) }
+      });
+  target.dispatchEvent(event);
+  return true;
+}
+
 export function floatingWindowTaskMarkup({ id = 'task', title = 'Working' } = {}) {
   const heading = floatingWindowHeadingMarkup({ id, title });
   return `<div class="bb-floating-window-content bb-floating-task" data-floating-window-size="content" aria-labelledby="${heading.titleId}">${heading.headingMarkup}<div class="bb-floating-window-content__body">${progressMarkup({ id })}<p class="bb-progress__label" data-task-detail hidden></p></div><div class="bb-floating-window-content__actions" role="group" aria-label="Task actions"><button class="bb-workspace-control-button" type="button" data-task-close>Cancel</button><button class="bb-workspace-control-button" type="button" data-task-download hidden>Download</button></div></div>`;

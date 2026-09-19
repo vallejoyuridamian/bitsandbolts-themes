@@ -11,6 +11,17 @@
   --bb-resizable-toolbar-grip-thickness: 3px;
 }
 
+.bb-attention-pulse {
+  animation: bb-attention-pulse 1000ms ease-in-out;
+}
+
+@keyframes bb-attention-pulse {
+  0%, 100% { box-shadow: 0 0 12px 2px transparent; }
+  50% {
+    box-shadow: 0 0 12px 2px color-mix(in srgb, var(--bb-interface-control-focus-ring) 65%, transparent);
+  }
+}
+
 .bb-workspace-surface {
   color: var(--bb-interface-control-foreground);
   background: var(--bb-interface-workspace-background);
