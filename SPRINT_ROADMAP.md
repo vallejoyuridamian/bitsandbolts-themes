@@ -2,11 +2,26 @@
 
 ## Current Focus
 
-- Preserve the paired v69 checkpoint; migration implementation is paused.
+- The shared viewport surface now has a composed-background modifier. Studio
+  activates it only after its unified background/artwork composition presents.
+  Source/web/docs generation and exact parity pass; the 39 existing token
+  warnings remain separate. Studio owns the full-gallery trial everywhere and
+  accepted iPhone visuals: complete rendering, smooth scrolling, no flicker.
+  Native-resource gates remain open. No new Themes canvas or renderer.
+
+- Studio M1 Text/dynamic recipe now holds text-size-adjust:auto across selection
+  after a measured iPhone CSS zoom font jump. Generation/parity and eleven
+  focused Studio checks pass. Owner iPhone confirms text and hull box size;
+  complete background paint and flicker-free scrolling are now also accepted.
+  Independent hull stroke stays M2; Studio next closes M1 interaction proof.
+- Preserve the paired v69 checkpoint; initial M1 desktop audit is recorded.
   Studio's `docs/RENDERING_ARCHITECTURE_MIGRATION_PLAN.md` now controls the
-  sequence: desktop mixed stacking first after explicit start, followed by
-  editor parity, shared output contracts and real-phone cutover gates. Existing
-  recipes and generated outputs remain unchanged during this checkpoint.
+  sequence: desktop exposure, audit, bounded blockers and mixed stacking,
+  followed by editor parity, shared output contracts and real-phone gates.
+  Stage/layer positioning now belongs to generic Themes recipes, preserving
+  values. Generation/parity and Studio's focused stage check passed; fresh
+  full owner visual acceptance remains open. Studio records the findings and
+  proceeds to the shared composition seam for arbitrary stacking.
 - AppScreen's LAN-only v66 stage-paint test consumes the generic world-stage
   containment recipe and its no-paint modifier. The approved v67 comparison
   also consumes the new generic viewport background surface recipe, preserving

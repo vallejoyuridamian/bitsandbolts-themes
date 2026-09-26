@@ -3,13 +3,40 @@ Updated: 2026-09-26
 
 ## Current Checkpoint
 
+- Owner authorizes this paired local checkpoint commit with Studio. Preserve the
+  accepted rendering result; Studio next closes M1 interaction gates, then M2.
+  No source changes, fresh browser run, push or deployment during finalization.
+
+- The shared viewport surface now has a composed-background modifier. Studio
+  activates it only after its unified background/artwork composition presents.
+  Source/web/docs generation and exact parity pass; the 39 existing token
+  warnings remain separate. Studio owns the full-gallery trial everywhere and
+  accepted iPhone visuals: complete rendering, smooth scrolling, no flicker.
+  Native-resource gates remain open. No new Themes canvas or renderer.
+
+- Studio M1 fourth phone trace proves editable font inflation under CSS zoom:
+  136 px becomes 430 px when WebKit supplies text-size-adjust:none. The shared
+  Text/dynamic artwork recipe now keeps text-size-adjust:auto across selection.
+  One Themes build and exact source/web/docs parity pass. Studio's eleven
+  focused checks pass. The fifth iPhone run accepts text and hull box size.
+  The latest iPhone run accepts complete backgrounds and flicker-free swipes.
+  Studio owns remaining interaction proof and M2 uneven hull stroke.
+- Shared authored text/shape/dynamic and composed-pixel recipes preserve native
+  hit order; only visual children become transparent after composition.
 - Paired Studio v69 checkpoint: the owner accepts iPhone multi-Device stability
   and remaining brief paint flicker. Shared containment, viewport and Device
   diagnostic recipes are preserved unchanged. This is not production cutover
-  or complete visual parity: stacking, Device shadow and selection sizing remain
-  Studio migration gates. The controlling sequence is
+  or complete editor parity: interaction proof, Device shadows and hull stroke
+  remain Studio migration gates. The controlling sequence is
   `../appscreen-studio/docs/RENDERING_ARCHITECTURE_MIGRATION_PLAN.md`.
-  Implementation is paused until the owner starts it in the new chat.
+  M1 desktop exposure and initial owner audit are complete. Existing
+  Studio stage positioning moved into `bb-layout-world-stage`; the shared
+  `bb-layout-world-layer` recipe replaces six identical injected layer rules.
+  Values are preserved. Themes build and source/web/docs CSS parity passed;
+  Studio's focused parent-stage check passed. The owner reports zoom lag,
+  uncertain alignment, intermittent hull paint and known image/Device stacking
+  failure; otherwise LGTM. Studio's plan records these gates and stacking next.
+  Full migration visual acceptance remains open.
 - AppScreen's owner-authorized LAN-only v66 iPhone gallery-paint comparison
   uses the generic `bb-layout-world-stage` containment recipe and its
   `--no-paint-containment` modifier. The default remains `contain: layout paint`;

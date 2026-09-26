@@ -28,6 +28,11 @@ export const layoutEditorTextCaretRecipe = Object.freeze({
   blinkDuration: '1s'
 });
 
+export const layoutEditorTextSelectionRecipe = Object.freeze({
+  background: 'Highlight',
+  color: 'HighlightText'
+});
+
 export const layoutEditorSelectionRecipe = Object.freeze({
   signalColor: '#ff5a5f',
   alternateSignalColor: '#12e6d5',
@@ -123,6 +128,7 @@ export function layoutEditorSafeAreaMarkup({ width, height, regions = [] } = {})
 }
 
 export const layoutEditorTextCaretStyles = `
+.${layoutEditorTextCaretRecipe.hostClass}::selection,.${layoutEditorTextCaretRecipe.hostClass} *::selection{background:${layoutEditorTextSelectionRecipe.background};color:${layoutEditorTextSelectionRecipe.color}}
 @keyframes bb-layout-editor-text-caret-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
 .${layoutEditorTextCaretRecipe.hostClass}[contenteditable="true"],.${layoutEditorTextCaretRecipe.hostClass}[contenteditable="true"] *{caret-color:transparent!important}
 .${layoutEditorTextCaretRecipe.hostClass}::after{content:"";position:absolute;z-index:1;display:none;box-sizing:border-box;left:var(${layoutEditorTextCaretRecipe.leftProperty},0);top:var(${layoutEditorTextCaretRecipe.topProperty},0);width:${layoutEditorTextCaretRecipe.width};height:var(${layoutEditorTextCaretRecipe.heightProperty},0);background:var(${layoutEditorTextCaretRecipe.colorProperty},currentColor);transform:translateX(-50%) rotate(var(${layoutEditorTextCaretRecipe.rotationProperty},0deg)) skewX(var(${layoutEditorTextCaretRecipe.slantProperty},0deg));transform-origin:50% 0;pointer-events:none}
@@ -206,4 +212,30 @@ export const layoutEditorRegionOverlayStyles = `
 
 export function layoutEditorRotationIconMarkup() {
   return semanticIconMarkup('rotate');
+}
+
+// Shared authored text, vector and dynamic typography surface structure.
+export const layoutEditorArtworkStyles = `
+.layout-master-text,.layout-master-dynamic{-webkit-text-size-adjust:auto;text-size-adjust:auto}
+.layout-master-text{position:absolute;box-sizing:content-box;margin:0;outline:0;overflow:visible;-webkit-user-select:none;user-select:none}
+.layout-master-text[contenteditable="true"]{-webkit-user-select:text;user-select:text}
+.layout-master-text__surface{position:relative;display:block;box-sizing:content-box;min-width:0;max-width:none;overflow:visible;transform-origin:center center}
+.layout-master-text__content{display:block;box-sizing:content-box;min-width:0;max-width:none;height:auto;min-height:0;overflow:visible}
+.layout-master-text-projection-defs{position:absolute;width:0;height:0;overflow:hidden;}
+
+.layout-master-shape{position:absolute;display:block;box-sizing:border-box;margin:0;overflow:visible;transform-origin:center center;outline:0;-webkit-user-select:none;user-select:none}
+.layout-master-shape__fragment{position:absolute;display:block;overflow:hidden;}
+.layout-master-shape__surface{position:absolute;display:block;max-width:none;max-height:none;margin:0;overflow:visible;transform-origin:center center;-webkit-user-select:none;user-select:none}
+
+.layout-master-dynamic{position:absolute;display:block;box-sizing:border-box;margin:0;overflow:visible;transform-origin:center center;outline:0;-webkit-user-select:none;user-select:none}
+.layout-master-dynamic__fragment{position:absolute;display:block;overflow:hidden;}
+.layout-master-dynamic__surface{position:absolute;display:block;box-sizing:border-box;margin:0;white-space:pre-wrap;overflow-wrap:break-word;transform-origin:center center}
+`;
+
+export function installLayoutArtworkStyles(documentRef) {
+  if (!documentRef?.head || documentRef.getElementById('bb-layout-artwork-styles')) return;
+  const style = documentRef.createElement('style');
+  style.id = 'bb-layout-artwork-styles';
+  style.textContent = layoutEditorArtworkStyles;
+  documentRef.head.append(style);
 }

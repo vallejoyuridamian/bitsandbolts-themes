@@ -44,12 +44,18 @@
   padding: 0;
 }
 
-.bb-layout-world-stage { contain: layout paint; }
+.bb-layout-world-stage { position: absolute; inset: 0 auto auto 0; z-index: 40; overflow: hidden; transform-origin: top left; pointer-events: none; contain: layout paint; }
 .bb-layout-world-stage--no-paint-containment { contain: layout; }
+.bb-layout-world-layer { position: absolute; inset: 0; overflow: visible; pointer-events: none; }
+/* Keep category layers out of stacking contexts so authored input hit order
+   remains shared. Only artwork pixels move to the GPU; hosts stay interactive. */
+.bb-layout-world-stage--composed :is(.bb-layout-media__surface, .layout-master-text__surface, .layout-master-shape__surface, .layout-master-dynamic__surface) { opacity: 0; }
+.bb-layout-world-stage--composed .bb-layout-editor-text-caret-host::after { visibility: hidden; }
 .bb-layout-viewport-surface { position: absolute; inset: 0 auto auto 0; isolation: isolate; overflow: hidden; background-color: var(--asset-bg-color, var(--bb-v2-color-surface-canvas)); background-image: var(--asset-bg-base); background-size: var(--asset-bg-base-size); background-position: var(--asset-bg-base-position); background-repeat: no-repeat; opacity: var(--asset-bg-opacity, 1); transform-origin: top left; pointer-events: auto; }
 .bb-layout-viewport-surface::before, .bb-layout-viewport-surface::after { position: absolute; inset: 0; display: block; content: ""; pointer-events: none; }
 .bb-layout-viewport-surface::before { z-index: 0; background: var(--asset-bg-overlay); }
 .bb-layout-viewport-surface::after { z-index: 1; background-image: var(--asset-bg-image); background-size: var(--asset-bg-image-size); background-position: var(--asset-bg-image-position); background-repeat: var(--asset-bg-image-repeat); opacity: var(--asset-bg-image-opacity); }
+.bb-layout-viewport-surface.bb-layout-viewport-surface--composed { opacity: 0; }
 
 .bb-layout-render-surface { position: absolute; inset: 0 auto auto 0; display: block; margin: 0; filter: drop-shadow(0 34px 90px rgba(0,0,0,.38)); }
 .bb-layout-render-source { visibility: hidden; filter: none; }

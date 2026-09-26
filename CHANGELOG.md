@@ -1,5 +1,18 @@
 # Bits and Bolts Themes - Changelog
 
+## 2026-09-26: Paired Studio full-gallery rendering checkpoint
+
+- Shared authored text/shape/dynamic recipes and composed-pixel states support
+  Studio's one-canvas composition while retaining native input and hit order.
+- Text/dynamic hosts keep text-size-adjust:auto across selection. The shared
+  viewport surface suppresses CSS background pixels after composition presents.
+- Source, generated web and docs outputs match after the recorded Themes build.
+  The existing 39 token-collision warnings remain separate. Studio's owner
+  accepts iPhone text, hull size, complete backgrounds and smooth, flicker-free
+  scrolling. Uneven hull stroke and remaining interaction gates stay open.
+- Local paired checkpoint commit is authorized. No push or deployment.
+
+
 ## 2026-09-18: Wide-video checkpoint and compact audio controls
 
 - One shared audio timing recipe now supplies matching inline trim labels and
