@@ -55,6 +55,8 @@ test('theme readiness derives the exact theme font profile and loads every requi
 });
 
 test('initial presentation stays pending until theme styles and fonts are ready', async () => {
+  let completeLoad;
+  let fontLoadCount = 0;
   const themeLink = {
     dataset: {
       bbPageThemeFamily: 'bitsandbolts',
@@ -72,8 +74,16 @@ test('initial presentation stays pending until theme styles and fonts are ready'
   };
   const root = {
     documentElement,
+    readyState: 'interactive',
+    defaultView: {
+      addEventListener(type, listener) {
+        assert.equal(type, 'load');
+        completeLoad = listener;
+      }
+    },
     fonts: {
       load() {
+        fontLoadCount += 1;
         return Promise.resolve([{}]);
       },
       ready: Promise.resolve()
@@ -83,6 +93,12 @@ test('initial presentation stays pending until theme styles and fonts are ready'
     }
   };
 
-  assert.equal(await installThemeReadiness(root), true);
+  const readiness = installThemeReadiness(root);
+  assert.equal(fontLoadCount, 0);
+  assert.equal(documentElement.dataset.bbThemeReadiness, 'pending');
+  root.readyState = 'complete';
+  completeLoad();
+  assert.equal(await readiness, true);
+  assert.equal(fontLoadCount, 12);
   assert.equal(documentElement.dataset.bbThemeReadiness, 'ready');
 });

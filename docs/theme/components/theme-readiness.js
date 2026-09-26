@@ -105,15 +105,22 @@ function typographyLinks(root) {
   return [...(root?.querySelectorAll?.('link[rel="stylesheet"][href*="/components/typography.css"]') || [])];
 }
 
+function documentLoadComplete(root) {
+  if (root?.readyState === 'complete' || !root?.defaultView?.addEventListener) return Promise.resolve();
+  return new Promise((resolve) => {
+    root.defaultView.addEventListener('load', resolve, { once: true });
+  });
+}
+
 export function installThemeReadiness(root = globalThis.document) {
   if (!root?.documentElement) return Promise.resolve(false);
   const installed = installedDocuments.get(root);
   if (installed) return installed;
 
   const ready = (async () => {
+    await documentLoadComplete(root);
     const themeLinks = currentThemeLinks(root);
-    const stylesReady = await Promise.all([...typographyLinks(root), ...themeLinks].map(themeLinkReady));
-    if (!stylesReady.every(Boolean)) return false;
+    if (![...typographyLinks(root), ...themeLinks].every((link) => Boolean(link.sheet))) return false;
     if (!(await waitForThemeFonts(themeLinks, root))) return false;
     root.documentElement.dataset.bbThemeReadiness = 'ready';
     return true;
