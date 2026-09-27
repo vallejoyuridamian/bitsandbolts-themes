@@ -2,9 +2,15 @@
 Updated: 2026-09-26
 
 ## Current Checkpoint
+- Studio M1/M2 are closed; additional iPhone rendering/interactions are accepted.
+  Shared hull wrappers, snap-guide surface, zoom metrics and interaction stacking
+  preserve accepted desktop/iPhone behavior. Focused checks, generation and exact
+  source/web/docs parity pass. Owner authorizes this paired local M2 checkpoint.
+  Studio M3 ownership inventory is next; M4 zoom/native-resource gates stay open.
+  Active diagnostics remain. No push or deployment.
 
 - Owner authorizes this paired local checkpoint commit with Studio. Preserve the
-  accepted rendering result; Studio next closes M1 interaction gates, then M2.
+  accepted rendering result; M1/M2 are closed and Studio M3 inventory is next.
   No source changes, fresh browser run, push or deployment during finalization.
 
 - The shared viewport surface now has a composed-background modifier. Studio
@@ -20,14 +26,14 @@ Updated: 2026-09-26
   One Themes build and exact source/web/docs parity pass. Studio's eleven
   focused checks pass. The fifth iPhone run accepts text and hull box size.
   The latest iPhone run accepts complete backgrounds and flicker-free swipes.
-  Studio owns remaining interaction proof and M2 uneven hull stroke.
+  Studio M2 closure supersedes the historical interaction and hull gates below.
 - Shared authored text/shape/dynamic and composed-pixel recipes preserve native
   hit order; only visual children become transparent after composition.
 - Paired Studio v69 checkpoint: the owner accepts iPhone multi-Device stability
   and remaining brief paint flicker. Shared containment, viewport and Device
   diagnostic recipes are preserved unchanged. This is not production cutover
-  or complete editor parity: interaction proof, Device shadows and hull stroke
-  remain Studio migration gates. The controlling sequence is
+  or production resource acceptance. Historical interaction/hull gates below
+  are closed by M2; Device shadows are explicitly excluded. The controlling sequence is
   `../appscreen-studio/docs/RENDERING_ARCHITECTURE_MIGRATION_PLAN.md`.
   M1 desktop exposure and initial owner audit are complete. Existing
   Studio stage positioning moved into `bb-layout-world-stage`; the shared

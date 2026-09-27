@@ -1,6 +1,12 @@
 # Bits and Bolts Themes: Sprint Roadmap
 
 ## Current Focus
+- Studio M1/M2 are closed; additional iPhone rendering/interactions are accepted.
+  Shared hull wrappers, snap-guide surface, zoom metrics and interaction stacking
+  preserve accepted desktop/iPhone behavior. Focused checks, generation and exact
+  source/web/docs parity pass. Owner authorizes this paired local M2 checkpoint.
+  Studio M3 ownership inventory is next; M4 zoom/native-resource gates stay open.
+  Active diagnostics remain. No push or deployment.
 
 - The shared viewport surface now has a composed-background modifier. Studio
   activates it only after its unified background/artwork composition presents.
@@ -13,7 +19,7 @@
   after a measured iPhone CSS zoom font jump. Generation/parity and eleven
   focused Studio checks pass. Owner iPhone confirms text and hull box size;
   complete background paint and flicker-free scrolling are now also accepted.
-  Independent hull stroke stays M2; Studio next closes M1 interaction proof.
+  M1/M2 interaction and hull gates are closed; historical evidence follows.
 - Preserve the paired v69 checkpoint; initial M1 desktop audit is recorded.
   Studio's `docs/RENDERING_ARCHITECTURE_MIGRATION_PLAN.md` now controls the
   sequence: desktop exposure, audit, bounded blockers and mixed stacking,

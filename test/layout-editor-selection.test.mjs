@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
+import { applyOverlayZoomCompensation, overlayMetric, overlayZoomCompensationProperty } from '../components/overlay-metrics.js';
 
 import {
   applyLayoutEditorOverlayZoomCompensation,
@@ -109,6 +110,43 @@ test('layout editor zoom compensation has one shared presentation helper', () =>
     '4'
   ]]);
   assert.equal(applyLayoutEditorOverlayZoomCompensation(null, 0), 1);
+});
+
+test('viewport selection and hulls compose the same zoom metric without sharing geometry', async () => {
+  const css = await readFile(new URL('../components/interface-primitives.css', import.meta.url), 'utf8');
+  const rules = [...css.matchAll(/\.bb-workspace-preview-frame\[data-selected="true"\]::after\s*\{([^}]+)\}/g)];
+  assert.equal(rules.length, 2, 'base recipe and forced-colors specialization');
+  const frame = rules[0][1];
+  const stroke = frame.match(/--bb-workspace-preview-selection-stroke:\s*([^;]+);/)[1];
+  assert.match(rules[1][1], /border:\s*var\(--bb-workspace-preview-selection-stroke\) solid Highlight;/);
+  assert.doesNotMatch(rules[1][1], /--bb-workspace-preview-selection-stroke:|z-index:/,
+    'forced colors inherits geometry and stacking from the base recipe');
+  assert.equal(stroke, overlayMetric(2));
+  assert.equal(layoutEditorSelectionRecipe.outlineWidth, overlayMetric(1));
+  assert.equal(applyLayoutEditorOverlayZoomCompensation, applyOverlayZoomCompensation);
+  assert.equal(layoutEditorSelectionRecipe.zoomCompensationProperty, overlayZoomCompensationProperty);
+  assert.match(frame, /calc\(7px \* var\(--bb-layout-viewport-scale, 1\)\)/,
+    'viewport outset deliberately scales independently of the stroke');
+
+  const stage = css.match(/\.bb-layout-world-stage\s*\{([^}]+)\}/)[1];
+  const feedbackLayer = css.match(/--bb-layout-interaction-layer:\s*(\d+);/)[1];
+  for (const recipe of [frame, stage]) {
+    assert.match(recipe, /z-index:\s*var\(--bb-layout-interaction-layer\);/);
+  }
+  assert.ok(Number(feedbackLayer) > 39, 'inward viewport stroke must paint above composed artwork');
+
+  // A viewport shell is already sized in display pixels; a hull lives under
+  // a scaled stage. Both must retain their own declared visible thickness.
+  for (const stageScale of [0.125, 0.193, 0.5, 1, 2]) {
+    for (const [coordinateScale, thickness] of [[1, 2], [stageScale, 1]]) {
+      let inherited;
+      applyOverlayZoomCompensation({ style: { setProperty(key, value) {
+        assert.equal(key, overlayZoomCompensationProperty);
+        inherited = Number(value);
+      } } }, coordinateScale);
+      assert.ok(Math.abs(thickness * inherited * coordinateScale - thickness) < 1e-12);
+    }
+  }
 });
 
 test('layout editor Text caret uses the shared screen-space metric owner', () => {

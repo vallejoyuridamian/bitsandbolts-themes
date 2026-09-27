@@ -1,4 +1,6 @@
 import { semanticIconMarkup } from './semantic-icons.js';
+import { overlayMetric, overlayZoomCompensationProperty } from './overlay-metrics.js';
+export { applyOverlayZoomCompensation as applyLayoutEditorOverlayZoomCompensation } from './overlay-metrics.js';
 
 // Rectangular media shares one fragment recipe for still and moving sources.
 export const layoutEditorMediaRecipe = Object.freeze({
@@ -11,9 +13,6 @@ export const layoutEditorMediaStyles = `
 .bb-layout-media__fragment{position:absolute;display:block;overflow:hidden;}
 .bb-layout-media__surface{position:absolute;display:block;max-width:none;max-height:none;margin:0;object-fit:contain;transform-origin:center center;-webkit-user-select:none;user-select:none}
 `;
-
-const overlayZoomCompensationProperty = '--bb-layout-editor-overlay-zoom-compensation';
-const overlayMetric = (pixels) => `calc(${pixels}px * var(${overlayZoomCompensationProperty}, 1))`;
 
 export const layoutEditorTextCaretRecipe = Object.freeze({
   hostClass: 'bb-layout-editor-text-caret-host',
@@ -43,6 +42,9 @@ export const layoutEditorSelectionRecipe = Object.freeze({
   snapTargetChromeZIndex: '2147482998',
   guideZIndex: '2147482996',
   zoomCompensationProperty: overlayZoomCompensationProperty,
+  polygonFragmentClass: 'bb-layout-editor-hull-fragment',
+  surfaceClass: 'bb-layout-editor-hull-surface',
+  passThroughClass: 'bb-layout-editor-hull-surface--pass-through',
   outlineWidth: overlayMetric(1),
   outlineStyle: 'dashed',
   outlineDashLength: overlayMetric(3),
@@ -73,17 +75,6 @@ export const layoutEditorSelectionRecipe = Object.freeze({
   resizeHandleBorderRadius: '0',
   resizeHandleBackground: '#ff5a5f'
 });
-
-export function applyLayoutEditorOverlayZoomCompensation(element, scale = 1) {
-  const numericScale = Number(scale);
-  const resolvedScale = Number.isFinite(numericScale) && numericScale > 0 ? numericScale : 1;
-  const compensation = 1 / resolvedScale;
-  element?.style?.setProperty?.(
-    layoutEditorSelectionRecipe.zoomCompensationProperty,
-    String(compensation)
-  );
-  return compensation;
-}
 
 const layoutEditorDashedLineBackground = (direction) => (
   `repeating-linear-gradient(to ${direction},${layoutEditorSelectionRecipe.signalColor} 0 ${layoutEditorSelectionRecipe.outlineDashLength},transparent ${layoutEditorSelectionRecipe.outlineDashLength} calc(${layoutEditorSelectionRecipe.outlineDashLength} + ${layoutEditorSelectionRecipe.outlineDashGap}))`
@@ -180,6 +171,9 @@ export const layoutEditorInteractionStyles = `
 `;
 
 export const layoutEditorRegionOverlayStyles = `
+.${layoutEditorSelectionRecipe.surfaceClass}{position:absolute;overflow:visible}
+.${layoutEditorSelectionRecipe.passThroughClass}{pointer-events:none}
+.${layoutEditorSelectionRecipe.polygonFragmentClass}{position:absolute;overflow:hidden;pointer-events:none}
 .bb-layout-editor-chrome{z-index:${layoutEditorSelectionRecipe.hoverChromeZIndex}}
 .bb-layout-editor-hull.spatial-hovered{z-index:${layoutEditorSelectionRecipe.hoverChromeZIndex}}
 .bb-layout-editor-hull.snap-target{z-index:${layoutEditorSelectionRecipe.snapTargetChromeZIndex}}
