@@ -1,17 +1,18 @@
 # Bits and Bolts Themes: Status
-Updated: 2026-09-26
+Updated: 2026-09-27
 
 ## Current Checkpoint
-- Studio M1/M2 are closed; additional iPhone rendering/interactions are accepted.
-  Shared hull wrappers, snap-guide surface, zoom metrics and interaction stacking
-  preserve accepted desktop/iPhone behavior. Focused checks, generation and exact
-  source/web/docs parity pass. Owner authorizes this paired local M2 checkpoint.
-  Studio M3 ownership inventory is next; M4 zoom/native-resource gates stay open.
-  Active diagnostics remain. No push or deployment.
-
-- Owner authorizes this paired local checkpoint commit with Studio. Preserve the
-  accepted rendering result; M1/M2 are closed and Studio M3 inventory is next.
-  No source changes, fresh browser run, push or deployment during finalization.
+- Owner accepts the completed Studio checkpoint and authorizes paired local
+  commits plus an ignored handoff. Shared toolbar uses one full row, a compact
+  4 px scrollbar and 8 px overflow-only clearance; navigation shares the same
+  scroll owner. Android glow and startup chrome are accepted. Neutral task focus
+  uses the shared window contract; subsequent iPhone PNG/PDF checks are accepted.
+- Source/web/docs generation and parity plus focused Studio checks passed during
+  implementation. Finalization changes documentation and trims surplus trailing blank lines only, with no new build or
+  browser run. Keep generated outputs and active diagnostics. No push/deployment.
+- Studio M1/M2 remain closed. M3 static output and Guest-worker cleanup are
+  accepted; discuss the Preview baseline next. Core Preview changes need explicit
+  scoped approval. M4 zoom/native-resource gates and all recorded deferrals stand.
 
 - The shared viewport surface now has a composed-background modifier. Studio
   activates it only after its unified background/artwork composition presents.

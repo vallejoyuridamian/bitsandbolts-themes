@@ -1,3 +1,4 @@
+import { workspaceControlBarContentMarkup } from './workspace-control-bar.js';
 import { contentCardsMarkup } from './content-card.js';
 import { themeIdentityOptions } from './theme-roles.js';
 import { themeModeToggleMarkup } from './compact-theme-selector.js';
@@ -681,7 +682,7 @@ function workspaceChromeMarkup(theme) {
             <button class="bb-workspace-tab" type="button" tabindex="-1" role="tab" aria-selected="false">Assets</button>
           </div>
         </header>
-        <div class="bb-workspace-control-bar">
+        <div class="bb-workspace-control-bar">${workspaceControlBarContentMarkup(`
           <span class="bb-workspace-control-bar__status">Zoom 20%</span>
           <div class="bb-workspace-control-bar__actions" aria-label="Stage controls">
             ${iconButton('save', 'Save', { disabled: true })}
@@ -695,7 +696,7 @@ function workspaceChromeMarkup(theme) {
             <button class="bb-workspace-control-button" type="button" tabindex="-1">Export PNG</button>
             <button class="bb-workspace-control-button" type="button" tabindex="-1">Export PDF</button>
           </div>
-        </div>
+        `)}</div>
         <div class="bb-workspace-specimen__stage bb-workspace-stage-surface">
           <article class="bb-workspace-preview-frame bb-workspace-specimen__preview" data-selected="true">
             <span>Output 01</span>
@@ -1404,7 +1405,7 @@ export function themeGalleryControlsMarkup(theme, mode = 'dark') {
   if (!title) return '';
   const nextMode = nextThemeMode(mode);
   return `
-    <div class="bb-workspace-control-bar bb-theme-detail-toolbar" data-theme-gallery-detail-toolbar>
+    <div class="bb-workspace-control-bar bb-theme-detail-toolbar" data-theme-gallery-detail-toolbar>${workspaceControlBarContentMarkup(`
       <div class="bb-workspace-control-bar__leading">
         ${semanticActionButtonMarkup({
           attributes: { 'data-theme-gallery-back': true },
@@ -1426,7 +1427,7 @@ export function themeGalleryControlsMarkup(theme, mode = 'dark') {
           recipe: 'workspace'
         })}
       </div>
-    </div>
+    `)}</div>
   `;
 }
 

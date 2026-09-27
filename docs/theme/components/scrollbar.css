@@ -1,5 +1,21 @@
 @import url("./linear-control.css");
 
+/* Scroll geometry is a presentation contract. Controllers read these values;
+   native and retained presentations consume the same thickness. */
+:where(:root, .bb-scrollbar__host) {
+  --bb-scrollbar-thickness: 8px;
+  --bb-scrollbar-edge-inset: 4px;
+  --bb-scrollbar-cross-inset: 3px;
+  --bb-scrollbar-hit-inset: 0px;
+  --bb-scrollbar-min-thumb: 44px;
+  --bb-scrollbar-clearance: 0px;
+}
+.bb-scrollbar--compact {
+  --bb-scrollbar-thickness: 4px;
+  --bb-scrollbar-hit-inset: 2px;
+  --bb-scrollbar-clearance: 8px;
+}
+
 /* Native page scrolling and retained custom scrolling share the handle light.
    Engines with native color-only scrollbars retain the theme and clear track. */
 :is(:root.bb-scrollbars, :root.bb-scrollbars *, .bb-scrollbar, .bb-theme-gallery) {
@@ -13,8 +29,8 @@
   }
 }
 :is(:root.bb-scrollbars, :root.bb-scrollbars *, .bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: var(--bb-scrollbar-thickness);
+  height: var(--bb-scrollbar-thickness);
 }
 :is(:root.bb-scrollbars, :root.bb-scrollbars *, .bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar-track,
 :is(:root.bb-scrollbars, :root.bb-scrollbars *, .bb-scrollbar, .bb-theme-gallery)::-webkit-scrollbar-corner {
@@ -67,3 +83,49 @@
   touch-action: none;
 }
 .bb-scrollbar__thumb:active { cursor: grabbing; }
+
+/* Touch has no dependable hover. Overflow remains discoverable on both tabs
+   and control bars; desktop uses the shared hover/focus/scroll states above. */
+@media (hover: none) {
+  .bb-scrollbar__track:not([hidden]) { opacity: 1; pointer-events: auto; }
+}
+.bb-scrollbar__thumb::after {
+  content: "";
+  position: absolute;
+  inset: calc(-1 * var(--bb-scrollbar-hit-inset));
+}
+
+.toolbar-scroll-x.is-scrollable {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+}
+
+.toolbar-scroll-x.is-scrollable.at-scroll-start {
+  -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 18px), transparent 100%);
+  mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 18px), transparent 100%);
+}
+
+.toolbar-scroll-x.is-scrollable.at-scroll-end {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 100%);
+}
+
+.toolbar-scroll-y.is-scrollable {
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+}
+
+.toolbar-scroll-y.is-scrollable.at-scroll-start {
+  -webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 18px), transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 18px), transparent 100%);
+}
+
+.toolbar-scroll-y.is-scrollable.at-scroll-end {
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 18px, #000 100%);
+  mask-image: linear-gradient(180deg, transparent 0, #000 18px, #000 100%);
+}
+
+.toolbar-scroll.is-scrollable.at-scroll-start.at-scroll-end {
+  -webkit-mask-image: none;
+  mask-image: none;
+}

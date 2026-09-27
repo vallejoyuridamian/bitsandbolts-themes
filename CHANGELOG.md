@@ -1,5 +1,21 @@
 # Bits and Bolts Themes - Changelog
 
+## 2026-09-27: Shared compact workspace controls and task focus
+
+- One workspace-control-bar recipe owns the intrinsic control row, separation,
+  flexible group spacing and 8 px overflow-only clearance around the 46 px row.
+  Navigation and toolbar use the compact 4 px scrollbar recipe; nested navigation
+  overflow is removed. Touch visibility and scroll glow share the same owner.
+- Shared task markup requests neutral initial focus from the floating-window
+  contract, preventing automatic action-button focus treatment on iPhone.
+- Source, generated web and documentation outputs match after the recorded build.
+  Focused Studio checks passed; Android scroll glow, startup chrome and subsequent
+  real-iPhone PNG/PDF workflows are owner-accepted. Existing 39 token warnings
+  remain separate; this checkpoint does not claim broader pending checks passed.
+- Owner authorizes paired local commits with Studio and an ignored handoff.
+  Finalization changes documentation and trims surplus trailing blank lines only. Preserve accepted recipes and active
+  diagnostics; no new build, browser run, push or deployment.
+
 ## 2026-09-26: Paired Studio full-gallery rendering checkpoint
 
 - Shared authored text/shape/dynamic recipes and composed-pixel states support

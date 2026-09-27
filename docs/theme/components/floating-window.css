@@ -98,6 +98,11 @@
   background: var(--bb-interface-menu-background);
 }
 
+/* Neutral content may receive initial focus; its controls keep keyboard feedback. */
+.bb-floating-window-content[tabindex="-1"] {
+  outline: none;
+}
+
 .bb-floating-panel {
   grid-template-rows: auto auto minmax(0, 1fr);
   min-height: 100%;

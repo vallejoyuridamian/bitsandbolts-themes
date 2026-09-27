@@ -36,14 +36,6 @@
   background: transparent;
 }
 
-.bb-workspace-control-bar__leading:has(> .bb-layout-text-editor--toolbar) {
-  flex: 1 1 auto;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-color: var(--bb-interface-scrollbar-thumb) var(--bb-interface-scrollbar-track);
-  scrollbar-width: thin;
-}
-
 .bb-layout-text-editor--toolbar .bb-layout-text-editor__field-label:not(.bb-layout-text-editor__range-head > *) {
   display: none;
 }

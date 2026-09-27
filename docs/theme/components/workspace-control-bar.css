@@ -1,0 +1,68 @@
+/* Shared toolbar fields retain their existing compact control recipe. */
+.control-bar-field select,
+.control-bar-field .bb-select,
+.control-bar-field input:not([type="range"]) {
+  height: var(--control-bar-control-height);
+  min-height: var(--control-bar-control-height);
+}
+
+.control-bar :is(select, input:not([type="range"])) {
+  border-color: transparent;
+  background-color: transparent;
+  box-shadow: none;
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-xs);
+  font-weight: var(--bb-font-weight-bold);
+  line-height: 1.2;
+  transition:
+    border-color 140ms ease,
+    box-shadow 140ms ease,
+    color 140ms ease,
+    text-shadow 140ms ease;
+}
+
+.control-bar-status {
+  max-width: min(220px, 32%);
+}
+
+.control-bar-detail {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--bb-v2-color-content-secondary);
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.control-bar-icon {
+  --ms-size: 18px;
+  --ms-fill: 0;
+  --ms-weight: 300;
+}
+
+.control-bar-controls .control-bar-compact-button {
+  width: 30px;
+  min-width: 30px;
+  padding-inline: 0;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.control-bar-field {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 7px;
+  min-height: var(--control-bar-control-height);
+  color: var(--bb-v2-color-content-primary);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.control-bar-field select,
+.control-bar-field .bb-select,
+.control-bar-field input {
+  min-width: 72px;
+}
