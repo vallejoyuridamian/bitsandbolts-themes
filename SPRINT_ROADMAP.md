@@ -1,17 +1,19 @@
 # Bits and Bolts Themes: Sprint Roadmap
 
 ## Current Focus
-- Owner accepts the completed Studio checkpoint and authorizes paired local
-  commits plus an ignored handoff. Shared toolbar uses one full row, a compact
-  4 px scrollbar and 8 px overflow-only clearance; navigation shares the same
-  scroll owner. Android glow and startup chrome are accepted. Neutral task focus
-  uses the shared window contract; subsequent iPhone PNG/PDF checks are accepted.
-- Source/web/docs generation and parity plus focused Studio checks passed during
-  implementation. Finalization changes documentation and trims surplus trailing blank lines only, with no new build or
-  browser run. Keep generated outputs and active diagnostics. No push/deployment.
-- Studio M1/M2 remain closed. M3 static output and Guest-worker cleanup are
-  accepted; discuss the Preview baseline next. Core Preview changes need explicit
-  scoped approval. M4 zoom/native-resource gates and all recorded deferrals stand.
+- Approved Preview surface recipe now owns unchanged backdrop/shadow/state;
+  Studio uses exact frame/canvas/layer recipes. Build/parity pass;39 known warnings
+  remain. Owner authorizes an incomplete checkpoint; iPhone correctness is next, Studio health remains open.
+- Approved viewport correction uses bb-workspace-frame host/content recipes:
+  one 100dvh bound and consumer-supplied header height, preserving body appearance
+  and Timeline defaults. Studio removes competing body/shell presentation.
+  One build and exact source/web/docs parity pass; fresh Android bounds gate
+  pending. Studio's local Timeline border/background/padding gap is reported
+  and remains outside this approval. No Timeline enclosure edit was made.
+- Accepted Studio M1/M2/static PNG/PDF/LAN/chrome/Guest-worker stand. Toolbar
+  keeps one row, 4px scrollbar and 8px overflow clearance, with shared navigation
+  scroll. Studio's plan owns Preview/Video Editor display and poster blockers.
+  Preserve diagnostics; checkpoint commits authorized, no push/deployment or M4/M5. Studio records priority change.
 
 - The shared viewport surface now has a composed-background modifier. Studio
   activates it only after its unified background/artwork composition presents.

@@ -2,18 +2,18 @@
 Updated: 2026-09-27
 
 ## Current Checkpoint
-- Owner accepts the completed Studio checkpoint and authorizes paired local
-  commits plus an ignored handoff. Shared toolbar uses one full row, a compact
-  4 px scrollbar and 8 px overflow-only clearance; navigation shares the same
-  scroll owner. Android glow and startup chrome are accepted. Neutral task focus
-  uses the shared window contract; subsequent iPhone PNG/PDF checks are accepted.
-- Source/web/docs generation and parity plus focused Studio checks passed during
-  implementation. Finalization changes documentation and trims surplus trailing blank lines only, with no new build or
-  browser run. Keep generated outputs and active diagnostics. No push/deployment.
-- Studio M1/M2 remain closed. M3 static output and Guest-worker cleanup are
-  accepted; discuss the Preview baseline next. Core Preview changes need explicit
-  scoped approval. M4 zoom/native-resource gates and all recorded deferrals stand.
-
+- Approved Preview surface correction: bb-media-frame and canvas/layer recipes own existing backdrop/shadow/state; Studio removes local copies. Generation/source/web/docs parity pass,39 known warnings remain. Owner authorizes this incomplete checkpoint after Android display success/desktop visuals; iPhone flicker/no audio is next. Studio cadence/GL findings stay open; no universal acceptance or latency claim.
+- Owner approved Studio's viewport correction after 100vh placed Timeline below
+  the 692px visible Android viewport. bb-workspace-frame host/content recipes own
+  100dvh bounds and existing body presentation. Studio supplies one header-height parameter; header/Timeline settings remain unchanged.
+- One Themes build and exact source/web/docs CSS parity pass; the 39 existing
+  token warnings remain separate. Fresh phone geometry/visual acceptance pending.
+  Studio's Timeline enclosure still owns local border/background/padding; this
+  reported ownership gap is outside the approved viewport correction, unchanged.
+- Studio M1/M2/static PNG/PDF/LAN/chrome/Guest-worker remain accepted. Toolbar
+  keeps one row, 4px scrollbar and 8px overflow clearance. Preview/Video Editor
+  physical-display and Gallery poster blockers remain open in Studio's plan.
+  Keep diagnostics. This checkpoint's local commits are authorized; no push/deployment. M4/M5 and deferrals stand.
 - The shared viewport surface now has a composed-background modifier. Studio
   activates it only after its unified background/artwork composition presents.
   Source/web/docs generation and exact parity pass; the 39 existing token
