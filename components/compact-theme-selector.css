@@ -28,7 +28,7 @@
   line-height: 0;
 }
 
-.bb-theme-mode-toggle:is(:hover, :focus-visible) {
+.bb-theme-mode-toggle:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)) {
   border-color: var(--bb-theme-mode-toggle-background, var(--bb-v2-identity-accent));
   background: var(--bb-theme-mode-toggle-background, var(--bb-v2-identity-accent));
   outline: none;
@@ -39,7 +39,7 @@
   box-shadow: none;
 }
 
-.bb-theme-mode-toggle:focus-visible {
+.bb-theme-mode-toggle:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *) {
   outline: 2px solid var(--bb-theme-mode-toggle-background, var(--bb-v2-identity-accent));
   outline-offset: 2px;
 }
@@ -111,7 +111,7 @@
   text-align: left;
 }
 
-.bb-compact-theme-card__select:focus-visible {
+.bb-compact-theme-card__select:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *) {
   outline: 2px solid var(--bb-v2-color-border-focus-ring);
   outline-offset: -3px;
 }

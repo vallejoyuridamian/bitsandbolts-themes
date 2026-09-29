@@ -50,7 +50,7 @@
 }
 
 .bb-store-badge-list .bb-store-badge:hover,
-.bb-store-badge-list .bb-store-badge:focus-visible {
+.bb-store-badge-list .bb-store-badge:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *) {
   transform: scale(1.05);
 }
 

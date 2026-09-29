@@ -283,7 +283,7 @@
   box-shadow: 0 0 0 2px var(--bb-v2-color-border-focus-ring);
 }
 
-.bb-rendering-comparison__asset-card:has(input:focus-visible) {
+.bb-rendering-comparison__asset-card:has(input:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)) {
   outline: 2px solid var(--bb-v2-color-border-focus-ring);
   outline-offset: 2px;
 }

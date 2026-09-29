@@ -54,7 +54,7 @@
   transform: var(--bb-v2-button-hover-transform, translate(-1px, -1px));
 }
 
-.bb-v2-button:focus-visible,
+.bb-v2-button:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *),
 .bb-v2-button[data-specimen-state="focusVisible"] {
   clip-path: none;
   outline: 2px solid var(--bb-v2-color-border-focus-ring);
@@ -163,7 +163,7 @@
     forced-color-adjust: auto;
   }
 
-  .bb-v2-button:focus-visible,
+  .bb-v2-button:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *),
   .bb-v2-button[data-specimen-state="focusVisible"] {
     outline-color: Highlight;
   }

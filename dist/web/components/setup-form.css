@@ -1,0 +1,61 @@
+/* Native setup fields and mutually exclusive choices retain their established presentation. */
+.bb-setup-form input[type="text"],
+.bb-setup-form input[type="file"] {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  outline: none;
+  color: var(--text);
+  background: #111718;
+}
+
+.bb-setup-form input[type="file"] {
+  padding: 8px;
+  font-weight: 400;
+}
+
+.bb-setup-form input[type="text"]:focus,
+.bb-setup-form input[type="file"]:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *),
+.bb-setup-choice:has(input:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)) {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(113, 210, 215, 0.13);
+}
+
+.bb-setup-choice {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--text);
+  background: #111718;
+  cursor: pointer;
+}
+
+.bb-setup-choice:has(input:checked) {
+  border-color: var(--accent);
+  background: rgba(113, 210, 215, 0.08);
+}
+
+.bb-setup-choice input {
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--accent);
+}
+
+.bb-setup-choice span {
+  display: grid;
+  gap: 5px;
+}
+
+.bb-setup-choice small {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+}

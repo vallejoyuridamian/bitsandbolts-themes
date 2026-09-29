@@ -105,7 +105,7 @@
   box-shadow: var(--bb-linear-depth);
 }
 
-:is(.range-control, .bb-range-controls input[type="range"]):focus-visible {
+:is(.range-control, .bb-range-controls input[type="range"]):focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *) {
   outline: 2px solid var(--bb-interface-control-focus-ring);
   outline-offset: 4px;
 }

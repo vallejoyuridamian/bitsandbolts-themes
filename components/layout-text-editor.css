@@ -352,7 +352,7 @@
   background: var(--swatch);
 }
 
-.bb-layout-text-editor .theme-swatch:is(:hover, :focus-visible) {
+.bb-layout-text-editor .theme-swatch:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)) {
   border-color: var(--bb-v2-identity-primary);
 }
 

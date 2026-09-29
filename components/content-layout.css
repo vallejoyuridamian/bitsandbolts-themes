@@ -178,7 +178,7 @@ body.bb-immersive-page {
 }
 
 .bb-inline-text-link:hover,
-.bb-inline-text-link:focus-visible {
+.bb-inline-text-link:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *) {
   color: var(--bb-marketing-highlight);
 }
 

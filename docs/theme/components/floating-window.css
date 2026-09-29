@@ -72,7 +72,7 @@
   touch-action: none;
 }
 
-.bb-floating-window__grip:focus-visible { outline: none; }
+.bb-floating-window__grip:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *) { outline: none; }
 
 .bb-floating-window__grip:active {
   cursor: grabbing;
@@ -217,7 +217,7 @@
   cursor: pointer;
 }
 
-.bb-floating-range-field__input:focus-visible {
+.bb-floating-range-field__input:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *) {
   outline: 2px solid var(--bb-interface-control-focus-ring);
   outline-offset: 2px;
 }

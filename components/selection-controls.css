@@ -53,7 +53,7 @@
   border-color: var(--bb-v2-color-border-focus-ring);
 }
 
-.bb-selection-controls .bb-selection-control select:focus-visible {
+.bb-selection-controls .bb-selection-control select:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *) {
   border-color: var(--bb-v2-color-border-focus-ring);
   outline: 2px solid var(--bb-v2-color-border-focus-ring);
   outline-offset: 2px;

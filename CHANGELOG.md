@@ -1,5 +1,19 @@
 # Bits and Bolts Themes - Changelog
 
+## 2026-09-29: Global focus visibility and Spotlight retirement
+
+- One focus-visibility input-origin contract, mounted by each canonical input owner,
+  admits keyboard rings and preserves pointer/native/editable behavior. Shared
+  recipes inherit it; Studio-local blur exceptions are deleted. Other products'
+  mounting points remain unverified. Shared setup-form/media recipes are extracted.
+- Spotlight choice is removed from the canonical Background editor and generated
+  web/documentation copies. Studio owns common Background preparation/admission.
+- Recorded generation/parity and focused checks pass. Owner accepts global focus
+  and M3-E desktop backgrounds, including the post-removal repro. Studio's measured
+  cadence/load/producer gaps are explicitly deferred, not declared healthy.
+- M3-E closed with this deferral; M3-C is next. Preserve39 known token warnings and
+  all accepted recipes. Local paired checkpoint authorized; no push/deployment.
+
 ## 2026-09-27: Shared compact workspace controls and task focus
 
 - One workspace-control-bar recipe owns the intrinsic control row, separation,

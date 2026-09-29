@@ -76,9 +76,9 @@
   cursor: pointer;
 }
 
-.bb-media-card.is-selectable:is(:hover, :focus-visible),
-.media-preview-card.is-selectable:is(:hover, :focus-visible),
-.floating-media-picker-card:is(:hover, :focus-visible) {
+.bb-media-card.is-selectable:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)),
+.media-preview-card.is-selectable:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)),
+.floating-media-picker-card:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)) {
   border-color: var(--bb-v2-color-border-focus-ring);
   outline: 2px solid transparent;
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--bb-v2-color-border-focus-ring) 28%, transparent);
@@ -212,7 +212,7 @@
   cursor: pointer;
 }
 
-:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio):is(:hover, :focus-visible) {
+:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio):is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)) {
   background: color-mix(in srgb, var(--bb-v2-identity-primary) 8%, var(--bb-v2-color-surface-sunken));
   outline: 2px solid var(--bb-v2-color-border-focus-ring);
   outline-offset: -2px;
@@ -227,17 +227,17 @@
 }
 
 :is(.bb-media-preview__icon--play, .bb-media-preview__icon--stop, .media-preview-icon-play, .media-preview-icon-stop, .vault-thumb-icon-play, .vault-thumb-icon-stop),
-:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).bb-media-preview--interactive:is(:hover, :focus-visible, .is-playing) :is(.bb-media-preview__icon--default, .media-preview-icon-default, .vault-thumb-icon-default),
+:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).bb-media-preview--interactive:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *), .is-playing) :is(.bb-media-preview__icon--default, .media-preview-icon-default, .vault-thumb-icon-default),
 :is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).bb-media-preview--interactive.is-playing :is(.bb-media-preview__icon--play, .media-preview-icon-play, .vault-thumb-icon-play) {
   display: none;
 }
 
-:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).bb-media-preview--interactive:is(:hover, :focus-visible) :is(.bb-media-preview__icon--play, .media-preview-icon-play, .vault-thumb-icon-play),
+:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).bb-media-preview--interactive:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)) :is(.bb-media-preview__icon--play, .media-preview-icon-play, .vault-thumb-icon-play),
 :is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).bb-media-preview--interactive.is-playing :is(.bb-media-preview__icon--stop, .media-preview-icon-stop, .vault-thumb-icon-stop) {
   display: grid;
 }
 
-:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).bb-media-preview--interactive.is-playing:is(:hover, :focus-visible) :is(.bb-media-preview__icon--play, .media-preview-icon-play, .vault-thumb-icon-play) {
+:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).bb-media-preview--interactive.is-playing:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)) :is(.bb-media-preview__icon--play, .media-preview-icon-play, .vault-thumb-icon-play) {
   display: none;
 }
 
@@ -358,7 +358,7 @@
   font-weight: 700;
 }
 
-.bb-media-action:is(:hover, :focus-visible) {
+.bb-media-action:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)) {
   border-color: var(--bb-v2-color-border-focus-ring);
   outline: 2px solid transparent;
   color: var(--bb-v2-color-content-brand);
@@ -405,7 +405,7 @@
   background: transparent;
 }
 
-.bb-media-add-card:is(:hover, :focus-visible) {
+.bb-media-add-card:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)) {
   border-color: var(--bb-v2-color-border-focus-ring);
   outline: 2px solid transparent;
   background: color-mix(in srgb, var(--bb-v2-identity-primary) 5%, transparent);
@@ -682,4 +682,28 @@
     pointer-events: auto;
     transform: translateY(0);
   }
+}
+
+.bb-media-draft-preview {
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.bb-media-draft-preview .media-preview-element {
+  width: 116px;
+  border: 1px solid rgba(52, 65, 67, 0.9);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.bb-media-draft-preview .media-preview-element:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)) {
+  outline: none;
+  border-color: rgba(113, 210, 215, 0.72);
+  box-shadow:
+    0 0 0 1px rgba(113, 210, 215, 0.2),
+    0 10px 24px rgba(0, 0, 0, 0.22);
 }

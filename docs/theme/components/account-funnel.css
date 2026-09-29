@@ -97,7 +97,7 @@
   background: var(--bb-v2-identity-primary);
 }
 
-.bb-account-funnel__primary.bb-workspace-control-button:is(:hover, :focus-visible):not(:disabled) {
+.bb-account-funnel__primary.bb-workspace-control-button:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)):not(:disabled) {
   color: var(--bb-v2-identity-primary-foreground);
   background: color-mix(in srgb, var(--bb-v2-identity-primary) 88%, var(--bb-interface-control-hover-foreground));
 }

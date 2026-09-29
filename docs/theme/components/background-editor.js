@@ -88,7 +88,6 @@ export function backgroundEditorMarkup({
     <div class="bb-field" data-bb-background-editor-when="gradient">
       <label class="bb-field__label" for="${orientationId}">Gradient flow</label>
       <select id="${orientationId}" class="bb-field__input" data-bb-background-editor-role="orientation">
-        <option value="spotlight">Spotlight</option>
         <option value="vertical">Vertical</option>
         <option value="horizontal">Horizontal</option>
       </select>

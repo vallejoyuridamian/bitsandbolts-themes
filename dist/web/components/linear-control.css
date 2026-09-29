@@ -38,10 +38,10 @@
 
 :is(.bb-linear-control, .bb-linear-splitter, .bb-floating-window__grip, .bb-scrollbar__thumb,
   .bb-progress__track, .bb-progress__fill, .bb-range-control, .range-control,
-  .bb-range-controls input[type="range"]):is(:hover, :focus-visible, :active, .is-active),
+  .bb-range-controls input[type="range"]):is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *), :active, .is-active),
 .bb-scrollbar__target.is-scrolling ~ .bb-scrollbar__track .bb-scrollbar__thumb,
-.bb-progress__track:is(:hover, :focus-visible, :active) > .bb-progress__fill,
-.bb-range-control:has(> input:is(:focus-visible, :active, .is-active)),
+.bb-progress__track:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *), :active) > .bb-progress__fill,
+.bb-range-control:has(> input:is(:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *), :active, .is-active)),
 .bb-linear-splitter:is(:hover, .is-dragging) {
   --bb-linear-edge-width: 2px;
   --bb-linear-edge: var(--bb-linear-border-active);

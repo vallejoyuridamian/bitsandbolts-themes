@@ -1,3 +1,7 @@
+/* Input-origin admission is shared by all recipes and native UA outlines.
+   Pointer focus remains functional; only keyboard focus receives a ring. */
+:root[data-bb-focus-origin="pointer"] :focus-visible { outline: none; }
+
 /*
  * Canonical application-surface, Select, Menu, and shared control interaction recipes.
  * Products retain behavior, state, positioning, invocation, and product semantics.
@@ -274,7 +278,7 @@
   cursor: col-resize;
 }
 
-.bb-resizable-toolbar__grip:is(:hover, :focus-visible, :active),
+.bb-resizable-toolbar__grip:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *), :active),
 .bb-resizable-toolbar__grip.is-active {
   border-color: color-mix(in srgb, var(--bb-v2-identity-primary) 78%, transparent);
   background: linear-gradient(
@@ -561,10 +565,10 @@
   padding: 0 10px;
 }
 
-.bb-interface-action:is(:hover, :focus-visible, [data-specimen-state="hover"], [data-specimen-state="focusVisible"]):not(:disabled):where(:not([aria-pressed="true"]):not([aria-selected="true"]):not([aria-expanded="true"])),
-.bb-interface-controls button:where(:not(.theme-swatch):not([data-bb-theme-control])):is(:hover, :focus-visible):not(:disabled):where(:not(.active):not([aria-pressed="true"]):not([aria-selected="true"]):not([aria-expanded="true"])),
-.bb-workspace-tab:is(:hover, :focus-visible):where(:not(:disabled):not([aria-selected="true"])),
-.bb-workspace-control-button:is(:hover, :focus-visible):where(:not(:disabled):not([aria-pressed="true"]):not(.active)),
+.bb-interface-action:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *), [data-specimen-state="hover"], [data-specimen-state="focusVisible"]):not(:disabled):where(:not([aria-pressed="true"]):not([aria-selected="true"]):not([aria-expanded="true"])),
+.bb-interface-controls button:where(:not(.theme-swatch):not([data-bb-theme-control])):is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)):not(:disabled):where(:not(.active):not([aria-pressed="true"]):not([aria-selected="true"]):not([aria-expanded="true"])),
+.bb-workspace-tab:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)):where(:not(:disabled):not([aria-selected="true"])),
+.bb-workspace-control-button:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)):where(:not(:disabled):not([aria-pressed="true"]):not(.active)),
 .bb-workspace-tab[data-specimen-state="hover"],
 .bb-workspace-control-button[data-specimen-state="hover"] {
   outline: none;
@@ -644,8 +648,8 @@
     filter var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing);
 }
 
-.bb-workspace-control-button.bb-workspace-control-button--plain-icon:is(:hover, :focus-visible):where(:not(:disabled):not([aria-pressed="true"]):not(.active)),
-.bb-workspace-control-button.bb-workspace-control-button--hover-feedback:is(:hover, :focus-visible):not(:disabled),
+.bb-workspace-control-button.bb-workspace-control-button--plain-icon:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)):where(:not(:disabled):not([aria-pressed="true"]):not(.active)),
+.bb-workspace-control-button.bb-workspace-control-button--hover-feedback:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)):not(:disabled),
 .bb-workspace-control-button.bb-workspace-control-button--plain-icon[data-specimen-state="hover"] {
   border-color: transparent;
   color: var(--bb-interface-button-plain-icon-hover-foreground);
@@ -655,7 +659,7 @@
   text-shadow: none;
 }
 
-.bb-workspace-control-button.bb-workspace-control-button--plain-icon:focus-visible:not(:disabled) {
+.bb-workspace-control-button.bb-workspace-control-button--plain-icon:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *):not(:disabled) {
   outline: none;
 }
 
@@ -724,13 +728,13 @@
 }
 
 .bb-workspace-control-button--danger:not(:disabled),
-.bb-workspace-control-button.bb-workspace-control-button--danger:is(:hover, :focus-visible):not(:disabled):not([aria-pressed="true"]),
+.bb-workspace-control-button.bb-workspace-control-button--danger:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)):not(:disabled):not([aria-pressed="true"]),
 .bb-workspace-control-button.bb-workspace-control-button--danger[data-specimen-state="hover"] {
   color: var(--bb-v2-color-status-danger-border);
 }
 
-.bb-workspace-tab.bb-workspace-tab:focus-visible:not(:disabled),
-.bb-workspace-control-button.bb-workspace-control-button:focus-visible:not(:disabled) {
+.bb-workspace-tab.bb-workspace-tab:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *):not(:disabled),
+.bb-workspace-control-button.bb-workspace-control-button:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *):not(:disabled) {
   outline: 2px solid var(--bb-v2-color-border-focus-ring);
   outline-offset: 3px;
 }
@@ -991,7 +995,7 @@ input.bb-workspace-control-input.bb-workspace-control-input[type="number"]:focus
   cursor: pointer;
 }
 
-.bb-workspace-add-tile:is(:hover, :focus-visible) {
+.bb-workspace-add-tile:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)) {
   outline: none;
   border-color: var(--bb-v2-identity-primary);
   background: color-mix(in srgb, var(--bb-v2-identity-primary) 10%, var(--bb-v2-color-surface-surface));
@@ -1158,13 +1162,13 @@ input.bb-workspace-control-input.bb-workspace-control-input[type="number"]:focus
   text-align: left;
 }
 
-.bb-select__trigger:focus-visible,
+.bb-select__trigger:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *),
 .bb-select[data-specimen-state="focusVisible"] .bb-select__trigger {
   border-color: var(--bb-interface-control-focus-ring);
   outline: none;
 }
 
-.bb-interface-controls .bb-select__trigger:focus-visible {
+.bb-interface-controls .bb-select__trigger:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *) {
   border-color: transparent;
 }
 
@@ -1339,8 +1343,8 @@ input.bb-workspace-control-input.bb-workspace-control-input[type="number"]:focus
   border-radius: 0;
 }
 
-.bb-toolbar-popover__color-input:is(:hover, :focus-visible),
-:is(.bb-toolbar-popover, .bb-color-palette) .theme-swatch:is(:hover, :focus-visible, [aria-pressed="true"]) {
+.bb-toolbar-popover__color-input:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)),
+:is(.bb-toolbar-popover, .bb-color-palette) .theme-swatch:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *), [aria-pressed="true"]) {
   border-color: var(--bb-v2-identity-primary);
 }
 
@@ -1465,11 +1469,11 @@ input.bb-workspace-control-input.bb-workspace-control-input[type="number"]:focus
     forced-color-adjust: auto;
   }
 
-  .bb-select__trigger:focus-visible,
-  .bb-menu__item:focus-visible,
-  .bb-workspace-tab:focus-visible,
-  .bb-workspace-control-button:focus-visible,
-  .bb-workspace-add-tile:focus-visible {
+  .bb-select__trigger:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *),
+  .bb-menu__item:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *),
+  .bb-workspace-tab:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *),
+  .bb-workspace-control-button:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *),
+  .bb-workspace-add-tile:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *) {
     outline: 2px solid Highlight;
     outline-offset: 2px;
   }

@@ -1,6 +1,7 @@
 # Bits and Bolts Themes: Sprint Roadmap
 
 ## Current Focus
+- Owner authorizes one global input-origin focus-visibility contract across every recipe. Pointer activity and Shift+wheel cannot promote a keyboard ring; true keyboard/editable/native focus stays intact. Studio removes local tab/toolbar blur paths and mounts the policy at its document input owner. Generation/21 source-web-docs parity and25 focused Studio cases pass;39 known warnings separate. Studio focus owner-accepted with328 clean records/40 pointer Shift-wheel ring rejections. M3-E closed with owner-directed performance deferral on2026-09-29; Spotlight chooser retired,24 focused Studio checks and source/web/docs parity pass. Post-removal owner repro:959 records, no errors/warnings, all seven Backgrounds ready, exact9s endpoint, clean disposal. Six long animation frames50-64.8ms/Animated27.8-27.6 presentation FPS remain documented for later in Studio current supplement. M3-C next, no further health/color/Text investigation now. Local checkpoint commits authorized; no push/deploy. Other product mounting points unverified.
 - Approved Preview surface recipe now owns unchanged backdrop/shadow/state;
   Studio uses exact frame/canvas/layer recipes. Build/parity pass;39 known warnings
   remain. Owner authorizes an incomplete checkpoint; iPhone correctness is next, Studio health remains open.

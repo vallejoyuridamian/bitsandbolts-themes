@@ -163,7 +163,7 @@
   transform: translateY(-2px);
 }
 
-.bb-theme-summary-card__open:focus-visible {
+.bb-theme-summary-card__open:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *) {
   outline: 2px solid var(--bb-v2-color-border-focus-ring);
   outline-offset: -2px;
 }
@@ -1562,7 +1562,7 @@ article.bb-workspace-specimen__preview--secondary {
   border-radius: var(--bb-radius-md);
 }
 
-.bb-theme-v2-type__font-control.is-assigned:is(:hover, :focus-visible) {
+.bb-theme-v2-type__font-control.is-assigned:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)) {
   outline: none;
   border-color: var(--bb-v2-color-border-focus-ring);
   background: color-mix(in srgb, var(--bb-v2-identity-primary) 8%, transparent);
@@ -1653,7 +1653,7 @@ article.bb-workspace-specimen__preview--secondary {
   cursor: pointer;
 }
 
-.bb-theme-v2-semantic > input:focus-visible {
+.bb-theme-v2-semantic > input:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *) {
   outline: 2px solid var(--bb-v2-color-border-focus-ring);
   outline-offset: 2px;
 }

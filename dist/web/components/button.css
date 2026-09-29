@@ -143,12 +143,12 @@
 }
 
 .bb-btn-neon:hover:not(:disabled),
-.bb-btn-neon:focus-visible {
+.bb-btn-neon:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *) {
   box-shadow: 0 0 14px color-mix(in srgb, var(--bb-v2-identity-accent, var(--bb-v2-identity-primary)) 50%, transparent);
   transform: scale(1.2);
 }
 
-.bb-btn-neon:focus-visible {
+.bb-btn-neon:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *) {
   outline: 2px solid var(--bb-v2-identity-secondary);
   outline-offset: 3px;
 }

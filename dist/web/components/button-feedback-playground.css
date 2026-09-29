@@ -73,7 +73,7 @@
   filter: var(--bb-feedback-effect);
   transition: filter var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing), color var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing);
 }
-.bb-feedback-playground .bb-feedback-button:where(:not([data-feedback-state])):is(:hover, :focus-visible):not(:disabled):not([aria-pressed="true"]),
+.bb-feedback-playground .bb-feedback-button:where(:not([data-feedback-state])):is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)):not(:disabled):not([aria-pressed="true"]),
 .bb-feedback-playground .bb-feedback-button[data-feedback-state="hover"] {
   --bb-feedback-effect: var(--bb-feedback-active-effect);
   --bb-feedback-blur: var(--bb-feedback-hover-blur);
@@ -88,7 +88,7 @@
   --bb-feedback-halo: var(--bb-feedback-selected-halo);
   --bb-feedback-tint: var(--bb-feedback-selected-tint);
 }
-.bb-feedback-playground .bb-feedback-button.bb-workspace-control-button:focus-visible { outline: 2px solid var(--bb-v2-color-border-focus-ring); outline-offset: 3px; }
+.bb-feedback-playground .bb-feedback-button.bb-workspace-control-button:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *) { outline: 2px solid var(--bb-v2-color-border-focus-ring); outline-offset: 3px; }
 .bb-feedback-playground .bb-feedback-button:disabled .bb-feedback-button__content { color: inherit; filter: none; }
 @media (max-width: 850px) {
   .bb-feedback-playground__layout { grid-template-columns: minmax(0, 1fr); }

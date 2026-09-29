@@ -182,7 +182,7 @@
 }
 
 .bb-card-rail__control:hover,
-.bb-card-rail__control:focus-visible {
+.bb-card-rail__control:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *) {
   background: color-mix(in srgb, var(--bb-marketing-highlight) 30%, transparent);
 }
 
