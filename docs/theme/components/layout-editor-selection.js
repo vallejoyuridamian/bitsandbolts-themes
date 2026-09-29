@@ -43,6 +43,10 @@ export const layoutEditorSelectionRecipe = Object.freeze({
   guideZIndex: '2147482996',
   zoomCompensationProperty: overlayZoomCompensationProperty,
   polygonFragmentClass: 'bb-layout-editor-hull-fragment',
+  placementOverlayClass: 'layout-element-placement-overlay',
+  placementOverlayFragmentClass: 'layout-element-placement-overlay__fragment',
+  snapTargetOverlayClass: 'layout-editor-snap-target-overlay',
+  snapTargetFragmentClass: 'layout-editor-snap-target-overlay__fragment',
   surfaceClass: 'bb-layout-editor-hull-surface',
   passThroughClass: 'bb-layout-editor-hull-surface--pass-through',
   outlineWidth: overlayMetric(1),
@@ -76,6 +80,10 @@ export const layoutEditorSelectionRecipe = Object.freeze({
   resizeHandleBackground: '#ff5a5f'
 });
 
+// Dash policy belongs to this recipe. Arbitrary hulls need SVG paths; straight
+// snap guides use CSS gradients with the same zoom-compensated dash properties.
+// The native placement rectangle uses its existing CSS border specialization;
+// its browser-defined dash spacing is distinct from the polygon hull contract.
 const layoutEditorDashedLineBackground = (direction) => (
   `repeating-linear-gradient(to ${direction},${layoutEditorSelectionRecipe.signalColor} 0 ${layoutEditorSelectionRecipe.outlineDashLength},transparent ${layoutEditorSelectionRecipe.outlineDashLength} calc(${layoutEditorSelectionRecipe.outlineDashLength} + ${layoutEditorSelectionRecipe.outlineDashGap}))`
 );
@@ -202,6 +210,10 @@ export const layoutEditorRegionOverlayStyles = `
 .bb-layout-editor-draw-handle[data-corner="ne"]{top:${layoutEditorSelectionRecipe.resizeHandleOffset};right:${layoutEditorSelectionRecipe.resizeHandleOffset}}
 .bb-layout-editor-draw-handle[data-corner="sw"]{bottom:${layoutEditorSelectionRecipe.resizeHandleOffset};left:${layoutEditorSelectionRecipe.resizeHandleOffset}}
 .bb-layout-editor-draw-handle[data-corner="se"]{right:${layoutEditorSelectionRecipe.resizeHandleOffset};bottom:${layoutEditorSelectionRecipe.resizeHandleOffset}}
+.${layoutEditorSelectionRecipe.placementOverlayClass},.${layoutEditorSelectionRecipe.placementOverlayFragmentClass}{position:absolute;overflow:visible;pointer-events:none}
+.${layoutEditorSelectionRecipe.snapTargetOverlayClass}{position:absolute;overflow:visible;pointer-events:none}
+.${layoutEditorSelectionRecipe.snapTargetFragmentClass}{position:absolute;overflow:hidden;pointer-events:none}
+.${layoutEditorSelectionRecipe.placementOverlayClass}.bb-layout-editor-hull.selected>.bb-layout-editor-region-handle,.${layoutEditorSelectionRecipe.placementOverlayClass} .bb-layout-editor-hull.selected>.bb-layout-editor-region-handle{pointer-events:none}
 `;
 
 export function layoutEditorRotationIconMarkup() {

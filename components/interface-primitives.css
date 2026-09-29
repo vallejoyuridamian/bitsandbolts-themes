@@ -90,12 +90,8 @@
 .bb-layout-viewport-surface.bb-layout-viewport-surface--composed { opacity: 0; }
 
 .bb-layout-render-surface { position: absolute; inset: 0 auto auto 0; display: block; margin: 0; filter: drop-shadow(0 34px 90px rgba(0,0,0,.38)); }
-.bb-layout-render-source { visibility: hidden; filter: none; }
 .bb-layout-render-output { width: 100%; height: 100%; }
 .bb-layout-render-surface.bb-layout-render-surface--no-shadow { filter: none; }
-.bb-layout-render-surface.bb-layout-render-surface--paint-suppressed { visibility: hidden; }
-.bb-layout-render-surface.bb-layout-render-surface--geometry-probe { transform-origin: 0 0; transform: scale(var(--bb-layout-render-geometry-inverse-scale, 1)); }
-.bb-diagnostic-version-label { position: fixed; z-index: 2147483647; top: 0; left: 0; background: #fff; color: #000; }
 .bb-layout-render-element { position: absolute; display: block; box-sizing: border-box; margin: 0; padding: 0; border: 0; background: transparent; box-shadow: none; outline: 0; overflow: visible; -webkit-user-select: none; user-select: none; }
 .bb-layout-render-projection { position: absolute; display: block; }
 .bb-layout-render-media { position: absolute; inset: 0; display: block; visibility: hidden !important; opacity: 0 !important; }

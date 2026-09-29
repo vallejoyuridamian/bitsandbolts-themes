@@ -1,113 +1,21 @@
 # Bits and Bolts Themes: Status
 Updated: 2026-09-29
-## Current Checkpoint
-- Owner authorizes one global input-origin focus-visibility contract across every recipe. Pointer activity and Shift+wheel cannot promote a keyboard ring; true keyboard/editable/native focus stays intact. Studio removes local tab/toolbar blur paths and mounts the policy at its document input owner. Generation/21 source-web-docs parity and25 focused Studio cases pass;39 known warnings separate. Studio focus owner-accepted with328 clean records/40 pointer Shift-wheel ring rejections. M3-E closed with owner-directed performance deferral on2026-09-29; Spotlight chooser retired,24 focused Studio checks and source/web/docs parity pass. Post-removal owner repro:959 records, no errors/warnings, all seven Backgrounds ready, exact9s endpoint, clean disposal. Six long animation frames50-64.8ms/Animated27.8-27.6 presentation FPS remain documented for later in Studio current supplement. M3-C next, no further health/color/Text investigation now. Local checkpoint commits authorized; no push/deploy. Other product mounting points unverified.
-- Approved Preview surface correction: bb-media-frame and canvas/layer recipes own existing backdrop/shadow/state; Studio removes local copies. Generation/source/web/docs parity pass,39 known warnings remain. Owner authorizes this incomplete checkpoint after Android display success/desktop visuals; iPhone flicker/no audio is next. Studio cadence/GL findings stay open; no universal acceptance or latency claim.
-- Owner approved Studio's viewport correction after 100vh placed Timeline below
-  the 692px visible Android viewport. bb-workspace-frame host/content recipes own
-  100dvh bounds and existing body presentation. Studio supplies one header-height parameter; header/Timeline settings remain unchanged.
-- One Themes build and exact source/web/docs CSS parity pass; the 39 existing
-  token warnings remain separate. Fresh phone geometry/visual acceptance pending.
-  Studio's Timeline enclosure still owns local border/background/padding; this
-  reported ownership gap is outside the approved viewport correction, unchanged.
-- Studio M1/M2/static PNG/PDF/LAN/chrome/Guest-worker remain accepted. Toolbar
-  keeps one row, 4px scrollbar and 8px overflow clearance. Preview/Video Editor
-  physical-display and Gallery poster blockers remain open in Studio's plan.
-  Keep diagnostics. This checkpoint's local commits are authorized; no push/deployment. M4/M5 and deferrals stand.
-- The shared viewport surface now has a composed-background modifier. Studio
-  activates it only after its unified background/artwork composition presents.
-  Source/web/docs generation and exact parity pass; the 39 existing token
-  warnings remain separate. Studio owns the full-gallery trial everywhere and
-  accepted iPhone visuals: complete rendering, smooth scrolling, no flicker.
-  Native-resource gates remain open. No new Themes canvas or renderer.
 
-- Studio M1 fourth phone trace proves editable font inflation under CSS zoom:
-  136 px becomes 430 px when WebKit supplies text-size-adjust:none. The shared
-  Text/dynamic artwork recipe now keeps text-size-adjust:auto across selection.
-  One Themes build and exact source/web/docs parity pass. Studio's eleven
-  focused checks pass. The fifth iPhone run accepts text and hull box size.
-  The latest iPhone run accepts complete backgrounds and flicker-free swipes.
-  Studio M2 closure supersedes the historical interaction and hull gates below.
-- Shared authored text/shape/dynamic and composed-pixel recipes preserve native
-  hit order; only visual children become transparent after composition.
-- Paired Studio v69 checkpoint: the owner accepts iPhone multi-Device stability
-  and remaining brief paint flicker. Shared containment, viewport and Device
-  diagnostic recipes are preserved unchanged. This is not production cutover
-  or production resource acceptance. Historical interaction/hull gates below
-  are closed by M2; Device shadows are explicitly excluded. The controlling sequence is
-  `../appscreen-studio/docs/RENDERING_ARCHITECTURE_MIGRATION_PLAN.md`.
-  M1 desktop exposure and initial owner audit are complete. Existing
-  Studio stage positioning moved into `bb-layout-world-stage`; the shared
-  `bb-layout-world-layer` recipe replaces six identical injected layer rules.
-  Values are preserved. Themes build and source/web/docs CSS parity passed;
-  Studio's focused parent-stage check passed. The owner reports zoom lag,
-  uncertain alignment, intermittent hull paint and known image/Device stacking
-  failure; otherwise LGTM. Studio's plan records these gates and stacking next.
-  Full migration visual acceptance remains open.
-- AppScreen's owner-authorized LAN-only v66 iPhone gallery-paint comparison
-  uses the generic `bb-layout-world-stage` containment recipe and its
-  `--no-paint-containment` modifier. The default remains `contain: layout paint`;
-  only the flagged diagnostic stage uses `contain: layout`. Source, generated
-  web, and documentation CSS match after one Themes build. The owner reports
-  faster incoming 2D content on iPhone, but it still paints during swipes.
-  AppScreen owns the physical-phone result. Production remains on the default
-  recipe. The owner approved a LAN-only constant-scale CSS `zoom` comparison
-  for the live 2D stage and viewport backgrounds; AppScreen owns its geometry
-  and iPhone result. The existing viewport background declarations moved into
-  the new generic `bb-layout-viewport-surface` recipe without changing their
-  values. Themes generation and source/web/docs CSS parity passed.
-- AppScreen's owner-approved LAN-only Device v56 compositing test uses a generic
-  `bb-layout-render-surface--geometry-probe` transform recipe while retaining
-  the existing Device surface role. The `/gl` version label now uses a generic
-  Themes diagnostic recipe. AppScreen owns the exact geometry, render output,
-  and physical-phone evidence. Themes generation and source/web/docs CSS parity
-  pass. Production presentation remains unchanged.
-- AppScreen's owner-authorized LAN Device shadow comparison uses a generic
-  `bb-layout-render-surface--no-shadow` modifier. Its default Device shadow
-  recipe remains unchanged; only the named diagnostic canvas opts into the
-  modifier. Themes generation and source/web/docs parity passed. The physical
-  iPhone acceptance belongs to AppScreen.
-- AppScreen's v39 LAN paint split uses the generic
-  `bb-layout-render-surface--paint-suppressed` modifier. Its default output
-  remains visible; the flagged diagnostic keeps its output canvas connected
-  and drawn while suppressing browser paint. Themes generation and exact
-  source/web/docs parity passed. AppScreen owns the comparison.
-- An iPhone Safari LAN Guest diagnostic proved an early font registration race
-  in `components/theme-readiness.js`. All 16 initial `document.fonts.load`
-  calls resolved with zero faces while the font set had zero registered faces;
-  the same visit later registered 40. `waitForThemeFonts` returns false and the
-  page remains hidden by readiness CSS. AppScreen's Guest Phase 4 plan owns
-  the acceptance sequence. The owner forbids retrying this deterministic bug.
-  The last AppScreen LAN probe found Typography loaded, but semantic-icons CSS
-  lacked a sheet and three enabled stylesheet load events were pending at the
-  first font call. All eight load by 115 ms; 40 faces are registered by page
-  load at 121 ms. Initial readiness now waits for page load before one font
-  check, with no retry. The focused test and Themes build pass, with source,
-  generated web and documentation copies matching. Guest iPhone acceptance
-  remains open. The owner-confirmed rebuilt `/hello` page now displays on iPhone;
-  two logged loads show readiness resolving true, all 16 font queries finding
-  one face each, and 40 registered faces. This test page omits readiness CSS,
-  so the full landing was unverified at that stage. Workspace UI strategy now allows a stable fallback presentation
-  when required resources fail or readiness stalls. No fallback UI has been
-  implemented in this correction; deterministic startup causes remain the
-  priority.
-- The owner confirmed the real LAN landing appears on iPhone; its readiness
-  settled at 3042 ms. The owner authorized icon-only branding in Studio's
-  narrow top bar so navigation buttons have more space. The exact Themes
-  workspace brand recipe now selects the 36 px mark at widths through 760 px
-  and drops the 188 px reserved wordmark width. Studio consumes the recipe.
-  Themes generation and source/web/docs parity and focused AppScreen checks
-  pass. A later iPhone photo showed the tabs clipped under the handle despite
-  the narrow mark. The recipe now puts the mark and scrollable tabs in one
-  narrow grid row, with no second horizontal scroll container. The regenerated
-  files match source and 14 focused Guest checks pass. Fresh LAN composition
-  and owner visual approval remain open.
-- A shared one-second attention pulse now owns the previously Animation-only focus glow. Animation cards retain the same presentation, and Cluna Studio's annotated voiceover editor consumes the same recipe after Emotion or Expression insertion. Source, generated web and documentation copies match. Seven focused consumer checks and the Themes build pass; the owner accepted the exact Guest consumer presentation in Phase 2.
-- Floating-window content now has one shared explicit change event for requesting a fit after its own DOM mutation. AppScreen coalesces requests into one next-frame measurement, uses grow-only fitting for card changes, and resets height only for whole-card deletion. The contract does not observe window size, so resizing the window cannot feed another fit request. Source, generated web and documentation copies match; the Themes build and 37 focused consumer checks pass, and the owner accepted the exact Guest consumer presentation in Phase 2.
-- The owner confirmed the shared Timeline origin correction. One `--timeline-content-inset` includes the canonical gutter, frame border and handle clearance. Embedded and main Timeline rails consume it; the embedded editor no longer substitutes container padding plus zero-gutter/full-width overrides. Nine focused AppScreen geometry/handle checks, generation and six exact source/web/docs comparisons pass. Audio scheduling and authored media are unchanged.
-- The shared time-track and collapsed-range checkpoint is owner-accepted. AppScreen passed all 19 combined Phase 3/4/5 browser checks and its clean closing log. Themes generation and exact source/web/docs parity stand.
-- Wide Video Demo 2 is locked at 99.78 s after complete local visual review, successful full media decode and a clean 226-record export window. The owner authorized the complete paired AppScreen and Themes checkpoint for local commit. Exact resulting hashes belong in AppScreen's ignored local `HANDOFF.md`. No push occurs.
-- The owner-directed compact audio-control correction is implemented and awaits visual acceptance. One `audioTimingMarkup` recipe serves the embedded toolbar and Audio popovers through the existing inline numeric field, with matching typography and 68 px inputs. Toolbar Volume/Hold stay on one line and hidden fields retain canonical hiding. Two focused numeric-field checks, generation and exact source/web/docs parity pass. No other Themes feature cluster is active.
+## Active work and preservation
+
+- Studio completed M5 and published the migrated Guest. Its STATUS.md and
+  Phase 4 plan own matrix and authorization. M4 resource/native gates are waived.
+  The owner authorizes this local checkpoint commit; no push is authorized.
+- Exact placement/snap-overlay owner visual acceptance remains open. Preserve the Themes
+  placement/snap-overlay and dashed-line recipe, canonical event/focus owners
+  and source/web/docs parity. No consumer-local presentation or retired diagnostic
+  selector. Completed generation/check evidence is cold in Studio's M3 supplement.
+- Preserve accepted full-gallery composition, layout-only containment, CSS zoom,
+  native typography, backgrounds, input-origin focus, toolbar geometry and Preview
+  frame recipes. No new renderer or changes to parked performance/geometry work.
+- Retired completed chronology is cold in
+  docs/history/HOT_CONTEXT_RETIREMENT_M5_2026-09-29.md. Historical pending wording
+  does not reopen work superseded by Studio's current status.
 
 ## Current Ownership and Contracts
 
