@@ -1,5 +1,10 @@
 # Bits and Bolts Themes - Changelog
 
+## 2026-10-01: Shared Cluna account recipes
+
+- The existing account-funnel recipe serves Google sign-in in Guest's Studio gate. The account-session recipe owns the Account-tab logout row and accepts consumer copy; both Cluna Auth and the retained private-host Account consumer use it.
+- Source, generated web and documentation outputs were built together. The focused private-host Account consumer check passed, and the owner accepted the rendered Cluna sign-in and logout. This approval is limited to that exact UI state; future UI, CSS, theme or renderer changes require a new owner check.
+
 ## 2026-09-29: Global focus visibility and Spotlight retirement
 
 - One focus-visibility input-origin contract, mounted by each canonical input owner,

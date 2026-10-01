@@ -109,11 +109,15 @@ export function accountFunnelStatusMarkup({
 } = {}) {
   const heading = headingMarkup({ description, id, title });
   const iconRole = kind === 'processing' ? 'progress' : kind === 'error' ? 'warning' : 'check';
-  return `<div class="bb-floating-window-content bb-account-funnel bb-account-funnel--status" data-floating-window-size="content" data-bb-account-funnel data-account-funnel-step="status" data-account-funnel-status="${escapeHtml(kind)}" aria-labelledby="${heading.titleId}"${heading.describedBy}>${heading.headingMarkup}${heading.descriptionMarkup}<div class="bb-floating-window-content__body bb-account-funnel__body"><div class="bb-account-funnel__status" role="status"><span class="bb-account-funnel__status-icon" aria-hidden="true">${semanticIconMarkup(iconRole)}</span></div></div><div class="bb-floating-window-content__actions bb-account-funnel__actions"><button class="bb-workspace-control-button bb-account-funnel__primary" type="button" data-account-funnel-finish>${escapeHtml(actionLabel)}</button></div></div>`;
+  return `<div class="bb-floating-window-content bb-account-funnel bb-account-funnel--status" data-floating-window-size="content" data-bb-account-funnel data-account-funnel-step="status" data-account-funnel-status="${escapeHtml(kind)}" aria-labelledby="${heading.titleId}"${heading.describedBy}>${heading.headingMarkup}${heading.descriptionMarkup}<div class="bb-floating-window-content__body bb-account-funnel__body"><div class="bb-account-funnel__status" role="status"><span class="bb-account-funnel__status-icon" aria-hidden="true">${semanticIconMarkup(iconRole)}</span></div></div><p class="bb-floating-form__error bb-account-funnel__error" role="alert" data-account-funnel-error hidden></p><div class="bb-floating-window-content__actions bb-account-funnel__actions"><button class="bb-workspace-control-button bb-account-funnel__primary" type="button" data-account-funnel-finish>${escapeHtml(actionLabel)}</button></div></div>`;
 }
 
 export function accountFunnelMarkup(model = {}) {
   if (model.step === 'plan') return accountFunnelPlanMarkup(model);
   if (model.step === 'status') return accountFunnelStatusMarkup(model);
   return accountFunnelAccessMarkup(model);
+}
+
+export function accountFunnelPageMarkup(model = {}) {
+  return `<main class="bb-account-access-page"><div class="bb-account-access-page__content">${accountFunnelMarkup(model)}</div></main>`;
 }

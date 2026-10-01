@@ -2,6 +2,9 @@
 
 ## Current focus
 
+0. Cluna Auth Slice B consumes Guest's existing account funnel and the shared
+   Account tab logout row. Source and generated Theme outputs are aligned;
+   owner accepted this rendered login/logout state. No standalone page remains.
 1. Studio's migrated Guest is live. Exact Themes placement/snap-overlay visual
    acceptance remains open; preserve its recipe without redesign.
 2. Preserve generated source/web/docs parity; completed check evidence is cold

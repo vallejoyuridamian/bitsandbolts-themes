@@ -8,6 +8,32 @@
   min-width: min(320px, calc(100vw - 24px));
 }
 
+.bb-account-access-page {
+  display: grid;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 12px;
+  place-items: center;
+  color: var(--bb-interface-control-foreground);
+  background: var(--bb-v2-color-surface-canvas);
+  font-family: var(--bb-font-family-body);
+}
+
+html:has(.bb-account-access-page) body {
+  margin: 0;
+}
+
+.bb-account-access-page__content {
+  width: min(440px, 100%);
+  min-width: 0;
+}
+
+.bb-account-access-page .bb-account-funnel {
+  overflow: hidden;
+  border: 1px solid var(--bb-v2-color-border-default);
+  border-radius: var(--bb-radius-md);
+}
+
 .bb-account-funnel {
   display: grid;
   grid-template-rows: auto auto minmax(0, 1fr) auto auto;

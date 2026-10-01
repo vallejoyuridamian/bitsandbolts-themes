@@ -1,11 +1,12 @@
 # Bits and Bolts Themes: Status
-Updated: 2026-09-29
+Updated: 2026-10-01
 
 ## Active work and preservation
 
+- Cluna Auth uses Guest's existing account funnel and the Themes-owned account-session logout row in Studio's Account tab. Source, web and docs outputs match. The owner accepted the rendered login/logout and confirmed a fresh Google sign-in and logout. This approval applies only to the exact rendered state; the locked live Guest release is unchanged. Completed evidence is in `CHANGELOG.md`.
 - Studio completed M5 and published the migrated Guest. Its STATUS.md and
   Phase 4 plan own matrix and authorization. M4 resource/native gates are waived.
-  The owner authorizes this local checkpoint commit; no push is authorized.
+  No push is authorized.
 - Exact placement/snap-overlay owner visual acceptance remains open. Preserve the Themes
   placement/snap-overlay and dashed-line recipe, canonical event/focus owners
   and source/web/docs parity. No consumer-local presentation or retired diagnostic
