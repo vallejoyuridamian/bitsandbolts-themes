@@ -1,3 +1,5 @@
+@import url("./brand-mark.css");
+
 /* Input-origin admission is shared by all recipes and native UA outlines.
    Pointer focus remains functional; only keyboard focus receives a ring. */
 :root[data-bb-focus-origin="pointer"] :focus-visible { outline: none; }
@@ -6,8 +8,6 @@
  * Canonical application-surface, Select, Menu, and shared control interaction recipes.
  * Products retain behavior, state, positioning, invocation, and product semantics.
  */
-
-@import url("./brand-mark.css");
 
 :root {
   --bb-resizable-toolbar-handle-thickness: 9px;
@@ -30,6 +30,43 @@
 .bb-workspace-surface {
   color: var(--bb-interface-control-foreground);
   background: var(--bb-interface-workspace-background);
+}
+
+/* Opening is a workspace state, with the same chrome surface and typography.
+ * Products supply the existing brand mark and one status title. */
+.bb-workspace-opening {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: grid;
+  place-items: center;
+  overflow: auto;
+  box-sizing: border-box;
+  padding: var(--bb-spacing-5);
+  color: var(--bb-v2-color-content-primary);
+  background: var(--bb-interface-workspace-background);
+  font-family: var(--bb-font-family-body);
+}
+
+.bb-workspace-opening__content {
+  display: grid;
+  justify-items: center;
+  gap: var(--bb-spacing-4);
+  max-inline-size: 100%;
+  text-align: center;
+}
+
+.bb-workspace-opening__title {
+  margin: 0;
+  font-family: var(--bb-font-family-display);
+  font-size: var(--bb-font-size-xl);
+  font-weight: var(--bb-font-weight-bold);
+  line-height: var(--bb-font-line-height-tight);
+  visibility: hidden;
+}
+
+.bb-workspace-opening[data-bb-opening-ready] .bb-workspace-opening__title {
+  visibility: visible;
 }
 
 .bb-workspace-surface[tabindex="-1"]:focus {

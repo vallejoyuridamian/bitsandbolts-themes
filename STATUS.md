@@ -1,8 +1,11 @@
 # Bits and Bolts Themes: Status
-Updated: 2026-10-01
+Updated: 2026-10-02
 
 ## Active work and preservation
 
+- Studio opening surface now consumes the common workspace-opening recipe: centered existing logo and Opening Cluna Studio, chrome background, no card/gradients/secondary copy. Brand-mark import precedes declarations; source/web/docs outputs match. Required title font is admitted through Studio's existing shared font registry. Owner accepted the fresh rendered loading appearance and reached the workspace; earlier stall cause remains unproved. Studio content cutover plan owns scope/evidence.
+- Separate discovered ownership gap: `product-entry.css` retains text-icon pseudo-elements competing with the semantic vector provider. Current consumer reachability unverified; correction requires provider migration and consumer verification, outside the bounded loading/startup work. Do not claim this slice resolves all legacy UI recipes.
+- Studio owner reproduced a Save outline after pointer activation then Ctrl+Shift+I. Shared input-origin policy now preserves origin for nonnavigation command chords, retaining genuine navigation/activation and native focus. Source/web/docs copies match; Studio diagnostics retained. Fresh owner browser acceptance remains open; prior rendered approval does not cover this policy change, live Guest lock untouched. Scope/evidence owner: Studio `docs/CLUNA_AUTH_CONTENT_CUTOVER_PLAN.md`.
 - Home cleanup must preserve committed generated deliverables. `/home/damian/cleanup.sh` audit and artifact deletion share one Git-aware candidate policy; directories containing tracked files or a failed tracking check are excluded. Correction evidence is cold in `docs/history/HOME_CLEANUP_TRACKED_OUTPUTS_2026-10-01.md`.
 - Cluna Auth uses Guest's existing account funnel and the Themes-owned account-session logout row in Studio's Account tab. Source, web and docs outputs match. The owner accepted the rendered login/logout and confirmed a fresh Google sign-in and logout. This approval applies only to the exact rendered state; the locked live Guest release is unchanged. Completed evidence is in `CHANGELOG.md`.
 - Studio completed M5 and published the migrated Guest. Its STATUS.md and

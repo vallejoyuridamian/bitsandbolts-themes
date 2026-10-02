@@ -2,6 +2,8 @@
 
 ## Current focus
 
+0. Studio opening surface now uses one generated Themes recipe and valid brand-mark import, with centered logo/title on chrome background and shared required-font admission. Owner accepted the fresh rendered appearance. Text-icon migration remains a separately recorded open ownership gap.
+0. Shared Ctrl+Shift+I input-origin correction implemented/generated; preserve native focus/navigation/activation. Fresh Studio owner acceptance remains pending; no Guest release operation.
 0. Cluna Auth Slice B consumes Guest's existing account funnel and the shared
    Account tab logout row. Source and generated Theme outputs are aligned;
    owner accepted this rendered login/logout state. No standalone page remains.
