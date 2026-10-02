@@ -1,4 +1,5 @@
 node_modules/
+logs/
 HANDOFF.md
 .env
 .env.*

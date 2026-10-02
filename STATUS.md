@@ -3,6 +3,7 @@ Updated: 2026-10-01
 
 ## Active work and preservation
 
+- Home cleanup must preserve committed generated deliverables. `/home/damian/cleanup.sh` audit and artifact deletion share one Git-aware candidate policy; directories containing tracked files or a failed tracking check are excluded. Correction evidence is cold in `docs/history/HOME_CLEANUP_TRACKED_OUTPUTS_2026-10-01.md`.
 - Cluna Auth uses Guest's existing account funnel and the Themes-owned account-session logout row in Studio's Account tab. Source, web and docs outputs match. The owner accepted the rendered login/logout and confirmed a fresh Google sign-in and logout. This approval applies only to the exact rendered state; the locked live Guest release is unchanged. Completed evidence is in `CHANGELOG.md`.
 - Studio completed M5 and published the migrated Guest. Its STATUS.md and
   Phase 4 plan own matrix and authorization. M4 resource/native gates are waived.
