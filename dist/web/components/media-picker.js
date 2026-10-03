@@ -154,13 +154,15 @@ export class MediaPreviewElement {
     escapeHtml: escapeText = escapeHtml,
     assetFileUrl = (path) => path,
     videoThumbnailUrl = () => '',
-    mediaAssetDisplayName: displayNameResolver = mediaAssetDisplayName
+    mediaAssetDisplayName: displayNameResolver = mediaAssetDisplayName,
+    previewResource = () => ''
   } = {}) {
     this.escapeAttribute = escapeAttribute;
     this.escapeHtml = escapeText;
     this.assetFileUrl = assetFileUrl;
     this.videoThumbnailUrl = videoThumbnailUrl;
     this.mediaAssetDisplayName = displayNameResolver;
+    this.previewResource = previewResource;
   }
 
   render({
@@ -199,6 +201,14 @@ export class MediaPreviewElement {
       className
     ].filter(Boolean).join(' ');
     const dataset = actionDataset(action, this.escapeAttribute);
+    const preparedResource = this.previewResource({ kind: mediaKind, path, url, thumbnailPath, thumbnailRevision });
+    if (preparedResource) {
+      return `<div class="${classes}" data-media-preview-kind="${mediaKind}" data-media-preview-path="${safePath}"${actionAccessibility} ${dataset}>
+        <img data-asset-resource="${this.escapeAttribute(preparedResource)}" alt="" draggable="false"${measured ? ' data-media-preview-measured' : ''}>
+        ${mediaKind === 'video' && interactive
+          ? `<span class="bb-media-preview__video-play media-preview-video-play vault-video-play" aria-hidden="true">${mediaPreviewIcon('play')}</span>` : ''}
+      </div>`;
+    }
     if (mediaKind === 'icon' && iconRole) {
       return `
         <div class="${classes}" data-media-preview-kind="icon" data-media-preview-path="${safePath}"${actionAccessibility} ${dataset}>

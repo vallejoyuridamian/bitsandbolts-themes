@@ -707,3 +707,8 @@
     0 0 0 1px rgba(113, 210, 215, 0.2),
     0 10px 24px rgba(0, 0, 0, 0.22);
 }
+
+/* A prepared image has no drawable source until its owner admits it. */
+img[data-asset-resource]:not([src]) {
+  visibility: hidden;
+}

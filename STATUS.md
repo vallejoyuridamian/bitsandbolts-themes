@@ -1,7 +1,11 @@
 # Bits and Bolts Themes: Status
-Updated: 2026-10-02
+Updated: 2026-10-03
 
 ## Active work and preservation
+
+- Cluna Auth Assets E preserves prepared media-preview geometry/cues but draws no empty img before its source is admitted, removing owner-rejected white rectangles in picker and filmstrip. Approved canonical generation completed once; CSS source/web/docs parity passed, existing 39-token warning separate. Studio foundation E owns shared scheduling/editor readiness. Owner accepts the current cached-picker experience and placement; first cold preparation, editor/filmstrip and other consumers remain qualified. No full E acceptance, Guest release change or added checkbox visual approval is claimed. Checkpoint evidence: Studio Assets history.
+
+- Workspace AUTHENTICATION_STANDARD.md now owns continuity/persistence for every app. Cluna login consumes the existing account funnel with Keep me signed in unchecked; one Themes checkbox helper serves persistence and consent, preserving the consent error ID and existing fields/styles/fonts/icons. Source/web/docs outputs match after one generation and four recipe checks pass. Existing 39-token warning gate remains separate. The added checkbox requires fresh owner visual approval; prior login/logout approval covers only its earlier rendered state. Scope/evidence: ../appscreen-studio/docs/history/AUTH_ASSETS_IMPLEMENTATION_2026-10-02.md and docs/history/AUTHENTICATION_CHECKBOX_2026-10-02.md.
 
 - Studio opening surface now consumes the common workspace-opening recipe: centered existing logo and Opening Cluna Studio, chrome background, no card/gradients/secondary copy. Brand-mark import precedes declarations; source/web/docs outputs match. Required title font is admitted through Studio's existing shared font registry. Owner accepted the fresh rendered loading appearance and reached the workspace; earlier stall cause remains unproved. Studio content cutover plan owns scope/evidence.
 - Separate discovered ownership gap: `product-entry.css` retains text-icon pseudo-elements competing with the semantic vector provider. Current consumer reachability unverified; correction requires provider migration and consumer verification, outside the bounded loading/startup work. Do not claim this slice resolves all legacy UI recipes.

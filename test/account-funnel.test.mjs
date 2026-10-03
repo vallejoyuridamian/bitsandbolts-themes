@@ -76,6 +76,15 @@ test('account creation, plan choice, and status remain generic managed recipes',
   );
 });
 
+test('remembered login shares the checkbox row and defaults unchecked without consent validation', () => {
+  const markup = accountFunnelAccessMarkup({ rememberLabel: 'Keep me signed in', step: 'login' });
+  assert.match(markup, /class="bb-checkbox-field__label"/);
+  assert.match(markup, /class="bb-checkbox-field__control" type="checkbox" name="remember"/);
+  assert.match(markup, /data-account-funnel-remember/);
+  assert.match(markup, /bb-checkbox-field__text">Keep me signed in/);
+  assert.doesNotMatch(markup, /\schecked|data-account-funnel-consent-error|aria-describedby/);
+});
+
 test('account funnel styles own every custom flow role', async () => {
   const [css, fieldsCss] = await Promise.all([
     readFile(new URL('../components/account-funnel.css', import.meta.url), 'utf8'),

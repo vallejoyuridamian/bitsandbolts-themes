@@ -44,6 +44,16 @@ function footerMarkup({ cancelLabel = 'Keep editing', primaryLabel = 'Continue' 
   return `<div class="bb-floating-window-content__actions bb-account-funnel__actions" role="group" aria-label="Account actions"><button class="bb-workspace-control-button" type="button" data-account-funnel-cancel>${escapeHtml(cancelLabel)}</button><button class="bb-workspace-control-button bb-account-funnel__primary" type="submit" data-account-funnel-submit>${escapeHtml(primaryLabel)}</button></div>`;
 }
 
+function checkboxMarkup({ id, label, name, validation = false }) {
+  if (!label) return '';
+  const errorId = escapeHtml(`${id}${name[0].toUpperCase()}${name.slice(1)}Error`);
+  const describedBy = validation ? ` aria-describedby="${errorId}"` : '';
+  const error = validation
+    ? `<p id="${errorId}" class="bb-field__error" role="alert" data-account-funnel-${name}-error hidden></p>`
+    : '';
+  return `<div class="bb-checkbox-field" data-account-funnel-${name}-field><label class="bb-checkbox-field__label"><input class="bb-checkbox-field__control" type="checkbox" name="${name}"${describedBy} data-account-funnel-${name}><span class="bb-checkbox-field__text">${escapeHtml(label)}</span></label>${error}</div>`;
+}
+
 export function accountFunnelAccessMarkup({
   backLabel = 'Back',
   cancelLabel = 'Keep editing',
@@ -57,6 +67,7 @@ export function accountFunnelAccessMarkup({
   id = 'bbAccountFunnel',
   primaryLabel = 'Continue',
   recoveryLabel = '',
+  rememberLabel = '',
   showBack = false,
   step = 'access',
   title = 'Continue to your account'
@@ -71,13 +82,12 @@ export function accountFunnelAccessMarkup({
   const recovery = recoveryLabel
     ? `<button class="bb-link bb-account-funnel__recovery" type="button" data-account-funnel-recovery>${escapeHtml(recoveryLabel)}</button>`
     : '';
-  const consent = consentLabel
-    ? `<div class="bb-checkbox-field" data-account-funnel-consent-field><label class="bb-checkbox-field__label"><input class="bb-checkbox-field__control" type="checkbox" name="consent" aria-describedby="${escapeHtml(`${id}ConsentError`)}" data-account-funnel-consent><span class="bb-checkbox-field__text">${escapeHtml(consentLabel)}</span></label><p id="${escapeHtml(`${id}ConsentError`)}" class="bb-field__error" role="alert" data-account-funnel-consent-error hidden></p></div>`
-    : '';
+  const consent = checkboxMarkup({ id, label: consentLabel, name: 'consent', validation: true });
+  const remember = checkboxMarkup({ id, label: rememberLabel, name: 'remember' });
   const switchMarkup = creationPrompt && creationActionLabel
     ? `<p class="bb-account-funnel__switch"><span>${escapeHtml(creationPrompt)} </span><button class="bb-link bb-account-funnel__switch-action" type="button" data-account-funnel-create><strong>${escapeHtml(creationActionLabel)}</strong></button><span>.</span></p>`
     : '';
-  return `<form class="bb-floating-window-content bb-account-funnel" data-floating-window-size="content" data-bb-account-funnel data-account-funnel-step="${escapeHtml(step)}" aria-labelledby="${heading.titleId}"${heading.describedBy} novalidate>${heading.headingMarkup}${heading.descriptionMarkup}<div class="bb-floating-window-content__body bb-account-funnel__body">${google}${fieldsMarkup}${recovery}${consent}${switchMarkup}</div><p class="bb-floating-form__error bb-account-funnel__error" role="alert" data-account-funnel-error hidden></p>${footerMarkup({ cancelLabel, primaryLabel })}</form>`;
+  return `<form class="bb-floating-window-content bb-account-funnel" data-floating-window-size="content" data-bb-account-funnel data-account-funnel-step="${escapeHtml(step)}" aria-labelledby="${heading.titleId}"${heading.describedBy} novalidate>${heading.headingMarkup}${heading.descriptionMarkup}<div class="bb-floating-window-content__body bb-account-funnel__body">${google}${fieldsMarkup}${recovery}${remember}${consent}${switchMarkup}</div><p class="bb-floating-form__error bb-account-funnel__error" role="alert" data-account-funnel-error hidden></p>${footerMarkup({ cancelLabel, primaryLabel })}</form>`;
 }
 
 export function accountFunnelPlanMarkup({
