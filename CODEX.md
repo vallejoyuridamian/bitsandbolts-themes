@@ -84,7 +84,7 @@ components, and generators for supported platforms.
 - The AppScreen Studio Themes tab and user-authored themes must consume
   the same portable schema as first-party themes.
 
-- All focus-visible presentation inherits the input-origin contract in focus-visibility.js and the shared recipe admission. Mount its policy once through the consumer's canonical document input owner. Pointer activity and modifier-only keys never promote keyboard rings; keep DOM focus, native actions and keyboard navigation. No per-button/tab/window blur exceptions. Consumers that do not mount the policy remain unverified, not accepted by CSS generation alone.
+- All focus-visible presentation inherits the input-origin contract in focus-visibility.js and the shared recipe admission. Mount its policy once through the consumer's canonical document input owner. UI_STRATEGY.md owns the Tab-only hull admission contract; keep DOM focus and native actions. No per-button/tab/window blur exceptions. Consumers that do not mount the policy remain unverified, not accepted by CSS generation alone.
 
 ## Context
 

@@ -55,6 +55,7 @@ export function semanticActionButtonMarkup(model = {}) {
     ...(recipe === 'workspace' && iconOnly ? ['bb-workspace-control-button--icon'] : []),
     ...(recipe === 'workspace' && !iconOnly && iconRole ? ['bb-workspace-control-button--icon-label'] : []),
     ...(recipe === 'workspace' && model.danger ? ['bb-workspace-control-button--danger'] : []),
+    ...(recipe === 'workspace' && model.size === 'compact' ? ['bb-workspace-control-button--compact'] : []),
     ...String(model.className || '').split(/\s+/).filter(Boolean)
   ];
   const attributes = {

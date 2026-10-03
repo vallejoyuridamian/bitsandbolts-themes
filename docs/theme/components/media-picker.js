@@ -366,7 +366,7 @@ export class MediaPreviewCard extends MediaPreviewElement {
             ${!reduced && displaySubtitle ? `<span title="${this.escapeAttribute(displaySubtitle)}">${this.escapeHtml(displaySubtitle)}</span>` : ''}
             ${!reduced && badges.length ? `<div class="bb-media-card__meta vault-card-meta media-preview-card-meta">${badges.map((badge) => this.renderBadge(badge)).join('')}</div>` : ''}
             ${reduced ? '' : extraHtml}
-            ${!reduced && actions.length ? `<div class="bb-media-card__actions vault-card-actions media-preview-card-actions">${actions.map((action) => this.renderAction(action)).join('')}</div>` : ''}
+            ${!reduced && actions.length ? `<div class="bb-media-card__actions vault-card-actions media-preview-card-actions">${this.renderActions(actions)}</div>` : ''}
           </div>`
           : ''}
       </article>
@@ -500,21 +500,39 @@ export class MediaPreviewCard extends MediaPreviewElement {
     return `<${safeTag} class="bb-media-card__badge ${this.escapeAttribute(classes)}"${titleAttr}>${this.escapeHtml(label)}</${safeTag}>`;
   }
 
+  renderActions(actions = []) {
+    const rows = [];
+    for (const action of actions) {
+      const group = action.group || '';
+      if (!rows.length || rows.at(-1).group !== group) rows.push({ group, actions: [] });
+      rows.at(-1).actions.push(action);
+    }
+    return rows.map(row => `<div class="bb-media-card__action-row">${row.actions.map(action => this.renderAction(action)).join('')}</div>`).join('');
+  }
+
   renderAction({
     label = '',
     dataset = {},
     className = '',
     disabled = false,
     busy = false,
+    danger = false,
     title = '',
     ariaLabel = ''
   } = {}) {
-    const attrs = actionDataset(dataset, this.escapeAttribute);
     const progress = busy
       ? `<span class="bb-media-action__progress">${semanticIconMarkup('progress')}</span>`
       : '';
-    const body = `${progress}${label ? `<span>${this.escapeHtml(label)}</span>` : ''}`;
-    return `<button type="button" class="bb-media-action ${this.escapeAttribute(className)}" ${attrs}${disabled ? ' disabled' : ''}${busy ? ' aria-busy="true"' : ''}${title ? ` title="${this.escapeAttribute(title)}"` : ''}${ariaLabel ? ` aria-label="${this.escapeAttribute(ariaLabel)}"` : ''}>${body}</button>`;
+    return semanticActionButtonMarkup({
+      label, recipe: 'workspace', size: 'compact', iconOnly: false, danger,
+      className, disabled, dataset, ariaLabel,
+      iconMarkup: progress,
+      attributes: {
+        'data-bb-theme-control': true,
+        ...(busy ? { 'aria-busy': 'true' } : {}),
+        title: title || undefined
+      }
+    });
   }
 
   usageBadge(item = {}) {
@@ -608,4 +626,13 @@ export function referenceImagePickerMarkup({
     presentation: mediaPreviewCardPresentations.reduced
   });
   return `<div class="bb-media-reference-picker" data-theme-reference-image-picker>${choose}<div class="bb-media-reference-picker__content bb-field" data-theme-reference-image-drop${expanded ? '' : ' hidden'}>${dropTarget}<p class="bb-field__error" role="alert" data-theme-reference-image-error hidden></p></div></div>`;
+}
+
+export function createMediaUsageTooltip({ document } = {}) {
+  if (typeof document?.createElement !== 'function') throw new TypeError('A tooltip requires its document owner.');
+  const element = document.createElement('div');
+  element.className = 'bb-media-usage-tooltip';
+  element.setAttribute('role', 'tooltip');
+  element.hidden = true;
+  return element;
 }

@@ -598,6 +598,11 @@
   padding: 0 10px;
 }
 
+.bb-workspace-control-button--compact {
+  min-width: 0;
+  padding: 0 6px;
+}
+
 .bb-interface-action:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *), [data-specimen-state="hover"], [data-specimen-state="focusVisible"]):not(:disabled):where(:not([aria-pressed="true"]):not([aria-selected="true"]):not([aria-expanded="true"])),
 .bb-interface-controls button:where(:not(.theme-swatch):not([data-bb-theme-control])):is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)):not(:disabled):where(:not(.active):not([aria-pressed="true"]):not([aria-selected="true"]):not([aria-expanded="true"])),
 .bb-workspace-tab:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)):where(:not(:disabled):not([aria-selected="true"])),
@@ -758,6 +763,8 @@
   --bb-interface-button-hover-foreground: var(--bb-v2-color-status-danger-border);
   --bb-interface-button-pressed-foreground: var(--bb-v2-color-status-danger-border);
   --bb-interface-button-plain-icon-hover-foreground: var(--bb-v2-color-status-danger-border);
+  --bb-interface-button-hover-filter: var(--bb-v2-button-current-color-hover-filter);
+  --bb-interface-button-plain-icon-hover-filter: var(--bb-v2-button-current-color-hover-filter);
 }
 
 .bb-workspace-control-button--danger:not(:disabled),

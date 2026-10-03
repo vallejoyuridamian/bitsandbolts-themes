@@ -408,3 +408,31 @@ test('the standalone showcase loads media recipes and uses repository-safe asset
   assert.match(markup, /src="\.\/theme\//);
   assert.doesNotMatch(markup, /(?:src|href)="\/theme\//);
 });
+
+test('media management actions inherit compact semantic buttons, paired rows and shared danger feedback', () => {
+  const preview = new MediaPreviewCard();
+  const actions = [
+    { label: 'Transcribe', busy: true },
+    { label: 'Rename', group: 'management', dataset: { action: 'rename' } },
+    { label: 'Delete', group: 'management', danger: true, disabled: true, title: 'In use', dataset: { action: 'delete' } },
+    { label: 'Load' }
+  ];
+  for (const kind of ['image', 'audio', 'video']) {
+    const markup = preview.renderCard({ kind, label: 'Asset', actions });
+    const rows = [...markup.matchAll(/<div class="bb-media-card__action-row">([\s\S]*?)<\/div>/g)].map(match => match[1]);
+    assert.equal(rows.length, 3);
+    assert.match(rows[0], /Transcribe/);
+    assert.match(rows[1], /Rename[\s\S]*Delete/);
+    assert.match(rows[2], /Load/);
+    assert.match(rows[1], /bb-workspace-control-button--compact/);
+    assert.match(rows[1], /bb-workspace-control-button--danger/);
+    assert.match(rows[1], /data-bb-theme-control/);
+    assert.match(rows[1], /title="In use"/);
+    assert.match(rows[1], /disabled/);
+    assert.doesNotMatch(markup, /class="bb-media-action /);
+  }
+  assert.match(mediaPickerCss, /\.bb-media-card__action-row\s*\{[^}]*grid-auto-flow:\s*column;[^}]*grid-auto-columns:\s*minmax\(0, 1fr\);/s);
+  assert.doesNotMatch(mediaPickerCss, /\.bb-media-action(?=\s*\{|:)/);
+  const danger = interfacePrimitives.match(/\.bb-workspace-control-button--danger\s*\{([^}]*)\}/)[1];
+  assert.match(danger, /--bb-interface-button-hover-filter:\s*var\(--bb-v2-button-current-color-hover-filter\)/);
+});

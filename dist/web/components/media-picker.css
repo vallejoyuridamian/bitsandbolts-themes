@@ -297,12 +297,22 @@
 }
 
 .bb-media-card__meta,
-.bb-media-card__actions,
-.vault-card-meta,
-.vault-card-actions {
+.vault-card-meta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  gap: 6px;
+}
+
+.bb-media-card__actions {
+  display: grid;
+  gap: 6px;
+}
+
+.bb-media-card__action-row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
   gap: 6px;
 }
 
@@ -340,28 +350,6 @@
   border-color: var(--bb-v2-color-status-info-border);
   color: var(--bb-v2-color-status-info-content);
   background: var(--bb-v2-color-status-info-surface);
-}
-
-.bb-media-action {
-  display: inline-flex;
-  min-width: 30px;
-  min-height: 30px;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 0 9px;
-  border: 1px solid var(--bb-v2-color-border-default);
-  border-radius: 6px;
-  color: var(--bb-v2-color-content-primary);
-  background: var(--bb-v2-color-surface-subtle);
-  font-size: 11px;
-  font-weight: 700;
-}
-
-.bb-media-action:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)) {
-  border-color: var(--bb-v2-color-border-focus-ring);
-  outline: 2px solid transparent;
-  color: var(--bb-v2-color-content-brand);
 }
 
 .bb-media-action__progress {
@@ -711,4 +699,25 @@
 /* A prepared image has no drawable source until its owner admits it. */
 img[data-asset-resource]:not([src]) {
   visibility: hidden;
+}
+
+
+/* Shared media usage detail. Preserve the established reference-tooltip recipe. */
+.bb-media-usage-tooltip {
+  position: fixed;
+  z-index: 1100;
+  width: min(320px, 72vw);
+  max-height: 240px;
+  overflow: auto;
+  padding: 10px 11px;
+  border: 1px solid rgba(113, 210, 215, 0.28);
+  border-radius: 8px;
+  color: var(--bb-v2-color-content-primary);
+  background: rgba(12, 18, 19, 0.98);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.45);
+  font-family: var(--bb-font-family-body);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.45;
+  white-space: pre-wrap;
 }
