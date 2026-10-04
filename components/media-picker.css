@@ -58,6 +58,30 @@
   --bb-font-preview-min-height: 120px;
 }
 
+.bb-font-preview-card.vault-font-card.bb-media-card--full {
+  --bb-font-preview-min-height: 84px;
+}
+
+.bb-font-preview-card.vault-font-card .bb-media-preview--font {
+  padding-block: 8px;
+}
+
+.bb-font-preview-card.vault-font-card .bb-media-card__body {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  padding-block: 8px;
+}
+
+.bb-font-preview-card.vault-font-card .bb-media-card__meta {
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.bb-font-preview-card.vault-font-card .bb-media-card__actions {
+  grid-column: 1 / -1;
+}
+
 .bb-font-preview-card.bb-media-card--reduced {
   --bb-font-preview-min-height: 56px;
 }
@@ -125,7 +149,7 @@
   background-size: 24px 24px;
 }
 
-.bb-media-preview--interactive:is(.bb-media-preview--image, .bb-media-preview--video) {
+.bb-media-preview--interactive:is(.bb-media-preview--image, .bb-media-preview--video, .bb-media-preview--device) {
   cursor: zoom-in;
 }
 

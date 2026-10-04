@@ -1,5 +1,10 @@
 # Bits and Bolts Themes - Changelog
 
+## 2026-10-04: Shared error and Font card recipes
+
+- Form failures use plain bold destructive text without decorative boxes; the owner accepted the Studio presentation. The shared Font Vault card uses a shorter specimen and puts name and usage on one row. The owner accepted the bounded Font Vault appearance.
+- Source, generated web and documentation CSS remain synchronized. Existing Guest and other consumer qualifications remain open; no deploy or push.
+
 ## 2026-10-01: Shared Cluna account recipes
 
 - The existing account-funnel recipe serves Google sign-in in Guest's Studio gate. The account-session recipe owns the Account-tab logout row and accepts consumer copy; both Cluna Auth and the retained private-host Account consumer use it.

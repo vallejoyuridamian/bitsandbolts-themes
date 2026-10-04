@@ -1097,8 +1097,10 @@ article.bb-workspace-specimen__preview--secondary {
 
 .bb-theme-gallery__error {
   color: var(--bb-v2-color-status-danger-content);
-  border-color: var(--bb-v2-color-status-danger-border);
-  background: var(--bb-v2-color-status-danger-surface);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 @media (max-width: 640px) {

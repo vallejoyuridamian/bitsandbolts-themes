@@ -105,9 +105,6 @@ html:has(.bb-account-access-page) body {
 
 .bb-account-funnel__error {
   margin: 0 16px 8px;
-  padding: 0;
-  border: 0;
-  background: transparent;
 }
 
 .bb-account-funnel__actions {

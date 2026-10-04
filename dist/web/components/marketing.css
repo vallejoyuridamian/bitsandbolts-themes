@@ -993,8 +993,10 @@ body:has(> .bb-navbar[data-placement="sticky"]) :is(.bb-section, .bb-cta-band) {
 
 .bb-managed-status--danger {
   color: var(--bb-v2-color-status-danger-content);
-  border-color: var(--bb-v2-color-status-danger-border);
-  background: var(--bb-v2-color-status-danger-surface);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 /* Hosted auth action ------------------------------------------------------ */

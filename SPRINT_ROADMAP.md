@@ -1,9 +1,11 @@
 # Bits and Bolts Themes: Sprint Roadmap
-Updated: 2026-10-03
+Updated: 2026-10-04
 
 1. Preserve accepted current card/category checkpoint, compact adjacent actions/
    danger hover/shared tooltip and global Tab-only hull policy/native focus.
-   No repeated visual run; Studio E continues at shared restart admission.
+   Studio E now has an owner-requested compact Font Vault card recipe: shorter
+   specimen and inline name/usage, with picker geometry preserved. Owner accepted
+   the bounded Font Vault card on2026-10-04. Studio E remains open beyond it.
 2. STATUS owns all remaining consumer qualifications: navigation/chord/tooltip,
    remembered-login checkbox, placement, animations/Preview popup and range thumb.
    Text-icon provider gap and token/CSS gates stay separate; no full E claim.

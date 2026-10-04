@@ -296,12 +296,10 @@
 
 .bb-floating-form__error {
   margin: 0 12px 8px;
-  padding: 8px 10px;
-  border: 1px solid var(--bb-v2-color-status-danger-border);
-  border-radius: var(--bb-radius-md);
-  color: var(--bb-v2-color-status-danger-content);
-  background: var(--bb-v2-color-status-danger-surface);
+  color: var(--bb-v2-color-status-danger-border);
+  font-family: var(--bb-font-family-body);
   font-size: var(--bb-font-size-xs);
+  font-weight: var(--bb-font-weight-bold);
   line-height: var(--bb-font-line-height-normal);
 }
 

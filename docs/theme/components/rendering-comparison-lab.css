@@ -443,9 +443,10 @@
 }
 
 .bb-rendering-comparison__status[data-state="error"] {
-  border-color: var(--bb-v2-color-status-danger-border);
+  padding: 0;
+  border: 0;
   color: var(--bb-v2-color-status-danger-content);
-  background: var(--bb-v2-color-status-danger-surface);
+  background: transparent;
 }
 
 .bb-rendering-comparison__viewport {

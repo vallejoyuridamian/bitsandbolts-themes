@@ -188,9 +188,10 @@
 }
 
 .bb-workspace-settings__message--danger {
-  border-color: color-mix(in srgb, var(--bb-v2-color-status-danger-border) 48%, transparent);
+  padding: 0;
+  border: 0;
   color: var(--bb-v2-color-status-danger-content);
-  background: var(--bb-v2-color-status-danger-surface);
+  background: transparent;
 }
 
 .bb-workspace-settings__simulation {
