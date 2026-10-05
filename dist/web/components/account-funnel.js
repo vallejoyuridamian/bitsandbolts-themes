@@ -46,8 +46,11 @@ function fieldMarkup(field = {}) {
   return `<div class="bb-field" data-account-funnel-field="${id}"><label class="bb-field__label" for="${id}">${escapeHtml(field.label)}</label>${control}${hint}<p id="${errorId}" class="bb-field__error" role="alert" data-account-funnel-field-error hidden></p></div>`;
 }
 
-function footerMarkup({ cancelLabel = 'Keep editing', primaryLabel = 'Continue' } = {}) {
-  return `<div class="bb-floating-window-content__actions bb-account-funnel__actions" role="group" aria-label="Account actions"><button class="bb-workspace-control-button" type="button" data-account-funnel-cancel>${escapeHtml(cancelLabel)}</button><button class="bb-workspace-control-button" type="submit" data-account-funnel-submit>${escapeHtml(primaryLabel)}</button></div>`;
+function footerMarkup({ cancelLabel = 'Keep editing', primaryLabel = 'Continue', primaryDanger = false } = {}) {
+  const primary = primaryLabel
+    ? `<button class="bb-workspace-control-button${primaryDanger ? ' bb-workspace-control-button--danger' : ''}" type="submit" data-account-funnel-submit>${escapeHtml(primaryLabel)}</button>`
+    : '';
+  return `<div class="bb-floating-window-content__actions bb-account-funnel__actions" role="group" aria-label="Account actions"><button class="bb-workspace-control-button" type="button" data-account-funnel-cancel>${escapeHtml(cancelLabel)}</button>${primary}</div>`;
 }
 
 function checkboxMarkup({ id, label, name, validation = false }) {
@@ -72,6 +75,7 @@ export function accountFunnelAccessMarkup({
   googleLogoSrc = '',
   id = 'bbAccountFunnel',
   primaryLabel = 'Continue',
+  primaryDanger = false,
   recoveryLabel = '',
   rememberLabel = '',
   showBack = false,
@@ -80,7 +84,7 @@ export function accountFunnelAccessMarkup({
 } = {}) {
   const heading = headingMarkup({ backLabel, description, id, showBack, title });
   const google = googleLabel && googleLogoSrc
-    ? `<button class="bb-google-btn" type="button" data-account-funnel-google><img class="bb-google-btn__icon" src="${escapeHtml(googleLogoSrc)}" alt=""><span class="bb-google-btn__label">${escapeHtml(googleLabel)}</span></button><div class="bb-divider"><span>or</span></div>`
+    ? `<button class="bb-google-btn" type="button" data-account-funnel-google><img class="bb-google-btn__icon" src="${escapeHtml(googleLogoSrc)}" alt=""><span class="bb-google-btn__label">${escapeHtml(googleLabel)}</span></button>${fields.length ? '<div class="bb-divider"><span>or</span></div>' : ''}`
     : '';
   const fieldsMarkup = fields.length
     ? `<div class="bb-form-fields">${fields.map(fieldMarkup).join('')}</div>`
@@ -93,7 +97,7 @@ export function accountFunnelAccessMarkup({
   const switchMarkup = creationPrompt && creationActionLabel
     ? `<p class="bb-account-funnel__switch"><span>${escapeHtml(creationPrompt)} </span><button class="bb-link bb-account-funnel__switch-action" type="button" data-account-funnel-create><strong>${escapeHtml(creationActionLabel)}</strong></button><span>.</span></p>`
     : '';
-  return `<form class="bb-floating-window-content bb-account-funnel" data-floating-window-size="content" data-bb-account-funnel data-account-funnel-step="${escapeHtml(step)}" aria-labelledby="${heading.titleId}"${heading.describedBy} novalidate>${heading.headingMarkup}${heading.descriptionMarkup}<div class="bb-floating-window-content__body bb-account-funnel__body">${google}${fieldsMarkup}${recovery}${remember}${consent}${switchMarkup}</div><p class="bb-floating-form__error bb-account-funnel__error" role="alert" data-account-funnel-error hidden></p>${footerMarkup({ cancelLabel, primaryLabel })}</form>`;
+  return `<form class="bb-floating-window-content bb-account-funnel" data-floating-window-size="content" data-bb-account-funnel data-account-funnel-step="${escapeHtml(step)}" aria-labelledby="${heading.titleId}"${heading.describedBy} novalidate>${heading.headingMarkup}${heading.descriptionMarkup}<div class="bb-floating-window-content__body bb-account-funnel__body">${google}${fieldsMarkup}${recovery}${remember}${consent}${switchMarkup}</div><p class="bb-floating-form__error bb-account-funnel__error" role="alert" data-account-funnel-error hidden></p>${footerMarkup({ cancelLabel, primaryLabel, primaryDanger })}</form>`;
 }
 
 export function accountFunnelPlanMarkup({

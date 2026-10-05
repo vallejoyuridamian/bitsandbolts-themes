@@ -5,7 +5,6 @@
 @import url("./content-media.css");
 @import url("./content-sections.css");
 @import url("./content-surfaces.css");
-@import url("./dialog.css");
 @import url("./footer.css");
 @import url("./floating-window.css");
 @import url("./form-field.css");
@@ -757,25 +756,6 @@ article.bb-workspace-specimen__preview--secondary {
   gap: 9px;
   color: var(--bb-v2-color-content-secondary);
   font-size: 11px;
-}
-
-.bb-dialog-specimen {
-  display: grid;
-  justify-items: start;
-}
-
-.bb-dialog-specimen .bb-dialog {
-  position: static;
-  width: min(100%, 520px);
-  max-height: none;
-  margin: 0;
-}
-
-.bb-dialog-specimen .bb-dialog__note > :is(.bb-semantic-icon, .ms) {
-  width: 18px;
-  height: 18px;
-  color: var(--bb-v2-identity-primary);
-  font-size: 18px;
 }
 
 .bb-loading-specimen {

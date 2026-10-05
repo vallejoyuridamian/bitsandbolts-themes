@@ -234,7 +234,7 @@ fun BbOutlinedButton(    onClick: () -> Unit,
 }
 
 /**
- * Dialog action button matching desktop dialog.css.
+ * Window action button matching the desktop theme controls.
  * Text-only, primary-colored, bold, and slightly larger than standard small button text.
  */
 @Composable

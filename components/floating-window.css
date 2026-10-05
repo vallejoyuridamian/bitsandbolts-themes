@@ -1,6 +1,5 @@
 @import url("./range-control.css");
 @import url("./progress.css");
-@import url("./dialog.css");
 
 /*
  * Canonical handled floating-window shell and confirmation composition.
@@ -9,7 +8,7 @@
 
 .bb-floating-window {
   position: fixed;
-  /* The shared window controller owns placement, including native dialogs. */
+  /* The shared window controller owns placement. */
   inset: auto;
   z-index: 1150;
   display: grid;

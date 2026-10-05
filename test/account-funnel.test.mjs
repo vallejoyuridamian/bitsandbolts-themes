@@ -10,6 +10,24 @@ import {
   accountFunnelStatusMarkup
 } from '../components/account-funnel.js';
 import { MANAGED_WEB_COMPONENTS } from '../components/managed-components.js';
+import { accountDeletionWindowMarkup } from '../components/account-session.js';
+
+test('account deletion uses the Themes window recipe with the linked reauthentication methods', () => {
+  const markup = accountDeletionWindowMarkup({ methods: ['email_password', 'google'], productName: 'Cluna Studio' });
+  assert.match(markup, /data-account-funnel-step="deletion"/);
+  assert.match(markup, /bb-google-btn/);
+  assert.match(markup, /Delete account with Google/);
+  assert.match(markup, />Password<\/label>/);
+  assert.match(markup, /bb-workspace-control-button--danger/);
+  assert.match(markup, />Delete account<\/button>/);
+  assert.doesNotMatch(markup, /<dialog|bb-dialog|DELETE MY ACCOUNT|Current password|type="email"/);
+  const googleOnly = accountDeletionWindowMarkup({ methods: ['google'], productName: 'Cluna Studio' });
+  assert.match(googleOnly, /Delete account with Google/);
+  assert.doesNotMatch(googleOnly, /bb-divider|name="password"|data-account-funnel-submit/);
+  const passwordOnly = accountDeletionWindowMarkup({ methods: ['email_password'], productName: 'Cluna Studio' });
+  assert.match(passwordOnly, /name="password"/);
+  assert.doesNotMatch(passwordOnly, /bb-google-btn|bb-divider/);
+});
 
 test('account access composes exact Themes recipes without a modal dialog', () => {
   const markup = accountFunnelAccessMarkup({

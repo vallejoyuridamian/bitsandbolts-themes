@@ -983,28 +983,6 @@ function compactControlSpecimenMarkup() {
   `;
 }
 
-function dialogSpecimenMarkup(theme) {
-  return `
-    <div class="bb-dialog-specimen" inert>
-      <dialog class="bb-dialog" open aria-labelledby="theme-dialog-title">
-        <div class="bb-dialog__body">
-          <span class="bb-dialog__kicker">Confirmation</span>
-          <h4 id="theme-dialog-title" class="bb-dialog__title">Continue with this action?</h4>
-          <p class="bb-dialog__description">A shared dialog keeps its hierarchy, message, note, and actions consistent.</p>
-          <div class="bb-dialog__note">
-            ${iconPreviewGlyphMarkup(theme, 'info')}
-            <span>Supporting context belongs in the canonical note treatment.</span>
-          </div>
-          <div class="bb-dialog__actions">
-            <button class="bb-btn bb-btn-filled" type="button" tabindex="-1">Continue</button>
-            <button class="bb-btn bb-btn-text" type="button" tabindex="-1">Cancel</button>
-          </div>
-        </div>
-      </dialog>
-    </div>
-  `;
-}
-
 function loadingSpecimenMarkup() {
   return `
     <div class="bb-skeleton-list bb-loading-specimen" aria-label="Loading skeleton specimen">
@@ -1266,7 +1244,6 @@ function sharedWebRecipeMarkup(theme) {
     showcaseSectionMarkup('Selection control groups', selectionControlSpecimenMarkup()),
     showcaseSectionMarkup('Segmented control and toggle', compactControlSpecimenMarkup()),
     showcaseSectionMarkup('Handled confirmation window', floatingWindowSpecimenMarkup(theme)),
-    showcaseSectionMarkup('Dialog', dialogSpecimenMarkup(theme)),
     showcaseSectionMarkup('Workspace chrome, toolbar and stage', workspaceChromeMarkup(theme)),
     showcaseSectionMarkup('Loading states', loadingSpecimenMarkup()),
     showcaseSectionMarkup('Spotlight media and store badges', mediaRecipeSpecimenMarkup()),
