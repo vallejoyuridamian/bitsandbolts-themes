@@ -1,5 +1,5 @@
 import { buttonMarkup } from './button.js';
-import { accountFunnelMarkup } from './account-funnel.js';
+import { accountFunnelMarkup, accountFunnelPageMarkup } from './account-funnel.js';
 import { contentCardsMarkup } from './content-card.js';
 import { spotlightMediaMarkup, storeBadgesMarkup } from './content-media.js';
 import {
@@ -31,6 +31,13 @@ const mediaPreviewCard = new MediaPreviewCard();
  * stay owned by the component implementation in this repository.
  */
 export const MANAGED_WEB_COMPONENTS = Object.freeze({
+  'account-access-page': Object.freeze({
+    dependencies: Object.freeze({
+      stylesheets: Object.freeze(['components/account-access-page.css']),
+      modules: Object.freeze(['components/account-funnel.js'])
+    }),
+    render: accountFunnelPageMarkup
+  }),
   'account-funnel': Object.freeze({
     dependencies: Object.freeze({
       stylesheets: Object.freeze([

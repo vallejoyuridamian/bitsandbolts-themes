@@ -1,4 +1,10 @@
 import { semanticIconMarkup } from './semantic-icons.js';
+import { brandMarkMarkup } from './brand-mark.js';
+
+export const accountAccessMessages = Object.freeze({
+  confirmationSent: 'Check your inbox for an account confirmation link.',
+  passwordResetSent: 'Check your inbox for a password reset link.'
+});
 
 function escapeHtml(value = '') {
   return String(value ?? '')
@@ -41,7 +47,7 @@ function fieldMarkup(field = {}) {
 }
 
 function footerMarkup({ cancelLabel = 'Keep editing', primaryLabel = 'Continue' } = {}) {
-  return `<div class="bb-floating-window-content__actions bb-account-funnel__actions" role="group" aria-label="Account actions"><button class="bb-workspace-control-button" type="button" data-account-funnel-cancel>${escapeHtml(cancelLabel)}</button><button class="bb-workspace-control-button bb-account-funnel__primary" type="submit" data-account-funnel-submit>${escapeHtml(primaryLabel)}</button></div>`;
+  return `<div class="bb-floating-window-content__actions bb-account-funnel__actions" role="group" aria-label="Account actions"><button class="bb-workspace-control-button" type="button" data-account-funnel-cancel>${escapeHtml(cancelLabel)}</button><button class="bb-workspace-control-button" type="submit" data-account-funnel-submit>${escapeHtml(primaryLabel)}</button></div>`;
 }
 
 function checkboxMarkup({ id, label, name, validation = false }) {
@@ -111,15 +117,13 @@ export function accountFunnelPlanMarkup({
 }
 
 export function accountFunnelStatusMarkup({
-  actionLabel = 'Return to Studio',
   description = '',
   id = 'bbAccountStatus',
   kind = 'success',
   title = 'Account ready'
 } = {}) {
   const heading = headingMarkup({ description, id, title });
-  const iconRole = kind === 'processing' ? 'progress' : kind === 'error' ? 'warning' : 'check';
-  return `<div class="bb-floating-window-content bb-account-funnel bb-account-funnel--status" data-floating-window-size="content" data-bb-account-funnel data-account-funnel-step="status" data-account-funnel-status="${escapeHtml(kind)}" aria-labelledby="${heading.titleId}"${heading.describedBy}>${heading.headingMarkup}${heading.descriptionMarkup}<div class="bb-floating-window-content__body bb-account-funnel__body"><div class="bb-account-funnel__status" role="status"><span class="bb-account-funnel__status-icon" aria-hidden="true">${semanticIconMarkup(iconRole)}</span></div></div><p class="bb-floating-form__error bb-account-funnel__error" role="alert" data-account-funnel-error hidden></p><div class="bb-floating-window-content__actions bb-account-funnel__actions"><button class="bb-workspace-control-button bb-account-funnel__primary" type="button" data-account-funnel-finish>${escapeHtml(actionLabel)}</button></div></div>`;
+  return `<div class="bb-floating-window-content bb-account-funnel bb-account-funnel--status" data-floating-window-size="content" data-bb-account-funnel data-account-funnel-step="status" data-account-funnel-status="${escapeHtml(kind)}" aria-labelledby="${heading.titleId}"${heading.describedBy}>${heading.headingMarkup}<div class="bb-floating-window-content__body bb-account-funnel__body" role="status">${heading.descriptionMarkup}</div></div>`;
 }
 
 export function accountFunnelMarkup(model = {}) {
@@ -128,6 +132,9 @@ export function accountFunnelMarkup(model = {}) {
   return accountFunnelAccessMarkup(model);
 }
 
-export function accountFunnelPageMarkup(model = {}) {
-  return `<main class="bb-account-access-page"><div class="bb-account-access-page__content">${accountFunnelMarkup(model)}</div></main>`;
+export function accountFunnelPageMarkup(model = {}, { brand = {} } = {}) {
+  const heading = brand.name
+    ? `<div class="bb-account-access-page__brand">${brandMarkMarkup({ logo: brand.mark, logoTreatment: 'monochrome' }, { className: 'bb-account-access-page__mark' })}<span>${escapeHtml(brand.name)}</span></div>`
+    : '';
+  return `<main class="bb-account-access-page"><div class="bb-account-access-page__content">${heading}${accountFunnelMarkup(model)}</div></main>`;
 }

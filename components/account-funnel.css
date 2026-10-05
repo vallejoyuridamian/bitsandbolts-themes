@@ -19,6 +19,17 @@
   font-family: var(--bb-font-family-body);
 }
 
+.bb-account-access-page__loading {
+  display: grid;
+  min-height: 100vh;
+  min-height: 100dvh;
+  place-items: center;
+  color: var(--bb-v2-color-content-secondary);
+  background: var(--bb-v2-color-surface-canvas);
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-sm);
+}
+
 html:has(.bb-account-access-page) body {
   margin: 0;
 }
@@ -28,10 +39,33 @@ html:has(.bb-account-access-page) body {
   min-width: 0;
 }
 
+.bb-account-access-page__brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  color: var(--bb-interface-control-foreground);
+  font-size: var(--bb-font-size-lg);
+  font-weight: var(--bb-font-weight-bold);
+}
+
+.bb-account-access-page__mark {
+  display: block;
+  width: 42px;
+  height: 42px;
+  color: var(--bb-v2-identity-primary);
+}
+
 .bb-account-access-page .bb-account-funnel {
-  overflow: hidden;
-  border: 1px solid var(--bb-v2-color-border-default);
-  border-radius: var(--bb-radius-md);
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.bb-account-access-page .bb-floating-window-content__head {
+  background: transparent;
 }
 
 .bb-account-funnel {
@@ -115,16 +149,6 @@ html:has(.bb-account-access-page) body {
   min-width: 112px;
 }
 
-.bb-account-funnel__primary.bb-workspace-control-button {
-  color: var(--bb-v2-identity-primary-foreground);
-  background: var(--bb-v2-identity-primary);
-}
-
-.bb-account-funnel__primary.bb-workspace-control-button:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)):not(:disabled) {
-  color: var(--bb-v2-identity-primary-foreground);
-  background: color-mix(in srgb, var(--bb-v2-identity-primary) 88%, var(--bb-interface-control-hover-foreground));
-}
-
 .bb-account-funnel__plans {
   display: grid;
   gap: var(--bb-spacing-3);
@@ -188,43 +212,7 @@ html:has(.bb-account-access-page) body {
 }
 
 .bb-account-funnel--status {
-  grid-template-rows: auto auto auto auto;
-}
-
-.bb-account-funnel__status {
-  display: grid;
-  place-items: center;
-  min-height: 58px;
-}
-
-.bb-account-funnel__status-icon {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--bb-v2-identity-primary);
-  border-radius: 50%;
-  color: var(--bb-v2-identity-primary);
-}
-
-.bb-account-funnel__status-icon .bb-semantic-icon {
-  width: 18px;
-  height: 18px;
-}
-
-.bb-account-funnel[data-account-funnel-status="processing"] .bb-account-funnel__status-icon {
-  animation: bb-account-funnel-spin 900ms linear infinite;
-}
-
-.bb-account-funnel[data-account-funnel-status="error"] .bb-account-funnel__status-icon {
-  border-color: var(--bb-v2-color-status-danger-border);
-  color: var(--bb-v2-color-status-danger-content);
-}
-
-@keyframes bb-account-funnel-spin {
-  to {
-    transform: rotate(360deg);
-  }
+  grid-template-rows: auto auto;
 }
 
 @media (max-width: 520px) {

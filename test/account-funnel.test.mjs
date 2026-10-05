@@ -3,7 +3,9 @@ import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
 import {
+  accountAccessMessages,
   accountFunnelAccessMarkup,
+  accountFunnelPageMarkup,
   accountFunnelPlanMarkup,
   accountFunnelStatusMarkup
 } from '../components/account-funnel.js';
@@ -32,10 +34,28 @@ test('account access composes exact Themes recipes without a modal dialog', () =
   assert.match(markup, /data-bb-icon-role="visibility_off"/);
   assert.match(markup, /data-account-funnel-field-error/);
   assert.match(markup, /bb-field__input/);
-  assert.match(markup, /bb-account-funnel__primary/);
+  assert.match(markup, /class="bb-workspace-control-button" type="submit" data-account-funnel-submit/);
+  assert.doesNotMatch(markup, /bb-account-funnel__primary/);
   assert.match(markup, /<strong>for free<\/strong>/);
   assert.doesNotMatch(markup, /<dialog|bb-dialog|>G<|class="ms"/);
   assert.doesNotMatch(markup, /bb-account-funnel__notice/);
+});
+
+test('standalone account page owns its fonts, mark and borderless form through Themes', async () => {
+  const [pageCss, formCss] = await Promise.all([
+    readFile(new URL('../components/account-access-page.css', import.meta.url), 'utf8'),
+    readFile(new URL('../components/account-funnel.css', import.meta.url), 'utf8')
+  ]);
+  assert.deepEqual(MANAGED_WEB_COMPONENTS['account-access-page'].dependencies.stylesheets,
+    ['components/account-access-page.css']);
+  for (const dependency of ['typography.css', 'brand-mark.css', 'form-field.css',
+    'interface-primitives.css', 'floating-window.css', 'account-funnel.css']) {
+    assert.match(pageCss, new RegExp(dependency.replaceAll('.', '\\.')));
+  }
+  assert.match(formCss, /\.bb-account-access-page \.bb-account-funnel\s*\{[^}]*border: 0;[^}]*background: transparent;/s);
+  assert.match(accountFunnelPageMarkup({ step: 'status' }, {
+    brand: { name: 'Cluna Studio', mark: '/theme/brand/cluna/mark.svg' }
+  }), /bb-account-access-page__mark--monochrome/);
 });
 
 test('account creation, plan choice, and status remain generic managed recipes', () => {
@@ -62,7 +82,9 @@ test('account creation, plan choice, and status remain generic managed recipes',
   assert.match(plan, /role="radiogroup"/);
   assert.match(plan, /value="studio-annual" checked/);
   assert.match(status, /data-account-funnel-status="processing"/);
-  assert.match(status, /data-bb-icon-role="progress"/);
+  assert.match(status, /role="status"/);
+  assert.doesNotMatch(status, /data-account-funnel-finish|status-icon|data-bb-icon-role/);
+  assert.equal(accountAccessMessages.passwordResetSent, 'Check your inbox for a password reset link.');
   assert.deepEqual(
     MANAGED_WEB_COMPONENTS['account-funnel'].dependencies.stylesheets,
     [
@@ -94,8 +116,8 @@ test('account funnel styles own every custom flow role', async () => {
     '.bb-account-funnel__body',
     '.bb-account-funnel__switch-action',
     '.bb-account-funnel__plan',
-    '.bb-account-funnel__primary.bb-workspace-control-button',
-    '.bb-account-funnel__status-icon'
+    '.bb-account-funnel__actions .bb-workspace-control-button',
+    '.bb-account-access-page__brand'
   ]) {
     assert.match(css, new RegExp(selector.replaceAll('.', '\\.')));
   }
@@ -112,5 +134,7 @@ test('account funnel styles own every custom flow role', async () => {
   assert.match(css, /\.bb-account-funnel__back\s*\{[^}]*position: absolute;[^}]*inset-inline-start: 16px;/s);
   assert.doesNotMatch(css, /\.bb-account-funnel__head::after/);
   assert.doesNotMatch(css, /bb-account-funnel__notice/);
+  assert.doesNotMatch(css, /\.bb-account-funnel__primary/);
+  assert.doesNotMatch(css, /\.bb-account-funnel__status-icon/);
   assert.doesNotMatch(css, /#[0-9a-f]{3,8}\b/i);
 });

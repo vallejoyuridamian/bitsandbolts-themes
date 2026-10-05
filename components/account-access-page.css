@@ -1,0 +1,8 @@
+/* Complete stylesheet dependency owner for a standalone account page. */
+@import url('./typography.css');
+@import url('./brand-mark.css');
+@import url('./semantic-icons.css');
+@import url('./form-field.css');
+@import url('./interface-primitives.css');
+@import url('./floating-window.css');
+@import url('./account-funnel.css');
