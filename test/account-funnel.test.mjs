@@ -79,6 +79,7 @@ test('standalone account page owns its fonts, mark and borderless form through T
 test('account creation, plan choice, and status remain generic managed recipes', () => {
   const signup = accountFunnelAccessMarkup({
     consentLabel: 'I accept the Terms and Privacy Policy.',
+    externalLinks: [{ href: '/terms/', label: 'Terms' }, { href: '/privacy/', label: 'Privacy' }],
     fields: [{ id: 'email', label: 'Email', type: 'email' }],
     showBack: true,
     step: 'signup',
@@ -97,6 +98,8 @@ test('account creation, plan choice, and status remain generic managed recipes',
   assert.match(signup, /bb-checkbox-field__label/);
   assert.match(signup, /data-account-funnel-consent-error/);
   assert.match(signup, /data-account-funnel-back/);
+  assert.match(signup, /href="\/terms\/" data-account-funnel-external>Terms<\/a>/);
+  assert.match(signup, /href="\/privacy\/" data-account-funnel-external>Privacy<\/a>/);
   assert.match(plan, /role="radiogroup"/);
   assert.match(plan, /value="studio-annual" checked/);
   assert.match(status, /data-account-funnel-status="processing"/);

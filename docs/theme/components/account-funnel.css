@@ -137,6 +137,13 @@ html:has(.bb-account-access-page) body {
   font-weight: var(--bb-font-weight-bold);
 }
 
+.bb-account-funnel__external-links {
+  display: flex;
+  justify-content: center;
+  gap: var(--bb-spacing-4);
+  font-size: var(--bb-font-size-xs);
+}
+
 .bb-account-funnel__error {
   margin: 0 16px 8px;
 }

@@ -10,6 +10,7 @@ Updated: 2026-10-06
 
 ## Open qualifications
 
+- The Studio Phase F Account view uses the accepted shared workspace settings recipe: one open column spanning the available workspace, concise headings and row dividers. Source, dist/web and docs/theme copies are synchronized. Studio's display-name action uses the shared floating form and window owners. The owner accepted the Account presentation and the later new-account check; this does not change the accepted first-party page v1.
 - Studio owns unfinished cold first-use, lifecycle, wider platform and other consumer acceptance. Specific Theme-side qualifications include tooltip siblings/lifecycle, numeric/placement and animation visuals, a prior compact-selector CSS assertion, and 39 existing token collisions. Preserve their current qualified status; no broad Theme redesign or automatic validation is authorized.
 - Product Entry text-icon pseudo-elements still compete with the semantic vector provider; reachability and consumer impact are unverified. The reported shared-ownership correction remains outside this completed page v1 slice. Do not silently add another icon path.
 - Other consumer font, checkbox, focus-hull, media-preview and checker qualifications remain recorded in the cold checkpoint and Studio STATUS. The current Cluna page v1 approval does not certify those siblings.

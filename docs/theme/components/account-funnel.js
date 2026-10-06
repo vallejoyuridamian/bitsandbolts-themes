@@ -70,6 +70,7 @@ export function accountFunnelAccessMarkup({
   creationActionLabel = '',
   creationPrompt = '',
   description = '',
+  externalLinks = [],
   fields = [],
   googleLabel = '',
   googleLogoSrc = '',
@@ -97,7 +98,10 @@ export function accountFunnelAccessMarkup({
   const switchMarkup = creationPrompt && creationActionLabel
     ? `<p class="bb-account-funnel__switch"><span>${escapeHtml(creationPrompt)} </span><button class="bb-link bb-account-funnel__switch-action" type="button" data-account-funnel-create><strong>${escapeHtml(creationActionLabel)}</strong></button><span>.</span></p>`
     : '';
-  return `<form class="bb-floating-window-content bb-account-funnel" data-floating-window-size="content" data-bb-account-funnel data-account-funnel-step="${escapeHtml(step)}" aria-labelledby="${heading.titleId}"${heading.describedBy} novalidate>${heading.headingMarkup}${heading.descriptionMarkup}<div class="bb-floating-window-content__body bb-account-funnel__body">${google}${fieldsMarkup}${recovery}${remember}${consent}${switchMarkup}</div><p class="bb-floating-form__error bb-account-funnel__error" role="alert" data-account-funnel-error hidden></p>${footerMarkup({ cancelLabel, primaryLabel, primaryDanger })}</form>`;
+  const externalLinksMarkup = externalLinks.length
+    ? `<nav class="bb-account-funnel__external-links" aria-label="Account information">${externalLinks.map(({ href, label }) => `<a class="bb-link" href="${escapeHtml(href)}" data-account-funnel-external>${escapeHtml(label)}</a>`).join('')}</nav>`
+    : '';
+  return `<form class="bb-floating-window-content bb-account-funnel" data-floating-window-size="content" data-bb-account-funnel data-account-funnel-step="${escapeHtml(step)}" aria-labelledby="${heading.titleId}"${heading.describedBy} novalidate>${heading.headingMarkup}${heading.descriptionMarkup}<div class="bb-floating-window-content__body bb-account-funnel__body">${google}${fieldsMarkup}${recovery}${remember}${consent}${switchMarkup}${externalLinksMarkup}</div><p class="bb-floating-form__error bb-account-funnel__error" role="alert" data-account-funnel-error hidden></p>${footerMarkup({ cancelLabel, primaryLabel, primaryDanger })}</form>`;
 }
 
 export function accountFunnelPlanMarkup({

@@ -16,9 +16,8 @@
 
 .bb-workspace-settings__inner {
   display: grid;
-  width: min(1120px, 100%);
+  width: 100%;
   min-width: 0;
-  margin: 0 auto;
   padding: clamp(24px, 4vw, 52px);
   gap: var(--bb-spacing-6);
 }
@@ -29,7 +28,6 @@
   max-width: 720px;
 }
 
-.bb-workspace-settings__eyebrow,
 .bb-workspace-settings__title,
 .bb-workspace-settings__description,
 .bb-workspace-settings__section-title,
@@ -39,15 +37,6 @@
 .bb-workspace-settings__value,
 .bb-workspace-settings__message {
   margin: 0;
-}
-
-.bb-workspace-settings__eyebrow {
-  color: var(--bb-v2-identity-primary);
-  font-size: var(--bb-font-size-xs);
-  font-weight: var(--bb-font-weight-bold);
-  letter-spacing: 0.1em;
-  line-height: 1.2;
-  text-transform: uppercase;
 }
 
 .bb-workspace-settings__title {
@@ -72,34 +61,19 @@
 
 .bb-workspace-settings__grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: start;
-  gap: var(--bb-spacing-5);
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--bb-spacing-6);
 }
 
 .bb-workspace-settings__section {
+  display: grid;
   min-width: 0;
-  overflow: hidden;
-  border: 1px solid var(--bb-v2-color-border-subtle);
-  border-radius: var(--bb-radius-md);
-  background: var(--bb-v2-color-surface-surface);
-  box-shadow: var(--bb-shadow-sm);
-}
-
-.bb-workspace-settings__section--wide {
-  grid-column: 1 / -1;
-}
-
-.bb-workspace-settings__section--danger {
-  border-color: color-mix(in srgb, var(--bb-v2-color-status-danger-border) 44%, var(--bb-v2-color-border-subtle));
+  gap: var(--bb-spacing-2);
 }
 
 .bb-workspace-settings__section-header {
   display: grid;
   gap: var(--bb-spacing-1);
-  padding: var(--bb-spacing-4) var(--bb-spacing-5);
-  border-bottom: 1px solid var(--bb-v2-color-border-subtle);
-  background: var(--bb-v2-color-surface-subtle);
 }
 
 .bb-workspace-settings__section-title {
@@ -123,12 +97,9 @@
   grid-template-columns: minmax(0, 1fr) minmax(min-content, auto);
   align-items: center;
   gap: var(--bb-spacing-5);
-  min-height: 68px;
-  padding: var(--bb-spacing-4) var(--bb-spacing-5);
-}
-
-.bb-workspace-settings__row + .bb-workspace-settings__row {
-  border-top: 1px solid var(--bb-v2-color-border-subtle);
+  min-height: 64px;
+  padding: var(--bb-spacing-3) 0;
+  border-bottom: 1px solid var(--bb-v2-color-border-subtle);
 }
 
 .bb-workspace-settings__row-copy {
@@ -154,8 +125,7 @@
 }
 
 .bb-workspace-settings__status-list,
-.bb-workspace-settings__actions,
-.bb-workspace-settings__inline-form {
+.bb-workspace-settings__actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -179,41 +149,21 @@
 }
 
 .bb-workspace-settings__message {
-  padding: var(--bb-spacing-3) var(--bb-spacing-4);
-  border: 1px solid color-mix(in srgb, var(--bb-v2-identity-primary) 32%, transparent);
-  border-radius: var(--bb-radius-md);
   color: var(--bb-v2-color-content-primary);
-  background: color-mix(in srgb, var(--bb-v2-identity-primary) 8%, transparent);
   font-size: var(--bb-font-size-sm);
 }
 
 .bb-workspace-settings__message--danger {
-  padding: 0;
-  border: 0;
   color: var(--bb-v2-color-status-danger-content);
-  background: transparent;
 }
 
 .bb-workspace-settings__simulation {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, auto);
-  align-items: center;
-  gap: var(--bb-spacing-5);
-  padding: var(--bb-spacing-5);
-}
-
-.bb-workspace-settings__simulation-copy {
-  display: grid;
-  gap: var(--bb-spacing-1);
+  justify-items: start;
 }
 
 .bb-workspace-settings__simulation .bb-segmented-control {
-  min-width: 360px;
-}
-
-.bb-workspace-settings__inline-form .bb-field {
-  min-width: min(280px, 56vw);
-  margin: 0;
+  max-width: 100%;
 }
 
 .bb-workspace-settings__danger-label {
@@ -256,21 +206,7 @@
 }
 
 @media (max-width: 820px) {
-  .bb-workspace-settings__grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .bb-workspace-settings__section--wide {
-    grid-column: auto;
-  }
-
-  .bb-workspace-settings__simulation {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .bb-workspace-settings__simulation .bb-segmented-control {
-    min-width: 0;
-  }
+  .bb-workspace-settings__simulation .bb-segmented-control { width: 100%; }
 }
 
 @media (max-width: 560px) {
@@ -288,22 +224,14 @@
   }
 
   .bb-workspace-settings__status-list,
-  .bb-workspace-settings__actions,
-  .bb-workspace-settings__inline-form {
+  .bb-workspace-settings__actions {
     justify-content: flex-start;
-  }
-
-  .bb-workspace-settings__inline-form .bb-field,
-  .bb-workspace-settings__inline-form .bb-v2-button {
-    width: 100%;
-    min-width: 0;
   }
 }
 
 @media (forced-colors: active) {
-  .bb-workspace-settings__section,
+  .bb-workspace-settings__row,
   .bb-workspace-settings__status,
-  .bb-workspace-settings__message,
   .bb-workspace-settings__danger-panel {
     border-color: CanvasText;
   }
