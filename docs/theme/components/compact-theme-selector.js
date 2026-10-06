@@ -46,15 +46,64 @@ function identityMarkup(theme, mode) {
     <span
       class="bb-compact-theme-card__swatch"
       data-bb-compact-theme-identity="${escapeHtml(identity.id)}"
+      style="--bb-compact-theme-swatch:${escapeHtml(identity.value)}"
       aria-hidden="true"
     ></span>
   `).join('');
+}
+
+function previewStyle(theme, mode) {
+  const presentation = theme.v2.modes[compactThemeMode(mode)];
+  const neutral = presentation.identity.find((identity) => identity.id === 'neutral');
+  const accent = presentation.identity.find((identity) => identity.id === 'accent');
+  if (!neutral || !accent) throw new TypeError(`Compact Theme identities are incomplete for ${theme.id}.`);
+  return Object.entries({
+    ...presentation.previewDependencies,
+    ...presentation.variables,
+    '--bb-compact-theme-neutral': neutral.value,
+    '--bb-theme-summary-card-accent': accent.value,
+    '--bb-theme-summary-card-on-accent': accent.foreground
+  }).map(([name, value]) => `${name}:${value}`).join(';');
+}
+
+export function compactThemePreviewCatalog(catalog = {}) {
+  return {
+    themes: (catalog.themes || []).map((theme) => {
+      requiredTheme(theme);
+      return {
+        id: theme.id,
+        label: theme.label,
+        v2: {
+          modes: Object.fromEntries(THEME_MODES.map((mode) => [mode, {
+          variables: theme.v2.modes[mode].variables,
+          previewDependencies: theme.v2.modes[mode].previewDependencies,
+          identity: theme.v2.modes[mode].identity
+          }]))
+        }
+      };
+    })
+  };
 }
 
 export function setCompactThemePreviewMode(preview, theme, mode) {
   preview.dataset.bbCompactThemeMode = compactThemeMode(mode);
   const swatches = preview.querySelector('[data-bb-compact-theme-swatches]');
   if (swatches) swatches.innerHTML = identityMarkup(theme, mode);
+}
+
+export function presentCompactThemeCardMode(preview, themeInput, modeInput) {
+  const theme = requiredTheme(themeInput);
+  const mode = compactThemeMode(modeInput);
+  setCompactThemePreviewMode(preview, theme, mode);
+  const toggle = preview.querySelector('[data-bb-compact-theme-card-mode]');
+  if (toggle) {
+    const targetMode = nextCompactThemeMode(mode);
+    const label = `Preview ${theme.label} in ${targetMode} mode`;
+    toggle.dataset.bbThemeModeTarget = targetMode;
+    toggle.setAttribute('aria-label', label);
+    toggle.setAttribute('title', label);
+  }
+  applyCompactThemeVariables(preview, { themes: [theme] });
 }
 
 export function themeModeToggleMarkup({
@@ -119,6 +168,7 @@ export function compactThemeCardMarkup(themeInput, modeInput, {
     data-bb-compact-theme-preview
     data-bb-compact-theme-id="${escapeHtml(theme.id)}"
     data-bb-compact-theme-mode="${mode}"
+    style="${escapeHtml(previewStyle(theme, mode))}"
   >
     <button
       class="bb-compact-theme-card__select"
@@ -153,7 +203,8 @@ export function compactThemeGridMarkup(themes = [], {
   cardModes = {},
   mode = 'dark',
   selectedThemeId = '',
-  browse = false
+  browse = false,
+  label = 'Themes'
 } = {}) {
   const cards = themes.map((theme) => compactThemeCardMarkup(
     theme,
@@ -164,7 +215,7 @@ export function compactThemeGridMarkup(themes = [], {
     }
   )).join('');
   return `<div class="bb-preview-card-grid bb-compact-theme-picker__grid"
-    role="listbox" aria-label="Themes"${browse ? ' data-floating-window-responsive-grid' : ''}>${cards}</div>`;
+    role="listbox" aria-label="${escapeHtml(label)}"${browse ? ' data-floating-window-responsive-grid' : ''}>${cards}</div>`;
 }
 
 export function compactThemePickerMarkup(catalog = {}, {
@@ -210,7 +261,11 @@ export function compactThemePickerMarkup(catalog = {}, {
 
 export function applyCompactThemeVariables(root, catalog = {}) {
   const themes = Array.isArray(catalog?.themes) ? catalog.themes : [];
-  root?.querySelectorAll?.('[data-bb-compact-theme-preview]').forEach((preview) => {
+  const previews = [
+    ...(root?.matches?.('[data-bb-compact-theme-preview]') ? [root] : []),
+    ...(root?.querySelectorAll?.('[data-bb-compact-theme-preview]') || [])
+  ];
+  previews.forEach((preview) => {
     const themeId = String(preview.dataset.bbCompactThemeId || '');
     const mode = compactThemeMode(preview.dataset.bbCompactThemeMode);
     const theme = themes.find((candidate) => candidate.id === themeId);
@@ -218,7 +273,7 @@ export function applyCompactThemeVariables(root, catalog = {}) {
     if (!presentation?.variables || !Array.isArray(presentation.identity)) {
       throw new TypeError(`Compact Theme presentation is unavailable for ${themeId || 'unknown'} ${mode}.`);
     }
-    Object.entries(presentation.variables).forEach(([name, value]) => {
+    Object.entries({ ...presentation.previewDependencies, ...presentation.variables }).forEach(([name, value]) => {
       preview.style.setProperty(name, value);
     });
     const neutral = presentation.identity.find((identity) => identity.id === 'neutral');

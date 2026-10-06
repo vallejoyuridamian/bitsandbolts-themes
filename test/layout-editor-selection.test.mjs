@@ -114,6 +114,9 @@ test('layout editor zoom compensation has one shared presentation helper', () =>
 
 test('viewport selection and hulls compose the same zoom metric without sharing geometry', async () => {
   const css = await readFile(new URL('../components/interface-primitives.css', import.meta.url), 'utf8');
+  const previewFrame = css.match(/\.bb-workspace-preview-frame\s*\{([^}]+)\}/)?.[1] ?? '';
+  assert.match(previewFrame, /background:\s*transparent;/,
+    'transparent Screen and Scene backgrounds reveal the shared stage checker');
   const rules = [...css.matchAll(/\.bb-workspace-preview-frame\[data-selected="true"\]::after\s*\{([^}]+)\}/g)];
   assert.equal(rules.length, 2, 'base recipe and forced-colors specialization');
   const frame = rules[0][1];

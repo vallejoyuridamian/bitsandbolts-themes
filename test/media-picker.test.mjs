@@ -157,22 +157,44 @@ test('every asset kind uses the same pill-free reduced picker-card sibling', () 
   });
 });
 
-test('picker cards keep a selection surface while Vault and voice samples retain playback cues', () => {
+test('asset previews share play cue, checkerboard, focus and magnifying cursor', () => {
   const preview = new MediaPreviewCard();
+  assert.equal(typeof preview.renderPlayCue, 'function');
   for (const kind of ['audio', 'video']) {
     const path = kind === 'audio' ? 'effect.mp3' : 'clip.mp4';
     const picker = preview.renderCard({ kind, path, presentation: 'reduced', selectable: true,
       overlayActions: [{ iconRole: 'play_arrow', ariaLabel: 'Preview', dataset: { preview: 'true' } }] });
     assert.match(picker, /bb-media-card--reduced/);
     assert.match(picker, /is-selectable/);
+    assert.match(picker, /<div class="bb-media-preview bb-workspace-stage-surface/);
     assert.doesNotMatch(picker, /bb-media-preview--interactive|bb-media-preview__icon--play|bb-media-preview__icon--stop|bb-media-preview__video-play/);
     assert.match(picker, /data-preview="true"/);
     for (const presentation of ['full', 'reduced']) {
       const playback = preview.renderCard({ kind, path, presentation, previewAction: { play: path } });
+      assert.match(playback, /<button class="bb-media-preview bb-workspace-stage-surface/);
+      assert.match(playback, /type="button" aria-label="Preview /);
       assert.match(playback, /bb-media-preview--interactive/);
-      assert.match(playback, kind === 'audio' ? /bb-media-preview__icon--play/ : /bb-media-preview__video-play/);
-      if (kind === 'audio') assert.match(playback, /bb-media-preview__icon--stop/);
+      assert.match(playback, /bb-workspace-stage-surface/);
+      assert.match(playback, /bb-media-preview__play-cue/);
+      assert.equal((playback.match(/bb-media-preview__play-cue/g) || []).length, 1);
+      assert.doesNotMatch(playback, /bb-media-preview__icon--play|bb-media-preview__video-play|vault-video-play/);
+      assert.match(playback, /data-bb-icon-role="play_arrow"/);
+      if (kind === 'audio') {
+        assert.match(playback, /bb-media-preview__icon--default[^>]*>.*data-bb-icon-role="media_audio"/s);
+        assert.match(playback, /bb-media-preview__icon--stop/);
+      } else {
+        assert.match(playback, /<(?:img|video)\s/);
+      }
     }
+  }
+  const preparedVideo = new MediaPreviewCard({ previewResource: ({ kind }) => kind === 'video' ? 'prepared-video' : '' })
+    .renderCard({ kind: 'video', path: 'clip.mp4', previewAction: { play: 'clip.mp4' } });
+  assert.match(preparedVideo, /bb-media-preview__play-cue/);
+  assert.match(preparedVideo, /<button class="bb-media-preview bb-workspace-stage-surface/);
+  assert.match(preparedVideo, /data-asset-resource="prepared-video"/);
+  for (const kind of ['image', 'device']) {
+    const playback = preview.renderCard({ kind, path: 'asset.png', thumbnailPath: 'thumb.png', previewAction: { play: 'asset.png' } });
+    assert.match(playback, /<button class="bb-media-preview bb-workspace-stage-surface/);
   }
   const stateRules = [...mediaPickerCss.matchAll(/([^{}]+)\{[^{}]*display:\s*(?:none|grid);[^{}]*\}/g)]
     .map((match) => match[1]).filter((selector) => selector.includes('.bb-media-preview--audio'));
@@ -181,6 +203,34 @@ test('picker cards keep a selection surface while Vault and voice samples retain
     assert.match(selector, /\.bb-media-preview--interactive/);
     assert.doesNotMatch(selector, /\.vault-thumb-audio\)(?:\.is-playing|:is\(:hover)/);
   }
+  const playCue = mediaPickerCss.match(/\.bb-media-preview__play-cue\s*\{([^}]*)\}/)?.[1] || '';
+  assert.match(playCue, /position:\s*absolute/);
+  assert.match(playCue, /top:\s*50%;\s*left:\s*50%/);
+  assert.doesNotMatch(playCue, /inset:\s*0/);
+  assert.match(playCue, /color:\s*var\(--bb-v2-color-content-primary\)/);
+  assert.match(playCue, /filter:\s*var\(--bb-interface-button-plain-icon-hover-filter/);
+  assert.match(playCue, /opacity:\s*0/);
+  assert.doesNotMatch(playCue, /transition:/);
+  assert.match(mediaPickerCss, /\.bb-media-preview--interactive:is\(:hover, :focus-visible[^{}]*\) \.bb-media-preview__play-cue\s*\{[^}]*opacity:\s*1;/);
+  assert.match(mediaPickerCss, /:is\(\.bb-media-preview, \.media-preview-element, \.vault-thumb\) \.bb-semantic-icon\s*\{[^}]*width:\s*40px;[^}]*height:\s*40px;/);
+  const previewBase = mediaPickerCss.match(/\.bb-media-preview,\s*\.media-preview-element,\s*\.vault-thumb\s*\{([^}]*)\}/)?.[1] || '';
+  const stagePattern = interfacePrimitives.match(/\.bb-workspace-stage-surface\s*\{([^}]*)\}/)?.[1] || '';
+  assert.equal((stagePattern.match(/var\(--bb-interface-workspace-stage-checker-strong\)/g) || []).length, 4);
+  assert.match(stagePattern, /background-color:\s*var\(--bb-interface-workspace-stage-checker-soft\)/);
+  assert.doesNotMatch(mediaPickerCss, /--bb-interface-workspace-stage-checker-(?:strong|soft)|linear-gradient\((?:45deg|-45deg)/);
+  assert.doesNotMatch(previewBase, /background(?:-color|-image)?:/);
+  assert.doesNotMatch(mediaPickerCss, /\.bb-media-preview--audio[^{}]*:hover[^{}]*\{[^}]*background:/);
+  assert.match(mediaPickerCss, /\.bb-media-preview--interactive\s*\{\s*cursor:\s*zoom-in;/);
+  assert.doesNotMatch(mediaPickerCss, /\.bb-media-preview--interactive:is\(\.bb-media-preview--image/);
+  assert.doesNotMatch(mediaPickerCss, /:is\(\.bb-media-preview--audio[^{}]*\{[^}]*cursor:/);
+  assert.match(mediaPickerCss, /:is\(\.bb-media-preview--audio[^{}]*\{[^}]*color:\s*var\(--bb-interface-control-foreground\)/);
+  assert.match(mediaPickerCss, /\.bb-media-preview--interactive:focus-visible[^{}]*\{[^}]*outline:\s*2px solid var\(--bb-v2-color-border-focus-ring\)/);
+  assert.doesNotMatch(mediaPickerCss, /\.bb-media-draft-preview \.media-preview-element\s*\{[^}]*cursor:/);
+  assert.doesNotMatch(mediaPickerCss, /\.bb-media-preview__video-play|\.vault-video-play/);
+  const genericButtonSelectors = [...interfacePrimitives.matchAll(/([^{}]+)\{[^{}]*\}/g)]
+    .map((match) => match[1]).filter((selector) => selector.includes('.bb-interface-controls button'));
+  assert.equal(genericButtonSelectors.length, 6);
+  for (const selector of genericButtonSelectors) assert.match(selector, /:not\(\.bb-workspace-stage-surface\)/);
 });
 
 test('media cards and reference images use the canonical shared recipes', () => {
@@ -250,7 +300,7 @@ test('media cards and reference images use the canonical shared recipes', () => 
   assert.match(reference, /data-theme-reference-image-action="remove"/);
   assert.match(reference, /data-bb-icon-role="swap_horiz"/);
   assert.match(reference, /data-theme-reference-image-viewport/);
-  assert.match(reference, /class="bb-media-reference-picker__viewport bb-scrollbar"/);
+  assert.match(reference, /class="bb-media-reference-picker__viewport bb-workspace-stage-surface bb-scrollbar"/);
   assert.doesNotMatch(reference, /<figcaption>/);
   assert.match(
     interfacePrimitives,

@@ -1,4 +1,5 @@
 import { buttonMarkup } from './button.js';
+import { compactThemeGridMarkup } from './compact-theme-selector.js';
 import { accountFunnelMarkup, accountFunnelPageMarkup } from './account-funnel.js';
 import { contentCardsMarkup } from './content-card.js';
 import { spotlightMediaMarkup, storeBadgesMarkup } from './content-media.js';
@@ -31,6 +32,17 @@ const mediaPreviewCard = new MediaPreviewCard();
  * stay owned by the component implementation in this repository.
  */
 export const MANAGED_WEB_COMPONENTS = Object.freeze({
+  'compact-theme-grid': Object.freeze({
+    dependencies: Object.freeze({
+      stylesheets: Object.freeze(['components/compact-theme-selector.css', 'components/semantic-icons.css']),
+      modules: Object.freeze([])
+    }),
+    render: (model) => compactThemeGridMarkup(model.themes, {
+      label: model.label,
+      mode: model.mode,
+      selectedThemeId: model.selectedThemeId
+    })
+  }),
   'account-access-page': Object.freeze({
     dependencies: Object.freeze({
       stylesheets: Object.freeze(['components/account-access-page.css']),

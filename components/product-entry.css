@@ -21,6 +21,7 @@ html:has(.bb-product-entry) {
 }
 
 body.bb-product-entry {
+  --bb-product-content-width: min(1180px, calc(100% - 40px));
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
@@ -31,13 +32,13 @@ body.bb-product-entry {
   line-height: var(--bb-font-line-height-normal);
 }
 
-.bb-product-entry main a,
-.bb-guest-gate a {
+.bb-product-entry :where(main a:not(.bb-btn)),
+.bb-guest-gate :where(a:not(.bb-btn)) {
   color: inherit;
 }
 
 .bb-product-shell {
-  width: min(1180px, calc(100% - 40px));
+  width: var(--bb-product-content-width);
   margin-inline: auto;
 }
 
@@ -55,6 +56,10 @@ body.bb-product-entry {
   gap: var(--bb-spacing-3);
 }
 
+.bb-product-actions .bb-btn-text {
+  font-weight: var(--bb-font-weight-bold);
+}
+
 .bb-product-entry .bb-btn:not(.bb-btn-neon) {
   width: auto;
   min-height: 42px;
@@ -66,7 +71,6 @@ body.bb-product-entry {
   --bb-hero-heading-measure: none;
 
   width: min(1280px, calc(100% - 40px));
-  align-items: start;
   padding-block: clamp(1rem, 2.5vw, 2rem);
 }
 
@@ -101,6 +105,12 @@ body.bb-product-entry {
   flex: 0 0 auto;
   margin-top: 2px;
   color: var(--bb-v2-identity-secondary);
+}
+
+.bb-product-proof-image {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .bb-product-proof {
@@ -257,27 +267,27 @@ body.bb-product-entry {
 }
 
 .bb-product-section {
-  padding-block: clamp(64px, 8vw, 96px);
-  border-top: 1px solid var(--bb-v2-color-border-subtle);
   scroll-margin-top: 80px;
+}
+
+.bb-product-section::before {
+  display: block;
+  width: var(--bb-product-content-width);
+  margin-inline: auto;
+  border-top: 1px solid var(--bb-v2-color-border-subtle);
+  content: "";
 }
 
 .bb-product-section__heading {
   display: grid;
   grid-template-columns: minmax(0, 0.7fr) minmax(340px, 1fr);
   gap: clamp(24px, 5vw, 72px);
-  align-items: start;
+  align-items: center;
+  padding-block: clamp(64px, 8vw, 96px);
 }
 
 .bb-product-section h2,
 .bb-product-plan h2 {
-  max-width: 14ch;
-  font-size: clamp(2rem, 4vw, 3.6rem);
-  line-height: 1.03;
-  letter-spacing: -0.035em;
-}
-
-.bb-product-section--identity h2 {
   max-width: none;
   font-family: var(--bb-v2-type-display-family);
   font-size: clamp(1.5rem, 3.2vw, 2rem);
@@ -290,6 +300,10 @@ body.bb-product-entry {
   scroll-margin-top: 0;
 }
 
+.bb-product-section--identity .bb-product-section__heading {
+  padding-bottom: var(--bb-spacing-6);
+}
+
 .bb-product-section--identity .bb-hero__heading-line {
   white-space: nowrap;
 }
@@ -300,12 +314,20 @@ body.bb-product-entry {
 }
 
 .bb-product-identity-selector {
-  width: min(100%, 360px);
-  margin: var(--bb-spacing-3) 0 0;
+  min-width: 0;
+  padding-bottom: clamp(64px, 8vw, 96px);
 }
 
-.bb-product-identity-selector .bb-selection-controls {
-  margin: 0;
+.bb-product-identity-selector__label {
+  margin: 0 0 var(--bb-spacing-4);
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-md);
+  font-weight: var(--bb-font-weight-semibold);
+  line-height: var(--bb-font-line-height-normal);
+}
+
+.bb-product-identity-selector .bb-compact-theme-picker__grid {
+  --bb-preview-card-width: 350px;
 }
 
 .bb-product-section__copy p,
@@ -365,8 +387,14 @@ body.bb-product-entry {
   grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
   gap: clamp(32px, 7vw, 96px);
   align-items: center;
-  padding-block: clamp(72px, 10vw, 120px);
+  padding-block: clamp(64px, 8vw, 96px);
   border-top: 1px solid var(--bb-v2-color-border-subtle);
+}
+
+.bb-product-plan > div:first-child {
+  display: grid;
+  align-content: start;
+  gap: var(--bb-spacing-4);
 }
 
 .bb-product-plan__terms {
@@ -374,6 +402,25 @@ body.bb-product-entry {
   border: 1px solid var(--bb-v2-color-border-default);
   border-radius: var(--bb-radius-xl);
   background: var(--bb-v2-color-surface-surface);
+}
+
+.bb-product-plan__terms--invitation {
+  display: grid;
+  justify-items: start;
+  gap: var(--bb-spacing-4);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.bb-product-plan__terms--invitation p {
+  width: 100%;
+  font-weight: var(--bb-font-weight-bold);
+}
+
+.bb-product-plan__terms--invitation .bb-btn {
+  justify-self: center;
 }
 
 .bb-product-price {
@@ -499,8 +546,8 @@ body.bb-product-entry {
 }
 
 @media (max-width: 680px) {
-  .bb-product-shell {
-    width: min(100% - 24px, 1180px);
+  body.bb-product-entry {
+    --bb-product-content-width: min(100% - 24px, 1180px);
   }
 
   .bb-product-workbench {

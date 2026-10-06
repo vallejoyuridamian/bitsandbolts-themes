@@ -804,7 +804,8 @@
               "--bb-v2-button-hover-transform": "none",
               "--bb-v2-button-pressed-transform": "none",
               "--bb-v2-button-loading-duration": "700ms"
-            }
+            },
+            "previewDependencies": {}
           },
           "dark": {
             "identity": [
@@ -1194,7 +1195,8 @@
               "--bb-v2-button-hover-transform": "none",
               "--bb-v2-button-pressed-transform": "none",
               "--bb-v2-button-loading-duration": "700ms"
-            }
+            },
+            "previewDependencies": {}
           }
         }
       }
@@ -1954,7 +1956,8 @@
               "--bb-v2-button-hover-transform": "translate(-1px, -1px)",
               "--bb-v2-button-pressed-transform": "translate(1px, 1px)",
               "--bb-v2-button-loading-duration": "700ms"
-            }
+            },
+            "previewDependencies": {}
           },
           "dark": {
             "identity": [
@@ -2344,7 +2347,8 @@
               "--bb-v2-button-hover-transform": "translate(-1px, -1px)",
               "--bb-v2-button-pressed-transform": "translate(1px, 1px)",
               "--bb-v2-button-loading-duration": "700ms"
-            }
+            },
+            "previewDependencies": {}
           }
         }
       }
@@ -3104,7 +3108,8 @@
               "--bb-v2-button-hover-transform": "translate(-2px, -2px)",
               "--bb-v2-button-pressed-transform": "translate(4px, 4px)",
               "--bb-v2-button-loading-duration": "700ms"
-            }
+            },
+            "previewDependencies": {}
           },
           "dark": {
             "identity": [
@@ -3494,7 +3499,8 @@
               "--bb-v2-button-hover-transform": "translate(-2px, -2px)",
               "--bb-v2-button-pressed-transform": "translate(4px, 4px)",
               "--bb-v2-button-loading-duration": "700ms"
-            }
+            },
+            "previewDependencies": {}
           }
         }
       }
@@ -4254,7 +4260,8 @@
               "--bb-v2-button-hover-transform": "translateY(-1px)",
               "--bb-v2-button-pressed-transform": "translateY(1px)",
               "--bb-v2-button-loading-duration": "700ms"
-            }
+            },
+            "previewDependencies": {}
           },
           "dark": {
             "identity": [
@@ -4644,7 +4651,8 @@
               "--bb-v2-button-hover-transform": "translateY(-1px)",
               "--bb-v2-button-pressed-transform": "translateY(1px)",
               "--bb-v2-button-loading-duration": "700ms"
-            }
+            },
+            "previewDependencies": {}
           }
         }
       }
@@ -5404,6 +5412,11 @@
               "--bb-v2-button-hover-transform": "translateY(-1px)",
               "--bb-v2-button-pressed-transform": "translateY(1px)",
               "--bb-v2-button-loading-duration": "700ms"
+            },
+            "previewDependencies": {
+              "--bb-shadow-lg": "0px 4px 8px -1px hsl(0 0% 0% / 0.10), 0px 4px 6px -2px hsl(0 0% 0% / 0.10)",
+              "--bb-shadow-base": "0px 4px 8px -1px hsl(0 0% 0% / 0.10), 0px 1px 2px -2px hsl(0 0% 0% / 0.10)",
+              "--bb-radius-md": "0.5rem"
             }
           },
           "dark": {
@@ -5794,6 +5807,11 @@
               "--bb-v2-button-hover-transform": "translateY(-1px)",
               "--bb-v2-button-pressed-transform": "translateY(1px)",
               "--bb-v2-button-loading-duration": "700ms"
+            },
+            "previewDependencies": {
+              "--bb-shadow-lg": "0px 4px 8px -1px hsl(0 0% 0% / 0.10), 0px 4px 6px -2px hsl(0 0% 0% / 0.10)",
+              "--bb-shadow-base": "0px 4px 8px -1px hsl(0 0% 0% / 0.10), 0px 1px 2px -2px hsl(0 0% 0% / 0.10)",
+              "--bb-radius-md": "0.5rem"
             }
           }
         }
@@ -6554,6 +6572,11 @@
               "--bb-v2-button-hover-transform": "translate(-1px, -1px)",
               "--bb-v2-button-pressed-transform": "translate(2px, 2px)",
               "--bb-v2-button-loading-duration": "700ms"
+            },
+            "previewDependencies": {
+              "--bb-shadow-lg": "2px 2px 0px 0px hsl(20 18% 51% / 0.11), 2px 4px 6px -1px hsl(20 18% 51% / 0.11)",
+              "--bb-shadow-base": "2px 2px 0px 0px hsl(20 18% 51% / 0.11), 2px 1px 2px -1px hsl(20 18% 51% / 0.11)",
+              "--bb-radius-md": "0.5rem"
             }
           },
           "dark": {
@@ -6944,6 +6967,11 @@
               "--bb-v2-button-hover-transform": "translate(-1px, -1px)",
               "--bb-v2-button-pressed-transform": "translate(2px, 2px)",
               "--bb-v2-button-loading-duration": "700ms"
+            },
+            "previewDependencies": {
+              "--bb-shadow-lg": "2px 2px 0px 0px hsl(20 18% 30% / 0.11), 2px 4px 6px -1px hsl(20 18% 30% / 0.11)",
+              "--bb-shadow-base": "2px 2px 0px 0px hsl(20 18% 30% / 0.11), 2px 1px 2px -1px hsl(20 18% 30% / 0.11)",
+              "--bb-radius-md": "0.5rem"
             }
           }
         }
@@ -7704,6 +7732,11 @@
               "--bb-v2-button-hover-transform": "translateY(-1px)",
               "--bb-v2-button-pressed-transform": "translateY(1px)",
               "--bb-v2-button-loading-duration": "700ms"
+            },
+            "previewDependencies": {
+              "--bb-shadow-lg": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10)",
+              "--bb-shadow-base": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)",
+              "--bb-radius-md": "0.5rem"
             }
           },
           "dark": {
@@ -8094,6 +8127,11 @@
               "--bb-v2-button-hover-transform": "translateY(-1px)",
               "--bb-v2-button-pressed-transform": "translateY(1px)",
               "--bb-v2-button-loading-duration": "700ms"
+            },
+            "previewDependencies": {
+              "--bb-shadow-lg": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10)",
+              "--bb-shadow-base": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)",
+              "--bb-radius-md": "0.5rem"
             }
           }
         }
@@ -8854,6 +8892,11 @@
               "--bb-v2-button-hover-transform": "translateY(-1px)",
               "--bb-v2-button-pressed-transform": "translateY(1px)",
               "--bb-v2-button-loading-duration": "700ms"
+            },
+            "previewDependencies": {
+              "--bb-shadow-lg": "0px 1px 3px 0px hsl(0 0% 0% / 0.10), 0px 4px 6px -1px hsl(0 0% 0% / 0.10)",
+              "--bb-shadow-base": "0px 1px 3px 0px hsl(0 0% 0% / 0.10), 0px 1px 2px -1px hsl(0 0% 0% / 0.10)",
+              "--bb-radius-md": "0.75rem"
             }
           },
           "dark": {
@@ -9244,6 +9287,11 @@
               "--bb-v2-button-hover-transform": "translateY(-1px)",
               "--bb-v2-button-pressed-transform": "translateY(1px)",
               "--bb-v2-button-loading-duration": "700ms"
+            },
+            "previewDependencies": {
+              "--bb-shadow-lg": "0px 1px 3px 0px hsl(0 0% 0% / 0.10), 0px 4px 6px -1px hsl(0 0% 0% / 0.10)",
+              "--bb-shadow-base": "0px 1px 3px 0px hsl(0 0% 0% / 0.10), 0px 1px 2px -1px hsl(0 0% 0% / 0.10)",
+              "--bb-radius-md": "0.75rem"
             }
           }
         }
@@ -10004,6 +10052,11 @@
               "--bb-v2-button-hover-transform": "translateY(-1px)",
               "--bb-v2-button-pressed-transform": "translateY(1px)",
               "--bb-v2-button-loading-duration": "700ms"
+            },
+            "previewDependencies": {
+              "--bb-shadow-lg": "0px 1px 2px 0px hsl(225 27.7778% 14.1176% / 0.04), 0px 4px 6px -1px hsl(225 27.7778% 14.1176% / 0.04)",
+              "--bb-shadow-base": "0px 1px 2px 0px hsl(225 27.7778% 14.1176% / 0.04), 0px 1px 2px -1px hsl(225 27.7778% 14.1176% / 0.04)",
+              "--bb-radius-md": "0.35rem"
             }
           },
           "dark": {
@@ -10394,6 +10447,11 @@
               "--bb-v2-button-hover-transform": "translateY(-1px)",
               "--bb-v2-button-pressed-transform": "translateY(1px)",
               "--bb-v2-button-loading-duration": "700ms"
+            },
+            "previewDependencies": {
+              "--bb-shadow-lg": "0px 1px 2px 0px hsl(0 0% 0% / 0.04), 0px 4px 6px -1px hsl(0 0% 0% / 0.04)",
+              "--bb-shadow-base": "0px 1px 2px 0px hsl(0 0% 0% / 0.04), 0px 1px 2px -1px hsl(0 0% 0% / 0.04)",
+              "--bb-radius-md": "0.35rem"
             }
           }
         }

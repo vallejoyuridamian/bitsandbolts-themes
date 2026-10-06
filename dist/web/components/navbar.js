@@ -68,17 +68,20 @@ export function navbarMarkup(model = {}, options = {}) {
     throw new TypeError('A visible specimen menu requires the compact specimen layout.');
   }
   const brand = model.brand || {};
+  const wordmark = brand.logoLayout === 'wordmark';
+  if (wordmark && !brand.logo) throw new TypeError('Navbar wordmark requires brand logo artwork.');
   const links = Array.isArray(model.links) ? model.links : [];
   const brandMark = brandMarkMarkup(brand, {
     className: 'bb-navbar__brand-mark',
     imageProperty: '--bb-navbar-brand-mark-image'
   });
-  const brandLabel = brand.ariaLabel
-    ? ` aria-label="${escapeHtml(brand.ariaLabel)}"`
+  const brandLabel = brand.ariaLabel || wordmark
+    ? ` aria-label="${escapeHtml(brand.ariaLabel || brand.name)}"`
     : '';
+  const brandLayout = wordmark ? ' data-bb-brand-layout="wordmark"' : '';
   const brandStart = specimen
-    ? '<span class="bb-navbar__brand">'
-    : `<a class="bb-navbar__brand" href="${escapeHtml(brand.href)}"${brandLabel}${externalAttributes(brand)}>`;
+    ? `<span class="bb-navbar__brand"${brandLayout}>`
+    : `<a class="bb-navbar__brand"${brandLayout} href="${escapeHtml(brand.href)}"${brandLabel}${externalAttributes(brand)}>`;
   const brandEnd = specimen ? '</span>' : '</a>';
   const toggleMarkup = specimen
     ? `<span class="bb-navbar__toggle" aria-hidden="true">${controlIcon('menu')}</span>`
@@ -100,7 +103,7 @@ export function navbarMarkup(model = {}, options = {}) {
         ${toggleMarkup}
         ${brandStart}
           ${brandMark}
-          <span><strong>${escapeHtml(brand.name)}</strong><small>${escapeHtml(brand.tagline)}</small></span>
+          ${wordmark ? '' : `<span><strong>${escapeHtml(brand.name)}</strong>${brand.tagline ? `<small>${escapeHtml(brand.tagline)}</small>` : ''}</span>`}
         ${brandEnd}
         <nav class="bb-navbar__links bb-scrollbar" aria-label="${escapeHtml(model.label)}" data-bb-navbar-menu>
           ${closeMarkup}

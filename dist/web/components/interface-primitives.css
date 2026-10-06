@@ -479,7 +479,7 @@
 }
 
 .bb-interface-action,
-.bb-interface-controls button:not(.theme-swatch):not([data-bb-theme-control]),
+.bb-interface-controls button:not(.theme-swatch):not([data-bb-theme-control]):not(.bb-workspace-stage-surface),
 .bb-interface-controls .bb-select__trigger {
   transition:
     border-color var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing),
@@ -489,7 +489,7 @@
     text-shadow var(--bb-interface-motion-quick-duration) var(--bb-interface-motion-quick-easing);
 }
 
-.bb-interface-controls button:not(.theme-swatch):not([data-bb-theme-control]),
+.bb-interface-controls button:not(.theme-swatch):not([data-bb-theme-control]):not(.bb-workspace-stage-surface),
 .bb-interface-controls .bb-select__trigger {
   border-color: transparent;
   color: var(--bb-interface-control-foreground);
@@ -502,7 +502,7 @@
 }
 
 .bb-interface-action:disabled,
-.bb-interface-controls button:not(.theme-swatch):not([data-bb-theme-control]):disabled {
+.bb-interface-controls button:not(.theme-swatch):not([data-bb-theme-control]):not(.bb-workspace-stage-surface):disabled {
   color: var(--bb-interface-control-disabled-foreground);
   cursor: default;
   opacity: 0.42;
@@ -604,7 +604,7 @@
 }
 
 .bb-interface-action:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *), [data-specimen-state="hover"], [data-specimen-state="focusVisible"]):not(:disabled):where(:not([aria-pressed="true"]):not([aria-selected="true"]):not([aria-expanded="true"])),
-.bb-interface-controls button:where(:not(.theme-swatch):not([data-bb-theme-control])):is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)):not(:disabled):where(:not(.active):not([aria-pressed="true"]):not([aria-selected="true"]):not([aria-expanded="true"])),
+.bb-interface-controls button:where(:not(.theme-swatch):not([data-bb-theme-control]):not(.bb-workspace-stage-surface)):is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)):not(:disabled):where(:not(.active):not([aria-pressed="true"]):not([aria-selected="true"]):not([aria-expanded="true"])),
 .bb-workspace-tab:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)):where(:not(:disabled):not([aria-selected="true"])),
 .bb-workspace-control-button:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)):where(:not(:disabled):not([aria-pressed="true"]):not(.active)),
 .bb-workspace-tab[data-specimen-state="hover"],
@@ -619,7 +619,7 @@
 }
 
 .bb-interface-action:is(:active, [aria-pressed="true"], [data-specimen-state="pressed"]):not(:disabled),
-.bb-interface-controls button:not(.theme-swatch):not([data-bb-theme-control]):is(:active, .active, [aria-pressed="true"]):not(:disabled),
+.bb-interface-controls button:not(.theme-swatch):not([data-bb-theme-control]):not(.bb-workspace-stage-surface):is(:active, .active, [aria-pressed="true"]):not(:disabled),
 .bb-select:is(.is-open, [data-specimen-state="open"]) .bb-select__trigger:not(:disabled),
 .bb-workspace-tab:is([aria-selected="true"], [data-specimen-state="selected"]):not(:disabled),
 .bb-workspace-control-button:is([aria-pressed="true"], .active, [data-specimen-state="pressed"]):not(:disabled) {
@@ -996,7 +996,7 @@ input.bb-workspace-control-input.bb-workspace-control-input[type="number"]:focus
   overflow: visible;
   border: 1px solid var(--bb-v2-color-border-subtle);
   border-radius: 2px;
-  background: var(--bb-v2-color-surface-surface);
+  background: transparent;
   box-shadow: var(--bb-shadow-lg);
 }
 
@@ -1485,7 +1485,7 @@ input.bb-workspace-control-input.bb-workspace-control-input[type="number"]:focus
 
 @media (prefers-reduced-motion: reduce) {
   .bb-interface-action,
-  .bb-interface-controls button:not(.theme-swatch):not([data-bb-theme-control]),
+  .bb-interface-controls button:not(.theme-swatch):not([data-bb-theme-control]):not(.bb-workspace-stage-surface),
   .bb-interface-controls .bb-select__trigger,
   .bb-workspace-tab,
   .bb-workspace-control-button,

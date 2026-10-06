@@ -169,6 +169,18 @@ function normalizeV2Variables(value = {}) {
   return Object.freeze(variables);
 }
 
+function normalizePreviewDependencies(value = {}) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    throw new TypeError('Theme preview dependencies are invalid.');
+  }
+  return Object.freeze(Object.fromEntries(Object.entries(value).map(([name, rawValue]) => {
+    if (!/^--bb-(?!v2-)[a-z0-9-]+$/.test(name)) {
+      throw new TypeError(`Theme preview dependency is invalid: ${name}`);
+    }
+    return [name, safeCssVariableValue(rawValue)];
+  })));
+}
+
 function normalizeV2Mode(value = {}, mode = '') {
   if (!value || typeof value !== 'object' || Array.isArray(value)) {
     throw new TypeError(`Theme catalog v2 ${mode} mode is invalid.`);
@@ -211,7 +223,8 @@ function normalizeV2Mode(value = {}, mode = '') {
   return Object.freeze({
     identity: Object.freeze(identity),
     semanticColors: Object.freeze(semanticColors),
-    variables: normalizeV2Variables(value.variables)
+    variables: normalizeV2Variables(value.variables),
+    previewDependencies: normalizePreviewDependencies(value.previewDependencies)
   });
 }
 

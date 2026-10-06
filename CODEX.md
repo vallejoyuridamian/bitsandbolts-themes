@@ -47,6 +47,21 @@ components, and generators for supported platforms.
   content typography across a shared component unless the source matches.
 - CSS parity validation must verify the effective final cascade when a selector
   or property appears more than once. A presence-only assertion is insufficient.
+- For one visual role shared by sibling components, put its markup and every
+  appearance property under one abstract Themes owner. Before claiming parity,
+  trace both rendered wrappers and their effective color, size and effects;
+  shared icon-role names or inherited color alone do not establish parity.
+  Check background contrast and motion timing with and without media content,
+  and verify the active consumer serves the rebuilt recipe before owner review.
+  A present gradient or matching stylesheet source is not visual evidence when
+  an overlay may cover the pattern or state changes happen at different times.
+  Never change theme colors, checker colors or derived color mixtures without
+  explicit owner permission. When a pattern disappears on hover, trace the
+  covering element and effective paint stack instead of changing its palette.
+  The Screens/Scenes `.bb-workspace-stage-surface` class owns the sole checker
+  pattern; every checker-backed consumer composes it and never copies its
+  gradient or defines another checker palette.
+  Siblings may specialize placement and state admission, not restyle the role.
 - Timeline Audio retains its brown/yellow identity across ordinary, locked, selected, and resize states. Its recipe must outrank generic Timeline defaults without duplicating selection geometry. Every collapsible range uses one shared handle recipe. At zero, both edge targets meet inner edge to inner edge without overlap; the shared geometry supplies state, with no subtype-specific collapsed selector.
 - Theme showcase and gallery specimens must use semantic role labels such as
   `Primary headline`, `Supporting copy`, and `Primary CTA`. Never paste live
@@ -63,6 +78,9 @@ components, and generators for supported platforms.
   MediaPreviewElement owners. Picker card clicks select; Vault previews play.
   Picker playback belongs only to its separate preview control. Derive playback
   cues from that interaction contract, never from full/reduced card size alone.
+  MediaPreviewElement chooses the preview wrapper once from actionability for
+  every asset kind; subtype branches supply content only. Checker-backed
+  previews must not inherit generic control background or whole-element effects.
 - Toolbar popovers require a consumer-supplied event router for every lifecycle
   event. The controller owns that router's disposal and never binds standalone listeners.
 - The shared window content body owns outer padding and spacing for fields, labels,

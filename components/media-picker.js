@@ -165,6 +165,10 @@ export class MediaPreviewElement {
     this.previewResource = previewResource;
   }
 
+  renderPlayCue() {
+    return `<span class="bb-media-preview__play-cue" aria-hidden="true">${mediaPreviewIcon('play')}</span>`;
+  }
+
   render({
     kind = '',
     path = '',
@@ -187,11 +191,9 @@ export class MediaPreviewElement {
     const sourceUrl = String(url || '');
     const safeLabel = this.escapeAttribute(label || fileNameFromPath(path) || mediaKind);
     const actionable = interactive && Object.values(action).some((value) => value != null && value !== '');
-    const actionAccessibility = actionable
-      ? ` role="button" tabindex="0" aria-label="Preview ${safeLabel}"`
-      : '';
     const classes = [
       'bb-media-preview',
+      'bb-workspace-stage-surface',
       `bb-media-preview--${mediaKind}`,
       interactive ? 'bb-media-preview--interactive' : '',
       'media-preview-element',
@@ -202,77 +204,42 @@ export class MediaPreviewElement {
     ].filter(Boolean).join(' ');
     const dataset = actionDataset(action, this.escapeAttribute);
     const preparedResource = this.previewResource({ kind: mediaKind, path, url, thumbnailPath, thumbnailRevision });
+    let content;
     if (preparedResource) {
-      return `<div class="${classes}" data-media-preview-kind="${mediaKind}" data-media-preview-path="${safePath}"${actionAccessibility} ${dataset}>
-        <img data-asset-resource="${this.escapeAttribute(preparedResource)}" alt="" draggable="false"${measured ? ' data-media-preview-measured' : ''}>
-        ${mediaKind === 'video' && interactive
-          ? `<span class="bb-media-preview__video-play media-preview-video-play vault-video-play" aria-hidden="true">${mediaPreviewIcon('play')}</span>` : ''}
-      </div>`;
-    }
-    if (mediaKind === 'icon' && iconRole) {
-      return `
-        <div class="${classes}" data-media-preview-kind="icon" data-media-preview-path="${safePath}"${actionAccessibility} ${dataset}>
-          ${semanticIconMarkup(iconRole, 'bb-media-preview__semantic-icon', {
-            family: iconFamily,
-            style: iconStyle
-          })}
-        </div>
-      `;
-    }
-    if (mediaKind === 'device' && thumbnailPath) {
-      return `
-        <div class="${classes}" data-media-preview-kind="device" data-media-preview-path="${safePath}"${actionAccessibility} ${dataset}>
-          <img src="${this.escapeAttribute(this.assetFileUrl(thumbnailPath, { revision: thumbnailRevision }))}" alt="" loading="lazy" draggable="false">
-        </div>
-      `;
-    }
-    if (mediaKind === 'image' && (path || sourceUrl)) {
-      return `
-        <div class="${classes}" data-media-preview-kind="image" data-media-preview-path="${safePath}"${actionAccessibility} ${dataset}>
-          <img src="${this.escapeAttribute(sourceUrl || this.assetFileUrl(path))}" alt="" loading="lazy" draggable="false"${measured ? ' data-media-preview-measured' : ''}>
-        </div>
-      `;
-    }
-    if (mediaKind === 'audio' && path) {
-      const tag = interactive ? 'button' : 'div';
-      return `
-        <${tag} class="${classes}" ${interactive ? `type="button" aria-label="Preview ${safeLabel}"` : 'aria-hidden="true"'} ${dataset}>
-          <span class="bb-media-preview__icon bb-media-preview__icon--default media-preview-icon media-preview-icon-default vault-thumb-icon vault-thumb-icon-default">${mediaPreviewIcon('audio')}</span>
-          ${interactive ? `
-          <span class="bb-media-preview__icon bb-media-preview__icon--play media-preview-icon media-preview-icon-play vault-thumb-icon vault-thumb-icon-play">${mediaPreviewIcon('play')}</span>
-          <span class="bb-media-preview__icon bb-media-preview__icon--stop media-preview-icon media-preview-icon-stop vault-thumb-icon vault-thumb-icon-stop">${mediaPreviewIcon('stop')}</span>
-          ` : ''}
-        </${tag}>
-      `;
-    }
-    if (mediaKind === 'font' && (label || fontFamily)) {
+      content = `<img data-asset-resource="${this.escapeAttribute(preparedResource)}" alt="" draggable="false"${measured ? ' data-media-preview-measured' : ''}>
+        ${mediaKind === 'video' && interactive ? this.renderPlayCue() : ''}`;
+    } else if (mediaKind === 'icon' && iconRole) {
+      content = semanticIconMarkup(iconRole, 'bb-media-preview__semantic-icon', {
+        family: iconFamily,
+        style: iconStyle
+      });
+    } else if (mediaKind === 'device' && thumbnailPath) {
+      content = `<img src="${this.escapeAttribute(this.assetFileUrl(thumbnailPath, { revision: thumbnailRevision }))}" alt="" loading="lazy" draggable="false">`;
+    } else if (mediaKind === 'image' && (path || sourceUrl)) {
+      content = `<img src="${this.escapeAttribute(sourceUrl || this.assetFileUrl(path))}" alt="" loading="lazy" draggable="false"${measured ? ' data-media-preview-measured' : ''}>`;
+    } else if (mediaKind === 'audio' && path) {
+      content = `<span class="bb-media-preview__icon bb-media-preview__icon--default media-preview-icon media-preview-icon-default vault-thumb-icon vault-thumb-icon-default">${mediaPreviewIcon('audio')}</span>
+        ${interactive ? `${this.renderPlayCue()}
+          <span class="bb-media-preview__icon bb-media-preview__icon--stop media-preview-icon media-preview-icon-stop vault-thumb-icon vault-thumb-icon-stop">${mediaPreviewIcon('stop')}</span>` : ''}`;
+    } else if (mediaKind === 'font' && (label || fontFamily)) {
       const displayName = String(label || fontFamily).trim() || 'Font';
       const previewFamily = cssFontFamily(fontFamily || displayName);
-      const specimen = /^[A-Za-z0-9+/]+=*$/.test(fontSpecimen?.svgBase64 || '')
+      content = /^[A-Za-z0-9+/]+=*$/.test(fontSpecimen?.svgBase64 || '')
         && Number.isFinite(fontSpecimen?.widthEm) && fontSpecimen.widthEm > 0
         && Number.isFinite(fontSpecimen?.heightEm) && fontSpecimen.heightEm > 0
         ? `<span class="bb-font-preview-card__specimen" role="img" aria-label="${this.escapeAttribute(displayName)}" style="--bb-font-specimen-image: url('data:image/svg+xml;base64,${fontSpecimen.svgBase64}'); --bb-font-specimen-width: ${Number(fontSpecimen.widthEm)}; --bb-font-specimen-height: ${Number(fontSpecimen.heightEm)}"></span>`
         : `<span class="bb-font-preview-card__name" style="--bb-font-preview-family: ${this.escapeAttribute(previewFamily)}">${this.escapeHtml(displayName)}</span>`;
-      return `
-        <div class="${classes}" data-media-preview-kind="font" data-media-preview-path="${safePath}"${actionAccessibility} ${dataset}>
-          ${specimen}
-        </div>
-      `;
-    }
-    if (mediaKind === 'video' && (path || sourceUrl)) {
+    } else if (mediaKind === 'video' && (path || sourceUrl)) {
       const thumbnailUrl = sourceUrl ? '' : this.videoThumbnailUrl(path);
-      return `
-        <div class="${classes}" data-media-preview-kind="video" data-media-preview-path="${safePath}"${actionAccessibility} ${dataset}>
-          ${thumbnailUrl
-            ? `<img src="${this.escapeAttribute(thumbnailUrl)}" alt="" loading="lazy" draggable="false"${measured ? ' data-media-preview-measured' : ''}>`
-            : `<video src="${this.escapeAttribute(sourceUrl || this.assetFileUrl(path))}" preload="metadata" muted playsinline${measured ? ' data-media-preview-measured' : ''}></video>`}
-          ${interactive
-            ? `<span class="bb-media-preview__video-play media-preview-video-play vault-video-play" aria-hidden="true">${mediaPreviewIcon('play')}</span>`
-            : ''}
-        </div>
-      `;
+      content = `${thumbnailUrl
+        ? `<img src="${this.escapeAttribute(thumbnailUrl)}" alt="" loading="lazy" draggable="false"${measured ? ' data-media-preview-measured' : ''}>`
+        : `<video src="${this.escapeAttribute(sourceUrl || this.assetFileUrl(path))}" preload="metadata" muted playsinline${measured ? ' data-media-preview-measured' : ''}></video>`}
+        ${interactive ? this.renderPlayCue() : ''}`;
+    } else {
+      content = mediaPreviewIcon(mediaKind);
     }
-    return `<div class="${classes}" ${dataset}>${mediaPreviewIcon(mediaKind)}</div>`;
+    const tag = actionable ? 'button' : 'div';
+    return `<${tag} class="${classes}" data-media-preview-kind="${mediaKind}" data-media-preview-path="${safePath}"${actionable ? ` type="button" aria-label="Preview ${safeLabel}"` : ''} ${dataset}>${content}</${tag}>`;
   }
 }
 
@@ -609,7 +576,7 @@ export function referenceImagePickerMarkup({
   ` : '';
   const preview = source ? `
     <figure class="bb-media-reference-picker__preview bb-field__control" data-theme-reference-image-preview>
-      <div class="bb-media-reference-picker__viewport bb-scrollbar" data-theme-reference-image-viewport data-theme-reference-image-zoom-mode="fit">
+      <div class="bb-media-reference-picker__viewport bb-workspace-stage-surface bb-scrollbar" data-theme-reference-image-viewport data-theme-reference-image-zoom-mode="fit">
         <div class="bb-media-reference-picker__stage">
           <img src="${escapeHtml(source)}" alt="${escapeHtml(label)}" draggable="false" data-theme-reference-image>
         </div>

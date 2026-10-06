@@ -976,6 +976,23 @@ function cssVariablesFromGeneratedFile(file) {
     .map((match) => [match[1], match[2].trim()]));
 }
 
+function previewVariableDependencies(variables, generated, theme, mode) {
+  const dependencies = {};
+  const pending = Object.values(variables);
+  while (pending.length > 0) {
+    const value = pending.pop();
+    for (const match of String(value).matchAll(/var\(\s*(--bb-[a-z0-9-]+)/g)) {
+      const name = match[1];
+      if (Object.hasOwn(variables, name) || Object.hasOwn(dependencies, name)) continue;
+      const dependency = generated[name];
+      if (!dependency) throw new Error(`[theme-preview] ${theme} ${mode} is missing ${name}.`);
+      dependencies[name] = dependency;
+      pending.push(dependency);
+    }
+  }
+  return dependencies;
+}
+
 function iconConfigForTheme(theme) {
   const file = `tokens/themes/${theme}/icons.json`;
   return existsSync(file)
@@ -1268,6 +1285,7 @@ function buildV2CatalogPayload(theme) {
       identity,
       semanticColors: contract.color.mandatoryRoles.map((role) => ({ role, value: resolvedColors[role] })),
       variables,
+      previewDependencies: previewVariableDependencies(variables, interfaceVariables, theme, mode),
     }];
   }));
 

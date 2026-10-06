@@ -133,24 +133,24 @@
   position: relative;
   display: grid;
   place-items: center;
+  width: 100%;
   aspect-ratio: 1;
   min-width: 0;
   min-height: 0;
   overflow: hidden;
+  padding: 0;
+  border: 0;
   border-radius: 7px 7px 0 0;
   color: var(--bb-v2-color-content-brand);
-  background:
-    linear-gradient(45deg, var(--bb-interface-workspace-stage-checker-strong) 25%, transparent 25%),
-    linear-gradient(-45deg, var(--bb-interface-workspace-stage-checker-strong) 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, var(--bb-interface-workspace-stage-checker-strong) 75%),
-    linear-gradient(-45deg, transparent 75%, var(--bb-interface-workspace-stage-checker-strong) 75%);
-  background-color: var(--bb-interface-workspace-stage-checker-soft);
-  background-position: 0 0, 0 12px, 12px -12px, -12px 0;
-  background-size: 24px 24px;
 }
 
-.bb-media-preview--interactive:is(.bb-media-preview--image, .bb-media-preview--video, .bb-media-preview--device) {
+.bb-media-preview--interactive {
   cursor: zoom-in;
+}
+
+.bb-media-preview--interactive:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *) {
+  outline: 2px solid var(--bb-v2-color-border-focus-ring);
+  outline-offset: -2px;
 }
 
 .bb-media-preview--font {
@@ -221,6 +221,24 @@
   height: 40px;
 }
 
+.bb-media-preview__play-cue {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  color: var(--bb-v2-color-content-primary);
+  filter: var(--bb-interface-button-plain-icon-hover-filter, drop-shadow(0 0 5px var(--bb-v2-identity-primary)));
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bb-media-preview--interactive:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)) .bb-media-preview__play-cue {
+  opacity: 1;
+}
+
 .bb-media-preview--icon .bb-media-preview__semantic-icon {
   width: 56%;
   height: 56%;
@@ -228,18 +246,8 @@
 }
 
 :is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio) {
-  width: 100%;
   height: auto;
-  padding: 0;
-  border: 0;
-  color: var(--bb-v2-color-content-brand);
-  cursor: pointer;
-}
-
-:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio):is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)) {
-  background: color-mix(in srgb, var(--bb-v2-identity-primary) 8%, var(--bb-v2-color-surface-sunken));
-  outline: 2px solid var(--bb-v2-color-border-focus-ring);
-  outline-offset: -2px;
+  color: var(--bb-interface-control-foreground);
 }
 
 .bb-media-preview__icon,
@@ -250,42 +258,17 @@
   place-items: center;
 }
 
-:is(.bb-media-preview__icon--play, .bb-media-preview__icon--stop, .media-preview-icon-play, .media-preview-icon-stop, .vault-thumb-icon-play, .vault-thumb-icon-stop),
-:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).bb-media-preview--interactive:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *), .is-playing) :is(.bb-media-preview__icon--default, .media-preview-icon-default, .vault-thumb-icon-default),
-:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).bb-media-preview--interactive.is-playing :is(.bb-media-preview__icon--play, .media-preview-icon-play, .vault-thumb-icon-play) {
+:is(.bb-media-preview__icon--stop, .media-preview-icon-stop, .vault-thumb-icon-stop),
+:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).bb-media-preview--interactive:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *), .is-playing) :is(.bb-media-preview__icon--default, .media-preview-icon-default, .vault-thumb-icon-default) {
   display: none;
 }
 
-:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).bb-media-preview--interactive:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)) :is(.bb-media-preview__icon--play, .media-preview-icon-play, .vault-thumb-icon-play),
 :is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).bb-media-preview--interactive.is-playing :is(.bb-media-preview__icon--stop, .media-preview-icon-stop, .vault-thumb-icon-stop) {
   display: grid;
 }
 
-:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).bb-media-preview--interactive.is-playing:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)) :is(.bb-media-preview__icon--play, .media-preview-icon-play, .vault-thumb-icon-play) {
-  display: none;
-}
-
-.bb-media-preview__video-play,
-.vault-video-play {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  color: var(--bb-v2-color-content-inverse);
+:is(.bb-media-preview--audio, .media-preview-element-audio, .vault-thumb-audio).bb-media-preview--interactive.is-playing .bb-media-preview__play-cue {
   opacity: 0;
-  background: color-mix(in srgb, var(--bb-v2-color-surface-scrim) 52%, transparent);
-  pointer-events: none;
-  transition: opacity 140ms ease;
-}
-
-:is(.bb-media-preview__video-play, .vault-video-play) .bb-semantic-icon {
-  width: 44px;
-  height: 44px;
-  filter: drop-shadow(0 8px 16px color-mix(in srgb, var(--bb-v2-color-surface-scrim) 70%, transparent));
-}
-
-:is(.bb-media-preview--video, .vault-thumb-video):is(:hover, :focus-within) :is(.bb-media-preview__video-play, .vault-video-play) {
-  opacity: 1;
 }
 
 .bb-media-card__body,
@@ -582,14 +565,6 @@
   height: clamp(200px, 42vh, 360px);
   min-width: 0;
   overflow: auto;
-  background:
-    linear-gradient(45deg, var(--bb-interface-workspace-stage-checker-strong) 25%, transparent 25%),
-    linear-gradient(-45deg, var(--bb-interface-workspace-stage-checker-strong) 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, var(--bb-interface-workspace-stage-checker-strong) 75%),
-    linear-gradient(-45deg, transparent 75%, var(--bb-interface-workspace-stage-checker-strong) 75%);
-  background-color: var(--bb-interface-workspace-stage-checker-soft);
-  background-position: 0 0, 0 12px, 12px -12px, -12px 0;
-  background-size: 24px 24px;
 }
 
 .bb-media-reference-picker__stage {
@@ -681,8 +656,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bb-media-preview__video-play,
-  .vault-video-play,
   .bb-media-reference-picker__controls {
     transition-duration: 0.01ms;
   }
@@ -709,7 +682,6 @@
   width: 116px;
   border: 1px solid rgba(52, 65, 67, 0.9);
   border-radius: 8px;
-  cursor: pointer;
 }
 
 .bb-media-draft-preview .media-preview-element:is(:hover, :focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *)) {

@@ -105,6 +105,11 @@
   --bb-brand-mark-image: var(--bb-navbar-brand-mark-image);
 }
 
+.bb-navbar__brand[data-bb-brand-layout="wordmark"] :is(img, .bb-navbar__brand-mark) {
+  width: 12.5rem;
+  height: 2.5rem;
+}
+
 .bb-navbar__brand > span:last-child {
   display: flex;
   flex-direction: column;
@@ -166,7 +171,6 @@
 .bb-navbar__link:hover,
 .bb-navbar__link:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *) {
   color: var(--bb-marketing-chrome-navigation);
-  background: color-mix(in srgb, var(--bb-marketing-chrome-navigation) 10%, transparent);
   text-shadow: 0 0 5px var(--bb-v2-identity-primary), 0 0 10px var(--bb-v2-identity-primary),
     0 0 20px var(--bb-v2-identity-primary), 0 0 40px var(--bb-v2-identity-primary),
     0 0 60px var(--bb-marketing-portfolio-glow-far), 0 0 80px var(--bb-marketing-portfolio-glow-far);
@@ -185,7 +189,7 @@
   padding: 0 0.5rem;
   border: 0;
   border-radius: 6px;
-  color: var(--bb-marketing-chrome-on-accent);
+  color: var(--bb-v2-identity-primary-foreground);
   background: var(--bb-v2-identity-primary);
   font-family: var(--bb-v2-type-display-large-family);
   font-size: var(--bb-v2-type-title-font-size, 1.25rem);
@@ -201,7 +205,7 @@
 
 .bb-navbar__action:hover,
 .bb-navbar__action:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *) {
-  color: var(--bb-marketing-chrome-on-accent);
+  color: var(--bb-v2-identity-primary-foreground);
   transform: scale(1.2);
 }
 
@@ -312,6 +316,11 @@
   height: 3.5rem;
 }
 
+.bb-navbar[data-layout="compact"] .bb-navbar__brand[data-bb-brand-layout="wordmark"] :is(img, .bb-navbar__brand-mark) {
+  width: min(48vw, 11.5rem);
+  height: 2.2rem;
+}
+
 .bb-navbar[data-layout="compact"] .bb-navbar__brand strong {
   font-size: clamp(1rem, 2.4vw, 1.2rem);
 }
@@ -402,6 +411,11 @@
     height: 3.5rem;
   }
 
+  .bb-navbar[data-layout="auto"] .bb-navbar__brand[data-bb-brand-layout="wordmark"] :is(img, .bb-navbar__brand-mark) {
+    width: min(48vw, 11.5rem);
+    height: 2.2rem;
+  }
+
   .bb-navbar[data-layout="auto"] .bb-navbar__brand strong {
     font-size: clamp(1rem, 2.4vw, 1.2rem);
   }
@@ -414,6 +428,10 @@
 @media (max-width: 560px) {
   .bb-navbar[data-layout="auto"] .bb-navbar__inner {
     padding: 0 2vw;
+  }
+
+  .bb-navbar[data-layout="auto"] .bb-navbar__brand[data-bb-brand-layout="wordmark"] :is(img, .bb-navbar__brand-mark) {
+    width: min(40vw, 11.5rem);
   }
 
   .bb-navbar[data-layout="auto"] .bb-navbar__action {

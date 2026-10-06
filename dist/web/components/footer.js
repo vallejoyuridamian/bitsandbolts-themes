@@ -30,32 +30,39 @@ function footerLink(model, { specimen = false } = {}) {
 
 export function footerMarkup(model = {}, { specimen = false, theme } = {}) {
   const brand = model.brand || {};
+  const wordmark = brand.logoLayout === 'wordmark';
+  if (wordmark && !brand.logo) throw new TypeError('Footer wordmark requires brand logo artwork.');
   const links = Array.isArray(model.links) ? model.links : [];
   const brandMark = brandMarkMarkup(brand, {
     className: 'bb-footer__brand-mark',
     imageProperty: '--bb-footer-brand-mark-image'
   });
-  const brandLabel = brand.ariaLabel
-    ? ` aria-label="${escapeHtml(brand.ariaLabel)}"`
+  const brandLabel = brand.ariaLabel || wordmark
+    ? ` aria-label="${escapeHtml(brand.ariaLabel || brand.name)}"`
     : '';
+  const brandLayout = wordmark ? ' data-bb-brand-layout="wordmark"' : '';
   const brandStart = specimen
-    ? '<span class="bb-footer__brand">'
-    : `<a class="bb-footer__brand" href="${escapeHtml(brand.href)}"${brandLabel}${externalAttributes(brand)}>`;
+    ? `<span class="bb-footer__brand"${brandLayout}>`
+    : `<a class="bb-footer__brand"${brandLayout} href="${escapeHtml(brand.href)}"${brandLabel}${externalAttributes(brand)}>`;
   const brandEnd = specimen ? '</span>' : '</a>';
   const navigation = links.length > 0
     ? `<nav class="bb-footer__links" aria-label="${escapeHtml(model.label)}">
           ${links.map((link) => footerLink(link, { specimen })).join('\n          ')}
         </nav>`
     : '';
+  const metaContent = `<span>© <span data-current-year>2026</span> ${escapeHtml(model.copyright)}</span><span>${escapeHtml(model.note)}</span>`;
+  const meta = model.metaHref && !specimen
+    ? `<a class="bb-footer__meta" href="${escapeHtml(model.metaHref)}"${externalAttributes({ external: model.metaExternal })}>${metaContent}</a>`
+    : `<div class="bb-footer__meta">${metaContent}</div>`;
 
   return `<footer class="bb-footer" data-bb-footer${themeAttributes(theme)}>
       <div class="bb-footer__inner">
         ${brandStart}
           ${brandMark}
-          <span><strong>${escapeHtml(brand.name)}</strong><small>${escapeHtml(brand.tagline)}</small></span>
+          ${wordmark ? '' : `<span><strong>${escapeHtml(brand.name)}</strong>${brand.tagline ? `<small>${escapeHtml(brand.tagline)}</small>` : ''}</span>`}
         ${brandEnd}
         ${navigation}
-        <div class="bb-footer__meta"><span>© <span data-current-year>2026</span> ${escapeHtml(model.copyright)}</span><span>${escapeHtml(model.note)}</span></div>
+        ${meta}
       </div>
     </footer>`;
 }

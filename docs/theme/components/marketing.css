@@ -22,7 +22,7 @@ body.bb-marketing-page {
   line-height: var(--bb-font-line-height-normal);
 }
 
-.bb-marketing-page a {
+.bb-marketing-page :where(main a:not(.bb-btn)) {
   color: inherit;
 }
 
@@ -358,7 +358,7 @@ body.bb-marketing-page {
   max-width: 72ch;
 }
 
-.bb-section__head h2 {
+.bb-section__head :is(h1, h2) {
   font-size: clamp(1.8rem, 3vw, 2.8rem);
   line-height: 1.02;
 }
@@ -376,6 +376,10 @@ body.bb-marketing-page {
 .bb-platform-grid,
 .bb-pricing-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.bb-pricing-grid--four {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .bb-grid-2 {
@@ -905,6 +909,17 @@ body:has(> .bb-navbar[data-placement="sticky"]) :is(.bb-section, .bb-cta-band) {
   background: color-mix(in srgb, var(--bb-v2-color-surface-surface) 92%, var(--bb-marketing-highlight) 8%);
   border: 1px solid color-mix(in srgb, var(--bb-v2-color-border-subtle) 86%, transparent);
   border-radius: var(--bb-radius-2xl);
+}
+
+.bb-content-grid--prose {
+  gap: var(--bb-spacing-8);
+}
+
+.bb-content-grid--prose .bb-content-card {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .bb-content-card h2 {
