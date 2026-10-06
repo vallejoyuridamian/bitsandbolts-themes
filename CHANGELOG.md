@@ -1,5 +1,10 @@
 # Bits and Bolts Themes - Changelog
 
+## 2026-10-06: Cluna local page v1 presentation
+
+- Shared Product Entry presentation now admits the narrow compact Theme grid, open scroll video and existing open closing CTA layout. The Footer wordmark variant keeps its groups on one row at the reviewed narrow width and uses approved link spacing and bold links/attribution at every width. The owner accepted the local Cluna page set as v1.
+- Theme source, generated web and documentation assets were built together. Sites delivery includes the transitive CSS and video component. No Theme colors, Guest release or hosted site changed.
+
 ## 2026-10-04: Shared error and Font card recipes
 
 - Form failures use plain bold destructive text without decorative boxes; the owner accepted the Studio presentation. The shared Font Vault card uses a shorter specimen and puts name and usage on one row. The owner accepted the bounded Font Vault appearance.

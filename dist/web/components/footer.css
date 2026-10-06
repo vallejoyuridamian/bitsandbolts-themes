@@ -124,6 +124,10 @@
   text-decoration: none;
 }
 
+.bb-footer__inner:has(> .bb-footer__brand[data-bb-brand-layout="wordmark"]) :is(.bb-footer__links, .bb-footer__meta) {
+  font-weight: var(--bb-font-weight-bold);
+}
+
 .bb-footer__inner:has(> .bb-footer__links) .bb-footer__brand {
   justify-self: start;
 }
@@ -157,26 +161,6 @@
 }
 
 @media (max-width: 700px) {
-  .bb-footer__inner:has(> .bb-footer__brand[data-bb-brand-layout="wordmark"]) {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
-    gap: var(--bb-spacing-3);
-  }
-
-  .bb-footer__inner:has(> .bb-footer__brand[data-bb-brand-layout="wordmark"]) :is(.bb-footer__brand, .bb-footer__links, .bb-footer__meta) {
-    grid-column: 1;
-    grid-row: auto;
-    justify-self: start;
-    margin-inline: 1rem;
-    text-align: left;
-  }
-
-  .bb-footer__inner:has(> .bb-footer__brand[data-bb-brand-layout="wordmark"]) .bb-footer__meta {
-    justify-self: center;
-    margin-inline: 0;
-    text-align: center;
-  }
-
   .bb-footer__inner:has(> .bb-footer__links) {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-rows: auto auto;
@@ -204,6 +188,49 @@
     grid-row: 1;
     align-self: end;
   }
+
+  .bb-footer__inner:has(> .bb-footer__brand[data-bb-brand-layout="wordmark"]) {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-rows: auto;
+    column-gap: clamp(0.2rem, 3vw, 1.5rem);
+    row-gap: 0;
+    align-items: center;
+  }
+
+  .bb-footer__brand[data-bb-brand-layout="wordmark"] :is(img, .bb-footer__brand-mark) {
+    width: clamp(4.5rem, 26vw, 11.5rem);
+    height: clamp(1rem, 5vw, 2.2rem);
+  }
+
+  .bb-footer__inner:has(> .bb-footer__brand[data-bb-brand-layout="wordmark"]) .bb-footer__brand {
+    grid-column: 1;
+    grid-row: 1;
+    margin-left: clamp(0.25rem, 1vw, 1rem);
+  }
+
+  .bb-footer__inner:has(> .bb-footer__brand[data-bb-brand-layout="wordmark"]) .bb-footer__links {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    align-self: center;
+    flex-wrap: nowrap;
+    gap: clamp(0.5rem, 3vw, 1.5rem);
+    margin-right: 0;
+    font-size: clamp(0.6rem, 1.85vw, 0.85rem);
+  }
+
+  .bb-footer__inner:has(> .bb-footer__brand[data-bb-brand-layout="wordmark"]) .bb-footer__meta {
+    grid-column: 3;
+    grid-row: 1;
+    align-self: center;
+    margin-right: clamp(0.25rem, 1vw, 1rem);
+    font-size: clamp(0.6rem, 1.85vw, 0.85rem);
+  }
+
+  .bb-footer__inner:has(> .bb-footer__brand[data-bb-brand-layout="wordmark"]) .bb-footer__meta > span {
+    white-space: nowrap;
+  }
+
 }
 
 @media (max-width: 560px) {

@@ -1,26 +1,9 @@
 # Bits and Bolts Themes: Sprint Roadmap
-Updated: 2026-10-04
 
-1. Preserve accepted current card/category checkpoint, compact adjacent actions/
-   danger hover/shared tooltip and global Tab-only hull policy/native focus.
-   Studio E now has an owner-requested compact Font Vault card recipe: shorter
-   specimen and inline name/usage, with picker geometry preserved. Owner accepted
-   the bounded Font Vault card on2026-10-04. The shared Audio/Video Vault play
-   cue and checkerboard correction is now the active Studio E slice. Audio
-   keeps its speaker at rest, Video its thumbnail; shared wrapper choice, play
-   appearance, focus and interactive-preview magnifying cursor belong to
-   MediaPreviewElement. The generic control painter excludes checker-backed
-   previews. Asset previews consume the existing Screens/Scenes gallery checker
-   recipe with unchanged theme colors. Owner accepted the hover correction on
-   2026-10-05; the E functional/lifecycle run remains open.
-2. STATUS owns all remaining consumer qualifications: navigation/chord/tooltip,
-   remembered-login checkbox, placement, animations/Preview popup and range thumb.
-   Text-icon provider gap and token/CSS gates stay separate; no full E claim.
-3. Preserve source/web/docs parity, accepted recipes/Studio renderer/Preview/
-   originals/diagnostics/projects/locks/Text stash and structural Guest exclusions.
-   Studio owns platform matrix; M4 waived. Current Studio status wins over history.
+Updated: 2026-10-06
 
-Parked work/closed embedded audio/owner boundaries stay as STATUS records.
-Themes presentation, Studio behavior/persistence/composition; no automatic new
-slice from pending checks. Local checkpoint commits authorized; browser/live/
-visual/push/deploy/publication user-owned. No handoff revalidation.
+The owner accepted the current local Cluna first-party page set as v1. Shared Product Entry, compact Theme cards, open video, Navbar and Footer recipes are preserved. Source, dist/web and docs/theme remain synchronized; no further Cluna page presentation work is scheduled from this checkpoint.
+
+1. Follow Studio's ordered Auth plan when the owner selects the next F Account tab presentation slice. Themes owns any shared UI recipe; Studio owns behavior and Sites owns page content.
+2. Preserve accepted Studio E and Guest presentation without rerunning closed visual checks. Qualified sibling consumers, the text-icon provider split, 39 token collisions and older CSS assertion remain open only at their recorded owners.
+3. Keep all browser, live, publication, deployment and push boundaries user-owned. No subagents or automatic new Theme slice.

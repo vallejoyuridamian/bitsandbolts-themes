@@ -19,6 +19,7 @@ import { formFieldsMarkup } from './form-field.js';
 import { MediaPreviewCard, referenceImagePickerMarkup } from './media-picker.js';
 import { navbarMarkup } from './navbar.js';
 import { selectionControlsMarkup } from './select.js';
+import { scrollVideoMarkup } from './scroll-video.js';
 import { workspaceItemInfoMarkup } from './workspace-item-info.js';
 import { workspaceSectionMarkup } from './workspace-section.js';
 
@@ -144,6 +145,13 @@ export const MANAGED_WEB_COMPONENTS = Object.freeze({
       modules: Object.freeze([])
     }),
     render: spotlightMediaMarkup
+  }),
+  'scroll-video': Object.freeze({
+    dependencies: Object.freeze({
+      stylesheets: Object.freeze(['components/scroll-video.css']),
+      modules: Object.freeze(['components/scroll-video.js'])
+    }),
+    render: scrollVideoMarkup
   }),
   'store-badges': Object.freeze({
     dependencies: Object.freeze({

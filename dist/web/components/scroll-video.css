@@ -1,0 +1,17 @@
+.bb-scroll-video {
+  width: 100%;
+  margin: 0;
+}
+
+.bb-scroll-video__media {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}
+
+.bb-scroll-video__media:focus-visible:where(:root:not([data-bb-focus-origin="pointer"]) *) {
+  outline: 2px solid var(--bb-v2-color-border-focus-ring);
+  outline-offset: 4px;
+}
