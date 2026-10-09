@@ -734,6 +734,7 @@ export function installSelectController(root = globalThis.document, {
     const previousValue = record.select.value;
     record.select.value = option.value;
     const EventConstructor = view?.Event ?? globalThis.Event;
+    close('option-selected', event, { restoreFocus: true });
     record.select.dispatchEvent(new EventConstructor('input', { bubbles: true }));
     record.select.dispatchEvent(new EventConstructor('change', { bubbles: true }));
     syncRecord(record);
@@ -750,7 +751,6 @@ export function installSelectController(root = globalThis.document, {
       presentationOutcome: 'trigger-value-synchronized',
       inputEvent: eventSummary(event)
     });
-    close('option-selected', event, { restoreFocus: true });
     return true;
   }
 

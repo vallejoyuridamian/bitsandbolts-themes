@@ -1230,3 +1230,11 @@ Keep new changes easy to scan at the top.
 - The owner accepted both presentations in the exact Cluna Studio Guest Phase 2
   candidate. No package publication, deployment, push, or external mutation
   occurred.
+
+## Session wrap-up (2026-10-09) - Shared Select category window correction
+
+- Canonical Select now closes its menu before dispatching the selected value's
+  input and change events, so Studio Audio's Add category window stays open.
+- Source, dist/web and docs/theme copies are synchronized. Themes build and 11
+  focused Select checks passed. The owner confirmed category creation worked.
+- No package publication, deployment or push occurred.
