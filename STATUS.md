@@ -1,6 +1,15 @@
 # Bits and Bolts Themes: Status
 
-Updated: 2026-10-09
+Updated: 2026-10-10
+
+2026-10-10 local correction: `components/attention-feedback.js` now owns one
+scroll, focus and attention-pulse action for Studio's Audio recipe, cue and
+generated-card navigation. `components/form-field.css` now supplies the plain
+form-status recipe for Audio generation feedback. Source, dist/web and docs/theme
+outputs are synchronized by one successful Themes build. Studio's focused
+consumer checks pass; the owner reports the corrected Audio presentation looks
+good. Playback and word animation were not separately attested. The earlier
+page-v1 visual approval does not cover these new Audio states.
 
 ## Current checkpoint
 

@@ -130,6 +130,18 @@
   margin: 0;
 }
 
+.bb-form-status {
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-xs);
+  color: var(--bb-v2-color-content-secondary);
+  margin: 0;
+}
+
+.bb-form-status--error {
+  color: var(--bb-v2-color-status-danger-border);
+  font-weight: 700;
+}
+
 .bb-field__hint {
   font-family: var(--bb-font-family-body);
   font-size: var(--bb-font-size-xs);

@@ -1,5 +1,10 @@
 # Bits and Bolts Themes - Changelog
 
+## 2026-10-10: Shared Audio attention and form status
+
+- One Themes action now owns scroll, focus and attention pulse for Studio Audio's Load recipe, cue insertion and generated-card presentation. The Studio-only generated-card glow was removed. Themes also owns the plain form-status recipe used beside Audio Generate.
+- Source, dist/web and docs/theme outputs were built together. Studio's focused consumer checks passed, and the owner reports the corrected Audio presentation looks good. Playback and word animation remain Studio checks; no public release or push followed.
+
 ## 2026-10-06: Cluna local page v1 presentation
 
 - Shared Product Entry presentation now admits the narrow compact Theme grid, open scroll video and existing open closing CTA layout. The Footer wordmark variant keeps its groups on one row at the reviewed narrow width and uses approved link spacing and bold links/attribution at every width. The owner accepted the local Cluna page set as v1.

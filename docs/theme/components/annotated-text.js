@@ -3,6 +3,7 @@ import { semanticIconMarkup } from './semantic-icons.js';
 export {
   ATTENTION_PULSE_ANIMATION,
   clearAttentionPulse,
+  navigateToAttention,
   presentAttentionPulse
 } from './attention-feedback.js';
 
