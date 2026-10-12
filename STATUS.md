@@ -1,39 +1,36 @@
 # Bits and Bolts Themes: Status
 
-Updated: 2026-10-11
+Updated: 2026-10-12. Accepted local shared account/window/input checkpoint.
 
-Owner accepts the local Cluna Pricing checkpoint and requests local commits.
-Studio's docs/CLUNA_PAYMENTS_PLAN.md owns completed promotion, focused checks
-and generated-delivery evidence. Sites JSON owns page content/composition;
-Themes owns UI and page controls; Studio owns its separate app. No page router
-or app runtime is started by Pricing. UI_STRATEGY.md owns mandatory page
-ownership and justified temporary experiment removal. No local fork remains.
-Next chat is context and suggestions only, then owner direction. No new browser
-result is inferred; footer, on-request generation and deployment stay deferred.
+Shared account controls/funnel, floating window/stack/confirmation controllers
+and document input/focus have context-agnostic owners. Consumers inject their
+workflow, transport, event integration and runtime display values. Retired forms
+and replaced confirmations cannot publish delayed continuation results.
+Navbar navigation controls use the semantic icon owner and share native hidden
+state and navigation-item presentation. Pricing shares the document input owner.
+Source and generated web/showcase copies are synchronized by generation.
+Common form-field owns approved autofill/native-control color behavior:
+autofill retains each variant's colors/shadows; native fields/checkboxes follow
+the Theme mode. The focused consuming surface approves delivered field colors.
+Other consumers remain unverified. Wider
+browser and lifecycle acceptance remains open.
 
-2026-10-10 local correction: `components/attention-feedback.js` now owns one
-scroll, focus and attention-pulse action for Studio's Audio recipe, cue and
-generated-card navigation. `components/form-field.css` now supplies the plain
-form-status recipe for Audio generation feedback. Source, dist/web and docs/theme
-outputs are synchronized by one successful Themes build. Studio's focused
-consumer checks pass; the owner reports the corrected Audio presentation looks
-good. Playback and word animation were not separately attested. The earlier
-page-v1 visual approval does not cover these new Audio states.
+This repository remains public. Source/generated artifacts contain generic UI
+contracts and public assets. No credentials, host/provider configuration,
+customer data, private captures or sensitive fixtures were added.
 
-## Current checkpoint
+Preserve accepted geometry, typography, tokens, modes, colors and resources.
+Existing consumer qualifications remain at their cold history/plan owners,
+including numeric/placement, media/animation, tooltip/platform behavior and the
+recorded 39 token collisions. The separate Product Entry text-icon provider
+qualification remains open; this slice does not certify unverified siblings.
+Accepted historical evidence is in CHANGELOG.md and
+docs/history/HOT_CONTEXT_CHECKPOINT_2026-10-03.md.
 
-- The owner accepted the current local Cluna landing, Pricing, Privacy, Terms and Licenses pages as v1. Themes owns their shared visual recipes, including the open landscape video, responsive nine-card Theme selector, unframed final CTA, navbar and Footer. The approved Footer keeps wordmark, links and attribution on one row at the reviewed narrow width; links sit beside attribution, and links plus both attribution lines are bold at every width. The SVG wordmark and Theme colors are unchanged. Sites owns the page content and delivery. This approval is local and does not publish a Site or change the locked live Guest release.
-- Themes source components and generated dist/web and docs/theme output are synchronized for the local page set. Focused Cluna page checks passed 7/7, and Sites delivery contains the required transitive Theme CSS and modules. The controlling evidence is in the Studio Auth plan and the 2026-10-06 changelog entry.
-- Accepted Studio B/C/D/E Theme presentations and exact shared recipe constraints remain in docs/history/HOT_CONTEXT_CHECKPOINT_2026-10-03.md, the Themes changelog and the Studio Auth plan. Do not reopen accepted visual checks automatically.
+Themes remains the single public visual authority. Consumer content, domain
+state, persistence and authentication authority remain outside this repository.
+No provider action, publication, deployment, push, cleanup or subagent.
 
-## Open qualifications
-
-- The Studio Phase F Account view uses the accepted shared workspace settings recipe: one open column spanning the available workspace, concise headings and row dividers. Source, dist/web and docs/theme copies are synchronized. Studio's display-name action uses the shared floating form and window owners. The owner accepted the Account presentation and the later new-account check; this does not change the accepted first-party page v1.
-- Studio owns unfinished cold first-use, lifecycle, wider platform and other consumer acceptance. Specific Theme-side qualifications include tooltip siblings/lifecycle, numeric/placement and animation visuals, a prior compact-selector CSS assertion, and 39 existing token collisions. Preserve their current qualified status; no broad Theme redesign or automatic validation is authorized.
-- Product Entry text-icon pseudo-elements still compete with the semantic vector provider; reachability and consumer impact are unverified. The reported shared-ownership correction remains outside this completed page v1 slice. Do not silently add another icon path.
-- Other consumer font, checkbox, focus-hull, media-preview and checker qualifications remain recorded in the cold checkpoint and Studio STATUS. The current Cluna page v1 approval does not certify those siblings.
-
-## Shared ownership and preservation
-
-- Themes owns tokens, components, fonts, semantic icons, brand and generated outputs across nine V2 families and both modes. Studio owns product state, rendering and persistence; Sites owns content and delivery. Generated artifacts are never independent visual authorities.
-- Preserve accepted recipe geometry, state, typography, original assets and the one shared checker with unchanged colors. No Guest release change, publication, deployment, push, browser automation or subagents follows from this local checkpoint. The owner directs any next slice.
+Owner authorizes local checkpoint finalization and commit. Cold checkpoint detail
+is in Studio docs/CLUNA_PAYMENTS_PLAN.md; next chat is context and discussion only.
+No further implementation or validation is scheduled without owner direction.

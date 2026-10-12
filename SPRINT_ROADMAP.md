@@ -1,21 +1,18 @@
 # Bits and Bolts Themes: Sprint Roadmap
 
-Updated: 2026-10-11
+Updated: 2026-10-12
 
-Local Cluna Pricing checkpoint accepted. Studio's Payments plan owns the
-completed recipe promotion, focused checks and delivery evidence. Sites owns
-JSON content/composition; Themes owns UI and page controls. No local fork remains.
-Next chat loads context and suggests bounded work only, then waits for direction.
-No footer, integration, deployment or wider Theme work is scheduled.
+Shared account/window/input construction is implemented and generated locally.
+Approved autofill/native-checkbox colors now belong to the common field recipe.
+Generated delivery and focused consumer field-color review pass. Wider consumer
+and lifecycle review remain open.
+No new visual approval or platform acceptance is inferred from offline checks.
 
-The owner accepted the current local Cluna first-party page set as v1. Shared Product Entry, compact Theme cards, open video, Navbar and Footer recipes are preserved. Source, dist/web and docs/theme remain synchronized; no further Cluna page presentation work is scheduled from this checkpoint.
+Keep public source and generated artifacts generic and free of credentials,
+private configuration, customer data and captures. Consumers own runtime values.
+Preserve accepted recipes and existing qualifications at their cold owners.
+The Product Entry text-icon split and token-collision qualification stay open.
+No broad redesign, new integration, deployment, cleanup, push or subagent.
 
-1. Preserve Studio's accepted F Account presentation and D Guest page-return presentation. The shared workspace settings recipe is accepted locally; Studio owns behavior and Sites owns page content. Studio's next ordered C provider-policy and Delete UI discussion does not schedule a new Themes slice.
-2. Preserve accepted Studio E and Guest presentation without rerunning closed visual checks. Qualified sibling consumers, the text-icon provider split, 39 token collisions and older CSS assertion remain open only at their recorded owners.
-3. Keep browser, live, publication, deployment and push boundaries user-owned.
-   No subagents or automatic new Themes slice.
-4. The owner directed Studio Audio's Load recipe navigation to use the shared
-   scroll, focus and pulse action. Themes now owns that action and plain Audio
-   form status styling. One build synchronized source and generated outputs;
-   focused Studio checks pass, and the owner reports the Audio presentation looks
-   good. No new Themes phase is scheduled without owner direction.
+Owner authorizes this local checkpoint commit and ignored Studio handoff.
+Next work remains owner-directed discussion under Studio's Payments plan.

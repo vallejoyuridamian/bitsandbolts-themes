@@ -1,3 +1,4 @@
+import { semanticIconMarkup } from './semantic-icons.js';
 import { brandMarkMarkup } from './brand-mark.js';
 
 const NAVBAR_PLACEMENTS = new Set(['static', 'sticky', 'hide-on-scroll']);
@@ -28,18 +29,14 @@ function themeAttributes(theme) {
 }
 
 function controlIcon(role) {
-  const icons = {
-    menu: [448, 512, 'M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z'],
-    close: [384, 512, 'M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z']
-  };
-  const [width, height, path] = icons[role];
-  return `<svg class="bb-navbar__icon" viewBox="0 0 ${width} ${height}" aria-hidden="true" focusable="false"><path fill="currentColor" d="${path}" /></svg>`;
+  return semanticIconMarkup(role, 'bb-navbar__icon');
 }
 
 function navbarLink(model, className, { specimen = false } = {}) {
   if (specimen) {
     return `<span class="${className}">${escapeHtml(model.label)}</span>`;
   }
+  if (model.control) return `<button type="button" class="${className}" data-bb-navbar-link data-bb-account-action data-signed-out-label="${escapeHtml(model.signedOutLabel)}" data-signed-in-label="${escapeHtml(model.signedInLabel)}" hidden disabled>${escapeHtml(model.label)}</button>`;
   return `<a class="${className}" href="${escapeHtml(model.href)}" data-bb-navbar-link${externalAttributes(model)}>${escapeHtml(model.label)}</a>`;
 }
 
@@ -92,6 +89,8 @@ export function navbarMarkup(model = {}, options = {}) {
   const linkMarkup = links
     .map((link) => navbarLink(link, 'bb-navbar__link', { specimen }))
     .join('\n          ');
+  const accountMarkup = model.accountAction && !specimen
+    ? navbarLink({ ...model.accountAction, label: model.accountAction.signedOutLabel, control: true }, 'bb-navbar__link') : '';
   const actionMarkup = model.action
     ? `<div class="bb-navbar__action-wrapper">
           ${navbarLink(model.action, 'bb-navbar__action', { specimen })}
@@ -108,6 +107,7 @@ export function navbarMarkup(model = {}, options = {}) {
         <nav class="bb-navbar__links bb-scrollbar" aria-label="${escapeHtml(model.label)}" data-bb-navbar-menu>
           ${closeMarkup}
           ${linkMarkup}
+          ${accountMarkup}
         </nav>
         ${actionMarkup}
       </div>

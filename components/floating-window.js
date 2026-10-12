@@ -120,6 +120,7 @@ export function floatingWindowFormMarkup({
 
 export function floatingWindowConfirmationMarkup({
   cancelLabel = 'Cancel',
+  showCancel = true,
   confirmDanger = false,
   confirmLabel = 'Confirm',
   description = '',
@@ -144,5 +145,5 @@ export function floatingWindowConfirmationMarkup({
     'bb-floating-window-content__copy',
     'bb-floating-window-content__copy bb-floating-confirm__copy'
   );
-  return `<form class="bb-floating-window-content bb-floating-confirm" data-floating-window-size="content" data-bb-confirm aria-labelledby="${heading.titleId}"${heading.describedBy}>${headingMarkup}${descriptionMarkup}<div class="bb-floating-window-content__actions bb-floating-confirm__actions" role="group" aria-label="Confirmation actions"><button class="bb-workspace-control-button" type="button" data-bb-confirm-cancel${tabIndex}>${escapeHtml(cancelLabel)}</button>${secondaryMarkup}<button class="bb-workspace-control-button${danger}" type="${confirmType}" data-bb-confirm-submit${tabIndex}>${escapeHtml(confirmLabel)}</button></div></form>`;
+  return `<form class="bb-floating-window-content bb-floating-confirm" data-floating-window-size="content" data-bb-confirm aria-labelledby="${heading.titleId}"${heading.describedBy}>${headingMarkup}${descriptionMarkup}<div class="bb-floating-window-content__actions bb-floating-confirm__actions" role="group" aria-label="Confirmation actions">${showCancel ? `<button class="bb-workspace-control-button" type="button" data-bb-confirm-cancel${tabIndex}>${escapeHtml(cancelLabel)}</button>` : ''}${secondaryMarkup}<button class="bb-workspace-control-button${danger}" type="${confirmType}" data-bb-confirm-submit${tabIndex}>${escapeHtml(confirmLabel)}</button></div></form>`;
 }

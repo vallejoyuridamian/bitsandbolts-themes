@@ -1,5 +1,12 @@
 # Bits and Bolts Themes - Changelog
 
+## 2026-10-12: Shared account/window/input owners and approved field colors
+
+- Generic account-access/funnel, floating-window/stack/confirmation and document input/focus controllers have one canonical owner. Consumers inject workflows, transport, event integration and runtime values. Retired forms/confirmations cannot publish obsolete continuation results.
+- Navbar controls inherit semantic icons and native hidden-state contracts. Common form-field styling retains variant colors/shadows during autofill and applies Theme-mode native input/checkbox colors. The consuming surface accepts the bounded delivered presentation; wider consumers/platform/lifecycle gates stay open.
+- Source, generated web and showcase outputs are synchronized. All 13 affected canonical components match generated copies; prior generation/focused checks and owner verdicts remain the evidence. Existing 39 token collisions remain qualified.
+- Public checkpoint review covers all 41 originally dirty files and finds no credentials, personal emails, private host/provider configuration, sensitive fixtures or product-specific auth bindings. Generic controllers do not own credential transport/storage. Consumer private authority remains outside Themes. Owner authorizes a local commit; no push, publication, deployment or broad audit follows.
+
 ## 2026-10-11: Approved Pricing comparison recipe promotion
 
 - One managed pricing-comparison component owns the reviewed neutral cards, restrained recommendation border, responsive layout, billing selector and page controller. Existing button and segmented-control modifiers supply CTA hierarchy, bold primary emphasis and selector sizing without new palette tokens.

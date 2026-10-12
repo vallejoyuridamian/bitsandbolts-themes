@@ -445,3 +445,6 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Native hidden state remains authoritative under responsive navigation rules. */
+.bb-navbar :is(a, button)[hidden] { display: none !important; }

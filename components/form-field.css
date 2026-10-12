@@ -18,6 +18,15 @@
  *   <button class="bb-link">Forgot password?</button>
  */
 
+:root,
+[data-theme="light"] {
+  --bb-field-color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bb-field-color-scheme: dark;
+}
+
 .bb-field {
   display: flex;
   flex-direction: column;
@@ -45,10 +54,13 @@
 }
 
 .bb-field__input {
+  --bb-field-surface: var(--bb-v2-color-surface-subtle);
+  --bb-field-content: var(--bb-v2-color-content-primary);
   font-family: var(--bb-font-family-body);
   font-size: var(--bb-font-size-sm);
-  color: var(--bb-v2-color-content-primary);
-  background: var(--bb-v2-color-surface-subtle);
+  color: var(--bb-field-content);
+  background: var(--bb-field-surface);
+  color-scheme: var(--bb-field-color-scheme);
   border: 1px solid var(--bb-v2-color-border-subtle);
   border-radius: var(--bb-radius-md);
   padding: 10px var(--bb-spacing-3);
@@ -172,6 +184,7 @@
   height: 16px;
   margin: 0;
   accent-color: var(--bb-v2-identity-primary);
+  color-scheme: var(--bb-field-color-scheme);
 }
 
 .bb-checkbox-field--error .bb-checkbox-field__control {
@@ -199,14 +212,17 @@
 }
 
 .bb-field--prominent .bb-field__input {
+  --bb-field-surface: var(--bb-marketing-form-field-surface);
+  --bb-field-content: var(--bb-marketing-form-field-content);
+  --bb-field-decoration-shadow: inset 0 0 4px color-mix(in srgb, var(--bb-marketing-form-field-inset-glow) 10%, transparent);
   width: 100%;
   margin-top: 6px;
   padding: 12px;
   border: 1px solid var(--bb-marketing-form-field-border);
   border-radius: 8px;
-  color: var(--bb-marketing-form-field-content);
-  background: var(--bb-marketing-form-field-surface);
-  box-shadow: inset 0 0 4px color-mix(in srgb, var(--bb-marketing-form-field-inset-glow) 10%, transparent);
+  color: var(--bb-field-content);
+  background: var(--bb-field-surface);
+  box-shadow: var(--bb-field-decoration-shadow);
   font-family: var(--bb-font-family-body);
   font-size: clamp(0.7rem, 1.2vw, 2rem);
   transition: border-color 300ms ease;
@@ -219,8 +235,22 @@
 }
 
 .bb-field--prominent.bb-field--error .bb-field__input {
+  --bb-field-decoration-shadow: 0 0 6px color-mix(in srgb, var(--bb-marketing-form-field-error-glow) 50%, transparent);
   border-color: var(--bb-marketing-form-field-error);
-  box-shadow: 0 0 6px color-mix(in srgb, var(--bb-marketing-form-field-error-glow) 50%, transparent);
+  box-shadow: var(--bb-field-decoration-shadow);
+}
+
+@media (forced-colors: none) {
+  .bb-field__input:is(:autofill, :-webkit-autofill) {
+    /* Chromium protects its autofill background. Paint the field's own
+       surface inside its border while retaining native autofill semantics.
+       Keep the shared layer above variant shadows, including error states. */
+    box-shadow: var(--bb-field-decoration-shadow, 0 0 0 transparent),
+      inset 0 0 0 100vmax var(--bb-field-surface) !important;
+    color: var(--bb-field-content);
+    -webkit-text-fill-color: var(--bb-field-content);
+    caret-color: var(--bb-field-content);
+  }
 }
 
 .bb-field--prominent .bb-field__error {

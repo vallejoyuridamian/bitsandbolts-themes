@@ -62,6 +62,7 @@ export const MANAGED_WEB_COMPONENTS = Object.freeze({
   }),
   'account-funnel': Object.freeze({
     dependencies: Object.freeze({
+      assets: Object.freeze(['icons/google-logo.svg']),
       stylesheets: Object.freeze([
         'components/account-funnel.css',
         'components/floating-window.css',
@@ -72,6 +73,10 @@ export const MANAGED_WEB_COMPONENTS = Object.freeze({
       ]),
       modules: Object.freeze([
         'components/account-funnel.js',
+        'components/account-funnel-controller.js',
+        'components/floating-window-controller.js',
+        'components/floating-window-stack-controller.js',
+        'components/page-event-scope.js',
         'components/floating-window-shell.js',
         'components/semantic-icons.js'
       ])
@@ -94,7 +99,8 @@ export const MANAGED_WEB_COMPONENTS = Object.freeze({
       ]),
       modules: Object.freeze([
         'components/floating-window-shell.js',
-        'components/floating-window.js'
+        'components/floating-window.js',
+        'components/floating-window-confirmation-controller.js'
       ])
     }),
     render: floatingWindowConfirmationMarkup
@@ -267,7 +273,7 @@ export const MANAGED_WEB_COMPONENTS = Object.freeze({
   }),
   navbar: Object.freeze({
     dependencies: Object.freeze({
-      stylesheets: Object.freeze(['components/navbar.css']),
+      stylesheets: Object.freeze(['components/navbar.css', 'components/semantic-icons.css', 'components/button.css']),
       modules: Object.freeze(['components/brand-mark.js', 'components/navbar.js'])
     }),
     render: navbarMarkup
