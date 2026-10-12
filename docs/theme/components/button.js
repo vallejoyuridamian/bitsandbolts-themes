@@ -80,7 +80,12 @@ export function semanticActionButtonMarkup(model = {}) {
 }
 
 export function buttonMarkup(model = {}) {
-  const appearance = model.appearance === 'neon' ? ' bb-btn-neon' : '';
+  const appearance = {
+    filled: ' bb-btn-filled', tonal: ' bb-btn-tonal', neutral: ' bb-btn-neutral',
+    outline: ' bb-btn-outline', text: ' bb-btn-text', neon: ' bb-btn-neon'
+  }[model.appearance] || '';
+  const emphasis = `${model.bold ? ' bb-btn--bold' : ''}${model.preserveDisabledEmphasis ? ' bb-btn--retain-emphasis' : ''}`;
+  const extraAttributes = attributesMarkup(model.attributes);
   const size = model.size === 'compact'
     ? ' bb-btn--compact'
     : model.size === 'medium'
@@ -88,11 +93,11 @@ export function buttonMarkup(model = {}) {
       : '';
   if (model.href) {
     const external = model.external ? ' target="_blank" rel="noopener noreferrer"' : '';
-    return `<a href="${escapeHtml(model.href)}" class="bb-btn${appearance}${size}"${external}>${escapeHtml(model.label)}</a>`;
+    return `<a href="${escapeHtml(model.href)}" class="bb-btn${appearance}${size}${emphasis}"${external}${extraAttributes}>${escapeHtml(model.label)}</a>`;
   }
   const form = model.form ? ` form="${escapeHtml(model.form)}"` : '';
   const disabled = model.disabled ? ' disabled' : '';
-  return `<button type="${escapeHtml(model.type ?? 'button')}"${form} class="bb-btn${appearance}${size}"${disabled}>${escapeHtml(model.label)}</button>`;
+  return `<button type="${escapeHtml(model.type ?? 'button')}"${form} class="bb-btn${appearance}${size}${emphasis}"${disabled}${extraAttributes}>${escapeHtml(model.label)}</button>`;
 }
 
 // Card contents and action placement vary; icon presentation and state do not.

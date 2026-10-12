@@ -44,6 +44,11 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 }
 
+.bb-segmented-control--large > .bb-segmented-control__item {
+  padding: var(--bb-spacing-2) var(--bb-spacing-5);
+  font-size: var(--bb-font-size-md);
+}
+
 .bb-segmented-control.bb-segmented-control--popover {
   background: var(--bb-v2-color-surface-canvas);
 }

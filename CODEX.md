@@ -39,9 +39,10 @@ components, and generators for supported platforms.
   stop for owner-run browser acceptance; do not add duplicate validation phases.
 - Keep shell search patterns literal; never place backticks or command
   substitutions in an interpolated command string used only for verification.
-- A shared-gallery visual correction belongs in Themes first. Regenerate its
-  existing outputs from the same source; do not create product-local styling or
-  turn a two-property correction into a broader refactor.
+- Themes owns the final shared visual correction. Consumer-driven adjustments
+  follow UI_STRATEGY.md's local preview, owner appearance approval, then Themes
+  migration sequence. Do not propagate an unapproved candidate or retain a
+  permanent product-local fork; keep the correction bounded.
 - Exact-parity work must preserve every source typography property by element,
   including family, weight, size, and letter spacing. Never normalize title and
   content typography across a shared component unless the source matches.
@@ -81,8 +82,9 @@ components, and generators for supported platforms.
   MediaPreviewElement chooses the preview wrapper once from actionability for
   every asset kind; subtype branches supply content only. Checker-backed
   previews must not inherit generic control background or whole-element effects.
-- Toolbar popovers require a consumer-supplied event router for every lifecycle
-  event. The controller owns that router's disposal and never binds standalone listeners.
+- App toolbar popovers require the app's event router for every lifecycle event;
+  the controller owns its disposal. Separate site-page controls use owned DOM
+  events without importing an app router, per UI_STRATEGY.md's document boundary.
 - The shared window content body owns outer padding and spacing for fields, labels,
   controls, and cards. Subtype editors inherit it; never recreate or cancel that inset.
 - Animation-editor owns empty drafts, close/retarget cleanup, stable-ID focus/scroll with a 1-second pulse on Add/selected-card opening, and in-place card order with focus preservation. Typed shortcut drafts share this owner with injected completion/cancellation and domain edge placement; pending creation never owns model mutation. Animation-order owns chronology and indexed labels. Consumers project domain edge priorities/label cohorts and supply types/creation, Select enhancement, scroll owner and event router; no subtype-local attention policy.

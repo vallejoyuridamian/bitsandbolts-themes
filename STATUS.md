@@ -1,6 +1,15 @@
 # Bits and Bolts Themes: Status
 
-Updated: 2026-10-10
+Updated: 2026-10-11
+
+Owner accepts the local Cluna Pricing checkpoint and requests local commits.
+Studio's docs/CLUNA_PAYMENTS_PLAN.md owns completed promotion, focused checks
+and generated-delivery evidence. Sites JSON owns page content/composition;
+Themes owns UI and page controls; Studio owns its separate app. No page router
+or app runtime is started by Pricing. UI_STRATEGY.md owns mandatory page
+ownership and justified temporary experiment removal. No local fork remains.
+Next chat is context and suggestions only, then owner direction. No new browser
+result is inferred; footer, on-request generation and deployment stay deferred.
 
 2026-10-10 local correction: `components/attention-feedback.js` now owns one
 scroll, focus and attention-pulse action for Studio's Audio recipe, cue and

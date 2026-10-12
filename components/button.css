@@ -70,6 +70,22 @@
   color: var(--bb-v2-color-interaction-on-selection);
 }
 
+/* Neutral secondary CTA. Availability remains independent of visual emphasis. */
+.bb-btn-neutral,
+.bb-btn-neutral:disabled {
+  background: var(--bb-v2-color-border-subtle);
+  color: var(--bb-v2-color-content-secondary);
+}
+
+.bb-btn.bb-btn--bold {
+  font-weight: var(--bb-font-weight-bold);
+}
+
+.bb-btn-filled.bb-btn--retain-emphasis:disabled {
+  background: var(--bb-v2-identity-primary);
+  color: var(--bb-v2-identity-primary-foreground);
+}
+
 .bb-btn-outline {
   background: transparent;
   color: var(--bb-v2-identity-primary);

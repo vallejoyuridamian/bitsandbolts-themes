@@ -1,6 +1,12 @@
 # Bits and Bolts Themes: Sprint Roadmap
 
-Updated: 2026-10-10
+Updated: 2026-10-11
+
+Local Cluna Pricing checkpoint accepted. Studio's Payments plan owns the
+completed recipe promotion, focused checks and delivery evidence. Sites owns
+JSON content/composition; Themes owns UI and page controls. No local fork remains.
+Next chat loads context and suggests bounded work only, then waits for direction.
+No footer, integration, deployment or wider Theme work is scheduled.
 
 The owner accepted the current local Cluna first-party page set as v1. Shared Product Entry, compact Theme cards, open video, Navbar and Footer recipes are preserved. Source, dist/web and docs/theme remain synchronized; no further Cluna page presentation work is scheduled from this checkpoint.
 

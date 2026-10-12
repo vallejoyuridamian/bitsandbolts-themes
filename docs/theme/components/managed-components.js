@@ -18,6 +18,7 @@ import {
 import { formFieldsMarkup } from './form-field.js';
 import { MediaPreviewCard, referenceImagePickerMarkup } from './media-picker.js';
 import { navbarMarkup } from './navbar.js';
+import { pricingComparisonMarkup } from './pricing-comparison.js';
 import { selectionControlsMarkup } from './select.js';
 import { scrollVideoMarkup } from './scroll-video.js';
 import { workspaceItemInfoMarkup } from './workspace-item-info.js';
@@ -33,6 +34,14 @@ const mediaPreviewCard = new MediaPreviewCard();
  * stay owned by the component implementation in this repository.
  */
 export const MANAGED_WEB_COMPONENTS = Object.freeze({
+  'pricing-comparison': Object.freeze({
+    dependencies: Object.freeze({
+      stylesheets: Object.freeze(['components/marketing.css', 'components/button.css',
+        'components/segmented-control.css', 'components/semantic-icons.css', 'components/pricing-comparison.css']),
+      modules: Object.freeze(['components/pricing-comparison-page.js'])
+    }),
+    render: pricingComparisonMarkup
+  }),
   'compact-theme-grid': Object.freeze({
     dependencies: Object.freeze({
       stylesheets: Object.freeze(['components/compact-theme-selector.css', 'components/semantic-icons.css']),

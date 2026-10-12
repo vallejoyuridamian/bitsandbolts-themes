@@ -1,5 +1,11 @@
 # Bits and Bolts Themes - Changelog
 
+## 2026-10-11: Approved Pricing comparison recipe promotion
+
+- One managed pricing-comparison component owns the reviewed neutral cards, restrained recommendation border, responsive layout, billing selector and page controller. Existing button and segmented-control modifiers supply CTA hierarchy, bold primary emphasis and selector sizing without new palette tokens.
+- Sites JSON owns commercial data/copy. Separate page controls use normal DOM events and do not import the Studio app router. Temporary consumer UI forks are removed. Existing Cloud Clipboard layout and the shared footer remain unchanged.
+- Source, dist/web and docs/theme are synchronized by a passing build. Focused consumer checks and generated delivery verification pass; Studio's Payments plan owns exact evidence and open qualifications. Owner accepts the local checkpoint and requests a local commit. No separate new browser result, publication, push or deployment is inferred.
+
 ## 2026-10-10: Shared Audio attention and form status
 
 - One Themes action now owns scroll, focus and attention pulse for Studio Audio's Load recipe, cue insertion and generated-card presentation. The Studio-only generated-card glow was removed. Themes also owns the plain form-status recipe used beside Audio Generate.

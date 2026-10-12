@@ -1,0 +1,79 @@
+/* Three comparable offers, composing the existing marketing card/grid recipes. */
+.bb-pricing-comparison {
+  container-type: inline-size;
+}
+
+.bb-pricing-comparison__billing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--bb-spacing-2);
+  margin-bottom: var(--bb-spacing-4);
+}
+
+.bb-pricing-comparison .bb-pricing-grid {
+  grid-template-columns: minmax(0, min(100%, 24rem));
+}
+
+@container (min-width: 52rem) {
+  .bb-pricing-comparison .bb-pricing-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.bb-price-card.bb-price-card--neutral {
+  background: var(--bb-v2-color-surface-surface);
+  color: var(--bb-v2-color-content-primary);
+  border-color: var(--bb-v2-color-border-default);
+  box-shadow: none;
+}
+
+.bb-price-card.bb-price-card--recommended {
+  border-color: var(--bb-v2-identity-primary);
+}
+
+.bb-price-card__price {
+  display: grid;
+  gap: var(--bb-spacing-3);
+}
+
+.bb-price-card__price .bb-price-card__support {
+  margin: 0;
+}
+
+.bb-price-card__benefits {
+  display: grid;
+  gap: var(--bb-spacing-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--bb-font-family-body);
+  font-size: var(--bb-font-size-sm);
+  line-height: var(--bb-font-line-height-normal);
+}
+
+.bb-price-card__benefits li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--bb-spacing-2);
+}
+
+.bb-price-card__benefits .bb-semantic-icon {
+  color: var(--bb-v2-identity-primary);
+  font-size: var(--bb-font-size-md);
+  flex-shrink: 0;
+}
+
+.bb-price-card__action {
+  margin-top: auto;
+}
+
+.bb-pricing-comparison__notes {
+  display: grid;
+  gap: var(--bb-spacing-2);
+  margin-top: var(--bb-spacing-4);
+}
+
+.bb-pricing-comparison__notes .bb-note {
+  margin: 0;
+}
