@@ -12,6 +12,15 @@ import {
 import { MANAGED_WEB_COMPONENTS } from '../components/managed-components.js';
 import { accountDeletionWindowMarkup } from '../components/account-session.js';
 
+test('status and form compose the same optional account link recipe', () => {
+  const externalLinks=[{href:'/studio',label:'Return to Studio'}];
+  for (const markup of [accountFunnelStatusMarkup({externalLinks}),accountFunnelAccessMarkup({externalLinks})]) {
+    assert.match(markup,/class="bb-account-funnel__external-links"/);
+    assert.match(markup,/class="bb-link" href="\/studio"/);
+  }
+  assert.doesNotMatch(accountFunnelStatusMarkup(),/<nav/);
+});
+
 test('account deletion uses the Themes window recipe with the linked reauthentication methods', () => {
   const markup = accountDeletionWindowMarkup({ methods: ['email_password', 'google'], productName: 'Cluna Studio' });
   assert.match(markup, /data-account-funnel-step="deletion"/);

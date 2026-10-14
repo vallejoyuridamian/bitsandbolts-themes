@@ -31,16 +31,22 @@ function escapeHtml(value = '') {
     .replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
 }
 
-function floatingWindowHeadingMarkup({ description = '', id, title }) {
+function floatingWindowHeadingMarkup({ description = '', id, title, backLabel = 'Back',
+  backAttribute = 'data-bb-floating-window-back', navigationHeader = false,
+  showBack = false, specimen = false }) {
   const titleId = escapeHtml(`${id}Title`);
   const descriptionId = escapeHtml(`${id}Description`);
   const descriptionMarkup = description
     ? `<p id="${descriptionId}" class="bb-floating-window-content__copy">${escapeHtml(description)}</p>`
     : '';
+  const backMarkup = showBack
+    ? `<button class="bb-floating-window-content__back bb-workspace-control-button bb-workspace-control-button--plain-icon" type="button" aria-label="${escapeHtml(backLabel)}" title="${escapeHtml(backLabel)}" ${backAttribute}${specimen ? ' tabindex="-1"' : ''}><span class="bb-workspace-control-icon" aria-hidden="true">${semanticIconMarkup('arrow_back')}</span></button>`
+    : '';
+  const navigationClass = navigationHeader || showBack ? ' bb-floating-window-content__head--back' : '';
   return {
     describedBy: description ? ` aria-describedby="${descriptionId}"` : '',
     descriptionMarkup,
-    headingMarkup: `<header class="bb-floating-window-content__head"><h2 id="${titleId}" class="bb-floating-window-content__title">${escapeHtml(title)}</h2></header>`,
+    headingMarkup: `<header class="bb-floating-window-content__head${navigationClass}">${backMarkup}<h2 id="${titleId}" class="bb-floating-window-content__title">${escapeHtml(title)}</h2></header>`,
     titleId
   };
 }
@@ -104,33 +110,31 @@ export function floatingWindowFormMarkup({
   specimen = false,
   title = 'Complete form'
 } = {}) {
-  const heading = floatingWindowHeadingMarkup({ description, id, title });
+  const heading = floatingWindowHeadingMarkup({ description, id, title, backLabel,
+    backAttribute: 'data-bb-floating-form-back', navigationHeader: true, showBack, specimen });
   const tabIndex = specimen ? ' tabindex="-1"' : '';
-  const backMarkup = showBack
-    ? `<button class="bb-floating-form__back bb-workspace-control-button bb-workspace-control-button--plain-icon" type="button" aria-label="${escapeHtml(backLabel)}" title="${escapeHtml(backLabel)}" data-bb-floating-form-back${tabIndex}><span class="bb-workspace-control-icon" aria-hidden="true">${semanticIconMarkup('arrow_back')}</span></button>`
-    : '';
   const cancelClass = cancelDanger ? ' bb-workspace-control-button--danger' : '';
   const confirmClass = confirmDanger ? ' bb-workspace-control-button--danger' : '';
-  const headingMarkup = heading.headingMarkup.replace(
-    '<header class="bb-floating-window-content__head">',
-    `<header class="bb-floating-window-content__head bb-floating-form__head">${backMarkup}`
-  );
-  return `<form class="bb-floating-window-content bb-floating-form" data-floating-window-size="content" data-bb-floating-form aria-labelledby="${heading.titleId}"${heading.describedBy}>${headingMarkup}${heading.descriptionMarkup}<div class="bb-floating-window-content__body bb-floating-form__fields" data-bb-floating-form-fields>${fieldsMarkup}</div><div class="bb-floating-form__error" data-bb-floating-form-error role="alert" hidden></div><div class="bb-floating-window-content__actions" role="group" aria-label="Form actions"><button class="bb-workspace-control-button${cancelClass}" type="button" data-bb-floating-form-cancel${tabIndex}>${escapeHtml(cancelLabel)}</button><button class="bb-workspace-control-button${confirmClass}" type="${specimen ? 'button' : 'submit'}" data-bb-floating-form-submit${tabIndex}>${escapeHtml(confirmLabel)}</button></div></form>`;
+  return `<form class="bb-floating-window-content bb-floating-form" data-floating-window-size="content" data-bb-floating-form aria-labelledby="${heading.titleId}"${heading.describedBy}>${heading.headingMarkup}${heading.descriptionMarkup}<div class="bb-floating-window-content__body bb-floating-form__fields" data-bb-floating-form-fields>${fieldsMarkup}</div><div class="bb-floating-form__error" data-bb-floating-form-error role="alert" hidden></div><div class="bb-floating-window-content__actions" role="group" aria-label="Form actions"><button class="bb-workspace-control-button${cancelClass}" type="button" data-bb-floating-form-cancel${tabIndex}>${escapeHtml(cancelLabel)}</button><button class="bb-workspace-control-button${confirmClass}" type="${specimen ? 'button' : 'submit'}" data-bb-floating-form-submit${tabIndex}>${escapeHtml(confirmLabel)}</button></div></form>`;
 }
 
 export function floatingWindowConfirmationMarkup({
+  backLabel = 'Back',
+  showBack = false,
   cancelLabel = 'Cancel',
   showCancel = true,
   confirmDanger = false,
   confirmLabel = 'Confirm',
   description = '',
+  helpLink = null,
   id = 'bbFloatingConfirmation',
   secondaryDanger = false,
   secondaryLabel = '',
   specimen = false,
   title = 'Confirm action'
 } = {}) {
-  const heading = floatingWindowHeadingMarkup({ description, id, title });
+  const heading = floatingWindowHeadingMarkup({ description, id, title, backLabel,
+    backAttribute: 'data-bb-confirm-back', showBack, specimen });
   const danger = confirmDanger ? ' bb-workspace-control-button--danger' : '';
   const secondaryDangerClass = secondaryDanger ? ' bb-workspace-control-button--danger' : '';
   const tabIndex = specimen ? ' tabindex="-1"' : '';
@@ -145,5 +149,8 @@ export function floatingWindowConfirmationMarkup({
     'bb-floating-window-content__copy',
     'bb-floating-window-content__copy bb-floating-confirm__copy'
   );
-  return `<form class="bb-floating-window-content bb-floating-confirm" data-floating-window-size="content" data-bb-confirm aria-labelledby="${heading.titleId}"${heading.describedBy}>${headingMarkup}${descriptionMarkup}<div class="bb-floating-window-content__actions bb-floating-confirm__actions" role="group" aria-label="Confirmation actions">${showCancel ? `<button class="bb-workspace-control-button" type="button" data-bb-confirm-cancel${tabIndex}>${escapeHtml(cancelLabel)}</button>` : ''}${secondaryMarkup}<button class="bb-workspace-control-button${danger}" type="${confirmType}" data-bb-confirm-submit${tabIndex}>${escapeHtml(confirmLabel)}</button></div></form>`;
+  const helpMarkup = helpLink
+    ? `<a class="bb-floating-window-content__copy bb-floating-confirm__copy" href="${escapeHtml(helpLink.href)}" data-bb-confirm-help${tabIndex}>${escapeHtml(helpLink.label)}</a>`
+    : '';
+  return `<form class="bb-floating-window-content bb-floating-confirm" data-floating-window-size="content" data-bb-confirm aria-labelledby="${heading.titleId}"${heading.describedBy}>${headingMarkup}${descriptionMarkup}${helpMarkup}<div class="bb-floating-window-content__actions bb-floating-confirm__actions" role="group" aria-label="Confirmation actions">${showCancel ? `<button class="bb-workspace-control-button" type="button" data-bb-confirm-cancel${tabIndex}>${escapeHtml(cancelLabel)}</button>` : ''}${secondaryMarkup}<button class="bb-workspace-control-button${danger}" type="${confirmType}" data-bb-confirm-submit${tabIndex}>${escapeHtml(confirmLabel)}</button></div></form>`;
 }

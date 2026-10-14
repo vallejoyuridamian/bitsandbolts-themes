@@ -234,22 +234,22 @@
   font-size: var(--bb-font-size-sm);
 }
 
-.bb-floating-form__head {
+.bb-floating-window-content__head--back {
   display: grid;
   grid-template-columns: 18px minmax(0, 1fr) 18px;
   gap: var(--bb-spacing-2);
 }
 
-.bb-floating-form__head::after {
+.bb-floating-window-content__head--back::after {
   width: 18px;
   content: "";
 }
 
-.bb-floating-form__head .bb-floating-window-content__title {
+.bb-floating-window-content__head--back .bb-floating-window-content__title {
   grid-column: 2;
 }
 
-.bb-floating-form__back {
+.bb-floating-window-content__back {
   grid-column: 1;
 }
 

@@ -20,6 +20,8 @@ export function createFloatingWindowConfirmationController({
   }
 
   function open({
+    backLabel = 'Back',
+    parentWindow = null,
     cancelLabel = 'Cancel',
     showCancel = true,
     onClose = null,
@@ -27,6 +29,7 @@ export function createFloatingWindowConfirmationController({
     confirmLabel = 'Confirm',
     context = {},
     description = '',
+    helpLink = null,
     downstreamOwner = 'unknown',
     id = 'confirmation',
     onConfirm = null,
@@ -36,8 +39,12 @@ export function createFloatingWindowConfirmationController({
     source = 'unknown',
     title = 'Confirm action'
   } = {}) {
+    if (parentWindow && (typeof parentWindow.stack?.push !== 'function'
+      || typeof parentWindow.stack?.back !== 'function' || !parentWindow.stack.isOpen(parentWindow.id))) return false;
     activeClose?.('confirmation-replaced');
     const requestId = activeRequestId += 1;
+    let backButton = null;
+    let closeReason = '';
     let cancelButton = null;
     let confirmButton = null;
     let secondaryButton = null;
@@ -67,30 +74,36 @@ export function createFloatingWindowConfirmationController({
     }
 
     function close(reason = 'confirmation-cancelled') {
+      if (finished) return false;
+      closeReason = reason;
+      if (parentWindow) return parentWindow.stack.back(parentWindow.id, { reason }) === true;
       return floatingWindowController?.close?.(id, { reason }) === true;
     }
 
-    const opened = floatingWindowController?.open?.({
+    const presentation = {
       ariaLabel: title,
       context,
       id,
       onClose: ({ reason = 'floating-window-closed' } = {}) => finish(reason),
       renderContent: (body) => {
         body.innerHTML = floatingWindowConfirmationMarkup({
+          backLabel, showBack: Boolean(parentWindow),
           cancelLabel, showCancel,
           confirmDanger,
           confirmLabel,
           description,
+          helpLink,
           id,
           secondaryDanger,
           secondaryLabel,
           title
         });
         const form = body.querySelector('[data-bb-confirm]');
+        backButton = body.querySelector('[data-bb-confirm-back]');
         cancelButton = body.querySelector('[data-bb-confirm-cancel]');
         secondaryButton = body.querySelector('[data-bb-confirm-secondary]');
         confirmButton = body.querySelector('[data-bb-confirm-submit]');
-        if (!form || (showCancel && !cancelButton) || !confirmButton || (secondaryLabel && !secondaryButton)) return;
+        if (!form || (parentWindow && !backButton) || (showCancel && !cancelButton) || !confirmButton || (secondaryLabel && !secondaryButton)) return;
 
         router = createInteractionRouter({
           label: `floating-window-confirmation:${id}`,
@@ -105,13 +118,23 @@ export function createFloatingWindowConfirmationController({
             });
           }
         });
+        if (backButton) router.bind(backButton, 'click', (event) => {
+          event.preventDefault?.();
+          if (!backButton.disabled) close('confirmation-back');
+        });
         router.bind(cancelButton, 'click', (event) => {
           event.preventDefault?.();
           close('confirmation-cancelled');
         });
+        if (helpLink) router.bind(body.querySelector('[data-bb-confirm-help]'), 'click', () => {
+          log('floating-window-confirmation-help-requested', {
+            downstreamOwner, requestId, source, windowId: id, outcome: 'navigation-requested'
+          });
+        });
         async function dispatchDecision({ button, callback, name }) {
           if (!button || button.disabled) return;
           confirmButton.disabled = true;
+          if (backButton) backButton.disabled = true;
           if (cancelButton) cancelButton.disabled = true;
           if (secondaryButton) secondaryButton.disabled = true;
           log('floating-window-confirmation-decision', {
@@ -128,6 +151,7 @@ export function createFloatingWindowConfirmationController({
             if (finished || activeRequestId !== requestId) return;
             if (accepted === false || accepted?.accepted === false) {
               confirmButton.disabled = false;
+              if (backButton) backButton.disabled = false;
               if (cancelButton) cancelButton.disabled = false;
               if (secondaryButton) secondaryButton.disabled = false;
               log('floating-window-confirmation-decision', {
@@ -175,6 +199,7 @@ export function createFloatingWindowConfirmationController({
           } catch (error) {
             if (finished || activeRequestId !== requestId) return;
             confirmButton.disabled = false;
+            if (backButton) backButton.disabled = false;
             if (cancelButton) cancelButton.disabled = false;
             if (secondaryButton) secondaryButton.disabled = false;
             log('floating-window-confirmation-decision', {
@@ -208,13 +233,17 @@ export function createFloatingWindowConfirmationController({
             name: 'confirm'
           });
         });
+        return parentWindow ? () => finish(closeReason || 'parent-view-retired') : undefined;
       },
       source
-    }) === true;
+    };
+    const opened = (parentWindow
+      ? parentWindow.stack.push(parentWindow.id, { ...presentation, viewId: id })
+      : floatingWindowController?.open?.(presentation)) === true;
 
-    if (!opened || !router || (showCancel && !cancelButton) || !confirmButton || (secondaryLabel && !secondaryButton)) {
+    if (!opened || !router || (parentWindow && !backButton) || (showCancel && !cancelButton) || !confirmButton || (secondaryLabel && !secondaryButton)) {
       router?.destroy?.();
-      if (opened) floatingWindowController?.close?.(id, { reason: 'confirmation-render-rejected' });
+      if (opened) close('confirmation-render-rejected');
       log('floating-window-confirmation-presentation', {
         context,
         downstreamOwner,

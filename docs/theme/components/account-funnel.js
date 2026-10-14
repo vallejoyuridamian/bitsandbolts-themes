@@ -46,6 +46,12 @@ function fieldMarkup(field = {}) {
   return `<div class="bb-field" data-account-funnel-field="${id}"><label class="bb-field__label" for="${id}">${escapeHtml(field.label)}</label>${control}${hint}<p id="${errorId}" class="bb-field__error" role="alert" data-account-funnel-field-error hidden></p></div>`;
 }
 
+function externalLinksMarkup(links = []) {
+  return links.length
+    ? `<nav class="bb-account-funnel__external-links" aria-label="Account information">${links.map(({ href, label }) => `<a class="bb-link" href="${escapeHtml(href)}" data-account-funnel-external>${escapeHtml(label)}</a>`).join('')}</nav>`
+    : '';
+}
+
 function footerMarkup({ cancelLabel = 'Keep editing', primaryLabel = 'Continue', primaryDanger = false } = {}) {
   const primary = primaryLabel
     ? `<button class="bb-workspace-control-button${primaryDanger ? ' bb-workspace-control-button--danger' : ''}" type="submit" data-account-funnel-submit>${escapeHtml(primaryLabel)}</button>`
@@ -98,10 +104,8 @@ export function accountFunnelAccessMarkup({
   const switchMarkup = creationPrompt && creationActionLabel
     ? `<p class="bb-account-funnel__switch"><span>${escapeHtml(creationPrompt)} </span><button class="bb-link bb-account-funnel__switch-action" type="button" data-account-funnel-create><strong>${escapeHtml(creationActionLabel)}</strong></button><span>.</span></p>`
     : '';
-  const externalLinksMarkup = externalLinks.length
-    ? `<nav class="bb-account-funnel__external-links" aria-label="Account information">${externalLinks.map(({ href, label }) => `<a class="bb-link" href="${escapeHtml(href)}" data-account-funnel-external>${escapeHtml(label)}</a>`).join('')}</nav>`
-    : '';
-  return `<form class="bb-floating-window-content bb-account-funnel" data-floating-window-size="content" data-bb-account-funnel data-account-funnel-step="${escapeHtml(step)}" aria-labelledby="${heading.titleId}"${heading.describedBy} novalidate>${heading.headingMarkup}${heading.descriptionMarkup}<div class="bb-floating-window-content__body bb-account-funnel__body">${google}${fieldsMarkup}${recovery}${remember}${consent}${switchMarkup}${externalLinksMarkup}</div><p class="bb-floating-form__error bb-account-funnel__error" role="alert" data-account-funnel-error hidden></p>${footerMarkup({ cancelLabel, primaryLabel, primaryDanger })}</form>`;
+  const linksMarkup = externalLinksMarkup(externalLinks);
+  return `<form class="bb-floating-window-content bb-account-funnel" data-floating-window-size="content" data-bb-account-funnel data-account-funnel-step="${escapeHtml(step)}" aria-labelledby="${heading.titleId}"${heading.describedBy} novalidate>${heading.headingMarkup}${heading.descriptionMarkup}<div class="bb-floating-window-content__body bb-account-funnel__body">${google}${fieldsMarkup}${recovery}${remember}${consent}${switchMarkup}${linksMarkup}</div><p class="bb-floating-form__error bb-account-funnel__error" role="alert" data-account-funnel-error hidden></p>${footerMarkup({ cancelLabel, primaryLabel, primaryDanger })}</form>`;
 }
 
 export function accountFunnelPlanMarkup({
@@ -126,12 +130,13 @@ export function accountFunnelPlanMarkup({
 
 export function accountFunnelStatusMarkup({
   description = '',
+  externalLinks = [],
   id = 'bbAccountStatus',
   kind = 'success',
   title = 'Account ready'
 } = {}) {
   const heading = headingMarkup({ description, id, title });
-  return `<div class="bb-floating-window-content bb-account-funnel bb-account-funnel--status" data-floating-window-size="content" data-bb-account-funnel data-account-funnel-step="status" data-account-funnel-status="${escapeHtml(kind)}" aria-labelledby="${heading.titleId}"${heading.describedBy}>${heading.headingMarkup}<div class="bb-floating-window-content__body bb-account-funnel__body" role="status">${heading.descriptionMarkup}</div></div>`;
+  return `<div class="bb-floating-window-content bb-account-funnel bb-account-funnel--status" data-floating-window-size="content" data-bb-account-funnel data-account-funnel-step="status" data-account-funnel-status="${escapeHtml(kind)}" aria-labelledby="${heading.titleId}"${heading.describedBy}>${heading.headingMarkup}<div class="bb-floating-window-content__body bb-account-funnel__body" role="status">${heading.descriptionMarkup}${externalLinksMarkup(externalLinks)}</div></div>`;
 }
 
 export function accountFunnelMarkup(model = {}) {

@@ -5,6 +5,7 @@ import {
   applyFloatingWindowFieldRowErrorRecipe,
   applyFloatingWindowFieldRowRecipe,
   floatingWindowConfirmationMarkup,
+  floatingWindowFormMarkup,
   floatingWindowRangeControlsMarkup
 } from '../components/floating-window.js';
 
@@ -45,6 +46,28 @@ test('floating confirmation optionally owns Cancel, destructive secondary, and p
 test('floating confirmation omits the secondary action when it is not requested', () => {
   const markup = floatingWindowConfirmationMarkup();
   assert.doesNotMatch(markup, /data-bb-confirm-secondary/);
+  assert.doesNotMatch(markup, /data-bb-confirm-help/);
+});
+
+test('forms and nested confirmations inherit the same back-heading recipe', () => {
+  const form=floatingWindowFormMarkup({showBack:true});
+  const confirmation=floatingWindowConfirmationMarkup({showBack:true});
+  for(const markup of [form,confirmation]) {
+    assert.match(markup,/bb-floating-window-content__head--back/);
+    assert.match(markup,/bb-floating-window-content__back bb-workspace-control-button bb-workspace-control-button--plain-icon/);
+    assert.match(markup,/aria-label="Back"/);
+  }
+  assert.match(form,/data-bb-floating-form-back/);
+  assert.match(confirmation,/data-bb-confirm-back/);
+  assert.doesNotMatch(floatingWindowConfirmationMarkup(),/data-bb-confirm-back/);
+});
+
+test('floating confirmation places its optional escaped help link outside the action group', () => {
+  const markup = floatingWindowConfirmationMarkup({
+    helpLink: { label: 'Help & support', href: 'mailto:support@example.test?subject=Help&body=Question' }
+  });
+  assert.match(markup, /href="mailto:support@example.test\?subject=Help&amp;body=Question" data-bb-confirm-help>Help &amp; support<\/a>/);
+  assert.ok(markup.indexOf('data-bb-confirm-help') < markup.indexOf('aria-label="Confirmation actions"'));
 });
 
 test('floating range controls own labeled sliders and visible values', () => {
