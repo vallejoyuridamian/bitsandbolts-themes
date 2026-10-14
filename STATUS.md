@@ -2,6 +2,11 @@
 
 Updated: 2026-10-12. Accepted local shared account/window/input checkpoint.
 
+Sites CV is accepted as good enough on 2026-10-14. Existing heading/portrait
+recipes own the approved parent-relative construction; no new element/token.
+Sites docs/CV_PLAN.md owns qualified evidence and retained development projections.
+Owner authorizes the separately scoped CV companion commit; no new validation.
+
 Shared account controls/funnel, floating window/stack/confirmation controllers
 and document input/focus have context-agnostic owners. Consumers inject their
 workflow, transport, event integration and runtime display values. Retired forms

@@ -868,7 +868,9 @@ body:has(> .bb-navbar[data-placement="sticky"]) :is(.bb-section, .bb-cta-band) {
 }
 
 .bb-content-hero h1 {
-  font-size: clamp(2rem, 4vw, 3rem);
+  /* A constrained host supplies inline-size containment; otherwise cqw uses
+     the viewport fallback. Keep the shared type scale in this recipe. */
+  font-size: clamp(2rem, 4cqw, 3rem);
   line-height: 1;
 }
 

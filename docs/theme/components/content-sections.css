@@ -113,10 +113,10 @@
 }
 
 .bb-media-copy--portrait .bb-media-copy__copy {
-  max-width: clamp(10rem, 50vw, 30rem);
+  max-width: clamp(10rem, 50%, 30rem);
   color: var(--bb-marketing-content-body-text);
   font-family: var(--bb-font-family-body);
-  font-size: clamp(0.5rem, 3.2vw, 1.2rem);
+  font-size: clamp(0.5rem, 3.2cqw, 1.2rem);
   font-weight: var(--bb-font-weight-bold);
 }
 
