@@ -1,5 +1,6 @@
 import { semanticActionButtonMarkup } from './button.js';
 import { semanticIconMarkup } from './semantic-icons.js';
+import { createInteractionRouter } from './page-event-scope.js';
 
 function escapeHtml(value) {
   return String(value ?? '')
@@ -129,6 +130,7 @@ let popoverSequence = 0;
 
 export function createToolbarPopoverController({
   eventRouter,
+  contentRouterFactory = createInteractionRouter,
   rootDocument = globalThis.document,
   shouldContinuePointerTarget = () => false,
   shouldRetainPointerTarget = () => false
@@ -160,6 +162,7 @@ export function createToolbarPopoverController({
     const record = active;
     active = null;
     record.focus?.release(reason);
+    record.contentRouter.destroy();
     record.anchor?.setAttribute?.('aria-expanded', 'false');
     record.anchor?.removeAttribute?.('aria-controls');
     record.panel?.remove?.();
@@ -180,11 +183,12 @@ export function createToolbarPopoverController({
     panel.id = `bbToolbarPopover${popoverSequence += 1}`;
     applyToolbarPopoverRecipe({ ariaLabel, node: panel });
     rootDocument.body.appendChild(panel);
-    active = { anchor, onClose, panel };
+    const contentRouter = contentRouterFactory({ label: 'toolbar-popover-content' });
+    active = { anchor, onClose, panel, contentRouter };
     anchor.setAttribute?.('aria-controls', panel.id);
     anchor.setAttribute?.('aria-expanded', 'true');
     try {
-      renderContent?.(panel);
+      renderContent?.(panel, { eventRouter: contentRouter });
     } catch (error) {
       close('content-render-failed');
       throw error;

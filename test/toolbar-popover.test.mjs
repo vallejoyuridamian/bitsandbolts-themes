@@ -275,3 +275,18 @@ test('toolbar popover declares ordered outside-pointer routing through its event
   controller.destroy();
   assert.equal(releases, 1);
 });
+
+
+test('popover replacement, close and failed hydration dispose their content interaction owner',()=>{
+  const routers=[];const anchor=fakeNode();
+  const rootDocument={body:{appendChild(node){node.isConnected=true;}},createElement:()=>fakeNode(),
+    defaultView:{innerWidth:320,innerHeight:240}};
+  const controller=createToolbarPopoverController({rootDocument,eventRouter:{bind(){},destroy(){}},
+    contentRouterFactory(){const r={destroyed:false,bind(){},destroy(){this.destroyed=true;}};routers.push(r);return r;}});
+  const renderContent=(_panel,{eventRouter})=>assert.equal(eventRouter,routers.at(-1));
+  controller.open({anchor,renderContent});controller.open({anchor,renderContent});
+  assert.equal(routers[0].destroyed,true);assert.equal(routers[1].destroyed,false);
+  controller.close('accepted');assert.equal(routers[1].destroyed,true);
+  assert.throws(()=>controller.open({anchor,renderContent(){throw new Error('fixture');}}),/fixture/);
+  assert.equal(routers[2].destroyed,true);controller.destroy();
+});
