@@ -791,6 +791,27 @@
   --ms-weight: 300;
 }
 
+/* Shared pending controls retain disabled visuals; only the admitted icon moves. */
+[aria-busy="true"]:disabled .bb-semantic-icon {
+  /* Themes' existing mask confines the light to the original icon glyph. */
+  background-image: linear-gradient(105deg, currentColor 40%,
+    var(--bb-v2-color-content-primary) 50%, currentColor 60%);
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  animation: bb-pending-control-light 1.4s linear infinite;
+}
+
+@keyframes bb-pending-control-light {
+  to { background-position: -100% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [aria-busy="true"]:disabled .bb-semantic-icon {
+    animation: none;
+    background-position: 50% 0;
+  }
+}
+
 /* Shared dimensions also serve embedded workspace toolbars. */
 :root {
   --control-bar-height: 46px;
