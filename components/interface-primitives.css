@@ -372,6 +372,7 @@
 
 .bb-workspace-topbar__actions::before {
   content: "";
+  display: block;
   flex: 1 1 auto;
   min-width: 0;
 }
@@ -414,10 +415,6 @@
     min-width: 0;
     padding-inline: 0;
     scrollbar-gutter: auto;
-  }
-
-  .bb-workspace-topbar .bb-workspace-topbar__actions::before {
-    display: none;
   }
 
 }

@@ -1,3 +1,4 @@
+import { themeGalleryLoadingMarkup } from './theme-gallery-loading.js';
 import { workspaceControlBarContentMarkup } from './workspace-control-bar.js';
 import { contentCardsMarkup } from './content-card.js';
 import { themeIdentityOptions } from './theme-roles.js';
@@ -1595,6 +1596,8 @@ export function applyThemeGalleryVariables(host, catalog, selection = {}) {
 
 export function createThemeGalleryController({
   catalogUrl = '/theme/catalog.json',
+  catalog: admittedCatalog = null,
+  eventRouter = null,
   colorDetailsMarkup,
   controlsHost,
   fetchImpl = (...args) => globalThis.fetch(...args),
@@ -1757,11 +1760,13 @@ export function createThemeGalleryController({
 
   function installNavigationListener() {
     if (!navigationListenerInstalled && host?.addEventListener) {
-      host.addEventListener('click', handleNavigationClick);
+      if (eventRouter) eventRouter.bind(host, 'click', handleNavigationClick);
+      else host.addEventListener('click', handleNavigationClick);
       navigationListenerInstalled = true;
     }
     if (!controlsListenerInstalled && controlsHost?.addEventListener) {
-      controlsHost.addEventListener('click', handleNavigationClick);
+      if (eventRouter) eventRouter.bind(controlsHost, 'click', handleNavigationClick);
+      else controlsHost.addEventListener('click', handleNavigationClick);
       controlsListenerInstalled = true;
     }
   }
@@ -1769,11 +1774,17 @@ export function createThemeGalleryController({
   async function render() {
     if (!host) return null;
     if (renderedCatalog) return renderedCatalog;
-    if (!catalogPromise) catalogPromise = loadCatalog().catch((error) => {
+    if (!admittedCatalog && !catalogPromise) catalogPromise = loadCatalog().catch((error) => {
       catalogPromise = null;
       throw error;
     });
-    host.innerHTML = '<div class="bb-theme-gallery__loading" role="status">Loading first-party themes…</div>';
+    if (admittedCatalog) {
+      renderedCatalog = normalizeThemeCatalog(admittedCatalog);
+      installNavigationListener();
+      renderCatalog(renderedCatalog);
+      return renderedCatalog;
+    }
+    host.innerHTML = themeGalleryLoadingMarkup();
     if (controlsHost) {
       controlsHost.innerHTML = '';
       controlsHost.toggleAttribute?.('hidden', true);
