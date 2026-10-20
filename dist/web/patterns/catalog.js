@@ -1,3 +1,4 @@
+import { materialPatternAssets } from './materials/catalog.js';
 import squiggle from './squiggle.js';
 import plus2 from './plus-2.js';
 import chinese4 from './chinese-4.js';
@@ -10,5 +11,8 @@ import diamonds17 from './diamonds-17.js';
 // Layers fill with their color slot unless they supply stroke geometry settings.
 // Stroke width is in tile units, so it scales with the complete pattern.
 export const backgroundPatternAssets = Object.freeze([
-  squiggle, plus2, chinese4, new13, cubes2, new2, diamonds17
+  ...[squiggle, plus2, chinese4, new13, cubes2, new2, diamonds17].map(asset => Object.freeze({
+    ...asset, category: 'pattern', colorSlots: Object.freeze(['primary', 'secondary'])
+  })),
+  ...materialPatternAssets
 ]);

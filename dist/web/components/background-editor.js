@@ -21,6 +21,7 @@ export function backgroundEditorMarkup({
   itemScopeLabel = 'Screen',
   patterns = [],
   patternFields = [],
+  patternCategories = [{ id: 'pattern', label: 'Pattern' }],
   animatedEffects = [],
   presentation = 'embedded',
   showScope = false,
@@ -57,17 +58,17 @@ export function backgroundEditorMarkup({
         <option value="solid">Single color</option>
         <option value="gradient">Gradient</option>
         <option value="image">Image</option>
-        ${patterns.length ? '<option value="pattern">Pattern</option>' : ''}
+        ${patterns.length ? patternCategories.map(category => `<option value="${escapeHtml(category.id)}">${escapeHtml(category.label)}</option>`).join('') : ''}
         ${animatedEffects.length ? '<option value="animated">Animated</option>' : ''}
       </select>
     </div>
-    ${patterns.length ? `<div class="bb-field" data-bb-background-editor-when="pattern">
+    ${patterns.length ? `<div class="bb-field" data-bb-background-editor-when="repeating-pattern">
       <label class="bb-field__label" for="${controlId(id, 'pattern')}">Pattern</label>
       <select id="${controlId(id, 'pattern')}" class="bb-field__input" data-bb-background-editor-role="pattern">
         ${patterns.map((pattern) => `<option value="${escapeHtml(pattern.id)}">${escapeHtml(pattern.name)}</option>`).join('')}
       </select>
     </div>
-    <div class="bb-toolbar-popover__fields" data-bb-background-editor-when="pattern">
+    <div class="bb-toolbar-popover__fields" data-bb-background-editor-when="repeating-pattern">
       ${patternFields.map(({ key, label, min, max, step, initial, unit, valueLabel }) => layoutTextEditorRangeFieldMarkup({
         label, min, max, step, value: initial, unit, valueLabel,
         attributes: { 'aria-label': label, 'aria-valuetext': valueLabel, 'data-bb-background-pattern-field': key }

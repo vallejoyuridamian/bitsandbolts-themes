@@ -1,0 +1,5 @@
+Nine prepared material tiles, CC0-1.0.
+Catalog provenance identifies each original and license URL.
+Prepared from the selected 1K source maps; originals remain outside production.
+Adaptive tone index recipe 1: neutral centering, 2nd/98th-percentile calibration, pivot 128.
+Do not recalibrate an existing resource identity.
