@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import {
+  createSelectMenuSpaceReservation,
   createSelectWindowSpaceReservation,
   isSelectMenuVerticalBoundary,
   resolveSelectMenuPreferredHeight,
@@ -81,6 +82,34 @@ test('short Select lists reserve only their height and tiny viewports retain a v
   tiny.reservation.update();
   assert.ok(tiny.availableHeight() > 0 && tiny.availableHeight() < 161);
   assert.ok(tiny.trigger.getBoundingClientRect().top >= tiny.container.getBoundingClientRect().top);
+});
+
+test('an embedded scroll panel reserves a bottom Select menu, settles once and restores its layout', () => {
+  const container = { style: { paddingBottom: '10px' }, scrollTop: 180,
+    getBoundingClientRect: () => ({ top: 60, bottom: 520, height: 460 }),
+    get scrollHeight() { return 630 + Number.parseFloat(this.style.paddingBottom); }
+  };
+  const trigger = { getBoundingClientRect: () => ({ top: 660 - container.scrollTop,
+    bottom: 690 - container.scrollTop, width: 248, left: 100, right: 348, height: 30 }) };
+  const reservation = createSelectMenuSpaceReservation({ container, trigger, menuHeight: 135,
+    paddingBottom: 10, getViewportHeight: () => 540 });
+  const available = () => container.getBoundingClientRect().bottom - trigger.getBoundingClientRect().bottom - 12;
+  assert.equal(available(), -2);
+  reservation.update();
+  assert.equal(available(), 135);
+  assert.ok(Number.parseFloat(container.style.paddingBottom) > 10);
+  assert.ok(trigger.getBoundingClientRect().top >= 60);
+  const settled = [container.style.paddingBottom, container.scrollTop];
+  reservation.update();
+  assert.deepEqual([container.style.paddingBottom, container.scrollTop], settled);
+  const position = resolveSelectMenuPosition({ containerAvailableHeight: available(), menuHeight: 135,
+    menuWidth: 248, triggerRect: trigger.getBoundingClientRect(), viewportWidth: 800 });
+  assert.equal(position.maxHeight, 135);
+  assert.equal(position.top, trigger.getBoundingClientRect().bottom + 4);
+  reservation.release();
+  assert.deepEqual([container.style.paddingBottom, container.scrollTop], ['10px', 180]);
+  assert.equal(createSelectWindowSpaceReservation, createSelectMenuSpaceReservation,
+    'floating and embedded consumers share one reservation authority');
 });
 
 test('canonical Select preserves the intentionally empty mixed font label', () => {

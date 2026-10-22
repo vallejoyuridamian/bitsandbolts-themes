@@ -187,7 +187,7 @@ export function isSelectMenuVerticalBoundary(style = {}) {
   return /^(auto|scroll|overlay)$/.test(String(style?.overflowY || '').trim());
 }
 
-export function createSelectWindowSpaceReservation({
+export function createSelectMenuSpaceReservation({
   container,
   getViewportHeight,
   menuHeight,
@@ -196,8 +196,8 @@ export function createSelectWindowSpaceReservation({
   windowNode
 } = {}) {
   const original = {
-    height: windowNode.style.height,
-    top: windowNode.style.top,
+    height: windowNode?.style.height,
+    top: windowNode?.style.top,
     paddingBottom: container.style.paddingBottom,
     scrollTop: container.scrollTop
   };
@@ -206,19 +206,23 @@ export function createSelectWindowSpaceReservation({
 
   function update() {
     const viewportHeight = Math.max(0, getViewportHeight());
-    const windowRect = windowNode.getBoundingClientRect();
-    const containerRect = container.getBoundingClientRect();
-    const triggerRect = trigger.getBoundingClientRect();
-    const visibleBottom = Math.min(containerRect.bottom, viewportHeight - VIEWPORT_GAP);
-    const shortfall = Math.max(0, preferredHeight + MENU_GAP + VIEWPORT_GAP - (visibleBottom - triggerRect.bottom));
-    const height = Math.min(viewportHeight - VIEWPORT_GAP * 2, Math.ceil(windowRect.height + shortfall));
-    if (height > windowRect.height && windowNode.style.height !== `${height}px`) {
-      windowNode.style.height = `${height}px`;
+    // A floating shell may grow first; every scroll owner reserves and reveals
+    // the same menu demand below, including embedded editors.
+    if (windowNode) {
+      const windowRect = windowNode.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+      const triggerRect = trigger.getBoundingClientRect();
+      const visibleBottom = Math.min(containerRect.bottom, viewportHeight - VIEWPORT_GAP);
+      const shortfall = Math.max(0, preferredHeight + MENU_GAP + VIEWPORT_GAP - (visibleBottom - triggerRect.bottom));
+      const height = Math.min(viewportHeight - VIEWPORT_GAP * 2, Math.ceil(windowRect.height + shortfall));
+      if (height > windowRect.height && windowNode.style.height !== `${height}px`) {
+        windowNode.style.height = `${height}px`;
+      }
+      // Use the actual height: the shared shell's CSS may impose a stricter cap.
+      const actualHeight = windowNode.getBoundingClientRect().height;
+      const top = Math.round(Math.max(VIEWPORT_GAP, Math.min(windowRect.top, viewportHeight - actualHeight - VIEWPORT_GAP)));
+      if (top !== windowRect.top) windowNode.style.top = `${top}px`;
     }
-    // Use the actual height: the shared shell's CSS may impose a stricter cap.
-    const actualHeight = windowNode.getBoundingClientRect().height;
-    const top = Math.round(Math.max(VIEWPORT_GAP, Math.min(windowRect.top, viewportHeight - actualHeight - VIEWPORT_GAP)));
-    if (top !== windowRect.top) windowNode.style.top = `${top}px`;
 
     const body = container.getBoundingClientRect();
     const anchor = trigger.getBoundingClientRect();
@@ -236,14 +240,19 @@ export function createSelectWindowSpaceReservation({
   }
 
   function release() {
-    windowNode.style.height = original.height;
-    windowNode.style.top = original.top;
+    if (windowNode) {
+      windowNode.style.height = original.height;
+      windowNode.style.top = original.top;
+    }
     container.style.paddingBottom = original.paddingBottom;
     container.scrollTop = original.scrollTop;
   }
 
   return { update, release };
 }
+
+// Preserve the existing public entry while sharing one reservation owner.
+export const createSelectWindowSpaceReservation = createSelectMenuSpaceReservation;
 
 export function selectUsesExplicitExternalTrigger(select) {
   return select?.classList?.contains?.('bb-select__native') === true;
@@ -476,7 +485,7 @@ export function installSelectController(root = globalThis.document, {
       nodes.push(item);
     });
     menu.replaceChildren(...nodes);
-    releaseFloatingWindowReservation(record);
+    releaseMenuSpaceReservation(record);
     record.anchorSignature = '';
     record.menuNaturalHeight = 0;
     record.menuPreferredHeight = 0;
@@ -527,11 +536,11 @@ export function installSelectController(root = globalThis.document, {
     return Math.max(0, scrollHeight - scrollTop - triggerRect.bottom - VIEWPORT_GAP);
   }
 
-  function releaseFloatingWindowReservation(record) {
-    const reservation = record?.floatingWindowReservation;
+  function releaseMenuSpaceReservation(record) {
+    const reservation = record?.menuSpaceReservation;
     if (!reservation) return;
     reservation.release();
-    record.floatingWindowReservation = null;
+    record.menuSpaceReservation = null;
   }
 
   function preferredMenuHeight(menu, naturalHeight) {
@@ -546,12 +555,11 @@ export function installSelectController(root = globalThis.document, {
     });
   }
 
-  function reserveFloatingWindowMenuSpace(record, menuHeight) {
+  function reserveMenuSpace(record, menuHeight) {
     if (menuHeight <= 0 || !record.anchorContainer) return;
-    if (!record.floatingWindowReservation) {
+    if (!record.menuSpaceReservation) {
       const windowNode = record.wrapper.closest?.('.bb-floating-window');
-      if (!windowNode) return;
-      record.floatingWindowReservation = createSelectWindowSpaceReservation({
+      record.menuSpaceReservation = createSelectMenuSpaceReservation({
         container: record.anchorContainer,
         getViewportHeight: () => viewportRect().bottom,
         menuHeight,
@@ -560,7 +568,7 @@ export function installSelectController(root = globalThis.document, {
         windowNode
       });
     }
-    record.floatingWindowReservation.update();
+    record.menuSpaceReservation.update();
   }
 
   function triggerIsVisible(record, triggerRect = record.trigger?.getBoundingClientRect?.()) {
@@ -600,15 +608,15 @@ export function installSelectController(root = globalThis.document, {
       record.menuNaturalHeight = Math.ceil(menu.getBoundingClientRect().height);
       record.menuPreferredHeight = preferredMenuHeight(menu, record.menuNaturalHeight);
     }
-    reserveFloatingWindowMenuSpace(record, record.menuPreferredHeight);
+    reserveMenuSpace(record, record.menuPreferredHeight);
     const resolvedTriggerRect = trigger.getBoundingClientRect();
     const menuRect = menu.getBoundingClientRect();
-    const windowAvailableHeight = record.floatingWindowReservation
+    const containerVisibleHeight = record.menuSpaceReservation
       ? Math.max(0, Math.min(anchorContainerRect(record).bottom, viewportRect().bottom - VIEWPORT_GAP)
         - resolvedTriggerRect.bottom - MENU_GAP - VIEWPORT_GAP)
       : Number.POSITIVE_INFINITY;
     const position = resolveSelectMenuPosition({
-      containerAvailableHeight: Math.min(anchorContainerAvailableHeight(record, resolvedTriggerRect), windowAvailableHeight),
+      containerAvailableHeight: Math.min(anchorContainerAvailableHeight(record, resolvedTriggerRect), containerVisibleHeight),
       menuHeight: record.menuPreferredHeight,
       menuWidth: menuRect.width,
       triggerRect: resolvedTriggerRect,
@@ -627,6 +635,11 @@ export function installSelectController(root = globalThis.document, {
       ...position,
       height: Math.min(record.menuNaturalHeight, position.maxHeight),
       naturalHeight: record.menuNaturalHeight,
+      spaceReservation: record.menuSpaceReservation ? {
+        scope: record.wrapper.closest?.('.bb-floating-window') ? 'floating-window' : 'scroll-container',
+        paddingBottom: Number.parseFloat(record.anchorContainer.style.paddingBottom) || 0,
+        scrollTop: record.anchorContainer.scrollTop
+      } : null,
       width: Math.round(menuRect.width)
     };
   }
@@ -657,7 +670,7 @@ export function installSelectController(root = globalThis.document, {
     activeRecord = null;
     record.focus?.release(reason); record.focus = null;
     stopAnchorTracking();
-    releaseFloatingWindowReservation(record);
+    releaseMenuSpaceReservation(record);
     record.wrapper.classList.remove('is-open');
     record.trigger.setAttribute('aria-expanded', 'false');
     record.trigger.removeAttribute('aria-controls');
@@ -829,7 +842,7 @@ export function installSelectController(root = globalThis.document, {
       anchorContainer: null,
       anchorSignature: '',
       externalTrigger,
-      floatingWindowReservation: null,
+      menuSpaceReservation: null,
       generated,
       menu: null,
       menuNaturalHeight: 0,

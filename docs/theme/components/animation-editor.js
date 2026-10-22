@@ -53,7 +53,7 @@ export function syncAnimationCardOrder(root, orderedIds = [], { changedId = '' }
     focusRestored: focusDisplaced && list.ownerDocument.activeElement === activeElement };
 }
 
-export function createAnimationEditorController({ root, eventRouter, reveal, getTypes = () => [], getDraftBeforeId = () => '', selectType, enhanceSelect, onItemsChanged = () => {}, onError } = {}) {
+export function createAnimationEditorController({ root, eventRouter, reveal, getTypes = () => [], getTypeLabel = () => 'Type', getDraftBeforeId = () => '', selectType, enhanceSelect, onItemsChanged = () => {}, onError } = {}) {
   let cardIds = null;
   let highlighted = null;
   let nextDraftId = 0;
@@ -98,7 +98,9 @@ export function createAnimationEditorController({ root, eventRouter, reveal, get
       if (before) list.insertBefore(card, before);
       else if (card.parentElement !== list) list.append(card);
       const select = card.querySelector('[data-animation-draft-type]');
-      const options = animationTypeOptionsMarkup(getTypes(), { placeholder: true });
+      const typeLabel = getTypeLabel();
+      card.querySelector('[data-animation-draft-type-label]').textContent = typeLabel;
+      const options = animationTypeOptionsMarkup(getTypes(), { placeholder: `Select ${typeLabel.toLowerCase()}` });
       if (draftOptions.get(select) !== options) {
         select.innerHTML = options;
         draftOptions.set(select, options);
@@ -137,7 +139,7 @@ export function createAnimationEditorController({ root, eventRouter, reveal, get
     const template = root.ownerDocument.createElement('template');
     template.innerHTML = animationCardMarkup({ id, summary: preset?.label || '', attributes: { 'data-animation-draft': id },
       removeAttributes: { 'data-animation-draft-remove': id },
-      contentMarkup: `<label>Type<select data-animation-draft-type="${id}">${animationTypeOptionsMarkup(getTypes(), { placeholder: true })}</select></label>` });
+      contentMarkup: `<label><span data-animation-draft-type-label>${escapeHtml(getTypeLabel())}</span><select data-animation-draft-type="${id}">${animationTypeOptionsMarkup(getTypes(), { placeholder: `Select ${getTypeLabel().toLowerCase()}` })}</select></label>` });
     drafts.set(id, template.content.firstElementChild);
     if (preset) presetDrafts.add(id);
     renderDrafts();
