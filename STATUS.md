@@ -1,28 +1,17 @@
 # Bits and Bolts Themes: Status
 
-2026-10-22: local checkpoint authorized with Studio/workspace. Studio's quiet
-Preview is owner-accepted; no additional shared-UI/publication verdict is inferred.
-The next chat loads Studio context only and waits for owner direction.
+Cluna's owner-accepted mounted-window fit correction is canonical. Initial fit
+retains hidden single-item measurement; later content/font refits preserve the
+visible shell, full content layout and focus. Source/generated/specimen outputs
+remain paired. Studio consumes this owner without a local styling override.
+Evidence/qualified acceptance:
+../appscreen-studio/docs/CLUNA_ANIMATION_CONTROLS_CORRECTION_PLAN.md.
 
-Shared animation-editor now supports a caller-owned first-field label for
-Cluna's Mode-first draft. Source/generated outputs match; generation passes with
-the existing token-collision warning. Cluna owner visual review is pending;
-controlling evidence:../appscreen-studio/docs/CLUNA_ANIMATION_PLAYGROUND_PLAN.md.
-Preserve default Type-first Scene consumers. No publication is authorized.
+Preserve canonical Select reservation, animation editor/order/attention, shared
+fonts/icons/roles, background recipes and asset provenance. No unrequested
+sibling redesign or deferred task resumes. Existing39 token-collision warning
+remains a generation qualification, not new optimization scope.
 
-Preserve the owner-accepted shared Select reservation contract for embedded
-scrolling panels and floating windows. Exact evidence/acceptance boundary:
-../appscreen-studio/docs/CLUNA_ANIMATION_PLAYGROUND_PLAN.md. Separate real-app
-browser acceptance and publication remain unclaimed; no further Themes work is scheduled.
-
-Cluna owner accepts the published Icons, Patterns and Textures export/output.
-The nine immutable material tiles and category-aware shared Background editor
-are included in the accepted bounded Studio slice. Source/generated outputs
-remain paired; existing token-collision and unrelated qualifications preserve.
-No other Themes UI change or acceptance work is scheduled. Studio owns the
-checkpoint and remaining gates in docs/CLUNA_LOGIN_SETTLE_DIAGNOSIS_PLAN.md,
-Accepted checkpoint and pending work, plus its texture plan/journal.
-
-Owner authorizes the local Themes checkpoint with Studio/workspace bagging.
-No push or new Themes publication. Marketing/Reel2 returns to owner-directed
-priority one; no queued work resumes. Preserve accepted recipes and asset provenance.
+Owner authorizes a local checkpoint only. No release or push. Next chat loads
+Studio context only and waits for owner direction. Reel2 is reported published;
+marketing/next creative remains Studio-owned and is not a Themes task.

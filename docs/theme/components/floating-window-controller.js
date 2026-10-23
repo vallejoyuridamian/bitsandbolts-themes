@@ -184,10 +184,8 @@ export function createFloatingWindowController({
     Promise.resolve(fontsReady).then(() => {
       requestFrame(() => {
         if (record.node.hidden || record.body.firstElementChild !== content) return;
-        record.node.dataset.floatingWindowMeasuring = 'true';
         fitRenderedWindow(record);
         positionRenderedWindow(record, { recenter: !record.userPositioned });
-        delete record.node.dataset.floatingWindowMeasuring;
         record.overflow?.updateSoon?.();
       });
     }).catch(() => {});
@@ -608,19 +606,16 @@ export function createFloatingWindowController({
   function fitContent(id, { resetHeight = false } = {}) {
     const record = records.get(String(id || ''));
     if (!record || record.node.hidden) return false;
-    record.node.dataset.floatingWindowMeasuring = 'true';
-    try {
-      if (resetHeight && record.node.dataset.floatingWindowSize === 'content') {
-        record.node.style.height = '';
-      }
-      fitRenderedWindow(record);
-      const geometry = measuredGeometry(record);
-      const viewport = viewportSize();
-      record.node.style.left = `${Math.round(clamp(geometry.left, VIEWPORT_MARGIN, viewport.width - geometry.width - VIEWPORT_MARGIN))}px`;
-      record.node.style.top = `${Math.round(clamp(geometry.top, VIEWPORT_MARGIN, viewport.height - geometry.height - VIEWPORT_MARGIN))}px`;
-    } finally {
-      delete record.node.dataset.floatingWindowMeasuring;
+    // Only initial presentation measures a hidden single item. Mounted refits
+    // retain focus, hit testing and the complete content scroll range.
+    if (resetHeight && record.node.dataset.floatingWindowSize === 'content') {
+      record.node.style.height = '';
     }
+    fitRenderedWindow(record);
+    const geometry = measuredGeometry(record);
+    const viewport = viewportSize();
+    record.node.style.left = `${Math.round(clamp(geometry.left, VIEWPORT_MARGIN, viewport.width - geometry.width - VIEWPORT_MARGIN))}px`;
+    record.node.style.top = `${Math.round(clamp(geometry.top, VIEWPORT_MARGIN, viewport.height - geometry.height - VIEWPORT_MARGIN))}px`;
     record.overflow?.updateSoon?.();
     return true;
   }
