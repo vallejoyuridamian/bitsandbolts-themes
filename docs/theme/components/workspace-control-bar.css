@@ -25,6 +25,26 @@
   max-width: min(220px, 32%);
 }
 
+/* The admitted maximum value sizes the box; changing digits cannot resize it. */
+.bb-workspace-control-bar__numeric-readout {
+  position: relative;
+  display: inline-block;
+  max-width: none;
+  overflow: visible;
+  font-variant-numeric: tabular-nums;
+}
+
+.bb-workspace-control-bar__readout-sizing {
+  visibility: hidden;
+  white-space: pre;
+}
+
+.bb-workspace-control-bar__readout-value {
+  position: absolute;
+  inset: 0;
+  white-space: pre;
+}
+
 .control-bar-detail {
   flex: 1 1 auto;
   min-width: 0;

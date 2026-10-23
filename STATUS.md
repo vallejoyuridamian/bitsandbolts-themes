@@ -1,5 +1,12 @@
 # Bits and Bolts Themes: Status
 
+Preserve Cluna's Firefox-accepted numeric readout: full-duration sizing, tabular
+digits and separator independent of conditional action groups. No acceptance
+gate remains in this toolbar correction. Canonical toolbar and title
+presentation stay Themes-owned; Studio supplies domain data and routed commands.
+Preserve generated parity and the existing39 token warning. Control:
+../appscreen-studio/docs/CLUNA_TOOLBAR_STATUS_REMOVAL_PLAN.md.
+
 Preserve the canonical generic centered-action alignment capability and
 source/generated parity. No service implementation, credentials,
 private hosting configuration or operational plans belong in this public repo.

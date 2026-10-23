@@ -1391,6 +1391,23 @@ export function themeDetailTitlePresentation(theme = {}) {
   });
 }
 
+function themeDetailTitleProperties(title) {
+  return {
+    '--bb-theme-detail-title-font-family': title?.fontFamily,
+    '--bb-theme-detail-title-font-style': title?.fontStyle,
+    '--bb-theme-detail-title-font-weight': title?.fontWeight,
+    '--bb-theme-detail-title-text-decoration': title?.textDecoration
+  };
+}
+
+export function syncThemeDetailTitlePresentation(element, title) {
+  if (!element?.style) return;
+  for (const [property, value] of Object.entries(themeDetailTitleProperties(title))) {
+    if (title) element.style.setProperty(property, value);
+    else element.style.removeProperty(property);
+  }
+}
+
 export function themeGalleryControlsMarkup(theme, mode = 'dark') {
   const title = themeDetailTitlePresentation(theme);
   if (!title) return '';
@@ -1407,7 +1424,7 @@ export function themeGalleryControlsMarkup(theme, mode = 'dark') {
       </div>
       <strong
         class="bb-workspace-control-bar__status"
-        style="--bb-theme-detail-title-font-family: ${escapeHtml(title.fontFamily)}; --bb-theme-detail-title-font-style: ${escapeHtml(title.fontStyle)}; --bb-theme-detail-title-font-weight: ${escapeHtml(title.fontWeight)}; --bb-theme-detail-title-text-decoration: ${escapeHtml(title.textDecoration)}"
+        style="${Object.entries(themeDetailTitleProperties(title)).map(([property, value]) => `${property}: ${escapeHtml(value)}`).join('; ')}"
       >${escapeHtml(title.label)}</strong>
       <div class="bb-workspace-control-bar__actions" aria-label="Theme detail controls">
         ${semanticActionButtonMarkup({
