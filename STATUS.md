@@ -1,5 +1,9 @@
 # Bits and Bolts Themes: Status
 
+Preserve the canonical generic centered-action alignment capability and
+source/generated parity. No service implementation, credentials,
+private hosting configuration or operational plans belong in this public repo.
+
 Cluna's owner-accepted mounted-window fit correction is canonical. Initial fit
 retains hidden single-item measurement; later content/font refits preserve the
 visible shell, full content layout and focus. Source/generated/specimen outputs
@@ -12,6 +16,5 @@ fonts/icons/roles, background recipes and asset provenance. No unrequested
 sibling redesign or deferred task resumes. Existing39 token-collision warning
 remains a generation qualification, not new optimization scope.
 
-Owner authorizes a local checkpoint only. No release or push. Next chat loads
-Studio context only and waits for owner direction. Reel2 is reported published;
+No Themes publication or push. Reel2 is reported published;
 marketing/next creative remains Studio-owned and is not a Themes task.

@@ -1,6 +1,6 @@
 {
   "name": "bitsandbolts-themes",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Cross-platform design token themes for Bits and Bolts apps — generates CSS vars, Kotlin Color Schemes, and React Native constants from a single source of truth.",
   "type": "module",
   "scripts": {

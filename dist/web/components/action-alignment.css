@@ -1,0 +1,5 @@
+/* Composable alignment for existing flex/grid action groups. Preserve their
+   layout, spacing, typography and control recipes. */
+.bb-actions--centered {
+  justify-content: center;
+}
