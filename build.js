@@ -15,6 +15,7 @@
  * Run from repo root. Requires Node 18+.
  */
 
+import { assertRouterAgnosticComponent } from './scripts/component-boundary.mjs';
 import StyleDictionary from 'style-dictionary';
 import * as fontAwesomeSolidIcons from '@fortawesome/free-solid-svg-icons';
 import * as fontAwesomeRegularIcons from '@fortawesome/free-regular-svg-icons';
@@ -31,6 +32,10 @@ import {
   statSync,
 } from 'fs';
 import { join } from 'path';
+
+for (const file of readdirSync('components').filter(file => file.endsWith('.js'))) {
+  assertRouterAgnosticComponent(readFileSync(join('components', file), 'utf8'), `components/${file}`);
+}
 
 const THEMES = ['cloud', 'bitsandbolts', 'brutus', 'forest', 'winter', 'coffee', 'bubblegum', 'inferno', 'sober'];
 const MODES  = ['light', 'dark'];

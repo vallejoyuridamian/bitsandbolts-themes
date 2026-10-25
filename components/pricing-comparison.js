@@ -1,6 +1,6 @@
+import { createComponentEvents } from './component-events.js';
 import { buttonMarkup } from './button.js';
 import { semanticIconMarkup } from './semantic-icons.js';
-import { createInteractionRouter } from './page-event-scope.js';
 const controllers = new WeakMap();
 
 function escapeHtml(value = '') {
@@ -131,7 +131,7 @@ export function pricingComparisonMarkup(input) {
   </div>`;
 }
 
-export function createPricingComparisonController({ root, onSelect = () => {} }) {
+export function createPricingComparisonController({ root, onSelect = () => {}, bindEvent = null }) {
   if (controllers.has(root)) {
     const existing = controllers.get(root); existing.subscribe(onSelect); return existing;
   }
@@ -160,7 +160,7 @@ export function createPricingComparisonController({ root, onSelect = () => {} })
     }
     for (const listener of listeners) listener({ billing, durationMs: Math.round((performance.now() - startedAt) * 10) / 10 });
   };
-  const events = createInteractionRouter({ label: 'pricing-comparison' });
+  const events = createComponentEvents(bindEvent, { label: 'pricing-comparison' });
   events.bind(root, 'click', event => {
     const button = event.target.closest('[data-pricing-billing]');
     if (button && root.contains(button)) selectBilling(button.dataset.pricingBilling);

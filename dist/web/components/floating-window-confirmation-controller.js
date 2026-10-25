@@ -1,7 +1,8 @@
+import { createComponentEvents } from './component-events.js';
 import { floatingWindowConfirmationMarkup } from './floating-window.js';
 
 export function createFloatingWindowConfirmationController({
-  createInteractionRouter,
+  bindEvent = null,
   floatingWindowController,
   logInteraction = null
 } = {}) {
@@ -105,7 +106,7 @@ export function createFloatingWindowConfirmationController({
         confirmButton = body.querySelector('[data-bb-confirm-submit]');
         if (!form || (parentWindow && !backButton) || (showCancel && !cancelButton) || !confirmButton || (secondaryLabel && !secondaryButton)) return;
 
-        router = createInteractionRouter({
+        router = createComponentEvents(bindEvent, {
           label: `floating-window-confirmation:${id}`,
           onError: (error, meta = {}) => {
             log('floating-window-confirmation-router-error', {

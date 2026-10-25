@@ -1,5 +1,8 @@
 # Bits and Bolts Themes: Status
 
+Preserve Cluna-owner-accepted router-agnostic bindings and the build boundary guard.
+Preserve UI;consumers own routing/focus. Control:../appscreen-studio/docs/CLUNA_ROUTER_AGNOSTIC_THEMES_MIGRATION_PLAN.md.
+
 Preserve Cluna's Firefox-accepted numeric readout: full-duration sizing, tabular
 digits and separator independent of conditional action groups. No acceptance
 gate remains in this toolbar correction. Canonical toolbar and title

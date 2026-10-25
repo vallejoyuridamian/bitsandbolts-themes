@@ -1,3 +1,4 @@
+import { createComponentEvents } from './component-events.js';
 import {
   accountFunnelAccessMarkup,
   accountFunnelStatusMarkup
@@ -30,7 +31,7 @@ function persistenceChoice(form) {
 }
 
 export function createAccountFunnelController({
-  createInteractionRouter,
+  bindEvent = null,
   requestEvent = null,
   windowId: WINDOW_ID = 'account-access',
   accountLabel = 'Account',
@@ -52,7 +53,7 @@ export function createAccountFunnelController({
   let emailDraft = '';
   const retiredForms = new WeakSet();
   const liveForm = form => form?.isConnected !== false && !retiredForms.has(form);
-  const requestRouter = createInteractionRouter({ label: 'account-funnel-request' });
+  const requestRouter = createComponentEvents(bindEvent, { label: 'account-funnel-request' });
 
   function bindForm(body, {
     onBack = null,
@@ -64,8 +65,8 @@ export function createAccountFunnelController({
   } = {}) {
     const form = body.querySelector?.('[data-bb-account-funnel]');
     if (!form) return null;
-    const router = createInteractionRouter({ label: `account-funnel:${form.dataset.accountFunnelStep || 'step'}` });
-    bindAccountPasswordVisibility(router, form);
+    const router = createComponentEvents(bindEvent, { label: `account-funnel:${form.dataset.accountFunnelStep || 'step'}` });
+    bindAccountPasswordVisibility(router.bind, form);
     const email = form.querySelector?.('input[name="email"]');
     if (email && emailDraft) email.value = emailDraft;
     if (email) {

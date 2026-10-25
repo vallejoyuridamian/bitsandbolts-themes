@@ -1,6 +1,6 @@
+import { createComponentEvents } from './component-events.js';
 import { semanticActionButtonMarkup } from './button.js';
 import { semanticIconMarkup } from './semantic-icons.js';
-import { createInteractionRouter } from './page-event-scope.js';
 
 function escapeHtml(value) {
   return String(value ?? '')
@@ -129,13 +129,15 @@ export function resolveToolbarPopoverPosition({
 let popoverSequence = 0;
 
 export function createToolbarPopoverController({
-  eventRouter,
-  contentRouterFactory = createInteractionRouter,
+  bindEvent = null,
+  onPresent = null,
+  closeOnOutsidePointer = true,
+  closeOnEscape = true,
   rootDocument = globalThis.document,
   shouldContinuePointerTarget = () => false,
   shouldRetainPointerTarget = () => false
 } = {}) {
-  if (!eventRouter?.bind || !eventRouter?.destroy) throw new TypeError('Toolbar popovers require an event router.');
+  const events = createComponentEvents(bindEvent);
   const view = rootDocument?.defaultView ?? globalThis.window;
   let active = null;
 
@@ -161,8 +163,8 @@ export function createToolbarPopoverController({
     if (!active) return false;
     const record = active;
     active = null;
-    record.focus?.release(reason);
-    record.contentRouter.destroy();
+    record.presentationCleanup?.(reason);
+    record.contentEvents.destroy();
     record.anchor?.setAttribute?.('aria-expanded', 'false');
     record.anchor?.removeAttribute?.('aria-controls');
     record.panel?.remove?.();
@@ -183,24 +185,18 @@ export function createToolbarPopoverController({
     panel.id = `bbToolbarPopover${popoverSequence += 1}`;
     applyToolbarPopoverRecipe({ ariaLabel, node: panel });
     rootDocument.body.appendChild(panel);
-    const contentRouter = contentRouterFactory({ label: 'toolbar-popover-content' });
-    active = { anchor, onClose, panel, contentRouter };
+    const contentEvents = createComponentEvents(bindEvent);
+    active = { anchor, onClose, panel, contentEvents };
     anchor.setAttribute?.('aria-controls', panel.id);
     anchor.setAttribute?.('aria-expanded', 'true');
     try {
-      renderContent?.(panel, { eventRouter: contentRouter });
+      renderContent?.(panel, { bindEvent: contentEvents.bind });
     } catch (error) {
       close('content-render-failed');
       throw error;
     }
-    active.focus = eventRouter.focus?.({ id: panel.id, root: panel,
-      dismiss: (reason) => close(reason),
-      outsidePointerDisposition: (event) => anchor.contains?.(event.target)
-        || shouldRetainPointerTarget?.(event.target) === true
-        ? 'continue'
-        : shouldContinuePointerTarget?.(event.target) === true
-          ? 'dismiss-and-continue'
-          : 'dismiss-and-consume' });
+    active.presentationCleanup = onPresent?.({ id: panel.id, node: panel, anchor,
+      close: reason => close(reason) }) ?? null;
     return position();
   }
 
@@ -223,16 +219,16 @@ export function createToolbarPopoverController({
     position();
   }
 
-  if (!eventRouter.focus) {
-    eventRouter.bind(rootDocument, 'pointerdown', handlePointerDown, true);
-    eventRouter.bind(rootDocument, 'keydown', handleKeyDown, true);
+  if (closeOnOutsidePointer) {
+    events.bind(rootDocument, 'pointerdown', handlePointerDown, true);
   }
-  eventRouter.bind(rootDocument, 'scroll', handleViewportChange, true);
-  eventRouter.bind(view, 'resize', handleViewportChange);
+  if (closeOnEscape) events.bind(rootDocument, 'keydown', handleKeyDown, true);
+  events.bind(rootDocument, 'scroll', handleViewportChange, true);
+  events.bind(view, 'resize', handleViewportChange);
 
   function destroy() {
     close('toolbar-popover-controller-destroyed');
-    eventRouter.destroy();
+    events.destroy();
   }
 
   return {

@@ -1,3 +1,4 @@
+import { createComponentEvents } from './component-events.js';
 import {
   FLOATING_WINDOW_CONTENT_CHANGE_EVENT,
   measurePreviewCardGridWidth
@@ -34,8 +35,11 @@ function stylePixels(style = null, property = '') {
 
 export function createFloatingWindowController({
   applyRecipe,
-  createInteractionRouter,
-  retainInteractionFocus = () => {},
+  bindEvent = null,
+  beforeContentReplace = () => {},
+  onPresent = null,
+  closeOnOutsidePointer = true,
+  closeOnEscape = true,
   cancelFrame = (frameId) => globalThis.cancelAnimationFrame?.(frameId),
   createScrollbar = null,
   logInteraction = null,
@@ -373,7 +377,7 @@ export function createFloatingWindowController({
       presentation: 'workspace',
       trackEndInset: 16
     }) ?? null;
-    const router = createInteractionRouter({
+    const router = createComponentEvents(bindEvent, {
       label: `floating-window:${id}`,
       onError: reportError
     });
@@ -391,7 +395,6 @@ export function createFloatingWindowController({
       node,
       onClose: null,
       onRequestClose: null,
-      retainOnOutsidePointer: null,
       overflow,
       router,
       userPositioned: false
@@ -403,6 +406,14 @@ export function createFloatingWindowController({
       });
     });
 
+    if (closeOnOutsidePointer) router.bind(rootDocument, 'pointerdown', event => {
+      if (!node.hidden && !node.contains(event.target)) close(id, { reason: 'outside-pointer' });
+    }, true);
+    if (closeOnEscape) router.bind(rootDocument, 'keydown', event => {
+      if (!node.hidden && event.key === 'Escape' && activeWindowId === id) {
+        event.preventDefault?.(); close(id, { reason: 'escape' });
+      }
+    }, true);
     router.bind(closeButton, 'click', (event) => {
       event.preventDefault?.();
       close(id, { reason: 'close-button' });
@@ -476,7 +487,6 @@ export function createFloatingWindowController({
   function open({
     ariaLabel = 'Tools',
     context = {},
-    retainOnOutsidePointer = null,
     id = '',
     initialPlacement = 'center',
     onClose = null,
@@ -507,7 +517,6 @@ export function createFloatingWindowController({
     if (!record) return false;
 
     record.ariaLabel = ariaLabel;
-    record.retainOnOutsidePointer = typeof retainOnOutsidePointer === 'function' ? retainOnOutsidePointer : null;
     record.initialPlacement = initialPlacement === 'top-right' ? 'top-right' : 'center';
     record.onClose = typeof onClose === 'function' ? onClose : null;
     record.onRequestClose = onRequestClose;
@@ -515,7 +524,7 @@ export function createFloatingWindowController({
     record.closeButton.setAttribute('aria-label', `Close ${ariaLabel}`);
     record.closeButton.setAttribute('title', `Close ${ariaLabel}`);
     if (typeof renderContent === 'function') {
-      retainInteractionFocus(record.body);
+      beforeContentReplace(record.body);
       record.body.replaceChildren();
       renderContent(record.body);
     }
@@ -538,7 +547,7 @@ export function createFloatingWindowController({
     record.node.style.zIndex = String(record.zIndex);
     activeWindowId = windowId;
     refitPreferredGridAfterFonts(record);
-    record.focus ??= routerFocus(record);
+    record.presentationCleanup ??= onPresent?.({ id: record.id, node: record.node, body: record.body }) ?? null;
     const initialFocus = record.body.querySelector?.('[data-floating-window-initial-focus]');
     if (initialFocus) {
       initialFocus.focus({ preventScroll: true });
@@ -568,8 +577,8 @@ export function createFloatingWindowController({
       record.fitFrameId = null;
       record.fitResetHeight = false;
     }
-    record.focus?.release(reason);
-    record.focus = null;
+    record.presentationCleanup?.(reason);
+    record.presentationCleanup = null;
     if (record.drag) finishDrag(record, null, 'window-closed');
     record.node.hidden = true;
     const onClose = record.onClose;
@@ -642,12 +651,6 @@ export function createFloatingWindowController({
     return closedCount;
   }
 
-  function routerFocus(record) {
-    return record.router.focus({ id: `floating-window:${record.id}`, root: record.node, log,
-      dismiss: (reason) => close(record.id, { reason }),
-      outsidePointerDisposition: (event) => record.retainOnOutsidePointer?.(event) === true
-        ? 'continue' : 'dismiss-and-consume' });
-  }
 
   function isOpen(id) {
     const record = records.get(String(id || ''));

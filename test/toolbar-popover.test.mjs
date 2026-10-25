@@ -35,7 +35,7 @@ test('popover content hydrates after attachment and render failure closes its le
     createElement: () => { panel = fakeNode(); panel.isConnected = false; return panel; },
     defaultView: { innerWidth: 320, innerHeight: 240 }
   };
-  const controller = createToolbarPopoverController({ rootDocument, eventRouter: { bind() {}, destroy() {} } });
+  const controller = createToolbarPopoverController({ rootDocument, bindEvent: () => () => {} });
   assert.throws(() => controller.open({ anchor,
     onClose: ({ reason }) => reasons.push(reason),
     renderContent(node) {
@@ -202,9 +202,9 @@ test('toolbar popover routes its lifecycle events and retains owned interactions
   const anchor = fakeNode();
   const closeReasons = [];
   const controller = createToolbarPopoverController({
-    eventRouter: {
-      bind(target, type, listener, options) { routes.push([target, type, options]); listeners.set(type, listener); },
-      destroy() { listeners.clear(); }
+    bindEvent(target, type, listener, options) {
+      routes.push([target, type, options]); listeners.set(type, listener);
+      return () => { if (listeners.get(type) === listener) listeners.delete(type); };
     },
     rootDocument,
     shouldRetainPointerTarget: (target) => target === retainedTarget
@@ -233,11 +233,12 @@ test('toolbar popover routes its lifecycle events and retains owned interactions
   assert.equal(listeners.size, 0);
 });
 
-test('toolbar popover refuses standalone event ownership', () => {
-  assert.throws(() => createToolbarPopoverController({}), /require an event router/);
+test('toolbar popover supports standalone binding without an event manager', () => {
+  const controller = createToolbarPopoverController({});
+  assert.equal(controller.isOpenFor({}), false); controller.destroy();
 });
 
-test('toolbar popover declares ordered outside-pointer routing through its event router', () => {
+test('toolbar popover reports presentation facts without imposing app focus policy', () => {
   const retainedTarget = {};
   const continuedTarget = {};
   const anchorTarget = {};
@@ -255,38 +256,35 @@ test('toolbar popover declares ordered outside-pointer routing through its event
     defaultView: { innerHeight: 240, innerWidth: 320 }
   };
   const controller = createToolbarPopoverController({
-    eventRouter: {
-      bind() {},
-      destroy() {},
-      focus(options) {
-        focusOptions = options;
-        return { release() { releases += 1; } };
-      }
-    },
+    onPresent(options) { focusOptions = options; return () => { releases += 1; }; },
     rootDocument,
     shouldContinuePointerTarget: (target) => target === continuedTarget,
     shouldRetainPointerTarget: (target) => target === retainedTarget
   });
   controller.open({ anchor });
-  assert.equal(focusOptions.outsidePointerDisposition({ target: anchorTarget }), 'continue');
-  assert.equal(focusOptions.outsidePointerDisposition({ target: retainedTarget }), 'continue');
-  assert.equal(focusOptions.outsidePointerDisposition({ target: continuedTarget }), 'dismiss-and-continue');
-  assert.equal(focusOptions.outsidePointerDisposition({ target: {} }), 'dismiss-and-consume');
+  assert.equal(focusOptions.anchor, anchor);
+  assert.equal(typeof focusOptions.close, 'function');
+  assert.ok(focusOptions.node);
+  assert.equal('outsidePointerDisposition' in focusOptions, false, 'app routing policy is absent');
   controller.destroy();
   assert.equal(releases, 1);
 });
 
 
-test('popover replacement, close and failed hydration dispose their content interaction owner',()=>{
-  const routers=[];const anchor=fakeNode();
-  const rootDocument={body:{appendChild(node){node.isConnected=true;}},createElement:()=>fakeNode(),
-    defaultView:{innerWidth:320,innerHeight:240}};
-  const controller=createToolbarPopoverController({rootDocument,eventRouter:{bind(){},destroy(){}},
-    contentRouterFactory(){const r={destroyed:false,bind(){},destroy(){this.destroyed=true;}};routers.push(r);return r;}});
-  const renderContent=(_panel,{eventRouter})=>assert.equal(eventRouter,routers.at(-1));
-  controller.open({anchor,renderContent});controller.open({anchor,renderContent});
-  assert.equal(routers[0].destroyed,true);assert.equal(routers[1].destroyed,false);
-  controller.close('accepted');assert.equal(routers[1].destroyed,true);
-  assert.throws(()=>controller.open({anchor,renderContent(){throw new Error('fixture');}}),/fixture/);
-  assert.equal(routers[2].destroyed,true);controller.destroy();
+test('popover replacement, close and failed hydration unbind their content without a router', () => {
+  const released = [], bindings = [];
+  const anchor = fakeNode();
+  const rootDocument = { body: { appendChild(node) { node.isConnected = true; } },
+    createElement: () => fakeNode(), defaultView: { innerWidth: 320, innerHeight: 240 } };
+  const controller = createToolbarPopoverController({ rootDocument,
+    bindEvent: (...args) => { const index = bindings.push(args) - 1; return () => released.push(index); } });
+  const offset = bindings.length;
+  const renderContent = (panel, { bindEvent }) => bindEvent(panel, 'click', () => {});
+  controller.open({ anchor, renderContent }); controller.open({ anchor, renderContent });
+  assert.deepEqual(released, [offset]);
+  controller.close('accepted'); assert.deepEqual(released, [offset, offset + 1]);
+  assert.throws(() => controller.open({ anchor, renderContent(panel, { bindEvent }) {
+    bindEvent(panel, 'click', () => {}); throw new Error('fixture');
+  } }), /fixture/);
+  assert.deepEqual(released, [offset, offset + 1, offset + 2]); controller.destroy();
 });

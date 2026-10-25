@@ -1,3 +1,4 @@
+import { createComponentEvents } from './component-events.js';
 import { themeGalleryLoadingMarkup } from './theme-gallery-loading.js';
 import { workspaceControlBarContentMarkup } from './workspace-control-bar.js';
 import { contentCardsMarkup } from './content-card.js';
@@ -1614,7 +1615,7 @@ export function applyThemeGalleryVariables(host, catalog, selection = {}) {
 export function createThemeGalleryController({
   catalogUrl = '/theme/catalog.json',
   catalog: admittedCatalog = null,
-  eventRouter = null,
+  bindEvent = null,
   colorDetailsMarkup,
   controlsHost,
   fetchImpl = (...args) => globalThis.fetch(...args),
@@ -1624,6 +1625,7 @@ export function createThemeGalleryController({
   onUserThemeOpen,
   onViewChange
 } = {}) {
+  const events = createComponentEvents(bindEvent);
   let catalogPromise = null;
   let renderedCatalog = null;
   let userThemeItems = Object.freeze([]);
@@ -1777,13 +1779,11 @@ export function createThemeGalleryController({
 
   function installNavigationListener() {
     if (!navigationListenerInstalled && host?.addEventListener) {
-      if (eventRouter) eventRouter.bind(host, 'click', handleNavigationClick);
-      else host.addEventListener('click', handleNavigationClick);
+      events.bind(host, 'click', handleNavigationClick);
       navigationListenerInstalled = true;
     }
     if (!controlsListenerInstalled && controlsHost?.addEventListener) {
-      if (eventRouter) eventRouter.bind(controlsHost, 'click', handleNavigationClick);
-      else controlsHost.addEventListener('click', handleNavigationClick);
+      events.bind(controlsHost, 'click', handleNavigationClick);
       controlsListenerInstalled = true;
     }
   }
@@ -1845,5 +1845,5 @@ export function createThemeGalleryController({
     return userThemeItems.length;
   }
 
-  return Object.freeze({ render, setUserThemes, showGallery, toggleMode });
+  return Object.freeze({ render, setUserThemes, showGallery, toggleMode, destroy: () => events.destroy() });
 }

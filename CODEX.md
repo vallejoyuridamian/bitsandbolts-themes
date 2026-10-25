@@ -4,7 +4,10 @@
 
 This repository is the public, canonical UI source of truth for every Bits and
 Bolts product. It owns theme data, fonts, icons, brand assets, reusable visual
-components, and generators for supported platforms.
+components, and generators for supported platforms. UI_STRATEGY.md owns the
+router-agnostic, language-independent boundary: consumers own event routing and
+app mechanics; components accept binding callbacks or use standalone listeners.
+Never import/construct an app router or require its interface in Themes.
 
 ## Authority
 
@@ -82,14 +85,14 @@ components, and generators for supported platforms.
   MediaPreviewElement chooses the preview wrapper once from actionability for
   every asset kind; subtype branches supply content only. Checker-backed
   previews must not inherit generic control background or whole-element effects.
-- App toolbar popovers require the app's event router for every lifecycle event;
-  the controller owns its disposal. Separate site-page controls use owned DOM
-  events without importing an app router, per UI_STRATEGY.md's document boundary.
+- Components own local binding disposal through generic bind/unbind callbacks.
+  App adapters wire every event through their canonical input owner and supply
+  app focus policy. Standalone pages may use DOM listeners. No router dependency.
 - Select integration requires select.js plus interface-primitives.css (trigger/menu appearance) and selection-controls.css (.bb-select__menu fixed positioning/stacking/overflow). The controller portals the menu to body, so wrapper styling alone is incomplete. Verify these canonical dependencies through the actual consumer entry and delivery owner before review, including detached menus and the last field of a scrolling container. Menu-space reservation belongs to the shared Select owner for every scrolling consumer; only floating-shell growth is specialized. Missing demand sizing is a severe acceptance blocker, including embedded lists. Verify reservation, trigger visibility and restoration after close. UI_STRATEGY.md owns the mandatory complete-subtree integration gate; never copy positioning into consumer CSS.
 - Mounted window content/font refits retain the visible shell and full scroll range; hidden single-item measurement is initial-presentation-only.
 - The shared window content body owns outer padding and spacing for fields, labels,
   controls, and cards. Subtype editors inherit it; never recreate or cancel that inset.
-- Animation-editor owns empty drafts, close/retarget cleanup, stable-ID focus/scroll with a 1-second pulse on Add/selected-card opening, and in-place card order with focus preservation. Typed shortcut drafts share this owner with injected completion/cancellation and domain edge placement; pending creation never owns model mutation. Animation-order owns chronology and indexed labels. Consumers project domain edge priorities/label cohorts and supply types/creation, Select enhancement, scroll owner and event router; no subtype-local attention policy. Items-change integration must run the shared editor sync after its fit lifecycle, including Add drafts; logging alone never satisfies that callback. Verify focus, reveal and the actual attention class through the consumer notification before review.
+- Animation-editor owns empty drafts, close/retarget cleanup, stable-ID focus/scroll with a 1-second pulse on Add/selected-card opening, and in-place card order with focus preservation. Typed shortcut drafts share this owner with injected completion/cancellation and domain edge placement; pending creation never owns model mutation. Animation-order owns chronology and indexed labels. Consumers project domain edge priorities/label cohorts and supply types/creation, Select enhancement, scroll owner and event binding callbacks; no subtype-local attention policy. Items-change integration must run the shared editor sync after its fit lifecycle, including Add drafts; logging alone never satisfies that callback. Verify focus, reveal and the actual attention class through the consumer notification before review.
 - Before adding a component or presentation recipe, search Themes and accepted
   consumers for the same visual role. When that role exists only inside a
   legacy page-specific recipe, extract one abstract Themes recipe and migrate

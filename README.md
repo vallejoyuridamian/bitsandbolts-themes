@@ -4,6 +4,19 @@ Cross-platform design token system for Bits and Bolts apps. One source of truth 
 
 **[Live preview →](https://vallejoyuridamian.github.io/bitsandbolts-themes/)**
 
+## Purpose and boundary
+
+Themes provides portable visual/component contracts across languages and platforms.
+Hover/press feedback, icons, typography, handles and component-local visual states
+belong here. The consuming app owns event admission, routing, focus policy,
+editing, selection and domain commands. Themes never requires an app router.
+
+The optional web implementations work with ordinary DOM listeners or a supplied
+`bindEvent(target, type, handler, options)` callback returning an unbind function.
+Presentation notifications let a host attach its own focus policy. These web
+adapters do not make JavaScript or any framework part of the portable contract.
+`pnpm build` rejects app-router dependencies before generating shared assets.
+
 ## Showcase
 
 ```bash

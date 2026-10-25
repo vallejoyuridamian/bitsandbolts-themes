@@ -1,3 +1,4 @@
+import { createComponentEvents } from './component-events.js';
 import {
   DEFAULT_SEMANTIC_ICON_FAMILY,
   semanticIconMarkup
@@ -317,7 +318,9 @@ export function selectHasFocus(select, rootDocument = globalThis.document) {
 
 export function installSelectController(root = globalThis.document, {
   enhanceNativeSelects = false,
-  eventRouter = null,
+  bindEvent = null,
+  onMenuPresent = null,
+  closeOnOutsidePointer = true,
   logInteraction = null
 } = {}) {
   if (!root?.addEventListener) return null;
@@ -342,28 +345,8 @@ export function installSelectController(root = globalThis.document, {
     });
   }
 
-  function listen(target, eventName, handler, options) {
-    if (!target?.addEventListener) return;
-    if (eventRouter?.bind) {
-      eventRouter.bind(target, eventName, handler, options);
-      return;
-    }
-    const wrapped = (event) => {
-      try {
-        handler(event);
-      } catch (error) {
-        log('custom-select-router-error', {
-          level: 'error',
-          listenerFile: 'bitsandbolts-themes/components/select.js',
-          listenerName: 'installSelectController',
-          routerEventName: eventName,
-          message: String(error?.message || error || 'unknown error')
-        });
-      }
-    };
-    target.addEventListener(eventName, wrapped, options);
-    disposers.push(() => target.removeEventListener(eventName, wrapped, options));
-  }
+  const events = createComponentEvents(bindEvent);
+  const listen = events.bind;
 
   function selectedOption(record) {
     return record.select.options[record.select.selectedIndex] ?? null;
@@ -668,7 +651,7 @@ export function installSelectController(root = globalThis.document, {
     const record = activeRecord;
     if (!record) return false;
     activeRecord = null;
-    record.focus?.release(reason); record.focus = null;
+    record.presentationCleanup?.(reason); record.presentationCleanup = null;
     stopAnchorTracking();
     releaseMenuSpaceReservation(record);
     record.wrapper.classList.remove('is-open');
@@ -716,10 +699,8 @@ export function installSelectController(root = globalThis.document, {
     record.trigger.setAttribute('aria-expanded', 'true');
     const position = positionMenu(record);
     if (!position || activeRecord !== record) return false;
-    record.focus = eventRouter?.focus?.({ id: menu.id, root: menu,
-      contains: (target) => record.wrapper.contains(target),
-      dismiss: (reason) => close(reason),
-      outsidePointerDisposition: () => 'dismiss-and-consume' });
+    record.presentationCleanup = onMenuPresent?.({ id: menu.id, node: menu, trigger: record.trigger,
+      wrapper: record.wrapper, close: reason => close(reason) }) ?? null;
     const enabled = enabledMenuItems(menu);
     const selectedItem = menu.querySelector('[aria-selected="true"]:not(:disabled)');
     const focusTarget = focus === 'last' ? enabled.at(-1) : selectedItem ?? enabled[0];
@@ -924,7 +905,7 @@ export function installSelectController(root = globalThis.document, {
     else open(record, event);
   });
   listen(root, 'pointerdown', (event) => {
-    if (!activeRecord || eventRouter?.focus) return;
+    if (!activeRecord || !closeOnOutsidePointer) return;
     if (activeRecord.wrapper.contains(event.target) || activeRecord.menu?.contains(event.target)) return;
     close('outside-pointerdown', event);
   }, true);
@@ -1010,7 +991,7 @@ export function installSelectController(root = globalThis.document, {
   function destroy() {
     close('destroy');
     rootObserver.disconnect();
-    eventRouter?.destroy?.();
+    events.destroy();
     while (disposers.length) disposers.pop()?.();
     Array.from(records).forEach((record) => {
       const { generated, select, wrapper } = record;

@@ -76,7 +76,6 @@ export const MANAGED_WEB_COMPONENTS = Object.freeze({
         'components/account-funnel-controller.js',
         'components/floating-window-controller.js',
         'components/floating-window-stack-controller.js',
-        'components/page-event-scope.js',
         'components/floating-window-shell.js',
         'components/semantic-icons.js'
       ])

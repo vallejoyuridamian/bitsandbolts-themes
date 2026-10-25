@@ -1,4 +1,6 @@
-export function bindAccountPasswordVisibility(router, form) {
+import { createComponentEvents } from './component-events.js';
+export function bindAccountPasswordVisibility(bindEvent, form) {
+  const router = createComponentEvents(bindEvent);
   form.querySelectorAll?.('[data-account-funnel-password-toggle]').forEach((button) => {
     router.bind(button, 'click', (event) => {
       event.preventDefault?.();
@@ -14,6 +16,7 @@ export function bindAccountPasswordVisibility(router, form) {
       button.setAttribute?.('title', label);
     });
   });
+  return () => router.destroy();
 }
 
 export function showError(form, message = '') {
@@ -70,8 +73,10 @@ export function setPending(form, pending, pendingLabel = 'Continuing') {
   submit.dataset.accountFunnelLabel ||= submit.textContent;
   submit.textContent = pending ? pendingLabel : submit.dataset.accountFunnelLabel;
 }
-export function bindAccountFieldErrors(events, form) {
+export function bindAccountFieldErrors(bindEvent, form) {
+  const events = createComponentEvents(bindEvent);
   form.querySelectorAll?.('[data-account-funnel-field] input').forEach(input => {
     events.bind(input, 'input', () => { clearFieldError(input); showError(form); });
   });
+  return () => events.destroy();
 }

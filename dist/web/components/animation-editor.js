@@ -1,3 +1,4 @@
+import { createComponentEvents } from './component-events.js';
 import { semanticActionButtonMarkup } from './button.js';
 import { colorPaletteSectionMarkup, layoutTextEditorSectionMarkup } from './layout-text-editor.js';
 import {
@@ -53,7 +54,8 @@ export function syncAnimationCardOrder(root, orderedIds = [], { changedId = '' }
     focusRestored: focusDisplaced && list.ownerDocument.activeElement === activeElement };
 }
 
-export function createAnimationEditorController({ root, eventRouter, reveal, getTypes = () => [], getTypeLabel = () => 'Type', getDraftBeforeId = () => '', selectType, enhanceSelect, onItemsChanged = () => {}, onError } = {}) {
+export function createAnimationEditorController({ root, bindEvent, reveal, getTypes = () => [], getTypeLabel = () => 'Type', getDraftBeforeId = () => '', selectType, enhanceSelect, onItemsChanged = () => {}, onError } = {}) {
+  const events = createComponentEvents(bindEvent);
   let cardIds = null;
   let highlighted = null;
   let nextDraftId = 0;
@@ -71,9 +73,9 @@ export function createAnimationEditorController({ root, eventRouter, reveal, get
   const onAnimationFinished = (event) => {
     if (event.target === highlighted && event.animationName === ATTENTION_PULSE_ANIMATION) clearHighlight();
   };
-  eventRouter.bind(root, 'animationend', onAnimationFinished);
-  eventRouter.bind(root, 'animationcancel', onAnimationFinished);
-  eventRouter.bind(root, 'change', (event) => {
+  events.bind(root, 'animationend', onAnimationFinished);
+  events.bind(root, 'animationcancel', onAnimationFinished);
+  events.bind(root, 'change', (event) => {
     changingCardId = event.target?.closest?.('[data-animation-card-id]')?.dataset.animationCardId || '';
   }, { capture: true });
   function focusCard(card) {
@@ -159,7 +161,7 @@ export function createAnimationEditorController({ root, eventRouter, reveal, get
     if (notify) onItemsChanged();
     return true;
   }
-  eventRouter.bind(root, 'click', (event) => {
+  events.bind(root, 'click', (event) => {
     const add = event.target?.closest?.('[data-animation-editor-action="add"]');
     if (add && root.contains(add)) { addDraft(); return; }
     const remove = event.target?.closest?.('[data-animation-draft-remove]');
@@ -203,7 +205,7 @@ export function createAnimationEditorController({ root, eventRouter, reveal, get
       onItemsChanged();
     }
   }
-  eventRouter.bind(root, 'change', (event) => {
+  events.bind(root, 'change', (event) => {
     try {
       const choiceId = event.target?.dataset?.animationDraftChoice;
       const selection = draftSelections.get(choiceId);
@@ -241,7 +243,7 @@ export function createAnimationEditorController({ root, eventRouter, reveal, get
     renderDrafts({ reset: true });
     cardIds = null;
     orderSyncByRoot.delete(root);
-    eventRouter.destroy();
+    events.destroy();
   }
   orderSyncByRoot.set(root, sync);
   return { sync, destroy, focusCard, renderDrafts, addDraft, draftCount: () => drafts.size - Number(drafts.has(selectingDraft)) };
