@@ -126,6 +126,7 @@ export function floatingWindowConfirmationMarkup({
   confirmDanger = false,
   confirmLabel = 'Confirm',
   description = '',
+  announce = false,
   helpLink = null,
   id = 'bbFloatingConfirmation',
   secondaryDanger = false,
@@ -145,7 +146,7 @@ export function floatingWindowConfirmationMarkup({
   const headingMarkup = heading.headingMarkup
     .replace('bb-floating-window-content__head', 'bb-floating-window-content__head bb-floating-confirm__head')
     .replace('bb-floating-window-content__title', 'bb-floating-window-content__title bb-floating-confirm__title');
-  const descriptionMarkup = heading.descriptionMarkup.replace(
+  const descriptionMarkup = heading.descriptionMarkup.replace('<p ', announce ? '<p role="alert" ' : '<p ').replace(
     'bb-floating-window-content__copy',
     'bb-floating-window-content__copy bb-floating-confirm__copy'
   );
