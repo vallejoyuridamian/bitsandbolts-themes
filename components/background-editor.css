@@ -46,6 +46,10 @@
   min-width: 0;
 }
 
+.bb-background-editor__color-row[data-bb-background-color-count="3"] {
+  grid-template-columns: minmax(66px, 1fr) 36px repeat(2, minmax(66px, 1fr));
+}
+
 .bb-background-editor__color-target {
   position: relative;
   display: grid;

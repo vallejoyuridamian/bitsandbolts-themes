@@ -30,8 +30,7 @@ export function backgroundEditorMarkup({
   const modeId = controlId(id, 'mode');
   const orientationId = controlId(id, 'orientation');
   const themeColorsId = controlId(id, 'theme-colors');
-  const primaryId = controlId(id, 'primary');
-  const secondaryId = controlId(id, 'secondary');
+  const colorSlots = [...new Set(['primary', 'secondary', ...animatedEffects.flatMap(effect => Object.keys(effect.colors))])];
   const imageId = controlId(id, 'image');
   const imageSizeId = controlId(id, 'image-size');
   const opacityId = controlId(id, 'opacity');
@@ -81,8 +80,8 @@ export function backgroundEditorMarkup({
       </select>
     </div>
     <div class="bb-toolbar-popover__fields" data-bb-background-editor-when="animated">
-      ${[...new Map(animatedEffects.flatMap((effect) => effect.fields).map((field) => [field.key, field])).values()].map(({ key, label, min, max, step, initial }) => layoutTextEditorRangeFieldMarkup({
-        label, min, max, step, value: initial, unit: '', valueLabel: String(initial),
+      ${[...new Map(animatedEffects.flatMap((effect) => effect.fields).map((field) => [field.key, field])).values()].map(({ key, label, min, max, step, initial, unit = '' }) => layoutTextEditorRangeFieldMarkup({
+        label, min, max, step, value: initial, unit, valueLabel: `${initial}${unit}`,
         attributes: { 'aria-label': label, 'data-bb-background-animation-field': key }
       })).join('')}
     </div>` : ''}
@@ -100,17 +99,12 @@ export function backgroundEditorMarkup({
       </label>
     </div>
     <div class="bb-background-editor__color-row" data-bb-background-editor-when="paint">
-      <label class="bb-background-editor__color-target" for="${primaryId}" data-bb-background-editor-color-target="primary">
-        <span class="bb-background-editor__color-label">Primary</span>
-        <input id="${primaryId}" class="bb-toolbar-popover__color-input bb-cut-corner-swatch" type="color" value="#71d2d7" data-bb-background-editor-role="primary-color">
-      </label>
-      <button class="bb-background-editor__swap bb-workspace-control-button bb-workspace-control-button--icon" type="button" aria-label="Swap background colors" title="Swap background colors" data-bb-background-editor-role="swap" data-bb-background-editor-when="secondary-color">
+      ${colorSlots.map((slot, index) => `${index === 1 ? `<button class="bb-background-editor__swap bb-workspace-control-button bb-workspace-control-button--icon" type="button" aria-label="Swap background colors" title="Swap background colors" data-bb-background-editor-role="swap" data-bb-background-editor-when="secondary-color">
         <span class="bb-workspace-control-icon" aria-hidden="true">${semanticIconMarkup('swap_horiz')}</span>
-      </button>
-      <label class="bb-background-editor__color-target" for="${secondaryId}" data-bb-background-editor-color-target="secondary" data-bb-background-editor-when="secondary-color">
-        <span class="bb-background-editor__color-label">Secondary</span>
-        <input id="${secondaryId}" class="bb-toolbar-popover__color-input bb-cut-corner-swatch" type="color" value="#182122" data-bb-background-editor-role="secondary-color">
-      </label>
+      </button>` : ''}<label class="bb-background-editor__color-target" for="${controlId(id, slot)}" data-bb-background-editor-color-target="${slot}"${index ? ` data-bb-background-editor-when="${slot}-color"` : ''}>
+        <span class="bb-background-editor__color-label">${escapeHtml(slot[0].toUpperCase() + slot.slice(1))}</span>
+        <input id="${controlId(id, slot)}" class="bb-toolbar-popover__color-input bb-cut-corner-swatch" type="color" value="${index ? '#182122' : '#71d2d7'}" data-bb-background-editor-role="${slot}-color">
+      </label>`).join('')}
     </div>
     <div data-bb-background-editor-role="theme-palette" data-bb-background-editor-when="paint"></div>
     <div class="bb-field" data-bb-background-editor-when="opaque">

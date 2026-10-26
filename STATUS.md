@@ -1,5 +1,18 @@
 # Bits and Bolts Themes: Status
 
+Confirmation outcomes replace question/body/actions using existing recipes and
+normal copy. Studio owner acceptance passed;local publication remains separate.
+
+Studio shader/effect sources,generation and delivery are removed from Themes
+under the owner-directed severe ownership correction. Themes retains controls.
+Studio owns Flames runtime acceptance;no shader copies or aliases remain here.
+Bounded Flames-only app acceptance passed;broader GPU/release gates remain separate.
+Evidence:../appscreen-studio/docs/CLUNA_ANIMATION_PLAYGROUND_PLAN.md,Active Flames promotion.
+
+
+Owner-approved Blur runtime is Studio-owned;portable animation controls stay here.
+Studio and private comparison inherit it;consumer app review is owner-accepted.
+
 Preserve Cluna-owner-accepted router-agnostic bindings and the build boundary guard.
 Preserve UI;consumers own routing/focus. Control:../appscreen-studio/docs/CLUNA_ROUTER_AGNOSTIC_THEMES_MIGRATION_PLAN.md.
 
