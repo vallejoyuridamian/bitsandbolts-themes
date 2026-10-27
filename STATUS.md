@@ -1,43 +1,17 @@
 # Bits and Bolts Themes: Status
 
-Confirmation outcomes replace question/body/actions using existing recipes and
-normal copy. Studio owner acceptance passed;local publication remains separate.
+No active implementation. Owner accepts the current Studio checkpoint and directs
+related local commits;no separate Themes publication or push is authorized.
+Closed evidence:../appscreen-studio/docs/history/CHECKPOINT_2026-10-27.md.
 
-Studio shader/effect sources,generation and delivery are removed from Themes
-under the owner-directed severe ownership correction. Themes retains controls.
-Studio owns Flames runtime acceptance;no shader copies or aliases remain here.
-Bounded Flames-only app acceptance passed;broader GPU/release gates remain separate.
-Evidence:../appscreen-studio/docs/CLUNA_ANIMATION_PLAYGROUND_PLAN.md,Active Flames promotion.
-
-
-Owner-approved Blur runtime is Studio-owned;portable animation controls stay here.
-Studio and private comparison inherit it;consumer app review is owner-accepted.
-
-Preserve Cluna-owner-accepted router-agnostic bindings and the build boundary guard.
-Preserve UI;consumers own routing/focus. Control:../appscreen-studio/docs/CLUNA_ROUTER_AGNOSTIC_THEMES_MIGRATION_PLAN.md.
-
-Preserve Cluna's Firefox-accepted numeric readout: full-duration sizing, tabular
-digits and separator independent of conditional action groups. No acceptance
-gate remains in this toolbar correction. Canonical toolbar and title
-presentation stay Themes-owned; Studio supplies domain data and routed commands.
-Preserve generated parity and the existing39 token warning. Control:
-../appscreen-studio/docs/CLUNA_TOOLBAR_STATUS_REMOVAL_PLAN.md.
-
-Preserve the canonical generic centered-action alignment capability and
-source/generated parity. No service implementation, credentials,
-private hosting configuration or operational plans belong in this public repo.
-
-Cluna's owner-accepted mounted-window fit correction is canonical. Initial fit
-retains hidden single-item measurement; later content/font refits preserve the
-visible shell, full content layout and focus. Source/generated/specimen outputs
-remain paired. Studio consumes this owner without a local styling override.
-Evidence/qualified acceptance:
-../appscreen-studio/docs/CLUNA_ANIMATION_CONTROLS_CORRECTION_PLAN.md.
-
-Preserve canonical Select reservation, animation editor/order/attention, shared
-fonts/icons/roles, background recipes and asset provenance. No unrequested
-sibling redesign or deferred task resumes. Existing39 token-collision warning
-remains a generation qualification, not new optimization scope.
-
-No Themes publication or push. Reel2 is reported published;
-marketing/next creative remains Studio-owned and is not a Themes task.
+Preserve canonical window-body links:normal title/button foreground,primary accent
+and subtle glow on hover,inline prose flow and existing separate help links.
+Source,dist and specimen output share one owner. Preserve source/generated parity.
+Keep router-agnostic bindings and consumer-owned routing/focus. Studio owns all
+GPU background/transition algorithms;Themes retains portable controls without copies.
+Preserve mounted-window fit/scroll/focus,initial compact measurement,Select
+reservation,animation editor/order/attention,shared fonts/icons/roles and provenance.
+Keep accepted toolbar/readout/rename behavior and canonical centered actions.
+Existing39 token collisions remain qualified;no audit/optimization is queued.
+No credentials,service implementation or private hosting configuration belongs here.
+Marketing/Reel3 and any next consumer task stay owner-directed in Studio.

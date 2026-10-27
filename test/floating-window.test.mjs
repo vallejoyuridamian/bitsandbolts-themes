@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { readFile } from 'node:fs/promises';
 
 import {
   applyFloatingWindowFieldRowErrorRecipe,
@@ -89,4 +90,17 @@ test('floating range controls own labeled sliders and visible values', () => {
   assert.match(markup, /data-bb-floating-range-output>14 px<\/output>/);
   assert.match(markup, /name="releaseDistance"[^>]*type="range"/);
   assert.match(markup, /min="0\.5" max="80" step="0\.5" value="14"/);
+});
+
+test('inline confirmation help flows within prose without the padded grid-copy recipe', async () => {
+  const markup = floatingWindowConfirmationMarkup({
+    description: 'Try again later or contact support if it persists',
+    helpLink: { label: 'contact support', href: 'mailto:support@example.test', inline: true }
+  });
+  assert.match(markup, /<p[^>]*bb-floating-window-content__copy--prose[^>]*>Try again later or <a class="bb-floating-window-content__link"[^>]*>contact support<\/a> if it persists<\/p>/);
+  assert.equal((markup.match(/data-bb-confirm-help/g) || []).length, 1);
+  const css = await readFile(new URL('../components/floating-window.css', import.meta.url), 'utf8');
+  assert.match(css, /\.bb-floating-window-content__copy--prose\s*\{\s*display: block;/);
+  assert.match(css, /:where\(\.bb-floating-window__body, \.bb-floating-window-content\) a\[href\]:not\(\[role="button"\]\)\s*\{\s*color: var\(--bb-interface-control-foreground\);/);
+  assert.match(css, /:where\(\.bb-floating-window__body, \.bb-floating-window-content\) a\[href\]:not\(\[role="button"\]\):hover\s*\{\s*color: var\(--bb-v2-identity-primary\);\s*text-shadow: 0 0 6px color-mix\(in srgb, var\(--bb-v2-identity-primary\) 35%, transparent\);/);
 });

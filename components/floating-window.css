@@ -163,6 +163,20 @@
   text-align: center;
 }
 
+.bb-floating-window-content__copy--prose {
+  display: block;
+}
+
+:where(.bb-floating-window__body, .bb-floating-window-content) a[href]:not([role="button"]) {
+  color: var(--bb-interface-control-foreground);
+  text-decoration: underline;
+}
+
+:where(.bb-floating-window__body, .bb-floating-window-content) a[href]:not([role="button"]):hover {
+  color: var(--bb-v2-identity-primary);
+  text-shadow: 0 0 6px color-mix(in srgb, var(--bb-v2-identity-primary) 35%, transparent);
+}
+
 .bb-floating-window-content__body {
   display: grid;
   align-content: start;

@@ -146,12 +146,22 @@ export function floatingWindowConfirmationMarkup({
   const headingMarkup = heading.headingMarkup
     .replace('bb-floating-window-content__head', 'bb-floating-window-content__head bb-floating-confirm__head')
     .replace('bb-floating-window-content__title', 'bb-floating-window-content__title bb-floating-confirm__title');
-  const descriptionMarkup = heading.descriptionMarkup.replace('<p ', announce ? '<p role="alert" ' : '<p ').replace(
+  let descriptionMarkup = heading.descriptionMarkup.replace('<p ', announce ? '<p role="alert" ' : '<p ').replace(
     'bb-floating-window-content__copy',
     'bb-floating-window-content__copy bb-floating-confirm__copy'
   );
-  const helpMarkup = helpLink
-    ? `<a class="bb-floating-window-content__copy bb-floating-confirm__copy" href="${escapeHtml(helpLink.href)}" data-bb-confirm-help${tabIndex}>${escapeHtml(helpLink.label)}</a>`
+  const helpLabel = helpLink?.label ? escapeHtml(helpLink.label) : '';
+  const inlineHelpIndex = helpLink?.inline && helpLabel ? descriptionMarkup.lastIndexOf(helpLabel) : -1;
+  const helpClass = inlineHelpIndex >= 0 ? 'bb-floating-window-content__link'
+    : 'bb-floating-window-content__copy bb-floating-confirm__copy';
+  let helpMarkup = helpLink
+    ? `<a class="${helpClass}" href="${escapeHtml(helpLink.href)}" data-bb-confirm-help${tabIndex}>${helpLabel}</a>`
     : '';
+  if (inlineHelpIndex >= 0) {
+    descriptionMarkup = descriptionMarkup.slice(0, inlineHelpIndex) + helpMarkup + descriptionMarkup.slice(inlineHelpIndex + helpLabel.length);
+    descriptionMarkup = descriptionMarkup.replace('bb-floating-window-content__copy',
+      'bb-floating-window-content__copy bb-floating-window-content__copy--prose');
+    helpMarkup = '';
+  }
   return `<form class="bb-floating-window-content bb-floating-confirm" data-floating-window-size="content" data-bb-confirm aria-labelledby="${heading.titleId}"${heading.describedBy}>${headingMarkup}${descriptionMarkup}${helpMarkup}<div class="bb-floating-window-content__actions bb-floating-confirm__actions" role="group" aria-label="Confirmation actions">${showCancel ? `<button class="bb-workspace-control-button" type="button" data-bb-confirm-cancel${tabIndex}>${escapeHtml(cancelLabel)}</button>` : ''}${secondaryMarkup}<button class="bb-workspace-control-button${danger}" type="${confirmType}" data-bb-confirm-submit${tabIndex}>${escapeHtml(confirmLabel)}</button></div></form>`;
 }
