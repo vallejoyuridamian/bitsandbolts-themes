@@ -1,9 +1,10 @@
 # Bits and Bolts Themes: Status
 
 Owner accepts the shared document window stack2026-10-28. Source/generated
-parity holds;publication remains pending Studio's coordinated release assessment:
-../appscreen-studio/docs/CLUNA_REEL3_CLOSEOUT_RELEASE_PLAN.md. Local checkpoint
-commits are owner-approved;no publication or push is authorized.
+parity holds. The shared stack is now included in published Studio app0eabe15e,
+under the owner's coordinated release authority. Receipt and remaining owner gates:
+../appscreen-studio/docs/CLUNA_REEL3_PUBLICATION_2026-10-28.json. No separate Themes
+site publication or push occurred. Local checkpoint commits are owner-approved.
 
 Preserve canonical window-body links:normal title/button foreground,primary accent
 and subtle glow on hover,inline prose flow and existing separate help links.
