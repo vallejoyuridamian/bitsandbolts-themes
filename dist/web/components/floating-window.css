@@ -6,11 +6,18 @@
  * Consumers retain behavior, state, positioning, invocation, and product semantics.
  */
 
+.bb-floating-window-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1150;
+  pointer-events: none;
+}
+
 .bb-floating-window {
   position: fixed;
   /* The shared window controller owns placement. */
   inset: auto;
-  z-index: 1150;
+  pointer-events: auto;
   display: grid;
   grid-template-rows: 26px minmax(0, 1fr);
   width: 360px;

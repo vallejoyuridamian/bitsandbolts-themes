@@ -1,4 +1,5 @@
 import { createComponentEvents } from './component-events.js';
+import { floatingWindowStack } from './floating-window-stack.js';
 import {
   FLOATING_WINDOW_CONTENT_CHANGE_EVENT,
   measurePreviewCardGridWidth
@@ -49,7 +50,14 @@ export function createFloatingWindowController({
 } = {}) {
   const records = new Map();
   let activeWindowId = '';
-  let nextZIndex = 1150;
+  let windowStack = null;
+
+  function raiseWindow(record, reason) {
+    windowStack.raise(record.node);
+    log('floating-window-stack-admitted', {
+      windowId: record.id, reason, paintStack: windowStack.describe(record.node)
+    });
+  }
 
   function log(event, payload = {}) {
     logInteraction?.(event, {
@@ -366,7 +374,8 @@ export function createFloatingWindowController({
 
     dragBar.append(grip, closeButton);
     node.append(dragBar, body);
-    rootDocument.body.append(node);
+    windowStack ??= floatingWindowStack(rootDocument);
+    windowStack.mount(node);
 
     node.style.left = `${VIEWPORT_MARGIN}px`;
     node.style.top = `${VIEWPORT_MARGIN}px`;
@@ -431,8 +440,7 @@ export function createFloatingWindowController({
       }
       event.preventDefault?.();
       activeWindowId = id;
-      record.zIndex = ++nextZIndex;
-      node.style.zIndex = String(record.zIndex);
+      raiseWindow(record, 'drag');
       record.drag = {
         deltaX: 0,
         deltaY: 0,
@@ -472,8 +480,7 @@ export function createFloatingWindowController({
     });
     router.bind(node, 'pointerdown', () => {
       activeWindowId = id;
-      record.zIndex = ++nextZIndex;
-      node.style.zIndex = String(record.zIndex);
+      raiseWindow(record, 'pointer');
     });
 
     records.set(id, record);
@@ -543,8 +550,7 @@ export function createFloatingWindowController({
     positionRenderedWindow(record, { recenter: !wasOpen });
     delete record.node.dataset.floatingWindowMeasuring;
     record.overflow?.updateSoon?.();
-    record.zIndex = ++nextZIndex;
-    record.node.style.zIndex = String(record.zIndex);
+    raiseWindow(record, 'open');
     activeWindowId = windowId;
     refitPreferredGridAfterFonts(record);
     record.presentationCleanup ??= onPresent?.({ id: record.id, node: record.node, body: record.body }) ?? null;
@@ -562,6 +568,7 @@ export function createFloatingWindowController({
       focusBefore: elementSummary(focusBefore),
       focusAfter: elementSummary(focusAfter),
       focusPreserved: focusBefore === focusAfter,
+      paintStack: windowStack.describe(record.node),
       outcome: 'presented'
     });
     return true;
@@ -581,12 +588,13 @@ export function createFloatingWindowController({
     record.presentationCleanup = null;
     if (record.drag) finishDrag(record, null, 'window-closed');
     record.node.hidden = true;
+    windowStack.close(record.node);
     const onClose = record.onClose;
     record.onClose = null;
     if (activeWindowId === windowId) {
       activeWindowId = [...records.values()]
         .filter((candidate) => !candidate.node.hidden && candidate.id !== windowId)
-        .sort((left, right) => finiteNumber(left.zIndex) - finiteNumber(right.zIndex))
+        .sort((left, right) => windowStack.rank(left.node) - windowStack.rank(right.node))
         .at(-1)?.id ?? '';
     }
     log('floating-window-closed', {
@@ -645,7 +653,7 @@ export function createFloatingWindowController({
 
   function closeAll({ reason = 'programmatic' } = {}) {
     let closedCount = 0;
-    [...records.values()].sort((a, b) => finiteNumber(b.zIndex) - finiteNumber(a.zIndex)).forEach((record) => {
+    [...records.values()].sort((a, b) => windowStack.rank(b.node) - windowStack.rank(a.node)).forEach((record) => {
       if (!record.node.hidden && close(record.id, { reason })) closedCount += 1;
     });
     return closedCount;
@@ -684,10 +692,11 @@ export function createFloatingWindowController({
     records.forEach((record) => {
       record.overflow?.destroy?.();
       record.router.destroy();
-      record.node.remove?.();
+      windowStack.unmount(record.node);
     });
     records.clear();
     activeWindowId = '';
+    windowStack = null;
   }
 
   return {

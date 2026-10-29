@@ -1,8 +1,9 @@
 # Bits and Bolts Themes: Status
 
-No active implementation. Owner accepts the current Studio checkpoint and directs
-related local commits;no separate Themes publication or push is authorized.
-Closed evidence:../appscreen-studio/docs/history/CHECKPOINT_2026-10-27.md.
+Owner accepts the shared document window stack2026-10-28. Source/generated
+parity holds;publication remains pending Studio's coordinated release assessment:
+../appscreen-studio/docs/CLUNA_REEL3_CLOSEOUT_RELEASE_PLAN.md. Local checkpoint
+commits are owner-approved;no publication or push is authorized.
 
 Preserve canonical window-body links:normal title/button foreground,primary accent
 and subtle glow on hover,inline prose flow and existing separate help links.

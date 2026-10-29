@@ -707,6 +707,8 @@ export function installSelectController(root = globalThis.document, {
     focusTarget?.focus?.({ preventScroll: true });
     focusTarget?.scrollIntoView?.({ block: 'nearest' });
     startAnchorTracking(record);
+    const ownerWindow = record.wrapper.closest?.('.bb-floating-window');
+    const windowLayer = ownerWindow?.closest?.('.bb-floating-window-layer');
     log('custom-select-opened', {
       listenerFile: 'bitsandbolts-themes/components/select.js',
       listenerName: 'open',
@@ -717,6 +719,12 @@ export function installSelectController(root = globalThis.document, {
       focusOutcome: focusTarget ? 'option-focused' : 'no-enabled-option',
       presentationOutcome: menu.isConnected ? 'menu-presented' : 'menu-missing',
       position,
+      paintStack: {
+        menuZIndex: view?.getComputedStyle?.(menu)?.zIndex ?? null,
+        windowRank: ownerWindow ? view?.getComputedStyle?.(ownerWindow)?.zIndex ?? null : null,
+        windowLayerZIndex: windowLayer ? view?.getComputedStyle?.(windowLayer)?.zIndex ?? null : null,
+        menuParent: menu.parentElement === rootDocument.body ? 'document-body' : 'other'
+      },
       inputEvent: eventSummary(event)
     });
     return true;
