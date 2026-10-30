@@ -672,6 +672,19 @@ export function createFloatingWindowController({
     return true;
   }
 
+  function setTitle(id, title) {
+    const record = records.get(String(id || ''));
+    if (!record) return false;
+    const label = String(title || 'Tools');
+    record.ariaLabel = label;
+    record.node.setAttribute('aria-label', label);
+    record.closeButton.setAttribute('aria-label', `Close ${label}`);
+    record.closeButton.setAttribute('title', `Close ${label}`);
+    const heading = record.body.querySelector('.bb-floating-window-content__title');
+    if (heading && heading.textContent !== label) heading.textContent = label;
+    return true;
+  }
+
   function revealContent(id, target = null) {
     const record = records.get(String(id || ''));
     if (!record || record.node.hidden || (target && !record.body.contains(target))) return false;
@@ -710,6 +723,7 @@ export function createFloatingWindowController({
     open,
     requestContentFit,
     revealContent,
+    setTitle,
     updateOverflow
   };
 }

@@ -21,10 +21,14 @@ function attributesMarkup(attributes = {}) {
   }).join('');
 }
 
-export function animationCardMarkup({ id = '', summary = '', contentMarkup = '', attributes = {}, removeAttributes = {}, className = '' } = {}) {
+export function animationCardMarkup({ id = '', summary = '', contentMarkup = '', attributes = {}, removeAttributes = {}, className = '', headerActions = [] } = {}) {
+  const remove = semanticActionButtonMarkup({ iconRole: 'delete', label: 'Remove animation', attributes: removeAttributes });
+  const actions = headerActions.length
+    ? `<div class="animation-toolbar">${headerActions.map(action => semanticActionButtonMarkup(action)).join('')}${remove}</div>`
+    : remove;
   return `<div class="animation-item${className ? ` ${escapeHtml(className)}` : ''}"${attributesMarkup({ ...attributes, 'data-animation-card-id': id, tabindex: '-1', role: 'group', 'aria-label': summary || 'Animation' })}>
     <div class="animation-item-header"><strong>${escapeHtml(summary)}</strong>
-      ${semanticActionButtonMarkup({ iconRole: 'delete', label: 'Remove animation', attributes: removeAttributes })}
+      ${actions}
     </div>${contentMarkup}</div>`;
 }
 
