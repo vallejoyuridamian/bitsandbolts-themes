@@ -1,10 +1,11 @@
 # Bits and Bolts Themes: Sprint Roadmap
 
-Owner continues Reel4 in Studio;no active Themes task. Header-action and window-
-title source/generated changes await future matched Studio app publication under
-../appscreen-studio/docs/CLUNA_REEL4_PUBLICATION_PLAN.md. No separate site release.
-Copy post-migration appearance and window-title review remain open under their
-Studio plans. Disabled-field candidate needs approval before Themes migration.
+Reel4 header-action and window-title changes are delivered through Studio
+appf95870cf/public9de763c0. Receipt and retained acceptance gates:
+../appscreen-studio/docs/CLUNA_REEL4_PUBLICATION_2026-10-30.json.
+No separate Themes site publication or Git push occurred.
 
-Preserve source/generated parity and STATUS.md constraints. No new build,audit,
-redesign,acceptance,push or publication is queued. Owner directs the next work.
+Owner production review remains distinct from source/generated parity and release
+verification. Earlier Copy/title visual qualifications preserve. Disabled-field
+candidate remains source-only pending explicit approval and migration.
+Preserve STATUS.md constraints;no new build,audit,redesign or implementation queued.

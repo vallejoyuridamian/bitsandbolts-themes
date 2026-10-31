@@ -1,11 +1,11 @@
 # Bits and Bolts Themes: Status
 
-Local Reel4 consumer changes are checkpointed for future Studio delivery:
-shared animation-card header actions and floating-window setTitle retargeting.
-Source/generated parity and focused checks were completed. They are not yet in
-the published Studio app. Pending delivery owner:
-../appscreen-studio/docs/CLUNA_REEL4_PUBLICATION_PLAN.md. No independent Themes
-site publication,push,new build or review is queued;owner directs next work.
+Reel4 shared animation-card header actions and floating-window title retargeting
+are delivered in Studio appf95870cf/public9de763c0,verified2026-10-30.
+Source/generated parity preserves. Studio publication receipt:
+../appscreen-studio/docs/CLUNA_REEL4_PUBLICATION_2026-10-30.json.
+No independent Themes site publication or Git push occurred. Owner exact-production
+browser/output acceptance remains separate;no new implementation is queued.
 
 Copy-button post-migration visual gate and window-title local review remain under
 Studio's CLUNA_ANIMATION_CLIPBOARD_PLAN.md and CLUNA_COUNTER_STOPWATCH_PLAN.md.
