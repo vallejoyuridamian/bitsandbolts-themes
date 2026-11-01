@@ -157,13 +157,18 @@ export function syncWorkspaceControlBarCustomVisibility(slot, hidden) {
 export function syncWorkspaceControlBarAction(root, kind, state = {}) {
   syncWorkspaceControlBarReadout(root, kind, state);
   const action = root?.querySelector(`[data-control-bar-action="${cssEscape(kind)}"]`);
-  syncWorkspaceControlBarButton(action, state);
+  const selectId = action?.getAttribute('data-bb-select-trigger');
+  const linkedControl = selectId ? root.querySelector(`[id="${cssEscape(selectId)}"]`) : null;
+  syncWorkspaceControlBarButton(action, state, { linkedControl });
 }
 
-export function syncWorkspaceControlBarButton(action, state = {}) {
+export function syncWorkspaceControlBarButton(action, state = {}, { linkedControl = null } = {}) {
   if (!action) return;
   if ('disabled' in state || 'pending' in state) {
-    action.disabled = state.pending === true || Boolean(state.disabled);
+    const disabled = state.pending === true || Boolean(state.disabled);
+    // Native Select and external trigger consume the same admitted availability.
+    if (linkedControl && linkedControl.disabled !== disabled) linkedControl.disabled = disabled;
+    action.disabled = disabled;
   }
   if ('pending' in state) {
     action.setAttribute('aria-busy', state.pending ? 'true' : 'false');

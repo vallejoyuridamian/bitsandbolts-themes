@@ -1,23 +1,24 @@
 # Bits and Bolts Themes: Status
 
-Reel4 shared animation-card header actions and floating-window title retargeting
-are delivered in Studio appf95870cf/public9de763c0,verified2026-10-30.
-Source/generated parity preserves. Studio publication receipt:
-../appscreen-studio/docs/CLUNA_REEL4_PUBLICATION_2026-10-30.json.
-No independent Themes site publication or Git push occurred. Owner exact-production
-browser/output acceptance remains separate;no new implementation is queued.
+Studio responsiveness changes are delivered in appfa4160ce/public045d71ae with
+renderer29. Owner accepts local production UI/account copy and Cloud output,and
+bags the published slice while deferring further responsiveness work. No broad
+performance acceptance is inferred. Exact receipt/checkpoint:
+../appscreen-studio/docs/CLUNA_RESPONSIVENESS_PUBLICATION_2026-11-01.json,
+../appscreen-studio/docs/history/CHECKPOINT_2026-11-01.md.
 
-Copy-button post-migration visual gate and window-title local review remain under
-Studio's CLUNA_ANIMATION_CLIPBOARD_PLAN.md and CLUNA_COUNTER_STOPWATCH_PLAN.md.
-Studio disabled-field appearance stays a source-only candidate pending approval
-and Themes migration;canonical Themes has not adopted it. UX_STANDARD.md owns
-the general disabled-field contract. Do not infer approval from unrelated LGTM.
+Five changed components are canonical with matching dist/web and docs/theme copies:
+account-funnel-controller,account-funnel,floating-window,preview-card-grid and
+workspace-control-bar. No additional candidate promotion is required for this slice.
+Local checkpoint commit is owner-authorized;no independent Themes site publication
+or Git push. Next work is owner-directed;no build,audit or redesign is queued.
 
-Preserve the published Reel3 window stack in Studio app0eabe15e;delivery receipt:
-../appscreen-studio/docs/CLUNA_REEL3_PUBLICATION_2026-10-28.json. Keep canonical
-window-body links,source/generated parity,router-agnostic bindings and consumer-
-owned routing/focus. Studio owns GPU algorithms;Themes owns portable UI.
-Preserve mounted-window fit/scroll/focus,Select reservation,animation ordering/
-attention,fonts/icons/roles/provenance,accepted toolbar/readout/rename behavior
-and centered actions. Existing39 token collisions remain qualified;no audit queued.
-No credentials,service implementation or private hosting configuration belongs here.
+Unapproved Studio disabled-field styling remains source-only and excluded;no Themes
+migration is authorized by unrelated acceptance. UX_STANDARD.md owns its contract.
+Earlier Copy-button/window-title qualifications retain under Studio plans
+CLUNA_ANIMATION_CLIPBOARD_PLAN.md and CLUNA_COUNTER_STOPWATCH_PLAN.md.
+Preserve window fit/scroll/focus,Select reservation,animation order/attention,
+canonical link/body recipes,fonts/icons/roles/provenance and accepted controls.
+Themes remains portable/router-agnostic;Studio owns routing/focus and GPU mechanics.
+Source/generated parity retains. Existing39 token collisions remain qualified.
+No credentials,private service implementation or hosting configuration belongs here.

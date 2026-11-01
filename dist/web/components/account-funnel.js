@@ -46,9 +46,16 @@ function fieldMarkup(field = {}) {
   return `<div class="bb-field" data-account-funnel-field="${id}"><label class="bb-field__label" for="${id}">${escapeHtml(field.label)}</label>${control}${hint}<p id="${errorId}" class="bb-field__error" role="alert" data-account-funnel-field-error hidden></p></div>`;
 }
 
-function externalLinksMarkup(links = []) {
+function externalLinkMarkup({ href, label }) {
+  return `<a href="${escapeHtml(href)}" data-account-funnel-external>${escapeHtml(label)}</a>`;
+}
+
+function externalLinksMarkup(links = [], content = []) {
+  if (content.length) {
+    return `<p class="bb-floating-window-content__copy bb-floating-window-content__copy--prose">${content.map(part => typeof part === 'string' ? escapeHtml(part) : externalLinkMarkup(part)).join('')}</p>`;
+  }
   return links.length
-    ? `<nav class="bb-account-funnel__external-links" aria-label="Account information">${links.map(({ href, label }) => `<a class="bb-link" href="${escapeHtml(href)}" data-account-funnel-external>${escapeHtml(label)}</a>`).join('')}</nav>`
+    ? `<nav class="bb-account-funnel__external-links" aria-label="Account information">${links.map(externalLinkMarkup).join('')}</nav>`
     : '';
 }
 
@@ -77,6 +84,7 @@ export function accountFunnelAccessMarkup({
   creationPrompt = '',
   description = '',
   externalLinks = [],
+  externalLinkContent = [],
   fields = [],
   googleLabel = '',
   googleLogoSrc = '',
@@ -104,7 +112,7 @@ export function accountFunnelAccessMarkup({
   const switchMarkup = creationPrompt && creationActionLabel
     ? `<p class="bb-account-funnel__switch"><span>${escapeHtml(creationPrompt)} </span><button class="bb-link bb-account-funnel__switch-action" type="button" data-account-funnel-create><strong>${escapeHtml(creationActionLabel)}</strong></button><span>.</span></p>`
     : '';
-  const linksMarkup = externalLinksMarkup(externalLinks);
+  const linksMarkup = externalLinksMarkup(externalLinks, externalLinkContent);
   return `<form class="bb-floating-window-content bb-account-funnel" data-floating-window-size="content" data-bb-account-funnel data-account-funnel-step="${escapeHtml(step)}" aria-labelledby="${heading.titleId}"${heading.describedBy} novalidate>${heading.headingMarkup}${heading.descriptionMarkup}<div class="bb-floating-window-content__body bb-account-funnel__body">${google}${fieldsMarkup}${recovery}${remember}${consent}${switchMarkup}${linksMarkup}</div><p class="bb-floating-form__error bb-account-funnel__error" role="alert" data-account-funnel-error hidden></p>${footerMarkup({ cancelLabel, primaryLabel, primaryDanger })}</form>`;
 }
 

@@ -8,9 +8,13 @@ function positiveWidth(value) {
 // Prepared specimens can supply their width without measuring rendered labels.
 export function syncPreviewCardGridWidths(root, { selector, onMeasured = null } = {}) {
   const startedAt = performance.now();
-  const grids = root?.matches?.(selector)
+  const candidates = root?.matches?.(selector)
     ? [root]
     : [...(root?.querySelectorAll?.(selector) ?? [])];
+  // CSS owns ordinary grid sizing. Only a responsive floating window consumes
+  // this width projection; reading computed styles elsewhere forces layout for
+  // a result that no owner uses.
+  const grids = candidates.filter(grid => grid.hasAttribute?.('data-floating-window-responsive-grid'));
   if (!grids.length) return 0;
   const widths = grids.map((grid) => {
     const view = grid.ownerDocument?.defaultView;
@@ -19,9 +23,7 @@ export function syncPreviewCardGridWidths(root, { selector, onMeasured = null } 
     return width;
   });
   grids.forEach((grid, index) => {
-    if (grid.hasAttribute?.('data-floating-window-responsive-grid')) {
-      grid.dataset.floatingWindowGridItemWidth = String(widths[index]);
-    }
+    grid.dataset.floatingWindowGridItemWidth = String(widths[index]);
   });
   onMeasured?.({
     phase: 'sync', mode: 'fixed-recipe', gridCount: grids.length,

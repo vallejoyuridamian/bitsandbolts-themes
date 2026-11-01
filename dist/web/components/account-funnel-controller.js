@@ -188,6 +188,7 @@ export function createAccountFunnelController({
         cancelLabel,
         consentLabel: flow.signupConsentLabel,
         externalLinks: flow.externalLinks || [],
+        externalLinkContent: flow.externalLinkContent || [],
         fields: [
           { autocomplete: 'email', id: 'accountFunnelSignupEmail', label: 'Email', name: 'email', type: 'email' },
           { autocomplete: 'new-password', id: 'accountFunnelSignupPassword', label: 'Password', minLength: flow.signupPasswordMinimum, name: 'password', type: 'password' },
