@@ -1,9 +1,9 @@
 # Bits and Bolts Themes: Status
 
-Reel5 partial checkpoint:owner authorized local commits of the complete working
-set. Studio renderer30 export is accepted;these UI/source changes are not thereby
-published or broadly accepted. No new work queued;preserve open gates below.
-Checkpoint:../appscreen-studio/docs/history/CHECKPOINT_2026-11-02_REEL5.md.
+Studio app2f8133f6/API9acdc7b1/renderer31 publication is verified.
+Renderer31 Cloud output and Live app accepted;local checkpoint authorized.
+Receipt:../appscreen-studio/docs/CLUNA_REEL6_PUBLICATION_2026-11-03.json.
+Existing appearance/ownership gates below remain open.
 
 Parked:owner chose Account Secondary for Bits and Bolts actions;other themes retain.
 button.css and button-v2.css independently own general button states;v2 also
@@ -15,14 +15,14 @@ button ownership consolidation remains open.
 Active Studio picker:approved optional groups/count input is canonical in
 compact-theme-selector.js;generation and Release source delivery checks pass.
 Temporary Studio projection removed;post-migration appearance remains open.
-Control:../appscreen-studio/docs/CLUNA_REEL5_UX_PLAN.md. Local/unpublished.
+Control:../appscreen-studio/docs/CLUNA_REEL5_UX_PLAN.md. Delivered through Studio app2f8133f6.
 
 Active Studio Reel5 UX:owner-approved right-aligned Project Info actions/text-only
 Save are canonical workspace-item-info markup using the shared window action row.
 Generation/parity verified;temporary Studio preview/competing row CSS removed.
 Post-migration appearance check remains open. Studio owns draft settlement and
 persistence. Control:../appscreen-studio/docs/CLUNA_REEL5_UX_PLAN.md.
-All changes remain local/unpublished;preservation gates retain.
+These changes ship through Studio app2f8133f6;preservation gates retain.
 
 Studio responsiveness changes are delivered in appfa4160ce/public045d71ae with
 renderer29. Owner accepts local production UI/account copy and Cloud output,and
