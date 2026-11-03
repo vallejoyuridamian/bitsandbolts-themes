@@ -34,6 +34,7 @@ export function createFloatingWindowConfirmationController({
     downstreamOwner = 'unknown',
     failureFeedback = null,
     id = 'confirmation',
+    initialFocus = 'cancel',
     initialFailure = null,
     onConfirm = null,
     onSecondary = null,
@@ -107,12 +108,13 @@ export function createFloatingWindowConfirmationController({
             hasHelpLink: Boolean(failure.helpLink?.href) });
         }
 
-        function presentTransitionFailure() {
+        function presentTransitionFailure(feedback = null) {
           if (activeRequestId !== requestId || (parentWindow && !parentWindow.stack.isOpen(parentWindow.id))) return;
-          open({ id: `${id}-transition-failure`, title: 'Next view unavailable',
-            initialFailure: { title: 'Next view unavailable',
+          const failure = feedback ?? { title: 'Next view unavailable',
               description: "The action completed, but the next view couldn't be opened. Close this window and reopen the app.",
-              helpLink: failureFeedback?.helpLink ?? helpLink },
+              helpLink: failureFeedback?.helpLink ?? helpLink };
+          open({ id: `${id}-transition-failure`, title: failure.title,
+            initialFailure: failure,
             showCancel: false, confirmLabel: 'Close', parentWindow, downstreamOwner, source });
         }
 
@@ -216,16 +218,17 @@ export function createFloatingWindowConfirmationController({
               if (!closed || !afterClose) return;
               try {
                 const transitioned = await afterClose();
+                const rejected = transitioned === false || transitioned?.accepted === false;
                 log('floating-window-confirmation-transition', {
                   context,
                   decision: name,
                   downstreamOwner,
-                  outcome: transitioned === false ? 'downstream-transition-rejected' : 'downstream-transition-completed',
+                  outcome: rejected ? 'downstream-transition-rejected' : 'downstream-transition-completed',
                   requestId,
                   source,
                   windowId: id
                 });
-                if (transitioned === false) presentTransitionFailure();
+                if (rejected) presentTransitionFailure(transitioned?.failure);
               } catch (error) {
                 log('floating-window-confirmation-transition', {
                   level: 'error',
@@ -305,11 +308,14 @@ export function createFloatingWindowConfirmationController({
     }
 
     activeClose = close;
-    (cancelButton || confirmButton).focus?.({ preventScroll: true });
+    const focusButton = !initialFailure && initialFocus === 'confirm'
+      ? confirmButton : (cancelButton || confirmButton);
+    focusButton.focus?.({ preventScroll: true });
     log('floating-window-confirmation-presentation', {
       context,
       downstreamOwner,
       outcome: 'presented',
+      initialFocus: focusButton === confirmButton ? 'confirm' : 'cancel',
       requestId,
       source,
       windowId: id

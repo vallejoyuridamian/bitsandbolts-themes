@@ -222,17 +222,18 @@ export function compactThemePickerMarkup(catalog = {}, {
   cardModes = {},
   mode = 'dark',
   selectedThemeId = '',
-  title = 'Choose Theme'
+  title = 'Choose Theme',
+  groups = null
 } = {}) {
   const themes = Array.isArray(catalog?.themes) ? catalog.themes.map(requiredTheme) : [];
   if (!themes.length) throw new TypeError('Compact Theme picker requires a complete v2 catalog.');
   const gridOptions = { cardModes, mode, selectedThemeId, browse: true };
-  const groups = themeCatalogGroups(themes);
-  const browseMarkup = groups.length
-    ? groups.map((group) => workspaceSectionMarkup({
+  const sections = groups ?? themeCatalogGroups(themes);
+  const browseMarkup = sections.length
+    ? sections.map((group) => workspaceSectionMarkup({
         id: `compact-theme-${group.id}`,
         label: group.label,
-        count: group.themes.length,
+        count: Object.hasOwn(group, 'count') ? group.count : group.themes.length,
         compact: true,
         open: true,
         content: compactThemeGridMarkup(group.themes, gridOptions)

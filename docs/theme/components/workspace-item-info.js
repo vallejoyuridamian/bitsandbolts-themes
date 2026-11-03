@@ -18,14 +18,16 @@ export function workspaceItemInfoMarkup({
   id = 'workspaceItemInfo',
   itemNameLabel = 'Item name',
   projectNameLabel = 'Project name',
-  resolutionLabel = 'Resolution'
+  resolutionLabel = 'Resolution',
+  saveLabel = ''
 } = {}) {
   const projectNameId = controlId(id, 'project-name');
   const resolutionId = controlId(id, 'resolution');
   const itemNameId = controlId(id, 'item-name');
   const normalizedDeleteLabel = String(deleteLabel || '').trim();
+  const normalizedSaveLabel = String(saveLabel || '').trim();
   const deleteMarkup = normalizedDeleteLabel
-    ? `<div class="bb-workspace-item-info__actions">${semanticActionButtonMarkup({
+    ? `${semanticActionButtonMarkup({
         ariaLabel: normalizedDeleteLabel,
         attributes: { 'data-bb-workspace-item-info-role': 'delete-project' },
         danger: true,
@@ -33,12 +35,18 @@ export function workspaceItemInfoMarkup({
         iconRole: 'delete',
         label: normalizedDeleteLabel,
         recipe: 'workspace'
-      })}</div>`
+      })}`
     : '';
+  const saveMarkup = normalizedSaveLabel ? semanticActionButtonMarkup({
+    ariaLabel: normalizedSaveLabel, label: normalizedSaveLabel,
+    iconOnly: false, disabled: true, recipe: 'workspace',
+    attributes: { 'data-bb-workspace-item-info-role': 'save-project' }
+  }) : '';
   return `<div class="bb-workspace-item-info bb-interface-controls" data-bb-workspace-item-info>
     <div class="bb-field">
       <label class="bb-field__label" for="${projectNameId}">${escapeHtml(projectNameLabel)}</label>
-      <input id="${projectNameId}" class="bb-field__input" type="text" maxlength="160" autocomplete="off" data-bb-workspace-item-info-role="project-name">
+      <input id="${projectNameId}" class="bb-field__input" type="text" maxlength="160" autocomplete="off" aria-describedby="${projectNameId}-error" data-bb-workspace-item-info-role="project-name">
+      <p id="${projectNameId}-error" class="bb-field__error" role="alert" data-bb-workspace-item-info-role="project-name-error" hidden></p>
     </div>
     <div class="bb-field">
       <span id="${resolutionId}-label" class="bb-field__label">${escapeHtml(resolutionLabel)}</span>
@@ -48,6 +56,6 @@ export function workspaceItemInfoMarkup({
       <label class="bb-field__label" for="${itemNameId}">${escapeHtml(itemNameLabel)}</label>
       <input id="${itemNameId}" class="bb-field__input" type="text" maxlength="160" autocomplete="off" data-bb-workspace-item-info-role="item-name">
     </div>
-    ${deleteMarkup}
+    ${deleteMarkup || saveMarkup ? `<div class="bb-floating-window-content__actions">${deleteMarkup}${saveMarkup}</div>` : ''}
   </div>`;
 }
