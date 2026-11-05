@@ -17,6 +17,7 @@ export function workspaceItemInfoMarkup({
   deleteLabel = '',
   id = 'workspaceItemInfo',
   itemNameLabel = 'Item name',
+  itemContentMarkup = '',
   projectNameLabel = 'Project name',
   resolutionLabel = 'Resolution',
   saveLabel = ''
@@ -56,6 +57,7 @@ export function workspaceItemInfoMarkup({
       <label class="bb-field__label" for="${itemNameId}">${escapeHtml(itemNameLabel)}</label>
       <input id="${itemNameId}" class="bb-field__input" type="text" maxlength="160" autocomplete="off" data-bb-workspace-item-info-role="item-name">
     </div>
+    ${itemContentMarkup}
     ${deleteMarkup || saveMarkup ? `<div class="bb-floating-window-content__actions">${deleteMarkup}${saveMarkup}</div>` : ''}
   </div>`;
 }

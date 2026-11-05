@@ -1,13 +1,10 @@
 # Bits and Bolts Themes: Status
 
-Current Studio delivery:app5ad01147/API64c8410c with renderer35 is published,
-independently verified and owner-accepted for the bounded Reel7 slice. No pending
-slice delivery or local Cloud/Live acceptance. No independent Themes publication.
-Control:../appscreen-studio/docs/CLUNA_REEL7_PUBLICATION_PLAN.md.
-Accepted source/generated evidence and retired hot chronology:
-../appscreen-studio/docs/history/CHECKPOINT_2026-11-05_REEL7.md.
+Current Studio delivery and bounded local Cloud/Live acceptance are complete:
+../appscreen-studio/docs/CLUNA_REEL8_PUBLICATION_PLAN.md.
 Current host:../appscreen-studio/docs/CLUNA_DEPLOYMENT_STATE.md.
-Next work is owner-directed. No automatic build,audit,redesign or push.
+Checkpoint:../appscreen-studio/docs/history/CHECKPOINT_2026-11-05_REEL8.md.
+No independent Themes publication or push. All further work is owner-directed.
 
 ## Parked qualifications
 
