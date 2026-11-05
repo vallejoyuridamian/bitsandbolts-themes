@@ -196,6 +196,19 @@
   font-variant-numeric: tabular-nums;
   min-width: 54px;
 }
+.bb-media-transport__clock {
+  display: inline-block;
+  position: relative;
+  white-space: nowrap;
+}
+.bb-media-transport__time-size { visibility: hidden; }
+.bb-media-transport__time-value {
+  position: absolute;
+  inset: 0;
+  /* The format-sized parent supplies geometry. A digit change lays out and
+     paints only this value, without invalidating the surrounding transport. */
+  contain: strict;
+}
 .bb-media-transport__range,
 .bb-range-control:has(> .bb-media-transport__range) {
   --range-control-thumb-size: 16px;

@@ -8,6 +8,7 @@ function escapeHtml(value) {
 }
 
 export function formFieldMarkup(field, { appearance: inheritedAppearance, specimen = false } = {}) {
+  if (String(field.type).toLowerCase() === 'color') throw new TypeError('Color fields require the canonical swatch/palette recipe.');
   const appearance = (field.appearance ?? inheritedAppearance) === 'prominent' ? ' bb-field--prominent' : '';
   const error = field.state === 'error' ? ' bb-field--error' : '';
   const state = specimen && field.state ? ` data-specimen-state="${escapeHtml(field.state)}"` : '';

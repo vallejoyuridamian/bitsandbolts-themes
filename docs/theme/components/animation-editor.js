@@ -1,3 +1,4 @@
+import { rangeControlMarkup } from './range-control.js';
 import { createComponentEvents } from './component-events.js';
 import { semanticActionButtonMarkup } from './button.js';
 import { colorPaletteSectionMarkup, layoutTextEditorSectionMarkup } from './layout-text-editor.js';
@@ -21,8 +22,8 @@ function attributesMarkup(attributes = {}) {
   }).join('');
 }
 
-export function animationCardMarkup({ id = '', summary = '', contentMarkup = '', attributes = {}, removeAttributes = {}, className = '', headerActions = [] } = {}) {
-  const remove = semanticActionButtonMarkup({ iconRole: 'delete', label: 'Remove animation', attributes: removeAttributes });
+export function animationCardMarkup({ id = '', summary = '', contentMarkup = '', attributes = {}, removeAttributes = {}, className = '', headerActions = [], removeLabel = 'Remove animation' } = {}) {
+  const remove = semanticActionButtonMarkup({ iconRole: 'delete', label: removeLabel, attributes: removeAttributes });
   const actions = headerActions.length
     ? `<div class="animation-toolbar">${headerActions.map(action => semanticActionButtonMarkup(action)).join('')}${remove}</div>`
     : remove;
@@ -58,7 +59,7 @@ export function syncAnimationCardOrder(root, orderedIds = [], { changedId = '' }
     focusRestored: focusDisplaced && list.ownerDocument.activeElement === activeElement };
 }
 
-export function createAnimationEditorController({ root, bindEvent, reveal, getTypes = () => [], getTypeLabel = () => 'Type', getDraftBeforeId = () => '', selectType, enhanceSelect, onItemsChanged = () => {}, onError } = {}) {
+export function createAnimationEditorController({ root, bindEvent, reveal, getTypes = () => [], getTypeLabel = () => 'Type', itemLabel = 'animation', getDraftBeforeId = () => '', selectType, enhanceSelect, onItemsChanged = () => {}, onError } = {}) {
   const events = createComponentEvents(bindEvent);
   let cardIds = null;
   let highlighted = null;
@@ -144,7 +145,7 @@ export function createAnimationEditorController({ root, bindEvent, reveal, getTy
     const id = `animation-draft-${++nextDraftId}`;
     const template = root.ownerDocument.createElement('template');
     template.innerHTML = animationCardMarkup({ id, summary: preset?.label || '', attributes: { 'data-animation-draft': id },
-      removeAttributes: { 'data-animation-draft-remove': id },
+      removeAttributes: { 'data-animation-draft-remove': id }, removeLabel: `Remove ${itemLabel}`,
       contentMarkup: `<label><span data-animation-draft-type-label>${escapeHtml(getTypeLabel())}</span><select data-animation-draft-type="${id}">${animationTypeOptionsMarkup(getTypes(), { placeholder: `Select ${getTypeLabel().toLowerCase()}` })}</select></label>` });
     drafts.set(id, template.content.firstElementChild);
     if (preset) presetDrafts.add(id);
@@ -253,9 +254,9 @@ export function createAnimationEditorController({ root, bindEvent, reveal, getTy
   return { sync, destroy, focusCard, renderDrafts, addDraft, draftCount: () => drafts.size - Number(drafts.has(selectingDraft)) };
 }
 
-export function animationEditorMarkup({ itemsMarkup = '', addAttributes = {}, canAdd = true, toolbarActions = [], headerMarkup = '', presentation = 'window' } = {}) {
+export function animationEditorMarkup({ itemsMarkup = '', addAttributes = {}, canAdd = true, toolbarActions = [], headerMarkup = '', presentation = 'window', addLabel = 'Add animation' } = {}) {
   const content = `${headerMarkup}<div class="animation-toolbar">
-    ${canAdd ? semanticActionButtonMarkup({ iconRole: 'add', label: 'Add animation', attributes: { ...addAttributes, 'data-animation-editor-action': 'add' } }) : ''}
+    ${canAdd ? semanticActionButtonMarkup({ iconRole: 'add', label: addLabel, attributes: { ...addAttributes, 'data-animation-editor-action': 'add' } }) : ''}
     ${toolbarActions.map((action) => semanticActionButtonMarkup(action)).join('')}
     </div><div class="animation-list" data-floating-window-items>${itemsMarkup}</div>`;
   return presentation === 'sidebar'
@@ -269,10 +270,13 @@ export function animationRegionControlMarkup({ label = '', attributes = {} } = {
     <span>${escapeHtml(label)}</span></div>`;
 }
 
-export function animationEffectParametersMarkup({ parameters = [], values = {}, attributes = {}, toolAttribute = '', namePrefix = 'effect', renderColorPalette } = {}) {
+export function animationEffectParametersMarkup({ parameters = [], values = {}, attributes = {}, toolAttribute = '', namePrefix = 'effect', colorAttribute = 'data-animation-effect-color', renderColorPalette } = {}) {
   return parameters.map((parameter) => parameter.type === 'color'
-    ? colorPaletteSectionMarkup({ label: parameter.label, attributes: { ...attributes, 'data-animation-effect-color': parameter.name },
+    ? colorPaletteSectionMarkup({ label: parameter.label, attributes: { ...attributes, [colorAttribute]: parameter.name },
       paletteMarkup: renderColorPalette(parameter, values[parameter.name] ?? parameter.default) })
+    : parameter.type === 'range'
+    ? `<label><span class="animation-range-label">${escapeHtml(parameter.label)}<span${attributesMarkup({ ...attributes, 'data-effect-parameter-value': parameter.name })}>${escapeHtml(values[parameter.name])}${escapeHtml(parameter.unit ?? '')}</span></span>
+      ${rangeControlMarkup(`<input name="${escapeHtml(`${namePrefix}-${parameter.name}`)}" type="range" min="${parameter.min}" max="${parameter.max}" step="${parameter.step}" value="${escapeHtml(values[parameter.name])}"${attributesMarkup({ ...attributes, [toolAttribute]: parameter.name })}>`)}</label>`
     : `<label>${escapeHtml(parameter.label)}
     <select name="${escapeHtml(`${namePrefix}-${parameter.name}`)}"${attributesMarkup({ ...attributes, [toolAttribute]: `effect:${parameter.name}` })}>
       ${parameter.options.map(([value, label]) => `<option value="${escapeHtml(value)}"${String(values[parameter.name] ?? parameter.default) === value ? ' selected' : ''}>${escapeHtml(label)}</option>`).join('')}

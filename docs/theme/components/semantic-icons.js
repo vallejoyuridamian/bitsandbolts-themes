@@ -1,3 +1,5 @@
+import { semanticIconContentData } from './semantic-icon-content-data.js';
+
 /**
  * Semantic icon roles owned by Themes.
  *
@@ -31,6 +33,7 @@ const MATERIAL_SYMBOL_ROLE_NAMES = Object.freeze({
   edit: 'edit',
   save_as: 'save_as',
   content_copy: 'content_copy',
+  format_paint: 'format_paint',
   content_paste: 'content_paste',
   cloud_upload: 'cloud_upload',
   cloud_download: 'cloud_download',
@@ -45,7 +48,10 @@ const MATERIAL_SYMBOL_ROLE_NAMES = Object.freeze({
   media_audio: 'volume_up',
   media_video: 'videocam',
   media_image: 'image',
+  movie_edit: 'movie',
+  monitor: 'desktop_windows',
   animation: 'animation',
+  effects: 'layers',
   play_arrow: 'play_arrow',
   pause: 'pause',
   stop: 'stop',
@@ -141,6 +147,7 @@ export const SEMANTIC_ICON_FAMILIES = Object.freeze({
     edit: 'faPen',
     save_as: 'faFilePen',
     content_copy: 'faCopy',
+    format_paint: 'faPaintRoller',
     content_paste: 'faPaste',
     cloud_upload: 'faCloudArrowUp',
     cloud_download: 'faCloudArrowDown',
@@ -159,6 +166,7 @@ export const SEMANTIC_ICON_FAMILIES = Object.freeze({
     media_audio: 'faVolumeHigh',
     media_video: 'faVideo',
     media_image: 'faImage',
+    monitor: 'faDesktop',
     media_device: 'faMobileScreenButton',
     media_font: 'faFont',
     format_bold: 'faBold',
@@ -199,6 +207,7 @@ export const SEMANTIC_ICON_FAMILIES = Object.freeze({
     flag: 'faFlag',
     movie_edit: 'faClapperboard',
     animation: 'faWandMagicSparkles',
+    effects: 'faLayerGroup',
     dark_mode: 'faMoon',
     light_mode: 'faSun',
     pause: 'faPause',
@@ -306,6 +315,7 @@ const SEMANTIC_CONTENT_ICON_DEFINITIONS = Object.freeze([
   Object.freeze({ category: 'interface', role: 'edit', label: 'Edit' }),
   Object.freeze({ category: 'interface', role: 'save_as', label: 'Save as' }),
   Object.freeze({ category: 'interface', role: 'content_copy', label: 'Copy' }),
+  Object.freeze({ category: 'interface', role: 'format_paint', label: 'Copy format' }),
   Object.freeze({ category: 'interface', role: 'content_paste', label: 'Paste' }),
   Object.freeze({ category: 'interface', role: 'cloud_upload', label: 'Cloud upload' }),
   Object.freeze({ category: 'interface', role: 'cloud_download', label: 'Cloud download' }),
@@ -320,6 +330,8 @@ const SEMANTIC_CONTENT_ICON_DEFINITIONS = Object.freeze([
   Object.freeze({ category: 'interface', role: 'media_audio', label: 'Audio' }),
   Object.freeze({ category: 'interface', role: 'media_video', label: 'Video' }),
   Object.freeze({ category: 'interface', role: 'media_image', label: 'Image' }),
+  Object.freeze({ category: 'interface', role: 'movie_edit', label: 'Clapperboard' }),
+  Object.freeze({ category: 'interface', role: 'monitor', label: 'Monitor' }),
   Object.freeze({ category: 'interface', role: 'play_arrow', label: 'Play' }),
   Object.freeze({ category: 'interface', role: 'pause', label: 'Pause' }),
   Object.freeze({ category: 'interface', role: 'stop', label: 'Stop' }),
@@ -402,6 +414,18 @@ export function semanticIconAssetPath(
     ? `${kebabCase(exportNames[0])}.svg`
     : `${kebabCase(role)}.svg`;
   return `icons/${normalizedFamily}/${fileName}`;
+}
+
+export function semanticIconContentGeometry(role, options = {}) {
+  const originalPath = semanticIconAssetPath(role, options);
+  const data = semanticIconContentData[originalPath];
+  if (!data) throw new TypeError(`Missing generated content geometry: ${originalPath}`);
+  return Object.freeze({
+    path: data.path,
+    canvas: Object.freeze([...data.canvas]),
+    bounds: Object.freeze({ ...data.bounds }),
+    sourceSize: Object.freeze({ width: data.bounds.width, height: data.bounds.height })
+  });
 }
 
 function escapeHtml(value) {

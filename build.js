@@ -16,6 +16,7 @@
  */
 
 import { assertRouterAgnosticComponent } from './scripts/component-boundary.mjs';
+import { generateContentIcons } from './scripts/content-icon-geometry.mjs';
 import StyleDictionary from 'style-dictionary';
 import * as fontAwesomeSolidIcons from '@fortawesome/free-solid-svg-icons';
 import * as fontAwesomeRegularIcons from '@fortawesome/free-regular-svg-icons';
@@ -813,6 +814,7 @@ for (const [family, roles] of Object.entries(SEMANTIC_ICON_FAMILIES)) {
   }
 }
 writeFileSync(SEMANTIC_ICON_CSS, semanticIconCss.join('\n'));
+generateContentIcons();
 mkdirSync('dist/web/licenses', { recursive: true });
 copyFileSync(join(FONT_AWESOME_PACKAGE, 'LICENSE.txt'), 'dist/web/licenses/font-awesome-free.txt');
 copyFileSync('assets/icon-licenses/material-symbols-NOTICE.txt', 'dist/web/licenses/material-symbols-NOTICE.txt');

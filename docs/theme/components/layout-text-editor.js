@@ -44,9 +44,9 @@ export { formFieldMarkup } from './form-field.js';
 
 export function layoutTextEditorProjectColorAddMarkup({
   attributes = {},
-  value = '#000000'
+  value = '#000000', label = 'Add color to project'
 } = {}) {
-  return `<label class="bb-color-swatch-add bb-workspace-add-tile bb-cut-corner-swatch" aria-label="Add color to project" title="Add color to project"><input class="bb-color-swatch-add__input" type="color" value="${escapeHtml(value)}" aria-label="Add color to project"${attributesMarkup({ ...attributes, name: attributes.name ?? 'project-color' })}><span class="bb-workspace-control-icon" aria-hidden="true">${semanticIconMarkup('add')}</span></label>`;
+  return `<label class="bb-color-swatch-add bb-workspace-add-tile bb-cut-corner-swatch" aria-label="${escapeHtml(label)}" title="${escapeHtml(label)}"><input class="bb-color-swatch-add__input" type="color" value="${escapeHtml(value)}" aria-label="${escapeHtml(label)}"${attributesMarkup({ ...attributes, name: attributes.name ?? 'project-color' })}><span class="bb-workspace-control-icon" aria-hidden="true">${semanticIconMarkup('add')}</span></label>`;
 }
 
 export function syncLayoutTextEditorProjectColorPreview(control, color = '') {

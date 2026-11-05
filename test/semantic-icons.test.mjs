@@ -257,3 +257,11 @@ test('layout gap controls use a Themes-owned spacing role', async () => {
   ), 'utf8');
   assert.match(gap, /<svg/);
 });
+
+test('Effects has delivered layers vectors distinct from Animation in every provider', async () => {
+  for (const family of ['font-awesome-solid', 'material-symbols-outlined', 'material-symbols-filled']) {
+    const asset = semanticIconAssetPath('effects', { family });
+    assert.notEqual(asset, semanticIconAssetPath('animation', { family }));
+    assert.match(await readFile(new URL(`../dist/web/${asset}`, import.meta.url), 'utf8'), /<svg/);
+  }
+});

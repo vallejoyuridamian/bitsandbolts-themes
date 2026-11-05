@@ -124,6 +124,10 @@
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/copy.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="format_paint"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/paint-roller.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="content_paste"] {
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/paste.svg");
 }
@@ -194,6 +198,10 @@
 
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="media_image"] {
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/image.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="monitor"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/desktop.svg");
 }
 
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="media_device"] {
@@ -306,6 +314,10 @@
 
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="animation"] {
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/wand-magic-sparkles.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="effects"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/layer-group.svg");
 }
 
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="dark_mode"] {
@@ -560,6 +572,10 @@
   --bb-semantic-icon-source: url("../icons/material-symbols-outlined-content-copy.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="format_paint"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-format-paint.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="content_paste"] {
   --bb-semantic-icon-source: url("../icons/material-symbols-outlined-content-paste.svg");
 }
@@ -616,8 +632,20 @@
   --bb-semantic-icon-source: url("../icons/material-symbols-outlined-media-image.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="movie_edit"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-movie-edit.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="monitor"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-monitor.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="animation"] {
   --bb-semantic-icon-source: url("../icons/material-symbols-outlined-animation.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="effects"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-effects.svg");
 }
 
 .bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="play_arrow"] {
@@ -840,6 +868,10 @@
   --bb-semantic-icon-source: url("../icons/material-symbols-filled-content-copy.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="format_paint"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-format-paint.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="content_paste"] {
   --bb-semantic-icon-source: url("../icons/material-symbols-filled-content-paste.svg");
 }
@@ -896,8 +928,20 @@
   --bb-semantic-icon-source: url("../icons/material-symbols-filled-media-image.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="movie_edit"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-movie-edit.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="monitor"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-monitor.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="animation"] {
   --bb-semantic-icon-source: url("../icons/material-symbols-filled-animation.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="effects"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-effects.svg");
 }
 
 .bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="play_arrow"] {

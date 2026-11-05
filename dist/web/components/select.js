@@ -358,7 +358,7 @@ export function installSelectController(root = globalThis.document, {
 
   function syncRecord(record, { rebuild = false } = {}) {
     const { select, trigger, valueNode, wrapper } = record;
-    if (!select?.isConnected || !wrapper?.isConnected) return false;
+    if (!records.has(record) || !select?.isConnected || !wrapper?.isConnected) return false;
     const selected = selectedOption(record);
     const value = selectTriggerValue(selected, select.value);
     if (valueNode) valueNode.textContent = value;
@@ -858,10 +858,19 @@ export function installSelectController(root = globalThis.document, {
     recordsByTrigger.set(trigger, record);
     instrumentValueProperty(record);
     syncRecord(record, { rebuild: true });
+    record.observer = new MutationObserver(() => queueSync(record, { rebuild: true }));
+    record.observer.observe(select, {
+      attributes: true,
+      attributeFilter: ['disabled', 'hidden', 'label', 'selected', 'title', 'value', 'data-bb-select-option-descriptions'],
+      childList: true,
+      characterData: true,
+      subtree: true
+    });
     return true;
   }
 
   function teardownRecord(record) {
+    record.observer?.disconnect();
     if (activeRecord === record) close('select-removed');
     record.menu?.remove?.();
     if (record.valueInstrumented) {
@@ -880,6 +889,8 @@ export function installSelectController(root = globalThis.document, {
     else record.select.setAttribute('tabindex', record.originalTabIndex);
     record.wrapper.hidden = record.previousWrapperHidden;
     records.delete(record);
+    recordsBySelect.delete(record.select);
+    recordsByTrigger.delete(record.trigger);
   }
 
   function pruneRemovedRecords() {
@@ -976,22 +987,11 @@ export function installSelectController(root = globalThis.document, {
         mutation.addedNodes.forEach((node) => selectsWithin(node).forEach(enhance));
         needsPrune ||= mutation.removedNodes.length > 0;
       }
-      const targetElement = mutation.target?.nodeType === 1
-        ? mutation.target
-        : mutation.target?.parentElement;
-      const select = targetElement?.matches?.('select')
-        ? targetElement
-        : targetElement?.closest?.('select');
-      const record = recordsBySelect.get(select);
-      if (record) queueSync(record, { rebuild: true });
     });
     if (needsPrune) pruneRemovedRecords();
   });
   rootObserver.observe(rootDocument.documentElement, {
-    attributes: true,
-    attributeFilter: ['disabled', 'hidden', 'label', 'selected', 'title', 'value', 'data-bb-select-option-descriptions'],
     childList: true,
-    characterData: true,
     subtree: true
   });
   root.querySelectorAll?.('select').forEach(enhance);
