@@ -22,12 +22,12 @@ function attributesMarkup(attributes = {}) {
   }).join('');
 }
 
-export function animationCardMarkup({ id = '', summary = '', contentMarkup = '', attributes = {}, removeAttributes = {}, className = '', headerActions = [], removeLabel = 'Remove animation' } = {}) {
-  const remove = semanticActionButtonMarkup({ iconRole: 'delete', label: removeLabel, attributes: removeAttributes });
+export function animationCardMarkup({ id = '', summary = '', contentMarkup = '', attributes = {}, removeAttributes = {}, className = '', headerActions = [], removeLabel = 'Remove animation', removable = true, pinned = false } = {}) {
+  const remove = removable ? semanticActionButtonMarkup({ iconRole: 'delete', label: removeLabel, attributes: removeAttributes }) : '';
   const actions = headerActions.length
     ? `<div class="animation-toolbar">${headerActions.map(action => semanticActionButtonMarkup(action)).join('')}${remove}</div>`
     : remove;
-  return `<div class="animation-item${className ? ` ${escapeHtml(className)}` : ''}"${attributesMarkup({ ...attributes, 'data-animation-card-id': id, tabindex: '-1', role: 'group', 'aria-label': summary || 'Animation' })}>
+  return `<div class="animation-item${className ? ` ${escapeHtml(className)}` : ''}"${attributesMarkup({ ...attributes, ...(pinned ? { 'data-animation-pinned': 'true' } : {}), 'data-animation-card-id': id, tabindex: '-1', role: 'group', 'aria-label': summary || 'Animation' })}>
     <div class="animation-item-header"><strong>${escapeHtml(summary)}</strong>
       ${actions}
     </div>${contentMarkup}</div>`;
@@ -43,7 +43,7 @@ export function animationTypeOptionsMarkup(options = [], { placeholder = false }
 export function syncAnimationCardOrder(root, orderedIds = [], { changedId = '' } = {}) {
   const list = root?.querySelector?.('.animation-list');
   if (!list) return { orderChanged: false };
-  const cards = [...list.children].filter((card) => card.dataset?.animationCardId && !card.hasAttribute('data-animation-draft'));
+  const cards = [...list.children].filter((card) => card.dataset?.animationCardId && !card.hasAttribute('data-animation-draft') && !card.hasAttribute('data-animation-pinned'));
   const byId = new Map(cards.map((card) => [card.dataset.animationCardId, card]));
   const nodes = orderedIds.map((id) => byId.get(String(id)));
   if (nodes.some((node) => !node)) return { orderChanged: false };

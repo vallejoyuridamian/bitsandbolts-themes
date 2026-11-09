@@ -1,10 +1,17 @@
 # Bits and Bolts Themes: Status
 
 Current Studio delivery and bounded local Cloud/Live acceptance are complete:
-../appscreen-studio/docs/CLUNA_REEL8_PUBLICATION_PLAN.md.
+../appscreen-studio/docs/CLUNA_REEL4_RENDERER_RELEASE_PLAN.md.
 Current host:../appscreen-studio/docs/CLUNA_DEPLOYMENT_STATE.md.
-Checkpoint:../appscreen-studio/docs/history/CHECKPOINT_2026-11-05_REEL8.md.
+Checkpoint:../appscreen-studio/docs/history/CHECKPOINT_2026-11-09_REEL4_DIMENSIONS.md.
 No independent Themes publication or push. All further work is owner-directed.
+
+Studio Preview pending-controls reveal has post-promotion owner appearance approval.
+Published through Studio and owner-accepted;broader performance stays qualified.
+Control:../appscreen-studio/docs/CLUNA_PREVIEW_OPENING_RESPONSIVENESS_PLAN.md.
+
+Pinned/removable animation-card capability is owner-accepted through Studio:
+../appscreen-studio/docs/CLUNA_EMBEDDED_VIDEO_TIMING_PLAN.md. Generation passes.
 
 ## Parked qualifications
 

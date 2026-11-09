@@ -92,6 +92,7 @@ export function createMediaControlsDemand({ root, bindEvent, onChange,
       refresh('activate');
     },
     deactivate,
+    refresh,
     isActive: () => active && !disposed && !root.hidden && !root.ownerDocument.hidden,
     admit(name = 'transport') {
       const record = records.find(record => record.name === name);

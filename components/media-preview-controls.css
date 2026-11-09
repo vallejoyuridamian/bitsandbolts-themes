@@ -101,6 +101,18 @@
   transition: opacity 180ms ease, transform 180ms ease;
 }
 
+/* Pending content retains the final controls composition. Consumers mark the
+   existing content placeholder; shared demand reads the same reveal policy. */
+[data-bb-media-controls-root]:has([data-bb-media-pending][aria-busy="true"]) .bb-media-controls-zone {
+  --bb-media-controls-opacity: 1;
+  --bb-media-controls-pointer-events: auto;
+  --bb-media-controls-offset: 0px;
+}
+
+[data-bb-media-controls-root]:has([data-bb-media-pending][aria-busy="true"]) .bb-media-controls-reveal {
+  transition: none;
+}
+
 .bb-media-view-controls.bb-workspace-control-bar {
   position: absolute;
   top: 0;
