@@ -128,6 +128,10 @@
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/paint-roller.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="crop"] {
+  --bb-semantic-icon-source: url("../icons/font-awesome-solid/crop-simple.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="font-awesome-solid"][data-bb-icon-role="content_paste"] {
   --bb-semantic-icon-source: url("../icons/font-awesome-solid/paste.svg");
 }
@@ -576,6 +580,10 @@
   --bb-semantic-icon-source: url("../icons/material-symbols-outlined-format-paint.svg");
 }
 
+.bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="crop"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-outlined-crop.svg");
+}
+
 .bb-semantic-icon[data-bb-icon-family="material-symbols-outlined"][data-bb-icon-role="content_paste"] {
   --bb-semantic-icon-source: url("../icons/material-symbols-outlined-content-paste.svg");
 }
@@ -870,6 +878,10 @@
 
 .bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="format_paint"] {
   --bb-semantic-icon-source: url("../icons/material-symbols-filled-format-paint.svg");
+}
+
+.bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="crop"] {
+  --bb-semantic-icon-source: url("../icons/material-symbols-filled-crop.svg");
 }
 
 .bb-semantic-icon[data-bb-icon-family="material-symbols-filled"][data-bb-icon-role="content_paste"] {

@@ -324,10 +324,6 @@
 }
 
 
-/* Measure one list item at initial fit; the fixed shell then scrolls the full list. */
-.bb-floating-window[data-floating-window-measuring="true"] [data-floating-window-fit-first-item="true"] [data-floating-window-items] > :not(:first-child) {
-  display: none;
-}
 dialog.bb-floating-window:not([open]) {
   display: none;
 }

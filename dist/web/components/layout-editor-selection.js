@@ -33,6 +33,9 @@ export const layoutEditorTextSelectionRecipe = Object.freeze({
 });
 
 export const layoutEditorSelectionRecipe = Object.freeze({
+  ghostOpacity: .2,
+  cropHandleLength: overlayMetric(40),
+  cropHandleStroke: overlayMetric(5),
   signalColor: '#ff5a5f',
   alternateSignalColor: '#12e6d5',
   mutedSignalColor: 'rgba(255,90,95,.65)',
@@ -200,6 +203,11 @@ export const layoutEditorRegionOverlayStyles = `
 .bb-layout-editor-region-handle[data-corner="sw"]{bottom:${layoutEditorSelectionRecipe.resizeHandleOffset};left:${layoutEditorSelectionRecipe.resizeHandleOffset};cursor:nesw-resize}
 .bb-layout-editor-region-handle[data-corner="se"]{right:${layoutEditorSelectionRecipe.resizeHandleOffset};bottom:${layoutEditorSelectionRecipe.resizeHandleOffset};cursor:nwse-resize}
 .bb-layout-editor-region-handle[data-bb-layout-line-endpoint]{cursor:nwse-resize}
+.bb-layout-editor-region-handle[data-bb-layout-crop]{width:${layoutEditorSelectionRecipe.cropHandleLength};height:${layoutEditorSelectionRecipe.cropHandleLength};background:transparent;border:0;border-radius:0;box-shadow:none}
+.bb-layout-editor-region-handle[data-bb-layout-crop]::after{content:"";position:absolute;left:calc(50% - ${layoutEditorSelectionRecipe.cropHandleStroke} / 2);top:calc(50% - ${layoutEditorSelectionRecipe.cropHandleStroke} / 2);width:${layoutEditorSelectionRecipe.cropHandleLength};height:${layoutEditorSelectionRecipe.cropHandleLength};box-sizing:border-box;border-top:${layoutEditorSelectionRecipe.cropHandleStroke} solid var(--bb-layout-editor-region-accent);border-left:${layoutEditorSelectionRecipe.cropHandleStroke} solid var(--bb-layout-editor-region-accent);transform-origin:calc(${layoutEditorSelectionRecipe.cropHandleStroke} / 2) calc(${layoutEditorSelectionRecipe.cropHandleStroke} / 2);pointer-events:none}
+.bb-layout-editor-region-handle[data-bb-layout-crop="ne"]::after{transform:rotate(90deg)}
+.bb-layout-editor-region-handle[data-bb-layout-crop="se"]::after{transform:rotate(180deg)}
+.bb-layout-editor-region-handle[data-bb-layout-crop="sw"]::after{transform:rotate(270deg)}
 :root[data-bb-layout-line-endpoint-resize="true"],:root[data-bb-layout-line-endpoint-resize="true"] *{cursor:nwse-resize!important}
 .bb-layout-editor-draw-layer{position:absolute;inset:0;z-index:${layoutEditorSelectionRecipe.drawZIndex};cursor:crosshair;background:transparent;pointer-events:auto}
 .bb-layout-editor-draw-box{position:absolute;box-sizing:border-box;border:0;outline:${layoutEditorSelectionRecipe.outlineWidth} ${layoutEditorSelectionRecipe.outlineStyle} ${layoutEditorSelectionRecipe.alternateSignalColor};outline-offset:0;background:transparent;pointer-events:none}

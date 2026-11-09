@@ -54,7 +54,6 @@ function floatingWindowHeadingMarkup({ description = '', id, title, backLabel = 
 export function floatingWindowPanelMarkup({
   contentMarkup = '',
   description = '',
-  fitFirstItem = false,
   preferredColumns = 0,
   fillHeight = false,
   id = 'bbFloatingPanel',
@@ -65,7 +64,7 @@ export function floatingWindowPanelMarkup({
   const sizeAttribute = size === 'content' ? ' data-floating-window-size="content"' : '';
   const gridAttribute = preferredColumns > 0 ? ` data-floating-window-preferred-columns="${Math.floor(preferredColumns)}"` : '';
   const heightAttribute = fillHeight ? ' data-floating-window-fill-height="true"' : '';
-  return `<div class="bb-floating-window-content bb-floating-panel"${fitFirstItem ? ' data-floating-window-fit-first-item="true"' : ''}${sizeAttribute}${gridAttribute}${heightAttribute} aria-labelledby="${heading.titleId}"${heading.describedBy}>${heading.headingMarkup}${heading.descriptionMarkup}<div class="bb-floating-window-content__body" data-bb-floating-window-content-body>${contentMarkup}</div></div>`;
+  return `<div class="bb-floating-window-content bb-floating-panel"${sizeAttribute}${gridAttribute}${heightAttribute} aria-labelledby="${heading.titleId}"${heading.describedBy}>${heading.headingMarkup}${heading.descriptionMarkup}<div class="bb-floating-window-content__body" data-bb-floating-window-content-body>${contentMarkup}</div></div>`;
 }
 
 export function floatingWindowRangeControlsMarkup({ fields = [] } = {}) {

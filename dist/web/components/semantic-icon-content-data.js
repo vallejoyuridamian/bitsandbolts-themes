@@ -360,6 +360,21 @@ export const semanticIconContentData = Object.freeze({
       "height": 512
     }
   },
+  "icons/font-awesome-solid/crop-simple.svg": {
+    "path": "icons/content/font-awesome-solid/crop-simple.svg",
+    "canvas": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "bounds": {
+      "x": 0,
+      "y": 0,
+      "width": 512,
+      "height": 512
+    }
+  },
   "icons/font-awesome-solid/paste.svg": {
     "path": "icons/content/font-awesome-solid/paste.svg",
     "canvas": [
@@ -1425,6 +1440,21 @@ export const semanticIconContentData = Object.freeze({
       "height": 760
     }
   },
+  "icons/material-symbols-outlined-crop.svg": {
+    "path": "icons/content/material-symbols-outlined-crop.svg",
+    "canvas": [
+      0,
+      -960,
+      960,
+      960
+    ],
+    "bounds": {
+      "x": 40,
+      "y": -920,
+      "width": 880,
+      "height": 880
+    }
+  },
   "icons/material-symbols-outlined-content-paste.svg": {
     "path": "icons/content/material-symbols-outlined-content-paste.svg",
     "canvas": [
@@ -2458,6 +2488,21 @@ export const semanticIconContentData = Object.freeze({
       "y": -840,
       "width": 640,
       "height": 760
+    }
+  },
+  "icons/material-symbols-filled-crop.svg": {
+    "path": "icons/content/material-symbols-filled-crop.svg",
+    "canvas": [
+      0,
+      -960,
+      960,
+      960
+    ],
+    "bounds": {
+      "x": 40,
+      "y": -920,
+      "width": 880,
+      "height": 880
     }
   },
   "icons/material-symbols-filled-content-paste.svg": {

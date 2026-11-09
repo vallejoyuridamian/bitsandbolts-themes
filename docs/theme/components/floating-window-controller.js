@@ -145,6 +145,9 @@ export function createFloatingWindowController({
     const maximumWidth = Math.max(1, viewport.width - (VIEWPORT_MARGIN * 2));
     const maximumHeight = Math.max(1, viewport.height - (VIEWPORT_MARGIN * 2));
     const initial = measuredGeometry(record);
+    log('floating-window-content-fit-started', { windowId: record.id,
+      phase: record.node.dataset.floatingWindowMeasuring === 'true' ? 'opening' : 'mounted',
+      initial, maximumWidth, maximumHeight });
     const bodyClientWidth = finiteNumber(record?.body?.clientWidth, initial.width);
     const horizontalShell = Math.max(0, initial.width - bodyClientWidth);
     const preferredGrid = preferredGridMeasurement(record, maximumWidth - horizontalShell);
@@ -180,9 +183,13 @@ export function createFloatingWindowController({
       Math.ceil(Math.max(widthAdjusted.height, bodyScrollHeight + verticalShell))
     );
     if (Math.abs(height - widthAdjusted.height) > SIZE_EPSILON
-      || record.body.firstElementChild?.dataset?.floatingWindowFitFirstItem === 'true' || fillHeight) {
+      || record.node.dataset.floatingWindowSize === 'content' || fillHeight) {
       record.node.style.height = `${height}px`;
     }
+    log('floating-window-content-fit-finished', { windowId: record.id,
+      bodyScrollHeight, verticalShell, width, height,
+      viewportLimited: bodyScrollHeight + verticalShell > maximumHeight,
+      outcome: 'complete-content-fitted' });
   }
 
   function refitPreferredGridAfterFonts(record) {
@@ -623,8 +630,8 @@ export function createFloatingWindowController({
   function fitContent(id, { resetHeight = false } = {}) {
     const record = records.get(String(id || ''));
     if (!record || record.node.hidden) return false;
-    // Only initial presentation measures a hidden single item. Mounted refits
-    // retain focus, hit testing and the complete content scroll range.
+    // Initial presentation and mounted refits measure the complete content.
+    // Mounted refits retain focus, hit testing and the full scroll range.
     if (resetHeight && record.node.dataset.floatingWindowSize === 'content') {
       record.node.style.height = '';
     }

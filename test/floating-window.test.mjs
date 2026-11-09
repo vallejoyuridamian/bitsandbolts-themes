@@ -104,3 +104,9 @@ test('inline confirmation help flows within prose without the padded grid-copy r
   assert.match(css, /:where\(\.bb-floating-window__body, \.bb-floating-window-content\) a\[href\]:not\(\[role="button"\]\)\s*\{\s*color: var\(--bb-interface-control-foreground\);/);
   assert.match(css, /:where\(\.bb-floating-window__body, \.bb-floating-window-content\) a\[href\]:not\(\[role="button"\]\):hover\s*\{\s*color: var\(--bb-v2-identity-primary\);\s*text-shadow: 0 0 6px color-mix\(in srgb, var\(--bb-v2-identity-primary\) 35%, transparent\);/);
 });
+
+// All cards participate in the same initial layout, including pinned controls.
+test('window measurement never hides later content items', async () => {
+  const css = await readFile(new URL('../components/floating-window.css', import.meta.url), 'utf8');
+  assert.doesNotMatch(css, /\[data-floating-window-items\][^{]*\{[^}]*display:\s*none/s);
+});
