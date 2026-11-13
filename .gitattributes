@@ -1,0 +1,4 @@
+# Repository-owned Windows/Linux line endings; see workspace GLOBAL_CONTEXT.md.
+* text=auto eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
