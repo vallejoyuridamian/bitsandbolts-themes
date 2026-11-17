@@ -1,5 +1,9 @@
 # Bits and Bolts Themes: Status
 
+Nov17 checkpoint:role identity,pending glyph and geometry units ship through Studio
+ee9314f9/renderer45. Source/generated parity retained;Live UI check unreported.
+Evidence/parked costs:../appscreen-studio/docs/CLUNA_NEUROSHARP_RELEASE_PLAN.md.
+
 Current Studio delivery and bounded local Cloud/Live acceptance are complete:
 ../appscreen-studio/docs/CLUNA_CROP_RELEASE_PLAN.md.
 Current host:../appscreen-studio/docs/CLUNA_DEPLOYMENT_STATE.md.

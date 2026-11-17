@@ -1,5 +1,8 @@
 # Bits and Bolts Themes: Sprint Roadmap
 
+Nov17 Studio ee9314f9 delivers role identity,pending glyph and geometry units.
+Owner directs next work;Live UI check unreported. No automatic generation/review.
+
 Preview pending-controls recipe has post-migration owner appearance approval.
 Control:Studio CLUNA_PREVIEW_OPENING_RESPONSIVENESS_PLAN.md. Generation passes.
 

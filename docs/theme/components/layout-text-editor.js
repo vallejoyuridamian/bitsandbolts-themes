@@ -334,6 +334,11 @@ function layoutGeometryReferenceSwitchMarkup({
   return `<div class="bb-layout-geometry-popover__reference bb-layout-geometry-popover__reference--${resolvedAxis} bb-segmented-control bb-segmented-control--popover" role="group" aria-label="${resolvedAxis === 'horizontal' ? 'Horizontal' : 'Vertical'} position reference">${buttons}</div>`;
 }
 
+export function layoutTextEditorGeometryUnitMarkup({ unit = 'px', attributes = {}, className = '' } = {}) {
+  const percent = unit === 'percent';
+  return `<div class="bb-segmented-control bb-segmented-control--popover${className ? ` ${escapeHtml(className)}` : ''}" role="group" aria-label="Geometry units"${attributesMarkup(attributes)}><button class="bb-segmented-control__item${percent ? '' : ' active'}" type="button" aria-pressed="${percent ? 'false' : 'true'}" data-bb-layout-geometry-unit="px">px</button><button class="bb-segmented-control__item${percent ? ' active' : ''}" type="button" aria-pressed="${percent ? 'true' : 'false'}" data-bb-layout-geometry-unit="percent">%</button></div>`;
+}
+
 export function layoutTextEditorGeometryPopoverMarkup({
   geometry = null,
   reference = {},
@@ -351,9 +356,7 @@ export function layoutTextEditorGeometryPopoverMarkup({
   const percent = resolvedUnit === 'percent';
   const horizontalReference = reference?.horizontal === 'right' ? 'right' : 'left';
   const verticalReference = reference?.vertical === 'bottom' ? 'bottom' : 'top';
-  const unitSwitch = hasGeometry
-    ? `<div class="bb-layout-geometry-popover__units bb-segmented-control bb-segmented-control--popover" role="group" aria-label="Geometry units"><button class="bb-segmented-control__item${percent ? '' : ' active'}" type="button" aria-pressed="${percent ? 'false' : 'true'}" data-bb-layout-geometry-unit="px">px</button><button class="bb-segmented-control__item${percent ? ' active' : ''}" type="button" aria-pressed="${percent ? 'true' : 'false'}" data-bb-layout-geometry-unit="percent">%</button></div>`
-    : '';
+  const unitSwitch = hasGeometry ? layoutTextEditorGeometryUnitMarkup({ unit: resolvedUnit, className: 'bb-layout-geometry-popover__units' }) : '';
   const referenceSwitches = hasGeometry
     ? `${layoutGeometryReferenceSwitchMarkup({ axis: 'horizontal', options: [{ label: 'Left', value: 'left' }, { label: 'Right', value: 'right' }], value: horizontalReference })}${layoutGeometryReferenceSwitchMarkup({ axis: 'vertical', options: [{ label: 'Top', value: 'top' }, { label: 'Bottom', value: 'bottom' }], value: verticalReference })}`
     : '';

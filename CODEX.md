@@ -29,7 +29,7 @@ Never import/construct an app router or require its interface in Themes.
 - Shared public web fonts, platform icons, store badges, and brand assets
 
 ## Working Boundary
-- theme-roles.js owns color/font role definitions, transient resolution and deduplicated authored options. Empty roles never become assignments. Typography, catalog pickers and summary cards consume that contract; Neutral has a Bits and Bolts default, and font fallback substitutes family only. theme-css.js derives transient mode CSS from that same resolved Theme contract; consumers never persist these computed resources.
+- theme-roles.js owns color/font role definitions, transient resolution and option identity. Authored color roles stay distinct even when their values coincide; font-family choices may deduplicate. Empty roles never become assignments. Typography, catalog pickers and summary cards consume that contract; Neutral has a Bits and Bolts default, and font fallback substitutes family only. theme-css.js derives transient mode CSS from that same resolved Theme contract; consumers never persist these computed resources.
 
 - `pnpm build` is the focused generation check.
 - For a focused owner correction to an existing Themes specimen, go directly to

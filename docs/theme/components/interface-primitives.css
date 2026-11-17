@@ -791,8 +791,9 @@
   --ms-weight: 300;
 }
 
-/* Shared pending controls retain disabled visuals; only the admitted icon moves. */
-[aria-busy="true"]:disabled .bb-semantic-icon {
+/* Shared pending light stays inside existing control and status glyphs. */
+[aria-busy="true"]:disabled .bb-semantic-icon,
+.bb-semantic-icon[aria-busy="true"] {
   /* Themes' existing mask confines the light to the original icon glyph. */
   background-image: linear-gradient(105deg, currentColor 40%,
     var(--bb-v2-color-content-primary) 50%, currentColor 60%);
@@ -806,7 +807,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [aria-busy="true"]:disabled .bb-semantic-icon {
+  [aria-busy="true"]:disabled .bb-semantic-icon,
+  .bb-semantic-icon[aria-busy="true"] {
     animation: none;
     background-position: 50% 0;
   }

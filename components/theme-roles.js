@@ -33,13 +33,14 @@ export function resolveThemeRoles(kind, assignments = {}, defaults = {}) {
   ]));
 }
 
-// Only authored values enter option lists. Deduplication never alters assignments.
+// Color options identify semantic roles, even when their values coincide.
+// Font options may share one family choice. Fallbacks never become assignments.
 export function themeRoleOptions(kind, assignments = {}, key = (value) => value) {
   const seen = new Set();
   return contract(kind).roles.flatMap((role) => {
     const value = assignments[role];
     if (!assigned(value)) return [];
-    const identity = key(value);
+    const identity = kind === 'color' ? role : key(value);
     if (!identity || seen.has(identity)) return [];
     seen.add(identity);
     return [{ role, value }];
@@ -88,6 +89,6 @@ export function themeIdentityColorVariables(identity = [], { directSemantics = f
 
 export function themeIdentityOptions(identity = []) {
   const authored = Object.fromEntries(identity.map((entry) => [entry.id, entry.assigned === false ? null : entry]));
-  return themeRoleOptions('color', authored, (entry) => String(entry.value || '').trim().toLowerCase())
+  return themeRoleOptions('color', authored)
     .map(({ value }) => value);
 }
