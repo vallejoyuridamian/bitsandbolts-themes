@@ -42,10 +42,16 @@
   user-select: none;
 }
 
+.bb-theme-gallery__mount {
+  min-height: 100%;
+}
+
+.bb-theme-gallery:has(> .bb-theme-gallery__mount > .bb-theme-detail),
 .bb-theme-gallery:has(> .bb-theme-detail) {
   padding: 0;
 }
 
+.bb-theme-gallery:has(> .bb-theme-gallery__mount > .bb-theme-gallery__groups),
 .bb-theme-gallery:has(> .bb-theme-gallery__groups) {
   padding: 0;
 }
@@ -188,6 +194,16 @@
   display: grid;
   gap: 2px;
   min-width: 0;
+}
+
+.bb-theme-summary-card[data-theme-preview-mode="dark"] { --cluna-card-mode-label: "Dark preview"; }
+.bb-theme-summary-card[data-theme-preview-mode="light"] { --cluna-card-mode-label: "Light preview"; }
+.bb-theme-summary-card__header > span:first-child::after {
+  content: var(--cluna-card-mode-label);
+  color: var(--bb-v2-color-content-secondary);
+  font-family: var(--bb-v2-type-caption-family);
+  font-size: var(--bb-v2-type-caption-font-size);
+  line-height: var(--bb-v2-type-caption-line-height);
 }
 
 .bb-theme-summary-card__header small {
@@ -342,6 +358,11 @@
   display: grid;
   width: 100%;
   min-height: 100%;
+}
+
+/* Known labels share one subdued state until the authored values are admitted. */
+.bb-theme-detail[data-theme-detail-pending] .bb-theme-v2__body {
+  opacity: 0.55;
 }
 
 .bb-theme-detail > .bb-theme-gallery__catalog {
@@ -1448,6 +1469,12 @@ article.bb-workspace-specimen__preview--secondary {
   white-space: nowrap;
 }
 
+.bb-theme-v2-identity__value.bb-skeleton,
+.bb-theme-v2-identity__foreground-value.bb-skeleton {
+  inline-size: 7ch;
+  block-size: 1em;
+}
+
 .bb-theme-v2-identity__foreground-label {
   color: var(--bb-v2-color-content-secondary);
   font-family: var(--bb-v2-font-family-primary);
@@ -1533,6 +1560,11 @@ article.bb-workspace-specimen__preview--secondary {
   text-align: center;
 }
 
+.bb-theme-v2-type__font-control,
+.bb-theme-v2-type__font-add {
+  min-height: 60px;
+}
+
 .bb-theme-v2-type__font-control {
   appearance: none;
   cursor: pointer;
@@ -1552,7 +1584,6 @@ article.bb-workspace-specimen__preview--secondary {
 
 .bb-theme-v2-type__font-add {
   width: min(172px, 100%);
-  min-height: 60px;
   padding: 0;
   font-size: inherit;
   letter-spacing: normal;

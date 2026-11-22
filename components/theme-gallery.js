@@ -1,8 +1,8 @@
 import { createComponentEvents } from './component-events.js';
-import { themeGalleryLoadingMarkup } from './theme-gallery-loading.js';
+import { themeGalleryLoadingCardMarkup, themeGalleryLoadingMarkup } from './theme-gallery-loading.js';
 import { workspaceControlBarContentMarkup } from './workspace-control-bar.js';
 import { contentCardsMarkup } from './content-card.js';
-import { themeIdentityOptions } from './theme-roles.js';
+import { THEME_COLOR_ROLES, THEME_FONT_ROLE_OPTIONS, themeIdentityOptions } from './theme-roles.js';
 import { themeModeToggleMarkup } from './compact-theme-selector.js';
 import { spotlightMediaMarkup, storeBadgesMarkup } from './content-media.js';
 import { semanticActionButtonMarkup } from './button.js';
@@ -382,6 +382,8 @@ function themeTypographyVariantStyleAttribute(typography = {}) {
 }
 
 function themeSummaryCardMarkup(theme, mode) {
+  if (theme.pending) return themeGalleryLoadingCardMarkup();
+  if (theme.unavailable) return '<article class="bb-theme-summary-card"><div class="bb-theme-summary-card__open"><span role="status">Theme preview unavailable</span></div></article>';
   if (!theme.v2) return '';
   const nextMode = nextThemeMode(mode);
   const artDirectionLabel = String(theme.v2.artDirection.label || '').trim();
@@ -430,14 +432,15 @@ function themeSummaryCardMarkup(theme, mode) {
   `;
 }
 
+function themeSummaryCardsMarkup(themes, mode, cardModes) {
+  return themes.map(theme => themeSummaryCardMarkup(theme, selectedMode(cardModes[theme.id] ?? mode))).join('');
+}
+
 function themeSummaryGridMarkup(catalog, mode, cardModes = {}, label = 'Theme families') {
   return `
     <section class="bb-theme-summary" aria-label="${escapeHtml(label)}">
-      <div class="bb-theme-summary__grid">
-        ${catalog.themes.map((theme) => themeSummaryCardMarkup(
-          theme,
-          selectedMode(cardModes[theme.id] ?? mode)
-        )).join('')}
+      <div class="bb-theme-summary__grid"${catalog.themes.some(theme => theme.pending) ? ' aria-busy="true"' : ''}>
+        ${themeSummaryCardsMarkup(catalog.themes, mode, cardModes)}
       </div>
     </section>
   `;
@@ -502,47 +505,50 @@ function iconsMarkup(theme) {
 
 function v2IdentityMarkup(mode, { editable = false, identityColorOverrides = [] } = {}) {
   const overrides = new Set(identityColorOverrides.map((value) => String(value || '')));
-  return mode.identity.map((entry) => {
+  const pending = !mode;
+  const identities = mode?.identity ?? THEME_COLOR_ROLES.map(id => ({ id, label: id[0].toUpperCase() + id.slice(1) }));
+  return identities.map((entry) => {
     const hasOverride = !editable || overrides.has(entry.id);
+    const sampleClass = pending ? 'bb-skeleton' : hasOverride ? 'is-selected' : 'bb-workspace-add-tile';
     const sample = editable
       ? `
-        <label class="bb-theme-v2-identity__sample bb-cut-corner-swatch${hasOverride ? ' is-selected' : ' bb-workspace-add-tile'}">
+        <label class="bb-theme-v2-identity__sample bb-cut-corner-swatch ${sampleClass}">
           <input
             class="bb-theme-v2-identity__input"
             type="color"
-            value="${escapeHtml(entry.value)}"
+            ${pending ? '' : `value="${escapeHtml(entry.value)}"`}
             aria-label="${escapeHtml(entry.label)} color"
             title="Edit ${escapeHtml(entry.label.toLowerCase())} color"
             data-theme-project-color="${escapeHtml(entry.id)}"
           >
           <span class="bb-theme-v2-identity__sample-visual" aria-hidden="true">
             <span class="bb-theme-v2-identity__foreground-sample"${hasOverride ? '' : ' hidden'}>Aa</span>
-            <span class="bb-workspace-control-icon" data-theme-project-color-add${hasOverride ? ' hidden' : ''}>${semanticIconMarkup('add')}</span>
+            <span class="bb-workspace-control-icon" data-theme-project-color-add${pending || hasOverride ? ' hidden' : ''}>${semanticIconMarkup('add')}</span>
           </span>
         </label>
       `
       : `<span
-          class="bb-theme-v2-identity__swatch bb-cut-corner-swatch"
+          class="bb-theme-v2-identity__swatch bb-cut-corner-swatch${pending ? ' bb-skeleton' : ''}"
           role="img"
-          aria-label="${escapeHtml(entry.label)} ${escapeHtml(entry.value)}, foreground ${escapeHtml(entry.foreground)}"
-        ><span class="bb-theme-v2-identity__foreground-sample" aria-hidden="true">Aa</span></span>`;
+          aria-label="${pending ? escapeHtml(entry.label) : `${escapeHtml(entry.label)} ${escapeHtml(entry.value)}, foreground ${escapeHtml(entry.foreground)}`}"
+        ><span class="bb-theme-v2-identity__foreground-sample" aria-hidden="true">${pending ? '' : 'Aa'}</span></span>`;
     return `
       <div class="bb-theme-v2-identity" data-theme-v2-identity="${escapeHtml(entry.id)}">
         ${sample}
         <div class="bb-theme-v2-identity__row">
           <span class="bb-theme-v2-identity__label">${escapeHtml(entry.label)}</span>
-          <span class="bb-theme-v2-identity__value"${hasOverride ? '' : ' hidden'}>${escapeHtml(entry.value)}</span>
+          <span class="bb-theme-v2-identity__value${pending ? ' bb-skeleton' : ''}"${hasOverride || pending ? '' : ' hidden'}>${pending ? '' : escapeHtml(entry.value)}</span>
         </div>
-        <div class="bb-theme-v2-identity__row bb-theme-v2-identity__foreground-row${hasOverride ? '' : ' is-empty'}">
+        <div class="bb-theme-v2-identity__row bb-theme-v2-identity__foreground-row${hasOverride || pending ? '' : ' is-empty'}">
           <span class="bb-theme-v2-identity__foreground-label">Foreground</span>
-          <span class="bb-theme-v2-identity__foreground-value">${escapeHtml(entry.foreground)}</span>
+          <span class="bb-theme-v2-identity__foreground-value${pending ? ' bb-skeleton' : ''}">${pending ? '' : escapeHtml(entry.foreground)}</span>
         </div>
       </div>
     `;
   }).join('');
 }
 
-function fontSpecimenStyleControlsMarkup(specimen, variant, capabilities = {}) {
+function fontSpecimenStyleControlsMarkup(specimen, variant, capabilities = {}, disabled = false) {
   const controls = [
     { id: 'bold', iconRole: 'format_bold', label: 'Bold', selected: variant.bold },
     { id: 'italic', iconRole: 'format_italic', label: 'Italic', selected: variant.italic },
@@ -557,7 +563,7 @@ function fontSpecimenStyleControlsMarkup(specimen, variant, capabilities = {}) {
           'data-theme-font-preview-style': control.id
         },
         help: `${control.label} preview`,
-        disabled: control.id === 'bold' && capabilities.bold !== true,
+        disabled: disabled || (control.id === 'bold' && capabilities.bold !== true),
         iconRole: control.iconRole,
         label: control.label,
         recipe: 'workspace'
@@ -598,21 +604,24 @@ function editableFontSpecimenMarkup(specimen, assignment) {
 
 function v2TypographyMarkup(v2, { editable = false, fontAssignments = null } = {}) {
   const assignmentContext = fontAssignments && typeof fontAssignments === 'object';
-  const variants = normalizeThemeTypographyVariants(v2.typography.variants, v2.typography.specimens);
-  return v2.typography.specimens.map((specimen) => {
-    const family = v2.typography.families[specimen.familyRole];
+  const specimens = v2?.typography.specimens ?? THEME_FONT_ROLE_OPTIONS;
+  const variants = normalizeThemeTypographyVariants(v2?.typography.variants, specimens);
+  return specimens.map((specimen) => {
+    const family = v2?.typography.families[specimen.familyRole];
     const role = themeTypographyRole(specimen);
     const assignment = assignmentContext && role ? fontAssignments[role] : null;
-    const sample = editable && assignmentContext
+    const sample = !v2
+      ? '<span class="bb-theme-v2-type__sample bb-theme-v2-type__font-add bb-skeleton" aria-hidden="true"></span>'
+      : editable && assignmentContext
       ? editableFontSpecimenMarkup(specimen, assignment)
       : `<span class="bb-theme-v2-type__sample">${escapeHtml(family)}</span>`;
     return `
-      <div class="bb-theme-v2-type" data-theme-v2-font-specimen="${escapeHtml(specimen.id)}" data-theme-typography-role="${escapeHtml(role)}">
+      <div class="bb-theme-v2-type" data-theme-v2-font-specimen="${escapeHtml(specimen.id ?? role)}" data-theme-typography-role="${escapeHtml(role)}">
         <span class="bb-theme-v2-type__meta">
           <strong>${escapeHtml(specimen.label)}</strong>
         </span>
         ${sample}
-        ${editable && (!assignmentContext || assignment) ? fontSpecimenStyleControlsMarkup(specimen, variants[role], assignment?.capabilities) : ''}
+        ${editable ? fontSpecimenStyleControlsMarkup(specimen, variants[role], assignment?.capabilities, assignmentContext && !assignment) : ''}
       </div>
     `;
   }).join('');
@@ -1300,8 +1309,8 @@ function v2ModeMarkup(theme, mode, {
   referenceImage = null,
   referenceImageExpanded = false
 } = {}) {
-  const v2 = theme.v2;
-  const resolvedMode = v2.modes[mode];
+  const v2 = theme?.v2;
+  const resolvedMode = v2?.modes[mode];
   const paletteCompletionMarkup = editable && paletteCompletion ? selectionControlsMarkup({
     ariaLabel: 'Palette controls',
     layout: 'inline',
@@ -1316,6 +1325,7 @@ function v2ModeMarkup(theme, mode, {
     }]
   }) : '';
   const paletteReferenceMarkup = editable ? referenceImagePickerMarkup({
+    disabled: !theme,
     image: referenceImage,
     expanded: referenceImageExpanded
   }) : '';
@@ -1348,9 +1358,9 @@ function v2ModeMarkup(theme, mode, {
   return `
     <section
       class="bb-theme-mode bb-theme-v2"
-      data-theme-preview-id="${escapeHtml(theme.id)}"
+      ${theme ? `data-theme-preview-id="${escapeHtml(theme.id)}"` : 'aria-busy="true" inert'}
       data-theme-preview-mode="${escapeHtml(mode)}"
-      aria-label="${escapeHtml(`${theme.label} ${mode} theme`)}"
+      aria-label="${theme ? escapeHtml(`${theme.label} ${mode} theme`) : 'Loading Theme'}"
     >
       <div class="bb-theme-v2__body">
         <section class="bb-theme-v2-section">
@@ -1454,7 +1464,7 @@ export function themeDetailMarkup(theme, mode = 'dark', {
 } = {}) {
   const selected = selectedMode(mode);
   return `
-    <div class="bb-theme-detail" data-theme-detail-mode="${editable ? 'edit' : 'view'}">
+    <div class="bb-theme-detail" data-theme-detail-mode="${editable ? 'edit' : 'view'}"${theme ? '' : ' data-theme-detail-pending'}>
       <div class="bb-theme-gallery__catalog">
         ${v2ModeMarkup(theme, selected, {
           editable,
@@ -1471,6 +1481,32 @@ export function themeDetailMarkup(theme, mode = 'dark', {
       </div>
     </div>
   `;
+}
+
+export function themeCatalogOpeningMarkup(globalThemeId, mode = 'dark') {
+  return globalThemeId ? themeDetailMarkup(null, mode, { includeShowcase: false }) : themeGalleryLoadingMarkup();
+}
+
+// A saved editor opens with known layout and controls already mounted. Fill
+// the data slots before releasing the pending surface in the same turn.
+export function populateOpeningThemeDetail(host, theme, mode, { fontAssignments, paletteCompletion }) {
+  const detail = host.firstElementChild;
+  if (!detail?.hasAttribute('data-theme-detail-pending') || detail.dataset?.themeDetailMode === 'view') return false;
+  const preview = detail.querySelector('.bb-theme-mode');
+  preview.dataset.themePreviewId = theme.id;
+  preview.dataset.themePreviewMode = mode;
+  preview.setAttribute('aria-label', `${theme.label} ${mode} theme`);
+  preview.querySelector('[data-theme-palette-mode-label]').textContent = mode + ' mode';
+  for (const value of preview.querySelectorAll('.bb-theme-v2-identity .bb-skeleton')) value.classList.remove('bb-skeleton');
+  preview.querySelector('.bb-theme-v2-types').innerHTML = v2TypographyMarkup(theme.v2, { editable: true, fontAssignments });
+  const completion = preview.querySelector('[data-theme-palette-completion]');
+  completion.value = paletteCompletion.value;
+  completion.disabled = paletteCompletion.disabled;
+  preview.querySelector('[data-theme-reference-image-action="toggle"]').disabled = false;
+  preview.removeAttribute('aria-busy');
+  preview.removeAttribute('inert');
+  detail.removeAttribute('data-theme-detail-pending');
+  return true;
 }
 
 export function themeGalleryMarkup(catalog, selection = {}) {
@@ -1579,7 +1615,7 @@ export function applyThemeGalleryVariables(host, catalog, selection = {}) {
     '--bb-interface-scrollbar-border': selectedVariables['--bb-v2-color-border-subtle'],
     '--bb-interface-scrollbar-highlight': primaryIdentity.foreground
   };
-  applyThemeScrollbarPresentation(host, scrollbarValues);
+  applyThemeScrollbarPresentation(host?.closest?.('.bb-theme-gallery') ?? host, scrollbarValues);
   host?.querySelectorAll?.('.bb-scrollbar').forEach((scrollOwner) => {
     applyThemeScrollbarPresentation(scrollOwner, scrollbarValues);
   });
@@ -1614,7 +1650,11 @@ export function applyThemeGalleryVariables(host, catalog, selection = {}) {
 
 export function createThemeGalleryController({
   catalogUrl = '/theme/catalog.json',
+  initialMode = 'dark',
   catalog: admittedCatalog = null,
+  initialGlobalThemeId = '',
+  readUserThemeIds,
+  onGalleryPresentation,
   bindEvent = null,
   colorDetailsMarkup,
   controlsHost,
@@ -1629,9 +1669,14 @@ export function createThemeGalleryController({
   let catalogPromise = null;
   let renderedCatalog = null;
   let userThemeItems = Object.freeze([]);
+  let userThemeIds = [];
+  let displayedUserThemeIds = null;
+  let userCardsDirty = false;
+  let catalogRequest = 0;
+  let userCardsUnavailable = false;
   let selection = Object.freeze({
     cardModes: Object.freeze({}),
-    mode: 'dark',
+    mode: selectedMode(initialMode),
     paletteDetailsExpanded: false,
     showcaseExpanded: false,
     themeId: ''
@@ -1646,17 +1691,17 @@ export function createThemeGalleryController({
   }
 
   function presentationCatalog(catalog) {
-    if (!userThemeItems.length) return catalog;
-    const themes = [...catalog.themes, ...userThemeItems.map((item) => item.theme)];
+    if (!userThemeIds.length) return catalog;
+    const ready = new Map(userThemeItems.map(({ theme }) => [theme.id, theme]));
+    const themes = [...catalog.themes, ...userThemeIds.map(id => ready.get(id) ?? { id, source: 'user-authored', pending: !userCardsUnavailable, unavailable: userCardsUnavailable })];
     if (new Set(themes.map((theme) => theme.id)).size !== themes.length) {
       throw new TypeError('Global and user Theme previews must have unique presentation identifiers.');
     }
     return Object.freeze({ ...catalog, themes: Object.freeze(themes) });
   }
 
-  function galleryGroups(catalog) {
-    if (!userThemeItems.length) return null;
-    return themeCatalogGroups(presentationCatalog(catalog).themes).map(({ id, label, themes }) => ({
+  function galleryGroups(presentation) {
+    return themeCatalogGroups(presentation.themes).map(({ id, label, themes }) => ({
       id, label, themeIds: themes.map((theme) => theme.id)
     }));
   }
@@ -1672,7 +1717,7 @@ export function createThemeGalleryController({
     return Object.freeze(items.map((item, index) => {
       const projectPath = String(item?.projectPath || '').trim();
       if (!projectPath) throw new TypeError('User Theme preview is missing its project path.');
-      return Object.freeze({ projectPath, theme: userCatalog.themes[index] });
+      return Object.freeze({ projectPath, theme: userCatalog.themes[index], sourceItem: item });
     }));
   }
 
@@ -1696,7 +1741,7 @@ export function createThemeGalleryController({
     }
     host.innerHTML = themeGalleryMarkup(presentation, {
       ...selection,
-      groups: themeId ? null : galleryGroups(catalog),
+      groups: themeId ? null : galleryGroups(presentation),
       includeShowcase: includeShowcase || selection.showcaseExpanded,
       inspectionControls,
       paletteDetailsMarkup: selection.paletteDetailsExpanded
@@ -1705,11 +1750,23 @@ export function createThemeGalleryController({
     });
     applyThemeGalleryVariables(host, presentation, selection);
     synchronizeFooterYear(host);
+    displayedUserThemeIds = themeId ? null : userThemeIds;
+    if (!themeId) {
+      userCardsDirty = false;
+      reportGallery(presentation);
+    }
     onViewChange?.(Object.freeze({
       mode: currentMode,
       themeId,
       view: themeId ? 'detail' : 'gallery'
     }));
+  }
+
+  function reportGallery(presentation) {
+    onGalleryPresentation?.({ userCount: userThemeIds.length,
+      pendingCount: presentation.themes.filter(theme => theme.pending).length,
+      unavailableCount: presentation.themes.filter(theme => theme.unavailable).length,
+      globalCount: presentation.themes.length - userThemeIds.length });
   }
 
   function toggleModeForTheme(themeId, { restoreFocus = false } = {}) {
@@ -1738,14 +1795,9 @@ export function createThemeGalleryController({
         toggleModeForTheme(themeId, { restoreFocus: true });
       } else if (detailBack && selection.themeId) {
         const themeId = selection.themeId;
-        selection = Object.freeze({
-          ...selection,
-          paletteDetailsExpanded: false,
-          showcaseExpanded: false,
-          themeId: ''
+        return showGallery().then(() => {
+          host.querySelector?.(`[data-theme-gallery-open="${themeId}"]`)?.focus?.();
         });
-        renderCatalog(renderedCatalog);
-        host.querySelector?.(`[data-theme-gallery-open="${themeId}"]`)?.focus?.();
       } else if (detailMode && selection.themeId) {
         toggleModeForTheme(selection.themeId);
         controlsHost?.querySelector?.('[data-theme-gallery-detail-mode]')?.focus?.();
@@ -1762,6 +1814,7 @@ export function createThemeGalleryController({
         host.querySelector?.(`[data-theme-inspection-toggle="${inspection}"]`)?.focus?.();
       } else if (open) {
         const themeId = String(open.dataset.themeGalleryOpen || '');
+        catalogRequest++;
         const userTheme = userThemeItems.find((item) => item.theme.id === themeId);
         if (userTheme && typeof onUserThemeOpen === 'function') {
           onUserThemeOpen(userTheme);
@@ -1788,50 +1841,50 @@ export function createThemeGalleryController({
     }
   }
 
-  async function render() {
+  async function presentCatalog(catalog, { overview = false, isCurrent = () => true } = {}) {
+    if (!overview && renderedCatalog) return renderedCatalog;
+    const request = ++catalogRequest;
+    const current = () => request === catalogRequest && isCurrent();
+    const themeId = !overview && catalog.themes.some(theme => theme.id === initialGlobalThemeId) ? initialGlobalThemeId : '';
+    if (!themeId && readUserThemeIds) {
+      const ids = await readUserThemeIds(current);
+      if (!current() || ids === null) return null;
+      userThemeIds = ids;
+    }
+    if (!current()) return null;
+    renderedCatalog = catalog;
+    selection = Object.freeze({ ...selection, themeId, paletteDetailsExpanded: false, showcaseExpanded: false });
+    installNavigationListener();
+    renderCatalog(catalog);
+    return catalog;
+  }
+
+  async function render(options = {}) {
     if (!host) return null;
-    if (renderedCatalog) return renderedCatalog;
-    if (!admittedCatalog && !catalogPromise) catalogPromise = loadCatalog().catch((error) => {
-      catalogPromise = null;
-      throw error;
-    });
-    if (admittedCatalog) {
-      renderedCatalog = normalizeThemeCatalog(admittedCatalog);
-      installNavigationListener();
-      renderCatalog(renderedCatalog);
+    if (renderedCatalog) {
+      if (options.overview) return presentCatalog(renderedCatalog, options);
+      if (userCardsDirty && !selection.themeId && (options.isCurrent?.() ?? true)) updateUserCards();
       return renderedCatalog;
     }
-    host.innerHTML = themeGalleryLoadingMarkup();
+    if (admittedCatalog) return presentCatalog(normalizeThemeCatalog(admittedCatalog), options);
+    if (!catalogPromise) catalogPromise = loadCatalog();
+    host.innerHTML = themeCatalogOpeningMarkup(options.overview ? '' : initialGlobalThemeId, selection.mode);
     if (controlsHost) {
       controlsHost.innerHTML = '';
       controlsHost.toggleAttribute?.('hidden', true);
     }
     try {
-      const catalog = await catalogPromise;
-      renderedCatalog = catalog;
-      installNavigationListener();
-      renderCatalog(catalog);
-      return catalog;
+      return await presentCatalog(await catalogPromise, options);
     } catch (error) {
-      if (controlsHost) {
-        controlsHost.innerHTML = '';
-        controlsHost.toggleAttribute?.('hidden', true);
-      }
+      catalogPromise = null;
       host.innerHTML = `<div class="bb-theme-gallery__error" role="alert">${escapeHtml(error?.message || 'Theme catalog could not be loaded.')}</div>`;
       throw error;
     }
   }
 
-  async function showGallery() {
-    const catalog = renderedCatalog ?? await render();
-    selection = Object.freeze({
-      ...selection,
-      paletteDetailsExpanded: false,
-      showcaseExpanded: false,
-      themeId: ''
-    });
-    renderCatalog(catalog);
-    return catalog;
+  function showGallery(options = {}) {
+    initialGlobalThemeId = '';
+    return render({ ...options, overview: true });
   }
 
   function toggleMode() {
@@ -1839,11 +1892,40 @@ export function createThemeGalleryController({
     return toggleModeForTheme(selection.themeId);
   }
 
+  function updateUserCards() {
+    if (!renderedCatalog || displayedUserThemeIds === null) return;
+    if (displayedUserThemeIds.length !== userThemeIds.length || displayedUserThemeIds.some((id, i) => id !== userThemeIds[i])) {
+      renderCatalog(renderedCatalog);
+      return;
+    }
+    userCardsDirty = false;
+    if (!userThemeIds.length) return;
+    const grid = host.querySelector('[data-theme-gallery-group="user-themes"] .bb-theme-summary__grid');
+    const presentation = presentationCatalog(renderedCatalog);
+    grid.innerHTML = themeSummaryCardsMarkup(presentation.themes.slice(renderedCatalog.themes.length), selection.mode, selection.cardModes);
+    grid.removeAttribute('aria-busy');
+    applyThemeGalleryVariables(grid, presentation, selection);
+    reportGallery(presentation);
+  }
+
   function setUserThemes(items = [], { render: shouldRender = true } = {}) {
-    userThemeItems = normalizeUserThemeItems(items);
-    if (renderedCatalog && shouldRender) renderCatalog(renderedCatalog);
+    const unchanged = !userCardsUnavailable && Array.isArray(items) && items.length === userThemeIds.length
+      && items.length === userThemeItems.length && items.every((item, i) => userThemeItems[i].sourceItem === item && userThemeIds[i] === item.theme.id);
+    if (!unchanged) {
+      userThemeItems = normalizeUserThemeItems(items);
+      userCardsUnavailable = false;
+      userThemeIds = userThemeItems.map(({ theme }) => theme.id);
+      userCardsDirty = true;
+    }
+    if (shouldRender && userCardsDirty) updateUserCards();
     return userThemeItems.length;
   }
 
-  return Object.freeze({ render, setUserThemes, showGallery, toggleMode, destroy: () => events.destroy() });
+  function failUserThemePreviews({ render: shouldRender = true } = {}) {
+    userCardsUnavailable = true;
+    userCardsDirty = true;
+    if (shouldRender) updateUserCards();
+  }
+
+  return Object.freeze({ render, setUserThemes, failUserThemePreviews, showGallery, toggleMode, destroy() { catalogRequest++; events.destroy(); } });
 }

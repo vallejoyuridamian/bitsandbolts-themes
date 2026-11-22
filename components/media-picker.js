@@ -514,6 +514,7 @@ export class MediaPreviewCard extends MediaPreviewElement {
 
 export function referenceImagePickerMarkup({
   image = null,
+  disabled = false,
   expanded = Boolean(image?.src),
   buttonLabel = image?.src ? 'Change reference image' : 'Choose reference image'
 } = {}) {
@@ -521,6 +522,7 @@ export function referenceImagePickerMarkup({
   const label = String(image?.label || image?.alt || 'Reference image');
   const choose = semanticActionButtonMarkup({
     label: buttonLabel,
+    disabled,
     ariaLabel: buttonLabel,
     help: 'Choose an optional image to sample palette colors from',
     iconRole: 'add_photo_alternate',

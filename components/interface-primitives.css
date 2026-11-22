@@ -62,11 +62,10 @@
   font-size: var(--bb-font-size-xl);
   font-weight: var(--bb-font-weight-bold);
   line-height: var(--bb-font-line-height-tight);
-  visibility: hidden;
 }
 
-.bb-workspace-opening[data-bb-opening-ready] .bb-workspace-opening__title {
-  visibility: visible;
+.bb-workspace-opening:not([data-bb-opening-ready]) .bb-workspace-opening__content {
+  visibility: hidden;
 }
 
 .bb-workspace-surface[tabindex="-1"]:focus {

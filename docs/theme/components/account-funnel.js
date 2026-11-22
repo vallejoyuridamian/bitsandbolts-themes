@@ -6,7 +6,7 @@ export const accountAccessMessages = Object.freeze({
   passwordResetSent: 'Check your inbox for a password reset link.'
 });
 
-function escapeHtml(value = '') {
+export function escapeHtml(value = '') {
   return String(value ?? '')
     .replaceAll('&', '&amp;')
     .replaceAll('<', '&lt;')
@@ -15,7 +15,11 @@ function escapeHtml(value = '') {
     .replaceAll("'", '&#39;');
 }
 
-function headingMarkup({ backLabel = 'Back', description = '', id, showBack = false, title }) {
+function accountPageMark(source) {
+  return brandMarkMarkup({ logo: source, logoTreatment: 'monochrome' }, { className: 'bb-account-access-page__mark' });
+}
+
+function headingMarkup({ backLabel = 'Back', description = '', id, showBack = false, title, titleMark }) {
   const titleId = escapeHtml(`${id}Title`);
   const descriptionId = escapeHtml(`${id}Description`);
   const back = showBack
@@ -26,7 +30,7 @@ function headingMarkup({ backLabel = 'Back', description = '', id, showBack = fa
     descriptionMarkup: description
       ? `<p id="${descriptionId}" class="bb-floating-window-content__copy bb-account-funnel__description">${escapeHtml(description)}</p>`
       : '',
-    headingMarkup: `<header class="bb-floating-window-content__head bb-account-funnel__head">${back}<h2 id="${titleId}" class="bb-floating-window-content__title">${escapeHtml(title)}</h2></header>`,
+    headingMarkup: `<header class="bb-floating-window-content__head bb-account-funnel__head">${back}<h2 id="${titleId}" class="${titleMark ? 'bb-account-access-page__brand' : 'bb-floating-window-content__title'}">${titleMark ? accountPageMark(titleMark) : ''}${escapeHtml(title)}</h2></header>`,
     titleId
   };
 }
@@ -66,19 +70,33 @@ function footerMarkup({ cancelLabel = 'Keep editing', primaryLabel = 'Continue',
   return `<div class="bb-floating-window-content__actions bb-account-funnel__actions" role="group" aria-label="Account actions"><button class="bb-workspace-control-button" type="button" data-account-funnel-cancel>${escapeHtml(cancelLabel)}</button>${primary}</div>`;
 }
 
-function checkboxMarkup({ id, label, name, validation = false }) {
+export function accountCheckboxMarkup({ id, label, name, validation = false, value, checked = false }) {
   if (!label) return '';
+  if (!/^[a-z][a-z0-9-]*$/.test(name)) throw new TypeError('Invalid account checkbox name.');
   const errorId = escapeHtml(`${id}${name[0].toUpperCase()}${name.slice(1)}Error`);
   const describedBy = validation ? ` aria-describedby="${errorId}"` : '';
+  const submittedValue = value == null ? '' : ` value="${escapeHtml(value)}"`;
   const error = validation
     ? `<p id="${errorId}" class="bb-field__error" role="alert" data-account-funnel-${name}-error hidden></p>`
     : '';
-  return `<div class="bb-checkbox-field" data-account-funnel-${name}-field><label class="bb-checkbox-field__label"><input class="bb-checkbox-field__control" type="checkbox" name="${name}"${describedBy} data-account-funnel-${name}><span class="bb-checkbox-field__text">${escapeHtml(label)}</span></label>${error}</div>`;
+  return `<div class="bb-checkbox-field" data-account-funnel-${name}-field><label class="bb-checkbox-field__label"><input class="bb-checkbox-field__control" type="checkbox" name="${name}"${submittedValue}${checked ? ' checked' : ''}${describedBy} data-account-funnel-${name}><span class="bb-checkbox-field__text">${escapeHtml(label)}</span></label>${error}</div>`;
+}
+
+function permissionReviewMarkup(review) {
+  if (!review) return '';
+  const { id, title, items, choices = [] } = review;
+  const options = choices.map(choice => accountCheckboxMarkup({ ...choice, id })).join('');
+  return `${options}<section class="bb-account-funnel__permissions" aria-labelledby="${escapeHtml(id)}">
+    <h3 id="${escapeHtml(id)}">${escapeHtml(title)}</h3>
+    <ul>${items.map(label => `<li>${escapeHtml(label)}</li>`).join('')}</ul>
+  </section>`;
 }
 
 export function accountFunnelAccessMarkup({
   backLabel = 'Back',
   cancelLabel = 'Keep editing',
+  checkboxFields = [],
+  permissionReview,
   consentLabel = '',
   creationActionLabel = '',
   creationPrompt = '',
@@ -94,10 +112,11 @@ export function accountFunnelAccessMarkup({
   recoveryLabel = '',
   rememberLabel = '',
   showBack = false,
+  titleMark,
   step = 'access',
   title = 'Continue to your account'
 } = {}) {
-  const heading = headingMarkup({ backLabel, description, id, showBack, title });
+  const heading = headingMarkup({ backLabel, description, id, showBack, title, titleMark });
   const google = googleLabel && googleLogoSrc
     ? `<button class="bb-google-btn" type="button" data-account-funnel-google><img class="bb-google-btn__icon" src="${escapeHtml(googleLogoSrc)}" alt=""><span class="bb-google-btn__label">${escapeHtml(googleLabel)}</span></button>${fields.length ? '<div class="bb-divider"><span>or</span></div>' : ''}`
     : '';
@@ -107,13 +126,14 @@ export function accountFunnelAccessMarkup({
   const recovery = recoveryLabel
     ? `<button class="bb-link bb-account-funnel__recovery" type="button" data-account-funnel-recovery>${escapeHtml(recoveryLabel)}</button>`
     : '';
-  const consent = checkboxMarkup({ id, label: consentLabel, name: 'consent', validation: true });
-  const remember = checkboxMarkup({ id, label: rememberLabel, name: 'remember' });
+  const consent = accountCheckboxMarkup({ id, label: consentLabel, name: 'consent', validation: true });
+  const remember = accountCheckboxMarkup({ id, label: rememberLabel, name: 'remember' });
+  const choices = checkboxFields.map(field => accountCheckboxMarkup({ ...field, id })).join('');
   const switchMarkup = creationPrompt && creationActionLabel
     ? `<p class="bb-account-funnel__switch"><span>${escapeHtml(creationPrompt)} </span><button class="bb-link bb-account-funnel__switch-action" type="button" data-account-funnel-create><strong>${escapeHtml(creationActionLabel)}</strong></button><span>.</span></p>`
     : '';
   const linksMarkup = externalLinksMarkup(externalLinks, externalLinkContent);
-  return `<form class="bb-floating-window-content bb-account-funnel" data-floating-window-size="content" data-bb-account-funnel data-account-funnel-step="${escapeHtml(step)}" aria-labelledby="${heading.titleId}"${heading.describedBy} novalidate>${heading.headingMarkup}${heading.descriptionMarkup}<div class="bb-floating-window-content__body bb-account-funnel__body">${google}${fieldsMarkup}${recovery}${remember}${consent}${switchMarkup}${linksMarkup}</div><p class="bb-floating-form__error bb-account-funnel__error" role="alert" data-account-funnel-error hidden></p>${footerMarkup({ cancelLabel, primaryLabel, primaryDanger })}</form>`;
+  return `<form class="bb-floating-window-content bb-account-funnel" data-floating-window-size="content" data-bb-account-funnel data-account-funnel-step="${escapeHtml(step)}" aria-labelledby="${heading.titleId}"${heading.describedBy} novalidate>${heading.headingMarkup}${heading.descriptionMarkup}<div class="bb-floating-window-content__body bb-account-funnel__body">${choices}${google}${fieldsMarkup}${recovery}${remember}${consent}${switchMarkup}${linksMarkup}</div><p class="bb-floating-form__error bb-account-funnel__error" role="alert" data-account-funnel-error hidden></p>${footerMarkup({ cancelLabel, primaryLabel, primaryDanger })}${permissionReviewMarkup(permissionReview)}</form>`;
 }
 
 export function accountFunnelPlanMarkup({
@@ -155,7 +175,7 @@ export function accountFunnelMarkup(model = {}) {
 
 export function accountFunnelPageMarkup(model = {}, { brand = {} } = {}) {
   const heading = brand.name
-    ? `<div class="bb-account-access-page__brand">${brandMarkMarkup({ logo: brand.mark, logoTreatment: 'monochrome' }, { className: 'bb-account-access-page__mark' })}<span>${escapeHtml(brand.name)}</span></div>`
+    ? `<div class="bb-account-access-page__brand">${accountPageMark(brand.mark)}<span>${escapeHtml(brand.name)}</span></div>`
     : '';
   return `<main class="bb-account-access-page"><div class="bb-account-access-page__content">${heading}${accountFunnelMarkup(model)}</div></main>`;
 }

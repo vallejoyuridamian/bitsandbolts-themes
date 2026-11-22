@@ -1,5 +1,14 @@
 # Bits and Bolts Themes: Status
 
+Nov21 shared splash and pending Theme editor live in Studio 51da4a68. Owner accepted local scrolling, splash and Cloud rendering. Hosted MCP user retest: ../appscreen-studio/docs/CLUNA_MCP_THEME_PLAN.md.
+
+Nov21 gallery and named global links share first-view selection for bundled and fetched catalogs. Studio source fixtures verify gallery and individual read-only destinations. Guest links and initial gallery skeletons accepted. The latest grouped gallery uses inventory-sized personal placeholders and preserves disclosure controls when previews arrive. Owner regenerated and accepted local Release. Gallery source, web and showcase copies match. Production candidate verification pending.
+Nov21 gallery controller accepts the requested initial appearance for Studio MCP card rendering. Owner approved both preview labels. The canonical gallery stylesheet supplies them under Studio docs/CLUNA_MCP_THEME_PLAN.md.
+
+Nov21 standalone account page imports the canonical Google button recipe and
+shares checkbox rows with MCP consent. Generation and live delivery pass.
+MCP consent layout accepted and migrated to the shared recipe. Owner build complete. Generated web and showcase components match source. Studio’s local Release-profile consent stylesheet matches the approved layout. Control: ../appscreen-studio/docs/CLUNA_MCP_THEME_PLAN.md.
+
 Nov17 checkpoint:role identity,pending glyph and geometry units ship through Studio
 ee9314f9/renderer45. Source/generated parity retained;Live UI check unreported.
 Evidence/parked costs:../appscreen-studio/docs/CLUNA_NEUROSHARP_RELEASE_PLAN.md.
