@@ -84,7 +84,7 @@
   color: var(--bb-v2-color-content-primary);
   background: var(--bb-compact-theme-neutral, var(--bb-v2-color-surface-surface));
   box-shadow: none;
-  font-family: var(--bb-v2-font-family-primary);
+  font-family: var(--bb-v2-font-family-interface);
   transition:
     border-color var(--bb-v2-button-transition-duration) var(--bb-v2-button-transition-easing),
     box-shadow var(--bb-v2-button-transition-duration) var(--bb-v2-button-transition-easing),

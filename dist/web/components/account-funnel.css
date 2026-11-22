@@ -16,7 +16,7 @@
   place-items: center;
   color: var(--bb-interface-control-foreground);
   background: var(--bb-v2-color-surface-canvas);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
 }
 
 .bb-account-access-page__loading {
@@ -26,7 +26,7 @@
   place-items: center;
   color: var(--bb-v2-color-content-secondary);
   background: var(--bb-v2-color-surface-canvas);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-sm);
 }
 
@@ -75,7 +75,7 @@ html:has(.bb-account-access-page) body {
   min-height: 0;
   color: var(--bb-interface-control-foreground);
   background: var(--bb-interface-menu-background);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   -webkit-user-select: none;
   user-select: none;
 }
@@ -202,7 +202,7 @@ html:has(.bb-account-access-page) body {
 }
 
 .bb-account-funnel__plan-head strong {
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-weight: var(--bb-font-weight-bold);
 }
 

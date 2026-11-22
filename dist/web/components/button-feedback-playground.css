@@ -4,7 +4,7 @@
   padding: var(--bb-spacing-6);
   color: var(--bb-v2-color-content-primary);
   background: var(--bb-interface-workspace-background);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-sm);
   line-height: var(--bb-font-line-height-normal);
   user-select: none;

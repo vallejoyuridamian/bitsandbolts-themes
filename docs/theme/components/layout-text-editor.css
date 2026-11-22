@@ -17,7 +17,7 @@
   padding: 18px;
   color: var(--bb-interface-control-foreground);
   background: var(--bb-interface-menu-background);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
 }
 
 .bb-layout-text-editor.bb-layout-text-editor--sidebar {
@@ -50,7 +50,7 @@
   align-items: center;
   gap: var(--bb-spacing-2);
   color: var(--bb-interface-control-foreground);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-sm);
   font-weight: var(--bb-font-weight-bold);
   line-height: 1.2;
@@ -89,7 +89,7 @@
 
 .bb-layout-text-editor__control-label {
   color: var(--bb-interface-menu-muted-foreground);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-medium);
   letter-spacing: 0.02em;
@@ -134,7 +134,7 @@
 
 .bb-layout-arrange-popover__label {
   color: var(--bb-v2-color-content-secondary);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-semibold);
   line-height: var(--bb-font-line-height-normal);
@@ -273,7 +273,7 @@
   border-radius: var(--bb-radius-md);
   color: var(--bb-interface-control-foreground);
   background: var(--bb-v2-color-surface-canvas);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-bold);
   line-height: 1.2;

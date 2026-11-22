@@ -1,11 +1,5 @@
 {
   "font": {
-    "family": {
-      "display": { "$value": "Ultra" },
-      "body": { "$value": "Roboto Slab" },
-      "mono": { "$value": "Space Mono" },
-      "terminal": { "$value": "Space Mono" }
-    },
     "weight": {
       "regular": { "$value": "100" },
       "medium": { "$value": "200" },

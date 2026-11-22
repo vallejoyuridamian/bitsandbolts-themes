@@ -8,8 +8,8 @@ export function themeModeCss(theme, mode) {
   const variables = {
     ...presentation.variables,
     ...themeTypographyVariantVariables(theme.v2.typography.variants, theme.v2.typography.specimens),
-    ...Object.fromEntries(THEME_FONT_ROLE_OPTIONS.map(({ familyRole, value }) => [
-      value.slice(4, -1), theme.v2.typography.families[familyRole]
+    ...Object.fromEntries(THEME_FONT_ROLE_OPTIONS.map(({ role, value }) => [
+      value.slice(4, -1), theme.v2.typography.families[role]
     ]))
   };
   const declarations = Object.entries(variables).map(([name, value]) => {

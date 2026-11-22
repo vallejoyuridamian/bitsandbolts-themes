@@ -10,7 +10,7 @@
   overflow: auto;
   color: var(--bb-v2-color-content-primary);
   background: var(--bb-interface-workspace-background);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   scrollbar-color: var(--bb-v2-color-border-default) transparent;
 }
 
@@ -41,7 +41,7 @@
 
 .bb-workspace-settings__title {
   color: var(--bb-v2-color-content-primary);
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   font-size: clamp(24px, 3vw, 34px);
   font-weight: var(--bb-font-weight-semibold);
   letter-spacing: 0;

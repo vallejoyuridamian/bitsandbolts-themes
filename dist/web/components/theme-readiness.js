@@ -1,10 +1,9 @@
 const installedDocuments = new WeakMap();
 
 const FONT_FAMILY_PROPERTIES = Object.freeze([
-  '--bb-font-family-display',
-  '--bb-font-family-body',
-  '--bb-font-family-mono',
-  '--bb-font-family-terminal',
+  '--bb-font-family-signature',
+  '--bb-font-family-interface',
+  '--bb-font-family-technical',
   '--bb-marketing-chrome-meta-font'
 ]);
 

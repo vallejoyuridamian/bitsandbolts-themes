@@ -107,6 +107,9 @@ export const fontWeight = {
 } as const;
 
 export const fontFamily = {
+  interface: 'Antic',
+  technical: 'JetBrains Mono',
+  signature: 'Merriweather',
   display: 'Merriweather',
   body: 'Antic',
   mono: 'JetBrains Mono',

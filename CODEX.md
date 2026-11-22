@@ -31,7 +31,7 @@ Never import/construct an app router or require its interface in Themes.
 ## Working Boundary
 - theme-roles.js owns color/font role definitions, transient resolution and option identity. Authored color roles stay distinct even when their values coincide; font-family choices may deduplicate. Empty roles never become assignments. Typography, catalog pickers and summary cards consume that contract; Neutral has a Bits and Bolts default, and font fallback substitutes family only. theme-css.js derives transient mode CSS from that same resolved Theme contract; consumers never persist these computed resources.
 
-- `pnpm build` is the focused generation check.
+- `pnpm build` is the focused generation check. Its console output and outcome are retained in logs/bitsandbolts-themes-build.log.
 - For a focused owner correction to an existing Themes specimen, go directly to
   the named canonical component and token source after the required bounded
   context load. Do not inventory repositories, reread already-loaded context,

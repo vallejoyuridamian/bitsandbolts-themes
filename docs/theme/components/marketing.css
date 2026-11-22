@@ -18,7 +18,7 @@ body.bb-marketing-page {
   min-height: 100vh;
   background: var(--bb-marketing-page-canvas);
   color: var(--bb-v2-color-content-primary);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   line-height: var(--bb-font-line-height-normal);
 }
 
@@ -91,7 +91,7 @@ body.bb-marketing-page {
 .bb-step h3,
 .bb-faq-item h3 {
   margin: 0;
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   font-weight: var(--bb-font-weight-bold);
   letter-spacing: -0.04em;
 }
@@ -294,7 +294,7 @@ body.bb-marketing-page {
 }
 
 .bb-workflow__lane strong {
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   font-size: var(--bb-font-size-sm);
   color: var(--bb-v2-color-content-primary);
 }
@@ -316,7 +316,7 @@ body.bb-marketing-page {
   border: 1px solid var(--bb-v2-color-border-subtle);
   color: var(--bb-v2-color-content-primary);
   font-size: var(--bb-font-size-xs);
-  font-family: var(--bb-font-family-mono);
+  font-family: var(--bb-font-family-technical);
 }
 
 .bb-proof-card__foot {
@@ -335,7 +335,7 @@ body.bb-marketing-page {
 
 .bb-proof-stat strong {
   display: block;
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   font-size: var(--bb-font-size-lg);
   color: var(--bb-v2-color-content-primary);
 }
@@ -464,7 +464,7 @@ body.bb-marketing-page {
   border-radius: 14px;
   background: var(--bb-v2-identity-secondary);
   color: var(--bb-v2-identity-secondary-foreground);
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   font-size: var(--bb-font-size-lg);
   font-weight: var(--bb-font-weight-bold);
   margin-bottom: 14px;
@@ -592,7 +592,7 @@ body.bb-marketing-page {
   padding: 16px;
   white-space: pre-wrap;
   word-break: break-word;
-  font-family: var(--bb-font-family-mono);
+  font-family: var(--bb-font-family-technical);
   font-size: var(--bb-font-size-xs);
   line-height: 1.7;
   color: var(--bb-v2-color-content-inverse);
@@ -708,7 +708,7 @@ body.bb-marketing-page {
 }
 
 .bb-price strong {
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   font-size: clamp(2rem, 4vw, 2.8rem);
   line-height: 0.9;
 }
@@ -862,7 +862,7 @@ body:has(> .bb-navbar[data-placement="sticky"]) :is(.bb-section, .bb-cta-band) {
 .bb-auth-card h2,
 .bb-auth-action__brand strong {
   margin: 0;
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   font-weight: var(--bb-font-weight-bold);
   letter-spacing: -0.03em;
 }

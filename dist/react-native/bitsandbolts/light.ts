@@ -107,6 +107,9 @@ export const fontWeight = {
 } as const;
 
 export const fontFamily = {
+  interface: 'Montserrat',
+  technical: 'JetBrains Mono',
+  signature: 'Orbitron',
   display: 'Orbitron',
   body: 'Montserrat',
   mono: 'JetBrains Mono',

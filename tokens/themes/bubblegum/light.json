@@ -5,20 +5,6 @@
     }
   },
   "font": {
-    "family": {
-      "display": {
-        "$value": "Merriweather"
-      },
-      "body": {
-        "$value": "Poppins"
-      },
-      "mono": {
-        "$value": "Roboto Mono"
-      },
-      "terminal": {
-        "$value": "Roboto Mono"
-      }
-    },
     "tracking": {
       "normal": {
         "$value": "0em"

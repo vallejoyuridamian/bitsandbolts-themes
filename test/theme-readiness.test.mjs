@@ -20,10 +20,10 @@ function themeSheet(values) {
 }
 
 const themeValues = {
-  '--bb-font-family-display': 'Orbitron',
-  '--bb-font-family-body': 'Montserrat',
-  '--bb-font-family-mono': 'JetBrains Mono',
-  '--bb-font-family-terminal': 'JetBrains Mono',
+  '--bb-font-family-signature': 'Orbitron',
+  '--bb-font-family-interface': 'Montserrat',
+  '--bb-font-family-technical': 'JetBrains Mono',
+  '--bb-font-family-technical': 'JetBrains Mono',
   '--bb-marketing-chrome-meta-font': 'Montserrat',
   '--bb-font-weight-regular': '400',
   '--bb-font-weight-medium': '500',

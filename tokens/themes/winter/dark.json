@@ -5,20 +5,6 @@
     }
   },
   "font": {
-    "family": {
-      "display": {
-        "$value": "Syne"
-      },
-      "body": {
-        "$value": "Inter"
-      },
-      "mono": {
-        "$value": "IBM Plex Mono"
-      },
-      "terminal": {
-        "$value": "IBM Plex Mono"
-      }
-    },
     "tracking": {
       "normal": {},
       "tighter": {

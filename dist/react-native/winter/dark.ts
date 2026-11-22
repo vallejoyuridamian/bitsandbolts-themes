@@ -107,6 +107,9 @@ export const fontWeight = {
 } as const;
 
 export const fontFamily = {
+  interface: 'Inter',
+  technical: 'IBM Plex Mono',
+  signature: 'Syne',
   display: 'Syne',
   body: 'Inter',
   mono: 'IBM Plex Mono',

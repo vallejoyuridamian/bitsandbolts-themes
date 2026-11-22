@@ -57,104 +57,104 @@
   },
   "typography": {
     "families": {
-      "primary": "Inter",
-      "mono": "JetBrains Mono",
-      "accent": "Source Serif 4"
+      "interface": "Inter",
+      "technical": "JetBrains Mono",
+      "signature": "Source Serif 4"
     },
     "styles": {
       "display": {
-        "familyRole": "accent",
+        "familyRole": "signature",
         "fontSize": "42px",
         "fontWeight": "700",
         "lineHeight": "1.12",
         "letterSpacing": "-0.015em"
       },
       "headline": {
-        "familyRole": "accent",
+        "familyRole": "signature",
         "fontSize": "30px",
         "fontWeight": "700",
         "lineHeight": "1.2",
         "letterSpacing": "-0.01em"
       },
       "title": {
-        "familyRole": "accent",
+        "familyRole": "signature",
         "fontSize": "22px",
         "fontWeight": "700",
         "lineHeight": "1.28",
         "letterSpacing": "0em"
       },
       "body": {
-        "familyRole": "primary",
+        "familyRole": "interface",
         "fontSize": "16px",
         "fontWeight": "400",
         "lineHeight": "1.55",
         "letterSpacing": "0em"
       },
       "bodyCompact": {
-        "familyRole": "primary",
+        "familyRole": "interface",
         "fontSize": "14px",
         "fontWeight": "400",
         "lineHeight": "1.45",
         "letterSpacing": "0em"
       },
       "label": {
-        "familyRole": "primary",
+        "familyRole": "interface",
         "fontSize": "14px",
         "fontWeight": "600",
         "lineHeight": "1.4",
         "letterSpacing": "0em"
       },
       "caption": {
-        "familyRole": "primary",
+        "familyRole": "interface",
         "fontSize": "12px",
         "fontWeight": "500",
         "lineHeight": "1.4",
         "letterSpacing": "0em"
       },
       "codeInline": {
-        "familyRole": "mono",
+        "familyRole": "technical",
         "fontSize": "14px",
         "fontWeight": "500",
         "lineHeight": "1.45",
         "letterSpacing": "0em"
       },
       "codeBlock": {
-        "familyRole": "mono",
+        "familyRole": "technical",
         "fontSize": "14px",
         "fontWeight": "400",
         "lineHeight": "1.55",
         "letterSpacing": "0em"
       },
       "terminal": {
-        "familyRole": "mono",
+        "familyRole": "technical",
         "fontSize": "14px",
         "fontWeight": "500",
         "lineHeight": "1.5",
         "letterSpacing": "0em"
       },
       "metric": {
-        "familyRole": "accent",
+        "familyRole": "signature",
         "fontSize": "26px",
         "fontWeight": "700",
         "lineHeight": "1.15",
         "letterSpacing": "-0.01em"
       },
       "editorialBody": {
-        "familyRole": "accent",
+        "familyRole": "signature",
         "fontSize": "18px",
         "fontWeight": "400",
         "lineHeight": "1.65",
         "letterSpacing": "0em"
       },
       "editorialHeading": {
-        "familyRole": "accent",
+        "familyRole": "signature",
         "fontSize": "26px",
         "fontWeight": "700",
         "lineHeight": "1.28",
         "letterSpacing": "-0.005em"
       },
       "displayLarge": {
-        "familyRole": "accent",
+        "familyRole": "signature",
         "fontSize": "48px",
         "fontWeight": "700",
         "lineHeight": "1.08",
@@ -170,7 +170,7 @@
       {
         "id": "displayLarge",
         "label": "Signature",
-        "familyRole": "accent",
+        "familyRole": "signature",
         "sample": "Turn up the signal",
         "fontSize": "38px",
         "fontWeight": "700",
@@ -180,7 +180,7 @@
       {
         "id": "body",
         "label": "Interface",
-        "familyRole": "primary",
+        "familyRole": "interface",
         "sample": "Cool structure with decisive orange emphasis.",
         "fontSize": "16px",
         "fontWeight": "400",
@@ -190,7 +190,7 @@
       {
         "id": "terminal",
         "label": "Technical",
-        "familyRole": "mono",
+        "familyRole": "technical",
         "sample": "STATUS / HOT / 0123",
         "fontSize": "14px",
         "fontWeight": "500",

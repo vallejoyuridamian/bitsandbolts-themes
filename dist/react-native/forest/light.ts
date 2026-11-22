@@ -107,6 +107,9 @@ export const fontWeight = {
 } as const;
 
 export const fontFamily = {
+  interface: 'Mulish',
+  technical: 'Source Code Pro',
+  signature: 'Arima',
   display: 'Arima',
   body: 'Mulish',
   mono: 'Source Code Pro',

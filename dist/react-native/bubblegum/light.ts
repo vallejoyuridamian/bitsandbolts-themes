@@ -107,6 +107,9 @@ export const fontWeight = {
 } as const;
 
 export const fontFamily = {
+  interface: 'Poppins',
+  technical: 'Roboto Mono',
+  signature: 'Merriweather',
   display: 'Merriweather',
   body: 'Poppins',
   mono: 'Roboto Mono',

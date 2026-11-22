@@ -4,7 +4,7 @@
   display: grid;
   gap: var(--bb-spacing-3);
   min-width: 0;
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
 }
 
 .bb-property-editor > .bb-field {
@@ -31,7 +31,7 @@
   gap: var(--bb-spacing-1);
   margin: 0;
   color: var(--bb-interface-menu-muted-foreground);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-medium);
   letter-spacing: 0.02em;
@@ -48,7 +48,7 @@
   outline: none;
   color: var(--bb-interface-control-foreground);
   background: color-mix(in srgb, var(--bb-interface-control-foreground) 5%, var(--bb-interface-menu-background));
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-sm);
   font-weight: var(--bb-font-weight-medium);
 }
@@ -66,7 +66,7 @@
 :is(.bb-layout-text-editor, .bb-property-editor) select :is(option, optgroup) {
   color: var(--bb-interface-control-foreground);
   background: var(--bb-interface-menu-background);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
 }
 
 :is(.bb-layout-text-editor, .bb-property-editor) .row,

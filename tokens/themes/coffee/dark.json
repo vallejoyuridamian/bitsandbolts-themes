@@ -5,20 +5,6 @@
     }
   },
   "font": {
-    "family": {
-      "display": {
-        "$value": "Besley"
-      },
-      "body": {
-        "$value": "Roboto Slab"
-      },
-      "mono": {
-        "$value": "Source Code Pro"
-      },
-      "terminal": {
-        "$value": "Source Code Pro"
-      }
-    },
     "tracking": {
       "normal": {},
       "tighter": {

@@ -8,7 +8,7 @@
       "accent": { "$value": "{color.interaction.action}", "$type": "color" },
       "onAccent": { "$value": "{color.interaction.onAction}", "$type": "color" },
       "navigation": { "$value": "{color.content.primary}", "$type": "color" },
-      "metaFont": { "$value": "{font.family.body}" }
+      "metaFont": { "$value": "{font.family.interface}" }
     },
     "heroIconGlow": { "$value": "#00FFF7", "$type": "color" },
     "portfolio": {

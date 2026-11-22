@@ -1,11 +1,5 @@
 {
   "font": {
-    "family": {
-      "display": { "$value": "Plus Jakarta Sans" },
-      "body":    { "$value": "Inter" },
-      "mono":    { "$value": "JetBrains Mono" },
-      "terminal": { "$value": "JetBrains Mono" }
-    },
     "size": {
       "xs":  { "$value": "12px", "$type": "dimension" },
       "sm":  { "$value": "14px", "$type": "dimension" },

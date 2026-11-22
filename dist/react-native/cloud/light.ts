@@ -107,6 +107,9 @@ export const fontWeight = {
 } as const;
 
 export const fontFamily = {
+  interface: 'Inter',
+  technical: 'JetBrains Mono',
+  signature: 'Plus Jakarta Sans',
   display: 'Plus Jakarta Sans',
   body: 'Inter',
   mono: 'JetBrains Mono',

@@ -114,104 +114,104 @@
         },
         "typography": {
           "families": {
-            "primary": "Inter",
-            "mono": "JetBrains Mono",
-            "accent": "Plus Jakarta Sans"
+            "interface": "Inter",
+            "technical": "JetBrains Mono",
+            "signature": "Plus Jakarta Sans"
           },
           "styles": {
             "display": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "36px",
               "fontWeight": "700",
               "lineHeight": "1.22",
               "letterSpacing": "-0.007em"
             },
             "headline": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "28px",
               "fontWeight": "600",
               "lineHeight": "1.29",
               "letterSpacing": "0em"
             },
             "title": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "22px",
               "fontWeight": "500",
               "lineHeight": "1.27",
               "letterSpacing": "0em"
             },
             "body": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "16px",
               "fontWeight": "400",
               "lineHeight": "1.5",
               "letterSpacing": "0.031em"
             },
             "bodyCompact": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "14px",
               "fontWeight": "400",
               "lineHeight": "1.43",
               "letterSpacing": "0.018em"
             },
             "label": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "14px",
               "fontWeight": "500",
               "lineHeight": "1.43",
               "letterSpacing": "0.007em"
             },
             "caption": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "12px",
               "fontWeight": "400",
               "lineHeight": "1.33",
               "letterSpacing": "0.033em"
             },
             "codeInline": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "500",
               "lineHeight": "1.43",
               "letterSpacing": "0em"
             },
             "codeBlock": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "500",
               "lineHeight": "1.55",
               "letterSpacing": "0em"
             },
             "terminal": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "500",
               "lineHeight": "1.45",
               "letterSpacing": "0.01em"
             },
             "metric": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "24px",
               "fontWeight": "700",
               "lineHeight": "1.17",
               "letterSpacing": "0em"
             },
             "editorialBody": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "18px",
               "fontWeight": "400",
               "lineHeight": "1.56",
               "letterSpacing": "0em"
             },
             "editorialHeading": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "24px",
               "fontWeight": "600",
               "lineHeight": "1.33",
               "letterSpacing": "0em"
             },
             "displayLarge": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "44px",
               "fontWeight": "700",
               "lineHeight": "1.1",
@@ -239,7 +239,7 @@
             {
               "id": "displayLarge",
               "label": "Signature",
-              "familyRole": "accent",
+              "familyRole": "signature",
               "sample": "A clear place to begin",
               "fontSize": "36px",
               "fontWeight": "700",
@@ -249,7 +249,7 @@
             {
               "id": "body",
               "label": "Interface",
-              "familyRole": "primary",
+              "familyRole": "interface",
               "sample": "Focused information with a calm, readable hierarchy.",
               "fontSize": "16px",
               "fontWeight": "400",
@@ -259,7 +259,7 @@
             {
               "id": "terminal",
               "label": "Technical",
-              "familyRole": "mono",
+              "familyRole": "technical",
               "sample": "STATUS / READY / 0123",
               "fontSize": "14px",
               "fontWeight": "500",
@@ -707,9 +707,9 @@
               "--bb-v2-identity-accent-foreground": "#002F50",
               "--bb-v2-identity-neutral": "#F8FAFC",
               "--bb-v2-identity-neutral-foreground": "#0F172A",
-              "--bb-v2-font-family-primary": "Inter",
-              "--bb-v2-font-family-mono": "JetBrains Mono",
-              "--bb-v2-font-family-accent": "Plus Jakarta Sans",
+              "--bb-v2-font-family-interface": "Inter",
+              "--bb-v2-font-family-technical": "JetBrains Mono",
+              "--bb-v2-font-family-signature": "Plus Jakarta Sans",
               "--bb-v2-type-display-font-size": "36px",
               "--bb-v2-type-display-font-weight": "700",
               "--bb-v2-type-display-line-height": "1.22",
@@ -1098,9 +1098,9 @@
               "--bb-v2-identity-accent-foreground": "#0C4A6E",
               "--bb-v2-identity-neutral": "#0F172A",
               "--bb-v2-identity-neutral-foreground": "#E2E8F0",
-              "--bb-v2-font-family-primary": "Inter",
-              "--bb-v2-font-family-mono": "JetBrains Mono",
-              "--bb-v2-font-family-accent": "Plus Jakarta Sans",
+              "--bb-v2-font-family-interface": "Inter",
+              "--bb-v2-font-family-technical": "JetBrains Mono",
+              "--bb-v2-font-family-signature": "Plus Jakarta Sans",
               "--bb-v2-type-display-font-size": "36px",
               "--bb-v2-type-display-font-weight": "700",
               "--bb-v2-type-display-line-height": "1.22",
@@ -1266,104 +1266,104 @@
         },
         "typography": {
           "families": {
-            "primary": "Montserrat",
-            "mono": "JetBrains Mono",
-            "accent": "Orbitron"
+            "interface": "Montserrat",
+            "technical": "JetBrains Mono",
+            "signature": "Orbitron"
           },
           "styles": {
             "display": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "32px",
               "fontWeight": "700",
               "lineHeight": "1.08",
               "letterSpacing": "0.025em"
             },
             "headline": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "28px",
               "fontWeight": "700",
               "lineHeight": "1.15",
               "letterSpacing": "-0.015em"
             },
             "title": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "20px",
               "fontWeight": "600",
               "lineHeight": "1.25",
               "letterSpacing": "-0.01em"
             },
             "body": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "16px",
               "fontWeight": "500",
               "lineHeight": "1.5",
               "letterSpacing": "0em"
             },
             "bodyCompact": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "14px",
               "fontWeight": "500",
               "lineHeight": "1.4",
               "letterSpacing": "0em"
             },
             "label": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "13px",
               "fontWeight": "600",
               "lineHeight": "1.25",
               "letterSpacing": "0.035em"
             },
             "caption": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "12px",
               "fontWeight": "500",
               "lineHeight": "1.35",
               "letterSpacing": "0.02em"
             },
             "codeInline": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "500",
               "lineHeight": "1.4",
               "letterSpacing": "0em"
             },
             "codeBlock": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "500",
               "lineHeight": "1.55",
               "letterSpacing": "0em"
             },
             "terminal": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "500",
               "lineHeight": "1.45",
               "letterSpacing": "0.02em"
             },
             "metric": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "24px",
               "fontWeight": "700",
               "lineHeight": "1.1",
               "letterSpacing": "-0.02em"
             },
             "editorialBody": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "18px",
               "fontWeight": "500",
               "lineHeight": "1.65",
               "letterSpacing": "0em"
             },
             "editorialHeading": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "24px",
               "fontWeight": "600",
               "lineHeight": "1.2",
               "letterSpacing": "0.015em"
             },
             "displayLarge": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "44px",
               "fontWeight": "700",
               "lineHeight": "1.02",
@@ -1391,7 +1391,7 @@
             {
               "id": "displayLarge",
               "label": "Signature",
-              "familyRole": "accent",
+              "familyRole": "signature",
               "sample": "SYSTEMS, BUILT TO SHIP.",
               "fontSize": "32px",
               "fontWeight": "700",
@@ -1401,7 +1401,7 @@
             {
               "id": "body",
               "label": "Interface",
-              "familyRole": "primary",
+              "familyRole": "interface",
               "sample": "Clear controls. Precise feedback. No visual drift.",
               "fontSize": "16px",
               "fontWeight": "500",
@@ -1411,7 +1411,7 @@
             {
               "id": "terminal",
               "label": "Technical",
-              "familyRole": "mono",
+              "familyRole": "technical",
               "sample": "BUILD 02 / CONTRACT VALID / 0123",
               "fontSize": "14px",
               "fontWeight": "500",
@@ -1859,9 +1859,9 @@
               "--bb-v2-identity-accent-foreground": "#1D0B4D",
               "--bb-v2-identity-neutral": "#FFFFFF",
               "--bb-v2-identity-neutral-foreground": "#0B0F14",
-              "--bb-v2-font-family-primary": "Montserrat",
-              "--bb-v2-font-family-mono": "JetBrains Mono",
-              "--bb-v2-font-family-accent": "Orbitron",
+              "--bb-v2-font-family-interface": "Montserrat",
+              "--bb-v2-font-family-technical": "JetBrains Mono",
+              "--bb-v2-font-family-signature": "Orbitron",
               "--bb-v2-type-display-font-size": "32px",
               "--bb-v2-type-display-font-weight": "700",
               "--bb-v2-type-display-line-height": "1.08",
@@ -2250,9 +2250,9 @@
               "--bb-v2-identity-accent-foreground": "#1D0B4D",
               "--bb-v2-identity-neutral": "#0F1520",
               "--bb-v2-identity-neutral-foreground": "#EAEFFC",
-              "--bb-v2-font-family-primary": "Montserrat",
-              "--bb-v2-font-family-mono": "JetBrains Mono",
-              "--bb-v2-font-family-accent": "Orbitron",
+              "--bb-v2-font-family-interface": "Montserrat",
+              "--bb-v2-font-family-technical": "JetBrains Mono",
+              "--bb-v2-font-family-signature": "Orbitron",
               "--bb-v2-type-display-font-size": "32px",
               "--bb-v2-type-display-font-weight": "700",
               "--bb-v2-type-display-line-height": "1.08",
@@ -2418,104 +2418,104 @@
         },
         "typography": {
           "families": {
-            "primary": "Roboto Slab",
-            "mono": "Space Mono",
-            "accent": "Ultra"
+            "interface": "Roboto Slab",
+            "technical": "Space Mono",
+            "signature": "Ultra"
           },
           "styles": {
             "display": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "44px",
               "fontWeight": "400",
               "lineHeight": "1.05",
               "letterSpacing": "-0.02em"
             },
             "headline": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "32px",
               "fontWeight": "400",
               "lineHeight": "1.12",
               "letterSpacing": "-0.01em"
             },
             "title": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "22px",
               "fontWeight": "400",
               "lineHeight": "1.2",
               "letterSpacing": "0em"
             },
             "body": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "16px",
               "fontWeight": "100",
               "lineHeight": "1.5",
               "letterSpacing": "0em"
             },
             "bodyCompact": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "14px",
               "fontWeight": "100",
               "lineHeight": "1.4",
               "letterSpacing": "0em"
             },
             "label": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "14px",
               "fontWeight": "300",
               "lineHeight": "1.4",
               "letterSpacing": "0.01em"
             },
             "caption": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "12px",
               "fontWeight": "200",
               "lineHeight": "1.35",
               "letterSpacing": "0.01em"
             },
             "codeInline": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "400",
               "lineHeight": "1.4",
               "letterSpacing": "0em"
             },
             "codeBlock": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "400",
               "lineHeight": "1.5",
               "letterSpacing": "0em"
             },
             "terminal": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "700",
               "lineHeight": "1.45",
               "letterSpacing": "0em"
             },
             "metric": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "28px",
               "fontWeight": "400",
               "lineHeight": "1.1",
               "letterSpacing": "-0.01em"
             },
             "editorialBody": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "18px",
               "fontWeight": "100",
               "lineHeight": "1.55",
               "letterSpacing": "0em"
             },
             "editorialHeading": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "26px",
               "fontWeight": "400",
               "lineHeight": "1.2",
               "letterSpacing": "-0.01em"
             },
             "displayLarge": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "48px",
               "fontWeight": "400",
               "lineHeight": "1.02",
@@ -2543,7 +2543,7 @@
             {
               "id": "displayLarge",
               "label": "Signature",
-              "familyRole": "accent",
+              "familyRole": "signature",
               "sample": "Bold structure, immediate signal",
               "fontSize": "40px",
               "fontWeight": "400",
@@ -2553,7 +2553,7 @@
             {
               "id": "body",
               "label": "Interface",
-              "familyRole": "primary",
+              "familyRole": "interface",
               "sample": "Direct information with strong visual boundaries.",
               "fontSize": "16px",
               "fontWeight": "100",
@@ -2563,7 +2563,7 @@
             {
               "id": "terminal",
               "label": "Technical",
-              "familyRole": "mono",
+              "familyRole": "technical",
               "sample": "STATUS / READY / 0123",
               "fontSize": "14px",
               "fontWeight": "700",
@@ -3011,9 +3011,9 @@
               "--bb-v2-identity-accent-foreground": "#FFFFFF",
               "--bb-v2-identity-neutral": "#FFFFFF",
               "--bb-v2-identity-neutral-foreground": "#000000",
-              "--bb-v2-font-family-primary": "Roboto Slab",
-              "--bb-v2-font-family-mono": "Space Mono",
-              "--bb-v2-font-family-accent": "Ultra",
+              "--bb-v2-font-family-interface": "Roboto Slab",
+              "--bb-v2-font-family-technical": "Space Mono",
+              "--bb-v2-font-family-signature": "Ultra",
               "--bb-v2-type-display-font-size": "44px",
               "--bb-v2-type-display-font-weight": "400",
               "--bb-v2-type-display-line-height": "1.05",
@@ -3402,9 +3402,9 @@
               "--bb-v2-identity-accent-foreground": "#000000",
               "--bb-v2-identity-neutral": "#333333",
               "--bb-v2-identity-neutral-foreground": "#FFFFFF",
-              "--bb-v2-font-family-primary": "Roboto Slab",
-              "--bb-v2-font-family-mono": "Space Mono",
-              "--bb-v2-font-family-accent": "Ultra",
+              "--bb-v2-font-family-interface": "Roboto Slab",
+              "--bb-v2-font-family-technical": "Space Mono",
+              "--bb-v2-font-family-signature": "Ultra",
               "--bb-v2-type-display-font-size": "44px",
               "--bb-v2-type-display-font-weight": "400",
               "--bb-v2-type-display-line-height": "1.05",
@@ -3570,104 +3570,104 @@
         },
         "typography": {
           "families": {
-            "primary": "Mulish",
-            "mono": "Source Code Pro",
-            "accent": "Arima"
+            "interface": "Mulish",
+            "technical": "Source Code Pro",
+            "signature": "Arima"
           },
           "styles": {
             "display": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "42px",
               "fontWeight": "700",
               "lineHeight": "1.12",
               "letterSpacing": "-0.015em"
             },
             "headline": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "30px",
               "fontWeight": "700",
               "lineHeight": "1.2",
               "letterSpacing": "-0.01em"
             },
             "title": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "22px",
               "fontWeight": "700",
               "lineHeight": "1.28",
               "letterSpacing": "0em"
             },
             "body": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "16px",
               "fontWeight": "400",
               "lineHeight": "1.55",
               "letterSpacing": "0em"
             },
             "bodyCompact": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "14px",
               "fontWeight": "400",
               "lineHeight": "1.45",
               "letterSpacing": "0em"
             },
             "label": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "14px",
               "fontWeight": "600",
               "lineHeight": "1.4",
               "letterSpacing": "0.01em"
             },
             "caption": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "12px",
               "fontWeight": "500",
               "lineHeight": "1.4",
               "letterSpacing": "0.01em"
             },
             "codeInline": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "500",
               "lineHeight": "1.45",
               "letterSpacing": "0em"
             },
             "codeBlock": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "400",
               "lineHeight": "1.55",
               "letterSpacing": "0em"
             },
             "terminal": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "500",
               "lineHeight": "1.5",
               "letterSpacing": "0.01em"
             },
             "metric": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "26px",
               "fontWeight": "700",
               "lineHeight": "1.15",
               "letterSpacing": "-0.01em"
             },
             "editorialBody": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "18px",
               "fontWeight": "400",
               "lineHeight": "1.65",
               "letterSpacing": "0em"
             },
             "editorialHeading": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "26px",
               "fontWeight": "700",
               "lineHeight": "1.28",
               "letterSpacing": "-0.005em"
             },
             "displayLarge": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "48px",
               "fontWeight": "700",
               "lineHeight": "1.08",
@@ -3695,7 +3695,7 @@
             {
               "id": "displayLarge",
               "label": "Signature",
-              "familyRole": "accent",
+              "familyRole": "signature",
               "sample": "A grounded place to begin",
               "fontSize": "38px",
               "fontWeight": "700",
@@ -3705,7 +3705,7 @@
             {
               "id": "body",
               "label": "Interface",
-              "familyRole": "primary",
+              "familyRole": "interface",
               "sample": "Clear information with a warm, readable hierarchy.",
               "fontSize": "16px",
               "fontWeight": "400",
@@ -3715,7 +3715,7 @@
             {
               "id": "terminal",
               "label": "Technical",
-              "familyRole": "mono",
+              "familyRole": "technical",
               "sample": "STATUS / READY / 0123",
               "fontSize": "14px",
               "fontWeight": "500",
@@ -4163,9 +4163,9 @@
               "--bb-v2-identity-accent-foreground": "#1B5E20",
               "--bb-v2-identity-neutral": "#F8F5F0",
               "--bb-v2-identity-neutral-foreground": "#3E2723",
-              "--bb-v2-font-family-primary": "Mulish",
-              "--bb-v2-font-family-mono": "Source Code Pro",
-              "--bb-v2-font-family-accent": "Arima",
+              "--bb-v2-font-family-interface": "Mulish",
+              "--bb-v2-font-family-technical": "Source Code Pro",
+              "--bb-v2-font-family-signature": "Arima",
               "--bb-v2-type-display-font-size": "42px",
               "--bb-v2-type-display-font-weight": "700",
               "--bb-v2-type-display-line-height": "1.12",
@@ -4554,9 +4554,9 @@
               "--bb-v2-identity-accent-foreground": "#F0EBE5",
               "--bb-v2-identity-neutral": "#2D3A2E",
               "--bb-v2-identity-neutral-foreground": "#F0EBE5",
-              "--bb-v2-font-family-primary": "Mulish",
-              "--bb-v2-font-family-mono": "Source Code Pro",
-              "--bb-v2-font-family-accent": "Arima",
+              "--bb-v2-font-family-interface": "Mulish",
+              "--bb-v2-font-family-technical": "Source Code Pro",
+              "--bb-v2-font-family-signature": "Arima",
               "--bb-v2-type-display-font-size": "42px",
               "--bb-v2-type-display-font-weight": "700",
               "--bb-v2-type-display-line-height": "1.12",
@@ -4722,104 +4722,104 @@
         },
         "typography": {
           "families": {
-            "primary": "Inter",
-            "mono": "IBM Plex Mono",
-            "accent": "Syne"
+            "interface": "Inter",
+            "technical": "IBM Plex Mono",
+            "signature": "Syne"
           },
           "styles": {
             "display": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "42px",
               "fontWeight": "700",
               "lineHeight": "1.12",
               "letterSpacing": "-0.015em"
             },
             "headline": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "30px",
               "fontWeight": "700",
               "lineHeight": "1.2",
               "letterSpacing": "-0.01em"
             },
             "title": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "22px",
               "fontWeight": "700",
               "lineHeight": "1.28",
               "letterSpacing": "0em"
             },
             "body": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "16px",
               "fontWeight": "400",
               "lineHeight": "1.55",
               "letterSpacing": "0em"
             },
             "bodyCompact": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "14px",
               "fontWeight": "400",
               "lineHeight": "1.45",
               "letterSpacing": "0em"
             },
             "label": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "14px",
               "fontWeight": "600",
               "lineHeight": "1.4",
               "letterSpacing": "0em"
             },
             "caption": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "12px",
               "fontWeight": "500",
               "lineHeight": "1.4",
               "letterSpacing": "0em"
             },
             "codeInline": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "500",
               "lineHeight": "1.45",
               "letterSpacing": "0em"
             },
             "codeBlock": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "400",
               "lineHeight": "1.55",
               "letterSpacing": "0em"
             },
             "terminal": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "500",
               "lineHeight": "1.5",
               "letterSpacing": "0em"
             },
             "metric": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "26px",
               "fontWeight": "700",
               "lineHeight": "1.15",
               "letterSpacing": "-0.01em"
             },
             "editorialBody": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "18px",
               "fontWeight": "400",
               "lineHeight": "1.65",
               "letterSpacing": "0em"
             },
             "editorialHeading": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "26px",
               "fontWeight": "700",
               "lineHeight": "1.28",
               "letterSpacing": "-0.005em"
             },
             "displayLarge": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "48px",
               "fontWeight": "700",
               "lineHeight": "1.08",
@@ -4847,7 +4847,7 @@
             {
               "id": "displayLarge",
               "label": "Signature",
-              "familyRole": "accent",
+              "familyRole": "signature",
               "sample": "A clear horizon for focused work",
               "fontSize": "38px",
               "fontWeight": "700",
@@ -4857,7 +4857,7 @@
             {
               "id": "body",
               "label": "Interface",
-              "familyRole": "primary",
+              "familyRole": "interface",
               "sample": "Cool structure with fresh, readable contrast.",
               "fontSize": "16px",
               "fontWeight": "400",
@@ -4867,7 +4867,7 @@
             {
               "id": "terminal",
               "label": "Technical",
-              "familyRole": "mono",
+              "familyRole": "technical",
               "sample": "STATUS / CLEAR / 0123",
               "fontSize": "14px",
               "fontWeight": "500",
@@ -5315,9 +5315,9 @@
               "--bb-v2-identity-accent-foreground": "#374151",
               "--bb-v2-identity-neutral": "oklch(1 0 0)",
               "--bb-v2-identity-neutral-foreground": "oklch(0.3729 0.0306 259.7328)",
-              "--bb-v2-font-family-primary": "Inter",
-              "--bb-v2-font-family-mono": "IBM Plex Mono",
-              "--bb-v2-font-family-accent": "Syne",
+              "--bb-v2-font-family-interface": "Inter",
+              "--bb-v2-font-family-technical": "IBM Plex Mono",
+              "--bb-v2-font-family-signature": "Syne",
               "--bb-v2-type-display-font-size": "42px",
               "--bb-v2-type-display-font-weight": "700",
               "--bb-v2-type-display-line-height": "1.12",
@@ -5710,9 +5710,9 @@
               "--bb-v2-identity-accent-foreground": "#A1A1AA",
               "--bb-v2-identity-neutral": "oklch(0.2795 0.0368 260.031)",
               "--bb-v2-identity-neutral-foreground": "oklch(0.8717 0.0093 258.3382)",
-              "--bb-v2-font-family-primary": "Inter",
-              "--bb-v2-font-family-mono": "IBM Plex Mono",
-              "--bb-v2-font-family-accent": "Syne",
+              "--bb-v2-font-family-interface": "Inter",
+              "--bb-v2-font-family-technical": "IBM Plex Mono",
+              "--bb-v2-font-family-signature": "Syne",
               "--bb-v2-type-display-font-size": "42px",
               "--bb-v2-type-display-font-weight": "700",
               "--bb-v2-type-display-line-height": "1.12",
@@ -5882,104 +5882,104 @@
         },
         "typography": {
           "families": {
-            "primary": "Roboto Slab",
-            "mono": "Source Code Pro",
-            "accent": "Besley"
+            "interface": "Roboto Slab",
+            "technical": "Source Code Pro",
+            "signature": "Besley"
           },
           "styles": {
             "display": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "42px",
               "fontWeight": "700",
               "lineHeight": "1.12",
               "letterSpacing": "-0.015em"
             },
             "headline": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "30px",
               "fontWeight": "700",
               "lineHeight": "1.2",
               "letterSpacing": "-0.01em"
             },
             "title": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "22px",
               "fontWeight": "700",
               "lineHeight": "1.28",
               "letterSpacing": "0em"
             },
             "body": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "16px",
               "fontWeight": "400",
               "lineHeight": "1.55",
               "letterSpacing": "0em"
             },
             "bodyCompact": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "14px",
               "fontWeight": "400",
               "lineHeight": "1.45",
               "letterSpacing": "0em"
             },
             "label": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "14px",
               "fontWeight": "600",
               "lineHeight": "1.4",
               "letterSpacing": "0em"
             },
             "caption": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "12px",
               "fontWeight": "500",
               "lineHeight": "1.4",
               "letterSpacing": "0em"
             },
             "codeInline": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "500",
               "lineHeight": "1.45",
               "letterSpacing": "0em"
             },
             "codeBlock": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "400",
               "lineHeight": "1.55",
               "letterSpacing": "0em"
             },
             "terminal": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "500",
               "lineHeight": "1.5",
               "letterSpacing": "0em"
             },
             "metric": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "26px",
               "fontWeight": "700",
               "lineHeight": "1.15",
               "letterSpacing": "-0.01em"
             },
             "editorialBody": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "18px",
               "fontWeight": "400",
               "lineHeight": "1.65",
               "letterSpacing": "0em"
             },
             "editorialHeading": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "26px",
               "fontWeight": "700",
               "lineHeight": "1.28",
               "letterSpacing": "-0.005em"
             },
             "displayLarge": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "48px",
               "fontWeight": "700",
               "lineHeight": "1.08",
@@ -6007,7 +6007,7 @@
             {
               "id": "displayLarge",
               "label": "Signature",
-              "familyRole": "accent",
+              "familyRole": "signature",
               "sample": "Settle in and shape the work",
               "fontSize": "38px",
               "fontWeight": "700",
@@ -6017,7 +6017,7 @@
             {
               "id": "body",
               "label": "Interface",
-              "familyRole": "primary",
+              "familyRole": "interface",
               "sample": "Warm structure with practical, readable hierarchy.",
               "fontSize": "16px",
               "fontWeight": "400",
@@ -6027,7 +6027,7 @@
             {
               "id": "terminal",
               "label": "Technical",
-              "familyRole": "mono",
+              "familyRole": "technical",
               "sample": "STATUS / BREWED / 0123",
               "fontSize": "14px",
               "fontWeight": "500",
@@ -6475,9 +6475,9 @@
               "--bb-v2-identity-accent-foreground": "#483E2E",
               "--bb-v2-identity-neutral": "oklch(0.9529 0.0146 102.4597)",
               "--bb-v2-identity-neutral-foreground": "oklch(0.4063 0.0255 40.3627)",
-              "--bb-v2-font-family-primary": "Roboto Slab",
-              "--bb-v2-font-family-mono": "Source Code Pro",
-              "--bb-v2-font-family-accent": "Besley",
+              "--bb-v2-font-family-interface": "Roboto Slab",
+              "--bb-v2-font-family-technical": "Source Code Pro",
+              "--bb-v2-font-family-signature": "Besley",
               "--bb-v2-type-display-font-size": "42px",
               "--bb-v2-type-display-font-weight": "700",
               "--bb-v2-type-display-line-height": "1.12",
@@ -6870,9 +6870,9 @@
               "--bb-v2-identity-accent-foreground": "#FBF3F1",
               "--bb-v2-identity-neutral": "oklch(0.3291 0.0156 50.8936)",
               "--bb-v2-identity-neutral-foreground": "oklch(0.9529 0.0146 102.4597)",
-              "--bb-v2-font-family-primary": "Roboto Slab",
-              "--bb-v2-font-family-mono": "Source Code Pro",
-              "--bb-v2-font-family-accent": "Besley",
+              "--bb-v2-font-family-interface": "Roboto Slab",
+              "--bb-v2-font-family-technical": "Source Code Pro",
+              "--bb-v2-font-family-signature": "Besley",
               "--bb-v2-type-display-font-size": "42px",
               "--bb-v2-type-display-font-weight": "700",
               "--bb-v2-type-display-line-height": "1.12",
@@ -7042,104 +7042,104 @@
         },
         "typography": {
           "families": {
-            "primary": "Poppins",
-            "mono": "Roboto Mono",
-            "accent": "Merriweather"
+            "interface": "Poppins",
+            "technical": "Roboto Mono",
+            "signature": "Merriweather"
           },
           "styles": {
             "display": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "42px",
               "fontWeight": "700",
               "lineHeight": "1.12",
               "letterSpacing": "-0.015em"
             },
             "headline": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "30px",
               "fontWeight": "700",
               "lineHeight": "1.2",
               "letterSpacing": "-0.01em"
             },
             "title": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "22px",
               "fontWeight": "700",
               "lineHeight": "1.28",
               "letterSpacing": "0em"
             },
             "body": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "16px",
               "fontWeight": "400",
               "lineHeight": "1.55",
               "letterSpacing": "0em"
             },
             "bodyCompact": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "14px",
               "fontWeight": "400",
               "lineHeight": "1.45",
               "letterSpacing": "0em"
             },
             "label": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "14px",
               "fontWeight": "600",
               "lineHeight": "1.4",
               "letterSpacing": "0em"
             },
             "caption": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "12px",
               "fontWeight": "500",
               "lineHeight": "1.4",
               "letterSpacing": "0em"
             },
             "codeInline": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "500",
               "lineHeight": "1.45",
               "letterSpacing": "0em"
             },
             "codeBlock": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "400",
               "lineHeight": "1.55",
               "letterSpacing": "0em"
             },
             "terminal": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "500",
               "lineHeight": "1.5",
               "letterSpacing": "0em"
             },
             "metric": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "26px",
               "fontWeight": "700",
               "lineHeight": "1.15",
               "letterSpacing": "-0.01em"
             },
             "editorialBody": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "18px",
               "fontWeight": "400",
               "lineHeight": "1.65",
               "letterSpacing": "0em"
             },
             "editorialHeading": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "26px",
               "fontWeight": "700",
               "lineHeight": "1.28",
               "letterSpacing": "-0.005em"
             },
             "displayLarge": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "48px",
               "fontWeight": "700",
               "lineHeight": "1.08",
@@ -7167,7 +7167,7 @@
             {
               "id": "displayLarge",
               "label": "Signature",
-              "familyRole": "accent",
+              "familyRole": "signature",
               "sample": "Bright ideas, neatly arranged",
               "fontSize": "38px",
               "fontWeight": "700",
@@ -7177,7 +7177,7 @@
             {
               "id": "body",
               "label": "Interface",
-              "familyRole": "primary",
+              "familyRole": "interface",
               "sample": "Friendly structure with colorful, readable cues.",
               "fontSize": "16px",
               "fontWeight": "400",
@@ -7187,7 +7187,7 @@
             {
               "id": "terminal",
               "label": "Technical",
-              "familyRole": "mono",
+              "familyRole": "technical",
               "sample": "STATUS / SWEET / 0123",
               "fontSize": "14px",
               "fontWeight": "500",
@@ -7635,9 +7635,9 @@
               "--bb-v2-identity-accent-foreground": "#000000",
               "--bb-v2-identity-neutral": "oklch(1 0 0)",
               "--bb-v2-identity-neutral-foreground": "oklch(0.3211 0 0)",
-              "--bb-v2-font-family-primary": "Poppins",
-              "--bb-v2-font-family-mono": "Roboto Mono",
-              "--bb-v2-font-family-accent": "Merriweather",
+              "--bb-v2-font-family-interface": "Poppins",
+              "--bb-v2-font-family-technical": "Roboto Mono",
+              "--bb-v2-font-family-signature": "Merriweather",
               "--bb-v2-type-display-font-size": "42px",
               "--bb-v2-type-display-font-weight": "700",
               "--bb-v2-type-display-line-height": "1.12",
@@ -8030,9 +8030,9 @@
               "--bb-v2-identity-accent-foreground": "#000000",
               "--bb-v2-identity-neutral": "oklch(0.321 0.0078 223.6661)",
               "--bb-v2-identity-neutral-foreground": "oklch(0.9219 0 0)",
-              "--bb-v2-font-family-primary": "Poppins",
-              "--bb-v2-font-family-mono": "Roboto Mono",
-              "--bb-v2-font-family-accent": "Merriweather",
+              "--bb-v2-font-family-interface": "Poppins",
+              "--bb-v2-font-family-technical": "Roboto Mono",
+              "--bb-v2-font-family-signature": "Merriweather",
               "--bb-v2-type-display-font-size": "42px",
               "--bb-v2-type-display-font-weight": "700",
               "--bb-v2-type-display-line-height": "1.12",
@@ -8202,104 +8202,104 @@
         },
         "typography": {
           "families": {
-            "primary": "Inter",
-            "mono": "JetBrains Mono",
-            "accent": "Source Serif 4"
+            "interface": "Inter",
+            "technical": "JetBrains Mono",
+            "signature": "Source Serif 4"
           },
           "styles": {
             "display": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "42px",
               "fontWeight": "700",
               "lineHeight": "1.12",
               "letterSpacing": "-0.015em"
             },
             "headline": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "30px",
               "fontWeight": "700",
               "lineHeight": "1.2",
               "letterSpacing": "-0.01em"
             },
             "title": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "22px",
               "fontWeight": "700",
               "lineHeight": "1.28",
               "letterSpacing": "0em"
             },
             "body": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "16px",
               "fontWeight": "400",
               "lineHeight": "1.55",
               "letterSpacing": "0em"
             },
             "bodyCompact": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "14px",
               "fontWeight": "400",
               "lineHeight": "1.45",
               "letterSpacing": "0em"
             },
             "label": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "14px",
               "fontWeight": "600",
               "lineHeight": "1.4",
               "letterSpacing": "0em"
             },
             "caption": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "12px",
               "fontWeight": "500",
               "lineHeight": "1.4",
               "letterSpacing": "0em"
             },
             "codeInline": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "500",
               "lineHeight": "1.45",
               "letterSpacing": "0em"
             },
             "codeBlock": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "400",
               "lineHeight": "1.55",
               "letterSpacing": "0em"
             },
             "terminal": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "500",
               "lineHeight": "1.5",
               "letterSpacing": "0em"
             },
             "metric": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "26px",
               "fontWeight": "700",
               "lineHeight": "1.15",
               "letterSpacing": "-0.01em"
             },
             "editorialBody": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "18px",
               "fontWeight": "400",
               "lineHeight": "1.65",
               "letterSpacing": "0em"
             },
             "editorialHeading": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "26px",
               "fontWeight": "700",
               "lineHeight": "1.28",
               "letterSpacing": "-0.005em"
             },
             "displayLarge": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "48px",
               "fontWeight": "700",
               "lineHeight": "1.08",
@@ -8327,7 +8327,7 @@
             {
               "id": "displayLarge",
               "label": "Signature",
-              "familyRole": "accent",
+              "familyRole": "signature",
               "sample": "Turn up the signal",
               "fontSize": "38px",
               "fontWeight": "700",
@@ -8337,7 +8337,7 @@
             {
               "id": "body",
               "label": "Interface",
-              "familyRole": "primary",
+              "familyRole": "interface",
               "sample": "Cool structure with decisive orange emphasis.",
               "fontSize": "16px",
               "fontWeight": "400",
@@ -8347,7 +8347,7 @@
             {
               "id": "terminal",
               "label": "Technical",
-              "familyRole": "mono",
+              "familyRole": "technical",
               "sample": "STATUS / HOT / 0123",
               "fontSize": "14px",
               "fontWeight": "500",
@@ -8795,9 +8795,9 @@
               "--bb-v2-identity-accent-foreground": "#1E3A8A",
               "--bb-v2-identity-neutral": "oklch(1 0 0)",
               "--bb-v2-identity-neutral-foreground": "oklch(0.3211 0 0)",
-              "--bb-v2-font-family-primary": "Inter",
-              "--bb-v2-font-family-mono": "JetBrains Mono",
-              "--bb-v2-font-family-accent": "Source Serif 4",
+              "--bb-v2-font-family-interface": "Inter",
+              "--bb-v2-font-family-technical": "JetBrains Mono",
+              "--bb-v2-font-family-signature": "Source Serif 4",
               "--bb-v2-type-display-font-size": "42px",
               "--bb-v2-type-display-font-weight": "700",
               "--bb-v2-type-display-line-height": "1.12",
@@ -9190,9 +9190,9 @@
               "--bb-v2-identity-accent-foreground": "#BFDBFE",
               "--bb-v2-identity-neutral": "oklch(0.3106 0.0301 268.6365)",
               "--bb-v2-identity-neutral-foreground": "oklch(0.9219 0 0)",
-              "--bb-v2-font-family-primary": "Inter",
-              "--bb-v2-font-family-mono": "JetBrains Mono",
-              "--bb-v2-font-family-accent": "Source Serif 4",
+              "--bb-v2-font-family-interface": "Inter",
+              "--bb-v2-font-family-technical": "JetBrains Mono",
+              "--bb-v2-font-family-signature": "Source Serif 4",
               "--bb-v2-type-display-font-size": "42px",
               "--bb-v2-type-display-font-weight": "700",
               "--bb-v2-type-display-line-height": "1.12",
@@ -9362,104 +9362,104 @@
         },
         "typography": {
           "families": {
-            "primary": "Antic",
-            "mono": "JetBrains Mono",
-            "accent": "Merriweather"
+            "interface": "Antic",
+            "technical": "JetBrains Mono",
+            "signature": "Merriweather"
           },
           "styles": {
             "display": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "42px",
               "fontWeight": "700",
               "lineHeight": "1.12",
               "letterSpacing": "-0.015em"
             },
             "headline": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "30px",
               "fontWeight": "700",
               "lineHeight": "1.2",
               "letterSpacing": "-0.01em"
             },
             "title": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "22px",
               "fontWeight": "700",
               "lineHeight": "1.28",
               "letterSpacing": "0em"
             },
             "body": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "16px",
               "fontWeight": "400",
               "lineHeight": "1.55",
               "letterSpacing": "0em"
             },
             "bodyCompact": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "14px",
               "fontWeight": "400",
               "lineHeight": "1.45",
               "letterSpacing": "0em"
             },
             "label": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "14px",
               "fontWeight": "600",
               "lineHeight": "1.4",
               "letterSpacing": "0em"
             },
             "caption": {
-              "familyRole": "primary",
+              "familyRole": "interface",
               "fontSize": "12px",
               "fontWeight": "500",
               "lineHeight": "1.4",
               "letterSpacing": "0em"
             },
             "codeInline": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "500",
               "lineHeight": "1.45",
               "letterSpacing": "0em"
             },
             "codeBlock": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "400",
               "lineHeight": "1.55",
               "letterSpacing": "0em"
             },
             "terminal": {
-              "familyRole": "mono",
+              "familyRole": "technical",
               "fontSize": "14px",
               "fontWeight": "500",
               "lineHeight": "1.5",
               "letterSpacing": "0em"
             },
             "metric": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "26px",
               "fontWeight": "700",
               "lineHeight": "1.15",
               "letterSpacing": "-0.01em"
             },
             "editorialBody": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "18px",
               "fontWeight": "400",
               "lineHeight": "1.65",
               "letterSpacing": "0em"
             },
             "editorialHeading": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "26px",
               "fontWeight": "700",
               "lineHeight": "1.28",
               "letterSpacing": "-0.005em"
             },
             "displayLarge": {
-              "familyRole": "accent",
+              "familyRole": "signature",
               "fontSize": "48px",
               "fontWeight": "700",
               "lineHeight": "1.08",
@@ -9487,7 +9487,7 @@
             {
               "id": "displayLarge",
               "label": "Signature",
-              "familyRole": "accent",
+              "familyRole": "signature",
               "sample": "Less noise, better decisions",
               "fontSize": "38px",
               "fontWeight": "700",
@@ -9497,7 +9497,7 @@
             {
               "id": "body",
               "label": "Interface",
-              "familyRole": "primary",
+              "familyRole": "interface",
               "sample": "Restrained structure with calm, readable hierarchy.",
               "fontSize": "16px",
               "fontWeight": "400",
@@ -9507,7 +9507,7 @@
             {
               "id": "terminal",
               "label": "Technical",
-              "familyRole": "mono",
+              "familyRole": "technical",
               "sample": "STATUS / STEADY / 0123",
               "fontSize": "14px",
               "fontWeight": "500",
@@ -9955,9 +9955,9 @@
               "--bb-v2-identity-accent-foreground": "#1A1F2E",
               "--bb-v2-identity-neutral": "oklch(1 0 0)",
               "--bb-v2-identity-neutral-foreground": "oklch(0.2417 0.0298 269.8827)",
-              "--bb-v2-font-family-primary": "Antic",
-              "--bb-v2-font-family-mono": "JetBrains Mono",
-              "--bb-v2-font-family-accent": "Merriweather",
+              "--bb-v2-font-family-interface": "Antic",
+              "--bb-v2-font-family-technical": "JetBrains Mono",
+              "--bb-v2-font-family-signature": "Merriweather",
               "--bb-v2-type-display-font-size": "42px",
               "--bb-v2-type-display-font-weight": "700",
               "--bb-v2-type-display-line-height": "1.12",
@@ -10350,9 +10350,9 @@
               "--bb-v2-identity-accent-foreground": "#F5F5F5",
               "--bb-v2-identity-neutral": "oklch(0.1822 0 0)",
               "--bb-v2-identity-neutral-foreground": "oklch(0.9702 0 0)",
-              "--bb-v2-font-family-primary": "Antic",
-              "--bb-v2-font-family-mono": "JetBrains Mono",
-              "--bb-v2-font-family-accent": "Merriweather",
+              "--bb-v2-font-family-interface": "Antic",
+              "--bb-v2-font-family-technical": "JetBrains Mono",
+              "--bb-v2-font-family-signature": "Merriweather",
               "--bb-v2-type-display-font-size": "42px",
               "--bb-v2-type-display-font-weight": "700",
               "--bb-v2-type-display-line-height": "1.12",

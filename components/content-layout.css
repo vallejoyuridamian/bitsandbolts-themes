@@ -18,7 +18,7 @@ body.bb-immersive-page {
   margin: 0;
   color: var(--bb-v2-color-content-primary);
   background: var(--bb-v2-color-surface-canvas);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
 }
 
 .bb-backdrop-layout {
@@ -67,7 +67,7 @@ body.bb-immersive-page {
   margin: 2vw 0 1vw;
   padding: inherit;
   color: var(--bb-marketing-highlight);
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: var(--bb-font-weight-bold);
   letter-spacing: 0.2vw;
@@ -77,7 +77,7 @@ body.bb-immersive-page {
   margin: 0 0 3vw;
   padding: inherit;
   color: var(--bb-v2-identity-primary);
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   font-size: clamp(1.1rem, 2.5vw, 3rem);
   font-weight: var(--bb-font-weight-bold);
 }
@@ -86,7 +86,7 @@ body.bb-immersive-page {
   width: min(90vw, 60rem);
   margin: 0 auto;
   color: var(--bb-marketing-content-body-text);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: clamp(0.8rem, 1.3vw, 1.5rem);
   font-weight: var(--bb-font-weight-bold);
   line-height: 1.3;
@@ -131,7 +131,7 @@ body.bb-immersive-page {
   width: 100%;
   margin: 0;
   color: var(--bb-marketing-content-body-text);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: clamp(0.5rem, 3.2vw, 1.2rem);
   font-weight: var(--bb-font-weight-bold);
   text-align: left;
@@ -156,7 +156,7 @@ body.bb-immersive-page {
   align-self: flex-start;
   padding: 0 0 0 2rem;
   color: var(--bb-marketing-content-body-text);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: clamp(0.5rem, 3.2vw, 1.2rem);
   font-weight: var(--bb-font-weight-bold);
   text-align: left;
@@ -171,7 +171,7 @@ body.bb-immersive-page {
   align-items: center;
   border-bottom: 1px dotted var(--bb-marketing-highlight);
   color: var(--bb-marketing-content-body-text);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-weight: var(--bb-font-weight-bold);
   text-decoration: none;
   transition: color 200ms ease;

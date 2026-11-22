@@ -5,20 +5,6 @@
     }
   },
   "font": {
-    "family": {
-      "display": {
-        "$value": "Merriweather"
-      },
-      "body": {
-        "$value": "Antic"
-      },
-      "mono": {
-        "$value": "JetBrains Mono"
-      },
-      "terminal": {
-        "$value": "JetBrains Mono"
-      }
-    },
     "tracking": {
       "normal": {},
       "tighter": {

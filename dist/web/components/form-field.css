@@ -46,7 +46,7 @@
 }
 
 .bb-field__label {
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-medium);
   color: var(--bb-v2-color-content-secondary);
@@ -56,7 +56,7 @@
 .bb-field__input {
   --bb-field-surface: var(--bb-v2-color-surface-subtle);
   --bb-field-content: var(--bb-v2-color-content-primary);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-sm);
   color: var(--bb-field-content);
   background: var(--bb-field-surface);
@@ -136,14 +136,14 @@
 }
 
 .bb-field__error {
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-xs);
   color: var(--bb-v2-color-status-danger-border);
   margin: 0;
 }
 
 .bb-form-status {
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-xs);
   color: var(--bb-v2-color-content-secondary);
   margin: 0;
@@ -155,7 +155,7 @@
 }
 
 .bb-field__hint {
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-xs);
   color: var(--bb-v2-color-content-secondary);
   margin: 0;
@@ -172,7 +172,7 @@
   align-items: center;
   gap: var(--bb-spacing-2);
   color: var(--bb-v2-color-content-secondary);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-xs);
   line-height: var(--bb-font-line-height-normal);
   cursor: pointer;
@@ -205,7 +205,7 @@
 
 .bb-field--prominent .bb-field__label {
   color: var(--bb-marketing-highlight);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: clamp(0.5rem, 3vw, 1rem);
   font-weight: var(--bb-font-weight-bold);
   letter-spacing: normal;
@@ -223,7 +223,7 @@
   color: var(--bb-field-content);
   background: var(--bb-field-surface);
   box-shadow: var(--bb-field-decoration-shadow);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: clamp(0.7rem, 1.2vw, 2rem);
   transition: border-color 300ms ease;
 }
@@ -270,7 +270,7 @@
   gap: var(--bb-spacing-3);
   margin: var(--bb-spacing-4) 0;
   color: var(--bb-v2-color-content-secondary);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-xs);
 }
 
@@ -286,7 +286,7 @@
 
 .bb-link {
   color: var(--bb-v2-identity-primary);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-xs);
   text-decoration: none;
   cursor: pointer;

@@ -17,7 +17,7 @@
   gap: var(--bb-spacing-2);
   width: 100%;
   padding: 10px var(--bb-spacing-4);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-sm);
   font-weight: var(--bb-font-weight-medium);
   border: none;
@@ -40,7 +40,7 @@
 .bb-btn:disabled {
   cursor: not-allowed;
   opacity: 1;
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-weight: var(--bb-font-weight-medium);
 }
 

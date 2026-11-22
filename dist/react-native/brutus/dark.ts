@@ -107,6 +107,9 @@ export const fontWeight = {
 } as const;
 
 export const fontFamily = {
+  interface: 'Roboto Slab',
+  technical: 'Space Mono',
+  signature: 'Ultra',
   display: 'Ultra',
   body: 'Roboto Slab',
   mono: 'Space Mono',

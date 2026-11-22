@@ -1,11 +1,5 @@
 {
   "font": {
-    "family": {
-      "display": { "$value": "Arima" },
-      "body": { "$value": "Mulish" },
-      "mono": { "$value": "Source Code Pro" },
-      "terminal": { "$value": "Source Code Pro" }
-    },
     "lineHeight": {
       "hero": { "$value": "1.08" }
     }

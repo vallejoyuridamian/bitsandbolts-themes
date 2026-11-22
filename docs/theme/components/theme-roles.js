@@ -1,12 +1,20 @@
 // Authored roles and their transient presentation share this contract.
 export const THEME_COLOR_ROLES = Object.freeze(['primary', 'secondary', 'accent', 'neutral']);
 export const THEME_FONT_ROLE_OPTIONS = Object.freeze([
-  Object.freeze({ familyRole: 'accent', label: 'Signature', role: 'signature', value: 'var(--bb-font-family-display)' }),
-  Object.freeze({ familyRole: 'primary', label: 'Interface', role: 'interface', value: 'var(--bb-font-family-body)' }),
-  Object.freeze({ familyRole: 'mono', label: 'Technical', role: 'technical', value: 'var(--bb-font-family-mono)' })
+  Object.freeze({ label: 'Signature', role: 'signature', requiredInCatalog: false, value: 'var(--bb-font-family-signature)' }),
+  Object.freeze({ label: 'Interface', role: 'interface', requiredInCatalog: true, value: 'var(--bb-font-family-interface)' }),
+  Object.freeze({ label: 'Technical', role: 'technical', requiredInCatalog: true, value: 'var(--bb-font-family-technical)' })
 ]);
 export const THEME_FONT_ROLES = Object.freeze(THEME_FONT_ROLE_OPTIONS.map(({ role }) => role));
-export const THEME_FONT_FAMILY_ROLES = Object.freeze(Object.fromEntries(THEME_FONT_ROLE_OPTIONS.map(({ role, familyRole }) => [role, familyRole])));
+
+export function assertCatalogFontRoles(families = {}) {
+  for (const role of Object.keys(families)) {
+    if (!THEME_FONT_ROLES.includes(role)) throw new TypeError('Unknown catalog font role: ' + role);
+  }
+  for (const { role, requiredInCatalog } of THEME_FONT_ROLE_OPTIONS) {
+    if (requiredInCatalog && !families[role]) throw new TypeError('Missing required catalog font role: ' + role);
+  }
+}
 
 const contracts = Object.freeze({
   color: Object.freeze({ roles: THEME_COLOR_ROLES, defaultOnly: 'neutral' }),

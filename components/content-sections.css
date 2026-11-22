@@ -84,7 +84,7 @@
 .bb-milestone-timeline h3 {
   margin: 0 0 15px;
   color: var(--bb-marketing-highlight);
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   font-size: clamp(0.8rem, 5vw, 2rem);
   font-weight: var(--bb-font-weight-semibold);
   letter-spacing: 0.2vw;
@@ -96,7 +96,7 @@
 .bb-question-list dd {
   margin: 0;
   color: var(--bb-marketing-content-body-text);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: clamp(0.8rem, 1.3vw, 1.5rem);
   font-weight: var(--bb-font-weight-bold);
   line-height: 1.3;
@@ -115,7 +115,7 @@
 .bb-media-copy--portrait .bb-media-copy__copy {
   max-width: clamp(10rem, 50%, 30rem);
   color: var(--bb-marketing-content-body-text);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: clamp(0.5rem, 3.2cqw, 1.2rem);
   font-weight: var(--bb-font-weight-bold);
 }
@@ -138,7 +138,7 @@
 .bb-prose-block {
   width: 100%;
   color: var(--bb-marketing-content-body-text);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: clamp(0.5rem, 3.2vw, 1.2rem);
   font-weight: var(--bb-font-weight-bold);
   text-align: left;
@@ -173,7 +173,7 @@
 .bb-question-list__item dt {
   padding: 2rem 0 0.5rem;
   color: var(--bb-marketing-highlight);
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   font-size: clamp(0.8rem, 5vw, 2rem);
   font-weight: var(--bb-font-weight-semibold);
   letter-spacing: 0.2vw;

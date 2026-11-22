@@ -107,6 +107,9 @@ export const fontWeight = {
 } as const;
 
 export const fontFamily = {
+  interface: 'Roboto Slab',
+  technical: 'Source Code Pro',
+  signature: 'Besley',
   display: 'Besley',
   body: 'Roboto Slab',
   mono: 'Source Code Pro',

@@ -2,7 +2,7 @@ import { createComponentEvents } from './component-events.js';
 import { themeGalleryLoadingCardMarkup, themeGalleryLoadingMarkup } from './theme-gallery-loading.js';
 import { workspaceControlBarContentMarkup } from './workspace-control-bar.js';
 import { contentCardsMarkup } from './content-card.js';
-import { THEME_COLOR_ROLES, THEME_FONT_ROLE_OPTIONS, themeIdentityOptions } from './theme-roles.js';
+import { assertCatalogFontRoles, THEME_COLOR_ROLES, THEME_FONT_ROLE_OPTIONS, themeIdentityOptions } from './theme-roles.js';
 import { themeModeToggleMarkup } from './compact-theme-selector.js';
 import { spotlightMediaMarkup, storeBadgesMarkup } from './content-media.js';
 import { semanticActionButtonMarkup } from './button.js';
@@ -239,7 +239,7 @@ function normalizeV2(value) {
     role,
     normalizeSingleFontFamily(family, `v2.${role}`)
   ]));
-  if (!families.primary || !families.mono) throw new TypeError('Theme catalog v2 typography is missing required families.');
+  assertCatalogFontRoles(families);
   const styles = Object.fromEntries(Object.entries(value.typography?.styles || {}).map(([id, style]) => {
     const familyRole = String(style?.familyRole || '').trim();
     if (!V2_ID_PATTERN.test(id) || !families[familyRole]) {

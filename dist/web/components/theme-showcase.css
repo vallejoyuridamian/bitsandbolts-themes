@@ -17,7 +17,7 @@ body.bb-theme-showcase {
   overflow: hidden;
   color: var(--bb-v2-color-content-primary);
   background: var(--bb-interface-workspace-background);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
 }
 
 .bb-theme-showcase__header {
@@ -43,7 +43,7 @@ body.bb-theme-showcase {
 }
 
 .bb-theme-showcase__identity strong {
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   font-size: var(--bb-font-size-md);
 }
 

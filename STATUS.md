@@ -1,8 +1,8 @@
 # Bits and Bolts Themes: Status
-
+Studio release 736c8eea includes the canonical Signature, Interface and Technical font roles across nine families and 18 generated appearances. Legacy platform alias consumers remain tracked. Control: ../appscreen-studio/docs/CLUNA_MCP_THEME_PLAN.md.
 Nov21 shared splash and pending Theme editor live in Studio 51da4a68. Owner accepted local scrolling, splash and Cloud rendering. Hosted MCP user retest: ../appscreen-studio/docs/CLUNA_MCP_THEME_PLAN.md.
 
-Nov21 gallery and named global links share first-view selection for bundled and fetched catalogs. Studio source fixtures verify gallery and individual read-only destinations. Guest links and initial gallery skeletons accepted. The latest grouped gallery uses inventory-sized personal placeholders and preserves disclosure controls when previews arrive. Owner regenerated and accepted local Release. Gallery source, web and showcase copies match. Production candidate verification pending.
+Nov21 gallery and named global links share first-view selection for bundled and fetched catalogs. Studio source fixtures verify gallery and individual read-only destinations. Guest links and initial gallery skeletons accepted. The latest grouped gallery uses inventory-sized personal placeholders and preserves disclosure controls when previews arrive. Owner regenerated and accepted local Release. Gallery source, web and showcase copies match. The gallery shipped through Studio.
 Nov21 gallery controller accepts the requested initial appearance for Studio MCP card rendering. Owner approved both preview labels. The canonical gallery stylesheet supplies them under Studio docs/CLUNA_MCP_THEME_PLAN.md.
 
 Nov21 standalone account page imports the canonical Google button recipe and

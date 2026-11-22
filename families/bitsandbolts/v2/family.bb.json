@@ -31,25 +31,25 @@
   },
   "typography": {
     "families": {
-      "primary": "Montserrat",
-      "mono": "JetBrains Mono",
-      "accent": "Orbitron"
+      "interface": "Montserrat",
+      "technical": "JetBrains Mono",
+      "signature": "Orbitron"
     },
     "styles": {
-      "display": { "familyRole": "accent", "fontSize": "32px", "fontWeight": "700", "lineHeight": "1.08", "letterSpacing": "0.025em" },
-      "headline": { "familyRole": "primary", "fontSize": "28px", "fontWeight": "700", "lineHeight": "1.15", "letterSpacing": "-0.015em" },
-      "title": { "familyRole": "primary", "fontSize": "20px", "fontWeight": "600", "lineHeight": "1.25", "letterSpacing": "-0.01em" },
-      "body": { "familyRole": "primary", "fontSize": "16px", "fontWeight": "500", "lineHeight": "1.5", "letterSpacing": "0em" },
-      "bodyCompact": { "familyRole": "primary", "fontSize": "14px", "fontWeight": "500", "lineHeight": "1.4", "letterSpacing": "0em" },
-      "label": { "familyRole": "primary", "fontSize": "13px", "fontWeight": "600", "lineHeight": "1.25", "letterSpacing": "0.035em" },
-      "caption": { "familyRole": "primary", "fontSize": "12px", "fontWeight": "500", "lineHeight": "1.35", "letterSpacing": "0.02em" },
-      "codeInline": { "familyRole": "mono", "fontSize": "14px", "fontWeight": "500", "lineHeight": "1.4", "letterSpacing": "0em" },
-      "codeBlock": { "familyRole": "mono", "fontSize": "14px", "fontWeight": "500", "lineHeight": "1.55", "letterSpacing": "0em" },
-      "terminal": { "familyRole": "mono", "fontSize": "14px", "fontWeight": "500", "lineHeight": "1.45", "letterSpacing": "0.02em" },
-      "metric": { "familyRole": "mono", "fontSize": "24px", "fontWeight": "700", "lineHeight": "1.1", "letterSpacing": "-0.02em" },
-      "editorialBody": { "familyRole": "primary", "fontSize": "18px", "fontWeight": "500", "lineHeight": "1.65", "letterSpacing": "0em" },
-      "editorialHeading": { "familyRole": "accent", "fontSize": "24px", "fontWeight": "600", "lineHeight": "1.2", "letterSpacing": "0.015em" },
-      "displayLarge": { "familyRole": "accent", "fontSize": "44px", "fontWeight": "700", "lineHeight": "1.02", "letterSpacing": "0.025em" }
+      "display": { "familyRole": "signature", "fontSize": "32px", "fontWeight": "700", "lineHeight": "1.08", "letterSpacing": "0.025em" },
+      "headline": { "familyRole": "interface", "fontSize": "28px", "fontWeight": "700", "lineHeight": "1.15", "letterSpacing": "-0.015em" },
+      "title": { "familyRole": "interface", "fontSize": "20px", "fontWeight": "600", "lineHeight": "1.25", "letterSpacing": "-0.01em" },
+      "body": { "familyRole": "interface", "fontSize": "16px", "fontWeight": "500", "lineHeight": "1.5", "letterSpacing": "0em" },
+      "bodyCompact": { "familyRole": "interface", "fontSize": "14px", "fontWeight": "500", "lineHeight": "1.4", "letterSpacing": "0em" },
+      "label": { "familyRole": "interface", "fontSize": "13px", "fontWeight": "600", "lineHeight": "1.25", "letterSpacing": "0.035em" },
+      "caption": { "familyRole": "interface", "fontSize": "12px", "fontWeight": "500", "lineHeight": "1.35", "letterSpacing": "0.02em" },
+      "codeInline": { "familyRole": "technical", "fontSize": "14px", "fontWeight": "500", "lineHeight": "1.4", "letterSpacing": "0em" },
+      "codeBlock": { "familyRole": "technical", "fontSize": "14px", "fontWeight": "500", "lineHeight": "1.55", "letterSpacing": "0em" },
+      "terminal": { "familyRole": "technical", "fontSize": "14px", "fontWeight": "500", "lineHeight": "1.45", "letterSpacing": "0.02em" },
+      "metric": { "familyRole": "technical", "fontSize": "24px", "fontWeight": "700", "lineHeight": "1.1", "letterSpacing": "-0.02em" },
+      "editorialBody": { "familyRole": "interface", "fontSize": "18px", "fontWeight": "500", "lineHeight": "1.65", "letterSpacing": "0em" },
+      "editorialHeading": { "familyRole": "signature", "fontSize": "24px", "fontWeight": "600", "lineHeight": "1.2", "letterSpacing": "0.015em" },
+      "displayLarge": { "familyRole": "signature", "fontSize": "44px", "fontWeight": "700", "lineHeight": "1.02", "letterSpacing": "0.025em" }
     },
     "variants": {
       "signature": { "bold": true, "italic": false, "underline": false },
@@ -60,7 +60,7 @@
       {
         "id": "displayLarge",
         "label": "Signature",
-        "familyRole": "accent",
+        "familyRole": "signature",
         "sample": "SYSTEMS, BUILT TO SHIP.",
         "fontSize": "32px",
         "fontWeight": "700",
@@ -70,7 +70,7 @@
       {
         "id": "body",
         "label": "Interface",
-        "familyRole": "primary",
+        "familyRole": "interface",
         "sample": "Clear controls. Precise feedback. No visual drift.",
         "fontSize": "16px",
         "fontWeight": "500",
@@ -80,7 +80,7 @@
       {
         "id": "terminal",
         "label": "Technical",
-        "familyRole": "mono",
+        "familyRole": "technical",
         "sample": "BUILD 02 / CONTRACT VALID / 0123",
         "fontSize": "14px",
         "fontWeight": "500",

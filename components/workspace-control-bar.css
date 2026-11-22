@@ -10,7 +10,7 @@
   border-color: transparent;
   background-color: transparent;
   box-shadow: none;
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-bold);
   line-height: 1.2;

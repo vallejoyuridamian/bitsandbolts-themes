@@ -90,7 +90,7 @@ body.bb-portfolio-home {
   border-radius: var(--bb-radius-full);
   color: var(--bb-v2-identity-primary);
   background: color-mix(in srgb, var(--bb-v2-color-surface-scrim) 70%, transparent);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: 0.7rem;
   font-weight: var(--bb-font-weight-regular);
   line-height: normal;
@@ -190,7 +190,7 @@ body.bb-portfolio-home {
   margin: 0;
   padding: 0;
   color: var(--bb-marketing-highlight);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: clamp(0.8rem, 3vw, 1.1rem);
   font-weight: var(--bb-font-weight-bold);
   line-height: clamp(1rem, 7vw, 2rem);
@@ -264,7 +264,7 @@ body.bb-portfolio-home {
 .bb-portfolio-case-study__intro p,
 .bb-portfolio-collaborations__heading p {
   color: var(--bb-marketing-portfolio-body-text);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-weight: var(--bb-font-weight-bold);
 }
 
@@ -273,7 +273,7 @@ body.bb-portfolio-home {
   align-items: center;
   border-bottom: 1px dotted var(--bb-marketing-highlight);
   color: var(--bb-marketing-portfolio-body-text);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-weight: var(--bb-font-weight-bold);
   text-decoration: none;
 }
@@ -544,7 +544,7 @@ body.bb-portfolio-home {
 .bb-portfolio-case-study__availability {
   margin: 0;
   color: var(--bb-marketing-portfolio-body-text);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: clamp(0.8rem, 1.3vw, 1.5rem);
   font-weight: var(--bb-font-weight-bold);
   line-height: 1.3;

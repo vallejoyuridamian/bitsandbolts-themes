@@ -12,7 +12,7 @@
   margin: 0;
   color: var(--bb-v2-color-content-primary);
   background: var(--bb-v2-color-surface-canvas);
-  font-family: var(--bb-v2-font-family-primary);
+  font-family: var(--bb-v2-font-family-interface);
   -webkit-user-select: none;
   user-select: none;
 }

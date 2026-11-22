@@ -20,7 +20,7 @@
   border: 0;
   color: var(--bb-v2-identity-primary-foreground);
   background: var(--bb-v2-identity-primary);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: 0.9rem;
   line-height: normal;
 }
@@ -79,7 +79,7 @@
   flex-direction: column;
   justify-content: center;
   color: var(--bb-v2-identity-primary-foreground);
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   font-weight: var(--bb-font-weight-semibold);
   line-height: 1.1;
 }

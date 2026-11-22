@@ -10,7 +10,7 @@
   gap: var(--bb-spacing-3);
   min-width: 0;
   color: var(--bb-interface-control-foreground);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   -webkit-user-select: none;
   user-select: none;
 }

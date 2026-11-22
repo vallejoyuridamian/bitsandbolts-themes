@@ -107,6 +107,9 @@ export const fontWeight = {
 } as const;
 
 export const fontFamily = {
+  interface: 'Inter',
+  technical: 'JetBrains Mono',
+  signature: 'Source Serif 4',
   display: 'Source Serif 4',
   body: 'Inter',
   mono: 'JetBrains Mono',

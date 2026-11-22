@@ -109,7 +109,7 @@
 .bb-content-card__copy h3 {
   margin: 1em 0 6px;
   color: var(--bb-marketing-highlight);
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   font-size: 1.1rem;
   font-weight: var(--bb-font-weight-bold);
 }

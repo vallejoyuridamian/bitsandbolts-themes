@@ -37,7 +37,7 @@
   overflow: auto;
   color: var(--bb-v2-color-content-primary);
   background: var(--bb-interface-workspace-background);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   -webkit-user-select: none;
   user-select: none;
 }
@@ -134,7 +134,7 @@
   background: var(--bb-v2-color-surface-surface);
   box-shadow: var(--bb-v2-button-depth-rest);
   cursor: pointer;
-  font-family: var(--bb-v2-font-family-primary);
+  font-family: var(--bb-v2-font-family-interface);
   text-align: left;
   transition:
     border-color var(--bb-v2-button-transition-duration) var(--bb-v2-button-transition-easing),
@@ -255,7 +255,7 @@
 
 .bb-theme-summary-card__headline {
   color: var(--bb-theme-v2-neutral-foreground, var(--bb-v2-color-content-primary));
-  font-family: var(--bb-v2-font-family-accent);
+  font-family: var(--bb-v2-font-family-signature);
   font-synthesis: style;
   font-size: clamp(28px, 3vw, 40px);
   font-weight: var(--bb-theme-typography-signature-font-weight, var(--bb-v2-type-display-large-font-weight));
@@ -343,7 +343,7 @@
 .bb-theme-summary-card__identity small {
   overflow: hidden;
   color: var(--bb-v2-color-content-tertiary);
-  font-family: var(--bb-v2-font-family-mono);
+  font-family: var(--bb-v2-font-family-technical);
   font-size: 8px;
   font-weight: var(--bb-theme-typography-technical-font-weight, 400);
   font-style: var(--bb-theme-typography-technical-font-style, normal);
@@ -482,7 +482,7 @@
 
 .bb-hero-specimen__visual strong {
   color: var(--bb-v2-color-content-primary);
-  font-family: var(--bb-v2-font-family-accent);
+  font-family: var(--bb-v2-font-family-signature);
   font-size: var(--bb-font-size-lg);
 }
 
@@ -720,7 +720,7 @@ article.bb-workspace-specimen__preview {
   padding: var(--bb-spacing-3);
   color: var(--bb-v2-identity-secondary-foreground);
   background: var(--bb-v2-identity-secondary);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
 }
 
 article.bb-workspace-specimen__preview > span {
@@ -731,7 +731,7 @@ article.bb-workspace-specimen__preview > span {
 }
 
 article.bb-workspace-specimen__preview > strong {
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   font-size: var(--bb-font-size-sm);
   line-height: 1.2;
 }
@@ -760,7 +760,7 @@ article.bb-workspace-specimen__preview--secondary {
 
 .bb-compact-controls-specimen small {
   color: var(--bb-v2-color-content-secondary);
-  font-family: var(--bb-v2-font-family-primary);
+  font-family: var(--bb-v2-font-family-interface);
   font-size: 10px;
   font-weight: 600;
 }
@@ -815,7 +815,7 @@ article.bb-workspace-specimen__preview--secondary {
   max-width: 52ch;
   margin: 0;
   color: var(--bb-v2-color-content-secondary);
-  font-family: var(--bb-v2-font-family-primary);
+  font-family: var(--bb-v2-font-family-interface);
   font-size: 13px;
   line-height: 1.55;
 }
@@ -917,7 +917,7 @@ article.bb-workspace-specimen__preview--secondary {
 
 .bb-theme-scene__title {
   max-width: 18ch;
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   font-size: var(--bb-font-size-2xl);
   font-weight: var(--bb-font-weight-bold);
   line-height: var(--bb-font-line-height-tight);
@@ -930,7 +930,7 @@ article.bb-workspace-specimen__preview--secondary {
 }
 
 .bb-theme-scene__secondary strong {
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   font-size: var(--bb-font-size-lg);
 }
 
@@ -1002,7 +1002,7 @@ article.bb-workspace-specimen__preview--secondary {
 .bb-theme-color__value,
 .bb-theme-type__value,
 .bb-theme-icon__name {
-  font-family: var(--bb-font-family-mono);
+  font-family: var(--bb-font-family-technical);
 }
 
 .bb-theme-type-grid {
@@ -1173,7 +1173,7 @@ article.bb-workspace-specimen__preview--secondary {
 /* Theme contract v2 reference specimen. */
 
 .bb-theme-v2 {
-  --bb-font-family-body: var(--bb-v2-font-family-primary);
+  --bb-font-family-interface: var(--bb-v2-font-family-interface);
   --bb-interface-control-foreground: var(--bb-theme-v2-neutral-foreground, var(--bb-v2-color-content-primary));
   --bb-interface-control-hover-foreground: var(--bb-theme-v2-neutral-foreground, var(--bb-v2-color-content-primary));
   --bb-interface-control-disabled-foreground: color-mix(in srgb, var(--bb-theme-v2-neutral-foreground, var(--bb-v2-color-content-primary)) 42%, transparent);
@@ -1199,7 +1199,7 @@ article.bb-workspace-specimen__preview--secondary {
   color: var(--bb-theme-v2-neutral-foreground, var(--bb-v2-color-content-primary));
   background: var(--bb-theme-v2-neutral, var(--bb-v2-color-surface-surface));
   box-shadow: none;
-  font-family: var(--bb-v2-font-family-primary);
+  font-family: var(--bb-v2-font-family-interface);
 }
 
 .bb-theme-v2__body {
@@ -1227,7 +1227,7 @@ article.bb-workspace-specimen__preview--secondary {
 .bb-theme-v2-section > h3,
 .bb-theme-v2-type__meta strong,
 .bb-theme-v2-identity__label {
-  font-family: var(--bb-v2-font-family-primary);
+  font-family: var(--bb-v2-font-family-interface);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.09em;
@@ -1271,7 +1271,7 @@ article.bb-workspace-specimen__preview--secondary {
 .bb-theme-v2-hero > strong {
   z-index: 1;
   max-width: 12ch;
-  font-family: var(--bb-v2-font-family-accent);
+  font-family: var(--bb-v2-font-family-signature);
   font-size: clamp(34px, 6vw, 76px);
   font-weight: 700;
   letter-spacing: 0.025em;
@@ -1304,7 +1304,7 @@ article.bb-workspace-specimen__preview--secondary {
 .bb-theme-v2-hero dt,
 .bb-theme-v2-hero dd {
   margin: 0;
-  font-family: var(--bb-v2-font-family-mono);
+  font-family: var(--bb-v2-font-family-technical);
   font-size: 10px;
   line-height: 1.4;
 }
@@ -1345,7 +1345,7 @@ article.bb-workspace-specimen__preview--secondary {
     var(--bb-theme-v2-neutral-foreground, var(--bb-v2-color-content-primary)) 68%,
     transparent
   );
-  font-family: var(--bb-v2-font-family-mono);
+  font-family: var(--bb-v2-font-family-technical);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -1356,7 +1356,7 @@ article.bb-workspace-specimen__preview--secondary {
 .bb-theme-v2-section__meta {
   margin: -14px 0 0;
   color: var(--bb-v2-color-content-tertiary);
-  font-family: var(--bb-v2-font-family-mono);
+  font-family: var(--bb-v2-font-family-technical);
   font-size: 9px;
   font-weight: 500;
   letter-spacing: 0.04em;
@@ -1407,7 +1407,7 @@ article.bb-workspace-specimen__preview--secondary {
 
 .bb-theme-v2-identity__foreground-sample {
   color: var(--bb-theme-v2-swatch-foreground);
-  font-family: var(--bb-v2-font-family-primary);
+  font-family: var(--bb-v2-font-family-interface);
   font-size: 16px;
   font-weight: 700;
   line-height: 1;
@@ -1464,7 +1464,7 @@ article.bb-workspace-specimen__preview--secondary {
 .bb-theme-v2-identity__value,
 .bb-theme-v2-identity__foreground-value {
   color: var(--bb-v2-color-content-tertiary);
-  font-family: var(--bb-v2-font-family-mono);
+  font-family: var(--bb-v2-font-family-technical);
   font-size: 10px;
   white-space: nowrap;
 }
@@ -1477,7 +1477,7 @@ article.bb-workspace-specimen__preview--secondary {
 
 .bb-theme-v2-identity__foreground-label {
   color: var(--bb-v2-color-content-secondary);
-  font-family: var(--bb-v2-font-family-primary);
+  font-family: var(--bb-v2-font-family-interface);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -1683,7 +1683,7 @@ article.bb-workspace-specimen__preview--secondary {
 .bb-theme-v2-semantic small {
   overflow: hidden;
   color: var(--bb-v2-color-content-tertiary);
-  font-family: var(--bb-v2-font-family-mono);
+  font-family: var(--bb-v2-font-family-technical);
   font-size: 9px;
   text-overflow: ellipsis;
   white-space: nowrap;

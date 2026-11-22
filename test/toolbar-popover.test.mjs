@@ -144,7 +144,7 @@ test('toolbar popover owns numeric fields and status text', async () => {
   assert.match(css, /background: transparent;/);
   assert.match(css, /font-size: var\(--bb-font-size-xs\);/);
   assert.match(css, /font-weight: var\(--bb-font-weight-bold\);/);
-  assert.match(css, /\.bb-toolbar-popover__field-label\s*\{[^}]*color: var\(--bb-v2-color-content-secondary\);[^}]*font-family: var\(--bb-font-family-body\);[^}]*font-size: var\(--bb-font-size-xs\);[^}]*font-weight: var\(--bb-font-weight-semibold\);[^}]*line-height: var\(--bb-font-line-height-normal\);/s);
+  assert.match(css, /\.bb-toolbar-popover__field-label\s*\{[^}]*color: var\(--bb-v2-color-content-secondary\);[^}]*font-family: var\(--bb-font-family-interface\);[^}]*font-size: var\(--bb-font-size-xs\);[^}]*font-weight: var\(--bb-font-weight-semibold\);[^}]*line-height: var\(--bb-font-line-height-normal\);/s);
   assert.match(css, /background: var\(--bb-v2-color-surface-canvas\);/);
   assert.match(css, /border: 1px solid var\(--bb-v2-color-border-subtle\);/);
 });

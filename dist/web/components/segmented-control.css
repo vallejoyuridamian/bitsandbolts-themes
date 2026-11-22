@@ -30,7 +30,7 @@
   border-radius: 6px;
   cursor: pointer;
   font-size: 0.8rem;
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   color: var(--bb-v2-color-content-secondary);
   transition: background 0.15s, color 0.15s;
   white-space: nowrap;

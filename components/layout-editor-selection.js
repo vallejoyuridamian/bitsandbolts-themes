@@ -73,7 +73,7 @@ export const layoutEditorSelectionRecipe = Object.freeze({
     hullFill: 'rgba(255,90,95,.12)',
     outerBackground: 'transparent',
     fallbackColor: '#ffffff',
-    fallbackFontFamily: 'var(--bb-font-family-body, sans-serif)',
+    fallbackFontFamily: 'var(--bb-font-family-interface, sans-serif)',
     fallbackFontWeight: '700'
   }),
   resizeHandleSize: overlayMetric(8),

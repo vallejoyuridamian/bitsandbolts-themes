@@ -1,12 +1,4 @@
 {
-  "font": {
-    "family": {
-      "display": { "$value": "Orbitron" },
-      "body":    { "$value": "Montserrat" },
-      "mono":    { "$value": "JetBrains Mono" },
-      "terminal": { "$value": "JetBrains Mono" }
-    }
-  },
   "opacity": {
     "actionIconInactive": { "$value": "0.40", "$type": "number" },
     "neonRing":           { "$value": "0.28", "$type": "number" },

@@ -48,7 +48,7 @@
 }
 
 .bb-auth-title {
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   font-size: var(--bb-font-size-xl);
   font-weight: var(--bb-font-weight-bold);
   color: var(--bb-v2-color-content-primary);
@@ -56,7 +56,7 @@
 }
 
 .bb-auth-subtitle {
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-sm);
   color: var(--bb-v2-color-content-secondary);
   margin: 0 0 var(--bb-spacing-6);

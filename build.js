@@ -17,6 +17,7 @@
 
 import { assertRouterAgnosticComponent } from './scripts/component-boundary.mjs';
 import { generateContentIcons } from './scripts/content-icon-geometry.mjs';
+import { assertCatalogFontRoles, THEME_FONT_ROLES } from './components/theme-roles.js';
 import StyleDictionary from 'style-dictionary';
 import * as fontAwesomeSolidIcons from '@fortawesome/free-solid-svg-icons';
 import * as fontAwesomeRegularIcons from '@fortawesome/free-regular-svg-icons';
@@ -240,25 +241,6 @@ function assertInterfacePrimitiveSources() {
     }
   }
 }
-
-function assertSingleFontFamilyTokens() {
-  const files = [
-    'tokens/base/typography.json',
-    ...THEMES.flatMap((theme) => MODES.map((mode) => `tokens/themes/${theme}/${mode}.json`)),
-  ];
-  for (const file of files) {
-    if (!existsSync(file)) continue;
-    const families = JSON.parse(readFileSync(file, 'utf8'))?.font?.family ?? {};
-    for (const [role, token] of Object.entries(families)) {
-      const value = String(token?.$value ?? '').trim();
-      if (!value || value.includes(',') || GENERIC_FONT_FAMILIES.has(value.toLowerCase())) {
-        throw new Error(`[font-contract] ${file} font.family.${role} must name exactly one primary font family.`);
-      }
-    }
-  }
-}
-
-assertSingleFontFamilyTokens();
 
 function assertNoComponentFontFallbacks() {
   for (const file of readdirSync('components').filter((name) => name.endsWith('.css'))) {
@@ -508,7 +490,13 @@ for (const theme of THEMES) {
     const modeName = mode.charAt(0).toUpperCase() + mode.slice(1);
     const selector = mode === 'light' ? ':root' : '[data-theme="dark"]';
 
+    const families = v2Family.typography.families;
+    // Frozen public CSS and native consumers still read the original generated token names.
+    const platformFonts = { ...families, display: families.signature, body: families.interface,
+      mono: families.technical, terminal: families.technical };
     const sd = new StyleDictionary({
+      tokens: { font: { family: Object.fromEntries(Object.entries(platformFonts)
+        .map(([key, value]) => [key, { $value: value }])) } },
       include: [
         'tokens/base/**/*.json',
       ],
@@ -892,16 +880,8 @@ function assertBundledPrimaryFonts() {
     }
   }
 
-  const tokenFamilies = new Set();
-  const files = [
-    'tokens/base/typography.json',
-    ...THEMES.flatMap((theme) => MODES.map((mode) => `tokens/themes/${theme}/${mode}.json`)),
-  ];
-  for (const file of files) {
-    if (!existsSync(file)) continue;
-    const families = JSON.parse(readFileSync(file, 'utf8'))?.font?.family ?? {};
-    Object.values(families).forEach((token) => tokenFamilies.add(String(token?.$value ?? '').trim()));
-  }
+  const tokenFamilies = new Set(THEMES.flatMap(theme =>
+    Object.values(readJsonFile(`${V2_FAMILY_ROOTS[theme]}/family.bb.json`).typography.families)));
   for (const family of tokenFamilies) {
     if (!declaredFamilies.has(family)) {
       throw new Error(`[font-contract] ${family} is declared by a theme token but has no bundled @font-face.`);
@@ -1148,12 +1128,8 @@ function buildV2CatalogPayload(theme) {
     }
   }
 
-  for (const role of contract.typography.mandatoryFamilyRoles) {
-    assertSingleV2FontFamily(family.typography.families?.[role], role);
-  }
-  for (const role of contract.typography.optionalFamilyRoles) {
-    if (family.typography.families?.[role]) assertSingleV2FontFamily(family.typography.families[role], role);
-  }
+  assertCatalogFontRoles(family.typography.families);
+  for (const [role, name] of Object.entries(family.typography.families)) assertSingleV2FontFamily(name, role);
   assertExactMembers(
     Object.keys(family.typography.styles || {}),
     contract.typography.mandatoryStyles,
@@ -1177,10 +1153,10 @@ function buildV2CatalogPayload(theme) {
   }
   assertExactMembers(
     Object.keys(family.typography.variants || {}),
-    contract.typography.variantRoles,
+    THEME_FONT_ROLES,
     'typography variant roles'
   );
-  for (const role of contract.typography.variantRoles) {
+  for (const role of THEME_FONT_ROLES) {
     const variant = family.typography.variants[role];
     assertExactMembers(
       Object.keys(variant || {}),

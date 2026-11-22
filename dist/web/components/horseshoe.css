@@ -49,7 +49,7 @@
   position: absolute;
   bottom: 2px;
   color: var(--bb-v2-color-content-primary);
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   font-size: var(--bb-font-size-xl);
   font-weight: var(--bb-font-weight-bold);
   line-height: 1;

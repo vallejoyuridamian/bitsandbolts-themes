@@ -61,9 +61,6 @@
     "creatorIdentityMinimumTextContrast": 4.5
   },
   "typography": {
-    "mandatoryFamilyRoles": ["primary", "mono"],
-    "optionalFamilyRoles": ["accent"],
-    "variantRoles": ["signature", "interface", "technical"],
     "variantFields": ["bold", "italic", "underline"],
     "mandatoryStyles": [
       "display",

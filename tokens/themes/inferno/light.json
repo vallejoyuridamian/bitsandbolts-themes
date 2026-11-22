@@ -5,20 +5,6 @@
     }
   },
   "font": {
-    "family": {
-      "display": {
-        "$value": "Source Serif 4"
-      },
-      "body": {
-        "$value": "Inter"
-      },
-      "mono": {
-        "$value": "JetBrains Mono"
-      },
-      "terminal": {
-        "$value": "JetBrains Mono"
-      }
-    },
     "tracking": {
       "normal": {
         "$value": "0em"

@@ -133,7 +133,7 @@ Use tokens in your CSS/Vue:
   color: var(--bb-v2-identity-primary-foreground);
   border-radius: var(--bb-radius-md);
   padding: var(--bb-spacing-3) var(--bb-spacing-6);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-md);
 }
 ```
@@ -251,7 +251,7 @@ font face in the generated web distribution.
 ...
 --bb-spacing-1 through --bb-spacing-24
 --bb-radius-none through --bb-radius-full
---bb-font-family-display / body / mono / terminal
+--bb-font-family-signature / interface / technical
 --bb-font-size-xs through --bb-font-size-5xl
 --bb-font-weight-regular / medium / semibold / bold
 --bb-shadow-none through --bb-shadow-xl

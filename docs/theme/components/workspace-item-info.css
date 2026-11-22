@@ -9,7 +9,7 @@
   gap: var(--bb-spacing-3);
   min-width: 0;
   color: var(--bb-interface-control-foreground);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   -webkit-user-select: none;
   user-select: none;
 }
@@ -31,7 +31,7 @@
   min-width: 0;
   padding-block: var(--bb-spacing-2);
   color: var(--bb-v2-color-content-primary);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-sm);
   line-height: var(--bb-font-line-height-normal);
 }

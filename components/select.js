@@ -10,7 +10,7 @@ const MAX_VISIBLE_MENU_OPTIONS = 5;
 const MENU_GAP = 4;
 const MIN_MENU_WIDTH = 180;
 const PORTAL_PRESENTATION_PROPERTIES = Object.freeze([
-  '--bb-font-family-body',
+  '--bb-font-family-interface',
   '--bb-interface-control-foreground',
   '--bb-interface-control-hover-foreground',
   '--bb-interface-control-disabled-foreground',

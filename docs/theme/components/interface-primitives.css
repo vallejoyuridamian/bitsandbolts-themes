@@ -45,7 +45,7 @@
   padding: var(--bb-spacing-5);
   color: var(--bb-v2-color-content-primary);
   background: var(--bb-interface-workspace-background);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
 }
 
 .bb-workspace-opening__content {
@@ -58,7 +58,7 @@
 
 .bb-workspace-opening__title {
   margin: 0;
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   font-size: var(--bb-font-size-xl);
   font-weight: var(--bb-font-weight-bold);
   line-height: var(--bb-font-line-height-tight);
@@ -82,7 +82,7 @@
   overflow: hidden;
   color: var(--bb-v2-color-content-primary);
   background: var(--bb-v2-color-surface-canvas);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   -webkit-user-select: none;
   user-select: none;
 }
@@ -177,7 +177,7 @@
   border-radius: 0;
   color: var(--bb-v2-color-content-primary);
   background: transparent;
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
 }
 
 .bb-workspace-section--compact {
@@ -427,7 +427,7 @@
 .bb-workspace-brand__eyebrow,
 .bb-workspace-brand__title {
   margin: 0;
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   line-height: 1.15;
   white-space: nowrap;
 }
@@ -456,7 +456,7 @@
   gap: 10px;
   min-width: 0;
   color: var(--bb-interface-control-foreground);
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   font-size: 13px;
   font-weight: var(--bb-font-weight-semibold);
   letter-spacing: 0.06em;
@@ -491,7 +491,7 @@
   color: var(--bb-interface-control-foreground);
   background-color: transparent;
   box-shadow: none;
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-bold);
   line-height: 1.2;
@@ -507,7 +507,7 @@
 .bb-workspace-chrome {
   color: var(--bb-interface-control-foreground);
   background: var(--bb-v2-color-surface-canvas);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
 }
 
 .bb-workspace-topbar {
@@ -529,7 +529,7 @@
 .bb-workspace-topbar__identity {
   flex: 0 0 auto;
   color: var(--bb-v2-color-content-primary);
-  font-family: var(--bb-font-family-display);
+  font-family: var(--bb-font-family-signature);
   font-size: var(--bb-font-size-sm);
   font-weight: var(--bb-font-weight-semibold);
   letter-spacing: 0.04em;
@@ -568,7 +568,7 @@
   background: transparent;
   box-shadow: none;
   filter: none;
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-bold);
   line-height: 1.2;
@@ -831,7 +831,7 @@
   border-bottom: 1px solid var(--bb-v2-color-border-subtle);
   color: var(--bb-v2-color-content-secondary);
   background: var(--bb-v2-color-surface-canvas);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
 }
 
 input.bb-workspace-control-input.bb-workspace-control-input[type="number"] {
@@ -847,7 +847,7 @@ input.bb-workspace-control-input.bb-workspace-control-input[type="number"] {
   color: var(--bb-interface-control-foreground);
   background: transparent;
   box-shadow: none;
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-bold);
   line-height: 1.2;
@@ -1162,7 +1162,7 @@ input.bb-workspace-control-input.bb-workspace-control-input[type="number"]:focus
 
 .bb-color-palette__label {
   color: var(--bb-interface-menu-muted-foreground);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-semibold);
   line-height: var(--bb-font-line-height-normal);
@@ -1214,7 +1214,7 @@ input.bb-workspace-control-input.bb-workspace-control-input[type="number"]:focus
   border-radius: var(--bb-radius-md);
   color: var(--bb-interface-control-foreground);
   background: transparent;
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-bold);
   line-height: 1.2;
@@ -1299,7 +1299,7 @@ input.bb-workspace-control-input.bb-workspace-control-input[type="number"]:focus
   color: var(--bb-interface-control-foreground);
   background: var(--bb-v2-color-surface-canvas);
   box-shadow: var(--bb-interface-menu-shadow);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
 }
 
 .bb-toolbar-popover[hidden] {
@@ -1333,7 +1333,7 @@ input.bb-workspace-control-input.bb-workspace-control-input[type="number"]:focus
   align-items: center;
   gap: var(--bb-spacing-2);
   color: var(--bb-interface-menu-muted-foreground);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-medium);
   line-height: var(--bb-font-line-height-normal);
@@ -1341,7 +1341,7 @@ input.bb-workspace-control-input.bb-workspace-control-input[type="number"]:focus
 
 .bb-toolbar-popover__field-label {
   color: var(--bb-v2-color-content-secondary);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-semibold);
   line-height: var(--bb-font-line-height-normal);
@@ -1367,7 +1367,7 @@ input.bb-workspace-control-input.bb-workspace-control-input[type="number"]:focus
 
 .bb-toolbar-popover__status {
   color: var(--bb-interface-menu-muted-foreground);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-xs);
   line-height: var(--bb-font-line-height-normal);
 }
@@ -1418,7 +1418,7 @@ input.bb-workspace-control-input.bb-workspace-control-input[type="number"]:focus
   color: var(--bb-interface-control-foreground);
   background: var(--bb-interface-menu-background);
   box-shadow: var(--bb-interface-menu-shadow);
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   scrollbar-color: var(--bb-interface-menu-scrollbar-thumb) var(--bb-interface-menu-scrollbar-track);
   scrollbar-width: thin;
 }
@@ -1436,7 +1436,7 @@ input.bb-workspace-control-input.bb-workspace-control-input[type="number"]:focus
   color: var(--bb-interface-control-foreground);
   background: transparent;
   box-shadow: none;
-  font-family: var(--bb-font-family-body);
+  font-family: var(--bb-font-family-interface);
   font-size: var(--bb-font-size-xs);
   font-weight: var(--bb-font-weight-bold);
   line-height: 1.2;
