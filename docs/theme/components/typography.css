@@ -317,3 +317,48 @@
   font-style: normal;
   font-display: block;
 }
+
+/* Supplemental artwork faces. Hebrew ink matches Latin capitals. Its metrics retain the unscaled line height. */
+@font-face {
+  font-family: "BB Supplemental Sans";
+  src: url("../fonts/dejavu_arabic_400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-089F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFC;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "BB Supplemental Sans";
+  src: url("../fonts/dejavu_arabic_700.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-089F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFC;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "BB Supplemental Sans";
+  src: url("../fonts/dejavu_hebrew_400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  unicode-range: U+0590-05FF, U+FB1D-FB4F;
+  size-adjust: 120%;
+  ascent-override: 77.35%;
+  descent-override: 19.65%;
+  line-gap-override: 0%;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "BB Supplemental Sans";
+  src: url("../fonts/dejavu_hebrew_700.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  unicode-range: U+0590-05FF, U+FB1D-FB4F;
+  size-adjust: 120%;
+  ascent-override: 77.35%;
+  descent-override: 19.65%;
+  line-gap-override: 0%;
+  font-display: block;
+}

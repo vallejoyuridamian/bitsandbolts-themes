@@ -1,5 +1,9 @@
 # Bits and Bolts Themes - Changelog
 
+## 2026-11-24 Supplemental Arabic and Hebrew typography
+
+Shared web typography now includes licensed regular and bold Arabic and Hebrew faces. The source assets, generated web distribution and showcase carry the faces and license together. Cluna Studio shipped the typography in frontend bf2d86ec and renderer 57. The consumer accepted its Winter localization retest.
+
 ## 2026-10-12: Shared account/window/input owners and approved field colors
 
 - Generic account-access/funnel, floating-window/stack/confirmation and document input/focus controllers have one canonical owner. Consumers inject workflows, transport, event integration and runtime values. Retired forms/confirmations cannot publish obsolete continuation results.

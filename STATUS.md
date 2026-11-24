@@ -1,4 +1,7 @@
 # Bits and Bolts Themes: Status
+
+Cluna consumes the licensed Arabic and Hebrew faces through shared web typography. Current delivery and remaining integration gates are recorded in ../appscreen-studio/docs/CLUNA_MCP_COMPOSITION_PLAN.md.
+
 Studio release 736c8eea includes the canonical Signature, Interface and Technical font roles across nine families and 18 generated appearances. Legacy platform alias consumers remain tracked. Control: ../appscreen-studio/docs/CLUNA_MCP_THEME_PLAN.md.
 Nov21 shared splash and pending Theme editor live in Studio 51da4a68. Owner accepted local scrolling, splash and Cloud rendering. Hosted MCP user retest: ../appscreen-studio/docs/CLUNA_MCP_THEME_PLAN.md.
 

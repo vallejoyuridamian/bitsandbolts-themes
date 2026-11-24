@@ -1,4 +1,7 @@
 # Bits and Bolts Themes: Sprint Roadmap
+
+Cluna consumes the licensed Arabic and Hebrew faces through shared web typography. Current delivery and remaining integration gates are recorded in ../appscreen-studio/docs/CLUNA_MCP_COMPOSITION_PLAN.md.
+
 Studio release 736c8eea includes the canonical Signature, Interface and Technical font roles across nine families and 18 generated appearances. Legacy platform alias consumers remain tracked. Control: ../appscreen-studio/docs/CLUNA_MCP_THEME_PLAN.md.
 Nov17 Studio ee9314f9 delivers role identity,pending glyph and geometry units.
 Owner directs next work;Live UI check unreported. No automatic generation/review.
