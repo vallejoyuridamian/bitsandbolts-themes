@@ -177,6 +177,7 @@ export class MediaPreviewElement {
     thumbnailPath = '',
     thumbnailRevision = '',
     action = {},
+    skeleton = false,
     interactive = true,
     measured = false,
     className = '',
@@ -190,7 +191,7 @@ export class MediaPreviewElement {
     const safePath = this.escapeAttribute(path);
     const sourceUrl = String(url || '');
     const safeLabel = this.escapeAttribute(label || fileNameFromPath(path) || mediaKind);
-    const actionable = interactive && Object.values(action).some((value) => value != null && value !== '');
+    const actionable = !skeleton && interactive && Object.values(action).some((value) => value != null && value !== '');
     const classes = [
       'bb-media-preview',
       'bb-workspace-stage-surface',
@@ -200,12 +201,14 @@ export class MediaPreviewElement {
       `media-preview-element-${mediaKind}`,
       'vault-thumb',
       `vault-thumb-${mediaKind}`,
+      skeleton ? 'bb-skeleton' : '',
       className
     ].filter(Boolean).join(' ');
     const dataset = actionDataset(action, this.escapeAttribute);
-    const preparedResource = this.previewResource({ kind: mediaKind, path, url, thumbnailPath, thumbnailRevision });
+    const preparedResource = !skeleton && this.previewResource({ kind: mediaKind, path, url, thumbnailPath, thumbnailRevision });
     let content;
-    if (preparedResource) {
+    if (skeleton) content = '';
+    else if (preparedResource) {
       content = `<img data-asset-resource="${this.escapeAttribute(preparedResource)}" alt="" draggable="false"${measured ? ' data-media-preview-measured' : ''}>
         ${mediaKind === 'video' && interactive ? this.renderPlayCue() : ''}`;
     } else if (mediaKind === 'icon' && iconRole) {
@@ -267,6 +270,7 @@ export class MediaPreviewCard extends MediaPreviewElement {
     iconRole = '',
     iconStyle = '',
     loading = false,
+    skeleton = false,
     presentation = mediaPreviewCardPresentations.full,
     selectable = false,
     selected = false,
@@ -279,7 +283,7 @@ export class MediaPreviewCard extends MediaPreviewElement {
     const reduced = presentation === mediaPreviewCardPresentations.reduced;
     const hasPreviewAction = Object.values(previewAction).some((value) => value != null && value !== '');
     // Picker cards select; Vault previews act directly. Size is an independent concern.
-    const previewInteractive = !selectable || hasPreviewAction;
+    const previewInteractive = !skeleton && (!selectable || hasPreviewAction);
     const safePath = this.escapeAttribute(path);
     const displayLabel = this.mediaAssetDisplayName(mediaKind, label || assetLabelFromPath(path), path);
     const displaySubtitle = this.mediaAssetDisplayName(mediaKind, subtitle, path);
@@ -305,7 +309,7 @@ export class MediaPreviewCard extends MediaPreviewElement {
         ${attrs}
         draggable="${draggable ? 'true' : 'false'}"
         ${selectable ? `role="button" tabindex="0" aria-pressed="${selected ? 'true' : 'false'}"` : ''}
-        ${loading ? 'aria-busy="true"' : ''}
+        ${loading || skeleton ? 'aria-busy="true"' : ''}
         ${unavailable ? 'aria-disabled="true"' : ''}
         aria-label="${safeLabel}"
       >
@@ -316,7 +320,7 @@ export class MediaPreviewCard extends MediaPreviewElement {
           label: displayLabel,
           thumbnailPath,
           thumbnailRevision,
-          interactive: previewInteractive,
+          interactive: previewInteractive, skeleton: Boolean(skeleton),
           measured,
           action: previewAction,
           fontFamily,
@@ -329,11 +333,13 @@ export class MediaPreviewCard extends MediaPreviewElement {
         ${overlayActions.length ? `<div class="bb-media-card__overlay-actions vault-card-overlay-actions media-preview-card-overlay-actions">${overlayActions.map(cardActionButtonMarkup).join('')}</div>` : ''}
         ${showBody
           ? `<div class="bb-media-card__body vault-card-body media-preview-card-body">
-            ${showBodyLabel ? `<strong title="${safeLabel}">${this.escapeHtml(displayLabel)}</strong>` : ''}
+            ${showBodyLabel ? skeleton && !label
+              ? '<strong class="bb-skeleton" style="width:72%" aria-hidden="true">&nbsp;</strong>'
+              : `<strong title="${safeLabel}">${this.escapeHtml(displayLabel)}</strong>` : ''}
             ${!reduced && displaySubtitle ? `<span title="${this.escapeAttribute(displaySubtitle)}">${this.escapeHtml(displaySubtitle)}</span>` : ''}
             ${!reduced && badges.length ? `<div class="bb-media-card__meta vault-card-meta media-preview-card-meta">${badges.map((badge) => this.renderBadge(badge)).join('')}</div>` : ''}
             ${reduced ? '' : extraHtml}
-            ${!reduced && actions.length ? `<div class="bb-media-card__actions vault-card-actions media-preview-card-actions">${this.renderActions(actions)}</div>` : ''}
+            ${!reduced && actions.length ? `<div class="bb-media-card__actions vault-card-actions media-preview-card-actions"${skeleton ? ' style="visibility:hidden" inert' : ''}>${this.renderActions(actions)}</div>` : ''}
           </div>`
           : ''}
       </article>
@@ -353,9 +359,10 @@ export class MediaPreviewCard extends MediaPreviewElement {
     badges = [],
     overlayActions = [],
     actions = [],
-    loading = false
+    loading = false,
+    skeleton = false
   } = {}) {
-    const name = String(familyName || '').trim() || 'Font';
+    const name = String(familyName || '').trim() || (skeleton ? '' : 'Font');
     const reduced = presentation === mediaPreviewCardPresentations.reduced;
     return this.renderCard({
       kind: 'font',
@@ -371,7 +378,7 @@ export class MediaPreviewCard extends MediaPreviewElement {
       badges,
       overlayActions,
       actions,
-      loading,
+      loading, skeleton,
       showBody: !reduced
     });
   }
@@ -400,6 +407,7 @@ export class MediaPreviewCard extends MediaPreviewElement {
     item = {},
     label = item.label || assetLabelFromPath(item.path),
     className = '',
+    skeleton = false,
     dataset = {},
     draggable = false,
     overlayActions = [],
@@ -420,7 +428,7 @@ export class MediaPreviewCard extends MediaPreviewElement {
       label,
       thumbnailPath,
       thumbnailRevision,
-      className,
+      className, skeleton,
       dataset,
       draggable,
       overlayActions,
@@ -482,6 +490,7 @@ export class MediaPreviewCard extends MediaPreviewElement {
     dataset = {},
     className = '',
     disabled = false,
+    pending = false,
     busy = false,
     danger = false,
     title = '',
@@ -492,7 +501,7 @@ export class MediaPreviewCard extends MediaPreviewElement {
       : '';
     return semanticActionButtonMarkup({
       label, recipe: 'workspace', size: 'compact', iconOnly: false, danger,
-      className, disabled, dataset, ariaLabel,
+      className, disabled, pending, dataset, ariaLabel,
       iconMarkup: progress,
       attributes: {
         'data-bb-theme-control': true,

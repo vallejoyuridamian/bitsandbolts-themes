@@ -1,5 +1,7 @@
 # Bits and Bolts Themes: Sprint Roadmap
 
+Shared media-card skeletons, attention pulse and pending text-action feedback have matching generated web and showcase outputs. The owner regenerated Themes and accepted ordinary local Studio Vault and Delete behavior. Local chat-link and new-category acceptance remain parked. Control: ../appscreen-studio/docs/CLUNA_MCP_COMPOSITION_PLAN.md.
+
 Cluna consumes the licensed Arabic and Hebrew faces through shared web typography. Current delivery and remaining integration gates are recorded in ../appscreen-studio/docs/CLUNA_MCP_COMPOSITION_PLAN.md.
 
 Studio release 736c8eea includes the canonical Signature, Interface and Technical font roles across nine families and 18 generated appearances. Legacy platform alias consumers remain tracked. Control: ../appscreen-studio/docs/CLUNA_MCP_THEME_PLAN.md.

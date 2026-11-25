@@ -790,12 +790,18 @@
   --ms-weight: 300;
 }
 
-/* Shared pending light stays inside existing control and status glyphs. */
+/* Use the existing icon, or the text glyphs on a control with no icon. */
+.bb-workspace-control-button[aria-busy="true"]:disabled:not(:has(.bb-semantic-icon)) > .bb-workspace-control-label {
+  --bb-pending-glyph-base: var(--bb-interface-control-disabled-foreground);
+  background-clip: text;
+  color: transparent;
+}
+
 [aria-busy="true"]:disabled .bb-semantic-icon,
-.bb-semantic-icon[aria-busy="true"] {
-  /* Themes' existing mask confines the light to the original icon glyph. */
-  background-image: linear-gradient(105deg, currentColor 40%,
-    var(--bb-v2-color-content-primary) 50%, currentColor 60%);
+.bb-semantic-icon[aria-busy="true"],
+.bb-workspace-control-button[aria-busy="true"]:disabled:not(:has(.bb-semantic-icon)) > .bb-workspace-control-label {
+  background-image: linear-gradient(105deg, var(--bb-pending-glyph-base, currentColor) 40%,
+    var(--bb-v2-color-content-primary) 50%, var(--bb-pending-glyph-base, currentColor) 60%);
   background-size: 250% 100%;
   background-position: 100% 0;
   animation: bb-pending-control-light 1.4s linear infinite;
@@ -807,7 +813,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   [aria-busy="true"]:disabled .bb-semantic-icon,
-  .bb-semantic-icon[aria-busy="true"] {
+  .bb-semantic-icon[aria-busy="true"],
+  .bb-workspace-control-button[aria-busy="true"]:disabled:not(:has(.bb-semantic-icon)) > .bb-workspace-control-label {
     animation: none;
     background-position: 50% 0;
   }

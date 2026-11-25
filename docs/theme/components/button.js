@@ -65,7 +65,8 @@ export function semanticActionButtonMarkup(model = {}) {
     ...(model.id ? { id: model.id } : {}),
     'aria-label': model.ariaLabel || label,
     title: model.help || model.ariaLabel || label,
-    ...(model.disabled ? { disabled: true } : {}),
+    ...(model.disabled || model.pending ? { disabled: true } : {}),
+    ...(model.pending ? { 'aria-busy': 'true' } : {}),
     ...(model.hidden ? { hidden: true } : {}),
     ...(model.tabIndex !== undefined ? { tabindex: model.tabIndex } : {}),
     ...(model.attributes ?? {})
