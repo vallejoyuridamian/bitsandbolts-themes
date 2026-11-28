@@ -223,12 +223,14 @@ export function compactThemePickerMarkup(catalog = {}, {
   mode = 'dark',
   selectedThemeId = '',
   title = 'Choose Theme',
+  grouped = false,
+  personalPending = false,
   groups = null
 } = {}) {
   const themes = Array.isArray(catalog?.themes) ? catalog.themes.map(requiredTheme) : [];
   if (!themes.length) throw new TypeError('Compact Theme picker requires a complete v2 catalog.');
   const gridOptions = { cardModes, mode, selectedThemeId, browse: true };
-  const sections = groups ?? themeCatalogGroups(themes);
+  const sections = groups ?? themeCatalogGroups(themes, { grouped, personalPending });
   const browseMarkup = sections.length
     ? sections.map((group) => workspaceSectionMarkup({
         id: `compact-theme-${group.id}`,
